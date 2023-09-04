@@ -1,5 +1,4 @@
 package compsciia;
-
 import java.util.*;
 import java.awt.*;
 import java.awt.Color;
@@ -8,6 +7,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.awt.geom.*;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -91,6 +91,14 @@ public class ShowImage extends JPanel implements KeyListener {
                 }
             }
         });
+        
+        addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                // Handle the mouse move event
+                System.out.println("Mouse moved to (" + e.getX() + ", " + e.getY() +  ")");
+            }
+        });
 
         // Add key listener to the panel
         setFocusable(true);
@@ -126,6 +134,8 @@ public class ShowImage extends JPanel implements KeyListener {
         	int xSize = textbox.getXSize();
         	int ySize = textbox.getYSize();
             g.fillRect(x, y, xSize, ySize);
+            RoundRectangle2D roundRect = new RoundRectangle2D.Double(10,10,10,10,10,10);
+            boolean containsPoint = roundRect.contains(10.0, 10.0);
             g.setColor(colorsList[textbox.getFontColor()]);
             Font font;
             if (textbox.getBold() == true) {
