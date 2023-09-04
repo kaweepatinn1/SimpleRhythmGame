@@ -1,20 +1,20 @@
 package compsciia;
 
 public class Renderable {
-    private String imageName;
+    private String imagePath;
     private int x;
     private int y;
     private int opacity;
 
-    public Renderable(String imageName, int x, int y, int opacity) {
-        this.imageName = imageName;
+    public Renderable(String imagePath, int x, int y, int opacity) {
+        this.imagePath = imagePath;
         this.x = x;
         this.y = y;
         this.opacity = opacity;
     }
 
-    public String getImageName() {
-        return imageName;
+    public String getImagePath() {
+        return imagePath;
     }
 
     public int getX() {

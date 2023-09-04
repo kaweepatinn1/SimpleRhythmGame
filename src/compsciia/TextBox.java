@@ -1,6 +1,7 @@
 package compsciia;
 
 public class TextBox {
+	private String name;
     private String text;
     private int textSize;
     private int fontColor;
@@ -15,9 +16,12 @@ public class TextBox {
     private int color;
     private int opacity;
     private boolean bold;
-
-    public TextBox(String text, int fontColor, int textSize, int x, int y, int xSize, int ySize, int offsetX, int offsetY, int color, int opacity, boolean bold) {
-        this.text = text;
+    private int roundPercentage;
+    private boolean hovered;
+    
+    public TextBox(String name, String text, int fontColor, int textSize, int x, int y, int xSize, int ySize, int offsetX, int offsetY, int color, int opacity, boolean bold, int roundPercentage) {
+        this.name = name;
+    	this.text = text;
         this.fontColor = fontColor;
         this.textSize = textSize;
         this.x = x;
@@ -31,10 +35,13 @@ public class TextBox {
         this.color = color;
         this.opacity = opacity;
         this.bold = bold;
+        this.roundPercentage = roundPercentage;
+        this.hovered = false;
     }
 
-    public TextBox(Renderable renderableObject, int x, int y, int xSize, int ySize, int offsetX, int offsetY, int color, int opacity, boolean bold) {
-        this.text = "";
+    public TextBox(String name, Renderable renderableObject, int x, int y, int xSize, int ySize, int offsetX, int offsetY, int color, int opacity, boolean bold, int roundPercentage) {
+    	this.name = name;
+    	this.text = "";
         this.fontColor = -1;
         this.textSize = 0;
         this.x = x;
@@ -43,13 +50,18 @@ public class TextBox {
         this.ySize = ySize;
         this.offsetX = offsetX;
         this.offsetY = offsetY;
-        this.renderRenderable = true;
         this.renderableObject = renderableObject;
         this.color = color;
         this.opacity = opacity;
         this.bold = bold;
+        this.roundPercentage = roundPercentage;
+        this.hovered = false;
     }
-
+    
+    public String getName(){
+    	return name;
+    }
+    
     public String getText() {
         return text;
     }
@@ -106,6 +118,18 @@ public class TextBox {
         return bold;
     }
     
+    public int getRoundPercentage() {
+    	return roundPercentage;
+    }
+    
+    public boolean getHover(){
+    	return hovered;
+    }
+    
+    public void setName(String name) {
+    	this.name = name;
+    }
+    
     public void setText(String text) {
         this.text = text;
     }
@@ -160,5 +184,13 @@ public class TextBox {
     
     public void setBold(boolean bold) {
         this.bold = bold;
+    }
+    
+    public void setRoundPercentage(int roundPercentage) {
+        this.roundPercentage = roundPercentage;
+    }
+    
+    public void setHover(boolean hovered){
+    	this.hovered = hovered;
     }
 }
