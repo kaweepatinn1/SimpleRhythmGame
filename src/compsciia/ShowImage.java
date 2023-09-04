@@ -124,7 +124,6 @@ public class ShowImage extends JPanel implements KeyListener {
     
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
         // Draw the images on the panel
         for (int i = 0; i < images.length; i++) {
             BufferedImage image = images[i];
@@ -152,7 +151,7 @@ public class ShowImage extends JPanel implements KeyListener {
         	int xSize = roundRectAttributes.getXSize();
         	int ySize = roundRectAttributes.getYSize();
         	int round = roundRectAttributes.getRound();
-            g.fillRoundRect(x, y,xSize, ySize,round,round);
+            g.fillRoundRect(x, y, xSize, ySize, round, round);
             g.setColor(colorsList[textbox.getFontColor()]);
             Font font;
             if (textbox.getBold() == true) {
@@ -162,8 +161,31 @@ public class ShowImage extends JPanel implements KeyListener {
             	font = new Font("Roboto", Font.PLAIN, textbox.getTextSize());
             	g.setFont(font);
             }
-            int finalX = x + textbox.getOffsetX();
-            int finalY = y + textbox.getOffsetY();
+            // Below code grabs the size of the text using the string to be entered
+            FontMetrics fontMetrics = g.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(textbox.getText());
+            int textHeight = fontMetrics.getAscent();
+            // Initializes extraAlign variables
+            int extraAlignX = 0;
+            int extraAlignY = 0;
+            // uses the align text settings to determing whether to use the fontMetrics for extraAlignX.
+            if (textbox.getAlignX() == "right") {
+            	extraAlignX = - textWidth;
+            } else if (textbox.getAlignX() == "center") {
+            	extraAlignX = - textWidth / 2;
+            } else { // cases of left, and everything else
+            	extraAlignX = 0;
+            }
+            // same, but for up and down (extraAlignY).
+            if (textbox.getAlignY() == "bottom") {
+            	extraAlignY = textHeight;
+            } else if (textbox.getAlignY() == "center") {
+            	extraAlignY = textHeight / 2;
+            } else { // cases of up, and everything else
+            	extraAlignY = 0;
+            }
+            int finalX = x + (textbox.getXSize() / 2) + textbox.getOffsetX() + extraAlignX;
+            int finalY = y + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY - (int) Math.round(textHeight * 0.11);
             g.drawString(textbox.getText(), finalX, finalY);
         	
         }
@@ -256,8 +278,10 @@ public class ShowImage extends JPanel implements KeyListener {
         	TextBox currentItem = rawTextBoxesList[i];
         	String name = currentItem.getName();
         	String text = currentItem.getText();
-        	int fontColor = currentItem.getFontColor();
+        	String alignX = currentItem.getAlignX();
+        	String alignY = currentItem.getAlignY();
         	int textSize = (int) Math.round(currentItem.getTextSize() * Math.min(xScale, yScale));
+        	int fontColor = currentItem.getFontColor();
         	int x = (int) Math.round(currentItem.getX() * xScale);
         	int y = (int) Math.round(currentItem.getY() * yScale);
         	int xSize = (int) Math.round(currentItem.getXSize() * xScale);
@@ -274,7 +298,7 @@ public class ShowImage extends JPanel implements KeyListener {
         		textBoxesList[i] =  new TextBox(name, renderableObject, x, y, xSize, ySize, offsetX, offsetY,
         				color, opacity, bold, roundPercentage);
         	} else {
-        		textBoxesList[i] =  new TextBox(name, text, fontColor, textSize, x, y, xSize, ySize, offsetX, offsetY,
+        		textBoxesList[i] =  new TextBox(name, text, alignX, alignY, fontColor, textSize, x, y, xSize, ySize, offsetX, offsetY,
         				color, opacity, bold, roundPercentage);
         	}
         }
@@ -332,9 +356,9 @@ public class ShowImage extends JPanel implements KeyListener {
         rawTextBoxesList = new TextBox[]{
         		//TextBox(name, text, fontColor, textSize, x, y, xSize, ySize, offsetX, offsetY, color, opacity, bold, roundPercentage)
         		//TextBox(name,  renderableObject, x, y, xSize, ySize, offsetX, offsetY, color, opacity, bold, roundPercentage) 
-        		new TextBox("Box1", "Test", 2, 12, 100, 500, 550, 50, 0, 25, 3, 255, false, 50),
-        		new TextBox("Box2", "Test2", 2, 35, 200, 300, 550, 50, 0, 25, 3, 255, false, 100),
-        		new TextBox("Box3", "Test3", 1, 20, 300, 100, 550, 50, 0, 25, 3, 255, false, 100)
+        		new TextBox("Box1", "Test", "left", "top", 2, 50, 100, 500, 550, 50, 0, 0, 3, 255, false, 0),
+        		new TextBox("Box2", "Test2", "center", "center", 2, 50, 200, 300, 550, 50, 0, 0, 3, 255, false, 0),
+        		new TextBox("Box3", "Test3", "right", "bottom", 1, 50, 300, 100, 550, 50, 0, 0, 3, 255, false, 0)
         };
         
         colorsList = new Color[]{

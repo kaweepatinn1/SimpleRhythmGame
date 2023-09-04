@@ -3,6 +3,8 @@ package compsciia;
 public class TextBox {
 	private String name;
     private String text;
+    private String alignX;
+    private String alignY;
     private int textSize;
     private int fontColor;
     private int x;
@@ -19,9 +21,11 @@ public class TextBox {
     private int roundPercentage;
     private boolean hovered;
     
-    public TextBox(String name, String text, int fontColor, int textSize, int x, int y, int xSize, int ySize, int offsetX, int offsetY, int color, int opacity, boolean bold, int roundPercentage) {
+    public TextBox(String name, String text, String alignX, String alignY, int fontColor, int textSize, int x, int y, int xSize, int ySize, int offsetX, int offsetY, int color, int opacity, boolean bold, int roundPercentage) {
         this.name = name;
     	this.text = text;
+    	this.alignX = alignX;
+    	this.alignY = alignY;
         this.fontColor = fontColor;
         this.textSize = textSize;
         this.x = x;
@@ -41,7 +45,9 @@ public class TextBox {
 
     public TextBox(String name, Renderable renderableObject, int x, int y, int xSize, int ySize, int offsetX, int offsetY, int color, int opacity, boolean bold, int roundPercentage) {
     	this.name = name;
-    	this.text = "";
+    	this.text = null;
+    	this.alignX = null;
+    	this.alignY = null;
         this.fontColor = -1;
         this.textSize = 0;
         this.x = x;
@@ -64,6 +70,14 @@ public class TextBox {
     
     public String getText() {
         return text;
+    }
+    
+    public String getAlignX() {
+        return alignX;
+    }
+
+    public String getAlignY() {
+        return alignY;
     }
     
     public int getFontColor() {
@@ -132,6 +146,14 @@ public class TextBox {
     
     public void setText(String text) {
         this.text = text;
+    }
+    
+    public void setAlignX(String alignX) {
+    	this.alignX = alignX;
+    }
+    
+    public void setAlignY(String alignY) {
+    	this.alignY = alignY;
     }
     
     public void setFontColor(int fontColor) {
