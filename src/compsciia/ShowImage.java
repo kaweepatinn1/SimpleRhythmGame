@@ -18,7 +18,7 @@ import javax.swing.SwingConstants;
 
 public class ShowImage extends JPanel implements KeyListener {
     private static BufferedImage[] images;
-    private static Renderable[] renderables;
+    private static Renderable[] renderablesList;
     private static Renderable[] rawRenderablesList;
     private static TextBox[] textBoxesList;
     private static TextBox[] rawTextBoxesList;
@@ -27,25 +27,22 @@ public class ShowImage extends JPanel implements KeyListener {
     private static Color[] colorsList;
     private static JFrame frame;
     
-    public ShowImage(Renderable[] renderables, TextBox[] textBoxes, Color[] colors) {
+    public ShowImage() {
         setLayout(new BorderLayout()); // Set the main panel's layout to BorderLayout
         try {
             // Initialize the array to store the images and renderables
-            images = new BufferedImage[renderables.length];
-            this.renderables = renderables;
-            this.textBoxesList = textBoxes; // Assign the parameter to the instance variable
-            this.colorsList = colors; // Assign the colors parameter to the instance variable
+            images = new BufferedImage[renderablesList.length];
             LinkedList<BufferedImage> extraImagesList = new LinkedList();
 
             // Load the images from the file names in the renderables into the images list
-            for (int i = 0; i < renderables.length; i++) {
-                Renderable renderable = renderables[i];
+            for (int i = 0; i < renderablesList.length; i++) {
+                Renderable renderable = renderablesList[i];
                 File input = new File(renderable.getImagePath());
                 images[i] = ImageIO.read(input);
             }
-            for (int i = 0; i < textBoxes.length; i++) {
-                if (textBoxes[i].shouldRenderRenderable() == true) {
-	            	Renderable renderable = textBoxes[i].getRenderableObject();
+            for (int i = 0; i < textBoxesList.length; i++) {
+                if (textBoxesList[i].shouldRenderRenderable() == true) {
+	            	Renderable renderable = textBoxesList[i].getRenderableObject();
 	                File input = new File(renderable.getImagePath());
 	                extraImagesList.add(ImageIO.read(input));
                 }
@@ -65,8 +62,8 @@ public class ShowImage extends JPanel implements KeyListener {
                 int y = e.getY();
                 clickedImageIndex = -1; // Reset clickedImageIndex
 
-                for (int i = 0; i < renderables.length; i++) {
-                    Renderable renderable = renderables[i];
+                for (int i = 0; i < renderablesList.length; i++) {
+                    Renderable renderable = renderablesList[i];
                     BufferedImage image = images[i];
 
                     Rectangle bounds = new Rectangle(renderable.getX(), renderable.getY(), image.getWidth(), image.getHeight());
@@ -82,7 +79,7 @@ public class ShowImage extends JPanel implements KeyListener {
 
                 // Output the clicked image information or mouse coordinates
                 if (clickedImageIndex != -1) {
-                    Renderable clickedRenderable = renderables[clickedImageIndex];
+                    Renderable clickedRenderable = renderablesList[clickedImageIndex];
                     System.out.println("Clicked Image: " + clickedRenderable.getImagePath());
                     System.out.println("Image Position: X=" + clickedRenderable.getX() + ", Y=" + clickedRenderable.getY());
                     System.out.println("Image Opacity: " + clickedRenderable.getOpacity());
@@ -113,7 +110,6 @@ public class ShowImage extends JPanel implements KeyListener {
                     RoundRectangle2D roundRect = new RoundRectangle2D.Double(x, y,xSize, ySize,round,round);
                     if (roundRect.contains(mouseX, mouseY)) {
                         System.out.println("Hovering" + currentBox.getName());
-                        frame.setSize(1920, 1080);
                         break;
                     }
                 }
@@ -132,7 +128,7 @@ public class ShowImage extends JPanel implements KeyListener {
         // Draw the images on the panel
         for (int i = 0; i < images.length; i++) {
             BufferedImage image = images[i];
-            Renderable renderable = renderables[i];
+            Renderable renderable = renderablesList[i];
 
             Graphics2D g2d = (Graphics2D) g.create();
             g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, renderable.getOpacity() / 255f));
@@ -297,29 +293,17 @@ public class ShowImage extends JPanel implements KeyListener {
         int screenWidth = Math.min(screenDefaultWidth, screenDefaultHeight * 16 / 9);
         int screenHeight = screenWidth / 16 * 9;
         int[] toReturn = {screenWidth, screenHeight};
+        frame.setSize(screenWidth, screenHeight);
+        renderablesList = refreshScreenSizeRenderable(screenWidth,screenHeight);
+        textBoxesList = refreshScreenSizeText(screenWidth,screenHeight);
         return toReturn;
     }
-    
-    private static int[] dynamicFrameSize() { 
-    	//returns an array of size two with possible screen dimensions for the screen size
-    	//or if specified forces a size declared in sizeToForce if forceSize is true.
-    	GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-    	int screenDefaultWidth;
-        int screenDefaultHeight;
-    	screenDefaultWidth = gd.getDisplayMode().getWidth(); // gets the width of the current display
-        screenDefaultHeight = gd.getDisplayMode().getHeight(); // gets the height of the current display
-        int screenWidth = Math.min(screenDefaultWidth, screenDefaultHeight * 16 / 9);
-        int screenHeight = screenWidth / 16 * 9;
-        int[] toReturn = {screenWidth, screenHeight};
-        return toReturn;
-    }
-    
+
     public static void main(String args[]) throws Exception {
+    	frame = new JFrame("Game");
+    	
     	boolean forceSize = true;
         int sizeToForce = 1920;
-    	int[] screenDimensions = dynamicFrameSize(forceSize, sizeToForce);
-    	int screenWidth = screenDimensions[0];
-    	int screenHeight = screenDimensions[1];
         // Define the image renderables
         rawRenderablesList = new Renderable[]{
                 new Renderable("textures/kosbia.png", 10, 50, 255),
@@ -334,20 +318,15 @@ public class ShowImage extends JPanel implements KeyListener {
         		new TextBox("Box3", "Test3", 1, 20, 300, 100, 550, 50, 0, 25, 3, 255, false, 100)
         };
         
-        Renderable[] renderablesList = refreshScreenSizeRenderable(screenWidth,screenHeight);
-        TextBox[] textBoxesList = refreshScreenSizeText(screenWidth,screenHeight);
-        
-        Color[] colorsList = {
+        colorsList = new Color[]{
         		new Color (0,0,0,255),
         		new Color (255,0,0,255),
         		new Color (0,255,0,255),
         		new Color (0,0,255,255)
         };
-        
-        frame = new JFrame("Game");
-        ShowImage panel = new ShowImage(renderablesList, textBoxesList, colorsList);
+        dynamicFrameSize(forceSize, sizeToForce);
+        ShowImage panel = new ShowImage();
         frame.getContentPane().add(panel);
-        frame.setSize(screenWidth, screenHeight);
         if (forceSize) {
         	frame.setResizable(false);
         } else {
