@@ -199,7 +199,8 @@ public class ShowImage extends JPanel implements KeyListener {
         // Do nothing
     }
     
-    private TextBox getBoxFromName(String name) {
+    private TextBox getBoxFromName(String name) { 
+    	// get the box for the name given through the parameter
     	TextBox boxToReturn = null;
     	for (int i = 0; i < textBoxesList.length; i++) {
     		TextBox currentBox = textBoxesList[i];
@@ -211,7 +212,8 @@ public class ShowImage extends JPanel implements KeyListener {
     	return boxToReturn;
     }
     
-    private roundedRect getBoxAttributes(TextBox textbox) {
+    private roundedRect getBoxAttributes(TextBox textbox) { 
+    	// gets attributes of the box by converting roundpercentage to a useful number
     	int x = textbox.getX();
     	int y = textbox.getY();
     	int xSize = textbox.getXSize();
@@ -227,7 +229,8 @@ public class ShowImage extends JPanel implements KeyListener {
     	return attributesToReturn;
     }
     
-    private static Renderable[] refreshScreenSizeRenderable(int screenWidth,int screenHeight) {
+    private static Renderable[] refreshScreenSizeRenderable(int screenWidth,int screenHeight) { 
+    	// refreshes all renderables' sizes to fit the new screen size, runs on dynamicFrameSize() end.
     	double xScale = intToDouble(screenWidth) / 1920;
     	double yScale = intToDouble(screenHeight) / 1080;
     	Renderable[] renderablesList = new Renderable[rawRenderablesList.length];
@@ -243,6 +246,7 @@ public class ShowImage extends JPanel implements KeyListener {
     }
     
     private static TextBox[] refreshScreenSizeText(int screenWidth,int screenHeight) {
+    	// refreshes all textbox sizes to fit the new screen size, runs on dynamicFrameSize() end.
     	double xScale = intToDouble(screenWidth) / 1920;
     	double yScale = intToDouble(screenHeight) / 1080;
     	System.out.println(screenWidth);
@@ -278,8 +282,14 @@ public class ShowImage extends JPanel implements KeyListener {
     }
     
     private static int[] dynamicFrameSize(boolean forceSize, int sizeToForce) { 
-    	//returns an array of size two with possible screen dimensions for the screen size
-    	//or if specified forces a size declared in sizeToForce if forceSize is true.
+    	// Sets the dynamic frame size to the size passed through sizeToForce, if forceSize is true.
+    	// When initially run, passes forceSize as false to use the client screen size. Forces the
+    	// 16:9 aspect ratio. Can be passed later through perhaps a settings screen to force the window
+    	// to choose a different size (initially uses larges possible 16:9 fit. Runs refreshScreenSize()
+    	// for all scaleable properties before returning the new screen width and height as an integer
+    	// array of size 2.
+    	//
+    	// WILL ALSO ACTUALLY CHANGE THE FRAME SIZE WITHIN THE METHOD.
     	GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
     	int screenDefaultWidth;
         int screenDefaultHeight;
@@ -300,11 +310,20 @@ public class ShowImage extends JPanel implements KeyListener {
     }
 
     public static void main(String args[]) throws Exception {
-    	frame = new JFrame("Game");
+    	//main method
+    	frame = new JFrame("Game"); // initialises the frame to allow changes to be applied
     	
-    	boolean forceSize = true;
-        int sizeToForce = 1920;
-        // Define the image renderables
+    	boolean forceSize = false; // changable variables: can force the below screen size
+        int sizeToForce = 1920; // changable variables: can foce this screen size if above is true
+        
+        // TODO: create a class that holds all static or final variables, including the above two and the other values
+        // for below lists.
+        
+        // below defines the static variables which are the raw lists. Should be set again (ADD SETTER METHODS) when
+        // a different page is selected. Colors need not be set on new page, but should have setter methods for the
+        // settings page. Raw lists are used in refreshScreenSize() methods to calculate real size. Raw list values
+        // are relative to the 1920x1080 screen size.
+        
         rawRenderablesList = new Renderable[]{
                 new Renderable("textures/kosbia.png", 10, 50, 255),
                 new Renderable("textures/defaultcursor.png", 550, 100, 150),
@@ -324,17 +343,24 @@ public class ShowImage extends JPanel implements KeyListener {
         		new Color (0,255,0,255),
         		new Color (0,0,255,255)
         };
-        dynamicFrameSize(forceSize, sizeToForce);
-        ShowImage panel = new ShowImage();
-        frame.getContentPane().add(panel);
-        if (forceSize) {
+        
+        dynamicFrameSize(forceSize, sizeToForce); // uses the above raw lists and variables to set the frame size.
+        ShowImage panel = new ShowImage(); // runs showimage class (top of this class) to show text and renderables into a panel
+        frame.getContentPane().add(panel); // adds the panel to frame content
+        
+        frame.setResizable(false);
+        // BELOW IS DEPRECIATED: FRAME WILL ALWAYS BE UNRESIZABLE. can be resized in possibly settings
+        
+        /*if (forceSize) {
         	frame.setResizable(false);
         } else {
         	frame.setResizable(true);
-        }
+        }*/
+        
+        
         // Set the frame size to the screen dimensions
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sets closing operation
+        frame.setVisible(true); // allows client to see frame
     }
 
 
