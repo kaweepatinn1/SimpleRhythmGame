@@ -1,4 +1,4 @@
-package compsciia;
+package SimpleRhythmGame;
 
 public class TextBox {
 	private String name;

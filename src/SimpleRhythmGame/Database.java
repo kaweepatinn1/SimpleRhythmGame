@@ -1,4 +1,4 @@
-package compsciia;
+package SimpleRhythmGame;
 
 import java.sql.*;
 import java.sql.Connection;

@@ -1,4 +1,4 @@
-package compsciia;
+package SimpleRhythmGame;
 
 public class roundedRect {
 	private int x;

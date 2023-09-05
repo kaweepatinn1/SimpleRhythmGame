@@ -1,4 +1,4 @@
-package compsciia;
+package SimpleRhythmGame;
 
 import java.awt.EventQueue;
 import java.awt.GraphicsDevice;

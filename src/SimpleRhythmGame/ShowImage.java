@@ -1,4 +1,4 @@
-package compsciia;
+package SimpleRhythmGame;
 import java.util.*;
 import java.awt.*;
 import java.awt.Color;
