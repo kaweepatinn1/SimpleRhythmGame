@@ -337,8 +337,8 @@ public class ShowImage extends JPanel implements KeyListener {
     	//main method
     	frame = new JFrame("Game"); // initialises the frame to allow changes to be applied
     	
-    	boolean forceSize = false; // changable variables: can force the below screen size
-        int sizeToForce = 1920; // changable variables: can foce this screen size if above is true
+    	boolean forceSize = true; // changable variables: can force the below screen size
+        int sizeToForce = 1280; // changable variables: can foce this screen size if above is true
         
         // TODO: create a class that holds all static or final variables, including the above two and the other values
         // for below lists.
