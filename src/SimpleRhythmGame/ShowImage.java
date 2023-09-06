@@ -185,7 +185,7 @@ public class ShowImage extends JPanel implements KeyListener {
             	extraAlignY = 0;
             }
             int finalX = x + (textbox.getXSize() / 2) + textbox.getOffsetX() + extraAlignX;
-            int finalY = y + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY - (int) Math.round(textHeight * 0.11);
+            int finalY = y + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY - (int) Math.round(textHeight * 0.0);
             g.drawString(textbox.getText(), finalX, finalY);
         	
         }
@@ -338,7 +338,7 @@ public class ShowImage extends JPanel implements KeyListener {
     	frame = new JFrame("Game"); // initialises the frame to allow changes to be applied
     	
     	boolean forceSize = true; // changable variables: can force the below screen size
-        int sizeToForce = 1280; // changable variables: can foce this screen size if above is true
+        int sizeToForce = 1920; // changable variables: can foce this screen size if above is true
         
         // TODO: create a class that holds all static or final variables, including the above two and the other values
         // for below lists.
@@ -356,9 +356,9 @@ public class ShowImage extends JPanel implements KeyListener {
         rawTextBoxesList = new TextBox[]{
         		//TextBox(name, text, fontColor, textSize, x, y, xSize, ySize, offsetX, offsetY, color, opacity, bold, roundPercentage)
         		//TextBox(name,  renderableObject, x, y, xSize, ySize, offsetX, offsetY, color, opacity, bold, roundPercentage) 
-        		new TextBox("Box1", "Test", "left", "top", 2, 50, 100, 500, 550, 50, 0, 0, 3, 255, false, 0),
-        		new TextBox("Box2", "Test2", "center", "center", 2, 50, 200, 300, 550, 50, 0, 0, 3, 255, false, 0),
-        		new TextBox("Box3", "Test3", "right", "bottom", 1, 50, 300, 100, 550, 50, 0, 0, 3, 255, false, 0)
+        		new TextBox("Box1", "Test", "left", "top", 2, 150, 100, 500, 550, 50, 0, 0, 3, 255, false, 50),
+        		new TextBox("Box2", "Test2", "center", "center", 2, 150, 200, 300, 550, 50, 0, 0, 3, 255, false, 0),
+        		new TextBox("Box3", "Test3", "right", "bottom", 1, 150, 300, 100, 550, 50, 0, 0, 3, 255, false, 0)
         };
         
         colorsList = new Color[]{
