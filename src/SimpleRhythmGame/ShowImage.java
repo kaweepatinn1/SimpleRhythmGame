@@ -98,6 +98,7 @@ public class ShowImage extends JPanel implements KeyListener {
                 // Handle the mouse move event
             	int mouseX = e.getX();
             	int mouseY = e.getY();
+            	String hoveredBox = null;
                 //System.out.println("Mouse moved to (" + mouseX + ", " + mouseY +  ")");            
                 for (int i = 0; i < textBoxesList.length; i++) {
                     TextBox currentBox = textBoxesList[i];
@@ -107,12 +108,15 @@ public class ShowImage extends JPanel implements KeyListener {
                 	int xSize = roundRectAttributes.getXSize();
                 	int ySize = roundRectAttributes.getYSize();
                 	int round = roundRectAttributes.getRound();
-                    RoundRectangle2D roundRect = new RoundRectangle2D.Double(x, y,xSize, ySize,round,round);
+                    RoundRectangle2D roundRect = new RoundRectangle2D.Double(x, y, xSize, ySize, round, round);
                     if (roundRect.contains(mouseX, mouseY)) {
-                        System.out.println("Hovering" + currentBox.getName());
-                        break;
+                        hoveredBox = currentBox.getName(); 
+                        // does not break so that the element which is highest in the hierarchy
+                        // can be selected instead of the first (which would be more background items)
+                        // break;
                     }
                 }
+                System.out.println("hovering: " + hoveredBox);
             }
         });
 
@@ -144,25 +148,31 @@ public class ShowImage extends JPanel implements KeyListener {
         
         for (int i = 0; i < textBoxesList.length; i++) {
         	TextBox textbox = textBoxesList[i];
-        	g.setColor(colorsList[textbox.getColor()]);
+        	Graphics2D g2d = (Graphics2D) g.create();
+            RenderingHints rh = new RenderingHints(
+                    RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON                    
+                    );
+            g2d.setRenderingHints(rh);
+        	g2d.setColor(colorsList[textbox.getColor()]);
         	roundedRect roundRectAttributes = getBoxAttributes(textbox);
         	int x = roundRectAttributes.getX();
         	int y = roundRectAttributes.getY();
         	int xSize = roundRectAttributes.getXSize();
         	int ySize = roundRectAttributes.getYSize();
         	int round = roundRectAttributes.getRound();
-            g.fillRoundRect(x, y, xSize, ySize, round, round);
-            g.setColor(colorsList[textbox.getFontColor()]);
+            g2d.fillRoundRect(x, y, xSize, ySize, round, round);
+            g2d.setColor(colorsList[textbox.getFontColor()]);
             Font font;
             if (textbox.getBold() == true) {
             	font = new Font("Roboto", Font.BOLD, textbox.getTextSize());
-            	g.setFont(font);
+            	g2d.setFont(font);
             } else {
             	font = new Font("Roboto", Font.PLAIN, textbox.getTextSize());
-            	g.setFont(font);
+            	g2d.setFont(font);
             }
             // Below code grabs the size of the text using the string to be entered
-            FontMetrics fontMetrics = g.getFontMetrics();
+            FontMetrics fontMetrics = g2d.getFontMetrics();
             int textWidth = fontMetrics.stringWidth(textbox.getText());
             int textHeight = fontMetrics.getAscent();
             // Initializes extraAlign variables
@@ -186,15 +196,20 @@ public class ShowImage extends JPanel implements KeyListener {
             }
             int finalX = x + (textbox.getXSize() / 2) + textbox.getOffsetX() + extraAlignX;
             int finalY = y + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY - (int) Math.round(textHeight * 0.0);
-            g.drawString(textbox.getText(), finalX, finalY);
+            g2d.drawString(textbox.getText(), finalX, finalY);
         	
         }
         
         for (int i = 0; i < extraImages.length; i++) {
             BufferedImage image = extraImages[i];
             TextBox textbox = textBoxesList[i];
-
+        
             Graphics2D g2d = (Graphics2D) g.create();
+            RenderingHints rh = new RenderingHints(
+                    RenderingHints.KEY_TEXT_ANTIALIASING,
+                    RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+            g2d.setRenderingHints(rh);
+            
             g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, textbox.getOpacity() / 255f));
 
             g2d.drawImage(image, textbox.getX() + (textbox.getXSize() / 2) + textbox.getOffsetX(), textbox.getY() + (textbox.getXSize() / 2) + textbox.getOffsetY(), null);
@@ -354,11 +369,11 @@ public class ShowImage extends JPanel implements KeyListener {
         };
         
         rawTextBoxesList = new TextBox[]{
-        		//TextBox(name, text, fontColor, textSize, x, y, xSize, ySize, offsetX, offsetY, color, opacity, bold, roundPercentage)
-        		//TextBox(name,  renderableObject, x, y, xSize, ySize, offsetX, offsetY, color, opacity, bold, roundPercentage) 
-        		new TextBox("Box1", "Test", "left", "top", 2, 150, 100, 500, 550, 50, 0, 0, 3, 255, false, 50),
-        		new TextBox("Box2", "Test2", "center", "center", 2, 150, 200, 300, 550, 50, 0, 0, 3, 255, false, 0),
-        		new TextBox("Box3", "Test3", "right", "bottom", 1, 150, 300, 100, 550, 50, 0, 0, 3, 255, false, 0)
+        		//TextBox(name, text, alignX, alignY, fontColor, textSize, x, y, xSize, ySize, offsetX, offsetY, color, opacity, bold, roundPercentage)
+        		//TextBox(name, renderableObject, x, y, xSize, ySize, offsetX, offsetY, color, opacity, bold, roundPercentage) 
+        		new TextBox("Box1", "Test", "left", "top", 			 2, 150, 100, 500, 550, 50, 0, 0, 2, 255, false, 50),
+        		new TextBox("Box2", "Test2", "center", "center", 	 2, 150, 200, 300, 550, 550, 0, 0, 3, 255, false, 100),
+        		new TextBox("Box3", "Test3", "right", "bottom", 	 1, 150, 300, 100, 550, 50, 0, 0, 1, 255, false, 100)
         };
         
         colorsList = new Color[]{
