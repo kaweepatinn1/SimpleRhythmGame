@@ -20,8 +20,14 @@ public class TextBox {
     private boolean bold;
     private int roundPercentage;
     private boolean hovered;
+    private int shadowOffset;
+    private float stroke;
+    private int strokeColor;
     
-    public TextBox(String name, String text, String alignX, String alignY, int fontColor, int textSize, int x, int y, int xSize, int ySize, int offsetX, int offsetY, int color, int opacity, boolean bold, int roundPercentage) {
+    public TextBox(String name, String text, String alignX, String alignY, 
+    		int fontColor, int textSize, int x, int y, int xSize, int ySize, 
+    		int offsetX, int offsetY, int color, int opacity, boolean bold, 
+    		int roundPercentage, int shadowOffset, float stroke, int strokeColor) {
         this.name = name;
     	this.text = text;
     	this.alignX = alignX;
@@ -41,9 +47,15 @@ public class TextBox {
         this.bold = bold;
         this.roundPercentage = roundPercentage;
         this.hovered = false;
+        this.shadowOffset = shadowOffset;
+        this.stroke = stroke;
+        this.strokeColor = strokeColor;
     }
 
-    public TextBox(String name, Renderable renderableObject, int x, int y, int xSize, int ySize, int offsetX, int offsetY, int color, int opacity, boolean bold, int roundPercentage) {
+    public TextBox(String name, Renderable renderableObject, 
+    		int x, int y, int xSize, int ySize, int offsetX, int offsetY, 
+    		int color, int opacity, boolean bold, int roundPercentage,
+    		int shadowOffset, float stroke, int strokeColor) {
     	this.name = name;
     	this.text = null;
     	this.alignX = null;
@@ -62,6 +74,9 @@ public class TextBox {
         this.bold = bold;
         this.roundPercentage = roundPercentage;
         this.hovered = false;
+        this.shadowOffset = shadowOffset;
+        this.stroke = stroke;
+        this.strokeColor = strokeColor;
     }
     
     public String getName(){
@@ -120,7 +135,7 @@ public class TextBox {
         return opacity;
     }
     
-    public boolean shouldRenderRenderable() {
+    public boolean renderable() {
         return renderRenderable;
     }
 
@@ -138,6 +153,18 @@ public class TextBox {
     
     public boolean getHover(){
     	return hovered;
+    }
+    
+    public int getShadowOffset() {
+    	return shadowOffset;
+    }
+    
+    public float getStroke() {
+    	return stroke;
+    }
+    
+    public int getStrokeColor() {
+    	return strokeColor;
     }
     
     public void setName(String name) {
@@ -188,7 +215,7 @@ public class TextBox {
         this.offsetY = offsetY;
     }
 
-    public void shouldRenderRenderable(boolean renderRenderable) {
+    public void setRenderableRenderable(boolean renderRenderable) {
         this.renderRenderable = renderRenderable;
     }
 
@@ -214,5 +241,17 @@ public class TextBox {
     
     public void setHover(boolean hovered){
     	this.hovered = hovered;
+    }
+    
+    public void setShadowOffset(int shadowOffset) {
+    	this.shadowOffset = shadowOffset;
+    }
+    
+    public void setStroke(float stroke) {
+    	this.stroke = stroke;
+    }
+    
+    public void setStrokeColor(int strokeColor) {
+    	this.strokeColor = strokeColor;
     }
 }

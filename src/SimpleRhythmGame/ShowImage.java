@@ -1,10 +1,6 @@
 package SimpleRhythmGame;
 import java.util.*;
 import java.awt.*;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.awt.geom.*;
@@ -26,6 +22,7 @@ public class ShowImage extends JPanel implements KeyListener {
     private static int clickedImageIndex = -1;
     private static Color[] colorsList;
     private static JFrame frame;
+    private static String lastHovered = "";
     
     public ShowImage() {
         setLayout(new BorderLayout()); // Set the main panel's layout to BorderLayout
@@ -41,7 +38,7 @@ public class ShowImage extends JPanel implements KeyListener {
                 images[i] = ImageIO.read(input);
             }
             for (int i = 0; i < textBoxesList.length; i++) {
-                if (textBoxesList[i].shouldRenderRenderable() == true) {
+                if (textBoxesList[i].renderable() == true) {
 	            	Renderable renderable = textBoxesList[i].getRenderableObject();
 	                File input = new File(renderable.getImagePath());
 	                extraImagesList.add(ImageIO.read(input));
@@ -116,7 +113,13 @@ public class ShowImage extends JPanel implements KeyListener {
                         // break;
                     }
                 }
-                System.out.println("hovering: " + hoveredBox);
+                if (hoveredBox == lastHovered) {
+                	
+                } else {
+                	System.out.println("no longer hovering: " + lastHovered);
+                	System.out.println("hovering: " + hoveredBox);
+                }
+                lastHovered = hoveredBox; 
             }
         });
 
@@ -134,6 +137,11 @@ public class ShowImage extends JPanel implements KeyListener {
             Renderable renderable = renderablesList[i];
 
             Graphics2D g2d = (Graphics2D) g.create();
+            RenderingHints rh = new RenderingHints(
+                    RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON                    
+                    );
+            g2d.setRenderingHints(rh);
             g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, renderable.getOpacity() / 255f));
 
             g2d.drawImage(image, renderable.getX(), renderable.getY(), null);
@@ -147,23 +155,51 @@ public class ShowImage extends JPanel implements KeyListener {
         }
         
         for (int i = 0; i < textBoxesList.length; i++) {
-        	TextBox textbox = textBoxesList[i];
         	Graphics2D g2d = (Graphics2D) g.create();
             RenderingHints rh = new RenderingHints(
                     RenderingHints.KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON                    
                     );
             g2d.setRenderingHints(rh);
-        	g2d.setColor(colorsList[textbox.getColor()]);
+        	
+        	TextBox textbox = textBoxesList[i];
+        	
+        	
+        	
         	roundedRect roundRectAttributes = getBoxAttributes(textbox);
+        	
         	int x = roundRectAttributes.getX();
         	int y = roundRectAttributes.getY();
         	int xSize = roundRectAttributes.getXSize();
         	int ySize = roundRectAttributes.getYSize();
         	int round = roundRectAttributes.getRound();
+        	
+        	if (textbox.getShadowOffset() != 0) { // fills a drop shadow on command
+            	int dropShadowX = x + textbox.getShadowOffset();
+            	int dropShadowY = y + textbox.getShadowOffset();
+            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+            	g2d.fillRoundRect(dropShadowX, dropShadowY, xSize, ySize, round, round);
+            }
+        	
+            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+            
+            float thickness = textbox.getStroke();
+            g2d.setStroke(new BasicStroke(thickness));
+            
+            g2d.setColor(colorsList[textbox.getStrokeColor()]);
+            g2d.drawRoundRect(x, y, xSize, ySize, round, round);
+            g2d.setColor(colorsList[textbox.getColor()]); // set box color
             g2d.fillRoundRect(x, y, xSize, ySize, round, round);
-            g2d.setColor(colorsList[textbox.getFontColor()]);
+            
+            g2d.setStroke(new BasicStroke(0));
+            
+            // ^ Textbox section
+            // v Text section
+            
+            g2d.setColor(colorsList[textbox.getFontColor()]); // set text color
+            
             Font font;
+            
             if (textbox.getBold() == true) {
             	font = new Font("Roboto", Font.BOLD, textbox.getTextSize());
             	g2d.setFont(font);
@@ -194,6 +230,7 @@ public class ShowImage extends JPanel implements KeyListener {
             } else { // cases of up, and everything else
             	extraAlignY = 0;
             }
+            
             int finalX = x + (textbox.getXSize() / 2) + textbox.getOffsetX() + extraAlignX;
             int finalY = y + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY - (int) Math.round(textHeight * 0.0);
             g2d.drawString(textbox.getText(), finalX, finalY);
@@ -206,11 +243,12 @@ public class ShowImage extends JPanel implements KeyListener {
         
             Graphics2D g2d = (Graphics2D) g.create();
             RenderingHints rh = new RenderingHints(
-                    RenderingHints.KEY_TEXT_ANTIALIASING,
-                    RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+                    RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON                    
+                    );
             g2d.setRenderingHints(rh);
             
-            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, textbox.getOpacity() / 255f));
+            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (textbox.getOpacity() / 255f) / 2));
 
             g2d.drawImage(image, textbox.getX() + (textbox.getXSize() / 2) + textbox.getOffsetX(), textbox.getY() + (textbox.getXSize() / 2) + textbox.getOffsetY(), null);
             g2d.dispose();
@@ -305,16 +343,19 @@ public class ShowImage extends JPanel implements KeyListener {
         	int offsetY = (int) Math.round(currentItem.getOffsetY() * yScale);
         	int color = currentItem.getColor();
         	int opacity = currentItem.getOpacity();
-        	boolean renderRenderable = currentItem.shouldRenderRenderable();
+        	boolean renderRenderable = currentItem.renderable();
         	Renderable renderableObject = currentItem.getRenderableObject();
         	boolean bold = currentItem.getBold();
         	int roundPercentage = currentItem.getRoundPercentage();
+        	int shadowOffset = currentItem.getShadowOffset();
+        	float stroke = currentItem.getStroke();
+        	int strokeColor = currentItem.getStrokeColor();
         	if (renderRenderable) {
         		textBoxesList[i] =  new TextBox(name, renderableObject, x, y, xSize, ySize, offsetX, offsetY,
-        				color, opacity, bold, roundPercentage);
+        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor);
         	} else {
         		textBoxesList[i] =  new TextBox(name, text, alignX, alignY, fontColor, textSize, x, y, xSize, ySize, offsetX, offsetY,
-        				color, opacity, bold, roundPercentage);
+        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor);
         	}
         }
         return textBoxesList;
@@ -369,18 +410,23 @@ public class ShowImage extends JPanel implements KeyListener {
         };
         
         rawTextBoxesList = new TextBox[]{
-        		//TextBox(name, text, alignX, alignY, fontColor, textSize, x, y, xSize, ySize, offsetX, offsetY, color, opacity, bold, roundPercentage)
-        		//TextBox(name, renderableObject, x, y, xSize, ySize, offsetX, offsetY, color, opacity, bold, roundPercentage) 
-        		new TextBox("Box1", "Test", "left", "top", 			 2, 150, 100, 500, 550, 50, 0, 0, 2, 255, false, 50),
-        		new TextBox("Box2", "Test2", "center", "center", 	 2, 150, 200, 300, 550, 550, 0, 0, 3, 255, false, 100),
-        		new TextBox("Box3", "Test3", "right", "bottom", 	 1, 150, 300, 100, 550, 50, 0, 0, 1, 255, false, 100)
+        		//TextBox(name, text, alignX, alignY, fontColor, textSize, x, y, xSize, ySize, offsetX, offsetY, color, opacity, bold, roundPercentage, ?shadowOffset)
+        		//TextBox(name, renderableObject, x, y, xSize, ySize, offsetX, offsetY, color, opacity, bold, roundPercentage, ?shadowOffset) 
+        		
+        		// GO TO REFRESHSCREENSIZETEXT after adding new variables
+        		new TextBox("Box1", "Test", "left", "top", 			 4, 150, 100, 500, 550, 50, 0, 0, 2, 255, false, 50, 10, 5, 1),
+        		new TextBox("Box2", "Test2", "center", "center", 	 2, 150, 200, 300, 550, 50, 0, 0, 3, 255, false, 100, 10, 5, 1),
+        		new TextBox("Box3", "Test3", "right", "bottom", 	 1, 150, 300, 100, 550, 50, 0, 0, 1, 255, false, 100, 10, 5, 1)
         };
         
         colorsList = new Color[]{
-        		new Color (0,0,0,255),
-        		new Color (255,0,0,255),
-        		new Color (0,255,0,255),
-        		new Color (0,0,255,255)
+        		new Color (0,0,0,255), // 0
+        		new Color (255,0,0,255), // 1
+        		new Color (0,255,0,255), // 2
+        		new Color (0,0,255,255), // 3
+        		new Color (255,0,0,50), // 4
+        		new Color (0,255,0,50), // 5
+        		new Color (0,0,255,50) // 6
         };
         
         dynamicFrameSize(forceSize, sizeToForce); // uses the above raw lists and variables to set the frame size.
