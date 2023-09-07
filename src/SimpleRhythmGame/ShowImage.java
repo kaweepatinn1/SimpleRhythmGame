@@ -373,6 +373,7 @@ public class ShowImage extends JPanel implements KeyListener {
     	GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
     	int screenDefaultWidth;
         int screenDefaultHeight;
+        
         if(forceSize == true) {
         	screenDefaultWidth = sizeToForce;
             screenDefaultHeight = sizeToForce / 16 * 9;
@@ -380,9 +381,27 @@ public class ShowImage extends JPanel implements KeyListener {
         	screenDefaultWidth = gd.getDisplayMode().getWidth(); // gets the width of the current display
             screenDefaultHeight = gd.getDisplayMode().getHeight(); // gets the height of the current display
         }
-        int screenWidth = Math.min(screenDefaultWidth, screenDefaultHeight * 16 / 9);
-        int screenHeight = screenWidth / 16 * 9;
+        
+        float screenDPI = java.awt.Toolkit.getDefaultToolkit().getScreenResolution();
+        float defaultScreenDPI = 96;
+        float scaleFactor = defaultScreenDPI / screenDPI;
+        //System.out.println(scaleFactor);
+        
+        //System.out.println("default" + screenDefaultWidth);
+        //System.out.println("default" + screenDefaultHeight);
+        
+        float screenScaledWidth = screenDefaultWidth * scaleFactor;
+        float screenScaledHeight = screenDefaultHeight * scaleFactor;
+        //System.out.println("scaled" + screenScaledWidth);
+        //System.out.println("scaled" + screenScaledHeight);
+        
+        int screenWidth = (int) Math.min(screenScaledWidth, screenScaledHeight * 16 / 9);
+        int screenHeight = (int) screenWidth / 16 * 9;
+        
         int[] toReturn = {screenWidth, screenHeight};
+        //System.out.println(java.awt.Toolkit.getDefaultToolkit().getScreenResolution());
+        //System.out.println("final" + screenWidth);
+        //System.out.println("final" + screenHeight);
         frame.setSize(screenWidth, screenHeight);
         renderablesList = refreshScreenSizeRenderable(screenWidth,screenHeight);
         textBoxesList = refreshScreenSizeText(screenWidth,screenHeight);
@@ -394,7 +413,7 @@ public class ShowImage extends JPanel implements KeyListener {
     	frame = new JFrame("Game"); // initialises the frame to allow changes to be applied
     	
     	boolean forceSize = true; // changable variables: can force the below screen size
-        int sizeToForce = 1920; // changable variables: can foce this screen size if above is true
+        int sizeToForce = 1280; // changable variables: can foce this screen size if above is true
         
         // TODO: create a class that holds all static or final variables, including the above two and the other values
         // for below lists.
@@ -414,9 +433,9 @@ public class ShowImage extends JPanel implements KeyListener {
         		//TextBox(name, renderableObject, x, y, xSize, ySize, offsetX, offsetY, color, opacity, bold, roundPercentage, ?shadowOffset) 
         		
         		// GO TO REFRESHSCREENSIZETEXT after adding new variables
-        		new TextBox("Box1", "Test", "left", "top", 			 4, 150, 100, 500, 550, 50, 0, 0, 2, 255, false, 50, 10, 5, 1),
-        		new TextBox("Box2", "Test2", "center", "center", 	 2, 150, 200, 300, 550, 50, 0, 0, 3, 255, false, 100, 10, 5, 1),
-        		new TextBox("Box3", "Test3", "right", "bottom", 	 1, 150, 300, 100, 550, 50, 0, 0, 1, 255, false, 100, 10, 5, 1)
+        		new TextBox("Box1", "Test", "left", "top", 			 4, 50, 1280, 500, 550, 50, 0, 0, 2, 255, false, 50, 10, 5, 1),
+        		new TextBox("Box2", "Test2", "center", "center", 	 2, 50, 200, 300, 550, 50, 0, 0, 3, 255, false, 100, 10, 5, 1),
+        		new TextBox("Box3", "Test3", "right", "bottom", 	 1, 50, 300, 100, 550, 50, 0, 0, 1, 255, false, 100, 10, 5, 1)
         };
         
         colorsList = new Color[]{
@@ -441,7 +460,8 @@ public class ShowImage extends JPanel implements KeyListener {
         } else {
         	frame.setResizable(true);
         }*/
-        
+        //frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        //frame.setUndecorated(true);
         
         // Set the frame size to the screen dimensions
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sets closing operation
