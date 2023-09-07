@@ -324,8 +324,8 @@ public class ShowImage extends JPanel implements KeyListener {
     	// refreshes all textbox sizes to fit the new screen size, runs on dynamicFrameSize() end.
     	double xScale = intToDouble(screenWidth) / 1920;
     	double yScale = intToDouble(screenHeight) / 1080;
-    	System.out.println(screenWidth);
-    	System.out.println(xScale);
+    	// System.out.println(screenWidth);
+    	// System.out.println(xScale);
     	textBoxesList = new TextBox[rawTextBoxesList.length];
         for (int i = 0; i < rawTextBoxesList.length; i++) {
         	TextBox currentItem = rawTextBoxesList[i];
@@ -385,23 +385,23 @@ public class ShowImage extends JPanel implements KeyListener {
         float screenDPI = java.awt.Toolkit.getDefaultToolkit().getScreenResolution();
         float defaultScreenDPI = 96;
         float scaleFactor = defaultScreenDPI / screenDPI;
-        //System.out.println(scaleFactor);
+        // System.out.println(scaleFactor);
         
-        //System.out.println("default" + screenDefaultWidth);
-        //System.out.println("default" + screenDefaultHeight);
+        // System.out.println("default" + screenDefaultWidth);
+        // System.out.println("default" + screenDefaultHeight);
         
         float screenScaledWidth = screenDefaultWidth * scaleFactor;
         float screenScaledHeight = screenDefaultHeight * scaleFactor;
-        //System.out.println("scaled" + screenScaledWidth);
-        //System.out.println("scaled" + screenScaledHeight);
+        // System.out.println("scaled" + screenScaledWidth);
+        // System.out.println("scaled" + screenScaledHeight);
         
         int screenWidth = (int) Math.min(screenScaledWidth, screenScaledHeight * 16 / 9);
         int screenHeight = (int) screenWidth / 16 * 9;
         
         int[] toReturn = {screenWidth, screenHeight};
-        //System.out.println(java.awt.Toolkit.getDefaultToolkit().getScreenResolution());
-        //System.out.println("final" + screenWidth);
-        //System.out.println("final" + screenHeight);
+        // System.out.println(java.awt.Toolkit.getDefaultToolkit().getScreenResolution());
+        // System.out.println("final" + screenWidth);
+        // System.out.println("final" + screenHeight);
         frame.setSize(screenWidth, screenHeight);
         renderablesList = refreshScreenSizeRenderable(screenWidth,screenHeight);
         textBoxesList = refreshScreenSizeText(screenWidth,screenHeight);
@@ -409,7 +409,7 @@ public class ShowImage extends JPanel implements KeyListener {
     }
 
     public static void main(String args[]) throws Exception {
-    	//main method
+    	// main method
     	frame = new JFrame("Game"); // initialises the frame to allow changes to be applied
     	
     	boolean forceSize = true; // changable variables: can force the below screen size
