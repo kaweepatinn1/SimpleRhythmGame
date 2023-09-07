@@ -27,6 +27,8 @@ public class ShowImage extends JPanel implements KeyListener {
     private static boolean currentMouseDragging = false;
     private static boolean fullscreen;
     private static int sizeToForce;
+    private static int calculatedScreenHeight;
+    private static int calculatedScreenWidth;
     
     public ShowImage() {
         setLayout(new BorderLayout()); // Set the main panel's layout to BorderLayout
@@ -476,6 +478,8 @@ public class ShowImage extends JPanel implements KeyListener {
         // System.out.println("final" + screenHeight);
         frame.setSize(screenWidth, screenHeight);
         elementsToRender = refreshScreenSizeElements(screenWidth,screenHeight);
+        calculatedScreenWidth = screenWidth;
+        calculatedScreenHeight = screenHeight;
         return toReturn;
     }
     
@@ -494,7 +498,7 @@ public class ShowImage extends JPanel implements KeyListener {
     public static void setMenu(int menu) {
     	currentMenu = menu;
     	rawElementsList = DefaultValues.getMenu(currentMenu).getElements();
-    	setScreenSize(fullscreen, sizeToForce);
+    	elementsToRender = refreshScreenSizeElements(calculatedScreenWidth, calculatedScreenHeight);
     	panel.repaint(); // TODO framerate class to replace this
     }
     
