@@ -18,22 +18,12 @@ public class DefaultValues {
     		new Color (0,0,255,50) // 6
 	};
 	
-	/* Reminders for calling new classes:
-	TextBox: 	function, name, text, alignX, alignY, fontColor, textSize, x, y, 
-			 	xSize, ySize, offsetX, offsetY, color, opacity, bold, roundPercentage,
-			 	shadowOffset, strokeWidth, strokeColor
-	TextBox:	function, name, renderable, x, y, 
-			 	xSize, ySize, offsetX, offsetY, color, opacity, bold, roundPercentage,
-			 	shadowOffset, strokeWidth, strokeColor
-	Renderable: function, name, source, x, y, xSize, ySize, opacity
-	*/
-	
 	private final static Menu[] defaultMenus = new Menu[] {
 			new Menu( // 0. Initialization (for setting up screen size, username)
 					new Element[] {
 						new Element(new Renderable(
 								// Default Renderable
-								"TestFunction String \"hi\"", // function
+								"TestFunction String hi", // function
 								"Kosbia", // name
 								"src/textures/kosbia.png", // file source
 								10, 50, 512, 307, // x, y, xSize, ySize
@@ -54,7 +44,7 @@ public class DefaultValues {
 								2, // box color (index of colors)
 								255, // opacity (0-255)
 								50, // roundPercentage
-								10, // shadowOffset
+								8, // shadowOffset
 								5, 1 // strokeWidth, strokeColor
 								)),
 						new Element(new TextBox(
@@ -71,7 +61,7 @@ public class DefaultValues {
 								255, // opacity (0-255)
 								false, // bold
 								50, // roundPercentage
-								10, // shadowOffset
+								8, // shadowOffset
 								5, 1 // strokeWidth, strokeColor
 								)),
 						new Element(new TextBox(
@@ -88,7 +78,7 @@ public class DefaultValues {
 								255, // opacity (0-255)
 								false, 
 								50, // roundPercentage
-								10, // shadowOffset
+								8, // shadowOffset
 								5, 1 // strokeWidth, strokeColor
 								)),
 						new Element(new TextBox(
@@ -105,7 +95,7 @@ public class DefaultValues {
 								255, // opacity (0-255)
 								false,
 								50, // roundPercentage
-								10, // shadowOffset
+								8, // shadowOffset
 								5, 1 // strokeWidth, strokeColor
 								)),
 		                new Element(new Renderable(
@@ -156,3 +146,66 @@ public class DefaultValues {
 		return defaultColors;
 	}
 }
+
+/* 
+Reminders for calling new classes:
+
+TextBox: 	function, name, text, alignX, alignY, fontColor, textSize, x, y, 
+		 	xSize, ySize, offsetX, offsetY, color, opacity, bold, roundPercentage,
+		 	shadowOffset, strokeWidth, strokeColor
+TextBox:	function, name, renderable, x, y, 
+		 	xSize, ySize, offsetX, offsetY, color, opacity, bold, roundPercentage,
+		 	shadowOffset, strokeWidth, strokeColor
+Renderable: function (optional), name, source, x, y, xSize, ySize, opacity
+
+Element Templates:
+
+for functions: (functionName, and then limitless type and object pairs)
+
+new Element(new Renderable(
+							// Default Renderable
+							"xx xx xx", // function 
+							"xx", // name
+							"src/textures/xx.png", // file source
+							0, 0, 0, 0, // x, y, xSize, ySize
+							255 // opacity (0-255)
+							)),
+							
+new Element(new TextBox(
+							// TextBox with Text
+							"xx xx xx", // function
+							"xx",  // name
+							"xx", // text
+							"center", "center", // align
+							0, // text color (index of colors)
+							24, // text size
+							0, 0, 0, 0,  // x, y, xSize, ySize
+							0, 0, // text offset (x, y)
+							1, // box color (index of colors)
+							255, // opacity (0-255)
+							false, 
+							50, // roundPercentage
+							8, // shadowOffset
+							5, 2 // strokeWidth, strokeColor
+							)),
+							
+new Element(new TextBox(
+							// TextBox with Renderable
+							"xx", // function
+							"xx",  // name
+							new Renderable(
+									// Renderable Without Function
+									"xx", // name
+									"src/textures/xx.png", // file source
+									0, 0, 0, 0, // x, y, xSize, ySize
+									255 // opacity (0-255)
+									),  // renderable
+							0, 0, 0, 0,  // x, y, xSize, ySize
+							1, // box color (index of colors)
+							255, // opacity (0-255)
+							50, // roundPercentage
+							8, // shadowOffset
+							5, 2 // strokeWidth, strokeColor
+							)),
+							
+*/
