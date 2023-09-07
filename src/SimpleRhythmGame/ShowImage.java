@@ -18,6 +18,9 @@ public class ShowImage extends JPanel implements KeyListener {
     private static Renderable[] rawRenderablesList;
     private static TextBox[] textBoxesList;
     private static TextBox[] rawTextBoxesList;
+    private static int currentMenu;
+    private static Element[] elementsToRender;
+    private static Element[] rawElementsList;
     private static BufferedImage[] extraImages;
     private static int clickedImageIndex = -1;
     private static Color[] colorsList;
@@ -177,6 +180,7 @@ public class ShowImage extends JPanel implements KeyListener {
         	if (textbox.getShadowOffset() != 0) { // fills a drop shadow on command
             	int dropShadowX = x + textbox.getShadowOffset();
             	int dropShadowY = y + textbox.getShadowOffset();
+            	g2d.setColor(new Color(0, 0, 0, 100));
             	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
             	g2d.fillRoundRect(dropShadowX, dropShadowY, xSize, ySize, round, round);
             }
@@ -407,13 +411,25 @@ public class ShowImage extends JPanel implements KeyListener {
         textBoxesList = refreshScreenSizeText(screenWidth,screenHeight);
         return toReturn;
     }
+    
+    private static void setScreenSize(boolean fullscreen, int size) { 
+    	// sets the screen size to provided integer or fullscreen, depending on the passed boolean.
+    	if (fullscreen) {
+    		dynamicFrameSize(false, 0);
+            frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+            frame.setUndecorated(true);
+    	} else {
+    		dynamicFrameSize(true, size);
+    	}
+    	
+    }
 
     public static void main(String args[]) throws Exception {
     	// main method
     	frame = new JFrame("Game"); // initialises the frame to allow changes to be applied
     	
-    	boolean forceSize = true; // changable variables: can force the below screen size
-        int sizeToForce = 1280; // changable variables: can foce this screen size if above is true
+    	boolean fullScreen = true; // changable variables: if not fullscreen will force below
+        int sizeToForce = 1920; // changable variables: can foce this screen size if above is true
         
         // TODO: create a class that holds all static or final variables, including the above two and the other values
         // for below lists.
@@ -423,32 +439,45 @@ public class ShowImage extends JPanel implements KeyListener {
         // settings page. Raw lists are used in refreshScreenSize() methods to calculate real size. Raw list values
         // are relative to the 1920x1080 screen size.
         
+        
+        
+        // Add code here to read a settings file
+        // TODO: Create functions
+        // TODO: Move functions to a ReadFile class
+        
+        // READ INITIALIZATION STATUS
+        
+        // for username
+        boolean userHasUsername = true;
+        String userUsername;
+        
+        // for screen size
+        boolean userHasScreenSize = true;
+        
+        // READ USER COLOR
+        boolean userHasColorScheme = false;
+        Color[] userColorScheme = new Color[] {
+        		new Color (0,0,0,0) // replace with the function to read the scheme
+        };
+        
+        // READ
+        
+        // 
+        
         rawRenderablesList = new Renderable[]{
                 new Renderable("textures/kosbia.png", 10, 50, 255),
                 new Renderable("textures/defaultcursor.png", 550, 100, 150),
         };
         
-        rawTextBoxesList = new TextBox[]{
-        		//TextBox(name, text, alignX, alignY, fontColor, textSize, x, y, xSize, ySize, offsetX, offsetY, color, opacity, bold, roundPercentage, ?shadowOffset)
-        		//TextBox(name, renderableObject, x, y, xSize, ySize, offsetX, offsetY, color, opacity, bold, roundPercentage, ?shadowOffset) 
-        		
-        		// GO TO REFRESHSCREENSIZETEXT after adding new variables
-        		new TextBox("Box1", "Test", "left", "top", 			 4, 50, 1280, 500, 550, 50, 0, 0, 2, 255, false, 50, 10, 5, 1),
-        		new TextBox("Box2", "Test2", "center", "center", 	 2, 50, 200, 300, 550, 50, 0, 0, 3, 255, false, 100, 10, 5, 1),
-        		new TextBox("Box3", "Test3", "right", "bottom", 	 1, 50, 300, 100, 550, 50, 0, 0, 1, 255, false, 100, 10, 5, 1)
-        };
+        rawElementsList = DefaultValues.getMenu(currentMenu).getElements();
         
-        colorsList = new Color[]{
-        		new Color (0,0,0,255), // 0
-        		new Color (255,0,0,255), // 1
-        		new Color (0,255,0,255), // 2
-        		new Color (0,0,255,255), // 3
-        		new Color (255,0,0,50), // 4
-        		new Color (0,255,0,50), // 5
-        		new Color (0,0,255,50) // 6
-        };
+        if (userHasColorScheme) {
+        	colorsList = userColorScheme;
+        } else {
+        	colorsList = DefaultValues.getDefaultColors();
+        }
         
-        dynamicFrameSize(forceSize, sizeToForce); // uses the above raw lists and variables to set the frame size.
+        setScreenSize(fullScreen, sizeToForce); // uses the above raw lists and variables to set the frame size.
         ShowImage panel = new ShowImage(); // runs showimage class (top of this class) to show text and renderables into a panel
         frame.getContentPane().add(panel); // adds the panel to frame content
         
@@ -460,8 +489,6 @@ public class ShowImage extends JPanel implements KeyListener {
         } else {
         	frame.setResizable(true);
         }*/
-        //frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-        //frame.setUndecorated(true);
         
         // Set the frame size to the screen dimensions
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sets closing operation
