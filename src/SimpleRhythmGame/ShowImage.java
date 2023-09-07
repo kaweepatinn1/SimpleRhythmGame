@@ -374,7 +374,6 @@ public class ShowImage extends JPanel implements KeyListener {
         for (int i = 0; i < rawElementsList.length; i++) {
         	Element currentElement = rawElementsList[i];
         	if (currentElement.isTextbox()) {
-	        	// WAS HERE KEEP WORKING
 	        	TextBox currentItem = currentElement.getTextbox();
 	        	String function = currentItem.getFunction();
 	        	String name = currentItem.getName();
