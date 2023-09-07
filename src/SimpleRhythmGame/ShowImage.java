@@ -372,8 +372,11 @@ public class ShowImage extends JPanel implements KeyListener {
     	// System.out.println(xScale);
     	Element[] elementsToReturn = new Element[rawElementsList.length];
         for (int i = 0; i < rawElementsList.length; i++) {
+        	
         	Element currentElement = rawElementsList[i];
+        	
         	if (currentElement.isTextbox()) {
+        		
 	        	TextBox currentItem = currentElement.getTextbox();
 	        	String function = currentItem.getFunction();
 	        	String name = currentItem.getName();
@@ -397,7 +400,14 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	int shadowOffset = (int) Math.round(currentItem.getShadowOffset() * yScale);
 	        	float stroke = (int) Math.round(currentItem.getStrokeWidth() * yScale);
 	        	int strokeColor = currentItem.getStrokeColor();
-	        	if (renderRenderable) {
+	        	
+	        	if (!renderRenderable) {
+	        		
+	        		elementsToReturn[i] =  new Element(new TextBox(function, name, text, alignX, alignY, fontColor, textSize, 
+	        				x, y, xSize, ySize, offsetX, offsetY,
+	        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor));
+	        		
+	        	} else {
 	        		String renderableName = renderableObject.getName();
 	        		String renderableFunction = renderableObject.getFunction();
 	            	String imagePath = renderableObject.getImagePath();
@@ -408,13 +418,11 @@ public class ShowImage extends JPanel implements KeyListener {
 	            	int renderableOpacity = renderableObject.getOpacity();
 	            	Renderable newRenderableObject =  new Renderable(renderableFunction, renderableName, imagePath, 
 	            			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
-	        		elementsToReturn[i] =  new Element(new TextBox(function, name, newRenderableObject, x, y, xSize, ySize,
+	        		
+	            	elementsToReturn[i] =  new Element(new TextBox(function, name, newRenderableObject, x, y, xSize, ySize,
 	        				color, opacity, roundPercentage, shadowOffset, stroke, strokeColor));
-	        	} else {
-	        		elementsToReturn[i] =  new Element(new TextBox(function, name, text, alignX, alignY, fontColor, textSize, 
-	        				x, y, xSize, ySize, offsetX, offsetY,
-	        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor));
 	        	}
+	        	
         	} else if (currentElement.isRenderable()) {
         		Renderable currentItem = currentElement.getRenderable();
         		String renderableFunction = currentItem.getFunction();
@@ -425,6 +433,7 @@ public class ShowImage extends JPanel implements KeyListener {
             	int renderableXSize = (int) Math.round(currentItem.getXSize() * xScale);
             	int renderableYSize = (int) Math.round(currentItem.getYSize() * yScale);
             	int renderableOpacity = currentItem.getOpacity();
+            	
             	elementsToReturn[i] =  new Element(new Renderable(renderableFunction, renderableName, imagePath, 
             			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity));
         	}
