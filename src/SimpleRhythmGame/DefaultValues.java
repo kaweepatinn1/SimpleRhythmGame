@@ -33,7 +33,7 @@ public class DefaultValues {
 					new Element[] {
 						new Element(new Renderable(
 								// Default Renderable
-								"TestFunction", // function
+								"TestFunction String \"hi\"", // function
 								"Kosbia", // name
 								"src/textures/kosbia.png", // file source
 								10, 50, 512, 307, // x, y, xSize, ySize
@@ -41,7 +41,7 @@ public class DefaultValues {
 								)),
 						new Element(new TextBox(
 								// TextBox with Renderable
-								"goToMenu2", // function
+								"setMenu int 1", // function
 								"FilmBox",  // name
 								new Renderable(
 										// Renderable Without Function
@@ -59,9 +59,9 @@ public class DefaultValues {
 								)),
 						new Element(new TextBox(
 								// TextBox with Text
-								"goToMenu2", // function
-								"Box1",  // name
-								"Menu 0 a", // text
+								"setMenu int 1", // function
+								"Menu2Button",  // name
+								"Goto Menu 2", // text
 								"center", "center", // align
 								3, // text color (index of colors)
 								50, // text size
@@ -76,9 +76,9 @@ public class DefaultValues {
 								)),
 						new Element(new TextBox(
 								// TextBox with Text
-								"goToMenu2", // function
-								"Box2",  // name
-								"Menu 0 b", // text
+								"setMenu int 2", // function
+								"Menu3Button",  // name
+								"Goto Menu 3", // text
 								"center", "center", // align
 								1, // text color (index of colors)
 								50, // text size
@@ -93,8 +93,8 @@ public class DefaultValues {
 								)),
 						new Element(new TextBox(
 								// TextBox with Text
-								"goToMenu2", // function
-								"Box2",  // name
+								"setMenu int 2", // function
+								"This is Menu 1",  // name
 								"Menu 0 c", // text
 								"center", "center", // align
 								3, // text color (index of colors)
@@ -120,22 +120,22 @@ public class DefaultValues {
 					),
 			new Menu( // 1. MENU 1
 				new Element[] {
-					new Element(new TextBox("TestFunction", "Box1", "Menu1", "left", "top",
-							4, 50, 1280, 500, 550, 50, 0, 0, 2, 255, false, 50, 10, 5, 1)),
-					new Element(new TextBox("TestFunction", "Box2", "Test2", "center", "center", 	
+					new Element(new TextBox("setMenu int 0", "Menu1Button", "Goto Menu 1", "left", "top",
+							1, 50, 1280, 500, 550, 50, 0, 0, 2, 255, false, 50, 10, 5, 1)),
+					new Element(new TextBox("setMenu int 2", "Menu2Button", "Goto Menu 3", "center", "center", 	
 							2, 50, 200, 300, 550, 50, 0, 0, 3, 255, false, 100, 10, 5, 1)),
-					new Element(new TextBox("TestFunction", "Box3", "Test3", "right", "bottom",
-							1, 50, 300, 100, 550, 50, 0, 0, 1, 255, false, 100, 10, 5, 1))
+					new Element(new TextBox("TestFunction", "Box3", "This is Menu 2", "center", "center",
+							3, 50, 300, 100, 550, 50, 0, 0, 1, 255, false, 100, 10, 5, 1))
 					}
 				),
 			new Menu( // 2. MENU 2
 				new Element[] {
-					new Element(new TextBox("TestFunction", "Box1", "Menu2", "left", "top",
-							4, 50, 1280, 500, 550, 50, 0, 0, 2, 255, false, 50, 10, 5, 1)),
-					new Element(new TextBox("TestFunction", "Box2", "Test2", "center", "center", 	
+					new Element(new TextBox("setMenu int 0", "Menu1Button", "Goto Menu 1", "left", "top",
+							1, 50, 1280, 500, 550, 50, 0, 0, 2, 255, false, 50, 10, 5, 1)),
+					new Element(new TextBox("setMenu int 1", "Menu2Button", "Goto Menu 2", "center", "center", 	
 							2, 50, 200, 300, 550, 50, 0, 0, 3, 255, false, 100, 10, 5, 1)),
-					new Element(new TextBox("TestFunction", "Box3", "Test3", "right", "bottom",
-							1, 50, 300, 100, 550, 50, 0, 0, 1, 255, false, 100, 10, 5, 1))
+					new Element(new TextBox("TestFunction", "Box3", "This is Menu 3", "center", "center",
+							3, 50, 300, 100, 550, 50, 0, 0, 1, 255, false, 100, 10, 5, 1))
 					}
 				),
 	};

@@ -13,11 +13,8 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
 public class ShowImage extends JPanel implements KeyListener {
-    private static BufferedImage[] images;
-    private static Renderable[] renderablesList;
-    private static Renderable[] rawRenderablesList;
-    private static TextBox[] textBoxesList;
-    private static TextBox[] rawTextBoxesList;
+    private static ShowImage panel;
+	private static BufferedImage[] images;
     private static int currentMenu;
     private static Element[] elementsToRender;
     private static Element[] rawElementsList;
@@ -28,6 +25,8 @@ public class ShowImage extends JPanel implements KeyListener {
     private static String mouseDragStart = null;
     // The name of the element that the current drag has started on
     private static boolean currentMouseDragging = false;
+    private static boolean fullscreen;
+    private static int sizeToForce;
     
     public ShowImage() {
         setLayout(new BorderLayout()); // Set the main panel's layout to BorderLayout
@@ -41,8 +40,15 @@ public class ShowImage extends JPanel implements KeyListener {
             	// System.out.println("clicked");
                 Element clickedElement = checkLocation(mouseX, mouseY);
                 if (clickedElement != null) {
-                	mouseDragStart = clickedElement.getName();
-                }
+                	// System.out.println(releasedElement.getName());
+            		String functionToRun = clickedElement.getFunction();
+                    boolean ranFunction = Functions.runFunction(functionToRun);
+                    if (!ranFunction) {
+                    	System.out.println("ERROR: DID NOT RUN ANY FUNCTION FOR \nElement Name: " + clickedElement.getName() + 
+                    			"\nwhich is a \nRenderable: " + clickedElement.isRenderable() + "\nTextbox: " + clickedElement.isTextbox());
+                    } 
+                    mouseDragStart = null;
+            	}
             }
             
             public void mouseReleased(MouseEvent e) {
@@ -53,7 +59,7 @@ public class ShowImage extends JPanel implements KeyListener {
                 Element releasedElement = checkLocation(mouseX, mouseY);
                 if (releasedElement != null) {
                 	// System.out.println(releasedElement.getName());
-                	if (releasedElement.getName() == mouseDragStart) {
+                	if (releasedElement.getName() == mouseDragStart && currentMouseDragging == true) {
                 		String functionToRun = releasedElement.getFunction();
                         boolean ranFunction = Functions.runFunction(functionToRun);
                         if (!ranFunction) {
@@ -484,13 +490,24 @@ public class ShowImage extends JPanel implements KeyListener {
     	}
     	
     }
+    
+    public static void setMenu(int menu) {
+    	currentMenu = menu;
+    	rawElementsList = DefaultValues.getMenu(currentMenu).getElements();
+    	setScreenSize(fullscreen, sizeToForce);
+    	panel.repaint(); // TODO framerate class to replace this
+    }
+    
+    public static int getMenu() {
+    	return currentMenu;
+    }
 
     public static void main(String args[]) throws Exception {
     	// main method
     	frame = new JFrame("Game"); // initialises the frame to allow changes to be applied
     	
-    	boolean fullscreen = true; // changable variables: if not fullscreen will force below
-        int sizeToForce = 1920; // changable variables: can foce this screen size if above is true
+    	fullscreen = true; // changable variables: if not fullscreen will force below
+        sizeToForce = 1920; // changable variables: can foce this screen size if above is true
         
         // TODO: create a class that holds all static or final variables, including the above two and the other values
         // for below lists.
@@ -547,7 +564,7 @@ public class ShowImage extends JPanel implements KeyListener {
         }
         
         setScreenSize(fullscreen, sizeToForce); // uses the above raw lists and variables to set the frame size.
-        ShowImage panel = new ShowImage(); // runs showimage class (top of this class) to show text and renderables into a panel
+        panel = new ShowImage(); // runs showimage class (top of this class) to show text and renderables into a panel
         frame.getContentPane().add(panel); // adds the panel to frame content
         
         frame.setResizable(false);
