@@ -1,6 +1,7 @@
 package SimpleRhythmGame;
 
 public class TextBox {
+	private String function;
 	private String name;
     private String text;
     private String alignX;
@@ -21,13 +22,14 @@ public class TextBox {
     private int roundPercentage;
     private boolean hovered;
     private int shadowOffset;
-    private float stroke;
+    private float strokeWidth;
     private int strokeColor;
     
-    public TextBox(String name, String text, String alignX, String alignY, 
+    public TextBox(String function, String name, String text, String alignX, String alignY, 
     		int fontColor, int textSize, int x, int y, int xSize, int ySize, 
     		int offsetX, int offsetY, int color, int opacity, boolean bold, 
-    		int roundPercentage, int shadowOffset, float stroke, int strokeColor) {
+    		int roundPercentage, int shadowOffset, float strokeWidth, int strokeColor) {
+    	this.function = function;
         this.name = name;
     	this.text = text;
     	this.alignX = alignX;
@@ -48,14 +50,15 @@ public class TextBox {
         this.roundPercentage = roundPercentage;
         this.hovered = false;
         this.shadowOffset = shadowOffset;
-        this.stroke = stroke;
+        this.strokeWidth = strokeWidth;
         this.strokeColor = strokeColor;
     }
 
-    public TextBox(String name, Renderable renderableObject, 
-    		int x, int y, int xSize, int ySize, int offsetX, int offsetY, 
-    		int color, int opacity, boolean bold, int roundPercentage,
-    		int shadowOffset, float stroke, int strokeColor) {
+    public TextBox(String function, String name, Renderable renderableObject, 
+    		int x, int y, int xSize, int ySize, 
+    		int color, int opacity, int roundPercentage,
+    		int shadowOffset, float strokeWidth, int strokeColor) {
+    	this.function = function;
     	this.name = name;
     	this.text = null;
     	this.alignX = null;
@@ -66,17 +69,22 @@ public class TextBox {
         this.y = y;
         this.xSize = xSize;
         this.ySize = ySize;
-        this.offsetX = offsetX;
-        this.offsetY = offsetY;
+        this.offsetX = 0;
+        this.offsetY = 0;
+        this.renderRenderable = true;
         this.renderableObject = renderableObject;
         this.color = color;
         this.opacity = opacity;
-        this.bold = bold;
+        this.bold = false;
         this.roundPercentage = roundPercentage;
         this.hovered = false;
         this.shadowOffset = shadowOffset;
-        this.stroke = stroke;
+        this.strokeWidth = strokeWidth;
         this.strokeColor = strokeColor;
+    }
+    
+    public String getFunction() {
+    	return function;
     }
     
     public String getName(){
@@ -159,12 +167,16 @@ public class TextBox {
     	return shadowOffset;
     }
     
-    public float getStroke() {
-    	return stroke;
+    public float getStrokeWidth() {
+    	return strokeWidth;
     }
     
     public int getStrokeColor() {
     	return strokeColor;
+    }
+    
+    public void setFunction(String function) {
+    	this.function = function;
     }
     
     public void setName(String name) {
@@ -247,8 +259,8 @@ public class TextBox {
     	this.shadowOffset = shadowOffset;
     }
     
-    public void setStroke(float stroke) {
-    	this.stroke = stroke;
+    public void setStrokeWidth(float strokeWidth) {
+    	this.strokeWidth = strokeWidth;
     }
     
     public void setStrokeColor(int strokeColor) {

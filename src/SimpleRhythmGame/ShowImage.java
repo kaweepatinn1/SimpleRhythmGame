@@ -23,7 +23,11 @@ public class ShowImage extends JPanel implements KeyListener {
     private static Element[] rawElementsList;
     private static Color[] colorsList;
     private static JFrame frame;
-    private static String lastHovered = "";
+    private static String lastHovered = null;
+    private static String mouseDragCurrent = null; 
+    private static String mouseDragStart = null;
+    // The name of the element that the current drag has started on
+    private static boolean currentMouseDragging = false;
     
     public ShowImage() {
         setLayout(new BorderLayout()); // Set the main panel's layout to BorderLayout
@@ -32,38 +36,35 @@ public class ShowImage extends JPanel implements KeyListener {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Check if the mouse click is within the boundaries of any image
-                int x = e.getX();
-                int y = e.getY();
-                clickedImageIndex = -1; // Reset clickedImageIndex
-
-                for (int i = 0; i < renderablesList.length; i++) {
-                    Renderable renderable = renderablesList[i];
-                    BufferedImage image = images[i];
-
-                    Rectangle bounds = new Rectangle(renderable.getX(), renderable.getY(), image.getWidth(), image.getHeight());
-
-                    if (bounds.contains(x, y)) {
-                        clickedImageIndex = i;
-                        break;
-                    }
+            	int mouseX = e.getX();
+            	int mouseY = e.getY();
+            	// System.out.println("clicked");
+                Element clickedElement = checkLocation(mouseX, mouseY);
+                if (clickedElement != null) {
+                	mouseDragStart = clickedElement.getName();
                 }
-
-                // Repaint the panel to update the display
-                repaint();
-
-                // Output the clicked image information or mouse coordinates
-                if (clickedImageIndex != -1) {
-                    Renderable clickedRenderable = renderablesList[clickedImageIndex];
-                    System.out.println("Clicked Image: " + clickedRenderable.getImagePath());
-                    System.out.println("Image Position: X=" + clickedRenderable.getX() + ", Y=" + clickedRenderable.getY());
-                    System.out.println("Image Opacity: " + clickedRenderable.getOpacity());
-                    System.out.println();
-                } else {
-                    System.out.println("Clicked Image: null");
-                    System.out.println("Mouse Position: X=" + x + ", Y=" + y);
-                    System.out.println();
+            }
+            
+            public void mouseReleased(MouseEvent e) {
+            	int mouseX = e.getX();
+            	int mouseY = e.getY();
+            	// System.out.println("released");
+            	// System.out.println(mouseDragStart);
+                Element releasedElement = checkLocation(mouseX, mouseY);
+                if (releasedElement != null) {
+                	// System.out.println(releasedElement.getName());
+                	if (releasedElement.getName() == mouseDragStart) {
+                		String functionToRun = releasedElement.getFunction();
+                        boolean ranFunction = Functions.runFunction(functionToRun);
+                        if (!ranFunction) {
+                        	System.out.println("ERROR: DID NOT RUN ANY FUNCTION FOR \nElement Name: " + releasedElement.getName() + 
+                        			"\nwhich is a \nRenderable: " + releasedElement.isRenderable() + "\nTextbox: " + releasedElement.isTextbox());
+                    	}
+                    } 
+            	} else {
+                	// Clicked on nothing.
                 }
+                currentMouseDragging = false;
             }
         });
         
@@ -75,15 +76,60 @@ public class ShowImage extends JPanel implements KeyListener {
             	int mouseY = e.getY();
                 //System.out.println("Mouse moved to (" + mouseX + ", " + mouseY +  ")");  
             	
-            	TextBox hoveredBox = checkLocation(mouseX, mouseY);
+            	Element hoveredElement = checkLocation(mouseX, mouseY);
                 
-                if (hoveredBox.getName() == lastHovered) {
-                	
+            	if (hoveredElement != null) {
+            		String nameOfHoveredElement = hoveredElement.getName();
+	                if (lastHovered == nameOfHoveredElement) {
+	                	// Do nothing, nothing has changed.
+	                } else {
+	                	// System.out.println("no longer hovering: " + lastHovered);
+	                	// System.out.println("hovering: " + nameOfHoveredElement);
+	                	/*
+	                	 if (lastHovered != null) {
+	                		 TODO stopHoverAnimation(lastHovered);
+	                	 }
+	                	 */
+	                	// TODO startHoverAnimation(nameOfHoveredElement);
+	                }
+	                lastHovered = nameOfHoveredElement; 
+            	} else {
+            		if (lastHovered == null) {
+            			// Do nothing, nothing has changed.
+            		} else {
+            			// System.out.println("no longer hovering: " + lastHovered);
+	                	// System.out.println("hovering: " + null);
+            			// TODO stopHoverAnimation(lastHovered);
+                		lastHovered = null;	
+            		}
+            	}
+            }
+            
+            @Override
+            public void mouseDragged(MouseEvent e) {
+            	int mouseX = e.getX();
+            	int mouseY = e.getY();
+            	// System.out.println("dragged");
+                Element clickedElement = checkLocation(mouseX, mouseY);
+                String nameOfDraggedElement;
+                if (clickedElement == null) {
+                	nameOfDraggedElement = null;
                 } else {
-                	System.out.println("no longer hovering: " + lastHovered);
-                	System.out.println("hovering: " + hoveredBox);
+                	nameOfDraggedElement = clickedElement.getName();
                 }
-                lastHovered = hoveredBox.getName(); 
+                if (!currentMouseDragging) {
+                	currentMouseDragging = true;
+                	mouseDragStart = nameOfDraggedElement;
+                }
+                if (mouseDragCurrent == nameOfDraggedElement) {
+                	// DO NOTHING
+                } else {
+                	// TODO stopClickAnimation(mouseDragCurrent);
+                	if (clickedElement != null) {
+                		// TODO startClickAnimation(clickedBox.getName());
+                	}
+                	mouseDragCurrent = nameOfDraggedElement;
+                }
             }
         });
 
@@ -98,7 +144,7 @@ public class ShowImage extends JPanel implements KeyListener {
         for (int i = 0; i < elementsToRender.length; i++) {
 	        Element currentElement = elementsToRender[i];
 	        
-	        if (currentElement.isTextBox()) {
+	        if (currentElement.isTextbox()) {
 	        	
 	        	Graphics2D g2d = (Graphics2D) g.create();
 	            RenderingHints rh = new RenderingHints(
@@ -129,7 +175,7 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	
 	            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 	            
-	            float thickness = textbox.getStroke();
+	            float thickness = textbox.getStrokeWidth();
 	            g2d.setStroke(new BasicStroke(thickness));
 	            
 	            g2d.setColor(colorsList[textbox.getColor()]); // set box color
@@ -143,7 +189,6 @@ public class ShowImage extends JPanel implements KeyListener {
 	            // v Text / Image section
 	            
 	            if(textbox.isRenderable()) { // render image
-	            	
 	            	Renderable renderable = textbox.getRenderableObject();
 	            	BufferedImage image = renderable.getImage();
 	            	g2d.drawImage(image, renderable.getX(), renderable.getY(), null);
@@ -217,25 +262,48 @@ public class ShowImage extends JPanel implements KeyListener {
     }
     
 
-    public TextBox checkLocation(int mouseX, int mouseY) {
-    	TextBox currentBox = null;
-        for (int i = 0; i < textBoxesList.length; i++) {
-            TextBox checkBox = textBoxesList[i];
-            roundedRect roundRectAttributes = getBoxAttributes(checkBox);
-            int x = roundRectAttributes.getX();
-        	int y = roundRectAttributes.getY();
-        	int xSize = roundRectAttributes.getXSize();
-        	int ySize = roundRectAttributes.getYSize();
-        	int round = roundRectAttributes.getRound();
-            RoundRectangle2D roundRect = new RoundRectangle2D.Double(x, y, xSize, ySize, round, round);
-            if (roundRect.contains(mouseX, mouseY)) {
-                currentBox = checkBox; 
-                // does not break so that the element which is highest in the hierarchy
-                // can be selected instead of the first (which would be more background items)
-                // break;
+    public Element checkLocation(int mouseX, int mouseY) {
+    	Element currentBox = null;
+        for (int i = 0; i < elementsToRender.length; i++) {
+            Element currentElement = elementsToRender[i];
+            if (currentElement.isTextbox()) {
+            	TextBox textbox = currentElement.getTextbox();
+	            roundedRect roundRectAttributes = getBoxAttributes(textbox);
+	            Rectangle bounds = new Rectangle();
+	            
+	            int x = roundRectAttributes.getX();
+	        	int y = roundRectAttributes.getY();
+	        	int xSize = roundRectAttributes.getXSize();
+	        	int ySize = roundRectAttributes.getYSize();
+	        	int round = roundRectAttributes.getRound();
+	        	
+	            RoundRectangle2D roundRect = new RoundRectangle2D.Double(x, y, xSize, ySize, round, round);
+	            
+	            if (textbox.isRenderable()) {
+	            	Renderable renderable = textbox.getRenderableObject();
+	            	BufferedImage image = renderable.getImage();
+	            	bounds = new Rectangle(renderable.getX(), renderable.getY(), image.getWidth(), image.getHeight());
+	            }
+	            if ((roundRect.contains(mouseX, mouseY) && textbox.getOpacity() != 0) ||
+	            	(bounds.contains(mouseX, mouseY) && textbox.getRenderableObject().getOpacity() != 0 && textbox.isRenderable())
+	            		) { // sets the current hovered box as this if either its renderable (if there is one) or its shape is hovered AND not invisible
+	                currentBox = currentElement; 
+	                // does not break so that the element which is highest in the hierarchy
+	                // can be selected instead of the first (which would be more background items)
+	                // break;
+	            }
+            } else if (currentElement.isRenderable()) {
+            	// Check if the mouse click is within the boundaries of any image
+                Renderable renderable = currentElement.getRenderable();
+                BufferedImage image = renderable.getImage();
+
+                Rectangle bounds = new Rectangle(renderable.getX(), renderable.getY(), image.getWidth(), image.getHeight());
+
+                if (bounds.contains(mouseX, mouseY) && renderable.getOpacity() != 0) {
+                	currentBox = currentElement; 
+                }
             }
         }
-        
         return currentBox;
     }
     
@@ -257,17 +325,17 @@ public class ShowImage extends JPanel implements KeyListener {
         // Do nothing
     }
     
-    private TextBox getBoxFromName(String name) { 
+    private Element getElementFromName(String name) { 
     	// get the box for the name given through the parameter
-    	TextBox boxToReturn = null;
-    	for (int i = 0; i < textBoxesList.length; i++) {
-    		TextBox currentBox = textBoxesList[i];
-    		if (currentBox.getName() == name) {
-    			boxToReturn = currentBox;
+    	Element elementToReturn = null;
+    	for (int i = 0; i < elementsToRender.length; i++) {
+    		Element currentElement = elementsToRender[i];
+    		if (currentElement.getName() == name) {
+    			elementToReturn = currentElement;
     			break;
     		}
     	}
-    	return boxToReturn;
+    	return elementToReturn;
     }
     
     private roundedRect getBoxAttributes(TextBox textbox) { 
@@ -287,21 +355,6 @@ public class ShowImage extends JPanel implements KeyListener {
     	return attributesToReturn;
     }
     
-    private static Renderable[] refreshScreenSizeRenderable(int screenWidth,int screenHeight) { 
-    	// refreshes all renderables' sizes to fit the new screen size, runs on dynamicFrameSize() end.
-    	double xScale = intToDouble(screenWidth) / 1920;
-    	double yScale = intToDouble(screenHeight) / 1080;
-    	Renderable[] renderablesList = new Renderable[rawRenderablesList.length];
-        for (int i = 0; i < rawRenderablesList.length; i++) {
-        	Renderable currentItem = rawRenderablesList[i];
-        	String imagePath = currentItem.getImagePath();
-        	int x = (int) Math.round(currentItem.getX() * xScale);
-        	int y = (int) Math.round(currentItem.getY() * yScale);
-        	int opacity = currentItem.getOpacity();
-        	renderablesList[i] =  new Renderable(imagePath, x, y, opacity);
-        }
-        return renderablesList;
-    }
     
     private static Element[] refreshScreenSizeElements(int screenWidth,int screenHeight) {
     	// refreshes all textbox sizes to fit the new screen size, runs on dynamicFrameSize() end.
@@ -312,9 +365,10 @@ public class ShowImage extends JPanel implements KeyListener {
     	Element[] elementsToReturn = new Element[rawElementsList.length];
         for (int i = 0; i < rawElementsList.length; i++) {
         	Element currentElement = rawElementsList[i];
-        	if (currentElement.isTextBox()) {
+        	if (currentElement.isTextbox()) {
 	        	// WAS HERE KEEP WORKING
 	        	TextBox currentItem = currentElement.getTextbox();
+	        	String function = currentItem.getFunction();
 	        	String name = currentItem.getName();
 	        	String text = currentItem.getText();
 	        	String alignX = currentItem.getAlignX();
@@ -333,16 +387,39 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	Renderable renderableObject = currentItem.getRenderableObject();
 	        	boolean bold = currentItem.getBold();
 	        	int roundPercentage = currentItem.getRoundPercentage();
-	        	int shadowOffset = currentItem.getShadowOffset();
-	        	float stroke = currentItem.getStroke();
+	        	int shadowOffset = (int) Math.round(currentItem.getShadowOffset() * yScale);
+	        	float stroke = (int) Math.round(currentItem.getStrokeWidth() * yScale);
 	        	int strokeColor = currentItem.getStrokeColor();
 	        	if (renderRenderable) {
-	        		textBoxesList[i] =  new TextBox(name, renderableObject, x, y, xSize, ySize, offsetX, offsetY,
-	        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor);
+	        		String renderableName = renderableObject.getName();
+	        		String renderableFunction = renderableObject.getFunction();
+	            	String imagePath = renderableObject.getImagePath();
+	            	int renderableX = (int) Math.round(renderableObject.getX() * xScale);
+	            	int renderableY = (int) Math.round(renderableObject.getY() * yScale);
+	            	int renderableXSize = (int) Math.round(renderableObject.getXSize() * xScale);
+	            	int renderableYSize = (int) Math.round(renderableObject.getYSize() * yScale);
+	            	int renderableOpacity = renderableObject.getOpacity();
+	            	Renderable newRenderableObject =  new Renderable(renderableFunction, renderableName, imagePath, 
+	            			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
+	        		elementsToReturn[i] =  new Element(new TextBox(function, name, newRenderableObject, x, y, xSize, ySize,
+	        				color, opacity, roundPercentage, shadowOffset, stroke, strokeColor));
 	        	} else {
-	        		textBoxesList[i] =  new TextBox(name, text, alignX, alignY, fontColor, textSize, x, y, xSize, ySize, offsetX, offsetY,
-	        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor);
+	        		elementsToReturn[i] =  new Element(new TextBox(function, name, text, alignX, alignY, fontColor, textSize, 
+	        				x, y, xSize, ySize, offsetX, offsetY,
+	        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor));
 	        	}
+        	} else if (currentElement.isRenderable()) {
+        		Renderable currentItem = currentElement.getRenderable();
+        		String renderableFunction = currentItem.getFunction();
+        		String renderableName = currentItem.getName();
+            	String imagePath = currentItem.getImagePath();
+            	int renderableX = (int) Math.round(currentItem.getX() * xScale);
+            	int renderableY = (int) Math.round(currentItem.getY() * yScale);
+            	int renderableXSize = (int) Math.round(currentItem.getXSize() * xScale);
+            	int renderableYSize = (int) Math.round(currentItem.getYSize() * yScale);
+            	int renderableOpacity = currentItem.getOpacity();
+            	elementsToReturn[i] =  new Element(new Renderable(renderableFunction, renderableName, imagePath, 
+            			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity));
         	}
         }
         return elementsToReturn;
@@ -355,6 +432,8 @@ public class ShowImage extends JPanel implements KeyListener {
     	// to choose a different size (initially uses larges possible 16:9 fit. Runs refreshScreenSize()
     	// for all scaleable properties before returning the new screen width and height as an integer
     	// array of size 2.
+    	//
+    	// TODO: write new values to config file
     	//
     	// WILL ALSO ACTUALLY CHANGE THE FRAME SIZE WITHIN THE METHOD.
     	GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
@@ -410,7 +489,7 @@ public class ShowImage extends JPanel implements KeyListener {
     	// main method
     	frame = new JFrame("Game"); // initialises the frame to allow changes to be applied
     	
-    	boolean fullScreen = true; // changable variables: if not fullscreen will force below
+    	boolean fullscreen = true; // changable variables: if not fullscreen will force below
         int sizeToForce = 1920; // changable variables: can foce this screen size if above is true
         
         // TODO: create a class that holds all static or final variables, including the above two and the other values
@@ -435,9 +514,18 @@ public class ShowImage extends JPanel implements KeyListener {
         // UUID userUUID = xx;
         
         // for screen size
-        boolean userHasScreenSize = true;
+        boolean userHasScreenSize = false;
         // boolean userFullscreenOption = xx;
         // int userScreenSize = xx;
+        
+        // loads the default if not true
+        if (userHasScreenSize) {
+        	// boolean fullscreen = userFullscreenOption;
+        	// int sizeToForce = userScreenSize;
+        } else {
+        	fullscreen = DefaultValues.getDefaultFullscreen();
+        	sizeToForce = DefaultValues.getDefaultSizeToForce();
+        }
         
         // READ USER COLOR
         boolean userHasColorScheme = false;
@@ -447,13 +535,9 @@ public class ShowImage extends JPanel implements KeyListener {
         
         // READ
         
-        // 
-        
-        rawRenderablesList = new Renderable[]{
-                new Renderable("textures/kosbia.png", 10, 50, 255),
-                new Renderable("textures/defaultcursor.png", 550, 100, 150),
-        };
-        
+        // TODO: ADD BELOW TO A COMMENT ONCE DEV IS FINISHED:
+        fullscreen = false;
+
         rawElementsList = DefaultValues.getMenu(currentMenu).getElements();
         
         if (userHasColorScheme) {
@@ -462,7 +546,7 @@ public class ShowImage extends JPanel implements KeyListener {
         	colorsList = DefaultValues.getDefaultColors();
         }
         
-        setScreenSize(fullScreen, sizeToForce); // uses the above raw lists and variables to set the frame size.
+        setScreenSize(fullscreen, sizeToForce); // uses the above raw lists and variables to set the frame size.
         ShowImage panel = new ShowImage(); // runs showimage class (top of this class) to show text and renderables into a panel
         frame.getContentPane().add(panel); // adds the panel to frame content
         
