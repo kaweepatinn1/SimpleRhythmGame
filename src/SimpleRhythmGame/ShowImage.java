@@ -186,10 +186,10 @@ public class ShowImage extends JPanel implements KeyListener {
             float thickness = textbox.getStroke();
             g2d.setStroke(new BasicStroke(thickness));
             
-            g2d.setColor(colorsList[textbox.getStrokeColor()]);
-            g2d.drawRoundRect(x, y, xSize, ySize, round, round);
             g2d.setColor(colorsList[textbox.getColor()]); // set box color
             g2d.fillRoundRect(x, y, xSize, ySize, round, round);
+            g2d.setColor(colorsList[textbox.getStrokeColor()]);
+            g2d.drawRoundRect(x, y, xSize, ySize, round, round);
             
             g2d.setStroke(new BasicStroke(0));
             
