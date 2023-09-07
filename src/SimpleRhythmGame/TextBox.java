@@ -135,7 +135,7 @@ public class TextBox {
         return opacity;
     }
     
-    public boolean renderable() {
+    public boolean isRenderable() {
         return renderRenderable;
     }
 
@@ -215,7 +215,7 @@ public class TextBox {
         this.offsetY = offsetY;
     }
 
-    public void setRenderableRenderable(boolean renderRenderable) {
+    public void setIfRenderable(boolean renderRenderable) {
         this.renderRenderable = renderRenderable;
     }
 

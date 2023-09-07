@@ -30,6 +30,10 @@ public class Element {
 		return isTextBox;
 	}
 	
+	public boolean isTextBoxRenderable() {
+		return textbox.isRenderable();
+	}
+	
 	public Renderable getRenderable() {
 		return renderable;
 	}

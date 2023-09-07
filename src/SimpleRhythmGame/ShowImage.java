@@ -21,37 +21,12 @@ public class ShowImage extends JPanel implements KeyListener {
     private static int currentMenu;
     private static Element[] elementsToRender;
     private static Element[] rawElementsList;
-    private static BufferedImage[] extraImages;
-    private static int clickedImageIndex = -1;
     private static Color[] colorsList;
     private static JFrame frame;
     private static String lastHovered = "";
     
     public ShowImage() {
         setLayout(new BorderLayout()); // Set the main panel's layout to BorderLayout
-        try {
-            // Initialize the array to store the images and renderables
-            images = new BufferedImage[renderablesList.length];
-            LinkedList<BufferedImage> extraImagesList = new LinkedList();
-
-            // Load the images from the file names in the renderables into the images list
-            for (int i = 0; i < renderablesList.length; i++) {
-                Renderable renderable = renderablesList[i];
-                File input = new File(renderable.getImagePath());
-                images[i] = ImageIO.read(input);
-            }
-            for (int i = 0; i < textBoxesList.length; i++) {
-                if (textBoxesList[i].renderable() == true) {
-	            	Renderable renderable = textBoxesList[i].getRenderableObject();
-	                File input = new File(renderable.getImagePath());
-	                extraImagesList.add(ImageIO.read(input));
-                }
-            }
-            extraImages = extraImagesList.toArray(new BufferedImage[0]);
-
-        } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
 
         // Add mouse listener to the panel
         addMouseListener(new MouseAdapter() {
@@ -98,31 +73,17 @@ public class ShowImage extends JPanel implements KeyListener {
                 // Handle the mouse move event
             	int mouseX = e.getX();
             	int mouseY = e.getY();
-            	String hoveredBox = null;
-                //System.out.println("Mouse moved to (" + mouseX + ", " + mouseY +  ")");            
-                for (int i = 0; i < textBoxesList.length; i++) {
-                    TextBox currentBox = textBoxesList[i];
-                    roundedRect roundRectAttributes = getBoxAttributes(currentBox);
-                    int x = roundRectAttributes.getX();
-                	int y = roundRectAttributes.getY();
-                	int xSize = roundRectAttributes.getXSize();
-                	int ySize = roundRectAttributes.getYSize();
-                	int round = roundRectAttributes.getRound();
-                    RoundRectangle2D roundRect = new RoundRectangle2D.Double(x, y, xSize, ySize, round, round);
-                    if (roundRect.contains(mouseX, mouseY)) {
-                        hoveredBox = currentBox.getName(); 
-                        // does not break so that the element which is highest in the hierarchy
-                        // can be selected instead of the first (which would be more background items)
-                        // break;
-                    }
-                }
-                if (hoveredBox == lastHovered) {
+                //System.out.println("Mouse moved to (" + mouseX + ", " + mouseY +  ")");  
+            	
+            	TextBox hoveredBox = checkLocation(mouseX, mouseY);
+                
+                if (hoveredBox.getName() == lastHovered) {
                 	
                 } else {
                 	System.out.println("no longer hovering: " + lastHovered);
                 	System.out.println("hovering: " + hoveredBox);
                 }
-                lastHovered = hoveredBox; 
+                lastHovered = hoveredBox.getName(); 
             }
         });
 
@@ -131,132 +92,151 @@ public class ShowImage extends JPanel implements KeyListener {
         addKeyListener(this);
     }
     
-    
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        // Draw the images on the panel
-        for (int i = 0; i < images.length; i++) {
-            BufferedImage image = images[i];
-            Renderable renderable = renderablesList[i];
-
-            Graphics2D g2d = (Graphics2D) g.create();
-            RenderingHints rh = new RenderingHints(
-                    RenderingHints.KEY_ANTIALIASING,
-                    RenderingHints.VALUE_ANTIALIAS_ON                    
-                    );
-            g2d.setRenderingHints(rh);
-            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, renderable.getOpacity() / 255f));
-
-            g2d.drawImage(image, renderable.getX(), renderable.getY(), null);
-            g2d.dispose();
-
-            // Highlight the clicked image
-            if (i == clickedImageIndex) {
-                g.setColor(new Color(255, 0, 0, 100)); // Semi-transparent red color
-                g.fillRect(renderable.getX(), renderable.getY(), image.getWidth(), image.getHeight());
-            }
-        }
         
+        for (int i = 0; i < elementsToRender.length; i++) {
+	        Element currentElement = elementsToRender[i];
+	        
+	        if (currentElement.isTextBox()) {
+	        	
+	        	Graphics2D g2d = (Graphics2D) g.create();
+	            RenderingHints rh = new RenderingHints(
+	                    RenderingHints.KEY_ANTIALIASING,
+	                    RenderingHints.VALUE_ANTIALIAS_ON                    
+	                    );
+	            g2d.setRenderingHints(rh);
+	        	
+	        	TextBox textbox = currentElement.getTextbox();
+	        	
+	        	
+	        	
+	        	roundedRect roundRectAttributes = getBoxAttributes(textbox);
+	        	
+	        	int x = roundRectAttributes.getX();
+	        	int y = roundRectAttributes.getY();
+	        	int xSize = roundRectAttributes.getXSize();
+	        	int ySize = roundRectAttributes.getYSize();
+	        	int round = roundRectAttributes.getRound();
+	        	
+	        	if (textbox.getShadowOffset() != 0) { // fills a drop shadow on command
+	            	int dropShadowX = x + textbox.getShadowOffset();
+	            	int dropShadowY = y + textbox.getShadowOffset();
+	            	g2d.setColor(new Color(0, 0, 0, 100));
+	            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+	            	g2d.fillRoundRect(dropShadowX, dropShadowY, xSize, ySize, round, round);
+	            }
+	        	
+	            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+	            
+	            float thickness = textbox.getStroke();
+	            g2d.setStroke(new BasicStroke(thickness));
+	            
+	            g2d.setColor(colorsList[textbox.getColor()]); // set box color
+	            g2d.fillRoundRect(x, y, xSize, ySize, round, round);
+	            g2d.setColor(colorsList[textbox.getStrokeColor()]);
+	            g2d.drawRoundRect(x, y, xSize, ySize, round, round);
+	            
+	            g2d.setStroke(new BasicStroke(0));
+	            
+	            // ^ Textbox section
+	            // v Text / Image section
+	            
+	            if(textbox.isRenderable()) { // render image
+	            	
+	            	Renderable renderable = textbox.getRenderableObject();
+	            	BufferedImage image = renderable.getImage();
+	            	g2d.drawImage(image, renderable.getX(), renderable.getY(), null);
+	            	
+	            } else { // render text instead
+	            	
+	            	g2d.setColor(colorsList[textbox.getFontColor()]); // set text color
+		            
+		            Font font;
+		            
+		            if (textbox.getBold() == true) {
+		            	font = new Font("Roboto", Font.BOLD, textbox.getTextSize());
+		            	g2d.setFont(font);
+		            } else {
+		            	font = new Font("Roboto", Font.PLAIN, textbox.getTextSize());
+		            	g2d.setFont(font);
+		            }
+		            // Below code grabs the size of the text using the string to be entered
+		            FontMetrics fontMetrics = g2d.getFontMetrics();
+		            int textWidth = fontMetrics.stringWidth(textbox.getText());
+		            int textHeight = fontMetrics.getAscent();
+		            // Initializes extraAlign variables
+		            int extraAlignX = 0;
+		            int extraAlignY = 0;
+		            // uses the align text settings to determing whether to use the fontMetrics for extraAlignX.
+		            if (textbox.getAlignX() == "right") {
+		            	extraAlignX = - textWidth;
+		            } else if (textbox.getAlignX() == "center") {
+		            	extraAlignX = - textWidth / 2;
+		            } else { // cases of left, and everything else
+		            	extraAlignX = 0;
+		            }
+		            // same, but for up and down (extraAlignY).
+		            if (textbox.getAlignY() == "bottom") {
+		            	extraAlignY = textHeight;
+		            } else if (textbox.getAlignY() == "center") {
+		            	extraAlignY = textHeight / 2;
+		            } else { // cases of up, and everything else
+		            	extraAlignY = 0;
+		            }
+		            
+		            int finalX = x + (textbox.getXSize() / 2) + textbox.getOffsetX() + extraAlignX;
+		            int finalY = y + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY - (int) Math.round(textHeight * 0.0);
+		            g2d.drawString(textbox.getText(), finalX, finalY);
+		            
+	            }
+	            
+
+	        } else if (currentElement.isRenderable()) {
+	        	
+	            Renderable renderable = currentElement.getRenderable();
+	            BufferedImage image = renderable.getImage();
+	
+	            Graphics2D g2d = (Graphics2D) g.create();
+	            RenderingHints rh = new RenderingHints(
+	                    RenderingHints.KEY_ANTIALIASING,
+	                    RenderingHints.VALUE_ANTIALIAS_ON                    
+	                    );
+	            
+	            g2d.setRenderingHints(rh);
+	            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, renderable.getOpacity() / 255f));
+	
+	            g2d.drawImage(image, renderable.getX(), renderable.getY(), null);
+	            g2d.dispose();
+	            
+	        } else {
+        		System.out.println("Fatal Error: currentElement to render is not renderable or textbox.");
+        		System.out.println(currentElement);
+        	}
+        }
+    }
+    
+
+    public TextBox checkLocation(int mouseX, int mouseY) {
+    	TextBox currentBox = null;
         for (int i = 0; i < textBoxesList.length; i++) {
-        	Graphics2D g2d = (Graphics2D) g.create();
-            RenderingHints rh = new RenderingHints(
-                    RenderingHints.KEY_ANTIALIASING,
-                    RenderingHints.VALUE_ANTIALIAS_ON                    
-                    );
-            g2d.setRenderingHints(rh);
-        	
-        	TextBox textbox = textBoxesList[i];
-        	
-        	
-        	
-        	roundedRect roundRectAttributes = getBoxAttributes(textbox);
-        	
-        	int x = roundRectAttributes.getX();
+            TextBox checkBox = textBoxesList[i];
+            roundedRect roundRectAttributes = getBoxAttributes(checkBox);
+            int x = roundRectAttributes.getX();
         	int y = roundRectAttributes.getY();
         	int xSize = roundRectAttributes.getXSize();
         	int ySize = roundRectAttributes.getYSize();
         	int round = roundRectAttributes.getRound();
-        	
-        	if (textbox.getShadowOffset() != 0) { // fills a drop shadow on command
-            	int dropShadowX = x + textbox.getShadowOffset();
-            	int dropShadowY = y + textbox.getShadowOffset();
-            	g2d.setColor(new Color(0, 0, 0, 100));
-            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
-            	g2d.fillRoundRect(dropShadowX, dropShadowY, xSize, ySize, round, round);
+            RoundRectangle2D roundRect = new RoundRectangle2D.Double(x, y, xSize, ySize, round, round);
+            if (roundRect.contains(mouseX, mouseY)) {
+                currentBox = checkBox; 
+                // does not break so that the element which is highest in the hierarchy
+                // can be selected instead of the first (which would be more background items)
+                // break;
             }
-        	
-            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
-            
-            float thickness = textbox.getStroke();
-            g2d.setStroke(new BasicStroke(thickness));
-            
-            g2d.setColor(colorsList[textbox.getColor()]); // set box color
-            g2d.fillRoundRect(x, y, xSize, ySize, round, round);
-            g2d.setColor(colorsList[textbox.getStrokeColor()]);
-            g2d.drawRoundRect(x, y, xSize, ySize, round, round);
-            
-            g2d.setStroke(new BasicStroke(0));
-            
-            // ^ Textbox section
-            // v Text section
-            
-            g2d.setColor(colorsList[textbox.getFontColor()]); // set text color
-            
-            Font font;
-            
-            if (textbox.getBold() == true) {
-            	font = new Font("Roboto", Font.BOLD, textbox.getTextSize());
-            	g2d.setFont(font);
-            } else {
-            	font = new Font("Roboto", Font.PLAIN, textbox.getTextSize());
-            	g2d.setFont(font);
-            }
-            // Below code grabs the size of the text using the string to be entered
-            FontMetrics fontMetrics = g2d.getFontMetrics();
-            int textWidth = fontMetrics.stringWidth(textbox.getText());
-            int textHeight = fontMetrics.getAscent();
-            // Initializes extraAlign variables
-            int extraAlignX = 0;
-            int extraAlignY = 0;
-            // uses the align text settings to determing whether to use the fontMetrics for extraAlignX.
-            if (textbox.getAlignX() == "right") {
-            	extraAlignX = - textWidth;
-            } else if (textbox.getAlignX() == "center") {
-            	extraAlignX = - textWidth / 2;
-            } else { // cases of left, and everything else
-            	extraAlignX = 0;
-            }
-            // same, but for up and down (extraAlignY).
-            if (textbox.getAlignY() == "bottom") {
-            	extraAlignY = textHeight;
-            } else if (textbox.getAlignY() == "center") {
-            	extraAlignY = textHeight / 2;
-            } else { // cases of up, and everything else
-            	extraAlignY = 0;
-            }
-            
-            int finalX = x + (textbox.getXSize() / 2) + textbox.getOffsetX() + extraAlignX;
-            int finalY = y + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY - (int) Math.round(textHeight * 0.0);
-            g2d.drawString(textbox.getText(), finalX, finalY);
-        	
         }
         
-        for (int i = 0; i < extraImages.length; i++) {
-            BufferedImage image = extraImages[i];
-            TextBox textbox = textBoxesList[i];
-        
-            Graphics2D g2d = (Graphics2D) g.create();
-            RenderingHints rh = new RenderingHints(
-                    RenderingHints.KEY_ANTIALIASING,
-                    RenderingHints.VALUE_ANTIALIAS_ON                    
-                    );
-            g2d.setRenderingHints(rh);
-            
-            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (textbox.getOpacity() / 255f) / 2));
-
-            g2d.drawImage(image, textbox.getX() + (textbox.getXSize() / 2) + textbox.getOffsetX(), textbox.getY() + (textbox.getXSize() / 2) + textbox.getOffsetY(), null);
-            g2d.dispose();
-        }
+        return currentBox;
     }
     
     public static double intToDouble(int input) {
@@ -266,7 +246,6 @@ public class ShowImage extends JPanel implements KeyListener {
     
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        System.out.println(extraImages.length);
         System.out.println("Key Pressed: " + KeyEvent.getKeyText(keyCode));
     }
 
@@ -324,45 +303,49 @@ public class ShowImage extends JPanel implements KeyListener {
         return renderablesList;
     }
     
-    private static TextBox[] refreshScreenSizeText(int screenWidth,int screenHeight) {
+    private static Element[] refreshScreenSizeElements(int screenWidth,int screenHeight) {
     	// refreshes all textbox sizes to fit the new screen size, runs on dynamicFrameSize() end.
     	double xScale = intToDouble(screenWidth) / 1920;
     	double yScale = intToDouble(screenHeight) / 1080;
     	// System.out.println(screenWidth);
     	// System.out.println(xScale);
-    	textBoxesList = new TextBox[rawTextBoxesList.length];
-        for (int i = 0; i < rawTextBoxesList.length; i++) {
-        	TextBox currentItem = rawTextBoxesList[i];
-        	String name = currentItem.getName();
-        	String text = currentItem.getText();
-        	String alignX = currentItem.getAlignX();
-        	String alignY = currentItem.getAlignY();
-        	int textSize = (int) Math.round(currentItem.getTextSize() * Math.min(xScale, yScale));
-        	int fontColor = currentItem.getFontColor();
-        	int x = (int) Math.round(currentItem.getX() * xScale);
-        	int y = (int) Math.round(currentItem.getY() * yScale);
-        	int xSize = (int) Math.round(currentItem.getXSize() * xScale);
-        	int ySize = (int) Math.round(currentItem.getYSize() * yScale);
-        	int offsetX = (int) Math.round(currentItem.getOffsetX() * xScale);
-        	int offsetY = (int) Math.round(currentItem.getOffsetY() * yScale);
-        	int color = currentItem.getColor();
-        	int opacity = currentItem.getOpacity();
-        	boolean renderRenderable = currentItem.renderable();
-        	Renderable renderableObject = currentItem.getRenderableObject();
-        	boolean bold = currentItem.getBold();
-        	int roundPercentage = currentItem.getRoundPercentage();
-        	int shadowOffset = currentItem.getShadowOffset();
-        	float stroke = currentItem.getStroke();
-        	int strokeColor = currentItem.getStrokeColor();
-        	if (renderRenderable) {
-        		textBoxesList[i] =  new TextBox(name, renderableObject, x, y, xSize, ySize, offsetX, offsetY,
-        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor);
-        	} else {
-        		textBoxesList[i] =  new TextBox(name, text, alignX, alignY, fontColor, textSize, x, y, xSize, ySize, offsetX, offsetY,
-        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor);
+    	Element[] elementsToReturn = new Element[rawElementsList.length];
+        for (int i = 0; i < rawElementsList.length; i++) {
+        	Element currentElement = rawElementsList[i];
+        	if (currentElement.isTextBox()) {
+	        	// WAS HERE KEEP WORKING
+	        	TextBox currentItem = currentElement.getTextbox();
+	        	String name = currentItem.getName();
+	        	String text = currentItem.getText();
+	        	String alignX = currentItem.getAlignX();
+	        	String alignY = currentItem.getAlignY();
+	        	int textSize = (int) Math.round(currentItem.getTextSize() * Math.min(xScale, yScale));
+	        	int fontColor = currentItem.getFontColor();
+	        	int x = (int) Math.round(currentItem.getX() * xScale);
+	        	int y = (int) Math.round(currentItem.getY() * yScale);
+	        	int xSize = (int) Math.round(currentItem.getXSize() * xScale);
+	        	int ySize = (int) Math.round(currentItem.getYSize() * yScale);
+	        	int offsetX = (int) Math.round(currentItem.getOffsetX() * xScale);
+	        	int offsetY = (int) Math.round(currentItem.getOffsetY() * yScale);
+	        	int color = currentItem.getColor();
+	        	int opacity = currentItem.getOpacity();
+	        	boolean renderRenderable = currentItem.isRenderable();
+	        	Renderable renderableObject = currentItem.getRenderableObject();
+	        	boolean bold = currentItem.getBold();
+	        	int roundPercentage = currentItem.getRoundPercentage();
+	        	int shadowOffset = currentItem.getShadowOffset();
+	        	float stroke = currentItem.getStroke();
+	        	int strokeColor = currentItem.getStrokeColor();
+	        	if (renderRenderable) {
+	        		textBoxesList[i] =  new TextBox(name, renderableObject, x, y, xSize, ySize, offsetX, offsetY,
+	        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor);
+	        	} else {
+	        		textBoxesList[i] =  new TextBox(name, text, alignX, alignY, fontColor, textSize, x, y, xSize, ySize, offsetX, offsetY,
+	        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor);
+	        	}
         	}
         }
-        return textBoxesList;
+        return elementsToReturn;
     }
     
     private static int[] dynamicFrameSize(boolean forceSize, int sizeToForce) { 
@@ -407,8 +390,7 @@ public class ShowImage extends JPanel implements KeyListener {
         // System.out.println("final" + screenWidth);
         // System.out.println("final" + screenHeight);
         frame.setSize(screenWidth, screenHeight);
-        renderablesList = refreshScreenSizeRenderable(screenWidth,screenHeight);
-        textBoxesList = refreshScreenSizeText(screenWidth,screenHeight);
+        elementsToRender = refreshScreenSizeElements(screenWidth,screenHeight);
         return toReturn;
     }
     
@@ -449,10 +431,13 @@ public class ShowImage extends JPanel implements KeyListener {
         
         // for username
         boolean userHasUsername = true;
-        String userUsername;
+        // String userUsername = xx;
+        // UUID userUUID = xx;
         
         // for screen size
         boolean userHasScreenSize = true;
+        // boolean userFullscreenOption = xx;
+        // int userScreenSize = xx;
         
         // READ USER COLOR
         boolean userHasColorScheme = false;
