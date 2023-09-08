@@ -1,9 +1,5 @@
 package SimpleRhythmGame;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Arrays;
-
 public class Functions {
 	
 	public static boolean runFunction(String function){

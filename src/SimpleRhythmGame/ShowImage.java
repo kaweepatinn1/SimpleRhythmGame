@@ -507,7 +507,10 @@ public class ShowImage extends JPanel implements KeyListener {
     	currentMenu = menu;
     	rawElementsList = DefaultValues.getMenu(currentMenu).getElements();
     	elementsToRender = refreshScreenSizeElements(calculatedScreenWidth, calculatedScreenHeight);
-    	panel.repaint(); // TODO framerate class to replace this
+    }
+    
+    public static void repaintPanel() {
+    	panel.repaint();
     }
     
     public static int getMenu() {
@@ -591,6 +594,8 @@ public class ShowImage extends JPanel implements KeyListener {
         // Set the frame size to the screen dimensions
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sets closing operation
         frame.setVisible(true); // allows client to see frame
+        Framerate thread = new Framerate();
+        thread.start();
     }
 
 
