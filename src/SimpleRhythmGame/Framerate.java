@@ -61,7 +61,7 @@ public class Framerate extends Thread {
 				// System.out.println("frames recorded: " + totalFrames);
 				// System.out.println("totaltime: " + totalFramesTime);
 				currentFramerate = (int) Math.round(totalFrames / totalFramesTime);
-				 System.out.println("framerate: " + currentFramerate);
+				// System.out.println("framerate: " + currentFramerate);
 				 
 				lastFrameTimeMillis = milliTime;
 				ShowImage.repaintPanel();

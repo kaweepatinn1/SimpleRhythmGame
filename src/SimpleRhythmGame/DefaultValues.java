@@ -18,6 +18,17 @@ public class DefaultValues {
     		new Color (0,0,255,50) // 6
 	};
 	
+	private final static String[] defaultFonts = new String[] {
+			"src/fonts/ArchivoNarrow-Bold.ttf",
+			"src/fonts/ArchivoNarrow-BoldItalic.ttf",
+			"src/fonts/ArchivoNarrow-Italic.ttf",
+			"src/fonts/ArchivoNarrow-Medium.ttf",
+			"src/fonts/ArchivoNarrow-MediumItalic.ttf",
+			"src/fonts/ArchivoNarrow-Regular.ttf",
+			"src/fonts/ArchivoNarrow-SemiBold.ttf",
+			"src/fonts/ArchivoNarrow-SemiBoldItalic.ttf"
+	};
+	
 	private final static Menu[] defaultMenus = new Menu[] {
 			new Menu( // 0. Initialization (for setting up screen size, username)
 					new Element[] {
@@ -53,13 +64,14 @@ public class DefaultValues {
 								"Menu2Button",  // name
 								"Goto Menu 2", // text
 								"center", "center", // align
+								"Archivo Narrow", // font
 								3, // text color (index of colors)
 								50, // text size
 								280, 500, 550, 50,  // x, y, xSize, ySize
 								0, 0, // text offset (x, y)
 								2, // box color (index of colors)
 								255, // opacity (0-255)
-								false, // bold
+								true, // bold
 								50, // roundPercentage
 								8, // shadowOffset
 								5, 1 // strokeWidth, strokeColor
@@ -70,6 +82,7 @@ public class DefaultValues {
 								"Menu3Button",  // name
 								"Goto Menu 3", // text
 								"center", "center", // align
+								"Roboto", // font
 								1, // text color (index of colors)
 								50, // text size
 								280, 700, 550, 50,  // x, y, xSize, ySize
@@ -87,6 +100,7 @@ public class DefaultValues {
 								"This is Menu 1",  // name
 								"Menu 0 c", // text
 								"center", "center", // align
+								"Roboto", // font
 								3, // text color (index of colors)
 								50, // text size
 								280, 900, 550, 50,  // x, y, xSize, ySize
@@ -110,21 +124,21 @@ public class DefaultValues {
 					),
 			new Menu( // 1. MENU 1
 				new Element[] {
-					new Element(new TextBox("setMenu int 0", "Menu1Button", "Goto Menu 1", "left", "top",
+					new Element(new TextBox("setMenu int 0", "Menu1Button", "Goto Menu 1", "left", "top", "Roboto",
 							1, 50, 1280, 500, 550, 50, 0, 0, 2, 255, false, 50, 10, 5, 1)),
-					new Element(new TextBox("setMenu int 2", "Menu2Button", "Goto Menu 3", "center", "center", 	
+					new Element(new TextBox("setMenu int 2", "Menu2Button", "Goto Menu 3", "center", "center", "Roboto", 	
 							2, 50, 200, 300, 550, 50, 0, 0, 3, 255, false, 100, 10, 5, 1)),
-					new Element(new TextBox("TestFunction", "Box3", "This is Menu 2", "center", "center",
+					new Element(new TextBox("TestFunction", "Box3", "This is Menu 2", "center", "center", "Roboto",
 							3, 50, 300, 100, 550, 50, 0, 0, 1, 255, false, 100, 10, 5, 1))
 					}
 				),
 			new Menu( // 2. MENU 2
 				new Element[] {
-					new Element(new TextBox("setMenu int 0", "Menu1Button", "Goto Menu 1", "left", "top",
+					new Element(new TextBox("setMenu int 0", "Menu1Button", "Goto Menu 1", "left", "top", "Roboto",
 							1, 50, 1280, 500, 550, 50, 0, 0, 2, 255, false, 50, 10, 5, 1)),
-					new Element(new TextBox("setMenu int 1", "Menu2Button", "Goto Menu 2", "center", "center", 	
+					new Element(new TextBox("setMenu int 1", "Menu2Button", "Goto Menu 2", "center", "center", "Roboto", 	
 							2, 50, 200, 300, 550, 50, 0, 0, 3, 255, false, 100, 10, 5, 1)),
-					new Element(new TextBox("TestFunction", "Box3", "This is Menu 3", "center", "center",
+					new Element(new TextBox("TestFunction", "Box3", "This is Menu 3", "center", "center", "Roboto",
 							3, 50, 300, 100, 550, 50, 0, 0, 1, 255, false, 100, 10, 5, 1))
 					}
 				),
@@ -144,6 +158,10 @@ public class DefaultValues {
 	
 	public static Color[] getDefaultColors(){
 		return defaultColors;
+	}
+	
+	public static String[] getDefaultFonts() {
+		return defaultFonts;
 	}
 }
 

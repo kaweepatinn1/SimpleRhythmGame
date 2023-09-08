@@ -6,6 +6,7 @@ public class TextBox {
     private String text;
     private String alignX;
     private String alignY;
+    private String font;
     private int textSize;
     private int fontColor;
     private int x;
@@ -26,7 +27,7 @@ public class TextBox {
     private int strokeColor;
     
     public TextBox(String function, String name, String text, String alignX, String alignY, 
-    		int fontColor, int textSize, int x, int y, int xSize, int ySize, 
+    		String font, int fontColor, int textSize, int x, int y, int xSize, int ySize, 
     		int offsetX, int offsetY, int color, int opacity, boolean bold, 
     		int roundPercentage, int shadowOffset, float strokeWidth, int strokeColor) {
     	this.function = function;
@@ -34,6 +35,7 @@ public class TextBox {
     	this.text = text;
     	this.alignX = alignX;
     	this.alignY = alignY;
+    	this.font = font;
         this.fontColor = fontColor;
         this.textSize = textSize;
         this.x = x;
@@ -63,6 +65,7 @@ public class TextBox {
     	this.text = null;
     	this.alignX = null;
     	this.alignY = null;
+    	this.font = null;
         this.fontColor = -1;
         this.textSize = 0;
         this.x = x;
@@ -101,6 +104,10 @@ public class TextBox {
 
     public String getAlignY() {
         return alignY;
+    }
+    
+    public String getFont() {
+    	return font;
     }
     
     public int getFontColor() {
@@ -193,6 +200,10 @@ public class TextBox {
     
     public void setAlignY(String alignY) {
     	this.alignY = alignY;
+    }
+    
+    public void setFont(String font) {
+    	this.font = font;
     }
     
     public void setFontColor(int fontColor) {

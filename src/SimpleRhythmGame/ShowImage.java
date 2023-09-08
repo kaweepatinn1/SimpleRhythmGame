@@ -208,10 +208,10 @@ public class ShowImage extends JPanel implements KeyListener {
 		            Font font;
 		            
 		            if (textbox.getBold() == true) {
-		            	font = new Font("Roboto", Font.BOLD, textbox.getTextSize());
+		            	font = new Font(textbox.getFont(), Font.BOLD, textbox.getTextSize());
 		            	g2d.setFont(font);
 		            } else {
-		            	font = new Font("Roboto", Font.PLAIN, textbox.getTextSize());
+		            	font = new Font(textbox.getFont(), Font.PLAIN, textbox.getTextSize());
 		            	g2d.setFont(font);
 		            }
 		            // Below code grabs the size of the text using the string to be entered
@@ -383,6 +383,7 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	String text = currentItem.getText();
 	        	String alignX = currentItem.getAlignX();
 	        	String alignY = currentItem.getAlignY();
+	        	String font = currentItem.getFont();
 	        	int textSize = (int) Math.round(currentItem.getTextSize() * Math.min(xScale, yScale));
 	        	int fontColor = currentItem.getFontColor();
 	        	int x = (int) Math.round(currentItem.getX() * xScale);
@@ -403,7 +404,7 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	
 	        	if (!renderRenderable) {
 	        		
-	        		elementsToReturn[i] =  new Element(new TextBox(function, name, text, alignX, alignY, fontColor, textSize, 
+	        		elementsToReturn[i] =  new Element(new TextBox(function, name, text, alignX, alignY, font, fontColor, textSize, 
 	        				x, y, xSize, ySize, offsetX, offsetY,
 	        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor));
 	        		
@@ -590,6 +591,16 @@ public class ShowImage extends JPanel implements KeyListener {
         } else {
         	frame.setResizable(true);
         }*/
+        
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        String[] fontList = DefaultValues.getDefaultFonts();
+        for (String font : fontList) {
+        	ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(font)));
+        }
+        String []fontFamilies = ge.getAvailableFontFamilyNames();
+        for (String var : fontFamilies) {
+        	System.out.println(var);
+        }
         
         // Set the frame size to the screen dimensions
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sets closing operation
