@@ -9,7 +9,7 @@ public class DefaultValues {
 	private final static int defaultSizeToForce = 1920; // forces this screen size if above is true
 	
 	private final static Color[] defaultColors = new Color[] {
-			new Color (0,0,0,255), // 0
+			new Color (102,102,102,255), // 0 BG Color
     		new Color (255,0,0,255), // 1
     		new Color (0,255,0,255), // 2
     		new Color (0,0,255,255), // 3
@@ -31,6 +31,7 @@ public class DefaultValues {
 	
 	private final static Menu[] defaultMenus = new Menu[] {
 			new Menu( // 0. Initialization (for setting up screen size, username)
+					(defaultColors[0]), // BG Color
 					new Element[] {
 						new Element(new Renderable(
 								// Default Renderable
@@ -71,7 +72,7 @@ public class DefaultValues {
 								0, 0, // text offset (x, y)
 								2, // box color (index of colors)
 								255, // opacity (0-255)
-								true, // bold
+								false, // bold
 								50, // roundPercentage
 								8, // shadowOffset
 								5, 1 // strokeWidth, strokeColor
@@ -123,6 +124,7 @@ public class DefaultValues {
 						}
 					),
 			new Menu( // 1. MENU 1
+					(defaultColors[0]), // BG Color
 				new Element[] {
 					new Element(new TextBox("setMenu int 0", "Menu1Button", "Goto Menu 1", "left", "top", "Roboto",
 							1, 50, 1280, 500, 550, 50, 0, 0, 2, 255, false, 50, 10, 5, 1)),
@@ -133,6 +135,7 @@ public class DefaultValues {
 					}
 				),
 			new Menu( // 2. MENU 2
+					(defaultColors[0]), // BG Color
 				new Element[] {
 					new Element(new TextBox("setMenu int 0", "Menu1Button", "Goto Menu 1", "left", "top", "Roboto",
 							1, 50, 1280, 500, 550, 50, 0, 0, 2, 255, false, 50, 10, 5, 1)),

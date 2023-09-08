@@ -13,10 +13,14 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
 public class ShowImage extends JPanel implements KeyListener {
-    private static ShowImage panel;
-	private static BufferedImage[] images;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static ShowImage panel;
     private static int currentMenu;
     private static Element[] elementsToRender;
+    private static Menu rawMenu;
     private static Element[] rawElementsList;
     private static Color[] colorsList;
     private static JFrame frame;
@@ -163,8 +167,6 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	
 	        	TextBox textbox = currentElement.getTextbox();
 	        	
-	        	
-	        	
 	        	roundedRect roundRectAttributes = getBoxAttributes(textbox);
 	        	
 	        	int x = roundRectAttributes.getX();
@@ -276,7 +278,8 @@ public class ShowImage extends JPanel implements KeyListener {
             Element currentElement = elementsToRender[i];
             if (currentElement.isTextbox()) {
             	TextBox textbox = currentElement.getTextbox();
-	            roundedRect roundRectAttributes = getBoxAttributes(textbox);
+	            roundedRect roundRectAttributes = getStrokedBoxAttributes(textbox);
+	            // stroked box returns the round rectangle for the box including the surrounding stroke, giving the right hitbox
 	            Rectangle bounds = new Rectangle();
 	            
 	            int x = roundRectAttributes.getX();
@@ -347,11 +350,12 @@ public class ShowImage extends JPanel implements KeyListener {
     }
     
     private roundedRect getBoxAttributes(TextBox textbox) { 
-    	// gets attributes of the box by converting roundpercentage to a useful number
+    	// gets values to use for rendering the box not including stroke (added after) by converting roundpercentage to a useful number
     	int x = textbox.getX();
     	int y = textbox.getY();
     	int xSize = textbox.getXSize();
     	int ySize = textbox.getYSize();
+    	float stroke = textbox.getStrokeWidth();
     	int roundPercentage = textbox.getRoundPercentage();
     	int round;
     	if (xSize < ySize) {
@@ -363,9 +367,33 @@ public class ShowImage extends JPanel implements KeyListener {
     	return attributesToReturn;
     }
     
+    private roundedRect getStrokedBoxAttributes(TextBox textbox) { 
+    	// gets hitboxes of the box by converting roundpercentage to a useful number, and accounting for stroke
+    	int x = textbox.getX();
+    	int y = textbox.getY();
+    	int xSize = textbox.getXSize();
+    	int ySize = textbox.getYSize();
+    	float stroke = textbox.getStrokeWidth();
+    	int roundPercentage = textbox.getRoundPercentage();
+    	int round;
+    	x = x - Math.round(stroke / 2);
+    	y = y - Math.round(stroke / 2);
+    	xSize = xSize + Math.round(stroke);
+    	ySize = ySize + Math.round(stroke);
+    	if (xSize < ySize) {
+    		round = xSize * roundPercentage / 100;
+    	} else {
+        	round = ySize * roundPercentage / 100;
+    	}
+    	roundedRect attributesToReturn = new roundedRect(x,y,xSize,ySize,round);
+    	return attributesToReturn;
+    }
     
-    private static Element[] refreshScreenSizeElements(int screenWidth,int screenHeight) {
+    
+    private static Element[] refreshElements(int screenWidth,int screenHeight) {
     	// refreshes all textbox sizes to fit the new screen size, runs on dynamicFrameSize() end.
+    	setBG(rawMenu.getBGColor());
+    	
     	double xScale = intToDouble(screenWidth) / 1920;
     	double yScale = intToDouble(screenHeight) / 1080;
     	// System.out.println(screenWidth);
@@ -442,7 +470,7 @@ public class ShowImage extends JPanel implements KeyListener {
         return elementsToReturn;
     }
     
-    private static int[] dynamicFrameSize(boolean forceSize, int sizeToForce) { 
+    private static int[] setDynamicFrameSize(boolean forceSize, int sizeToForce) { 
     	// Sets the dynamic frame size to the size passed through sizeToForce, if forceSize is true.
     	// When initially run, passes forceSize as false to use the client screen size. Forces the
     	// 16:9 aspect ratio. Can be passed later through perhaps a settings screen to force the window
@@ -486,7 +514,7 @@ public class ShowImage extends JPanel implements KeyListener {
         // System.out.println("final" + screenWidth);
         // System.out.println("final" + screenHeight);
         frame.setSize(screenWidth, screenHeight);
-        elementsToRender = refreshScreenSizeElements(screenWidth,screenHeight);
+        elementsToRender = refreshElements(screenWidth,screenHeight);
         calculatedScreenWidth = screenWidth;
         calculatedScreenHeight = screenHeight;
         return toReturn;
@@ -495,19 +523,24 @@ public class ShowImage extends JPanel implements KeyListener {
     private static void setScreenSize(boolean fullscreen, int size) { 
     	// sets the screen size to provided integer or fullscreen, depending on the passed boolean.
     	if (fullscreen) {
-    		dynamicFrameSize(false, 0);
+    		setDynamicFrameSize(false, 0);
             frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
             frame.setUndecorated(true);
     	} else {
-    		dynamicFrameSize(true, size);
+    		setDynamicFrameSize(true, size);
     	}
     	
     }
     
     public static void setMenu(int menu) {
     	currentMenu = menu;
-    	rawElementsList = DefaultValues.getMenu(currentMenu).getElements();
-    	elementsToRender = refreshScreenSizeElements(calculatedScreenWidth, calculatedScreenHeight);
+    	rawMenu = DefaultValues.getMenu(currentMenu);
+        rawElementsList = rawMenu.getElements();
+    	elementsToRender = refreshElements(calculatedScreenWidth, calculatedScreenHeight);
+    }
+    
+    public static void setBG(Color bgColor) {
+    	panel.setBackground(bgColor);
     }
     
     public static void repaintPanel() {
@@ -571,7 +604,8 @@ public class ShowImage extends JPanel implements KeyListener {
         // TODO: ADD BELOW TO A COMMENT ONCE DEV IS FINISHED:
         fullscreen = false;
 
-        rawElementsList = DefaultValues.getMenu(currentMenu).getElements();
+        rawMenu = DefaultValues.getMenu(currentMenu);
+        rawElementsList = rawMenu.getElements();
         
         if (userHasColorScheme) {
         	colorsList = userColorScheme;
@@ -579,13 +613,14 @@ public class ShowImage extends JPanel implements KeyListener {
         	colorsList = DefaultValues.getDefaultColors();
         }
         
-        setScreenSize(fullscreen, sizeToForce); // uses the above raw lists and variables to set the frame size.
         panel = new ShowImage(); // runs showimage class (top of this class) to show text and renderables into a panel
+        
+        setScreenSize(fullscreen, sizeToForce); // uses the above raw lists and variables to set the frame size.
+        
         frame.getContentPane().add(panel); // adds the panel to frame content
         
         frame.setResizable(false);
         // BELOW IS DEPRECIATED: FRAME WILL ALWAYS BE UNRESIZABLE. can be resized in possibly settings
-        
         /*if (forceSize) {
         	frame.setResizable(false);
         } else {
