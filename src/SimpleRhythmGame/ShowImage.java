@@ -632,10 +632,13 @@ public class ShowImage extends JPanel implements KeyListener {
         for (String font : fontList) {
         	ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(font)));
         }
+        
+        /* 
         String []fontFamilies = ge.getAvailableFontFamilyNames();
         for (String var : fontFamilies) {
         	System.out.println(var);
         }
+        */
         
         // Set the frame size to the screen dimensions
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sets closing operation
