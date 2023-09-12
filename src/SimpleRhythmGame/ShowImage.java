@@ -167,7 +167,7 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	
 	        	TextBox textbox = currentElement.getTextbox();
 	        	
-	        	roundedRect roundRectAttributes = getBoxAttributes(textbox);
+	        	RoundedRect roundRectAttributes = getBoxAttributes(textbox);
 	        	
 	        	int x = roundRectAttributes.getX();
 	        	int y = roundRectAttributes.getY();
@@ -278,7 +278,7 @@ public class ShowImage extends JPanel implements KeyListener {
             Element currentElement = elementsToRender[i];
             if (currentElement.isTextbox()) {
             	TextBox textbox = currentElement.getTextbox();
-	            roundedRect roundRectAttributes = getStrokedBoxAttributes(textbox);
+	            RoundedRect roundRectAttributes = getStrokedBoxAttributes(textbox);
 	            // stroked box returns the round rectangle for the box including the surrounding stroke, giving the right hitbox
 	            Rectangle bounds = new Rectangle();
 	            
@@ -349,7 +349,7 @@ public class ShowImage extends JPanel implements KeyListener {
     	return elementToReturn;
     }
     
-    private roundedRect getBoxAttributes(TextBox textbox) { 
+    private RoundedRect getBoxAttributes(TextBox textbox) { 
     	// gets values to use for rendering the box not including stroke (added after) by converting roundpercentage to a useful number
     	int x = textbox.getX();
     	int y = textbox.getY();
@@ -363,11 +363,11 @@ public class ShowImage extends JPanel implements KeyListener {
     	} else {
         	round = ySize * roundPercentage / 100;
     	}
-    	roundedRect attributesToReturn = new roundedRect(x,y,xSize,ySize,round);
+    	RoundedRect attributesToReturn = new RoundedRect(x,y,xSize,ySize,round);
     	return attributesToReturn;
     }
     
-    private roundedRect getStrokedBoxAttributes(TextBox textbox) { 
+    private RoundedRect getStrokedBoxAttributes(TextBox textbox) { 
     	// gets hitboxes of the box by converting roundpercentage to a useful number, and accounting for stroke
     	int x = textbox.getX();
     	int y = textbox.getY();
@@ -385,7 +385,7 @@ public class ShowImage extends JPanel implements KeyListener {
     	} else {
         	round = ySize * roundPercentage / 100;
     	}
-    	roundedRect attributesToReturn = new roundedRect(x,y,xSize,ySize,round);
+    	RoundedRect attributesToReturn = new RoundedRect(x,y,xSize,ySize,round);
     	return attributesToReturn;
     }
     

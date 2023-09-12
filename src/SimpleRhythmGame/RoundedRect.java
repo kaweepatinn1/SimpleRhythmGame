@@ -1,13 +1,13 @@
 package SimpleRhythmGame;
 
-public class roundedRect {
+public class RoundedRect {
 	private int x;
     private int y;
     private int xSize;
     private int ySize;
     private int round;
     
-    public roundedRect(int x, int y, int xSize, int ySize, int round) {
+    public RoundedRect(int x, int y, int xSize, int ySize, int round) {
     	this.x = x;
         this.y = y;
         this.xSize = xSize;
