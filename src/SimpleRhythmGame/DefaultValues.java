@@ -6,7 +6,7 @@ import java.awt.Color;
 
 public class DefaultValues {
 	private final static boolean defaultFullscreen = true; // if not fullscreen will force below value
-	private final static int defaultSizeToForce = 1920; // forces this screen size if above is true
+	private final static int defaultSizeToForce = 1280; // forces this screen size if above is true
 	
 	private final static Color[] defaultColors = new Color[] {
 			new Color (102,102,102,255), // 0 BG Color
@@ -49,7 +49,7 @@ public class DefaultValues {
 										// Renderable Without Function
 										"Film", // name
 										"src/textures/defaultcursor.png", // file source
-										1865, 515, 20, 20, // x, y, xSize, ySize
+										1865, 515, 200, 200, // x, y, xSize, ySize
 										25 // opacity (0-255)
 										),  // renderable
 								1850, 500, 50, 50,  // x, y, xSize, ySize

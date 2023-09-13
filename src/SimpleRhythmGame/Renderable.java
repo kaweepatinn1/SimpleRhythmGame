@@ -1,5 +1,7 @@
 package SimpleRhythmGame;
 
+import java.awt.Image;
+
 // Initialize and read and write class
 
 import java.awt.image.BufferedImage;
@@ -7,6 +9,10 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+
+import org.imgscalr.Scalr;
+
+// Use 1920/1080 for best performance.
 
 public class Renderable {
 	private String function;
@@ -32,7 +38,9 @@ public class Renderable {
         this.opacity = opacity;
         this.file = new File(imagePath);
         try {
-        	this.image = ImageIO.read(file);
+        	BufferedImage originalImage = ImageIO.read(file);
+        	this.image = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
+                    xSize, ySize, Scalr.OP_ANTIALIAS);
         } catch(IOException e){
         	this.image = null;
             System.out.println (e.toString());
@@ -52,7 +60,9 @@ public class Renderable {
         this.opacity = opacity;
         this.file = new File(imagePath);
         try {
-        	this.image = ImageIO.read(file);
+        	BufferedImage originalImage = ImageIO.read(file);
+        	this.image = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
+                    xSize, ySize, Scalr.OP_ANTIALIAS);
         } catch(IOException e){
         	this.image = null;
             System.out.println (e.toString());
@@ -74,10 +84,28 @@ public class Renderable {
 
     public void setX(int x) {
         this.x =  x;
+        try {
+        	BufferedImage originalImage = ImageIO.read(file);
+        	this.image = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
+                    xSize, ySize, Scalr.OP_ANTIALIAS);
+        } catch(IOException e){
+        	this.image = null;
+            System.out.println (e.toString());
+            System.out.println("Could not find file: " + file);
+        }
     }
     
     public void setY(int y) {
         this.y = y;
+        try {
+        	BufferedImage originalImage = ImageIO.read(file);
+        	this.image = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
+                    xSize, ySize, Scalr.OP_ANTIALIAS);
+        } catch(IOException e){
+        	this.image = null;
+            System.out.println (e.toString());
+            System.out.println("Could not find file: " + file);
+        }
     }
     
     public void setXSize(int xSize) {
@@ -97,7 +125,15 @@ public class Renderable {
     }
     
     public void setImage(BufferedImage image) {
-    	this.image = image;
+    	try {
+        	BufferedImage originalImage = ImageIO.read(file);
+        	this.image = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
+                    xSize, ySize, Scalr.OP_ANTIALIAS);
+        } catch(IOException e){
+        	this.image = null;
+            System.out.println (e.toString());
+            System.out.println("Could not find file: " + file);
+        }
     }
     
     public String getFunction() {

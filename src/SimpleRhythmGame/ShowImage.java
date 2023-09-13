@@ -602,7 +602,6 @@ public class ShowImage extends JPanel implements KeyListener {
         // READ
         
         // TODO: ADD BELOW TO A COMMENT ONCE DEV IS FINISHED:
-        fullscreen = false;
 
         rawMenu = DefaultValues.getMenu(currentMenu);
         rawElementsList = rawMenu.getElements();
