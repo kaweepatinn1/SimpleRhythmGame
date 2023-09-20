@@ -5,17 +5,19 @@ import java.awt.Color;
 // A READ ONLY CLASS
 
 public class DefaultValues {
-	private final static boolean defaultFullscreen = true; // if not fullscreen will force below value
+	private final static boolean defaultFullscreen = false; // if not fullscreen will force below value
 	private final static int defaultSizeToForce = 1280; // forces this screen size if above is true
 	
 	private final static Color[] defaultColors = new Color[] {
 			new Color (102,102,102,255), // 0 BG Color
-    		new Color (255,0,0,255), // 1
-    		new Color (0,255,0,255), // 2
-    		new Color (0,0,255,255), // 3
-    		new Color (255,0,0,50), // 4
-    		new Color (0,255,0,50), // 5
-    		new Color (0,0,255,50) // 6
+			new Color (217,234,211,255), // 1 Menu Color
+    		new Color (207,226,243,255), // 2 Buttons Color
+    		new Color (255,255,255,255), // 3 Primary Selection Color
+    		new Color (217,217,217,255), // 4 Secondary Selection Color
+    		new Color (255,0,0,255), // 5 Accent Color
+    		new Color (0,0,0,255), // 6 Stroke Color
+    		// new Color (0,255,0,50), // 5
+    		// new Color (0,0,255,50) // 6
 	};
 	
 	private final static String[] defaultFonts = new String[] {
@@ -37,8 +39,8 @@ public class DefaultValues {
 								// Default Renderable
 								"TestFunction String hi", // function
 								"Kosbia", // name
-								"src/textures/kosbia.png", // file source
-								10, 50, 512, 307, // x, y, xSize, ySize
+								"src/textures/leaderboard.png", // file source
+								10, 50, 50, 50, // x, y, xSize, ySize
 								255 // opacity (0-255)
 								)),
 						new Element(new TextBox(
@@ -48,16 +50,16 @@ public class DefaultValues {
 								new Renderable(
 										// Renderable Without Function
 										"Film", // name
-										"src/textures/defaultcursor.png", // file source
-										1865, 515, 200, 200, // x, y, xSize, ySize
+										"src/textures/cog.png", // file source
+										1300, 430, 60, 60, // x, y, xSize, ySize
 										25 // opacity (0-255)
 										),  // renderable
-								1850, 500, 50, 50,  // x, y, xSize, ySize
+								1260, 400, 1000, 120,  // x, y, xSize, ySize
 								2, // box color (index of colors)
 								255, // opacity (0-255)
-								50, // roundPercentage
+								100, // roundPercentage
 								8, // shadowOffset
-								5, 1 // strokeWidth, strokeColor
+								5, 6 // strokeWidth, strokeColor
 								)),
 						new Element(new TextBox(
 								// TextBox with Text
@@ -117,7 +119,7 @@ public class DefaultValues {
 								// Default Renderable
 								//"TestFunction", // function
 								"Film", // name
-								"src/textures/defaultcursor.png", // file source
+								"src/textures/palette.png", // file source
 								550, 100, 20, 20, // x, y, xSize, ySize
 								255 // opacity (0-255)
 								)),
