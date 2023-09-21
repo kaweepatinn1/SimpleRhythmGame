@@ -7,14 +7,12 @@ public class Element {
 	private TextBox textbox;
 	private boolean isRenderable;
 	private boolean isTextbox;
-	private boolean isRenderableAndTextbox;
 	
 	public Element(TextBox textbox) {
 		this.renderable = null;
 		this.textbox = textbox;
 		this.isRenderable = false;
 		this.isTextbox = true;
-		this.isRenderableAndTextbox;
 	}
 	
 	public Element(Renderable renderable) {
@@ -58,14 +56,6 @@ public class Element {
 	
 	public boolean isTextbox() {
 		return isTextbox;
-	}
-	
-	public boolean isRenderableAndTextbox() {
-		return isRenderableAndTextbox;
-	}
-	
-	public boolean isTextBoxRenderable() {
-		return textbox.isRenderable();
 	}
 	
 	public Renderable getRenderable() {

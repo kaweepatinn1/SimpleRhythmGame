@@ -33,30 +33,55 @@ public class DefaultValues {
 	
 	private final static Menu[] defaultMenus = new Menu[] {
 			new Menu( // 0. Initialization (for setting up screen size, username)
+					"MainMenu", // Menu Name
 					(defaultColors[0]), // BG Color
 					new Element[] {
-						new Element(new Renderable(
-								// Default Renderable
-								"TestFunction String hi", // function
-								"Kosbia", // name
-								"src/textures/leaderboard.png", // file source
-								10, 50, 50, 50, // x, y, xSize, ySize
-								255 // opacity (0-255)
+						new Element(new TextBox(
+								// TextBox with Renderable
+								"setMenu String StatsLeaderboards", // function
+								"StatsLeaderboardsButton",  // name
+								new Renderable(
+										// Renderable Without Function
+										"Leaderboard", // name
+										"src/textures/leaderboard.png", // file source
+										40, 30, 60, 60, // x, y, xSize, ySize (relative)
+										255 // opacity (0-255)
+										),  // renderable
+								"Stats and Leaderboards", // text
+								"left", "center", // align
+								"Archivo Narrow", // font
+								6, // text color (index of colors)
+								50, // text size
+								1260, 300, 1000, 120,  // x, y, xSize, ySize
+								-375, -9, // text offset (x, y)
+								2, // box color (index of colors)
+								255, // opacity (0-255)
+								false, // bold
+								100, // roundPercentage
+								8, // shadowOffset
+								5, 6 // strokeWidth, strokeColor
 								)),
 						new Element(new TextBox(
 								// TextBox with Renderable
-								"setMenu int 1", // function
-								"FilmBox",  // name
+								"setMenu String Settings", // function
+								"SettingsButton",  // name
 								new Renderable(
 										// Renderable Without Function
-										"Film", // name
+										"Cogwheel", // name
 										"src/textures/cog.png", // file source
-										1300, 430, 60, 60, // x, y, xSize, ySize
-										25 // opacity (0-255)
+										40, 30, 60, 60, // x, y, xSize, ySize (relative)
+										255 // opacity (0-255)
 										),  // renderable
+								"Settings", // text
+								"left", "center", // align
+								"Archivo Narrow", // font
+								6, // text color (index of colors)
+								50, // text size
 								1260, 400, 1000, 120,  // x, y, xSize, ySize
+								-375, -9, // text offset (x, y)
 								2, // box color (index of colors)
 								255, // opacity (0-255)
+								false, // bold
 								100, // roundPercentage
 								8, // shadowOffset
 								5, 6 // strokeWidth, strokeColor
@@ -126,6 +151,7 @@ public class DefaultValues {
 						}
 					),
 			new Menu( // 1. MENU 1
+					"Settings", // Menu name
 					(defaultColors[0]), // BG Color
 				new Element[] {
 					new Element(new TextBox("setMenu int 0", "Menu1Button", "Goto Menu 1", "left", "top", "Roboto",
@@ -137,6 +163,7 @@ public class DefaultValues {
 					}
 				),
 			new Menu( // 2. MENU 2
+					"TestMenu2", // Menu name
 					(defaultColors[0]), // BG Color
 				new Element[] {
 					new Element(new TextBox("setMenu int 0", "Menu1Button", "Goto Menu 1", "left", "top", "Roboto",
@@ -157,7 +184,11 @@ public class DefaultValues {
 		return defaultSizeToForce;
 	}
 	
-	public static Menu getMenu(int i) { // returns a list of elements for the current class
+	public static Menu[] getAllDefaultMenus() {
+		return defaultMenus;
+	}
+	
+	public static Menu getDefaultMenu(int i) { // returns a list of elements for the current class
 		return defaultMenus[i];
 	}
 	
@@ -195,6 +226,31 @@ new Element(new Renderable(
 							)),
 							
 new Element(new TextBox(
+							// TextBox with Text and Renderable
+							"xx xx xx", // function
+							"xx",  // name
+							"xx", // text
+							new Renderable(
+									// Renderable Without Function
+									"xx", // name
+									"src/textures/xx.png", // file source
+									0, 0, 0, 0, // x, y, xSize, ySize (relative)
+									255 // opacity (0-255)
+									),  // renderable
+							"center", "center", // align
+							0, // text color (index of colors)
+							24, // text size
+							0, 0, 0, 0,  // x, y, xSize, ySize
+							0, 0, // text offset (x, y)
+							1, // box color (index of colors)
+							255, // opacity (0-255)
+							false, 
+							50, // roundPercentage
+							8, // shadowOffset
+							5, 2 // strokeWidth, strokeColor
+							)),
+							
+new Element(new TextBox(
 							// TextBox with Text
 							"xx xx xx", // function
 							"xx",  // name
@@ -220,7 +276,7 @@ new Element(new TextBox(
 									// Renderable Without Function
 									"xx", // name
 									"src/textures/xx.png", // file source
-									0, 0, 0, 0, // x, y, xSize, ySize
+									0, 0, 0, 0, // x, y, xSize, ySize (relative)
 									255 // opacity (0-255)
 									),  // renderable
 							0, 0, 0, 0,  // x, y, xSize, ySize

@@ -198,12 +198,18 @@ public class ShowImage extends JPanel implements KeyListener {
 	            // ^ Textbox section
 	            // v Text / Image section
 	            
-	            if(textbox.isRenderable()) { // render image
+	            if (textbox.hasRenderable()) { // render image if contained
 	            	Renderable renderable = textbox.getRenderableObject();
 	            	BufferedImage image = renderable.getImage();
-	            	g2d.drawImage(image, renderable.getX(), renderable.getY(), null);
-	            	
-	            } else { // render text instead
+	            	int rule = AlphaComposite.SRC_OVER;
+	                Composite comp = AlphaComposite.getInstance(rule , ((float) renderable.getOpacity())/255);
+	                g2d.setComposite(comp);
+	            	g2d.drawImage(image, textbox.getX() + renderable.getX(), textbox.getY() + renderable.getY(), null);
+	            	g2d.setComposite(AlphaComposite.getInstance(rule , 1));
+	            	// Reset the composite after using it
+	            } 
+	            
+	            if (textbox.hasText()){ // render text if contained
 	            	
 	            	g2d.setColor(colorsList[textbox.getFontColor()]); // set text color
 		            
@@ -290,13 +296,13 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	
 	            RoundRectangle2D roundRect = new RoundRectangle2D.Double(x, y, xSize, ySize, round, round);
 	            
-	            if (textbox.isRenderable()) {
+	            if (textbox.hasRenderable()) {
 	            	Renderable renderable = textbox.getRenderableObject();
 	            	BufferedImage image = renderable.getImage();
 	            	bounds = new Rectangle(renderable.getX(), renderable.getY(), image.getWidth(), image.getHeight());
 	            }
 	            if ((roundRect.contains(mouseX, mouseY) && textbox.getOpacity() != 0) ||
-	            	(bounds.contains(mouseX, mouseY) && textbox.getRenderableObject().getOpacity() != 0 && textbox.isRenderable())
+	            	(bounds.contains(mouseX, mouseY) && textbox.getRenderableObject().getOpacity() != 0 && textbox.hasRenderable())
 	            		) { // sets the current hovered box as this if either its renderable (if there is one) or its shape is hovered AND not invisible
 	                currentBox = currentElement; 
 	                // does not break so that the element which is highest in the hierarchy
@@ -422,7 +428,8 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	int offsetY = (int) Math.round(currentItem.getOffsetY() * yScale);
 	        	int color = currentItem.getColor();
 	        	int opacity = currentItem.getOpacity();
-	        	boolean renderRenderable = currentItem.isRenderable();
+	        	boolean renderRenderable = currentItem.hasRenderable();
+	        	boolean renderText = currentItem.hasText();
 	        	Renderable renderableObject = currentItem.getRenderableObject();
 	        	boolean bold = currentItem.getBold();
 	        	int roundPercentage = currentItem.getRoundPercentage();
@@ -430,13 +437,7 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	float stroke = (int) Math.round(currentItem.getStrokeWidth() * yScale);
 	        	int strokeColor = currentItem.getStrokeColor();
 	        	
-	        	if (!renderRenderable) {
-	        		
-	        		elementsToReturn[i] =  new Element(new TextBox(function, name, text, alignX, alignY, font, fontColor, textSize, 
-	        				x, y, xSize, ySize, offsetX, offsetY,
-	        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor));
-	        		
-	        	} else {
+	        	if (renderRenderable) {
 	        		String renderableName = renderableObject.getName();
 	        		String renderableFunction = renderableObject.getFunction();
 	            	String imagePath = renderableObject.getImagePath();
@@ -447,9 +448,22 @@ public class ShowImage extends JPanel implements KeyListener {
 	            	int renderableOpacity = renderableObject.getOpacity();
 	            	Renderable newRenderableObject =  new Renderable(renderableFunction, renderableName, imagePath, 
 	            			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
-	        		
-	            	elementsToReturn[i] =  new Element(new TextBox(function, name, newRenderableObject, x, y, xSize, ySize,
-	        				color, opacity, roundPercentage, shadowOffset, stroke, strokeColor));
+	            	if (renderText) {
+		        		
+		        		elementsToReturn[i] =  new Element(new TextBox(function, name, newRenderableObject, text, alignX, alignY, font, fontColor, textSize, 
+		        				x, y, xSize, ySize, offsetX, offsetY,
+		        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor));
+		        		
+		        	} else {
+		        		elementsToReturn[i] =  new Element(new TextBox(function, name, newRenderableObject, x, y, xSize, ySize,
+		        				color, opacity, roundPercentage, shadowOffset, stroke, strokeColor));
+		        	}
+	        	} else if (renderText) {
+	        		 elementsToReturn[i] = new Element(new TextBox(function, name, text, alignX, alignY, font, fontColor, textSize, 
+		        				x, y, xSize, ySize, offsetX, offsetY,
+		        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor));
+	        	} else {
+	        		System.out.println("ERROR: NO TEXT OR RENDERABLE!");
 	        	}
 	        	
         	} else if (currentElement.isRenderable()) {
@@ -534,7 +548,7 @@ public class ShowImage extends JPanel implements KeyListener {
     
     public static void setMenu(int menu) {
     	currentMenu = menu;
-    	rawMenu = DefaultValues.getMenu(currentMenu);
+    	rawMenu = DefaultValues.getDefaultMenu(currentMenu);
         rawElementsList = rawMenu.getElements();
     	elementsToRender = refreshElements(calculatedScreenWidth, calculatedScreenHeight);
     }
@@ -603,7 +617,7 @@ public class ShowImage extends JPanel implements KeyListener {
         
         // TODO: ADD BELOW TO A COMMENT ONCE DEV IS FINISHED:
 
-        rawMenu = DefaultValues.getMenu(currentMenu);
+        rawMenu = DefaultValues.getDefaultMenu(currentMenu);
         rawElementsList = rawMenu.getElements();
         
         if (userHasColorScheme) {

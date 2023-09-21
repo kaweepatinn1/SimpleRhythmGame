@@ -118,7 +118,7 @@ public class TextBox {
         this.shadowOffset = shadowOffset;
         this.strokeWidth = strokeWidth;
         this.strokeColor = strokeColor;
-    } // TODO ADD STUFF ABOUT RENDERBLAE AND TEXTBOX
+    }
     
     public String getFunction() {
     	return function;
@@ -184,8 +184,12 @@ public class TextBox {
         return opacity;
     }
     
-    public boolean isRenderable() {
+    public boolean hasRenderable() {
         return renderRenderable;
+    }
+    
+    public boolean hasText() {
+    	return renderText;
     }
 
     public Renderable getRenderableObject() {
@@ -272,8 +276,12 @@ public class TextBox {
         this.offsetY = offsetY;
     }
 
-    public void setIfRenderable(boolean renderRenderable) {
+    public void setHasRenderable(boolean renderRenderable) {
         this.renderRenderable = renderRenderable;
+    }
+    
+    public void setHasText(boolean renderText) {
+    	this.renderText = renderText;
     }
 
     public void setRenderableObject(Renderable renderableObject) {
