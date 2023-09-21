@@ -54,9 +54,11 @@ public class Functions {
 	public static void setMenu(String menuName) {
 		int menuNumber = 0;
 		boolean foundMenu = false;
+		String checkMenu = menuName.replace("_", " ");
+		// convert menu name in function from "_" to " ", 
+		// as space bar is the delimiter in the function definition
 		for (Menu menu : DefaultValues.getAllDefaultMenus()) {
-			if (menu.getMenuName().equals(menuName)) {
-				System.out.println("hi");
+			if (menu.getMenuName().equals(checkMenu)) {
 				setMenuIndex(menuNumber);
 				foundMenu = true;
 				break;
@@ -64,7 +66,7 @@ public class Functions {
 			menuNumber++;
 		}
 		if (!foundMenu) {
-			System.out.println("Could not find a menu of name \'" + menuName + "\'");
+			System.out.println("Could not find a menu of name \'" + checkMenu + "\'");
 		}
 	}
 }

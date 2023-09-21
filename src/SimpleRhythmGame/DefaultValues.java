@@ -33,16 +33,41 @@ public class DefaultValues {
 	
 	private final static Menu[] defaultMenus = new Menu[] {
 			new Menu( // 0. Initialization (for setting up screen size, username)
-					"MainMenu", // Menu Name
+					"Main Menu", // Menu Name
 					(defaultColors[0]), // BG Color
 					new Element[] {
 						new Element(new TextBox(
 								// TextBox with Renderable
-								"setMenu String StatsLeaderboards", // function
+								"setMenu String Play_Menu", // function
+								"PlaysButton",  // name
+								new Renderable(
+										// Renderable Without Function
+										"PlayPNG", // name
+										"src/textures/play.png", // file source
+										40, 30, 60, 60, // x, y, xSize, ySize (relative)
+										255 // opacity (0-255)
+										),  // renderable
+								"Play", // text
+								"left", "center", // align
+								"Archivo Narrow", // font
+								6, // text color (index of colors)
+								50, // text size
+								1260, 240, 1000, 120,  // x, y, xSize, ySize
+								-375, -9, // text offset (x, y)
+								2, // box color (index of colors)
+								255, // opacity (0-255)
+								false, // bold
+								100, // roundPercentage
+								8, // shadowOffset
+								5, 6 // strokeWidth, strokeColor
+								)),
+						new Element(new TextBox(
+								// TextBox with Renderable
+								"setMenu String Stats_Leaderboards_Menu", // function
 								"StatsLeaderboardsButton",  // name
 								new Renderable(
 										// Renderable Without Function
-										"Leaderboard", // name
+										"LeaderboardPNG", // name
 										"src/textures/leaderboard.png", // file source
 										40, 30, 60, 60, // x, y, xSize, ySize (relative)
 										255 // opacity (0-255)
@@ -52,7 +77,7 @@ public class DefaultValues {
 								"Archivo Narrow", // font
 								6, // text color (index of colors)
 								50, // text size
-								1260, 300, 1000, 120,  // x, y, xSize, ySize
+								1260, 390, 1000, 120,  // x, y, xSize, ySize
 								-375, -9, // text offset (x, y)
 								2, // box color (index of colors)
 								255, // opacity (0-255)
@@ -63,11 +88,11 @@ public class DefaultValues {
 								)),
 						new Element(new TextBox(
 								// TextBox with Renderable
-								"setMenu String Settings", // function
+								"setMenu String Settings_Menu", // function
 								"SettingsButton",  // name
 								new Renderable(
 										// Renderable Without Function
-										"Cogwheel", // name
+										"CogwheelPNG", // name
 										"src/textures/cog.png", // file source
 										40, 30, 60, 60, // x, y, xSize, ySize (relative)
 										255 // opacity (0-255)
@@ -77,7 +102,7 @@ public class DefaultValues {
 								"Archivo Narrow", // font
 								6, // text color (index of colors)
 								50, // text size
-								1260, 400, 1000, 120,  // x, y, xSize, ySize
+								1260, 540, 1000, 120,  // x, y, xSize, ySize
 								-375, -9, // text offset (x, y)
 								2, // box color (index of colors)
 								255, // opacity (0-255)
@@ -87,69 +112,31 @@ public class DefaultValues {
 								5, 6 // strokeWidth, strokeColor
 								)),
 						new Element(new TextBox(
-								// TextBox with Text
-								"setMenu int 1", // function
-								"Menu2Button",  // name
-								"Goto Menu 2", // text
-								"center", "center", // align
+								// TextBox with Renderable
+								"setMenu String Customization_Menu", // function
+								"CustomizationButton",  // name
+								new Renderable(
+										// Renderable Without Function
+										"PalettePNG", // name
+										"src/textures/palette.png", // file source
+										40, 30, 60, 60, // x, y, xSize, ySize (relative)
+										255 // opacity (0-255)
+										),  // renderable
+								"Customization", // text
+								"left", "center", // align
 								"Archivo Narrow", // font
-								3, // text color (index of colors)
+								6, // text color (index of colors)
 								50, // text size
-								280, 500, 550, 50,  // x, y, xSize, ySize
-								0, 0, // text offset (x, y)
+								1260, 690, 1000, 120,  // x, y, xSize, ySize
+								-375, -9, // text offset (x, y)
 								2, // box color (index of colors)
 								255, // opacity (0-255)
 								false, // bold
-								50, // roundPercentage
+								100, // roundPercentage
 								8, // shadowOffset
-								5, 1 // strokeWidth, strokeColor
-								)),
-						new Element(new TextBox(
-								// TextBox with Text
-								"setMenu int 2", // function
-								"Menu3Button",  // name
-								"Goto Menu 3", // text
-								"center", "center", // align
-								"Roboto", // font
-								1, // text color (index of colors)
-								50, // text size
-								280, 700, 550, 50,  // x, y, xSize, ySize
-								0, 0, // text offset (x, y)
-								3, // box color (index of colors)
-								255, // opacity (0-255)
-								false, 
-								50, // roundPercentage
-								8, // shadowOffset
-								5, 1 // strokeWidth, strokeColor
-								)),
-						new Element(new TextBox(
-								// TextBox with Text
-								"setMenu int 2", // function
-								"This is Menu 1",  // name
-								"Menu 0 c", // text
-								"center", "center", // align
-								"Roboto", // font
-								3, // text color (index of colors)
-								50, // text size
-								280, 900, 550, 50,  // x, y, xSize, ySize
-								0, 0, // text offset (x, y)
-								3, // box color (index of colors)
-								255, // opacity (0-255)
-								false,
-								50, // roundPercentage
-								8, // shadowOffset
-								5, 1 // strokeWidth, strokeColor
-								)),
-		                new Element(new Renderable(
-								// Default Renderable
-								//"TestFunction", // function
-								"Film", // name
-								"src/textures/palette.png", // file source
-								550, 100, 20, 20, // x, y, xSize, ySize
-								255 // opacity (0-255)
-								)),
-						}
-					),
+								5, 6 // strokeWidth, strokeColor
+								))
+					}),
 			new Menu( // 1. MENU 1
 					"Settings", // Menu name
 					(defaultColors[0]), // BG Color
@@ -238,6 +225,7 @@ new Element(new TextBox(
 									255 // opacity (0-255)
 									),  // renderable
 							"center", "center", // align
+							"Archivo Narrow", // font style
 							0, // text color (index of colors)
 							24, // text size
 							0, 0, 0, 0,  // x, y, xSize, ySize
@@ -256,6 +244,7 @@ new Element(new TextBox(
 							"xx",  // name
 							"xx", // text
 							"center", "center", // align
+							"Archivo Narrow", // font style
 							0, // text color (index of colors)
 							24, // text size
 							0, 0, 0, 0,  // x, y, xSize, ySize
