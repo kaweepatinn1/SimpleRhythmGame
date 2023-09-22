@@ -3,23 +3,54 @@ package SimpleRhythmGame;
 // Initialize and then read only class.
 
 public class Element {
+	private Selector selector;
 	private Renderable renderable;
 	private TextBox textbox;
 	private boolean isRenderable;
 	private boolean isTextbox;
 	
-	public Element(TextBox textbox) {
+	public Element(Selector selector, TextBox textbox) {
+		this.selector = selector;
 		this.renderable = null;
 		this.textbox = textbox;
 		this.isRenderable = false;
 		this.isTextbox = true;
 	}
 	
-	public Element(Renderable renderable) {
+	public Element(Selector selector, Renderable renderable) {
+		this.selector = selector;
 		this.renderable = renderable;
 		this.textbox = null;
 		this.isRenderable = true;
 		this.isTextbox = false;
+	}
+	
+	public int[] getSelectorIndex() {
+		return selector.getSelectorIndex();
+	}
+	
+	public int[][] getSelectorOptions() {
+		return selector.getSelectorOptions();
+	}
+	
+	public boolean isPrimaryHovered() {
+		return selector.isPrimaryHovered();
+	}
+	
+	public boolean isSecondaryHovered() {
+		return selector.isSecondaryHovered();
+	}
+	
+	public void setPrimaryHovered() {
+		selector.setPrimaryHovered();
+	}
+	
+	public void setSecondaryHovered() {
+		selector.setSecondaryHovered();
+	}
+	
+	public void setNotHovered() {
+		selector.setNotHovered();
 	}
 	
 	public String getFunction() {
@@ -56,10 +87,6 @@ public class Element {
 	
 	public boolean isTextbox() {
 		return isTextbox;
-	}
-	
-	public boolean isTextBoxRenderable() {
-		return textbox.isRenderable();
 	}
 	
 	public Renderable getRenderable() {

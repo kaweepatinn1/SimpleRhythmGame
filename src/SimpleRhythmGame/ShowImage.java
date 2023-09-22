@@ -33,6 +33,8 @@ public class ShowImage extends JPanel implements KeyListener {
     private static int sizeToForce;
     private static int calculatedScreenHeight;
     private static int calculatedScreenWidth;
+    private static double scale;
+    private static int selected;
     
     public ShowImage() {
         setLayout(new BorderLayout()); // Set the main panel's layout to BorderLayout
@@ -153,17 +155,19 @@ public class ShowImage extends JPanel implements KeyListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
+        Graphics2D g2d = (Graphics2D) g.create();
+        RenderingHints rh = new RenderingHints(
+                RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON                    
+                );
+        g2d.setRenderingHints(rh);
+        
         for (int i = 0; i < elementsToRender.length; i++) {
 	        Element currentElement = elementsToRender[i];
 	        
 	        if (currentElement.isTextbox()) {
 	        	
-	        	Graphics2D g2d = (Graphics2D) g.create();
-	            RenderingHints rh = new RenderingHints(
-	                    RenderingHints.KEY_ANTIALIASING,
-	                    RenderingHints.VALUE_ANTIALIAS_ON                    
-	                    );
-	            g2d.setRenderingHints(rh);
+	        	
 	        	
 	        	TextBox textbox = currentElement.getTextbox();
 	        	
@@ -198,65 +202,43 @@ public class ShowImage extends JPanel implements KeyListener {
 	            // ^ Textbox section
 	            // v Text / Image section
 	            
-	            if(textbox.isRenderable()) { // render image
+	            if (textbox.hasRenderable()) { // render image if contained
 	            	Renderable renderable = textbox.getRenderableObject();
 	            	BufferedImage image = renderable.getImage();
-	            	g2d.drawImage(image, renderable.getX(), renderable.getY(), null);
-	            	
-	            } else { // render text instead
+	            	int rule = AlphaComposite.SRC_OVER;
+	                Composite comp = AlphaComposite.getInstance(rule , ((float) renderable.getOpacity())/255);
+	                g2d.setComposite(comp);
+	            	g2d.drawImage(image, textbox.getX() + renderable.getX(), textbox.getY() + renderable.getY(), null);
+	            	g2d.setComposite(AlphaComposite.getInstance(rule , 1));
+	            	// Reset the composite after using it
+	            } 
+	            
+	            if (textbox.hasText()){ // render text if contained
 	            	
 	            	g2d.setColor(colorsList[textbox.getFontColor()]); // set text color
 		            
 		            Font font;
 		            
-		            if (textbox.getBold() == true) {
-		            	font = new Font(textbox.getFont(), Font.BOLD, textbox.getTextSize());
-		            	g2d.setFont(font);
-		            } else {
-		            	font = new Font(textbox.getFont(), Font.PLAIN, textbox.getTextSize());
-		            	g2d.setFont(font);
-		            }
+	            	font = new Font(textbox.getFont(), textbox.getBold() ? Font.BOLD:Font.PLAIN, textbox.getTextSize());
+	            	g2d.setFont(font);
 		            // Below code grabs the size of the text using the string to be entered
 		            FontMetrics fontMetrics = g2d.getFontMetrics();
-		            int textWidth = fontMetrics.stringWidth(textbox.getText());
-		            int textHeight = fontMetrics.getAscent();
-		            // Initializes extraAlign variables
-		            int extraAlignX = 0;
-		            int extraAlignY = 0;
-		            // uses the align text settings to determing whether to use the fontMetrics for extraAlignX.
-		            if (textbox.getAlignX() == "right") {
-		            	extraAlignX = - textWidth;
-		            } else if (textbox.getAlignX() == "center") {
-		            	extraAlignX = - textWidth / 2;
-		            } else { // cases of left, and everything else
-		            	extraAlignX = 0;
-		            }
-		            // same, but for up and down (extraAlignY).
-		            if (textbox.getAlignY() == "bottom") {
-		            	extraAlignY = textHeight;
-		            } else if (textbox.getAlignY() == "center") {
-		            	extraAlignY = textHeight / 2;
-		            } else { // cases of up, and everything else
-		            	extraAlignY = 0;
-		            }
+		            
+		            int[] extraAligns = getTextAligns(textbox, fontMetrics);
+		            
+		            int extraAlignX = extraAligns[0];
+		            int extraAlignY = extraAligns[1];
 		            
 		            int finalX = x + (textbox.getXSize() / 2) + textbox.getOffsetX() + extraAlignX;
-		            int finalY = y + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY - (int) Math.round(textHeight * 0.0);
+		            int finalY = y + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY;
 		            g2d.drawString(textbox.getText(), finalX, finalY);
 		            
 	            }
-	            
 
 	        } else if (currentElement.isRenderable()) {
 	        	
 	            Renderable renderable = currentElement.getRenderable();
 	            BufferedImage image = renderable.getImage();
-	
-	            Graphics2D g2d = (Graphics2D) g.create();
-	            RenderingHints rh = new RenderingHints(
-	                    RenderingHints.KEY_ANTIALIASING,
-	                    RenderingHints.VALUE_ANTIALIAS_ON                    
-	                    );
 	            
 	            g2d.setRenderingHints(rh);
 	            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, renderable.getOpacity() / 255f));
@@ -269,6 +251,94 @@ public class ShowImage extends JPanel implements KeyListener {
         		System.out.println(currentElement);
         	}
         }
+     // draw GeneralPath (polyline)
+        int x2Points[] = {
+        		calculatedScreenWidth * 30 / 100,
+        		calculatedScreenWidth * 34 / 100,
+        		calculatedScreenWidth * 66 / 100,
+        		calculatedScreenWidth * 70 / 100
+        		};
+        int y2Points[] = {
+        		calculatedScreenHeight * 0 / 100, 
+        		calculatedScreenHeight * 10 / 100, 
+        		calculatedScreenHeight * 10 / 100, 
+        		calculatedScreenHeight * 0 / 100
+        		};
+        GeneralPath polyline = 
+                new GeneralPath(GeneralPath.WIND_EVEN_ODD, x2Points.length);
+
+        polyline.moveTo (x2Points[0], y2Points[0]);
+
+        for (int index = 1; index < x2Points.length; index++) {
+                 polyline.lineTo(x2Points[index], y2Points[index]);
+        };
+        
+        g2d.setColor(colorsList[1]);
+        g2d.fill(polyline);
+        
+        float thickness = 5 * (float) scale;
+        g2d.setColor(colorsList[6]);
+        g2d.setStroke(new BasicStroke(thickness));
+        g2d.draw(polyline);
+        
+    	TextBox titletextbox = new TextBox(
+        		// TextBox with Text
+				"", // function
+				"",  // name
+				rawMenu.getMenuName(), // text
+				"center", "center", // align
+				"Archivo Narrow", // font
+				6, // text color (index of colors)
+				(int) (75 * scale), // text size
+				0, 0, 0, 0,  // x, y, xSize, ySize
+				calculatedScreenWidth * 50 / 100, calculatedScreenHeight * 15 / 400, // text offset (x, y)
+				1, // box color (index of colors)
+				0, // opacity (0-255)
+				true, // bold boolean
+				0, // roundPercentage
+				0, // shadowOffset
+				0, 0 // strokeWidth, strokeColor
+        		);
+    	
+    	Font font = new Font(titletextbox.getFont(), titletextbox.getBold() ? Font.BOLD:Font.PLAIN , titletextbox.getTextSize());
+    	g2d.setFont(font);
+    	
+    	FontMetrics fontMetrics = g2d.getFontMetrics();
+    	
+        int[] extraAligns = getTextAligns(titletextbox, fontMetrics);
+        
+        int extraAlignX = extraAligns[0];
+        int extraAlignY = extraAligns[1];
+        
+        int finalX = titletextbox.getOffsetX() + extraAlignX;
+        int finalY = titletextbox.getOffsetY() + extraAlignY;
+        g2d.drawString(titletextbox.getText(), finalX, finalY);
+    }
+    
+    private int[] getTextAligns(TextBox textbox, FontMetrics fontMetrics){
+    	int textWidth = fontMetrics.stringWidth(textbox.getText());
+        int textHeight = fontMetrics.getAscent();
+        // Initializes extraAlign variables
+        int extraAlignX;
+        int extraAlignY;
+        // uses the align text settings to determing whether to use the fontMetrics for extraAlignX.
+        if (textbox.getAlignX() == "right") {
+        	extraAlignX = - textWidth;
+        } else if (textbox.getAlignX() == "center") {
+        	extraAlignX = - textWidth / 2;
+        } else { // cases of left, and everything else
+        	extraAlignX = 0;
+        }
+        // same, but for up and down (extraAlignY).
+        if (textbox.getAlignY() == "bottom") {
+        	extraAlignY = textHeight;
+        } else if (textbox.getAlignY() == "center") {
+        	extraAlignY = textHeight / 2;
+        } else { // cases of up, and everything else
+        	extraAlignY = 0;
+        }
+        int[] alignReturns = new int[] {extraAlignX, extraAlignY};
+    	return alignReturns;
     }
     
 
@@ -290,13 +360,13 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	
 	            RoundRectangle2D roundRect = new RoundRectangle2D.Double(x, y, xSize, ySize, round, round);
 	            
-	            if (textbox.isRenderable()) {
+	            if (textbox.hasRenderable()) {
 	            	Renderable renderable = textbox.getRenderableObject();
 	            	BufferedImage image = renderable.getImage();
 	            	bounds = new Rectangle(renderable.getX(), renderable.getY(), image.getWidth(), image.getHeight());
 	            }
 	            if ((roundRect.contains(mouseX, mouseY) && textbox.getOpacity() != 0) ||
-	            	(bounds.contains(mouseX, mouseY) && textbox.getRenderableObject().getOpacity() != 0 && textbox.isRenderable())
+	            	(bounds.contains(mouseX, mouseY) && textbox.getRenderableObject().getOpacity() != 0 && textbox.hasRenderable())
 	            		) { // sets the current hovered box as this if either its renderable (if there is one) or its shape is hovered AND not invisible
 	                currentBox = currentElement; 
 	                // does not break so that the element which is highest in the hierarchy
@@ -396,6 +466,7 @@ public class ShowImage extends JPanel implements KeyListener {
     	
     	double xScale = intToDouble(screenWidth) / 1920;
     	double yScale = intToDouble(screenHeight) / 1080;
+    	scale = ( xScale + yScale ) / 2;
     	// System.out.println(screenWidth);
     	// System.out.println(xScale);
     	Element[] elementsToReturn = new Element[rawElementsList.length];
@@ -404,7 +475,6 @@ public class ShowImage extends JPanel implements KeyListener {
         	Element currentElement = rawElementsList[i];
         	
         	if (currentElement.isTextbox()) {
-        		
 	        	TextBox currentItem = currentElement.getTextbox();
 	        	String function = currentItem.getFunction();
 	        	String name = currentItem.getName();
@@ -422,7 +492,8 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	int offsetY = (int) Math.round(currentItem.getOffsetY() * yScale);
 	        	int color = currentItem.getColor();
 	        	int opacity = currentItem.getOpacity();
-	        	boolean renderRenderable = currentItem.isRenderable();
+	        	boolean renderRenderable = currentItem.hasRenderable();
+	        	boolean renderText = currentItem.hasText();
 	        	Renderable renderableObject = currentItem.getRenderableObject();
 	        	boolean bold = currentItem.getBold();
 	        	int roundPercentage = currentItem.getRoundPercentage();
@@ -430,13 +501,7 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	float stroke = (int) Math.round(currentItem.getStrokeWidth() * yScale);
 	        	int strokeColor = currentItem.getStrokeColor();
 	        	
-	        	if (!renderRenderable) {
-	        		
-	        		elementsToReturn[i] =  new Element(new TextBox(function, name, text, alignX, alignY, font, fontColor, textSize, 
-	        				x, y, xSize, ySize, offsetX, offsetY,
-	        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor));
-	        		
-	        	} else {
+	        	if (renderRenderable) {
 	        		String renderableName = renderableObject.getName();
 	        		String renderableFunction = renderableObject.getFunction();
 	            	String imagePath = renderableObject.getImagePath();
@@ -447,9 +512,22 @@ public class ShowImage extends JPanel implements KeyListener {
 	            	int renderableOpacity = renderableObject.getOpacity();
 	            	Renderable newRenderableObject =  new Renderable(renderableFunction, renderableName, imagePath, 
 	            			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
-	        		
-	            	elementsToReturn[i] =  new Element(new TextBox(function, name, newRenderableObject, x, y, xSize, ySize,
-	        				color, opacity, roundPercentage, shadowOffset, stroke, strokeColor));
+	            	if (renderText) {
+		        		
+		        		elementsToReturn[i] =  new Element(new TextBox(function, name, newRenderableObject, text, alignX, alignY, font, fontColor, textSize, 
+		        				x, y, xSize, ySize, offsetX, offsetY,
+		        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor));
+		        		
+		        	} else {
+		        		elementsToReturn[i] =  new Element(new TextBox(function, name, newRenderableObject, x, y, xSize, ySize,
+		        				color, opacity, roundPercentage, shadowOffset, stroke, strokeColor));
+		        	}
+	        	} else if (renderText) {
+	        		 elementsToReturn[i] = new Element(new TextBox(function, name, text, alignX, alignY, font, fontColor, textSize, 
+		        				x, y, xSize, ySize, offsetX, offsetY,
+		        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor));
+	        	} else {
+	        		System.out.println("ERROR: NO TEXT OR RENDERABLE!");
 	        	}
 	        	
         	} else if (currentElement.isRenderable()) {
@@ -534,8 +612,9 @@ public class ShowImage extends JPanel implements KeyListener {
     
     public static void setMenu(int menu) {
     	currentMenu = menu;
-    	rawMenu = DefaultValues.getMenu(currentMenu);
+    	rawMenu = DefaultValues.getDefaultMenu(currentMenu);
         rawElementsList = rawMenu.getElements();
+        
     	elementsToRender = refreshElements(calculatedScreenWidth, calculatedScreenHeight);
     }
     
@@ -553,7 +632,7 @@ public class ShowImage extends JPanel implements KeyListener {
 
     public static void main(String args[]) throws Exception {
     	// main method
-    	frame = new JFrame("Game"); // initialises the frame to allow changes to be applied
+    	frame = new JFrame("Simple Rhythm Game"); // initialises the frame to allow changes to be applied
     	
     	fullscreen = true; // changable variables: if not fullscreen will force below
         sizeToForce = 1920; // changable variables: can foce this screen size if above is true
@@ -591,6 +670,7 @@ public class ShowImage extends JPanel implements KeyListener {
         } else {
         	fullscreen = DefaultValues.getDefaultFullscreen();
         	sizeToForce = DefaultValues.getDefaultSizeToForce();
+        	// TODO set them into system config
         }
         
         // READ USER COLOR
@@ -602,8 +682,8 @@ public class ShowImage extends JPanel implements KeyListener {
         // READ
         
         // TODO: ADD BELOW TO A COMMENT ONCE DEV IS FINISHED:
-
-        rawMenu = DefaultValues.getMenu(currentMenu);
+        System.out.println(currentMenu);
+        rawMenu = DefaultValues.getDefaultMenu(currentMenu);
         rawElementsList = rawMenu.getElements();
         
         if (userHasColorScheme) {

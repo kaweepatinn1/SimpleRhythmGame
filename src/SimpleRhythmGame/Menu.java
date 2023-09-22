@@ -6,19 +6,25 @@ import java.awt.Color;
 // essentially, each menu is a list of elements.
 
 public class Menu {
-	private Color bgColor;
+	private String menuName;
+	private int bgColor;
 	private Element[] elements;
 	
-	Menu(Color bgColor, Element[] elements){
+	Menu(String menuName, int bgColor, Element[] elements){
+		this.menuName = menuName;
 		this.bgColor = bgColor;
 		this.elements = elements;
 	}
 	
-	public Color getBGColor() {
-		return bgColor;
+	public String getMenuName() {
+		return menuName;
 	}
 	
-	public void setBGColor(Color bgColor) {
+	public Color getBGColor() {
+		return DefaultValues.getDefaultColors()[bgColor];
+	}
+	
+	public void setBGColor(int bgColor) {
 		this.bgColor = bgColor;
 	}
 	

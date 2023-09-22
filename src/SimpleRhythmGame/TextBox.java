@@ -16,6 +16,7 @@ public class TextBox {
     private int offsetX;
     private int offsetY;
     private boolean renderRenderable;
+    private boolean renderText;
     private Renderable renderableObject;
     private int color;
     private int opacity;
@@ -25,6 +26,37 @@ public class TextBox {
     private int shadowOffset;
     private float strokeWidth;
     private int strokeColor;
+    
+    public TextBox(String function, String name, Renderable renderableObject, String text, String alignX, String alignY, 
+    		String font, int fontColor, int textSize, int x, int y, int xSize, int ySize, 
+    		int offsetX, int offsetY, int color, int opacity, boolean bold, 
+    		int roundPercentage, int shadowOffset, float strokeWidth, int strokeColor) {
+    	this.function = function;
+        this.name = name;
+    	this.text = text;
+    	this.alignX = alignX;
+    	this.alignY = alignY;
+    	this.font = font;
+        this.fontColor = fontColor;
+        this.textSize = textSize;
+        this.x = x;
+        this.y = y;
+        this.xSize = xSize;
+        this.ySize = ySize;
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
+        this.renderText = true;
+        this.renderRenderable = true;
+        this.renderableObject = renderableObject;
+        this.color = color;
+        this.opacity = opacity;
+        this.bold = bold;
+        this.roundPercentage = roundPercentage;
+        this.hovered = false;
+        this.shadowOffset = shadowOffset;
+        this.strokeWidth = strokeWidth;
+        this.strokeColor = strokeColor;
+    }
     
     public TextBox(String function, String name, String text, String alignX, String alignY, 
     		String font, int fontColor, int textSize, int x, int y, int xSize, int ySize, 
@@ -44,6 +76,7 @@ public class TextBox {
         this.ySize = ySize;
         this.offsetX = offsetX;
         this.offsetY = offsetY;
+        this.renderText = true;
         this.renderRenderable = false;
         this.renderableObject = null;
         this.color = color;
@@ -74,6 +107,7 @@ public class TextBox {
         this.ySize = ySize;
         this.offsetX = 0;
         this.offsetY = 0;
+        this.renderText = false;
         this.renderRenderable = true;
         this.renderableObject = renderableObject;
         this.color = color;
@@ -150,8 +184,12 @@ public class TextBox {
         return opacity;
     }
     
-    public boolean isRenderable() {
+    public boolean hasRenderable() {
         return renderRenderable;
+    }
+    
+    public boolean hasText() {
+    	return renderText;
     }
 
     public Renderable getRenderableObject() {
@@ -238,8 +276,12 @@ public class TextBox {
         this.offsetY = offsetY;
     }
 
-    public void setIfRenderable(boolean renderRenderable) {
+    public void setHasRenderable(boolean renderRenderable) {
         this.renderRenderable = renderRenderable;
+    }
+    
+    public void setHasText(boolean renderText) {
+    	this.renderText = renderText;
     }
 
     public void setRenderableObject(Renderable renderableObject) {
