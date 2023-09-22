@@ -34,7 +34,14 @@ public class DefaultValues {
 					"Main Menu", // Menu Name
 					0, // BG Color
 					new Element[] {
-						new Element(new TextBox(
+						new Element(
+							new Selector(
+									new int[]{0,0},
+									new int[][]{{1,0},{0,1},{0,0},{0,0}},
+									false,
+									false
+								),
+							new TextBox(
 								// TextBox with Renderable
 								"setMenu String Play_Menu", // function
 								"PlaysButton",  // name

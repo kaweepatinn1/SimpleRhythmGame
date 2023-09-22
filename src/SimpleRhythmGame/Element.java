@@ -9,17 +9,16 @@ public class Element {
 	private boolean isRenderable;
 	private boolean isTextbox;
 	
-	public Element(int[] seletorIndex, TextBox textbox) {
-		this.selectorIndex = selectorIndex;
-		this.selectorOptions
+	public Element(Selector selector, TextBox textbox) {
+		this.selector = selector;
 		this.renderable = null;
 		this.textbox = textbox;
 		this.isRenderable = false;
 		this.isTextbox = true;
 	}
 	
-	public Element(int[] seletorIndex, Renderable renderable) {
-		this.selectorIndex = selectorIndex;
+	public Element(Selector selector, Renderable renderable) {
+		this.selector = selector;
 		this.renderable = renderable;
 		this.textbox = null;
 		this.isRenderable = true;
@@ -27,11 +26,31 @@ public class Element {
 	}
 	
 	public int[] getSelectorIndex() {
-		return selectorIndex;
+		return selector.getSelectorIndex();
 	}
 	
-	public void setSelectorIndex() {
-		this.selectorIndex = selectorIndex;
+	public int[][] getSelectorOptions() {
+		return selector.getSelectorOptions();
+	}
+	
+	public boolean isPrimaryHovered() {
+		return selector.isPrimaryHovered();
+	}
+	
+	public boolean isSecondaryHovered() {
+		return selector.isSecondaryHovered();
+	}
+	
+	public void setPrimaryHovered() {
+		selector.setPrimaryHovered();
+	}
+	
+	public void setSecondaryHovered() {
+		selector.setSecondaryHovered();
+	}
+	
+	public void setNotHovered() {
+		selector.setNotHovered();
 	}
 	
 	public String getFunction() {
