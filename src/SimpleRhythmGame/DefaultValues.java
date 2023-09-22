@@ -9,15 +9,13 @@ public class DefaultValues {
 	private final static int defaultSizeToForce = 1280; // forces this screen size if above is true
 	
 	private final static Color[] defaultColors = new Color[] {
-			new Color (102,102,102,255), // 0 BG Color
-			new Color (217,234,211,255), // 1 Menu Color
-    		new Color (207,226,243,255), // 2 Buttons Color
-    		new Color (255,255,255,255), // 3 Primary Selection Color
-    		new Color (217,217,217,255), // 4 Secondary Selection Color
-    		new Color (255,0,0,255), // 5 Accent Color
-    		new Color (0,0,0,255), // 6 Stroke Color
-    		// new Color (0,255,0,50), // 5
-    		// new Color (0,0,255,50) // 6
+			new Color (102,102,102,255), // 0. BG Color
+			new Color (217,234,211,255), // 1. Menu Color
+    		new Color (207,226,243,255), // 2. Buttons Color
+    		new Color (255,255,255,255), // 3. Primary Selection Color
+    		new Color (217,217,217,255), // 4. Secondary Selection Color
+    		new Color (255,0,0,255), // 5. Accent Color
+    		new Color (0,0,0,255), // 6. Stroke Color
 	};
 	
 	private final static String[] defaultFonts = new String[] {
@@ -34,7 +32,7 @@ public class DefaultValues {
 	private final static Menu[] defaultMenus = new Menu[] {
 			new Menu( // 0. Initialization (for setting up screen size, username)
 					"Main Menu", // Menu Name
-					(defaultColors[0]), // BG Color
+					0, // BG Color
 					new Element[] {
 						new Element(new TextBox(
 								// TextBox with Renderable
@@ -138,8 +136,9 @@ public class DefaultValues {
 								))
 					}),
 			new Menu( // 1. MENU 1
-					"Settings", // Menu name
-					(defaultColors[0]), // BG Color
+					"Settings", // Menu Name
+					new int[] {0,1}, // Selector Index
+					0, // BG Color
 				new Element[] {
 					new Element(new TextBox("setMenu int 0", "Menu1Button", "Goto Menu 1", "left", "top", "Roboto",
 							1, 50, 1280, 500, 550, 50, 0, 0, 2, 255, false, 50, 10, 5, 1)),
@@ -150,8 +149,9 @@ public class DefaultValues {
 					}
 				),
 			new Menu( // 2. MENU 2
-					"TestMenu2", // Menu name
-					(defaultColors[0]), // BG Color
+					"TestMenu2", // Menu Name
+					new int[] {0,2}, // Selector Index
+					0, // BG Color
 				new Element[] {
 					new Element(new TextBox("setMenu int 0", "Menu1Button", "Goto Menu 1", "left", "top", "Roboto",
 							1, 50, 1280, 500, 550, 50, 0, 0, 2, 255, false, 50, 10, 5, 1)),

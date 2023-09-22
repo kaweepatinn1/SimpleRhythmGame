@@ -7,10 +7,10 @@ import java.awt.Color;
 
 public class Menu {
 	private String menuName;
-	private Color bgColor;
+	private int bgColor;
 	private Element[] elements;
 	
-	Menu(String menuName, Color bgColor, Element[] elements){
+	Menu(String menuName, int bgColor, Element[] elements){
 		this.menuName = menuName;
 		this.bgColor = bgColor;
 		this.elements = elements;
@@ -21,10 +21,10 @@ public class Menu {
 	}
 	
 	public Color getBGColor() {
-		return bgColor;
+		return DefaultValues.getDefaultColors()[bgColor];
 	}
 	
-	public void setBGColor(Color bgColor) {
+	public void setBGColor(int bgColor) {
 		this.bgColor = bgColor;
 	}
 	

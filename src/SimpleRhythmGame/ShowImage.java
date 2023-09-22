@@ -34,6 +34,7 @@ public class ShowImage extends JPanel implements KeyListener {
     private static int calculatedScreenHeight;
     private static int calculatedScreenWidth;
     private static double scale;
+    private static int selected;
     
     public ShowImage() {
         setLayout(new BorderLayout()); // Set the main panel's layout to BorderLayout
@@ -614,6 +615,7 @@ public class ShowImage extends JPanel implements KeyListener {
     	currentMenu = menu;
     	rawMenu = DefaultValues.getDefaultMenu(currentMenu);
         rawElementsList = rawMenu.getElements();
+        
     	elementsToRender = refreshElements(calculatedScreenWidth, calculatedScreenHeight);
     }
     
@@ -631,7 +633,7 @@ public class ShowImage extends JPanel implements KeyListener {
 
     public static void main(String args[]) throws Exception {
     	// main method
-    	frame = new JFrame("Game"); // initialises the frame to allow changes to be applied
+    	frame = new JFrame("Simple Rhythm Game"); // initialises the frame to allow changes to be applied
     	
     	fullscreen = true; // changable variables: if not fullscreen will force below
         sizeToForce = 1920; // changable variables: can foce this screen size if above is true
@@ -669,6 +671,7 @@ public class ShowImage extends JPanel implements KeyListener {
         } else {
         	fullscreen = DefaultValues.getDefaultFullscreen();
         	sizeToForce = DefaultValues.getDefaultSizeToForce();
+        	// TODO set them into system config
         }
         
         // READ USER COLOR
@@ -680,7 +683,7 @@ public class ShowImage extends JPanel implements KeyListener {
         // READ
         
         // TODO: ADD BELOW TO A COMMENT ONCE DEV IS FINISHED:
-
+        System.out.println(currentMenu);
         rawMenu = DefaultValues.getDefaultMenu(currentMenu);
         rawElementsList = rawMenu.getElements();
         
