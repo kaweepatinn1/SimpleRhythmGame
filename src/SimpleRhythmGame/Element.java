@@ -25,6 +25,10 @@ public class Element {
 		this.isTextbox = false;
 	}
 	
+	public Selector getSelector() {
+		return selector;
+	}
+	
 	public int[] getSelectorIndex() {
 		return selector.getSelectorIndex();
 	}
@@ -43,14 +47,23 @@ public class Element {
 	
 	public void setPrimaryHovered() {
 		selector.setPrimaryHovered();
+		if (isTextbox) {
+			textbox.setStrokeColor(3);
+		}
 	}
 	
 	public void setSecondaryHovered() {
 		selector.setSecondaryHovered();
+		if (isTextbox) {
+			textbox.setStrokeColor(4);
+		}
 	}
 	
 	public void setNotHovered() {
 		selector.setNotHovered();
+		if (isTextbox) {
+			textbox.setStrokeColor(6);
+		}
 	}
 	
 	public String getFunction() {

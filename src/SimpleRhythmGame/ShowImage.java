@@ -1,4 +1,5 @@
 package SimpleRhythmGame;
+
 import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -18,23 +19,39 @@ public class ShowImage extends JPanel implements KeyListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static ShowImage panel;
-    private static int currentMenu;
+    private static int currentMenuIndex;
     private static Element[] elementsToRender;
-    private static Menu rawMenu;
-    private static Element[] rawElementsList;
+    private static Menu rawCurrentMenu;
     private static Color[] colorsList;
+    private static Controls[] controls;
+    private static int[] selected;
+    private static Selector[] selectionsList;
+    
     private static JFrame frame;
+    private static boolean fullscreen;
+    private static int sizeToForce;
+    private static Config config;
+    
     private static String lastHovered = null;
     private static String mouseDragCurrent = null; 
     private static String mouseDragStart = null;
     // The name of the element that the current drag has started on
     private static boolean currentMouseDragging = false;
-    private static boolean fullscreen;
-    private static int sizeToForce;
+    
     private static int calculatedScreenHeight;
     private static int calculatedScreenWidth;
     private static double scale;
-    private static int selected;
+
+    /*
+    setNewFrameSize --> calculateNewScreenDimensions
+    NOW SEPARATED
+     repaintPanel <-- updateFrame --> refreshElements <-- screenDimensions variables
+     updateFrame calls refreshElements first which updates the elements list to latest info and then calls repaint.
+     
+     To add tweening consider choosing to put it in between updateFrame and refreshElements.
+     
+     rawCurrentMenu --> elementsToRender --> .repaint()
+    */
     
     public ShowImage() {
         setLayout(new BorderLayout()); // Set the main panel's layout to BorderLayout
@@ -94,26 +111,24 @@ public class ShowImage extends JPanel implements KeyListener {
                 
             	if (hoveredElement != null) {
             		String nameOfHoveredElement = hoveredElement.getName();
+            		selected = rawCurrentMenu.resetSelectors(getElementFromName(nameOfHoveredElement).getSelectorIndex());
 	                if (lastHovered == nameOfHoveredElement) {
 	                	// Do nothing, nothing has changed.
 	                } else {
 	                	// System.out.println("no longer hovering: " + lastHovered);
 	                	// System.out.println("hovering: " + nameOfHoveredElement);
-	                	/*
-	                	 if (lastHovered != null) {
-	                		 TODO stopHoverAnimation(lastHovered);
-	                	 }
-	                	 */
-	                	// TODO startHoverAnimation(nameOfHoveredElement);
+	                	
+	                	// System.out.println(getElementFromName(nameOfHoveredElement).getTextbox().getStrokeColor());
+	                	// System.out.println(getElementFromName(nameOfHoveredElement).getTextbox().getStrokeColor());
 	                }
 	                lastHovered = nameOfHoveredElement; 
             	} else {
+            		selected = rawCurrentMenu.resetSelectors(new int[]{-1,-1});
             		if (lastHovered == null) {
             			// Do nothing, nothing has changed.
             		} else {
             			// System.out.println("no longer hovering: " + lastHovered);
 	                	// System.out.println("hovering: " + null);
-            			// TODO stopHoverAnimation(lastHovered);
                 		lastHovered = null;	
             		}
             	}
@@ -283,9 +298,10 @@ public class ShowImage extends JPanel implements KeyListener {
         
     	TextBox titletextbox = new TextBox(
         		// TextBox with Text
+    			1,
 				"", // function
 				"",  // name
-				rawMenu.getMenuName(), // text
+				rawCurrentMenu.getMenuName(), // text
 				"center", "center", // align
 				"Archivo Narrow", // font
 				6, // text color (index of colors)
@@ -394,8 +410,88 @@ public class ShowImage extends JPanel implements KeyListener {
 	}
     
     public void keyPressed(KeyEvent e) {
-        int keyCode = e.getKeyCode();
-        System.out.println("Key Pressed: " + KeyEvent.getKeyText(keyCode));
+        int rawKeyCode = e.getKeyCode();
+        // System.out.println(rawKeyCode);
+        int keyCode = -1;
+        boolean foundKey = false;
+        for (Controls control : controls) {
+        	for (int customKey : control.getNewKeyCodes())
+        	if (customKey == rawKeyCode) {
+        		keyCode = control.getOriginalKeyCode();
+        		foundKey = true;
+        		break;
+        	}
+        	if (foundKey) {
+        		break;
+        	}
+        }
+        
+        if (foundKey) {
+        	String hotkeyPressed = KeyEvent.getKeyText(keyCode);
+        	
+            if (hotkeyPressed == "Enter"
+            		|| hotkeyPressed == "Up"
+            		|| hotkeyPressed == "Down"
+            		|| hotkeyPressed == "Left"
+            		|| hotkeyPressed == "Right"
+            		) { // arrow keys real keycodes
+            	int[][] directionalOptions = new int[4][2];
+            	boolean found = false;
+            	Element element = null;
+            	for (int i = 0 ; i < selectionsList.length; i++) {
+            		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1]) {
+            			directionalOptions = selectionsList[i].getSelectorOptions();
+            			// retrieves directional options from the currently selected item
+            			element = rawCurrentMenu.getElements()[i];
+            			found = true;
+            		}
+            	}
+            	
+            	if (!found) { // set the selected to 0 instead if not currently selecting a valid item (can be -1,-1)
+            		selected = rawCurrentMenu.resetSelectors(new int[]{0,0});
+            	} else {
+            		
+            		if (hotkeyPressed == "Enter") {
+            			String functionToRun = element.getFunction();
+            			boolean ranFunction = Functions.runFunction(functionToRun);
+            			if (!ranFunction) {
+                      	System.out.println("ERROR: DID NOT RUN ANY FUNCTION FOR \nElement Name: " + element.getName() + 
+                      			"\nwhich is a \nRenderable: " + element.isRenderable() + "\nTextbox: " + element.isTextbox());
+            			}
+            		} else {
+            			if (hotkeyPressed == "Right") {
+    			        	selected = rawCurrentMenu.resetSelectors(directionalOptions[0]);
+    			            } else if (hotkeyPressed == "Down") {
+    			            	selected = rawCurrentMenu.resetSelectors(directionalOptions[1]);
+    			            } else if (hotkeyPressed == "Left") {
+    			            	selected = rawCurrentMenu.resetSelectors(directionalOptions[2]);
+    	                    } else if (hotkeyPressed == "Up") {
+    	                    	selected = rawCurrentMenu.resetSelectors(directionalOptions[3]);
+                        }
+            		}
+            	}
+            } 
+            
+            else if (hotkeyPressed == "Escape") {
+            	String menuToEnter = rawCurrentMenu.getPreviousMenuName();
+            	if (menuToEnter != null){
+            		String functionToRun = "setMenu String " + menuToEnter.replace(" ", "_");
+        			Functions.runFunction(functionToRun);
+            	} else {
+            		System.out.println("No Previous Menu");
+            	}
+            	
+            }
+            
+            
+            String keyText = KeyEvent.getKeyText(rawKeyCode);
+            System.out.println("Bound Key Pressed: " + hotkeyPressed);
+            System.out.println("Raw Key Pressed: " + keyText);
+            
+        } else {
+        	String keyText = KeyEvent.getKeyText(rawKeyCode);
+        	System.out.println("Unbound Key Pressed: " + keyText);
+        }
     }
 
     public void keyReleased(KeyEvent e) {
@@ -409,8 +505,9 @@ public class ShowImage extends JPanel implements KeyListener {
     private Element getElementFromName(String name) { 
     	// get the box for the name given through the parameter
     	Element elementToReturn = null;
-    	for (int i = 0; i < elementsToRender.length; i++) {
-    		Element currentElement = elementsToRender[i];
+    	Element[] elementsList = rawCurrentMenu.getElements();
+    	for (int i = 0; i < elementsList.length; i++) {
+    		Element currentElement = elementsList[i];
     		if (currentElement.getName() == name) {
     			elementToReturn = currentElement;
     			break;
@@ -462,34 +559,36 @@ public class ShowImage extends JPanel implements KeyListener {
     
     private static Element[] refreshElements(int screenWidth,int screenHeight) {
     	// refreshes all textbox sizes to fit the new screen size, runs on dynamicFrameSize() end.
-    	setBG(rawMenu.getBGColor());
     	
     	double xScale = intToDouble(screenWidth) / 1920;
     	double yScale = intToDouble(screenHeight) / 1080;
     	scale = ( xScale + yScale ) / 2;
     	// System.out.println(screenWidth);
     	// System.out.println(xScale);
+    	Element[] rawElementsList = rawCurrentMenu.getElements();
     	Element[] elementsToReturn = new Element[rawElementsList.length];
         for (int i = 0; i < rawElementsList.length; i++) {
         	
         	Element currentElement = rawElementsList[i];
+        	Selector selector = currentElement.getSelector();
         	
         	if (currentElement.isTextbox()) {
 	        	TextBox currentItem = currentElement.getTextbox();
+	        	float scale = currentItem.getScale();
 	        	String function = currentItem.getFunction();
 	        	String name = currentItem.getName();
 	        	String text = currentItem.getText();
 	        	String alignX = currentItem.getAlignX();
 	        	String alignY = currentItem.getAlignY();
 	        	String font = currentItem.getFont();
-	        	int textSize = (int) Math.round(currentItem.getTextSize() * Math.min(xScale, yScale));
+	        	int textSize = (int) Math.round(currentItem.getTextSize() * Math.min(xScale, yScale) * scale);
 	        	int fontColor = currentItem.getFontColor();
-	        	int x = (int) Math.round(currentItem.getX() * xScale);
-	        	int y = (int) Math.round(currentItem.getY() * yScale);
-	        	int xSize = (int) Math.round(currentItem.getXSize() * xScale);
-	        	int ySize = (int) Math.round(currentItem.getYSize() * yScale);
-	        	int offsetX = (int) Math.round(currentItem.getOffsetX() * xScale);
-	        	int offsetY = (int) Math.round(currentItem.getOffsetY() * yScale);
+	        	int xSize = (int) Math.round(currentItem.getXSize() * xScale * scale);
+	        	int ySize = (int) Math.round(currentItem.getYSize() * yScale * scale);
+	        	int x = (int) Math.round(currentItem.getX() * xScale - (xSize / 2));
+	        	int y = (int) Math.round(currentItem.getY() * yScale - (ySize / 2));
+	        	int offsetX = (int) Math.round(currentItem.getOffsetX() * xScale * scale);
+	        	int offsetY = (int) Math.round(currentItem.getOffsetY() * yScale * scale);
 	        	int color = currentItem.getColor();
 	        	int opacity = currentItem.getOpacity();
 	        	boolean renderRenderable = currentItem.hasRenderable();
@@ -497,33 +596,33 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	Renderable renderableObject = currentItem.getRenderableObject();
 	        	boolean bold = currentItem.getBold();
 	        	int roundPercentage = currentItem.getRoundPercentage();
-	        	int shadowOffset = (int) Math.round(currentItem.getShadowOffset() * yScale);
-	        	float stroke = (int) Math.round(currentItem.getStrokeWidth() * yScale);
+	        	int shadowOffset = (int) Math.round(currentItem.getShadowOffset() * yScale * scale);
+	        	float stroke = (int) Math.round(currentItem.getStrokeWidth() * yScale * scale);
 	        	int strokeColor = currentItem.getStrokeColor();
 	        	
 	        	if (renderRenderable) {
 	        		String renderableName = renderableObject.getName();
 	        		String renderableFunction = renderableObject.getFunction();
 	            	String imagePath = renderableObject.getImagePath();
-	            	int renderableX = (int) Math.round(renderableObject.getX() * xScale);
-	            	int renderableY = (int) Math.round(renderableObject.getY() * yScale);
-	            	int renderableXSize = (int) Math.round(renderableObject.getXSize() * xScale);
-	            	int renderableYSize = (int) Math.round(renderableObject.getYSize() * yScale);
+	            	int renderableXSize = (int) Math.round(renderableObject.getXSize() * xScale * scale);
+	            	int renderableYSize = (int) Math.round(renderableObject.getYSize() * yScale * scale);
+	            	int renderableX = (int) Math.round(renderableObject.getX() * xScale * scale);
+	            	int renderableY = (int) Math.round(renderableObject.getY() * yScale * scale);
 	            	int renderableOpacity = renderableObject.getOpacity();
 	            	Renderable newRenderableObject =  new Renderable(renderableFunction, renderableName, imagePath, 
 	            			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
 	            	if (renderText) {
 		        		
-		        		elementsToReturn[i] =  new Element(new TextBox(function, name, newRenderableObject, text, alignX, alignY, font, fontColor, textSize, 
+		        		elementsToReturn[i] =  new Element(selector, new TextBox(scale, function, name, newRenderableObject, text, alignX, alignY, font, fontColor, textSize, 
 		        				x, y, xSize, ySize, offsetX, offsetY,
 		        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor));
 		        		
 		        	} else {
-		        		elementsToReturn[i] =  new Element(new TextBox(function, name, newRenderableObject, x, y, xSize, ySize,
+		        		elementsToReturn[i] =  new Element(selector, new TextBox(scale, function, name, newRenderableObject, x, y, xSize, ySize,
 		        				color, opacity, roundPercentage, shadowOffset, stroke, strokeColor));
 		        	}
 	        	} else if (renderText) {
-	        		 elementsToReturn[i] = new Element(new TextBox(function, name, text, alignX, alignY, font, fontColor, textSize, 
+	        		 elementsToReturn[i] = new Element(selector, new TextBox(scale, function, name, text, alignX, alignY, font, fontColor, textSize, 
 		        				x, y, xSize, ySize, offsetX, offsetY,
 		        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor));
 	        	} else {
@@ -541,14 +640,18 @@ public class ShowImage extends JPanel implements KeyListener {
             	int renderableYSize = (int) Math.round(currentItem.getYSize() * yScale);
             	int renderableOpacity = currentItem.getOpacity();
             	
-            	elementsToReturn[i] =  new Element(new Renderable(renderableFunction, renderableName, imagePath, 
+            	elementsToReturn[i] =  new Element(selector, new Renderable(renderableFunction, renderableName, imagePath, 
             			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity));
         	}
         }
         return elementsToReturn;
     }
     
-    private static int[] setDynamicFrameSize(boolean forceSize, int sizeToForce) { 
+    public static Config getConfig() {
+    	return config;
+    }
+    
+    private static int[] calculateNewScreenDimensions(boolean forceSize, int sizeToForce) { 
     	// Sets the dynamic frame size to the size passed through sizeToForce, if forceSize is true.
     	// When initially run, passes forceSize as false to use the client screen size. Forces the
     	// 16:9 aspect ratio. Can be passed later through perhaps a settings screen to force the window
@@ -592,29 +695,45 @@ public class ShowImage extends JPanel implements KeyListener {
         // System.out.println("final" + screenWidth);
         // System.out.println("final" + screenHeight);
         frame.setSize(screenWidth, screenHeight);
-        elementsToRender = refreshElements(screenWidth,screenHeight);
+        
         calculatedScreenWidth = screenWidth;
         calculatedScreenHeight = screenHeight;
         return toReturn;
     }
     
-    private static void setScreenSize(boolean fullscreen, int size) { 
+    private static void setNewFrameSize(boolean fullscreen, int size) { 
     	// sets the screen size to provided integer or fullscreen, depending on the passed boolean.
+    	frame = new JFrame("Simple Rhythm Game");
     	if (fullscreen) {
-    		setDynamicFrameSize(false, 0);
+    		calculateNewScreenDimensions(false, 0);
             frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
             frame.setUndecorated(true);
     	} else {
-    		setDynamicFrameSize(true, size);
+    		calculateNewScreenDimensions(true, size);
     	}
-    	
     }
     
-    public static void setMenu(int menu) {
-    	currentMenu = menu;
-    	rawMenu = DefaultValues.getDefaultMenu(currentMenu);
-        rawElementsList = rawMenu.getElements();
-        
+    public static void updateFrame() {
+    	elementsToRender = refreshElements(calculatedScreenWidth,calculatedScreenHeight);
+    	repaintPanel();
+    }
+    
+    public static void initFrame() {
+    	elementsToRender = refreshElements(calculatedScreenWidth,calculatedScreenHeight);
+    }
+    
+    public static void setMenuFromAnIndex(int menu) {
+    	currentMenuIndex = menu;
+    	rawCurrentMenu = DefaultValues.getDefaultMenu(currentMenuIndex);
+    	selected = rawCurrentMenu.resetSelectors(new int[]{-1,-1});
+        System.out.println("his");
+        Element[] tempElementsList = rawCurrentMenu.getElements();
+        selectionsList = new Selector[tempElementsList.length];
+        int i = 0;
+        for (Element element : tempElementsList) {
+        	selectionsList[i] = element.getSelector();
+        	i++;
+        }
     	elementsToRender = refreshElements(calculatedScreenWidth, calculatedScreenHeight);
     }
     
@@ -623,19 +742,19 @@ public class ShowImage extends JPanel implements KeyListener {
     }
     
     public static void repaintPanel() {
+    	setBG(rawCurrentMenu.getBGColor());
     	panel.repaint();
     }
     
     public static int getMenu() {
-    	return currentMenu;
+    	return currentMenuIndex;
     }
 
     public static void main(String args[]) throws Exception {
     	// main method
-    	frame = new JFrame("Simple Rhythm Game"); // initialises the frame to allow changes to be applied
+    	SysOutController.setSysOutLocationAddressor(); // FOR DEBUGGING
     	
-    	fullscreen = true; // changable variables: if not fullscreen will force below
-        sizeToForce = 1920; // changable variables: can foce this screen size if above is true
+    	frame = new JFrame("Simple Rhythm Game"); // initialises the frame to allow changes to be applied
         
         // TODO: create a class that holds all static or final variables, including the above two and the other values
         // for below lists.
@@ -674,7 +793,7 @@ public class ShowImage extends JPanel implements KeyListener {
         }
         
         // READ USER COLOR
-        boolean userHasColorScheme = false;
+        boolean userHasCustomColorScheme = false;
         Color[] userColorScheme = new Color[] {
         		new Color (0,0,0,0) // replace with the function to read the scheme
         };
@@ -682,19 +801,39 @@ public class ShowImage extends JPanel implements KeyListener {
         // READ
         
         // TODO: ADD BELOW TO A COMMENT ONCE DEV IS FINISHED:
-        System.out.println(currentMenu);
-        rawMenu = DefaultValues.getDefaultMenu(currentMenu);
-        rawElementsList = rawMenu.getElements();
+        // System.out.println(currentMenuIndex);
         
-        if (userHasColorScheme) {
+        if (userHasCustomColorScheme) {
         	colorsList = userColorScheme;
         } else {
         	colorsList = DefaultValues.getDefaultColors();
         }
         
-        panel = new ShowImage(); // runs showimage class (top of this class) to show text and renderables into a panel
+        boolean userHasCustomControls = false;
+        Controls[] userControls = new Controls[1];
         
-        setScreenSize(fullscreen, sizeToForce); // uses the above raw lists and variables to set the frame size.
+        if (userHasCustomControls) {
+        	controls = userControls;
+        } else {
+        	controls = DefaultValues.getDefaultControls();
+        }
+        
+        config = new Config(
+        		false, // fullscreen
+        		1280, // size to force
+        		DefaultValues.getDefaultControls(), // controls
+        		DefaultValues.getDefaultColors(), // colors
+        		DefaultValues.getDefaultFonts(), // fonts
+        		DefaultValues.getAllDefaultMenus() // menus
+        		);
+        
+        setMenuFromAnIndex(0);
+        
+        setNewFrameSize(fullscreen, sizeToForce); // uses the above raw lists and variables to set the frame size.
+        
+        initFrame();
+        
+        panel = new ShowImage(); // runs showimage class (top of this class) to show text and renderables into a panel
         
         frame.getContentPane().add(panel); // adds the panel to frame content
         
@@ -718,7 +857,7 @@ public class ShowImage extends JPanel implements KeyListener {
         	System.out.println(var);
         }
         */
-        
+        FileIO.currentConfigOut();
         // Set the frame size to the screen dimensions
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sets closing operation
         frame.setVisible(true); // allows client to see frame

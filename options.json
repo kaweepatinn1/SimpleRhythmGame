@@ -1,0 +1,745 @@
+{
+  "fullscreen": false,
+  "sizeToForce": 1280,
+  "controls": [
+    {
+      "hotkeyFunction": "Up",
+      "hotkeyOriginalKeyCode": 38,
+      "keyCodes": [
+        38,
+        -1,
+        -1
+      ]
+    },
+    {
+      "hotkeyFunction": "Down",
+      "hotkeyOriginalKeyCode": 40,
+      "keyCodes": [
+        40,
+        -1,
+        -1
+      ]
+    },
+    {
+      "hotkeyFunction": "Left",
+      "hotkeyOriginalKeyCode": 37,
+      "keyCodes": [
+        37,
+        -1,
+        -1
+      ]
+    },
+    {
+      "hotkeyFunction": "Right",
+      "hotkeyOriginalKeyCode": 37,
+      "keyCodes": [
+        39,
+        -1,
+        -1
+      ]
+    },
+    {
+      "hotkeyFunction": "Enter",
+      "hotkeyOriginalKeyCode": 10,
+      "keyCodes": [
+        10,
+        -1,
+        -1
+      ]
+    },
+    {
+      "hotkeyFunction": "Escape",
+      "hotkeyOriginalKeyCode": 27,
+      "keyCodes": [
+        27,
+        -1,
+        -1
+      ]
+    }
+  ],
+  "colors": [
+    [
+      102,
+      102,
+      102,
+      255
+    ],
+    [
+      217,
+      234,
+      211,
+      255
+    ],
+    [
+      207,
+      226,
+      243,
+      255
+    ],
+    [
+      255,
+      255,
+      255,
+      255
+    ],
+    [
+      217,
+      217,
+      217,
+      255
+    ],
+    [
+      255,
+      0,
+      0,
+      255
+    ],
+    [
+      0,
+      0,
+      0,
+      255
+    ]
+  ],
+  "fonts": [
+    "src/fonts/ArchivoNarrow-Bold.ttf",
+    "src/fonts/ArchivoNarrow-BoldItalic.ttf",
+    "src/fonts/ArchivoNarrow-Italic.ttf",
+    "src/fonts/ArchivoNarrow-Medium.ttf",
+    "src/fonts/ArchivoNarrow-MediumItalic.ttf",
+    "src/fonts/ArchivoNarrow-Regular.ttf",
+    "src/fonts/ArchivoNarrow-SemiBold.ttf",
+    "src/fonts/ArchivoNarrow-SemiBoldItalic.ttf"
+  ],
+  "menus": [
+    {
+      "menuName": "Main Menu",
+      "bgColor": 0,
+      "elements": [
+        {
+          "selector": {
+            "selectorIndex": [
+              0,
+              0
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false
+          },
+          "textbox": {
+            "scale": 1.5,
+            "function": "setMenu String Play_Menu",
+            "name": "PlaysButton",
+            "text": "Play",
+            "alignX": "left",
+            "alignY": "center",
+            "font": "Archivo Narrow",
+            "textSize": 50,
+            "fontColor": 6,
+            "x": 1810,
+            "y": 325,
+            "xSize": 1000,
+            "ySize": 120,
+            "offsetX": -375,
+            "offsetY": -9,
+            "renderRenderable": true,
+            "renderText": true,
+            "renderableObject": {
+              "name": "PlayPNG",
+              "imagePath": "src/textures/play.png",
+              "x": 40,
+              "y": 30,
+              "xSize": 60,
+              "ySize": 60,
+              "opacity": 255
+            },
+            "color": 2,
+            "opacity": 255,
+            "bold": false,
+            "roundPercentage": 100,
+            "hovered": false,
+            "shadowOffset": 8,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "isRenderable": false,
+          "isTextbox": true
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              0,
+              1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "setMenu String Stats_Leaderboards_Menu",
+            "name": "StatsLeaderboardsButton",
+            "text": "Stats and Leaderboards",
+            "alignX": "left",
+            "alignY": "center",
+            "font": "Archivo Narrow",
+            "textSize": 50,
+            "fontColor": 6,
+            "x": 1660,
+            "y": 510,
+            "xSize": 1000,
+            "ySize": 120,
+            "offsetX": -375,
+            "offsetY": -9,
+            "renderRenderable": true,
+            "renderText": true,
+            "renderableObject": {
+              "name": "LeaderboardPNG",
+              "imagePath": "src/textures/leaderboard.png",
+              "x": 40,
+              "y": 30,
+              "xSize": 60,
+              "ySize": 60,
+              "opacity": 255
+            },
+            "color": 2,
+            "opacity": 255,
+            "bold": false,
+            "roundPercentage": 100,
+            "hovered": false,
+            "shadowOffset": 8,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "isRenderable": false,
+          "isTextbox": true
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              0,
+              2
+            ],
+            "selectorOptions": [
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "setMenu String Settings_Menu",
+            "name": "SettingsButton",
+            "text": "Settings",
+            "alignX": "left",
+            "alignY": "center",
+            "font": "Archivo Narrow",
+            "textSize": 50,
+            "fontColor": 6,
+            "x": 1660,
+            "y": 660,
+            "xSize": 1000,
+            "ySize": 120,
+            "offsetX": -375,
+            "offsetY": -9,
+            "renderRenderable": true,
+            "renderText": true,
+            "renderableObject": {
+              "name": "CogwheelPNG",
+              "imagePath": "src/textures/cog.png",
+              "x": 40,
+              "y": 30,
+              "xSize": 60,
+              "ySize": 60,
+              "opacity": 255
+            },
+            "color": 2,
+            "opacity": 255,
+            "bold": false,
+            "roundPercentage": 100,
+            "hovered": false,
+            "shadowOffset": 8,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "isRenderable": false,
+          "isTextbox": true
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              0,
+              3
+            ],
+            "selectorOptions": [
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                2
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "setMenu String Customization_Menu",
+            "name": "CustomizationButton",
+            "text": "Customization",
+            "alignX": "left",
+            "alignY": "center",
+            "font": "Archivo Narrow",
+            "textSize": 50,
+            "fontColor": 6,
+            "x": 1660,
+            "y": 810,
+            "xSize": 1000,
+            "ySize": 120,
+            "offsetX": -375,
+            "offsetY": -9,
+            "renderRenderable": true,
+            "renderText": true,
+            "renderableObject": {
+              "name": "PalettePNG",
+              "imagePath": "src/textures/palette.png",
+              "x": 40,
+              "y": 30,
+              "xSize": 60,
+              "ySize": 60,
+              "opacity": 255
+            },
+            "color": 2,
+            "opacity": 255,
+            "bold": false,
+            "roundPercentage": 100,
+            "hovered": false,
+            "shadowOffset": 8,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "isRenderable": false,
+          "isTextbox": true
+        }
+      ],
+      "secondarySelections": []
+    },
+    {
+      "menuName": "Settings",
+      "previousMenuName": "Main Menu",
+      "bgColor": 0,
+      "elements": [
+        {
+          "selector": {
+            "selectorIndex": [
+              0,
+              1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "setMenu int 0",
+            "name": "Menu1Button",
+            "text": "Goto Menu 1",
+            "alignX": "left",
+            "alignY": "top",
+            "font": "Roboto",
+            "textSize": 50,
+            "fontColor": 1,
+            "x": 1280,
+            "y": 500,
+            "xSize": 550,
+            "ySize": 50,
+            "offsetX": 0,
+            "offsetY": 0,
+            "renderRenderable": false,
+            "renderText": true,
+            "color": 2,
+            "opacity": 255,
+            "bold": false,
+            "roundPercentage": 50,
+            "hovered": false,
+            "shadowOffset": 10,
+            "strokeWidth": 5.0,
+            "strokeColor": 1
+          },
+          "isRenderable": false,
+          "isTextbox": true
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              0,
+              1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "setMenu int 2",
+            "name": "Menu2Button",
+            "text": "Goto Menu 3",
+            "alignX": "center",
+            "alignY": "center",
+            "font": "Roboto",
+            "textSize": 50,
+            "fontColor": 2,
+            "x": 200,
+            "y": 300,
+            "xSize": 550,
+            "ySize": 50,
+            "offsetX": 0,
+            "offsetY": 0,
+            "renderRenderable": false,
+            "renderText": true,
+            "color": 3,
+            "opacity": 255,
+            "bold": false,
+            "roundPercentage": 100,
+            "hovered": false,
+            "shadowOffset": 10,
+            "strokeWidth": 5.0,
+            "strokeColor": 1
+          },
+          "isRenderable": false,
+          "isTextbox": true
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              0,
+              1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "TestFunction",
+            "name": "Box3",
+            "text": "This is Menu 2",
+            "alignX": "center",
+            "alignY": "center",
+            "font": "Roboto",
+            "textSize": 50,
+            "fontColor": 3,
+            "x": 300,
+            "y": 100,
+            "xSize": 550,
+            "ySize": 50,
+            "offsetX": 0,
+            "offsetY": 0,
+            "renderRenderable": false,
+            "renderText": true,
+            "color": 1,
+            "opacity": 255,
+            "bold": false,
+            "roundPercentage": 100,
+            "hovered": false,
+            "shadowOffset": 10,
+            "strokeWidth": 5.0,
+            "strokeColor": 1
+          },
+          "isRenderable": false,
+          "isTextbox": true
+        }
+      ],
+      "secondarySelections": []
+    },
+    {
+      "menuName": "TestMenu2",
+      "previousMenuName": "Main Menu",
+      "bgColor": 0,
+      "elements": [
+        {
+          "selector": {
+            "selectorIndex": [
+              0,
+              1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "setMenu int 0",
+            "name": "Menu1Button",
+            "text": "Goto Menu 1",
+            "alignX": "left",
+            "alignY": "top",
+            "font": "Roboto",
+            "textSize": 50,
+            "fontColor": 1,
+            "x": 1280,
+            "y": 500,
+            "xSize": 550,
+            "ySize": 50,
+            "offsetX": 0,
+            "offsetY": 0,
+            "renderRenderable": false,
+            "renderText": true,
+            "color": 2,
+            "opacity": 255,
+            "bold": false,
+            "roundPercentage": 50,
+            "hovered": false,
+            "shadowOffset": 10,
+            "strokeWidth": 5.0,
+            "strokeColor": 1
+          },
+          "isRenderable": false,
+          "isTextbox": true
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              0,
+              1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "setMenu int 1",
+            "name": "Menu2Button",
+            "text": "Goto Menu 2",
+            "alignX": "center",
+            "alignY": "center",
+            "font": "Roboto",
+            "textSize": 50,
+            "fontColor": 2,
+            "x": 200,
+            "y": 300,
+            "xSize": 550,
+            "ySize": 50,
+            "offsetX": 0,
+            "offsetY": 0,
+            "renderRenderable": false,
+            "renderText": true,
+            "color": 3,
+            "opacity": 255,
+            "bold": false,
+            "roundPercentage": 100,
+            "hovered": false,
+            "shadowOffset": 10,
+            "strokeWidth": 5.0,
+            "strokeColor": 1
+          },
+          "isRenderable": false,
+          "isTextbox": true
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              0,
+              1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "TestFunction",
+            "name": "Box3",
+            "text": "This is Menu 3",
+            "alignX": "center",
+            "alignY": "center",
+            "font": "Roboto",
+            "textSize": 50,
+            "fontColor": 3,
+            "x": 300,
+            "y": 100,
+            "xSize": 550,
+            "ySize": 50,
+            "offsetX": 0,
+            "offsetY": 0,
+            "renderRenderable": false,
+            "renderText": true,
+            "color": 1,
+            "opacity": 255,
+            "bold": false,
+            "roundPercentage": 100,
+            "hovered": false,
+            "shadowOffset": 10,
+            "strokeWidth": 5.0,
+            "strokeColor": 1
+          },
+          "isRenderable": false,
+          "isTextbox": true
+        }
+      ],
+      "secondarySelections": []
+    }
+  ]
+}

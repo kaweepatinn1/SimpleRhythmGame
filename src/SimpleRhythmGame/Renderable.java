@@ -23,8 +23,7 @@ public class Renderable {
     private int xSize;
     private int ySize;
     private int opacity;
-    private File file;
-    private BufferedImage image;
+    private transient BufferedImage image;
 
     public Renderable(String function, String name, String imagePath, int x, int y,
     		int xSize, int ySize, int opacity) {
@@ -36,15 +35,14 @@ public class Renderable {
         this.xSize = xSize;
         this.ySize = ySize;
         this.opacity = opacity;
-        this.file = new File(imagePath);
         try {
-        	BufferedImage originalImage = ImageIO.read(file);
+        	BufferedImage originalImage = ImageIO.read(getFile());
         	this.image = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
                     xSize, ySize, Scalr.OP_ANTIALIAS);
         } catch(IOException e){
         	this.image = null;
             System.out.println (e.toString());
-            System.out.println("Could not find file: " + file);
+            System.out.println("Could not find file: " + getFile());
         }
     }
     
@@ -58,15 +56,14 @@ public class Renderable {
         this.xSize = xSize;
         this.ySize = ySize;
         this.opacity = opacity;
-        this.file = new File(imagePath);
         try {
-        	BufferedImage originalImage = ImageIO.read(file);
+        	BufferedImage originalImage = ImageIO.read(getFile());
         	this.image = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
                     xSize, ySize, Scalr.OP_ANTIALIAS);
         } catch(IOException e){
         	this.image = null;
             System.out.println (e.toString());
-            System.out.println("Could not find file: " + file);
+            System.out.println("Could not find file: " + getFile());
         }
     }
     
@@ -84,28 +81,10 @@ public class Renderable {
 
     public void setX(int x) {
         this.x =  x;
-        try {
-        	BufferedImage originalImage = ImageIO.read(file);
-        	this.image = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
-                    xSize, ySize, Scalr.OP_ANTIALIAS);
-        } catch(IOException e){
-        	this.image = null;
-            System.out.println (e.toString());
-            System.out.println("Could not find file: " + file);
-        }
     }
     
     public void setY(int y) {
         this.y = y;
-        try {
-        	BufferedImage originalImage = ImageIO.read(file);
-        	this.image = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
-                    xSize, ySize, Scalr.OP_ANTIALIAS);
-        } catch(IOException e){
-        	this.image = null;
-            System.out.println (e.toString());
-            System.out.println("Could not find file: " + file);
-        }
     }
     
     public void setXSize(int xSize) {
@@ -120,19 +99,15 @@ public class Renderable {
         this.opacity = opacity;
     }
     
-    public void setFile(File file) {
-    	this.file = file;
-    }
-    
     public void setImage(BufferedImage image) {
     	try {
-        	BufferedImage originalImage = ImageIO.read(file);
+        	BufferedImage originalImage = ImageIO.read(getFile());
         	this.image = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
                     xSize, ySize, Scalr.OP_ANTIALIAS);
         } catch(IOException e){
         	this.image = null;
             System.out.println (e.toString());
-            System.out.println("Could not find file: " + file);
+            System.out.println("Could not find file: " + getFile());
         }
     }
     
@@ -169,7 +144,7 @@ public class Renderable {
     }
     
     public File getFile() {
-    	return file;
+    	return new File(imagePath);
     }
     
     public BufferedImage getImage() {

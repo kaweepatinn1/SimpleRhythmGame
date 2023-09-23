@@ -1,6 +1,7 @@
 package SimpleRhythmGame;
 
 public class TextBox {
+	private float scale;
 	private String function;
 	private String name;
     private String text;
@@ -27,10 +28,11 @@ public class TextBox {
     private float strokeWidth;
     private int strokeColor;
     
-    public TextBox(String function, String name, Renderable renderableObject, String text, String alignX, String alignY, 
+    public TextBox(float scale, String function, String name, Renderable renderableObject, String text, String alignX, String alignY, 
     		String font, int fontColor, int textSize, int x, int y, int xSize, int ySize, 
     		int offsetX, int offsetY, int color, int opacity, boolean bold, 
     		int roundPercentage, int shadowOffset, float strokeWidth, int strokeColor) {
+    	this.scale = scale;
     	this.function = function;
         this.name = name;
     	this.text = text;
@@ -58,10 +60,11 @@ public class TextBox {
         this.strokeColor = strokeColor;
     }
     
-    public TextBox(String function, String name, String text, String alignX, String alignY, 
+    public TextBox(float scale, String function, String name, String text, String alignX, String alignY, 
     		String font, int fontColor, int textSize, int x, int y, int xSize, int ySize, 
     		int offsetX, int offsetY, int color, int opacity, boolean bold, 
     		int roundPercentage, int shadowOffset, float strokeWidth, int strokeColor) {
+    	this.scale = scale;
     	this.function = function;
         this.name = name;
     	this.text = text;
@@ -89,10 +92,11 @@ public class TextBox {
         this.strokeColor = strokeColor;
     }
 
-    public TextBox(String function, String name, Renderable renderableObject, 
+    public TextBox(float scale, String function, String name, Renderable renderableObject, 
     		int x, int y, int xSize, int ySize, 
     		int color, int opacity, int roundPercentage,
     		int shadowOffset, float strokeWidth, int strokeColor) {
+    	this.scale = scale;
     	this.function = function;
     	this.name = name;
     	this.text = null;
@@ -118,6 +122,10 @@ public class TextBox {
         this.shadowOffset = shadowOffset;
         this.strokeWidth = strokeWidth;
         this.strokeColor = strokeColor;
+    }
+    
+    public float getScale() {
+    	return scale;
     }
     
     public String getFunction() {
@@ -218,6 +226,10 @@ public class TextBox {
     
     public int getStrokeColor() {
     	return strokeColor;
+    }
+    
+    public void setScale(float scale) {
+    	this.scale = scale;
     }
     
     public void setFunction(String function) {

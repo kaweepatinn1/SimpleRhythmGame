@@ -8,6 +8,39 @@ public class DefaultValues {
 	private final static boolean defaultFullscreen = false; // if not fullscreen will force below value
 	private final static int defaultSizeToForce = 1280; // forces this screen size if above is true
 	
+	private final static Controls[] defaultControls = new Controls[] {
+			new Controls(
+					"Up",
+					38,
+					new int[]{38, -1, -1}
+					),
+			new Controls(
+					"Down",
+					40,
+					new int[]{40, -1, -1}
+					),
+			new Controls(
+					"Left",
+					37,
+					new int[]{37, -1, -1}
+					),
+			new Controls(
+					"Right",
+					37,
+					new int[]{39, -1, -1}
+					),
+			new Controls(
+					"Enter",
+					10,
+					new int[]{10, -1, -1}
+					),
+			new Controls(
+					"Escape",
+					27,
+					new int[]{27, -1, -1}
+					)
+	};
+	
 	private final static Color[] defaultColors = new Color[] {
 			new Color (102,102,102,255), // 0. BG Color
 			new Color (217,234,211,255), // 1. Menu Color
@@ -32,39 +65,33 @@ public class DefaultValues {
 	private final static Menu[] defaultMenus = new Menu[] {
 			new Menu( // 0. Initialization (for setting up screen size, username)
 					"Main Menu", // Menu Name
+					null,
 					0, // BG Color
-					new Element[] {
+					new int[]{}, // Secondary Selections
+					new Element[] { // Elements List
 						new Element(
 							new Selector(
-									new int[]{0,0},
-									new int[][]{{1,0},{0,1},{0,0},{0,0}},
-									false,
-									false
+								new int[]{0,0}, // Selector Index
+								new int[][]{{0,0},{0,1},{0,0},{0,0}} // E, S, W, N to select next
 								),
 							new TextBox(
 								// TextBox with Renderable
+								1.5f, // scale
 								"setMenu String Play_Menu", // function
 								"PlaysButton",  // name
 								new Renderable(
 										// Renderable Without Function
-<<<<<<< HEAD
-										"Film", // name
-										"src/textures/defaultcursor.png", // file source
-										1865, 515, 20, 20, // x, y, xSize, ySize
-										25 // opacity (0-255)
-=======
 										"PlayPNG", // name
 										"src/textures/play.png", // file source
 										40, 30, 60, 60, // x, y, xSize, ySize (relative)
 										255 // opacity (0-255)
->>>>>>> 56a6b7e2c17682d832416ba5987482e466823d4d
 										),  // renderable
 								"Play", // text
 								"left", "center", // align
 								"Archivo Narrow", // font
 								6, // text color (index of colors)
 								50, // text size
-								1260, 240, 1000, 120,  // x, y, xSize, ySize
+								1810, 325, 1000, 120,  // x, y, xSize, ySize
 								-375, -9, // text offset (x, y)
 								2, // box color (index of colors)
 								255, // opacity (0-255)
@@ -73,8 +100,14 @@ public class DefaultValues {
 								8, // shadowOffset
 								5, 6 // strokeWidth, strokeColor
 								)),
-						new Element(new TextBox(
+						new Element(
+							new Selector(
+								new int[]{0,1}, // Selector Index
+								new int[][]{{0,1},{0,2},{0,1},{0,0}} // E, S, W, N to select next
+								),
+							new TextBox(
 								// TextBox with Renderable
+								1, // scale
 								"setMenu String Stats_Leaderboards_Menu", // function
 								"StatsLeaderboardsButton",  // name
 								new Renderable(
@@ -89,7 +122,7 @@ public class DefaultValues {
 								"Archivo Narrow", // font
 								6, // text color (index of colors)
 								50, // text size
-								1260, 390, 1000, 120,  // x, y, xSize, ySize
+								1660, 510, 1000, 120,  // x, y, xSize, ySize
 								-375, -9, // text offset (x, y)
 								2, // box color (index of colors)
 								255, // opacity (0-255)
@@ -98,8 +131,14 @@ public class DefaultValues {
 								8, // shadowOffset
 								5, 6 // strokeWidth, strokeColor
 								)),
-						new Element(new TextBox(
+						new Element(
+							new Selector(
+								new int[]{0,2}, // Selector Index
+								new int[][]{{0,2},{0,3},{0,2},{0,1}} // E, S, W, N to select next
+								),
+							new TextBox(
 								// TextBox with Renderable
+								1, // scale
 								"setMenu String Settings_Menu", // function
 								"SettingsButton",  // name
 								new Renderable(
@@ -114,7 +153,7 @@ public class DefaultValues {
 								"Archivo Narrow", // font
 								6, // text color (index of colors)
 								50, // text size
-								1260, 540, 1000, 120,  // x, y, xSize, ySize
+								1660, 660, 1000, 120,  // x, y, xSize, ySize
 								-375, -9, // text offset (x, y)
 								2, // box color (index of colors)
 								255, // opacity (0-255)
@@ -123,8 +162,14 @@ public class DefaultValues {
 								8, // shadowOffset
 								5, 6 // strokeWidth, strokeColor
 								)),
-						new Element(new TextBox(
+						new Element(
+							new Selector(
+								new int[]{0,3}, // Selector Index
+								new int[][]{{0,3},{0,3},{0,3},{0,2}} // E, S, W, N to select next
+								),
+							new TextBox(
 								// TextBox with Renderable
+								1, // scale
 								"setMenu String Customization_Menu", // function
 								"CustomizationButton",  // name
 								new Renderable(
@@ -139,7 +184,7 @@ public class DefaultValues {
 								"Archivo Narrow", // font
 								6, // text color (index of colors)
 								50, // text size
-								1260, 690, 1000, 120,  // x, y, xSize, ySize
+								1660, 810, 1000, 120,  // x, y, xSize, ySize
 								-375, -9, // text offset (x, y)
 								2, // box color (index of colors)
 								255, // opacity (0-255)
@@ -151,31 +196,55 @@ public class DefaultValues {
 					}),
 			new Menu( // 1. MENU 1
 					"Settings", // Menu Name
-					new int[] {0,1}, // Selector Index
+					"Main Menu",
 					0, // BG Color
+					new int[]{},
 				new Element[] {
-					new Element(new TextBox("setMenu int 0", "Menu1Button", "Goto Menu 1", "left", "top", "Roboto",
+					new Element(new Selector(
+							new int[]{0,1},
+							new int[][]{{0,1},{0,2},{0,1},{0,0}}
+							),new TextBox(1,"setMenu int 0", "Menu1Button", "Goto Menu 1", "left", "top", "Roboto",
 							1, 50, 1280, 500, 550, 50, 0, 0, 2, 255, false, 50, 10, 5, 1)),
-					new Element(new TextBox("setMenu int 2", "Menu2Button", "Goto Menu 3", "center", "center", "Roboto", 	
+					new Element(new Selector(
+							new int[]{0,1},
+							new int[][]{{0,1},{0,2},{0,1},{0,0}}
+							),new TextBox(1,"setMenu int 2", "Menu2Button", "Goto Menu 3", "center", "center", "Roboto", 	
 							2, 50, 200, 300, 550, 50, 0, 0, 3, 255, false, 100, 10, 5, 1)),
-					new Element(new TextBox("TestFunction", "Box3", "This is Menu 2", "center", "center", "Roboto",
+					new Element(new Selector(
+							new int[]{0,1},
+							new int[][]{{0,1},{0,2},{0,1},{0,0}}
+							),new TextBox(1,"TestFunction", "Box3", "This is Menu 2", "center", "center", "Roboto",
 							3, 50, 300, 100, 550, 50, 0, 0, 1, 255, false, 100, 10, 5, 1))
 					}
 				),
 			new Menu( // 2. MENU 2
 					"TestMenu2", // Menu Name
-					new int[] {0,2}, // Selector Index
+					"Main Menu",
 					0, // BG Color
+					new int[]{},
 				new Element[] {
-					new Element(new TextBox("setMenu int 0", "Menu1Button", "Goto Menu 1", "left", "top", "Roboto",
+					new Element(new Selector(
+							new int[]{0,1},
+							new int[][]{{0,1},{0,2},{0,1},{0,0}}
+							),new TextBox(1,"setMenu int 0", "Menu1Button", "Goto Menu 1", "left", "top", "Roboto",
 							1, 50, 1280, 500, 550, 50, 0, 0, 2, 255, false, 50, 10, 5, 1)),
-					new Element(new TextBox("setMenu int 1", "Menu2Button", "Goto Menu 2", "center", "center", "Roboto", 	
+					new Element(new Selector(
+							new int[]{0,1},
+							new int[][]{{0,1},{0,2},{0,1},{0,0}}
+							),new TextBox(1,"setMenu int 1", "Menu2Button", "Goto Menu 2", "center", "center", "Roboto", 	
 							2, 50, 200, 300, 550, 50, 0, 0, 3, 255, false, 100, 10, 5, 1)),
-					new Element(new TextBox("TestFunction", "Box3", "This is Menu 3", "center", "center", "Roboto",
+					new Element(new Selector(
+							new int[]{0,1},
+							new int[][]{{0,1},{0,2},{0,1},{0,0}}
+							),new TextBox(1,"TestFunction", "Box3", "This is Menu 3", "center", "center", "Roboto",
 							3, 50, 300, 100, 550, 50, 0, 0, 1, 255, false, 100, 10, 5, 1))
 					}
 				),
 	};
+	
+	public static Controls[] getDefaultControls() {
+		return defaultControls;
+	}
 			
 	public static boolean getDefaultFullscreen() {
 		return defaultFullscreen;
@@ -200,6 +269,7 @@ public class DefaultValues {
 	public static String[] getDefaultFonts() {
 		return defaultFonts;
 	}
+	
 }
 
 /* 
@@ -217,77 +287,97 @@ Element Templates:
 
 for functions: (functionName, and then limitless type and object pairs)
 
-new Element(new Renderable(
-							// Default Renderable
-							"xx xx xx", // function 
-							"xx", // name
-							"src/textures/xx.png", // file source
-							0, 0, 0, 0, // x, y, xSize, ySize
-							255 // opacity (0-255)
-							)),
+new Element(
+	new Selector(
+		new int[]{0,0}, // Selector Index
+		new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+	),
+	new Renderable(
+		// Default Renderable
+		"xx xx xx", // function 
+		"xx", // name
+		"src/textures/xx.png", // file source
+		0, 0, 0, 0, // x, y, xSize, ySize
+		255 // opacity (0-255)
+	)),
 							
-new Element(new TextBox(
-							// TextBox with Text and Renderable
-							"xx xx xx", // function
-							"xx",  // name
-							"xx", // text
-							new Renderable(
-									// Renderable Without Function
-									"xx", // name
-									"src/textures/xx.png", // file source
-									0, 0, 0, 0, // x, y, xSize, ySize (relative)
-									255 // opacity (0-255)
-									),  // renderable
-							"center", "center", // align
-							"Archivo Narrow", // font style
-							0, // text color (index of colors)
-							24, // text size
-							0, 0, 0, 0,  // x, y, xSize, ySize
-							0, 0, // text offset (x, y)
-							1, // box color (index of colors)
-							255, // opacity (0-255)
-							false, 
-							50, // roundPercentage
-							8, // shadowOffset
-							5, 2 // strokeWidth, strokeColor
-							)),
+new Element(
+	new Selector(
+		new int[]{0,0}, // Selector Index
+		new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+	),
+	new TextBox(
+		// TextBox with Text and Renderable
+		"xx xx xx", // function
+		"xx",  // name
+		"xx", // text
+		new Renderable(
+				// Renderable Without Function
+				"xx", // name
+				"src/textures/xx.png", // file source
+				0, 0, 0, 0, // x, y, xSize, ySize (relative)
+				255 // opacity (0-255)
+				),  // renderable
+		"center", "center", // align
+		"Archivo Narrow", // font style
+		0, // text color (index of colors)
+		24, // text size
+		0, 0, 0, 0,  // x, y, xSize, ySize
+		0, 0, // text offset (x, y)
+		1, // box color (index of colors)
+		255, // opacity (0-255)
+		false, 
+		50, // roundPercentage
+		8, // shadowOffset
+		5, 2 // strokeWidth, strokeColor
+	)),
 							
-new Element(new TextBox(
-							// TextBox with Text
-							"xx xx xx", // function
-							"xx",  // name
-							"xx", // text
-							"center", "center", // align
-							"Archivo Narrow", // font style
-							0, // text color (index of colors)
-							24, // text size
-							0, 0, 0, 0,  // x, y, xSize, ySize
-							0, 0, // text offset (x, y)
-							1, // box color (index of colors)
-							255, // opacity (0-255)
-							false, 
-							50, // roundPercentage
-							8, // shadowOffset
-							5, 2 // strokeWidth, strokeColor
-							)),
+new Element(
+	new Selector(
+		new int[]{0,0}, // Selector Index
+		new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+	),
+	new TextBox(
+		// TextBox with Text
+		"xx xx xx", // function
+		"xx",  // name
+		"xx", // text
+		"center", "center", // align
+		"Archivo Narrow", // font style
+		0, // text color (index of colors)
+		24, // text size
+		0, 0, 0, 0,  // x, y, xSize, ySize
+		0, 0, // text offset (x, y)
+		1, // box color (index of colors)
+		255, // opacity (0-255)
+		false, 
+		50, // roundPercentage
+		8, // shadowOffset
+		5, 2 // strokeWidth, strokeColor
+	)),
 							
-new Element(new TextBox(
-							// TextBox with Renderable
-							"xx", // function
-							"xx",  // name
-							new Renderable(
-									// Renderable Without Function
-									"xx", // name
-									"src/textures/xx.png", // file source
-									0, 0, 0, 0, // x, y, xSize, ySize (relative)
-									255 // opacity (0-255)
-									),  // renderable
-							0, 0, 0, 0,  // x, y, xSize, ySize
-							1, // box color (index of colors)
-							255, // opacity (0-255)
-							50, // roundPercentage
-							8, // shadowOffset
-							5, 2 // strokeWidth, strokeColor
-							)),
+new Element(
+	new Selector(
+		new int[]{0,0}, // Selector Index
+		new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+	),
+	new TextBox(
+		// TextBox with Renderable
+		"xx", // function
+		"xx",  // name
+		new Renderable(
+				// Renderable Without Function
+				"xx", // name
+				"src/textures/xx.png", // file source
+				0, 0, 0, 0, // x, y, xSize, ySize (relative)
+				255 // opacity (0-255)
+				),  // renderable
+		0, 0, 0, 0,  // x, y, xSize, ySize
+		1, // box color (index of colors)
+		255, // opacity (0-255)
+		50, // roundPercentage
+		8, // shadowOffset
+		5, 2 // strokeWidth, strokeColor
+	)),
 							
 */

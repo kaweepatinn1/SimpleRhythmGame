@@ -6,12 +6,11 @@ public class Selector {
 	private boolean primaryHovered;
 	private boolean secondaryHovered;
 	
-	public Selector(int[] selectorIndex, int[][] selectorOptions,
-			boolean primaryHovered, boolean secondaryHovered) {
+	public Selector(int[] selectorIndex, int[][] selectorOptions) {
 		this.selectorIndex = selectorIndex;
 		this.selectorOptions = selectorOptions;
-		this.primaryHovered = primaryHovered;
-		this.secondaryHovered = secondaryHovered;
+		this.primaryHovered = false;
+		this.secondaryHovered = false;
 	}
 	
 	public int[] getSelectorIndex() {

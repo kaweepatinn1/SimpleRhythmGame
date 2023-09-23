@@ -47,7 +47,7 @@ public class Functions {
 	}
 	
 	private static void setMenuIndex(int menu) {
-		ShowImage.setMenu(menu);
+		ShowImage.setMenuFromAnIndex(menu);
 		// System.out.println("set menu to " + menu);
 	}
 	

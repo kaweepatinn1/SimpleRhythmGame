@@ -37,7 +37,6 @@ public class Framerate extends Thread {
 	public void run() { // game render loop
 		while(true) {
 			// Thread Runnable
-		
 			// Millisecond precision
 			double milliTime = System.currentTimeMillis();
 			double currentFrameTime =  milliTime - lastFrameTimeMillis;
@@ -64,7 +63,8 @@ public class Framerate extends Thread {
 				// System.out.println("framerate: " + currentFramerate);
 				 
 				lastFrameTimeMillis = milliTime;
-				ShowImage.repaintPanel();
+				
+				ShowImage.updateFrame();
 			} else {
 				// Does not render frame if the wait has not been long enough
 			} 
