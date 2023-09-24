@@ -1,17 +1,11 @@
 package SimpleRhythmGame;
 
-import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.awt.geom.*;
 import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
 
 public class ShowImage extends JPanel implements KeyListener {
     /**
@@ -21,15 +15,13 @@ public class ShowImage extends JPanel implements KeyListener {
 	private static ShowImage panel;
     private static int currentMenuIndex;
     private static Element[] elementsToRender;
+    private static RoundedArea[] masksToRender;
+    private static StoredTransform[] transformsToRender;
     private static Menu rawCurrentMenu;
-    private static Color[] colorsList;
-    private static Controls[] controls;
     private static int[] selected;
     private static Selector[] selectionsList;
     
     private static JFrame frame;
-    private static boolean fullscreen;
-    private static int sizeToForce;
     private static Config config;
     
     private static String lastHovered = null;
@@ -42,6 +34,118 @@ public class ShowImage extends JPanel implements KeyListener {
     private static int calculatedScreenWidth;
     private static double scale;
 
+    private static MouseListener mouseListener = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+        	int mouseX = e.getX();
+        	int mouseY = e.getY();
+        	// System.out.println("clicked");
+            Element clickedElement = checkLocation(mouseX, mouseY);
+            if (clickedElement != null) {
+            	// System.out.println(releasedElement.getName());
+        		String functionToRun = clickedElement.getFunction();
+                boolean ranFunction = Functions.runFunction(functionToRun);
+                if (!ranFunction) {
+                	System.out.println("ERROR: DID NOT RUN ANY FUNCTION FOR \nElement Name: " + clickedElement.getName() + 
+                			"\nwhich is a \nRenderable: " + clickedElement.isRenderable() + "\nTextbox: " + clickedElement.isTextbox());
+                } 
+                mouseDragStart = null;
+        	}
+        }
+        
+        public void mouseReleased(MouseEvent e) {
+        	int mouseX = e.getX();
+        	int mouseY = e.getY();
+        	// System.out.println("released");
+        	// System.out.println(mouseDragStart);
+            Element releasedElement = checkLocation(mouseX, mouseY);
+            if (releasedElement != null) {
+            	// System.out.println(releasedElement.getName());
+            	if (releasedElement.getName() == mouseDragStart && currentMouseDragging == true) {
+            		String functionToRun = releasedElement.getFunction();
+                    boolean ranFunction = Functions.runFunction(functionToRun);
+                    if (!ranFunction) {
+                    	System.out.println("ERROR: DID NOT RUN ANY FUNCTION FOR \nElement Name: " + releasedElement.getName() + 
+                    			"\nwhich is a \nRenderable: " + releasedElement.isRenderable() + "\nTextbox: " + releasedElement.isTextbox());
+                	}
+                } 
+        	} else {
+            	// Clicked on nothing.
+            }
+            currentMouseDragging = false;
+        }
+    };
+    
+    private static MouseMotionAdapter mouseMotionAdapter = new MouseMotionAdapter() {
+        @Override
+        public void mouseMoved(MouseEvent e) {
+            // Handle the mouse move event
+        	int mouseX = e.getX();
+        	int mouseY = e.getY();
+            //System.out.println("Mouse moved to (" + mouseX + ", " + mouseY +  ")");  
+        	
+        	Element hoveredElement = checkLocation(mouseX, mouseY);
+            
+        	if (hoveredElement != null) {
+        		String nameOfHoveredElement = hoveredElement.getName();
+        		selected = rawCurrentMenu.resetSelectors(getElementFromName(nameOfHoveredElement).getSelectorIndex());
+                if (lastHovered == nameOfHoveredElement) {
+                	// Do nothing, nothing has changed.
+                } else {
+                	if (nameOfHoveredElement != null){
+                		getElementFromName(nameOfHoveredElement).animate();
+                	}
+                	if (lastHovered != null) {
+                		getElementFromName(lastHovered).deanimate();
+                	}
+                	// System.out.println("no longer hovering: " + lastHovered);
+                	// System.out.println("hovering: " + nameOfHoveredElement);
+                	
+                }
+                lastHovered = nameOfHoveredElement; 
+        	} else {
+        		selected = rawCurrentMenu.resetSelectors(new int[]{-1,-1});
+        		if (lastHovered == null) {
+        			// Do nothing, nothing has changed.
+        		} else {
+                	if (lastHovered != null) {
+                		getElementFromName(lastHovered).deanimate();
+                	}
+        			// System.out.println("no longer hovering: " + lastHovered);
+                	// System.out.println("hovering: " + null);
+            		lastHovered = null;	
+        		}
+        	}
+        }
+        
+        @Override
+        public void mouseDragged(MouseEvent e) {
+        	int mouseX = e.getX();
+        	int mouseY = e.getY();
+        	// System.out.println("dragged");
+            Element clickedElement = checkLocation(mouseX, mouseY);
+            String nameOfDraggedElement;
+            if (clickedElement == null) {
+            	nameOfDraggedElement = null;
+            } else {
+            	nameOfDraggedElement = clickedElement.getName();
+            }
+            if (!currentMouseDragging) {
+            	currentMouseDragging = true;
+            	mouseDragStart = nameOfDraggedElement;
+            }
+            if (mouseDragCurrent == nameOfDraggedElement) {
+            	// DO NOTHING
+            } else {
+            	// TODO stopClickAnimation(mouseDragCurrent);
+            	if (clickedElement != null) {
+            		// TODO startClickAnimation(clickedBox.getName());
+            	}
+            	mouseDragCurrent = nameOfDraggedElement;
+            }
+        }
+    };
+    
     /*
     setNewFrameSize --> calculateNewScreenDimensions
     NOW SEPARATED
@@ -57,110 +161,10 @@ public class ShowImage extends JPanel implements KeyListener {
         setLayout(new BorderLayout()); // Set the main panel's layout to BorderLayout
 
         // Add mouse listener to the panel
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-            	int mouseX = e.getX();
-            	int mouseY = e.getY();
-            	// System.out.println("clicked");
-                Element clickedElement = checkLocation(mouseX, mouseY);
-                if (clickedElement != null) {
-                	// System.out.println(releasedElement.getName());
-            		String functionToRun = clickedElement.getFunction();
-                    boolean ranFunction = Functions.runFunction(functionToRun);
-                    if (!ranFunction) {
-                    	System.out.println("ERROR: DID NOT RUN ANY FUNCTION FOR \nElement Name: " + clickedElement.getName() + 
-                    			"\nwhich is a \nRenderable: " + clickedElement.isRenderable() + "\nTextbox: " + clickedElement.isTextbox());
-                    } 
-                    mouseDragStart = null;
-            	}
-            }
-            
-            public void mouseReleased(MouseEvent e) {
-            	int mouseX = e.getX();
-            	int mouseY = e.getY();
-            	// System.out.println("released");
-            	// System.out.println(mouseDragStart);
-                Element releasedElement = checkLocation(mouseX, mouseY);
-                if (releasedElement != null) {
-                	// System.out.println(releasedElement.getName());
-                	if (releasedElement.getName() == mouseDragStart && currentMouseDragging == true) {
-                		String functionToRun = releasedElement.getFunction();
-                        boolean ranFunction = Functions.runFunction(functionToRun);
-                        if (!ranFunction) {
-                        	System.out.println("ERROR: DID NOT RUN ANY FUNCTION FOR \nElement Name: " + releasedElement.getName() + 
-                        			"\nwhich is a \nRenderable: " + releasedElement.isRenderable() + "\nTextbox: " + releasedElement.isTextbox());
-                    	}
-                    } 
-            	} else {
-                	// Clicked on nothing.
-                }
-                currentMouseDragging = false;
-            }
-        });
-        
-        addMouseMotionListener(new MouseMotionAdapter() {
-            @Override
-            public void mouseMoved(MouseEvent e) {
-                // Handle the mouse move event
-            	int mouseX = e.getX();
-            	int mouseY = e.getY();
-                //System.out.println("Mouse moved to (" + mouseX + ", " + mouseY +  ")");  
-            	
-            	Element hoveredElement = checkLocation(mouseX, mouseY);
-                
-            	if (hoveredElement != null) {
-            		String nameOfHoveredElement = hoveredElement.getName();
-            		selected = rawCurrentMenu.resetSelectors(getElementFromName(nameOfHoveredElement).getSelectorIndex());
-	                if (lastHovered == nameOfHoveredElement) {
-	                	// Do nothing, nothing has changed.
-	                } else {
-	                	// System.out.println("no longer hovering: " + lastHovered);
-	                	// System.out.println("hovering: " + nameOfHoveredElement);
-	                	
-	                	// System.out.println(getElementFromName(nameOfHoveredElement).getTextbox().getStrokeColor());
-	                	// System.out.println(getElementFromName(nameOfHoveredElement).getTextbox().getStrokeColor());
-	                }
-	                lastHovered = nameOfHoveredElement; 
-            	} else {
-            		selected = rawCurrentMenu.resetSelectors(new int[]{-1,-1});
-            		if (lastHovered == null) {
-            			// Do nothing, nothing has changed.
-            		} else {
-            			// System.out.println("no longer hovering: " + lastHovered);
-	                	// System.out.println("hovering: " + null);
-                		lastHovered = null;	
-            		}
-            	}
-            }
-            
-            @Override
-            public void mouseDragged(MouseEvent e) {
-            	int mouseX = e.getX();
-            	int mouseY = e.getY();
-            	// System.out.println("dragged");
-                Element clickedElement = checkLocation(mouseX, mouseY);
-                String nameOfDraggedElement;
-                if (clickedElement == null) {
-                	nameOfDraggedElement = null;
-                } else {
-                	nameOfDraggedElement = clickedElement.getName();
-                }
-                if (!currentMouseDragging) {
-                	currentMouseDragging = true;
-                	mouseDragStart = nameOfDraggedElement;
-                }
-                if (mouseDragCurrent == nameOfDraggedElement) {
-                	// DO NOTHING
-                } else {
-                	// TODO stopClickAnimation(mouseDragCurrent);
-                	if (clickedElement != null) {
-                		// TODO startClickAnimation(clickedBox.getName());
-                	}
-                	mouseDragCurrent = nameOfDraggedElement;
-                }
-            }
-        });
+        if(config.getCursorEnabled()) {
+        	addMouseListener(mouseListener);
+            addMouseMotionListener(mouseMotionAdapter);
+        }
 
         // Add key listener to the panel
         setFocusable(true);
@@ -182,24 +186,57 @@ public class ShowImage extends JPanel implements KeyListener {
 	        
 	        if (currentElement.isTextbox()) {
 	        	
-	        	
-	        	
 	        	TextBox textbox = currentElement.getTextbox();
 	        	
-	        	RoundedRect roundRectAttributes = getBoxAttributes(textbox);
+	        	int maskIndex = textbox.getMaskIndex();
 	        	
-	        	int x = roundRectAttributes.getX();
-	        	int y = roundRectAttributes.getY();
-	        	int xSize = roundRectAttributes.getXSize();
-	        	int ySize = roundRectAttributes.getYSize();
-	        	int round = roundRectAttributes.getRound();
+	        	if (maskIndex == -1 || masksToRender.length == 0) {
+	        		Rectangle fullscreenSize = new Rectangle(0, 0, calculatedScreenWidth, calculatedScreenHeight);
+	        		Area noMask = new Area(fullscreenSize);
+	        		g2d.setClip(noMask);
+	        	} else {
+        			RoundedRect maskAttributes = getBoxAttributes(masksToRender[maskIndex]);
+		        	
+		        	RoundRectangle2D maskBounds = new RoundRectangle2D.Double(
+		        			maskAttributes.getX(), 
+		        			maskAttributes.getY(), 
+		        			maskAttributes.getXSize(), 
+		        			maskAttributes.getYSize(), 
+		        			maskAttributes.getRound(), 
+		        			maskAttributes.getRound());
+		        	
+		        	Area mask = new Area(maskBounds);
+		        	g2d.setClip(mask);
+	        	}
+        		
+	        	RoundedRect roundRectAttributes = getBoxAttributes(textbox.getRectShape());
+	        	
+	        	RoundRectangle2D roundRect = new RoundRectangle2D.Double(
+	        			roundRectAttributes.getX(),
+	        			roundRectAttributes.getY(),
+	        			roundRectAttributes.getXSize(),
+	        			roundRectAttributes.getYSize(),
+	        			roundRectAttributes.getRound(),
+	        			roundRectAttributes.getRound()
+	        			);
+	        	
+	        	Shape finalRect;
+	        	if (currentElement.getTransform().getNewTransform() != null) {
+	        		finalRect = currentElement.getTransform().getCurrentPosition().getFinalTransform().createTransformedShape(roundRect);
+	        	} else {
+	        		finalRect = roundRect;
+	        	}
+	        	
+	        	// grabs the SpecialTransform which grabs the AffineTransform to create a new shape from the transform
+	        	// of roundRect;
 	        	
 	        	if (textbox.getShadowOffset() != 0) { // fills a drop shadow on command
-	            	int dropShadowX = x + textbox.getShadowOffset();
-	            	int dropShadowY = y + textbox.getShadowOffset();
+	        		AffineTransform shadow = new AffineTransform();
+	        		shadow.translate(textbox.getShadowOffset(), textbox.getShadowOffset());
+	        		Shape shadowRect = shadow.createTransformedShape(finalRect);
 	            	g2d.setColor(new Color(0, 0, 0, 100));
 	            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
-	            	g2d.fillRoundRect(dropShadowX, dropShadowY, xSize, ySize, round, round);
+	            	g2d.fill(shadowRect);
 	            }
 	        	
 	            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
@@ -207,17 +244,20 @@ public class ShowImage extends JPanel implements KeyListener {
 	            float thickness = textbox.getStrokeWidth();
 	            g2d.setStroke(new BasicStroke(thickness));
 	            
-	            g2d.setColor(colorsList[textbox.getColor()]); // set box color
-	            g2d.fillRoundRect(x, y, xSize, ySize, round, round);
-	            g2d.setColor(colorsList[textbox.getStrokeColor()]);
-	            g2d.drawRoundRect(x, y, xSize, ySize, round, round);
+	            g2d.setColor(config.getColors()[textbox.getColor()]); // set box color
+	            g2d.fill(finalRect);
+	            g2d.setColor(config.getColors()[textbox.getStrokeColor()]);
+	            g2d.draw(finalRect);
 	            
 	            g2d.setStroke(new BasicStroke(0));
 	            
 	            // ^ Textbox section
 	            // v Text / Image section
+	            if (currentElement.getTransform().getNewTransform() != null) {
+	            	g2d.transform(currentElement.getTransform().getCurrentPosition().getFinalTransform());
+	            }
 	            
-	            if (textbox.hasRenderable()) { // render image if contained
+	            if (textbox.getRenderableObject() != null) { // render image if contained
 	            	Renderable renderable = textbox.getRenderableObject();
 	            	BufferedImage image = renderable.getImage();
 	            	int rule = AlphaComposite.SRC_OVER;
@@ -228,9 +268,9 @@ public class ShowImage extends JPanel implements KeyListener {
 	            	// Reset the composite after using it
 	            } 
 	            
-	            if (textbox.hasText()){ // render text if contained
+	            if (textbox.getText() != null){ // render text if contained
 	            	
-	            	g2d.setColor(colorsList[textbox.getFontColor()]); // set text color
+	            	g2d.setColor(config.getColors()[textbox.getTextColor()]); // set text color
 		            
 		            Font font;
 		            
@@ -244,11 +284,12 @@ public class ShowImage extends JPanel implements KeyListener {
 		            int extraAlignX = extraAligns[0];
 		            int extraAlignY = extraAligns[1];
 		            
-		            int finalX = x + (textbox.getXSize() / 2) + textbox.getOffsetX() + extraAlignX;
-		            int finalY = y + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY;
+		            int finalX = roundRectAttributes.getX() + (textbox.getXSize() / 2) + textbox.getOffsetX() + extraAlignX;
+		            int finalY = roundRectAttributes.getY() + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY;
 		            g2d.drawString(textbox.getText(), finalX, finalY);
-		            
 	            }
+	            
+	            g2d.setTransform(new AffineTransform());
 
 	        } else if (currentElement.isRenderable()) {
 	        	
@@ -266,7 +307,8 @@ public class ShowImage extends JPanel implements KeyListener {
         		System.out.println(currentElement);
         	}
         }
-     // draw GeneralPath (polyline)
+        
+     // Draw Menu Title Box
         int x2Points[] = {
         		calculatedScreenWidth * 30 / 100,
         		calculatedScreenWidth * 34 / 100,
@@ -288,11 +330,11 @@ public class ShowImage extends JPanel implements KeyListener {
                  polyline.lineTo(x2Points[index], y2Points[index]);
         };
         
-        g2d.setColor(colorsList[1]);
+        g2d.setColor(config.getColors()[1]);
         g2d.fill(polyline);
         
         float thickness = 5 * (float) scale;
-        g2d.setColor(colorsList[6]);
+        g2d.setColor(config.getColors()[6]);
         g2d.setStroke(new BasicStroke(thickness));
         g2d.draw(polyline);
         
@@ -301,17 +343,19 @@ public class ShowImage extends JPanel implements KeyListener {
     			1,
 				"", // function
 				"",  // name
-				rawCurrentMenu.getMenuName(), // text
-				"center", "center", // align
-				"Archivo Narrow", // font
-				6, // text color (index of colors)
-				(int) (75 * scale), // text size
-				0, 0, 0, 0,  // x, y, xSize, ySize
-				calculatedScreenWidth * 50 / 100, calculatedScreenHeight * 15 / 400, // text offset (x, y)
+				new Text(rawCurrentMenu.getMenuDisplayName(),
+						"center", "center", // align
+						calculatedScreenWidth * 50 / 100, calculatedScreenHeight * 15 / 400, // text offset (x, y)
+						(int) (75 * scale), // text size
+						6, // text color (index of colors)
+						"Archivo Narrow", // font
+						true // bold
+						), // text
+				new RoundedArea(0,0,0,0,0),  // x, y, xSize, ySize
+				-1, // Mask Index
 				1, // box color (index of colors)
 				0, // opacity (0-255)
-				true, // bold boolean
-				0, // roundPercentage
+				 // bold boolean
 				0, // shadowOffset
 				0, 0 // strokeWidth, strokeColor
         		);
@@ -329,6 +373,31 @@ public class ShowImage extends JPanel implements KeyListener {
         int finalX = titletextbox.getOffsetX() + extraAlignX;
         int finalY = titletextbox.getOffsetY() + extraAlignY;
         g2d.drawString(titletextbox.getText(), finalX, finalY);
+        
+        // Draw Masks
+        
+    	if (config.DEBUG_drawMasks()){
+    		RoundedArea[] drawMasks = rawCurrentMenu.getMasks();
+        	for (int i = 0 ; i < drawMasks.length ; i++) {
+        		RoundedRect maskAttributes = getBoxAttributes(masksToRender[i]);
+	        	
+	        	RoundRectangle2D maskBounds = new RoundRectangle2D.Double(
+	        			maskAttributes.getX(), 
+	        			maskAttributes.getY(), 
+	        			maskAttributes.getXSize(), 
+	        			maskAttributes.getYSize(), 
+	        			maskAttributes.getRound(), 
+	        			maskAttributes.getRound());
+	        	
+	        	float hue = (i + config.DEBUG_masksColorsOffset()) * 0.15f;
+    			float saturation = 0.8f;
+    			float brightness = 1f;
+    			Color color = Color.getHSBColor(hue, saturation, brightness);
+    			Color finalColor = new Color(color.getRed(),color.getGreen(),color.getBlue(),127);
+	        	g2d.setColor(finalColor);
+	        	g2d.fill(maskBounds);
+        	}
+        }
     }
     
     private int[] getTextAligns(TextBox textbox, FontMetrics fontMetrics){
@@ -358,8 +427,9 @@ public class ShowImage extends JPanel implements KeyListener {
     }
     
 
-    public Element checkLocation(int mouseX, int mouseY) {
+    public static Element checkLocation(int mouseX, int mouseY) {
     	Element currentBox = null;
+    	
         for (int i = 0; i < elementsToRender.length; i++) {
             Element currentElement = elementsToRender[i];
             if (currentElement.isTextbox()) {
@@ -374,15 +444,45 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	int ySize = roundRectAttributes.getYSize();
 	        	int round = roundRectAttributes.getRound();
 	        	
-	            RoundRectangle2D roundRect = new RoundRectangle2D.Double(x, y, xSize, ySize, round, round);
+	        	RoundRectangle2D roundRect = new RoundRectangle2D.Double(x, y, xSize, ySize, round, round);
+	        	
+	        	Shape finalRect;
+	        	
+	        	if (currentElement.getTransform().getNewTransform() != null) {
+	        		finalRect = currentElement.getTransform().getCurrentPosition().getFinalTransform().createTransformedShape(roundRect);
+	        	} else {
+	        		finalRect = roundRect;
+	        	}
+	        	Area buttonArea = new Area(finalRect);
+	        	
+        		int maskIndex = textbox.getMaskIndex();
+	        	
+	        	if (maskIndex == -1) {
+	        		// No mask
+	        	} else {
+	        		
+        			RoundedRect strokeInclusiveAttributes = getBoxAttributes(masksToRender[maskIndex]);
+		        	
+		        	RoundRectangle2D maskBounds = new RoundRectangle2D.Double(
+		        			strokeInclusiveAttributes.getX(), 
+		        			strokeInclusiveAttributes.getY(), 
+		        			strokeInclusiveAttributes.getXSize(), 
+		        			strokeInclusiveAttributes.getYSize(), 
+		        			strokeInclusiveAttributes.getRound(), 
+		        			strokeInclusiveAttributes.getRound());
+		        	
+		        	Area mask = new Area(maskBounds);
+		        	
+		        	buttonArea.intersect(mask);
+	        	}
 	            
-	            if (textbox.hasRenderable()) {
+	            if (textbox.getRenderableObject() != null) {
 	            	Renderable renderable = textbox.getRenderableObject();
 	            	BufferedImage image = renderable.getImage();
 	            	bounds = new Rectangle(renderable.getX(), renderable.getY(), image.getWidth(), image.getHeight());
 	            }
-	            if ((roundRect.contains(mouseX, mouseY) && textbox.getOpacity() != 0) ||
-	            	(bounds.contains(mouseX, mouseY) && textbox.getRenderableObject().getOpacity() != 0 && textbox.hasRenderable())
+	            if ((buttonArea.contains(mouseX, mouseY) && textbox.getOpacity() != 0) ||
+	            	(bounds.contains(mouseX, mouseY) && textbox.getRenderableObject().getOpacity() != 0 && textbox.getRenderableObject() != null)
 	            		) { // sets the current hovered box as this if either its renderable (if there is one) or its shape is hovered AND not invisible
 	                currentBox = currentElement; 
 	                // does not break so that the element which is highest in the hierarchy
@@ -414,7 +514,7 @@ public class ShowImage extends JPanel implements KeyListener {
         // System.out.println(rawKeyCode);
         int keyCode = -1;
         boolean foundKey = false;
-        for (Controls control : controls) {
+        for (Controls control : config.getControls()) {
         	for (int customKey : control.getNewKeyCodes())
         	if (customKey == rawKeyCode) {
         		keyCode = control.getOriginalKeyCode();
@@ -438,17 +538,31 @@ public class ShowImage extends JPanel implements KeyListener {
             	int[][] directionalOptions = new int[4][2];
             	boolean found = false;
             	Element element = null;
+            	Element elementToDeanimate = null; 
+            	// Used so that switching from the same element to itself 
+            	// doesn't cause deanimate; it only deanimates when it is
+            	// a new element being switched to.
             	for (int i = 0 ; i < selectionsList.length; i++) {
             		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1]) {
             			directionalOptions = selectionsList[i].getSelectorOptions();
             			// retrieves directional options from the currently selected item
             			element = rawCurrentMenu.getElements()[i];
+            			elementToDeanimate = element;
             			found = true;
+            			break;
             		}
             	}
             	
             	if (!found) { // set the selected to 0 instead if not currently selecting a valid item (can be -1,-1)
             		selected = rawCurrentMenu.resetSelectors(new int[]{0,0});
+            		for (int i = 0 ; i < selectionsList.length; i++) {
+                		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1]) {
+                			element = rawCurrentMenu.getElements()[i];
+                			element.animate();
+                			lastHovered = element.getName();
+                			break;
+                		}
+                	}
             	} else {
             		
             		if (hotkeyPressed == "Enter") {
@@ -468,6 +582,19 @@ public class ShowImage extends JPanel implements KeyListener {
     	                    } else if (hotkeyPressed == "Up") {
     	                    	selected = rawCurrentMenu.resetSelectors(directionalOptions[3]);
                         }
+            			for (int i = 0 ; i < selectionsList.length; i++) {
+                    		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1]) {
+                    			element = rawCurrentMenu.getElements()[i];
+                    			if (element.equals(elementToDeanimate)){
+                    				// Do nothing, no change in element.
+                    			} else {
+                    				elementToDeanimate.deanimate();
+                    				element.animate();
+                    				lastHovered = element.getName();
+                    			}
+                    			break;
+                    		}
+                    	}
             		}
             	}
             } 
@@ -502,7 +629,7 @@ public class ShowImage extends JPanel implements KeyListener {
         // Do nothing
     }
     
-    private Element getElementFromName(String name) { 
+    private static Element getElementFromName(String name) { 
     	// get the box for the name given through the parameter
     	Element elementToReturn = null;
     	Element[] elementsList = rawCurrentMenu.getElements();
@@ -516,14 +643,13 @@ public class ShowImage extends JPanel implements KeyListener {
     	return elementToReturn;
     }
     
-    private RoundedRect getBoxAttributes(TextBox textbox) { 
+    private static RoundedRect getBoxAttributes(RoundedArea roundedArea) { 
     	// gets values to use for rendering the box not including stroke (added after) by converting roundpercentage to a useful number
-    	int x = textbox.getX();
-    	int y = textbox.getY();
-    	int xSize = textbox.getXSize();
-    	int ySize = textbox.getYSize();
-    	float stroke = textbox.getStrokeWidth();
-    	int roundPercentage = textbox.getRoundPercentage();
+    	int x = roundedArea.getX();
+    	int y = roundedArea.getY();
+    	int xSize = roundedArea.getXSize();
+    	int ySize = roundedArea.getYSize();
+    	int roundPercentage = roundedArea.getRoundPercentage();
     	int round;
     	if (xSize < ySize) {
     		round = xSize * roundPercentage / 100;
@@ -534,7 +660,7 @@ public class ShowImage extends JPanel implements KeyListener {
     	return attributesToReturn;
     }
     
-    private RoundedRect getStrokedBoxAttributes(TextBox textbox) { 
+    private static RoundedRect getStrokedBoxAttributes(TextBox textbox) { 
     	// gets hitboxes of the box by converting roundpercentage to a useful number, and accounting for stroke
     	int x = textbox.getX();
     	int y = textbox.getY();
@@ -555,7 +681,61 @@ public class ShowImage extends JPanel implements KeyListener {
     	RoundedRect attributesToReturn = new RoundedRect(x,y,xSize,ySize,round);
     	return attributesToReturn;
     }
-    
+	
+	
+	private static StoredTransform[] refreshTransforms(int screenWidth,int screenHeight) {
+    	double xScale = intToDouble(screenWidth) / 1920;
+    	double yScale = intToDouble(screenHeight) / 1080;
+    	
+    	StoredTransform[] transforms = rawCurrentMenu.getTransforms();
+    	StoredTransform[] transformsToReturn;
+    	
+    	if (transforms != null) {
+    		transformsToReturn = new StoredTransform[transforms.length];
+        	
+        	for (int i = 0; i < transforms.length; i++) {
+        		StoredTransform transform = transforms[i];
+        		
+        		double transformX = transform.getTransformX() * xScale;
+        		double transformY = transform.getTransformY() * yScale;
+        		
+        		transformsToReturn[i] = new StoredTransform(transform, transformX, transformY);
+        		
+        	}
+    	} else {
+    		transformsToReturn = null;
+    	}
+    	
+    	return transformsToReturn;
+    }
+	
+    private static RoundedArea[] refreshMasks(int screenWidth,int screenHeight) {
+    	double xScale = intToDouble(screenWidth) / 1920;
+    	double yScale = intToDouble(screenHeight) / 1080;
+    	
+    	RoundedArea[] masks = rawCurrentMenu.getMasks();
+    	RoundedArea[] areasToReturn;
+    	
+    	if (masks != null) {
+    		areasToReturn = new RoundedArea[masks.length];
+        	
+        	for (int i = 0; i < masks.length; i++) {
+        		RoundedArea mask = masks[i];
+        		
+        		int maskXSize = (int) Math.round(mask.getXSize() * xScale);
+            	int maskYSize = (int) Math.round(mask.getYSize() * yScale);
+            	int maskX = (int) Math.round(mask.getX() * xScale);
+            	int maskY = (int) Math.round(mask.getY() * yScale);
+            	int maskRoundPercentage = mask.getRoundPercentage();
+            	
+            	areasToReturn[i] = new RoundedArea(maskX, maskY, maskXSize, maskYSize, maskRoundPercentage);
+        	}
+    	} else {
+    		areasToReturn = null;
+    	}
+    	
+    	return areasToReturn;
+    }
     
     private static Element[] refreshElements(int screenWidth,int screenHeight) {
     	// refreshes all textbox sizes to fit the new screen size, runs on dynamicFrameSize() end.
@@ -565,6 +745,7 @@ public class ShowImage extends JPanel implements KeyListener {
     	scale = ( xScale + yScale ) / 2;
     	// System.out.println(screenWidth);
     	// System.out.println(xScale);
+    	
     	Element[] rawElementsList = rawCurrentMenu.getElements();
     	Element[] elementsToReturn = new Element[rawElementsList.length];
         for (int i = 0; i < rawElementsList.length; i++) {
@@ -572,61 +753,96 @@ public class ShowImage extends JPanel implements KeyListener {
         	Element currentElement = rawElementsList[i];
         	Selector selector = currentElement.getSelector();
         	
+        	int hoverEffectIndex = currentElement.getHoverEffectIndex();
+        	int clickEffectIndex = currentElement.getClickEffectIndex();
+        	int arbitraryTransformIndex = currentElement.getArbitraryTransformIndex();
+        	
         	if (currentElement.isTextbox()) {
 	        	TextBox currentItem = currentElement.getTextbox();
-	        	float scale = currentItem.getScale();
+	        	TweenTransform transform = currentElement.getTransform();
+	        	float textBoxScale = currentItem.getScale();
 	        	String function = currentItem.getFunction();
 	        	String name = currentItem.getName();
 	        	String text = currentItem.getText();
 	        	String alignX = currentItem.getAlignX();
 	        	String alignY = currentItem.getAlignY();
 	        	String font = currentItem.getFont();
-	        	int textSize = (int) Math.round(currentItem.getTextSize() * Math.min(xScale, yScale) * scale);
-	        	int fontColor = currentItem.getFontColor();
-	        	int xSize = (int) Math.round(currentItem.getXSize() * xScale * scale);
-	        	int ySize = (int) Math.round(currentItem.getYSize() * yScale * scale);
+	        	int textSize = (int) Math.round(currentItem.getTextSize() * Math.min(xScale, yScale) * textBoxScale);
+	        	int fontColor = currentItem.getTextColor();
+	        	
+	        	int xSize = (int) Math.round(currentItem.getXSize() * xScale * textBoxScale);
+	        	int ySize = (int) Math.round(currentItem.getYSize() * yScale * textBoxScale);
 	        	int x = (int) Math.round(currentItem.getX() * xScale - (xSize / 2));
 	        	int y = (int) Math.round(currentItem.getY() * yScale - (ySize / 2));
-	        	int offsetX = (int) Math.round(currentItem.getOffsetX() * xScale * scale);
-	        	int offsetY = (int) Math.round(currentItem.getOffsetY() * yScale * scale);
+	        	int roundPercentage = currentItem.getRoundPercentage();
+	        	
+	        	int maskIndex = currentItem.getMaskIndex();
+	        	
+	        	int offsetX = (int) Math.round(currentItem.getOffsetX() * xScale * textBoxScale);
+	        	int offsetY = (int) Math.round(currentItem.getOffsetY() * yScale * textBoxScale);
 	        	int color = currentItem.getColor();
 	        	int opacity = currentItem.getOpacity();
-	        	boolean renderRenderable = currentItem.hasRenderable();
-	        	boolean renderText = currentItem.hasText();
 	        	Renderable renderableObject = currentItem.getRenderableObject();
 	        	boolean bold = currentItem.getBold();
-	        	int roundPercentage = currentItem.getRoundPercentage();
-	        	int shadowOffset = (int) Math.round(currentItem.getShadowOffset() * yScale * scale);
-	        	float stroke = (int) Math.round(currentItem.getStrokeWidth() * yScale * scale);
+	        	
+	        	int shadowOffset = (int) Math.round(currentItem.getShadowOffset() * Math.min(xScale, yScale) * textBoxScale);
+	        	float stroke = (int) Math.round(currentItem.getStrokeWidth() * Math.min(xScale, yScale) * textBoxScale);
 	        	int strokeColor = currentItem.getStrokeColor();
 	        	
-	        	if (renderRenderable) {
+	        	if (currentItem.getRenderableObject() != null) {
 	        		String renderableName = renderableObject.getName();
 	        		String renderableFunction = renderableObject.getFunction();
 	            	String imagePath = renderableObject.getImagePath();
-	            	int renderableXSize = (int) Math.round(renderableObject.getXSize() * xScale * scale);
-	            	int renderableYSize = (int) Math.round(renderableObject.getYSize() * yScale * scale);
-	            	int renderableX = (int) Math.round(renderableObject.getX() * xScale * scale);
-	            	int renderableY = (int) Math.round(renderableObject.getY() * yScale * scale);
+	            	int renderableXSize = (int) Math.round(renderableObject.getXSize() * xScale * textBoxScale);
+	            	int renderableYSize = (int) Math.round(renderableObject.getYSize() * yScale * textBoxScale);
+	            	int renderableX = (int) Math.round(renderableObject.getX() * xScale * textBoxScale);
+	            	int renderableY = (int) Math.round(renderableObject.getY() * yScale * textBoxScale);
 	            	int renderableOpacity = renderableObject.getOpacity();
 	            	Renderable newRenderableObject =  new Renderable(renderableFunction, renderableName, imagePath, 
 	            			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
-	            	if (renderText) {
+	            	if (currentItem.getText() != null) {
 		        		
-		        		elementsToReturn[i] =  new Element(selector, new TextBox(scale, function, name, newRenderableObject, text, alignX, alignY, font, fontColor, textSize, 
-		        				x, y, xSize, ySize, offsetX, offsetY,
-		        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor));
+		        		elementsToReturn[i] =  
+		        				new Element(
+	        						transform, selector, hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
+			        				new TextBox( // First Constructor (Text AND Renderable)
+		        						textBoxScale, function, name, 
+				        				new Text(text, alignX, alignY, offsetX, offsetY, textSize, fontColor, font, bold), 
+				        				newRenderableObject,  
+				        				new RoundedArea(x, y, xSize, ySize, roundPercentage), 
+				        				maskIndex,
+				        				color, opacity, shadowOffset, 
+				        				stroke, strokeColor
+				        				)
+	        						);
 		        		
 		        	} else {
-		        		elementsToReturn[i] =  new Element(selector, new TextBox(scale, function, name, newRenderableObject, x, y, xSize, ySize,
-		        				color, opacity, roundPercentage, shadowOffset, stroke, strokeColor));
+		        		elementsToReturn[i] =  
+		        				new Element( // Third Constructor (Only Renderable)
+	        						transform, selector, hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
+	        						new TextBox(
+        								textBoxScale, function, name,
+        								newRenderableObject,
+        								new RoundedArea(x, y, xSize, ySize, roundPercentage), 
+				        				maskIndex,
+				        				color, opacity, shadowOffset, 
+				        				stroke, strokeColor
+				        				)
+	        						);
 		        	}
-	        	} else if (renderText) {
-	        		 elementsToReturn[i] = new Element(selector, new TextBox(scale, function, name, text, alignX, alignY, font, fontColor, textSize, 
-		        				x, y, xSize, ySize, offsetX, offsetY,
-		        				color, opacity, bold, roundPercentage, shadowOffset, stroke, strokeColor));
+	        	} else if (currentItem.getText() != null) {
+	        		 elementsToReturn[i] = 
+	        				 new Element(
+        						 transform, selector, hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
+        						 new TextBox(
+    								 textBoxScale, function, name,
+    								 new Text(text, alignX, alignY, offsetX, offsetY, textSize, fontColor, font, bold), 
+			        				 new RoundedArea(x, y, xSize, ySize, roundPercentage), 
+			        				 maskIndex,
+			        				 color, opacity, shadowOffset, 
+			        				 stroke, strokeColor));
 	        	} else {
-	        		System.out.println("ERROR: NO TEXT OR RENDERABLE!");
+	        		System.out.println("NO TEXT OR RENDERABLE!");
 	        	}
 	        	
         	} else if (currentElement.isRenderable()) {
@@ -640,15 +856,33 @@ public class ShowImage extends JPanel implements KeyListener {
             	int renderableYSize = (int) Math.round(currentItem.getYSize() * yScale);
             	int renderableOpacity = currentItem.getOpacity();
             	
-            	elementsToReturn[i] =  new Element(selector, new Renderable(renderableFunction, renderableName, imagePath, 
+            	elementsToReturn[i] =  new Element(selector, hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
+            			new Renderable(renderableFunction, renderableName, imagePath, 
             			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity));
         	}
         }
         return elementsToReturn;
     }
     
+    public static void setCursorEnabled(boolean enabled) {
+    	config.setCursorEnabled(enabled);
+    	if (enabled) {
+    		panel.setCursor(Cursor.getDefaultCursor());
+    	} else {
+    		BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+    		Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
+    			    cursorImg, new Point(0, 0), "blank cursor");
+    		panel.setCursor(blankCursor);
+    	}
+    	FileIO.currentConfigOut(config);
+    }
+    
     public static Config getConfig() {
     	return config;
+    }
+    
+    public static void setConfig(Config newConfig) {
+    	config = newConfig;
     }
     
     private static int[] calculateNewScreenDimensions(boolean forceSize, int sizeToForce) { 
@@ -715,18 +949,15 @@ public class ShowImage extends JPanel implements KeyListener {
     
     public static void updateFrame() {
     	elementsToRender = refreshElements(calculatedScreenWidth,calculatedScreenHeight);
+    	masksToRender = refreshMasks(calculatedScreenWidth,calculatedScreenHeight);
+    	transformsToRender = refreshTransforms(calculatedScreenWidth,calculatedScreenHeight);
     	repaintPanel();
-    }
-    
-    public static void initFrame() {
-    	elementsToRender = refreshElements(calculatedScreenWidth,calculatedScreenHeight);
     }
     
     public static void setMenuFromAnIndex(int menu) {
     	currentMenuIndex = menu;
-    	rawCurrentMenu = DefaultValues.getDefaultMenu(currentMenuIndex);
+    	rawCurrentMenu = config.getMenuFromIndex(currentMenuIndex);
     	selected = rawCurrentMenu.resetSelectors(new int[]{-1,-1});
-        System.out.println("his");
         Element[] tempElementsList = rawCurrentMenu.getElements();
         selectionsList = new Selector[tempElementsList.length];
         int i = 0;
@@ -734,7 +965,9 @@ public class ShowImage extends JPanel implements KeyListener {
         	selectionsList[i] = element.getSelector();
         	i++;
         }
-    	elementsToRender = refreshElements(calculatedScreenWidth, calculatedScreenHeight);
+        elementsToRender = refreshElements(calculatedScreenWidth,calculatedScreenHeight);
+    	masksToRender = refreshMasks(calculatedScreenWidth,calculatedScreenHeight);
+    	transformsToRender = refreshTransforms(calculatedScreenWidth,calculatedScreenHeight);
     }
     
     public static void setBG(Color bgColor) {
@@ -749,26 +982,18 @@ public class ShowImage extends JPanel implements KeyListener {
     public static int getMenu() {
     	return currentMenuIndex;
     }
+    
+	public static StoredTransform[] getTransformsToRender() {
+		return transformsToRender;
+	}
 
     public static void main(String args[]) throws Exception {
-    	// main method
-    	SysOutController.setSysOutLocationAddressor(); // FOR DEBUGGING
+    	
+    	Framerate.checkCurrentTime();
+    	
+    	SysOutController.setSysOutLocationAddressor(); // FOR DEBUGGING (can be disabled)
     	
     	frame = new JFrame("Simple Rhythm Game"); // initialises the frame to allow changes to be applied
-        
-        // TODO: create a class that holds all static or final variables, including the above two and the other values
-        // for below lists.
-        
-        // below defines the static variables which are the raw lists. Should be set again (ADD SETTER METHODS) when
-        // a different page is selected. Colors need not be set on new page, but should have setter methods for the
-        // settings page. Raw lists are used in refreshScreenSize() methods to calculate real size. Raw list values
-        // are relative to the 1920x1080 screen size.
-        
-        
-        
-        // Add code here to read a settings file
-        // TODO: Create functions
-        // TODO: Move functions to a ReadFile class
         
         // READ INITIALIZATION STATUS
         
@@ -777,63 +1002,37 @@ public class ShowImage extends JPanel implements KeyListener {
         // String userUsername = xx;
         // UUID userUUID = xx;
         
-        // for screen size
-        boolean userHasScreenSize = false;
-        // boolean userFullscreenOption = xx;
-        // int userScreenSize = xx;
-        
-        // loads the default if not true
-        if (userHasScreenSize) {
-        	// boolean fullscreen = userFullscreenOption;
-        	// int sizeToForce = userScreenSize;
-        } else {
-        	fullscreen = DefaultValues.getDefaultFullscreen();
-        	sizeToForce = DefaultValues.getDefaultSizeToForce();
-        	// TODO set them into system config
-        }
-        
-        // READ USER COLOR
-        boolean userHasCustomColorScheme = false;
-        Color[] userColorScheme = new Color[] {
-        		new Color (0,0,0,0) // replace with the function to read the scheme
-        };
-        
-        // READ
-        
         // TODO: ADD BELOW TO A COMMENT ONCE DEV IS FINISHED:
         // System.out.println(currentMenuIndex);
         
-        if (userHasCustomColorScheme) {
-        	colorsList = userColorScheme;
+        boolean useConfig = false; // use during development. TODO: set to true on completion
+        
+        File configFile = new File("./options.json");
+        if(configFile.exists() && !configFile.isDirectory() && useConfig) { 
+            config = FileIO.currentConfigIn();
         } else {
-        	colorsList = DefaultValues.getDefaultColors();
+        	config = DefaultValues.getDefaultConfigs();
+        	FileIO.currentConfigOut(config);
         }
         
-        boolean userHasCustomControls = false;
-        Controls[] userControls = new Controls[1];
-        
-        if (userHasCustomControls) {
-        	controls = userControls;
+        if (userHasUsername) {
+        	Functions.setMenu("Main Menu");
         } else {
-        	controls = DefaultValues.getDefaultControls();
+        	Functions.setMenu("Init User");
         }
         
-        config = new Config(
-        		false, // fullscreen
-        		1280, // size to force
-        		DefaultValues.getDefaultControls(), // controls
-        		DefaultValues.getDefaultColors(), // colors
-        		DefaultValues.getDefaultFonts(), // fonts
-        		DefaultValues.getAllDefaultMenus() // menus
-        		);
-        
-        setMenuFromAnIndex(0);
-        
-        setNewFrameSize(fullscreen, sizeToForce); // uses the above raw lists and variables to set the frame size.
-        
-        initFrame();
+        setNewFrameSize(config.getFullscreen(), config.getSizeToForce()); // uses the above raw lists and variables to set the frame size.
         
         panel = new ShowImage(); // runs showimage class (top of this class) to show text and renderables into a panel
+        
+        if (config.getCursorEnabled()) {
+    		panel.setCursor(Cursor.getDefaultCursor());
+    	} else {
+    		BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+    		Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
+    			    cursorImg, new Point(0, 0), "blank cursor");
+    		panel.setCursor(blankCursor);
+    	}
         
         frame.getContentPane().add(panel); // adds the panel to frame content
         
@@ -857,13 +1056,11 @@ public class ShowImage extends JPanel implements KeyListener {
         	System.out.println(var);
         }
         */
-        FileIO.currentConfigOut();
         // Set the frame size to the screen dimensions
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sets closing operation
         frame.setVisible(true); // allows client to see frame
         Framerate thread = new Framerate();
         thread.start();
     }
-
 
 }

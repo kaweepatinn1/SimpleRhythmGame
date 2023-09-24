@@ -1,127 +1,91 @@
 package SimpleRhythmGame;
 
 public class TextBox {
+	// private Tween tween;
 	private float scale;
 	private String function;
 	private String name;
-    private String text;
-    private String alignX;
-    private String alignY;
-    private String font;
-    private int textSize;
-    private int fontColor;
-    private int x;
-    private int y;
-    private int xSize;
-    private int ySize;
-    private int offsetX;
-    private int offsetY;
-    private boolean renderRenderable;
-    private boolean renderText;
+	private Text text;
+    private RoundedArea rectShape;
+    private int maskIndex;
     private Renderable renderableObject;
     private int color;
     private int opacity;
-    private boolean bold;
-    private int roundPercentage;
-    private boolean hovered;
     private int shadowOffset;
     private float strokeWidth;
     private int strokeColor;
     
-    public TextBox(float scale, String function, String name, Renderable renderableObject, String text, String alignX, String alignY, 
-    		String font, int fontColor, int textSize, int x, int y, int xSize, int ySize, 
-    		int offsetX, int offsetY, int color, int opacity, boolean bold, 
-    		int roundPercentage, int shadowOffset, float strokeWidth, int strokeColor) {
+    public TextBox( // Renderable, Text
+    		float scale, String function, String name,
+    		Text text, 
+    		Renderable renderableObject,
+    		RoundedArea rectShape, 
+    		int maskIndex, 
+    		int color, int opacity, int shadowOffset, 
+    		float strokeWidth, int strokeColor
+    		) {
     	this.scale = scale;
     	this.function = function;
         this.name = name;
-    	this.text = text;
-    	this.alignX = alignX;
-    	this.alignY = alignY;
-    	this.font = font;
-        this.fontColor = fontColor;
-        this.textSize = textSize;
-        this.x = x;
-        this.y = y;
-        this.xSize = xSize;
-        this.ySize = ySize;
-        this.offsetX = offsetX;
-        this.offsetY = offsetY;
-        this.renderText = true;
-        this.renderRenderable = true;
+        this.text = text;
+        this.rectShape = rectShape;
+        this.maskIndex = maskIndex;
         this.renderableObject = renderableObject;
         this.color = color;
         this.opacity = opacity;
-        this.bold = bold;
-        this.roundPercentage = roundPercentage;
-        this.hovered = false;
         this.shadowOffset = shadowOffset;
         this.strokeWidth = strokeWidth;
         this.strokeColor = strokeColor;
     }
     
-    public TextBox(float scale, String function, String name, String text, String alignX, String alignY, 
-    		String font, int fontColor, int textSize, int x, int y, int xSize, int ySize, 
-    		int offsetX, int offsetY, int color, int opacity, boolean bold, 
-    		int roundPercentage, int shadowOffset, float strokeWidth, int strokeColor) {
+    public TextBox( // Just Text
+    		float scale, String function, String name,
+    		Text text, 
+    		RoundedArea rectShape, 
+    		int maskIndex, 
+    		int color, int opacity, int shadowOffset, 
+    		float strokeWidth, int strokeColor) {
     	this.scale = scale;
     	this.function = function;
         this.name = name;
-    	this.text = text;
-    	this.alignX = alignX;
-    	this.alignY = alignY;
-    	this.font = font;
-        this.fontColor = fontColor;
-        this.textSize = textSize;
-        this.x = x;
-        this.y = y;
-        this.xSize = xSize;
-        this.ySize = ySize;
-        this.offsetX = offsetX;
-        this.offsetY = offsetY;
-        this.renderText = true;
-        this.renderRenderable = false;
+        this.text = text;
+        this.rectShape = rectShape;
+        this.maskIndex = maskIndex;
         this.renderableObject = null;
         this.color = color;
         this.opacity = opacity;
-        this.bold = bold;
-        this.roundPercentage = roundPercentage;
-        this.hovered = false;
         this.shadowOffset = shadowOffset;
         this.strokeWidth = strokeWidth;
         this.strokeColor = strokeColor;
     }
 
-    public TextBox(float scale, String function, String name, Renderable renderableObject, 
-    		int x, int y, int xSize, int ySize, 
-    		int color, int opacity, int roundPercentage,
-    		int shadowOffset, float strokeWidth, int strokeColor) {
+    public TextBox( // Just Renderable
+    		float scale, String function, String name, 
+    		Renderable renderableObject, 
+    		RoundedArea rectShape, 
+    		int maskIndex, 
+    		int color, int opacity, int shadowOffset, 
+    		float strokeWidth, int strokeColor) {
     	this.scale = scale;
     	this.function = function;
     	this.name = name;
     	this.text = null;
-    	this.alignX = null;
-    	this.alignY = null;
-    	this.font = null;
-        this.fontColor = -1;
-        this.textSize = 0;
-        this.x = x;
-        this.y = y;
-        this.xSize = xSize;
-        this.ySize = ySize;
-        this.offsetX = 0;
-        this.offsetY = 0;
-        this.renderText = false;
-        this.renderRenderable = true;
+        this.rectShape = rectShape;
+        this.maskIndex = maskIndex;
         this.renderableObject = renderableObject;
         this.color = color;
         this.opacity = opacity;
-        this.bold = false;
-        this.roundPercentage = roundPercentage;
-        this.hovered = false;
         this.shadowOffset = shadowOffset;
         this.strokeWidth = strokeWidth;
         this.strokeColor = strokeColor;
+    }
+    
+    public int getMaskIndex() {
+    	return maskIndex;
+    }
+    
+    public void setMaskIndex(int maskIndex) {
+    	this.maskIndex = maskIndex;
     }
     
     public float getScale() {
@@ -137,52 +101,52 @@ public class TextBox {
     }
     
     public String getText() {
-        return text;
+        return text.getText();
     }
     
     public String getAlignX() {
-        return alignX;
+        return text.getAlignX();
     }
 
     public String getAlignY() {
-        return alignY;
+        return text.getAlignY();
     }
     
     public String getFont() {
-    	return font;
+    	return text.getFont();
     }
     
-    public int getFontColor() {
-    	return fontColor;
+    public int getTextColor() {
+    	return text.getTextColor();
     }
 
     public int getTextSize() {
-        return textSize;
+        return text.getTextSize();
     }
 
     public int getX() {
-        return x;
+        return rectShape.getX();
     }
 
     public int getY() {
-        return y;
+        return rectShape.getY();
     }
 
     public int getXSize() {
-        return xSize;
+        return rectShape.getXSize();
     }
 
     public int getYSize() {
-        return ySize;
+        return rectShape.getYSize();
     }
 
     public int getOffsetX() {
-        return offsetX;
+        return text.getOffsetX();
     }
     
     public int getOffsetY() {
-        return offsetY;
-    }
+        return text.getOffsetY();
+        }
 
     public int getColor() {
         return color;
@@ -191,29 +155,13 @@ public class TextBox {
     public int getOpacity() {
         return opacity;
     }
-    
-    public boolean hasRenderable() {
-        return renderRenderable;
-    }
-    
-    public boolean hasText() {
-    	return renderText;
-    }
 
     public Renderable getRenderableObject() {
         return renderableObject;
     }
     
     public boolean getBold() {
-        return bold;
-    }
-    
-    public int getRoundPercentage() {
-    	return roundPercentage;
-    }
-    
-    public boolean getHover(){
-    	return hovered;
+        return text.isBold();
     }
     
     public int getShadowOffset() {
@@ -226,6 +174,10 @@ public class TextBox {
     
     public int getStrokeColor() {
     	return strokeColor;
+    }
+    
+    public int getRoundPercentage() {
+    	return rectShape.getRoundPercentage();
     }
     
     public void setScale(float scale) {
@@ -241,59 +193,51 @@ public class TextBox {
     }
     
     public void setText(String text) {
-        this.text = text;
+        this.text.setText(text);
     }
     
     public void setAlignX(String alignX) {
-    	this.alignX = alignX;
+    	this.text.setAlignX(alignX);
     }
     
     public void setAlignY(String alignY) {
-    	this.alignY = alignY;
+    	this.text.setAlignY(alignY);
     }
     
     public void setFont(String font) {
-    	this.font = font;
+    	this.text.setFont(font);
     }
     
-    public void setFontColor(int fontColor) {
-    	this.fontColor = fontColor;
+    public void setTextColor(int fontColor) {
+    	this.text.setTextColor(fontColor);
     }
 
     public void setTextSize(int textSize) {
-        this.textSize = textSize;
+        this.text.setTextSize(textSize);
     }
 
     public void setX(int x) {
-        this.x = x;
+        this.rectShape.setX(x);
     }
 
     public void setY(int y) {
-        this.y = y;
+    	this.rectShape.setX(y);
     }
 
     public void setXSize(int xSize) {
-        this.xSize = xSize;
+    	this.rectShape.setXSize(xSize);
     }
 
     public void setYSize(int ySize) {
-        this.ySize = ySize;
+    	this.rectShape.setXSize(ySize);
     }
 
     public void setOffsetX(int offsetX) {
-        this.offsetX = offsetX;
+        this.text.setOffsetX(offsetX);
     }
 
     public void setOffsetY(int offsetY) {
-        this.offsetY = offsetY;
-    }
-
-    public void setHasRenderable(boolean renderRenderable) {
-        this.renderRenderable = renderRenderable;
-    }
-    
-    public void setHasText(boolean renderText) {
-    	this.renderText = renderText;
+    	this.text.setOffsetY(offsetY);
     }
 
     public void setRenderableObject(Renderable renderableObject) {
@@ -309,15 +253,11 @@ public class TextBox {
     }
     
     public void setBold(boolean bold) {
-        this.bold = bold;
+        this.text.setBold(bold);
     }
     
     public void setRoundPercentage(int roundPercentage) {
-        this.roundPercentage = roundPercentage;
-    }
-    
-    public void setHover(boolean hovered){
-    	this.hovered = hovered;
+        this.rectShape.setRoundPercentage(roundPercentage);
     }
     
     public void setShadowOffset(int shadowOffset) {
@@ -331,4 +271,16 @@ public class TextBox {
     public void setStrokeColor(int strokeColor) {
     	this.strokeColor = strokeColor;
     }
+
+	public RoundedArea getRectShape() {
+		return rectShape;
+	}
+
+	public void setRectShape(RoundedArea rectShape) {
+		this.rectShape = rectShape;
+	}
+
+	public void setText(Text text) {
+		this.text = text;
+	}
 }

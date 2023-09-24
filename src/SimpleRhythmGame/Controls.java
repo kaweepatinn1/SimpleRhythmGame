@@ -11,7 +11,7 @@ public class Controls {
 		this.keyCodes = keyCodes;
 	}
 	
-	public String function() {
+	public String getFunction() {
 		return hotkeyFunction;
 	}
 	

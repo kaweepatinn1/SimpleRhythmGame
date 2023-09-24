@@ -7,21 +7,36 @@ import java.awt.Color;
 
 public class Menu {
 	private String menuName;
+	private String menuDisplayName;
 	private String previousMenuName;
 	private int bgColor;
 	private Element[] elements;
-	private int[] secondarySelections;
+	private int[][] secondarySelections;
+	private RoundedArea[] masks;
+	private StoredTransform[] transforms;
 	
-	Menu(String menuName, String previousMenuName, int bgColor, int[] secondarySelections, Element[] elements){
+	Menu(
+		String menuName, String menuDisplayName, String previousMenuName, 
+		int bgColor, int[][] secondarySelections, RoundedArea[] masks,
+		StoredTransform[] transforms,
+		Element[] elements
+		) {
 		this.menuName = menuName;
+		this.menuDisplayName = menuDisplayName;
 		this.previousMenuName = previousMenuName;
 		this.bgColor = bgColor;
 		this.elements = elements;
 		this.secondarySelections = secondarySelections;
+		this.masks = masks;
+		this.transforms = transforms;
 	}
 	
 	public String getMenuName() {
 		return menuName;
+	}
+	
+	public String getMenuDisplayName() {
+		return menuDisplayName;
 	}
 	
 	public String getPreviousMenuName() {
@@ -40,11 +55,15 @@ public class Menu {
 		return elements;
 	}
 	
+	public RoundedArea[] getMasks() {
+		return masks;
+	}
+	
 	public void setElements(Element[] elements) {
 		this.elements = elements;
 	}
 	
-	public int[] getSecondarySelections() {
+	public int[][] getSecondarySelections() {
 		return secondarySelections;
 	}
 	
@@ -65,8 +84,8 @@ public class Menu {
 			int[] elementSelectorIndex = element.getSelectorIndex();
 			
 			boolean setSecondaryHovered = false; // see if the requirements for secondary hovering are met
-			for (int secondarySelectionIndex : secondarySelections) {
-				if (secondarySelectionIndex == elementSelectorIndex[0] && currentlySelected[0] > elementSelectorIndex[0]) {
+			for (int[] secondarySelectionIndex : secondarySelections) {
+				if (secondarySelectionIndex[0] == elementSelectorIndex[0] && secondarySelectionIndex[1] == elementSelectorIndex[1] && currentlySelected[0] > elementSelectorIndex[0]) {
 					// the element's index must be on the secondary whitelist and less than currently selected
 					setSecondaryHovered = true;
 				}
@@ -74,6 +93,7 @@ public class Menu {
 			
 			if (elementSelectorIndex[0] == currentlySelected[0] && elementSelectorIndex[1] == currentlySelected[1]) {
 				element.setPrimaryHovered();
+				
 			} else if (setSecondaryHovered) {
 				element.setSecondaryHovered();
 			} else {
@@ -81,5 +101,9 @@ public class Menu {
 			}
 		}
 		return currentlySelected;
+	}
+
+	public StoredTransform[] getTransforms() {
+		return transforms;
 	}
 }
