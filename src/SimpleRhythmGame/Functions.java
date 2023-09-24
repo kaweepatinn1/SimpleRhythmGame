@@ -34,7 +34,7 @@ public class Functions {
 			
 			if (methodName.equals("setMenuIndex")) {
 				setMenuIndex((int) parameters[0]);
-			} else if (methodName.equals("setMenu")) {
+			} else if (methodName.equals("setMenu") && !ShowImage.getTransitioning()) {
 				setMenu((String) parameters[0]);
 			}
 			

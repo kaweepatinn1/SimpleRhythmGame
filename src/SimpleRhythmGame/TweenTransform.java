@@ -9,6 +9,7 @@ public class TweenTransform {
 	private long startTimeNano;
 	private long endTimeNano;
 	private int easeType;
+	private boolean boomerang; // instantly deanimate after completion
 	
 	public TweenTransform(
 			SpecialTransform ogTransform,
@@ -17,7 +18,7 @@ public class TweenTransform {
 			long delayInMillis,
 			int easeType
 			) {
-		initTimeNano = ShowImage.getConfig().getNanoSecondPrecision() ? Framerate.getCurrentTime() : Framerate.getCurrentTime() * 1000000;
+		initTimeNano = Framerate.getCurrentTime();
 		// multiplies by 1000 if not already in nanoseconds.
 		this.delayInMillis = delayInMillis;
 		startTimeNano = initTimeNano + (delayInMillis * 1000000);
@@ -25,17 +26,38 @@ public class TweenTransform {
 		this.ogTransform = ogTransform;
 		this.newTransform = newTransform;
 		this.easeType = easeType;
+		boomerang = false;
+	}
+	
+	public TweenTransform(
+			SpecialTransform ogTransform,
+			SpecialTransform newTransform,
+			long timeToTransformMillis,
+			long delayInMillis,
+			int easeType,
+			boolean boomerang
+			) {
+		initTimeNano = Framerate.getCurrentTime();
+		// multiplies by 1000 if not already in nanoseconds.
+		this.delayInMillis = delayInMillis;
+		startTimeNano = initTimeNano + (delayInMillis * 1000000);
+		endTimeNano = startTimeNano + (timeToTransformMillis * 1000000);
+		this.ogTransform = ogTransform;
+		this.newTransform = newTransform;
+		this.easeType = easeType;
+		this.boomerang = boomerang;
 	}
 	
 	public TweenTransform(
 			TweenTransform storedTransform
 			) {
-		initTimeNano = ShowImage.getConfig().getNanoSecondPrecision() ? Framerate.getCurrentTime() : Framerate.getCurrentTime() * 1000000;
+		initTimeNano = Framerate.getCurrentTime();
 		startTimeNano = initTimeNano + (storedTransform.getDelayInMillis() * 1000000);
 		endTimeNano = startTimeNano + (storedTransform.getTimeToTransformMillis() * 1000000);
 		ogTransform = storedTransform.getOgTransform();
 		newTransform = storedTransform.getNewTransform();
 		easeType = storedTransform.getEaseType();
+		boomerang = storedTransform.getBoomerang();
 	}
 	
 	public TweenTransform(TextBox textbox) {
@@ -50,9 +72,7 @@ public class TweenTransform {
 	}
 	
 	public double getCurrentTime() {
-		long currentTime = ShowImage.getConfig().getNanoSecondPrecision() ? 
-				Framerate.getCurrentTime() : 
-				Framerate.getCurrentTime() * 1000000;
+		long currentTime = Framerate.getCurrentTime();
 		double timePassed = Math.max((currentTime - initTimeNano)
 				, 0) 
 				/ 
@@ -63,15 +83,28 @@ public class TweenTransform {
 	public SpecialTransform getCurrentPosition() {
 		SpecialTransform toReturn;
 		if (newTransform != null) {
-			long currentTime = ShowImage.getConfig().getNanoSecondPrecision() ? 
-					Framerate.getCurrentTime() : 
-					Framerate.getCurrentTime() * 1000000;
+			long currentTime = Framerate.getCurrentTime();
 			double timePassed = Math.max((currentTime - startTimeNano)
 					, 0) 
 					/ 
 					(double) (endTimeNano - startTimeNano);
 			if (timePassed >= 1) {
-				toReturn = newTransform;
+				if (boomerang) {
+					toReturn = newTransform;
+					
+					initTimeNano = Framerate.getCurrentTime();
+					// multiplies by 1000 if not already in nanoseconds.
+					startTimeNano = initTimeNano + ((50 + delayInMillis) * 1000000);
+					endTimeNano = startTimeNano + ((50 + timeToTransformMillis) * 1000000);
+					SpecialTransform newOgTransform = new SpecialTransform(ogTransform.getAnchorX(),ogTransform.getAnchorY());
+					// will always return to original after boomerang.
+					SpecialTransform newNewTransform = newTransform;
+					ogTransform = newNewTransform;
+					newTransform = newOgTransform;
+					boomerang = false;
+				} else {
+					toReturn = newTransform;
+				}
 			} else if (timePassed != 0) {
 				double easeCompletion = Easing.ease(easeType, timePassed);
 				
@@ -149,5 +182,13 @@ public class TweenTransform {
 
 	public void setDelayInMillis(long delayInMillis) {
 		this.delayInMillis = delayInMillis;
+	}
+
+	public boolean getBoomerang() {
+		return boomerang;
+	}
+
+	public void setBoomerang(boolean boomerang) {
+		this.boomerang = boomerang;
 	}
 }

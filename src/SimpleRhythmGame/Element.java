@@ -3,7 +3,7 @@ package SimpleRhythmGame;
 // Initialize and then read only class.
 
 public class Element {
-	private transient TweenTransform transform;
+	private transient TweenTransform[] transforms;
 	private Selector selector;
 	private Renderable renderable;
 	private TextBox textbox;
@@ -15,7 +15,10 @@ public class Element {
 	public Element(Selector selector, int maskIndex, int hoverEffect, int clickEffect, 
 			int arbitraryTransform, TextBox textbox
 			) {
-		transform = new TweenTransform(textbox);
+		transforms = new TweenTransform[3];
+		for (int i = 0 ; i < 3 ; i++) {
+			transforms[i] = new TweenTransform(textbox);
+		}
 		this.selector = selector;
 		this.renderable = null;
 		this.textbox = textbox;
@@ -27,7 +30,10 @@ public class Element {
 	
 	public Element(Selector selector, int maskIndex, int hoverEffect, int clickEffect, 
 			int arbitraryTransform, Renderable renderable) {
-		transform = new TweenTransform(renderable);
+		transforms = new TweenTransform[3];
+		for (int i = 0 ; i < 3 ; i++) {
+			transforms[i] = new TweenTransform(renderable);
+		}
 		this.selector = selector;
 		this.renderable = renderable;
 		this.textbox = null;
@@ -37,10 +43,10 @@ public class Element {
 		this.arbitraryTransformIndex = arbitraryTransform;
 	}
 	
-	public Element(TweenTransform transform, Selector selector, int maskIndex, int hoverEffect, int clickEffect, 
+	public Element(TweenTransform[] transforms, Selector selector, int maskIndex, int hoverEffect, int clickEffect, 
 			int arbitraryTransform, TextBox textbox
 			) {
-		this.transform = transform;
+		this.transforms = transforms;
 		this.selector = selector;
 		this.renderable = null;
 		this.textbox = textbox;
@@ -50,9 +56,9 @@ public class Element {
 		this.arbitraryTransformIndex = arbitraryTransform;
 	}
 	
-	public Element(TweenTransform transform, Selector selector, int maskIndex, int hoverEffect, int clickEffect, 
+	public Element(TweenTransform[] transforms, Selector selector, int maskIndex, int hoverEffect, int clickEffect, 
 			int arbitraryTransform, Renderable renderable) {
-		this.transform = transform;
+		this.transforms = transforms;
 		this.selector = selector;
 		this.renderable = renderable;
 		this.textbox = null;
@@ -131,31 +137,60 @@ public class Element {
 		return toReturn;
 	}
 	
-	public void animate() {
+	public void animateHover() {
 		if (getHoverEffectIndex() != -1) {
 			StoredTransform hoverEffect = ShowImage.getTransformsToRender()[getHoverEffectIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
-					new SpecialTransform(getTransform().getCurrentPosition(), getTextbox().getRectShape()),
+					new SpecialTransform(getTransform()[0].getCurrentPosition(), getTextbox().getRectShape()),
 					new SpecialTransform(hoverEffect, getTextbox().getRectShape()),
-					(long) (Math.min((getTransform().getCurrentTime() + 0.5),1) * hoverEffect.getTimeToTransformMillis()),
+					(long) (Math.min((getTransform()[0].getCurrentTime() + 0.5),1) * hoverEffect.getTimeToTransformMillis()),
 					hoverEffect.getDelayMillis(),
 					hoverEffect.getEaseType()
 					);
-			setTransform(tweenTransform);
+			setTransform(tweenTransform, 0);
 		}
 	}
 	
-	public void deanimate() {
+	public void deanimateHover() {
 		if (getHoverEffectIndex() != -1) {
 			StoredTransform hoverEffect = ShowImage.getTransformsToRender()[getHoverEffectIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
-					new SpecialTransform(getTransform().getCurrentPosition(), getTextbox().getRectShape()),
+					new SpecialTransform(getTransform()[0].getCurrentPosition(), getTextbox().getRectShape()),
 					new SpecialTransform(getTextbox().getRectShape()),
-					(long) (Math.min((getTransform().getCurrentTime() + 0.5),1) * hoverEffect.getTimeToTransformMillis()),
+					(long) (Math.min((getTransform()[0].getCurrentTime() + 0.5),1) * hoverEffect.getTimeToTransformMillis()),
 					hoverEffect.getDelayMillis(),
 					hoverEffect.getEaseType()
 					);
-			setTransform(tweenTransform);
+			setTransform(tweenTransform, 0);
+		}
+	}
+	
+	public void animateClick(boolean boomerang) {
+		if (getClickEffectIndex() != -1) {
+			StoredTransform clickEffect = ShowImage.getTransformsToRender()[getClickEffectIndex()];
+			TweenTransform tweenTransform = new TweenTransform(
+					new SpecialTransform(getTransform()[1].getCurrentPosition(), getTextbox().getRectShape()),
+					new SpecialTransform(clickEffect, getTextbox().getRectShape()),
+					(long) (Math.min((getTransform()[1].getCurrentTime() + 0.5),1) * clickEffect.getTimeToTransformMillis()),
+					clickEffect.getDelayMillis(),
+					clickEffect.getEaseType(),
+					boomerang
+					);
+			setTransform(tweenTransform, 1);
+		}
+	}
+	
+	public void deanimateClick() {
+		if (getClickEffectIndex() != -1) {
+			StoredTransform clickEffect = ShowImage.getTransformsToRender()[getClickEffectIndex()];
+			TweenTransform tweenTransform = new TweenTransform(
+					new SpecialTransform(getTransform()[1].getCurrentPosition(), getTextbox().getRectShape()),
+					new SpecialTransform(getTextbox().getRectShape()),
+					(long) (Math.min((getTransform()[1].getCurrentTime() + 0.5),1) * clickEffect.getTimeToTransformMillis()),
+					clickEffect.getDelayMillis(),
+					clickEffect.getEaseType()
+					);
+			setTransform(tweenTransform, 1);
 		}
 	}
 	
@@ -191,12 +226,12 @@ public class Element {
 		this.arbitraryTransformIndex = arbitraryTransform;
 	}
 
-	public TweenTransform getTransform() {
-		return transform;
+	public TweenTransform[] getTransform() {
+		return transforms;
 	}
 
-	public void setTransform(TweenTransform transform) {
-		this.transform = transform;
+	public void setTransform(TweenTransform transform, int index) {
+		this.transforms[index] = transform;
 	}
 
 	public int getMaskIndex() {

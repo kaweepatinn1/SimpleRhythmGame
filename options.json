@@ -190,7 +190,7 @@
           },
           "maskIndex": -1,
           "hoverEffectIndex": 0,
-          "clickEffectIndex": -1,
+          "clickEffectIndex": 1,
           "arbitraryTransformIndex": -1
         },
         {
@@ -259,7 +259,7 @@
           },
           "maskIndex": -1,
           "hoverEffectIndex": 0,
-          "clickEffectIndex": -1,
+          "clickEffectIndex": 1,
           "arbitraryTransformIndex": -1
         },
         {
@@ -328,7 +328,7 @@
           },
           "maskIndex": -1,
           "hoverEffectIndex": 0,
-          "clickEffectIndex": -1,
+          "clickEffectIndex": 1,
           "arbitraryTransformIndex": -1
         },
         {
@@ -397,7 +397,7 @@
           },
           "maskIndex": -1,
           "hoverEffectIndex": 0,
-          "clickEffectIndex": -1,
+          "clickEffectIndex": 1,
           "arbitraryTransformIndex": -1
         }
       ],
@@ -423,22 +423,22 @@
           "scaleX": 1.0,
           "scaleY": 1.0,
           "rotate": 0.0,
-          "delayMillis": 500,
-          "timeToTransformMillis": 1000,
-          "easeType": 6
-        },
-        {
-          "transformX": 0.0,
-          "transformY": 0.0,
-          "scaleX": 1.2,
-          "scaleY": 1.2,
-          "rotate": 0.0,
           "delayMillis": 0,
           "timeToTransformMillis": 1000,
           "easeType": 6
         },
         {
-          "transformX": -100.0,
+          "transformX": -20.0,
+          "transformY": 0.0,
+          "scaleX": 0.95,
+          "scaleY": 0.95,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 100,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
           "transformY": 0.0,
           "scaleX": 1.0,
           "scaleY": 1.0,

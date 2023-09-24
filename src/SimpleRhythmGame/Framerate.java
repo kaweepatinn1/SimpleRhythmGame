@@ -49,7 +49,8 @@ public class Framerate extends Thread {
 	}
 	
 	public static long getCurrentTime() {
-		return currentTime;
+		long returnTime = ShowImage.getConfig().getNanoSecondPrecision() ? currentTime : currentTime * 1000000;
+		return returnTime;
 	}
 	
 	public static void checkCurrentTime() {

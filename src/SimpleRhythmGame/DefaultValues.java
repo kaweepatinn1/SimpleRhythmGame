@@ -93,15 +93,15 @@ public class DefaultValues {
 							6 // (ease type)
 						),
 						new StoredTransform(
-							0, 0, // x, y transform
-							1.2, 1.2, // scale transform (x, y)
+							-20, 0, // x, y transform
+							0.95, 0.95, // scale transform (x, y)
 							0, // rotate transform
 							0, // offset (ms)
-							1000, // animation time (ms)
+							100, // animation time (ms)
 							6 // (ease type)
 						),
 						new StoredTransform(
-							-100, 0, // x, y transform
+							0, 0, // x, y transform
 							1, 1, // scale transform (x, y)
 							0, // rotate transform
 							0, // offset (ms)
@@ -117,7 +117,7 @@ public class DefaultValues {
 								),
 							-1, // mask index
 							0, // hover effect
-							-1, // click effect
+							1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
 							new TextBox(
 								// Text and Renderable
@@ -155,7 +155,7 @@ public class DefaultValues {
 								),
 							-1, // Mask Index
 							0, // hover effect
-							-1, // click effect
+							1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
 							new TextBox(
 								// Text and Renderable
@@ -194,7 +194,7 @@ public class DefaultValues {
 								),
 							-1, // Mask Index
 							0, // hover effect
-							-1, // click effect
+							1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
 							new TextBox(
 								// Text and Renderable
@@ -233,7 +233,7 @@ public class DefaultValues {
 								),
 							-1, // Mask Index
 							0, // hover effect
-							-1, // click effect
+							1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
 							new TextBox(
 								// Text and Renderable

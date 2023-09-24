@@ -30,6 +30,10 @@ public class ShowImage extends JPanel implements KeyListener {
     // The name of the element that the current drag has started on
     private static boolean currentMouseDragging = false;
     
+    private static boolean transitioning = false;
+    private static long transitionTime;
+    private static int transitionTo;
+    
     private static int calculatedScreenHeight;
     private static int calculatedScreenWidth;
     private static double scale;
@@ -42,6 +46,10 @@ public class ShowImage extends JPanel implements KeyListener {
         	// System.out.println("clicked");
             Element clickedElement = checkLocation(mouseX, mouseY);
             if (clickedElement != null) {
+            	if (clickedElement.getClickEffectIndex() != -1) {
+        			System.out.println("animate");
+            		getElementFromName(clickedElement.getName()).animateClick(true);
+            	}
             	// System.out.println(releasedElement.getName());
         		String functionToRun = clickedElement.getFunction();
                 boolean ranFunction = Functions.runFunction(functionToRun);
@@ -62,6 +70,12 @@ public class ShowImage extends JPanel implements KeyListener {
             if (releasedElement != null) {
             	// System.out.println(releasedElement.getName());
             	if (releasedElement.getName() == mouseDragStart && currentMouseDragging == true) {
+            		if (mouseDragCurrent != null) {
+                		System.out.println("deanimate");
+                		getElementFromName(mouseDragCurrent).deanimateClick();
+                		mouseDragCurrent = null;
+                	}
+                	// TODO stopClickAnimation(m
             		String functionToRun = releasedElement.getFunction();
                     boolean ranFunction = Functions.runFunction(functionToRun);
                     if (!ranFunction) {
@@ -93,10 +107,10 @@ public class ShowImage extends JPanel implements KeyListener {
                 	// Do nothing, nothing has changed.
                 } else {
                 	if (nameOfHoveredElement != null){
-                		getElementFromName(nameOfHoveredElement).animate();
+                		getElementFromName(nameOfHoveredElement).animateHover();
                 	}
                 	if (lastHovered != null) {
-                		getElementFromName(lastHovered).deanimate();
+                		getElementFromName(lastHovered).deanimateHover();
                 	}
                 	// System.out.println("no longer hovering: " + lastHovered);
                 	// System.out.println("hovering: " + nameOfHoveredElement);
@@ -111,7 +125,7 @@ public class ShowImage extends JPanel implements KeyListener {
                 	if (lastHovered != null) {
                 		Element toDeanimate = getElementFromName(lastHovered);
                 		if (toDeanimate != null) {
-                			toDeanimate.deanimate();
+                			toDeanimate.deanimateHover();
                 		}
                 	}
         			// System.out.println("no longer hovering: " + lastHovered);
@@ -134,12 +148,25 @@ public class ShowImage extends JPanel implements KeyListener {
             	nameOfDraggedElement = clickedElement.getName();
             }
             if (!currentMouseDragging) {
+            	
             	currentMouseDragging = true;
             	mouseDragStart = nameOfDraggedElement;
+            }
+            if (mouseDragStart == nameOfDraggedElement && !(mouseDragCurrent == nameOfDraggedElement)) {
+            	if (clickedElement != null){
+            		if (clickedElement.getClickEffectIndex() != -1) {
+            			System.out.println("animate");
+                		getElementFromName(nameOfDraggedElement).animateClick(false);
+                	}
+            	}
             }
             if (mouseDragCurrent == nameOfDraggedElement) {
             	// DO NOTHING
             } else {
+            	if (mouseDragCurrent != null && mouseDragStart == mouseDragCurrent) {
+            		System.out.println("deanimate");
+            		getElementFromName(mouseDragCurrent).deanimateClick();
+            	}
             	// TODO stopClickAnimation(mouseDragCurrent);
             	if (clickedElement != null) {
             		// TODO startClickAnimation(clickedBox.getName());
@@ -212,13 +239,14 @@ public class ShowImage extends JPanel implements KeyListener {
 	        			roundRectAttributes.getRound()
 	        			);
 	        	
-	        	Shape finalRect;
-	        	if (currentElement.getTransform().getNewTransform() != null) {
-	        		finalRect = currentElement.getTransform().getCurrentPosition().getFinalTransform().createTransformedShape(roundRect);
-	        	} else {
-	        		finalRect = roundRect;
-	        	}
+	        	Shape finalRect = roundRect;
 	        	
+	        	for (int k = 2 ; k > -1 ; k--) {
+	        		if (currentElement.getTransform()[k].getNewTransform() != null) {
+		        		finalRect = currentElement.getTransform()[k].getCurrentPosition().getFinalTransform().createTransformedShape(finalRect);
+		        	}
+	        	}
+	        
 	        	// grabs the SpecialTransform which grabs the AffineTransform to create a new shape from the transform
 	        	// of roundRect;
 	        	
@@ -245,10 +273,13 @@ public class ShowImage extends JPanel implements KeyListener {
 	            
 	            // ^ Textbox section
 	            // v Text / Image section
-	            if (currentElement.getTransform().getNewTransform() != null) {
-	            	g2d.transform(currentElement.getTransform().getCurrentPosition().getFinalTransform());
-	            }
 	            
+	        	for (int k = 2 ; k > -1 ; k--) {
+	        		if (currentElement.getTransform()[k].getNewTransform() != null) {
+	        			g2d.transform(currentElement.getTransform()[k].getCurrentPosition().getFinalTransform());
+		        	}
+	        	}
+	        	
 	            if (textbox.getRenderableObject() != null) { // render image if contained
 	            	Renderable renderable = textbox.getRenderableObject();
 	            	BufferedImage image = renderable.getImage();
@@ -390,6 +421,14 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	g2d.fill(maskBounds);
         	}
         }
+    	
+    	if (transitioning) {
+    		g2d.setColor(new Color(0,0,0,
+    				Framerate.getCurrentTime() - transitionTime < 280000000l ?
+    				Math.max(Math.min((int)((Framerate.getCurrentTime() - transitionTime) / 1000000),255),0): 
+    					Math.max(Math.min((int)(550 - ((Framerate.getCurrentTime() - transitionTime) / 1000000)),255),0)));
+    		g2d.fill(new Rectangle(0,0,calculatedScreenWidth,calculatedScreenHeight));
+    	}
     }
     
     private int[] getTextAligns(TextBox textbox, FontMetrics fontMetrics){
@@ -438,13 +477,14 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	
 	        	RoundRectangle2D roundRect = new RoundRectangle2D.Double(x, y, xSize, ySize, round, round);
 	        	
-	        	Shape finalRect;
+        		Shape finalRect = roundRect;
 	        	
-	        	if (currentElement.getTransform().getNewTransform() != null) {
-	        		finalRect = currentElement.getTransform().getCurrentPosition().getFinalTransform().createTransformedShape(roundRect);
-	        	} else {
-	        		finalRect = roundRect;
+	        	for (int k = 2 ; k > -1 ; k--) {
+	        		if (currentElement.getTransform()[k].getNewTransform() != null) {
+		        		finalRect = currentElement.getTransform()[k].getCurrentPosition().getFinalTransform().createTransformedShape(finalRect);
+		        	}
 	        	}
+	        	
 	        	Area buttonArea = new Area(finalRect);
 	        	
         		int maskIndex = currentElement.getMaskIndex();
@@ -550,7 +590,7 @@ public class ShowImage extends JPanel implements KeyListener {
             		for (int i = 0 ; i < selectionsList.length; i++) {
                 		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1]) {
                 			element = rawCurrentMenu.getElements()[i];
-                			element.animate();
+                			element.animateHover();
                 			lastHovered = element.getName();
                 			break;
                 		}
@@ -580,8 +620,8 @@ public class ShowImage extends JPanel implements KeyListener {
                     			if (element.equals(elementToDeanimate)){
                     				// Do nothing, no change in element.
                     			} else {
-                    				elementToDeanimate.deanimate();
-                    				element.animate();
+                    				elementToDeanimate.deanimateHover();
+                    				element.animateHover();
                     				lastHovered = element.getName();
                     			}
                     			break;
@@ -753,7 +793,7 @@ public class ShowImage extends JPanel implements KeyListener {
         	
         	if (currentElement.isTextbox()) {
 	        	TextBox currentItem = currentElement.getTextbox();
-	        	TweenTransform transform = currentElement.getTransform();
+	        	TweenTransform[] transforms = currentElement.getTransform();
 	        	float textBoxScale = currentItem.getScale();
 	        	String function = currentItem.getFunction();
 	        	String name = currentItem.getName();
@@ -796,7 +836,7 @@ public class ShowImage extends JPanel implements KeyListener {
 		        		
 		        		elementsToReturn[i] =  
 		        				new Element(
-	        						transform, selector,
+	        						transforms, selector,
 			        				maskIndex, 
 			        				hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
 			        				new TextBox( // First Constructor (Text AND Renderable)
@@ -812,7 +852,7 @@ public class ShowImage extends JPanel implements KeyListener {
 		        	} else {
 		        		elementsToReturn[i] =  
 		        				new Element( // Third Constructor (Only Renderable)
-	        						transform, selector,
+	        						transforms, selector,
 			        				maskIndex,
 			        				hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
 	        						new TextBox(
@@ -827,7 +867,7 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	} else if (currentItem.getText() != null) {
 	        		 elementsToReturn[i] = 
 	        				 new Element(
-        						 transform, selector, 
+        						 transforms, selector, 
 		        				 maskIndex,
 		        				 hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
         						 new TextBox(
@@ -946,27 +986,53 @@ public class ShowImage extends JPanel implements KeyListener {
     }
     
     public static void updateFrame() {
+    	if (transitioning) {
+    		if (Framerate.getCurrentTime() > transitionTime + 560000000l) {
+    			transitioning = false;
+    		} else if (Framerate.getCurrentTime() > transitionTime + 280000000l) {
+    			currentMenuIndex = transitionTo;
+    	    	rawCurrentMenu = config.getMenuFromIndex(currentMenuIndex);
+    	    	selected = rawCurrentMenu.resetSelectors(new int[]{-1,-1});
+    	        Element[] tempElementsList = rawCurrentMenu.getElements();
+    	        selectionsList = new Selector[tempElementsList.length];
+    	        int i = 0;
+    	        for (Element element : tempElementsList) {
+    	        	selectionsList[i] = element.getSelector();
+    	        	i++;
+    	        }
+    		}
+    	}
     	elementsToRender = refreshElements(calculatedScreenWidth,calculatedScreenHeight);
     	masksToRender = refreshMasks(calculatedScreenWidth,calculatedScreenHeight);
     	transformsToRender = refreshTransforms(calculatedScreenWidth,calculatedScreenHeight);
     	repaintPanel();
     }
     
-    public static void setMenuFromAnIndex(int menu) {
-    	currentMenuIndex = menu;
-    	rawCurrentMenu = config.getMenuFromIndex(currentMenuIndex);
-    	selected = rawCurrentMenu.resetSelectors(new int[]{-1,-1});
-        Element[] tempElementsList = rawCurrentMenu.getElements();
-        selectionsList = new Selector[tempElementsList.length];
-        int i = 0;
-        for (Element element : tempElementsList) {
-        	selectionsList[i] = element.getSelector();
-        	i++;
-        }
-        elementsToRender = refreshElements(calculatedScreenWidth,calculatedScreenHeight);
-    	masksToRender = refreshMasks(calculatedScreenWidth,calculatedScreenHeight);
-    	transformsToRender = refreshTransforms(calculatedScreenWidth,calculatedScreenHeight);
+    private static void transition(int menu) {
+    	transitioning = true;
+    	transitionTime = Framerate.getCurrentTime();
+    	transitionTo = menu;
     }
+    
+    public static void setMenuFromAnIndex(int menu) {
+    	transition(menu);
+    	if(menu == 0) {
+    		currentMenuIndex = menu;
+        	rawCurrentMenu = config.getMenuFromIndex(currentMenuIndex);
+        	selected = rawCurrentMenu.resetSelectors(new int[]{-1,-1});
+            Element[] tempElementsList = rawCurrentMenu.getElements();
+            selectionsList = new Selector[tempElementsList.length];
+            int i = 0;
+            for (Element element : tempElementsList) {
+            	selectionsList[i] = element.getSelector();
+            	i++;
+            }
+            elementsToRender = refreshElements(calculatedScreenWidth,calculatedScreenHeight);
+        	masksToRender = refreshMasks(calculatedScreenWidth,calculatedScreenHeight);
+        	transformsToRender = refreshTransforms(calculatedScreenWidth,calculatedScreenHeight);
+        }
+	}
+    	
     
     public static void setBG(Color bgColor) {
     	panel.setBackground(bgColor);
@@ -1068,4 +1134,12 @@ public class ShowImage extends JPanel implements KeyListener {
         Framerate thread = new Framerate();
         thread.start();
     }
+
+	public static boolean getTransitioning() {
+		return transitioning;
+	}
+
+	public static void setTransitioning(boolean transitioning) {
+		ShowImage.transitioning = transitioning;
+	}
 }
