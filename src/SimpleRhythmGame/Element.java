@@ -7,54 +7,59 @@ public class Element {
 	private Selector selector;
 	private Renderable renderable;
 	private TextBox textbox;
-	private int hoverEffect; // animation to play when hovered
-	private int clickEffect; // animation to play when clicked
-	private int arbitraryTransform; // for scroll boxes, ect.
+	private int maskIndex; // mask to use for this element
+	private int hoverEffectIndex; // animation to play when hovered
+	private int clickEffectIndex; // animation to play when clicked
+	private int arbitraryTransformIndex; // for scroll boxes, ect.
 	
-	public Element(Selector selector, int hoverEffect, int clickEffect, 
+	public Element(Selector selector, int maskIndex, int hoverEffect, int clickEffect, 
 			int arbitraryTransform, TextBox textbox
 			) {
 		transform = new TweenTransform(textbox);
 		this.selector = selector;
 		this.renderable = null;
 		this.textbox = textbox;
-		this.hoverEffect = hoverEffect;
-		this.clickEffect = clickEffect;
-		this.arbitraryTransform = arbitraryTransform;
+		this.maskIndex = maskIndex;
+		this.hoverEffectIndex = hoverEffect;
+		this.clickEffectIndex = clickEffect;
+		this.arbitraryTransformIndex = arbitraryTransform;
 	}
 	
-	public Element(Selector selector, int hoverEffect, int clickEffect, 
+	public Element(Selector selector, int maskIndex, int hoverEffect, int clickEffect, 
 			int arbitraryTransform, Renderable renderable) {
 		transform = new TweenTransform(renderable);
 		this.selector = selector;
 		this.renderable = renderable;
 		this.textbox = null;
-		this.hoverEffect = hoverEffect;
-		this.clickEffect = clickEffect;
-		this.arbitraryTransform = arbitraryTransform;
+		this.maskIndex = maskIndex;
+		this.hoverEffectIndex = hoverEffect;
+		this.clickEffectIndex = clickEffect;
+		this.arbitraryTransformIndex = arbitraryTransform;
 	}
 	
-	public Element(TweenTransform transform, Selector selector, int hoverEffect, int clickEffect, 
+	public Element(TweenTransform transform, Selector selector, int maskIndex, int hoverEffect, int clickEffect, 
 			int arbitraryTransform, TextBox textbox
 			) {
 		this.transform = transform;
 		this.selector = selector;
 		this.renderable = null;
 		this.textbox = textbox;
-		this.hoverEffect = hoverEffect;
-		this.clickEffect = clickEffect;
-		this.arbitraryTransform = arbitraryTransform;
+		this.maskIndex = maskIndex;
+		this.hoverEffectIndex = hoverEffect;
+		this.clickEffectIndex = clickEffect;
+		this.arbitraryTransformIndex = arbitraryTransform;
 	}
 	
-	public Element(TweenTransform transform, Selector selector, int hoverEffect, int clickEffect, 
+	public Element(TweenTransform transform, Selector selector, int maskIndex, int hoverEffect, int clickEffect, 
 			int arbitraryTransform, Renderable renderable) {
 		this.transform = transform;
 		this.selector = selector;
 		this.renderable = renderable;
 		this.textbox = null;
-		this.hoverEffect = hoverEffect;
-		this.clickEffect = clickEffect;
-		this.arbitraryTransform = arbitraryTransform;
+		this.maskIndex = maskIndex;
+		this.hoverEffectIndex = hoverEffect;
+		this.clickEffectIndex = clickEffect;
+		this.arbitraryTransformIndex = arbitraryTransform;
 	}
 	
 	public Selector getSelector() {
@@ -171,19 +176,19 @@ public class Element {
 	}
 
 	public int getHoverEffectIndex() {
-		return hoverEffect;
+		return hoverEffectIndex;
 	}
 
 	public int getClickEffectIndex() {
-		return clickEffect;
+		return clickEffectIndex;
 	}
 
 	public int getArbitraryTransformIndex() {
-		return arbitraryTransform;
+		return arbitraryTransformIndex;
 	}
 
 	public void setArbitraryTransformIndex(int arbitraryTransform) {
-		this.arbitraryTransform = arbitraryTransform;
+		this.arbitraryTransformIndex = arbitraryTransform;
 	}
 
 	public TweenTransform getTransform() {
@@ -192,5 +197,13 @@ public class Element {
 
 	public void setTransform(TweenTransform transform) {
 		this.transform = transform;
+	}
+
+	public int getMaskIndex() {
+		return maskIndex;
+	}
+
+	public void setMaskIndex(int maskIndex) {
+		this.maskIndex = maskIndex;
 	}
 }

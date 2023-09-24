@@ -7,7 +7,6 @@ public class TextBox {
 	private String name;
 	private Text text;
     private RoundedArea rectShape;
-    private int maskIndex;
     private Renderable renderableObject;
     private int color;
     private int opacity;
@@ -19,8 +18,7 @@ public class TextBox {
     		float scale, String function, String name,
     		Text text, 
     		Renderable renderableObject,
-    		RoundedArea rectShape, 
-    		int maskIndex, 
+    		RoundedArea rectShape,  
     		int color, int opacity, int shadowOffset, 
     		float strokeWidth, int strokeColor
     		) {
@@ -29,7 +27,6 @@ public class TextBox {
         this.name = name;
         this.text = text;
         this.rectShape = rectShape;
-        this.maskIndex = maskIndex;
         this.renderableObject = renderableObject;
         this.color = color;
         this.opacity = opacity;
@@ -42,7 +39,6 @@ public class TextBox {
     		float scale, String function, String name,
     		Text text, 
     		RoundedArea rectShape, 
-    		int maskIndex, 
     		int color, int opacity, int shadowOffset, 
     		float strokeWidth, int strokeColor) {
     	this.scale = scale;
@@ -50,7 +46,6 @@ public class TextBox {
         this.name = name;
         this.text = text;
         this.rectShape = rectShape;
-        this.maskIndex = maskIndex;
         this.renderableObject = null;
         this.color = color;
         this.opacity = opacity;
@@ -63,7 +58,6 @@ public class TextBox {
     		float scale, String function, String name, 
     		Renderable renderableObject, 
     		RoundedArea rectShape, 
-    		int maskIndex, 
     		int color, int opacity, int shadowOffset, 
     		float strokeWidth, int strokeColor) {
     	this.scale = scale;
@@ -71,21 +65,12 @@ public class TextBox {
     	this.name = name;
     	this.text = null;
         this.rectShape = rectShape;
-        this.maskIndex = maskIndex;
         this.renderableObject = renderableObject;
         this.color = color;
         this.opacity = opacity;
         this.shadowOffset = shadowOffset;
         this.strokeWidth = strokeWidth;
         this.strokeColor = strokeColor;
-    }
-    
-    public int getMaskIndex() {
-    	return maskIndex;
-    }
-    
-    public void setMaskIndex(int maskIndex) {
-    	this.maskIndex = maskIndex;
     }
     
     public float getScale() {

@@ -15,7 +15,7 @@ public class DefaultValues {
 	
 	private final static boolean defaultCursorEnabled = true;
 	
-	private final static boolean defaultDEBUG_drawMasks = true; // draws all clipping masks
+	private final static boolean defaultDEBUG_drawMasks = false; // draws all clipping masks
 	private final static int defaultDEBUG_masksColorsOffset = 0; // changes the seed for drawn colors
 	
 	private final static Controls[] defaultControls = new Controls[] {
@@ -76,11 +76,11 @@ public class DefaultValues {
 			new Menu( // 0. Main Menu
 					"Main Menu", // Menu Name
 					"Main Menu", // Menu Display Name
-					null,
+					null, // Previous Menu Name
 					0, // BG Color
 					new int[][]{{-1,-1}}, // Secondary Selections
 					new RoundedArea[]{ // Masks
-						new RoundedArea(0, 0, 1220, 1080, 0) // 0. Full Screen
+						new RoundedArea(0, 0, 1920, 1080, 0) // 0. Full Screen
 						// Insert here
 					},
 					new StoredTransform[] {
@@ -115,6 +115,7 @@ public class DefaultValues {
 								new int[]{0,0}, // Selector Index
 								new int[][]{{0,0},{0,1},{0,0},{0,0}} // E, S, W, N to select next
 								),
+							-1, // mask index
 							0, // hover effect
 							-1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
@@ -142,7 +143,6 @@ public class DefaultValues {
 								new RoundedArea(
 									1810, 325, 1000, 120, 100  // x, y, xSize, ySize
 									),
-								0, // Mask Index
 								2, // box color (index of colors)
 								255, // opacity (0-255)
 								8, // shadowOffset
@@ -153,6 +153,7 @@ public class DefaultValues {
 								new int[]{0,1}, // Selector Index
 								new int[][]{{0,1},{0,2},{0,1},{0,0}} // E, S, W, N to select next
 								),
+							-1, // Mask Index
 							0, // hover effect
 							-1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
@@ -181,7 +182,6 @@ public class DefaultValues {
 									1660, 510, 1000, 120,  // x, y, xSize, ySize
 									100 // roundPercentage
 									),
-								-1, // Mask Index
 								2, // box color (index of colors)
 								255, // opacity (0-255)
 								8, // shadowOffset
@@ -192,6 +192,7 @@ public class DefaultValues {
 								new int[]{0,2}, // Selector Index
 								new int[][]{{0,2},{0,3},{0,2},{0,1}} // E, S, W, N to select next
 								),
+							-1, // Mask Index
 							0, // hover effect
 							-1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
@@ -220,7 +221,6 @@ public class DefaultValues {
 									1660, 660, 1000, 120,  // x, y, xSize, ySize
 									100 // roundPercentage
 									),
-								-1, // Mask Index
 								2, // box color (index of colors)
 								255, // opacity (0-255)
 								8, // shadowOffset
@@ -231,6 +231,7 @@ public class DefaultValues {
 								new int[]{0,3}, // Selector Index
 								new int[][]{{0,3},{0,3},{0,3},{0,2}} // E, S, W, N to select next
 								),
+							-1, // Mask Index
 							0, // hover effect
 							-1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
@@ -259,7 +260,6 @@ public class DefaultValues {
 									1660, 810, 1000, 120,  // x, y, xSize, ySize
 									100 // roundPercentage
 									),
-								-1, // Mask Index
 								2, // box color (index of colors)
 								255, // opacity (0-255)
 								8, // shadowOffset

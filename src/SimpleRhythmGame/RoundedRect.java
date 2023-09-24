@@ -1,5 +1,8 @@
 package SimpleRhythmGame;
 
+import java.awt.geom.Area;
+import java.awt.geom.RoundRectangle2D;
+
 public class RoundedRect {
 	private int x;
     private int y;
@@ -53,5 +56,19 @@ public class RoundedRect {
     
     public void setRound(int round) {
     	this.round = round;
+    }
+    
+    public Area getArea() {
+    	
+    	RoundRectangle2D areaBounds = new RoundRectangle2D.Double(
+    			getX(), 
+    			getY(), 
+    			getXSize(), 
+    			getYSize(), 
+    			getRound(), 
+    			getRound());
+    	
+    	Area area = new Area(areaBounds);
+    	return area;
     }
 }

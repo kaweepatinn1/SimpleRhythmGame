@@ -6,7 +6,7 @@
   "framerate": 60,
   "shouldLimitFramerate": true,
   "cursorEnabled": true,
-  "DEBUG_drawMasks": true,
+  "DEBUG_drawMasks": false,
   "DEBUG_masksColorsOffset": 0,
   "controls": [
     {
@@ -173,7 +173,6 @@
               "ySize": 120,
               "roundPercentage": 100
             },
-            "maskIndex": 0,
             "renderableObject": {
               "name": "PlayPNG",
               "imagePath": "src/textures/play.png",
@@ -189,9 +188,10 @@
             "strokeWidth": 5.0,
             "strokeColor": 6
           },
-          "hoverEffect": 0,
-          "clickEffect": -1,
-          "arbitraryTransform": -1
+          "maskIndex": -1,
+          "hoverEffectIndex": 0,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1
         },
         {
           "selector": {
@@ -242,7 +242,6 @@
               "ySize": 120,
               "roundPercentage": 100
             },
-            "maskIndex": -1,
             "renderableObject": {
               "name": "LeaderboardPNG",
               "imagePath": "src/textures/leaderboard.png",
@@ -258,9 +257,10 @@
             "strokeWidth": 5.0,
             "strokeColor": 6
           },
-          "hoverEffect": 0,
-          "clickEffect": -1,
-          "arbitraryTransform": -1
+          "maskIndex": -1,
+          "hoverEffectIndex": 0,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1
         },
         {
           "selector": {
@@ -311,7 +311,6 @@
               "ySize": 120,
               "roundPercentage": 100
             },
-            "maskIndex": -1,
             "renderableObject": {
               "name": "CogwheelPNG",
               "imagePath": "src/textures/cog.png",
@@ -327,9 +326,10 @@
             "strokeWidth": 5.0,
             "strokeColor": 6
           },
-          "hoverEffect": 0,
-          "clickEffect": -1,
-          "arbitraryTransform": -1
+          "maskIndex": -1,
+          "hoverEffectIndex": 0,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1
         },
         {
           "selector": {
@@ -380,7 +380,6 @@
               "ySize": 120,
               "roundPercentage": 100
             },
-            "maskIndex": -1,
             "renderableObject": {
               "name": "PalettePNG",
               "imagePath": "src/textures/palette.png",
@@ -396,9 +395,10 @@
             "strokeWidth": 5.0,
             "strokeColor": 6
           },
-          "hoverEffect": 0,
-          "clickEffect": -1,
-          "arbitraryTransform": -1
+          "maskIndex": -1,
+          "hoverEffectIndex": 0,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1
         }
       ],
       "secondarySelections": [
@@ -411,7 +411,7 @@
         {
           "x": 0,
           "y": 0,
-          "xSize": 1220,
+          "xSize": 1920,
           "ySize": 1080,
           "roundPercentage": 0
         }
@@ -423,7 +423,7 @@
           "scaleX": 1.0,
           "scaleY": 1.0,
           "rotate": 0.0,
-          "delayMillis": 0,
+          "delayMillis": 500,
           "timeToTransformMillis": 1000,
           "easeType": 6
         },

@@ -109,7 +109,10 @@ public class ShowImage extends JPanel implements KeyListener {
         			// Do nothing, nothing has changed.
         		} else {
                 	if (lastHovered != null) {
-                		getElementFromName(lastHovered).deanimate();
+                		Element toDeanimate = getElementFromName(lastHovered);
+                		if (toDeanimate != null) {
+                			toDeanimate.deanimate();
+                		}
                 	}
         			// System.out.println("no longer hovering: " + lastHovered);
                 	// System.out.println("hovering: " + null);
@@ -188,25 +191,14 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	
 	        	TextBox textbox = currentElement.getTextbox();
 	        	
-	        	int maskIndex = textbox.getMaskIndex();
+	        	int maskIndex = currentElement.getMaskIndex();
 	        	
 	        	if (maskIndex == -1 || masksToRender.length == 0) {
 	        		Rectangle fullscreenSize = new Rectangle(0, 0, calculatedScreenWidth, calculatedScreenHeight);
 	        		Area noMask = new Area(fullscreenSize);
 	        		g2d.setClip(noMask);
 	        	} else {
-        			RoundedRect maskAttributes = getBoxAttributes(masksToRender[maskIndex]);
-		        	
-		        	RoundRectangle2D maskBounds = new RoundRectangle2D.Double(
-		        			maskAttributes.getX(), 
-		        			maskAttributes.getY(), 
-		        			maskAttributes.getXSize(), 
-		        			maskAttributes.getYSize(), 
-		        			maskAttributes.getRound(), 
-		        			maskAttributes.getRound());
-		        	
-		        	Area mask = new Area(maskBounds);
-		        	g2d.setClip(mask);
+		        	g2d.setClip(getBoxAttributes(masksToRender[maskIndex]).getArea());
 	        	}
         		
 	        	RoundedRect roundRectAttributes = getBoxAttributes(textbox.getRectShape());
@@ -309,6 +301,8 @@ public class ShowImage extends JPanel implements KeyListener {
         }
         
      // Draw Menu Title Box
+        g2d.setClip(getBoxAttributes(new RoundedArea(0, 0, calculatedScreenWidth, calculatedScreenHeight, 0)).getArea());
+        
         int x2Points[] = {
         		calculatedScreenWidth * 30 / 100,
         		calculatedScreenWidth * 34 / 100,
@@ -340,7 +334,7 @@ public class ShowImage extends JPanel implements KeyListener {
         
     	TextBox titletextbox = new TextBox(
         		// TextBox with Text
-    			1,
+    			1f, // scale 
 				"", // function
 				"",  // name
 				new Text(rawCurrentMenu.getMenuDisplayName(),
@@ -352,10 +346,8 @@ public class ShowImage extends JPanel implements KeyListener {
 						true // bold
 						), // text
 				new RoundedArea(0,0,0,0,0),  // x, y, xSize, ySize
-				-1, // Mask Index
 				1, // box color (index of colors)
 				0, // opacity (0-255)
-				 // bold boolean
 				0, // shadowOffset
 				0, 0 // strokeWidth, strokeColor
         		);
@@ -455,7 +447,7 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	}
 	        	Area buttonArea = new Area(finalRect);
 	        	
-        		int maskIndex = textbox.getMaskIndex();
+        		int maskIndex = currentElement.getMaskIndex();
 	        	
 	        	if (maskIndex == -1) {
 	        		// No mask
@@ -753,6 +745,8 @@ public class ShowImage extends JPanel implements KeyListener {
         	Element currentElement = rawElementsList[i];
         	Selector selector = currentElement.getSelector();
         	
+        	int maskIndex = currentElement.getMaskIndex();
+        	
         	int hoverEffectIndex = currentElement.getHoverEffectIndex();
         	int clickEffectIndex = currentElement.getClickEffectIndex();
         	int arbitraryTransformIndex = currentElement.getArbitraryTransformIndex();
@@ -775,8 +769,6 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	int x = (int) Math.round(currentItem.getX() * xScale - (xSize / 2));
 	        	int y = (int) Math.round(currentItem.getY() * yScale - (ySize / 2));
 	        	int roundPercentage = currentItem.getRoundPercentage();
-	        	
-	        	int maskIndex = currentItem.getMaskIndex();
 	        	
 	        	int offsetX = (int) Math.round(currentItem.getOffsetX() * xScale * textBoxScale);
 	        	int offsetY = (int) Math.round(currentItem.getOffsetY() * yScale * textBoxScale);
@@ -804,13 +796,14 @@ public class ShowImage extends JPanel implements KeyListener {
 		        		
 		        		elementsToReturn[i] =  
 		        				new Element(
-	        						transform, selector, hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
+	        						transform, selector,
+			        				maskIndex, 
+			        				hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
 			        				new TextBox( // First Constructor (Text AND Renderable)
 		        						textBoxScale, function, name, 
 				        				new Text(text, alignX, alignY, offsetX, offsetY, textSize, fontColor, font, bold), 
 				        				newRenderableObject,  
 				        				new RoundedArea(x, y, xSize, ySize, roundPercentage), 
-				        				maskIndex,
 				        				color, opacity, shadowOffset, 
 				        				stroke, strokeColor
 				        				)
@@ -819,12 +812,13 @@ public class ShowImage extends JPanel implements KeyListener {
 		        	} else {
 		        		elementsToReturn[i] =  
 		        				new Element( // Third Constructor (Only Renderable)
-	        						transform, selector, hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
+	        						transform, selector,
+			        				maskIndex,
+			        				hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
 	        						new TextBox(
         								textBoxScale, function, name,
         								newRenderableObject,
         								new RoundedArea(x, y, xSize, ySize, roundPercentage), 
-				        				maskIndex,
 				        				color, opacity, shadowOffset, 
 				        				stroke, strokeColor
 				        				)
@@ -833,12 +827,13 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	} else if (currentItem.getText() != null) {
 	        		 elementsToReturn[i] = 
 	        				 new Element(
-        						 transform, selector, hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
+        						 transform, selector, 
+		        				 maskIndex,
+		        				 hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
         						 new TextBox(
     								 textBoxScale, function, name,
     								 new Text(text, alignX, alignY, offsetX, offsetY, textSize, fontColor, font, bold), 
 			        				 new RoundedArea(x, y, xSize, ySize, roundPercentage), 
-			        				 maskIndex,
 			        				 color, opacity, shadowOffset, 
 			        				 stroke, strokeColor));
 	        	} else {
@@ -856,7 +851,10 @@ public class ShowImage extends JPanel implements KeyListener {
             	int renderableYSize = (int) Math.round(currentItem.getYSize() * yScale);
             	int renderableOpacity = currentItem.getOpacity();
             	
-            	elementsToReturn[i] =  new Element(selector, hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
+            	elementsToReturn[i] =  new Element(
+            			selector, 
+        				maskIndex,
+        				hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
             			new Renderable(renderableFunction, renderableName, imagePath, 
             			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity));
         	}
@@ -986,6 +984,14 @@ public class ShowImage extends JPanel implements KeyListener {
 	public static StoredTransform[] getTransformsToRender() {
 		return transformsToRender;
 	}
+	
+	public static int getCalculatedScreenHeight() {
+		return calculatedScreenHeight;
+	}
+
+	public static int getCalculatedScreenWidth() {
+		return calculatedScreenWidth;
+	}
 
     public static void main(String args[]) throws Exception {
     	
@@ -1062,5 +1068,4 @@ public class ShowImage extends JPanel implements KeyListener {
         Framerate thread = new Framerate();
         thread.start();
     }
-
 }

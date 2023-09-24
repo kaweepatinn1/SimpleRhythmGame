@@ -66,7 +66,7 @@ public class TweenTransform {
 			long currentTime = ShowImage.getConfig().getNanoSecondPrecision() ? 
 					Framerate.getCurrentTime() : 
 					Framerate.getCurrentTime() * 1000000;
-			double timePassed = Math.max((currentTime - initTimeNano)
+			double timePassed = Math.max((currentTime - startTimeNano)
 					, 0) 
 					/ 
 					(double) (endTimeNano - startTimeNano);

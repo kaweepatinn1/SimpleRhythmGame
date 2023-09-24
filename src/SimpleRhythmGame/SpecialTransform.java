@@ -13,8 +13,8 @@ public class SpecialTransform {
 	private double rotate;
 	
 	public SpecialTransform(StoredTransform storedTransform, RoundedArea inputArea) {
-		anchorX = inputArea.getX() + inputArea.getXSize() / 2;
-		anchorY = inputArea.getY() + inputArea.getYSize() / 2;
+		anchorX = inputArea.getX();
+		anchorY = inputArea.getY();
 		transformX = storedTransform.getTransformX();
 		transformY = storedTransform.getTransformY();
 		scaleX = storedTransform.getScaleX();
@@ -24,8 +24,8 @@ public class SpecialTransform {
 	}
 	
 	public SpecialTransform(SpecialTransform specialTransform, RoundedArea inputArea) {
-		anchorX = inputArea.getX() + inputArea.getXSize() / 2;
-		anchorY = inputArea.getY() + inputArea.getYSize() / 2;
+		anchorX = inputArea.getX();
+		anchorY = inputArea.getY();
 		transformX = specialTransform.getTransformX();
 		transformY = specialTransform.getTransformY();
 		scaleX = specialTransform.getScaleX();
@@ -40,8 +40,8 @@ public class SpecialTransform {
 			double rotate,
 			double x, double y, double xSize, double ySize
 			) {
-		anchorX = x + xSize / 2;
-		anchorY = y + ySize / 2;
+		anchorX = x;
+		anchorY = y;
 		this.transformX = transformX;
 		this.transformY = transformY;
 		this.scaleX = scaleX;
@@ -80,8 +80,8 @@ public class SpecialTransform {
 	* @see         {@link #SpecialTransform() SpecialTransform()}
 	*/
 	public SpecialTransform(double x, double y, double xSize, double ySize) {
-		anchorX = x + xSize / 2;
-		anchorY = y + ySize / 2;
+		anchorX = x;
+		anchorY = y;
 		transformX = 0;
 		transformY = 0;
 		scaleX = 1;
@@ -98,8 +98,8 @@ public class SpecialTransform {
 	* @see         {@link #RoundedArea() RoundedArea()}
 	*/
 	public SpecialTransform(RoundedArea inputArea) {
-		anchorX = inputArea.getX() + inputArea.getXSize() / 2;
-		anchorY = inputArea.getY() + inputArea.getYSize() / 2;
+		anchorX = inputArea.getX();
+		anchorY = inputArea.getY();
 		transformX = 0;
 		transformY = 0;
 		scaleX = 1;
@@ -119,8 +119,8 @@ public class SpecialTransform {
 	public SpecialTransform(double transformX, double transformY, 
 			double scaleX, double scaleY, 
 			double rotate, RoundedArea inputArea) {
-		anchorX = inputArea.getX() + inputArea.getXSize() / 2;
-		anchorY = inputArea.getY() + inputArea.getYSize() / 2;
+		anchorX = inputArea.getX();
+		anchorY = inputArea.getY();
 		this.transformX = transformX;
 		this.transformY = transformY;
 		this.scaleX = scaleX;
@@ -153,11 +153,16 @@ public class SpecialTransform {
 	
 	public void updateTransform() {
 		finalTransform = new AffineTransform();
-		finalTransform.translate(anchorX, anchorY);
+		finalTransform.translate(
+				anchorX * ShowImage.getCalculatedScreenWidth() / 1920, 
+				anchorY * ShowImage.getCalculatedScreenHeight() / 1080);
 		finalTransform.translate(transformX, transformY);
 		finalTransform.scale(scaleX, scaleY);
 		finalTransform.rotate((rotate * Math.PI) / 180);
-		finalTransform.translate(-anchorX, -anchorY);
+		finalTransform.translate(
+				-anchorX * ShowImage.getCalculatedScreenWidth() / 1920, 
+				-anchorY * ShowImage.getCalculatedScreenHeight() / 1080
+				);
 	}
 
 	public AffineTransform getFinalTransform() {
