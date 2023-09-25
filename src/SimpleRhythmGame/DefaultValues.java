@@ -6,7 +6,7 @@ import java.awt.Color;
 
 public class DefaultValues {
 	private final static boolean defaultFullscreen = false; // if not fullscreen will force below value
-	private final static int defaultSizeToForce = 1280; // forces this screen size if above is true
+	private final static int defaultSizeToForce = 1920; // forces this screen size if above is true
 	
 	private final static boolean defaultNanoSecondPrecision = true; // true breaks animations
 	private final static int defaultFramesToStore = 10;

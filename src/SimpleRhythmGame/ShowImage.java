@@ -75,7 +75,6 @@ public class ShowImage extends JPanel implements KeyListener {
                 		getElementFromName(mouseDragCurrent).deanimateClick();
                 		mouseDragCurrent = null;
                 	}
-                	// TODO stopClickAnimation(m
             		String functionToRun = releasedElement.getFunction();
                     boolean ranFunction = Functions.runFunction(functionToRun);
                     if (!ranFunction) {
@@ -167,10 +166,6 @@ public class ShowImage extends JPanel implements KeyListener {
             		System.out.println("deanimate");
             		getElementFromName(mouseDragCurrent).deanimateClick();
             	}
-            	// TODO stopClickAnimation(mouseDragCurrent);
-            	if (clickedElement != null) {
-            		// TODO startClickAnimation(clickedBox.getName());
-            	}
             	mouseDragCurrent = nameOfDraggedElement;
             }
         }
@@ -204,15 +199,16 @@ public class ShowImage extends JPanel implements KeyListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
-        Graphics2D g2d = (Graphics2D) g.create();
         RenderingHints rh = new RenderingHints(
                 RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON                    
                 );
-        g2d.setRenderingHints(rh);
         
         for (int i = 0; i < elementsToRender.length; i++) {
 	        Element currentElement = elementsToRender[i];
+	        
+	        Graphics2D g2d = (Graphics2D) g.create();
+	        g2d.setRenderingHints(rh);
 	        
 	        if (currentElement.isTextbox()) {
 	        	
@@ -311,8 +307,6 @@ public class ShowImage extends JPanel implements KeyListener {
 		            int finalY = roundRectAttributes.getY() + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY;
 		            g2d.drawString(textbox.getText(), finalX, finalY);
 	            }
-	            
-	            g2d.setTransform(new AffineTransform());
 
 	        } else if (currentElement.isRenderable()) {
 	        	
@@ -329,8 +323,10 @@ public class ShowImage extends JPanel implements KeyListener {
         		System.out.println("Fatal Error: currentElement to render is not renderable or textbox.");
         		System.out.println(currentElement);
         	}
+	        g2d.dispose();
         }
-        
+        Graphics2D g2d = (Graphics2D) g.create();
+        g2d.setRenderingHints(rh);
      // Draw Menu Title Box
         g2d.setClip(getBoxAttributes(new RoundedArea(0, 0, calculatedScreenWidth, calculatedScreenHeight, 0)).getArea());
         
