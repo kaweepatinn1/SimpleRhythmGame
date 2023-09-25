@@ -30,6 +30,8 @@ public class ShowImage extends JPanel implements KeyListener {
     // The name of the element that the current drag has started on
     private static boolean currentMouseDragging = false;
     
+    private static boolean updateFrame = true;
+    
     private static boolean transitioning = false;
     private static long transitionTime;
     private static int transitionTo;
@@ -47,7 +49,6 @@ public class ShowImage extends JPanel implements KeyListener {
             Element clickedElement = checkLocation(mouseX, mouseY);
             if (clickedElement != null) {
             	if (clickedElement.getClickEffectIndex() != -1) {
-        			System.out.println("animate");
             		getElementFromName(clickedElement.getName()).animateClick(true);
             	}
             	// System.out.println(releasedElement.getName());
@@ -71,7 +72,6 @@ public class ShowImage extends JPanel implements KeyListener {
             	// System.out.println(releasedElement.getName());
             	if (releasedElement.getName() == mouseDragStart && currentMouseDragging == true) {
             		if (mouseDragCurrent != null) {
-                		System.out.println("deanimate");
                 		getElementFromName(mouseDragCurrent).deanimateClick();
                 		mouseDragCurrent = null;
                 	}
@@ -101,7 +101,7 @@ public class ShowImage extends JPanel implements KeyListener {
             
         	if (hoveredElement != null) {
         		String nameOfHoveredElement = hoveredElement.getName();
-        		selected = rawCurrentMenu.resetSelectors(getElementFromName(nameOfHoveredElement).getSelectorIndex());
+        		selected = rawCurrentMenu.resetSelectors(getElementFromName(nameOfHoveredElement).getSelectorIndex(), selected);
                 if (lastHovered == nameOfHoveredElement) {
                 	// Do nothing, nothing has changed.
                 } else {
@@ -117,7 +117,7 @@ public class ShowImage extends JPanel implements KeyListener {
                 }
                 lastHovered = nameOfHoveredElement; 
         	} else {
-        		selected = rawCurrentMenu.resetSelectors(new int[]{-1,-1});
+        		selected = rawCurrentMenu.resetSelectors(false);
         		if (lastHovered == null) {
         			// Do nothing, nothing has changed.
         		} else {
@@ -459,73 +459,75 @@ public class ShowImage extends JPanel implements KeyListener {
     	
         for (int i = 0; i < elementsToRender.length; i++) {
             Element currentElement = elementsToRender[i];
-            if (currentElement.isTextbox()) {
-            	TextBox textbox = currentElement.getTextbox();
-	            RoundedRect roundRectAttributes = getStrokedBoxAttributes(textbox);
-	            // stroked box returns the round rectangle for the box including the surrounding stroke, giving the right hitbox
-	            Rectangle bounds = new Rectangle();
-	            
-	            int x = roundRectAttributes.getX();
-	        	int y = roundRectAttributes.getY();
-	        	int xSize = roundRectAttributes.getXSize();
-	        	int ySize = roundRectAttributes.getYSize();
-	        	int round = roundRectAttributes.getRound();
-	        	
-	        	RoundRectangle2D roundRect = new RoundRectangle2D.Double(x, y, xSize, ySize, round, round);
-	        	
-        		Shape finalRect = roundRect;
-	        	
-	        	for (int k = 2 ; k > -1 ; k--) {
-	        		if (currentElement.getTransform()[k].getNewTransform() != null) {
-		        		finalRect = currentElement.getTransform()[k].getCurrentPosition().getFinalTransform().createTransformedShape(finalRect);
-		        	}
-	        	}
-	        	
-	        	Area buttonArea = new Area(finalRect);
-	        	
-        		int maskIndex = currentElement.getMaskIndex();
-	        	
-	        	if (maskIndex == -1) {
-	        		// No mask
-	        	} else {
-	        		
-        			RoundedRect strokeInclusiveAttributes = getBoxAttributes(masksToRender[maskIndex]);
-		        	
-		        	RoundRectangle2D maskBounds = new RoundRectangle2D.Double(
-		        			strokeInclusiveAttributes.getX(), 
-		        			strokeInclusiveAttributes.getY(), 
-		        			strokeInclusiveAttributes.getXSize(), 
-		        			strokeInclusiveAttributes.getYSize(), 
-		        			strokeInclusiveAttributes.getRound(), 
-		        			strokeInclusiveAttributes.getRound());
-		        	
-		        	Area mask = new Area(maskBounds);
-		        	
-		        	buttonArea.intersect(mask);
-	        	}
-	            
-	            if (textbox.getRenderableObject() != null) {
-	            	Renderable renderable = textbox.getRenderableObject();
-	            	BufferedImage image = renderable.getImage();
-	            	bounds = new Rectangle(renderable.getX(), renderable.getY(), image.getWidth(), image.getHeight());
-	            }
-	            if ((buttonArea.contains(mouseX, mouseY) && textbox.getOpacity() != 0) ||
-	            	(bounds.contains(mouseX, mouseY) && textbox.getRenderableObject().getOpacity() != 0 && textbox.getRenderableObject() != null)
-	            		) { // sets the current hovered box as this if either its renderable (if there is one) or its shape is hovered AND not invisible
-	                currentBox = currentElement; 
-	                // does not break so that the element which is highest in the hierarchy
-	                // can be selected instead of the first (which would be more background items)
-	                // break;
-	            }
-            } else if (currentElement.isRenderable()) {
-            	// Check if the mouse click is within the boundaries of any image
-                Renderable renderable = currentElement.getRenderable();
-                BufferedImage image = renderable.getImage();
+            if (currentElement.getSelectorIndex()[0] + currentElement.getSelectorIndex()[1] > -1) {
+            	if (currentElement.isTextbox()) {
+                	TextBox textbox = currentElement.getTextbox();
+    	            RoundedRect roundRectAttributes = getStrokedBoxAttributes(textbox);
+    	            // stroked box returns the round rectangle for the box including the surrounding stroke, giving the right hitbox
+    	            Rectangle bounds = new Rectangle();
+    	            
+    	            int x = roundRectAttributes.getX();
+    	        	int y = roundRectAttributes.getY();
+    	        	int xSize = roundRectAttributes.getXSize();
+    	        	int ySize = roundRectAttributes.getYSize();
+    	        	int round = roundRectAttributes.getRound();
+    	        	
+    	        	RoundRectangle2D roundRect = new RoundRectangle2D.Double(x, y, xSize, ySize, round, round);
+    	        	
+            		Shape finalRect = roundRect;
+    	        	
+    	        	for (int k = 2 ; k > -1 ; k--) {
+    	        		if (currentElement.getTransform()[k].getNewTransform() != null) {
+    		        		finalRect = currentElement.getTransform()[k].getCurrentPosition().getFinalTransform().createTransformedShape(finalRect);
+    		        	}
+    	        	}
+    	        	
+    	        	Area buttonArea = new Area(finalRect);
+    	        	
+            		int maskIndex = currentElement.getMaskIndex();
+    	        	
+    	        	if (maskIndex == -1) {
+    	        		// No mask
+    	        	} else {
+    	        		
+            			RoundedRect strokeInclusiveAttributes = getBoxAttributes(masksToRender[maskIndex]);
+    		        	
+    		        	RoundRectangle2D maskBounds = new RoundRectangle2D.Double(
+    		        			strokeInclusiveAttributes.getX(), 
+    		        			strokeInclusiveAttributes.getY(), 
+    		        			strokeInclusiveAttributes.getXSize(), 
+    		        			strokeInclusiveAttributes.getYSize(), 
+    		        			strokeInclusiveAttributes.getRound(), 
+    		        			strokeInclusiveAttributes.getRound());
+    		        	
+    		        	Area mask = new Area(maskBounds);
+    		        	
+    		        	buttonArea.intersect(mask);
+    	        	}
+    	            
+    	            if (textbox.getRenderableObject() != null) {
+    	            	Renderable renderable = textbox.getRenderableObject();
+    	            	BufferedImage image = renderable.getImage();
+    	            	bounds = new Rectangle(renderable.getX(), renderable.getY(), image.getWidth(), image.getHeight());
+    	            }
+    	            if ((buttonArea.contains(mouseX, mouseY) && textbox.getOpacity() != 0) ||
+    	            	(bounds.contains(mouseX, mouseY) && textbox.getRenderableObject().getOpacity() != 0 && textbox.getRenderableObject() != null)
+    	            		) { // sets the current hovered box as this if either its renderable (if there is one) or its shape is hovered AND not invisible
+    	                currentBox = currentElement; 
+    	                // does not break so that the element which is highest in the hierarchy
+    	                // can be selected instead of the first (which would be more background items)
+    	                // break;
+    	            }
+                } else if (currentElement.isRenderable()) {
+                	// Check if the mouse click is within the boundaries of any image
+                    Renderable renderable = currentElement.getRenderable();
+                    BufferedImage image = renderable.getImage();
 
-                Rectangle bounds = new Rectangle(renderable.getX(), renderable.getY(), image.getWidth(), image.getHeight());
+                    Rectangle bounds = new Rectangle(renderable.getX(), renderable.getY(), image.getWidth(), image.getHeight());
 
-                if (bounds.contains(mouseX, mouseY) && renderable.getOpacity() != 0) {
-                	currentBox = currentElement; 
+                    if (bounds.contains(mouseX, mouseY) && renderable.getOpacity() != 0) {
+                    	currentBox = currentElement; 
+                    }
                 }
             }
         }
@@ -571,7 +573,8 @@ public class ShowImage extends JPanel implements KeyListener {
             	// doesn't cause deanimate; it only deanimates when it is
             	// a new element being switched to.
             	for (int i = 0 ; i < selectionsList.length; i++) {
-            		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1]) {
+            		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1] &&
+            				selectionsList[i].getSelectorIndex()[0] + selectionsList[i].getSelectorIndex()[1] > -1) {
             			directionalOptions = selectionsList[i].getSelectorOptions();
             			// retrieves directional options from the currently selected item
             			element = rawCurrentMenu.getElements()[i];
@@ -581,10 +584,11 @@ public class ShowImage extends JPanel implements KeyListener {
             		}
             	}
             	
-            	if (!found) { // set the selected to 0 instead if not currently selecting a valid item (can be -1,-1)
-            		selected = rawCurrentMenu.resetSelectors(new int[]{0,0});
+            	if (!found) { // set the selected to 0 instead if not currently selecting a valid item (like if currently on -1,-1)
+            		selected = rawCurrentMenu.resetSelectors(true);
             		for (int i = 0 ; i < selectionsList.length; i++) {
-                		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1]) {
+                		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1] &&
+                				selectionsList[i].getSelectorIndex()[0] + selectionsList[i].getSelectorIndex()[1] > -1) {
                 			element = rawCurrentMenu.getElements()[i];
                 			element.animateHover();
                 			lastHovered = element.getName();
@@ -602,13 +606,13 @@ public class ShowImage extends JPanel implements KeyListener {
             			}
             		} else {
             			if (hotkeyPressed == "Right") {
-    			        	selected = rawCurrentMenu.resetSelectors(directionalOptions[0]);
+    			        	selected = rawCurrentMenu.resetSelectors(directionalOptions[0], selected);
     			            } else if (hotkeyPressed == "Down") {
-    			            	selected = rawCurrentMenu.resetSelectors(directionalOptions[1]);
+    			            	selected = rawCurrentMenu.resetSelectors(directionalOptions[1], selected);
     			            } else if (hotkeyPressed == "Left") {
-    			            	selected = rawCurrentMenu.resetSelectors(directionalOptions[2]);
+    			            	selected = rawCurrentMenu.resetSelectors(directionalOptions[2], selected);
     	                    } else if (hotkeyPressed == "Up") {
-    	                    	selected = rawCurrentMenu.resetSelectors(directionalOptions[3]);
+    	                    	selected = rawCurrentMenu.resetSelectors(directionalOptions[3], selected);
                         }
             			for (int i = 0 ; i < selectionsList.length; i++) {
                     		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1]) {
@@ -988,7 +992,7 @@ public class ShowImage extends JPanel implements KeyListener {
     		} else if (Framerate.getCurrentTime() > transitionTime + 280000000l) {
     			currentMenuIndex = transitionTo;
     	    	rawCurrentMenu = config.getMenuFromIndex(currentMenuIndex);
-    	    	selected = rawCurrentMenu.resetSelectors(new int[]{-1,-1});
+    	    	selected = rawCurrentMenu.resetSelectors(false);
     	        Element[] tempElementsList = rawCurrentMenu.getElements();
     	        selectionsList = new Selector[tempElementsList.length];
     	        int i = 0;
@@ -996,11 +1000,15 @@ public class ShowImage extends JPanel implements KeyListener {
     	        	selectionsList[i] = element.getSelector();
     	        	i++;
     	        }
+    	        updateFrame = true;
     		}
     	}
-    	elementsToRender = refreshElements(calculatedScreenWidth,calculatedScreenHeight);
-    	masksToRender = refreshMasks(calculatedScreenWidth,calculatedScreenHeight);
-    	transformsToRender = refreshTransforms(calculatedScreenWidth,calculatedScreenHeight);
+    	if (updateFrame){
+    		updateFrame = false;
+    		elementsToRender = refreshElements(calculatedScreenWidth,calculatedScreenHeight);
+        	masksToRender = refreshMasks(calculatedScreenWidth,calculatedScreenHeight);
+        	transformsToRender = refreshTransforms(calculatedScreenWidth,calculatedScreenHeight);
+    	}
     	repaintPanel();
     }
     
@@ -1015,7 +1023,7 @@ public class ShowImage extends JPanel implements KeyListener {
     	if(menu == 0) {
     		currentMenuIndex = menu;
         	rawCurrentMenu = config.getMenuFromIndex(currentMenuIndex);
-        	selected = rawCurrentMenu.resetSelectors(new int[]{-1,-1});
+        	selected = rawCurrentMenu.resetSelectors(false);
             Element[] tempElementsList = rawCurrentMenu.getElements();
             selectionsList = new Selector[tempElementsList.length];
             int i = 0;
@@ -1023,9 +1031,7 @@ public class ShowImage extends JPanel implements KeyListener {
             	selectionsList[i] = element.getSelector();
             	i++;
             }
-            elementsToRender = refreshElements(calculatedScreenWidth,calculatedScreenHeight);
-        	masksToRender = refreshMasks(calculatedScreenWidth,calculatedScreenHeight);
-        	transformsToRender = refreshTransforms(calculatedScreenWidth,calculatedScreenHeight);
+            updateFrame = true;
         }
 	}
     	
@@ -1102,6 +1108,8 @@ public class ShowImage extends JPanel implements KeyListener {
     		panel.setCursor(blankCursor);
     	}
         
+        updateFrame();
+        
         frame.getContentPane().add(panel); // adds the panel to frame content
         
         frame.setResizable(false);
@@ -1137,5 +1145,9 @@ public class ShowImage extends JPanel implements KeyListener {
 
 	public static void setTransitioning(boolean transitioning) {
 		ShowImage.transitioning = transitioning;
+	}
+
+	public static void setUpdateFrame() {
+		ShowImage.updateFrame = true;
 	}
 }

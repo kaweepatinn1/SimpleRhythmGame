@@ -6,10 +6,10 @@ import java.awt.Color;
 
 public class DefaultValues {
 	private final static boolean defaultFullscreen = false; // if not fullscreen will force below value
-	private final static int defaultSizeToForce = 1920; // forces this screen size if above is true
+	private final static int defaultSizeToForce = 1280; // forces this screen size if above is true
 	
 	private final static boolean defaultNanoSecondPrecision = true; // true breaks animations
-	private final static int defaultFramesToStore = 10;
+	private final static int defaultFramesToStore = 20;
 	private final static int defaultFramerate = 60;
 	private final static boolean defaultShouldLimitFramerate = true;
 	
@@ -273,11 +273,35 @@ public class DefaultValues {
 					0, // BG Color
 					new int[][]{{-1,-1}}, // Secondary Selections
 					new RoundedArea[]{ // Masks
+							new RoundedArea(0, 0, 1920, 1080, 0) // 0. Full Screen
 							// Insert here
 						},
-					new StoredTransform[] {
-							
-					},
+						new StoredTransform[] {
+							new StoredTransform(
+								-100, 0, // x, y transform
+								1, 1, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								1000, // animation time (ms)
+								6 // (ease type)
+							),
+							new StoredTransform(
+								-20, 0, // x, y transform
+								0.95, 0.95, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								100, // animation time (ms)
+								6 // (ease type)
+							),
+							new StoredTransform(
+								0, 0, // x, y transform
+								1, 1, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								1000, // animation time (ms)
+								6 // (ease type)
+							)
+						},
 					new Element[] { // Elements List
 						
 					}

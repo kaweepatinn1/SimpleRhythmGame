@@ -78,14 +78,41 @@ public class Menu {
 		return toReturn;
 	}
 	
-	public int[] resetSelectors(int[] currentlySelected) {
+	public int[] resetSelectors(boolean resetToDefault) {
+		if (resetToDefault) {
+			int[] toReturn = null;
+			boolean found = false;
+			for (int i = 0; i < elements.length ; i++) {
+				if (elements[i].getSelectorIndex()[0] + elements[i].getSelectorIndex()[1] > -1) {
+					elements[i].setPrimaryHovered();
+					toReturn = elements[i].getSelectorIndex();
+					found = true;
+					break;
+				}
+			} 
+			if (!found) {
+				toReturn = new int[]{-1,-1};
+			}
+			return toReturn;
+		} else {
+			for (int i = 0; i < elements.length ; i++) {
+				Element element = elements[i];
+				element.setNotHovered();
+			}
+			return new int[]{-1,-1};
+		}
+	}
+	
+	public int[] resetSelectors(int[] currentlySelected, int[] lastSelected) {
+		boolean found = false;
 		for (int i = 0; i < elements.length ; i++) {
 			Element element = elements[i];
 			int[] elementSelectorIndex = element.getSelectorIndex();
 			
 			boolean setSecondaryHovered = false; // see if the requirements for secondary hovering are met
 			for (int[] secondarySelectionIndex : secondarySelections) {
-				if (secondarySelectionIndex[0] == elementSelectorIndex[0] && secondarySelectionIndex[1] == elementSelectorIndex[1] && currentlySelected[0] > elementSelectorIndex[0]) {
+				if (secondarySelectionIndex[0] == elementSelectorIndex[0] && secondarySelectionIndex[1] == elementSelectorIndex[1] && currentlySelected[0] > elementSelectorIndex[0]
+						&& elementSelectorIndex[0] + elementSelectorIndex[1] > -1) {
 					// the element's index must be on the secondary whitelist and less than currently selected
 					setSecondaryHovered = true;
 				}
@@ -93,6 +120,7 @@ public class Menu {
 			
 			if (elementSelectorIndex[0] == currentlySelected[0] && elementSelectorIndex[1] == currentlySelected[1]) {
 				element.setPrimaryHovered();
+				found = true;
 				
 			} else if (setSecondaryHovered) {
 				element.setSecondaryHovered();
@@ -100,7 +128,11 @@ public class Menu {
 				element.setNotHovered();
 			}
 		}
-		return currentlySelected;
+		if (found) {
+			return currentlySelected;
+		} else {
+			return lastSelected;
+		}
 	}
 
 	public StoredTransform[] getTransforms() {

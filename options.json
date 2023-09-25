@@ -1,8 +1,8 @@
 {
   "fullscreen": false,
-  "sizeToForce": 1920,
+  "sizeToForce": 1280,
   "nanoSecondPrecision": true,
-  "framesToStore": 10,
+  "framesToStore": 20,
   "framerate": 60,
   "shouldLimitFramerate": true,
   "cursorEnabled": true,
@@ -461,8 +461,47 @@
           -1
         ]
       ],
-      "masks": [],
-      "transforms": []
+      "masks": [
+        {
+          "x": 0,
+          "y": 0,
+          "xSize": 1920,
+          "ySize": 1080,
+          "roundPercentage": 0
+        }
+      ],
+      "transforms": [
+        {
+          "transformX": -100.0,
+          "transformY": 0.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 1000,
+          "easeType": 6
+        },
+        {
+          "transformX": -20.0,
+          "transformY": 0.0,
+          "scaleX": 0.95,
+          "scaleY": 0.95,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 100,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": 0.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 1000,
+          "easeType": 6
+        }
+      ]
     }
   ]
 }

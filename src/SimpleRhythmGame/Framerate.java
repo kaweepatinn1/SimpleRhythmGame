@@ -82,10 +82,8 @@ public class Framerate extends Thread {
 					int totalFrames = 0;
 					double totalFramesTime = 0;
 					for (int i = 0 ; i < framesToStore ; i++) {
-						if (frameTimeStoreMillis[i] >= 0) {
-							totalFrames++;
-							totalFramesTime += frameTimeStoreMillis[i];
-						}
+						totalFrames++;
+						totalFramesTime += frameTimeStoreMillis[i];
 					}
 					totalFramesTime = Math.max((totalFramesTime / 1000), 0.001);
 					// System.out.println("frames recorded: " + totalFrames);
@@ -115,10 +113,8 @@ public class Framerate extends Thread {
 					int totalFrames = 0;
 					double totalFramesTime = 0;
 					for (int i = 0 ; i < framesToStore ; i++) {
-						if (frameTimeStoreNanos[i] >= 0) {
-							totalFrames++;
-							totalFramesTime += frameTimeStoreNanos[i];
-						}
+						totalFrames++;
+						totalFramesTime += frameTimeStoreNanos[i];
 					}
 					// System.out.println("frames recorded: " + totalFrames);
 					// System.out.println("totaltime: " + totalFramesTime / 1000000);
