@@ -73,6 +73,24 @@ public class TextBox {
         this.strokeColor = strokeColor;
     }
     
+    public TextBox( // Just Box
+    		float scale, String function, String name,
+    		RoundedArea rectShape, 
+    		int color, int opacity, int shadowOffset, 
+    		float strokeWidth, int strokeColor) {
+    	this.scale = scale;
+    	this.function = function;
+    	this.name = name;
+    	this.text = null;
+    	this.renderableObject = null;
+        this.rectShape = rectShape;
+        this.color = color;
+        this.opacity = opacity;
+        this.shadowOffset = shadowOffset;
+        this.strokeWidth = strokeWidth;
+        this.strokeColor = strokeColor;
+    }
+    
     public float getScale() {
     	return scale;
     }
@@ -85,8 +103,20 @@ public class TextBox {
     	return name;
     }
     
+    public Text getTextObject() {
+    	return text;
+    }
+    
+    public void setTextObject(Text text) {
+    	this.text = text;
+    }
+    
     public String getText() {
-        return text.getText();
+    	if (text == null) {
+    		return null;
+    	} else {
+    		return text.getText();
+    	}
     }
     
     public String getAlignX() {

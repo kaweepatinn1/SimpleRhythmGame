@@ -148,7 +148,6 @@ public class Element {
 					hoverEffect.getEaseType()
 					);
 			setTransform(tweenTransform, 0);
-    		ShowImage.setUpdateFrame();
 		}
 	}
 	
@@ -163,7 +162,6 @@ public class Element {
 					hoverEffect.getEaseType()
 					);
 			setTransform(tweenTransform, 0);
-    		ShowImage.setUpdateFrame();
 		}
 	}
 	
@@ -179,7 +177,6 @@ public class Element {
 					boomerang
 					);
 			setTransform(tweenTransform, 1);
-    		ShowImage.setUpdateFrame();
 		}
 	}
 	
@@ -194,7 +191,6 @@ public class Element {
 					clickEffect.getEaseType()
 					);
 			setTransform(tweenTransform, 1);
-    		ShowImage.setUpdateFrame();
 		}
 	}
 	

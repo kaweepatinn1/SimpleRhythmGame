@@ -138,4 +138,194 @@ public class Menu {
 	public StoredTransform[] getTransforms() {
 		return transforms;
 	}
+	
+	public Menu getScaledMenu(int width, int height) {
+		
+		double xScale = ShowImage.intToDouble(width) / 1920;
+    	double yScale = ShowImage.intToDouble(height) / 1080;
+    	
+    	RoundedArea[] masks = getMasks();
+    	RoundedArea[] areasToReturn;
+    	
+    	if (masks != null) {
+    		areasToReturn = new RoundedArea[masks.length];
+        	
+        	for (int i = 0; i < masks.length; i++) {
+        		RoundedArea mask = masks[i];
+        		
+        		int maskXSize = (int) Math.round(mask.getXSize() * xScale);
+            	int maskYSize = (int) Math.round(mask.getYSize() * yScale);
+            	int maskX = (int) Math.round(mask.getX() * xScale);
+            	int maskY = (int) Math.round(mask.getY() * yScale);
+            	int maskRoundPercentage = mask.getRoundPercentage();
+            	
+            	areasToReturn[i] = new RoundedArea(maskX, maskY, maskXSize, maskYSize, maskRoundPercentage);
+        	}
+    	} else {
+    		areasToReturn = null;
+    	}
+		
+    	StoredTransform[] transforms = getTransforms();
+    	StoredTransform[] transformsToReturn;
+    	
+    	if (transforms != null) {
+    		transformsToReturn = new StoredTransform[transforms.length];
+        	
+        	for (int i = 0; i < transforms.length; i++) {
+        		StoredTransform transform = transforms[i];
+        		
+        		double transformX = transform.getTransformX() * xScale;
+        		double transformY = transform.getTransformY() * yScale;
+        		
+        		transformsToReturn[i] = new StoredTransform(transform, transformX, transformY);
+        		
+        	}
+    	} else {
+    		transformsToReturn = null;
+    	}
+    	
+    	Element[] rawElementsList = getElements();
+    	Element[] elementsToReturn = new Element[rawElementsList.length];
+        for (int i = 0; i < rawElementsList.length; i++) {
+        	
+        	Element currentElement = rawElementsList[i];
+        	Selector selector = currentElement.getSelector();
+        	
+        	int maskIndex = currentElement.getMaskIndex();
+        	
+        	int hoverEffectIndex = currentElement.getHoverEffectIndex();
+        	int clickEffectIndex = currentElement.getClickEffectIndex();
+        	int arbitraryTransformIndex = currentElement.getArbitraryTransformIndex();
+        	
+        	if (currentElement.isTextbox()) {
+        		
+	        	TextBox currentItem = currentElement.getTextbox();
+	        	TweenTransform[] transformIndexes = currentElement.getTransform();
+	        	
+	        	float textBoxScale = currentItem.getScale();
+	        	String function = currentItem.getFunction();
+	        	String name = currentItem.getName();
+	        	
+	        	int xSize = (int) Math.round(currentItem.getXSize() * xScale * textBoxScale);
+	        	int ySize = (int) Math.round(currentItem.getYSize() * yScale * textBoxScale);
+	        	int x = (int) Math.round(currentItem.getX() * xScale - (xSize / 2));
+	        	int y = (int) Math.round(currentItem.getY() * yScale - (ySize / 2));
+	        	int color = currentItem.getColor();
+	        	int opacity = currentItem.getOpacity();
+	        	int roundPercentage = currentItem.getRoundPercentage();
+	        	int shadowOffset = (int) Math.round(currentItem.getShadowOffset() * Math.min(xScale, yScale) * textBoxScale);
+	        	float stroke = (int) Math.round(currentItem.getStrokeWidth() * Math.min(xScale, yScale) * textBoxScale);
+	        	int strokeColor = currentItem.getStrokeColor();
+	        	
+	        	Renderable renderableObject = currentItem.getRenderableObject();
+	        	
+	        	if (currentItem.getText() == null) { // No textbox
+	        		if (currentItem.getRenderableObject() != null) { // No textbox and no renderable
+		        		String renderableName = renderableObject.getName();
+		        		String renderableFunction = renderableObject.getFunction();
+		            	String imagePath = renderableObject.getImagePath();
+		            	int renderableXSize = (int) Math.round(renderableObject.getXSize() * xScale * textBoxScale);
+		            	int renderableYSize = (int) Math.round(renderableObject.getYSize() * yScale * textBoxScale);
+		            	int renderableX = (int) Math.round(renderableObject.getX() * xScale * textBoxScale);
+		            	int renderableY = (int) Math.round(renderableObject.getY() * yScale * textBoxScale);
+		            	int renderableOpacity = renderableObject.getOpacity();
+		            	Renderable newRenderableObject =  new Renderable(renderableFunction, renderableName, imagePath, 
+		            			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
+		            	
+		            	elementsToReturn[i] =  
+		        				new Element( // Third Constructor (Only Renderable)
+	        						transformIndexes, selector,
+			        				maskIndex,
+			        				hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
+	        						new TextBox(
+        								textBoxScale, function, name,
+        								newRenderableObject,
+        								new RoundedArea(x, y, xSize, ySize, roundPercentage), 
+				        				color, opacity, shadowOffset, 
+				        				stroke, strokeColor
+				        				)
+	        						);
+	        		} else { // No textbox and no renderable
+	        			elementsToReturn[i] =  
+		        				new Element( // Fourth Constructor (No Renderable or Textbox)
+	        						transformIndexes, selector,
+			        				maskIndex,
+			        				hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
+	        						new TextBox(
+        								textBoxScale, function, name,
+        								new RoundedArea(x, y, xSize, ySize, roundPercentage), 
+				        				color, opacity, shadowOffset, 
+				        				stroke, strokeColor
+				        				)
+	        						);
+	        		}
+	        	} else { // Yes Textbox
+	        		
+	        		String text = currentItem.getText();
+		        	String alignX = currentItem.getAlignX();
+		        	String alignY = currentItem.getAlignY();
+		        	String font = currentItem.getFont();
+		        	int textSize = (int) Math.round(currentItem.getTextSize() * Math.min(xScale, yScale) * textBoxScale);
+		        	int fontColor = currentItem.getTextColor();
+		        	boolean bold = currentItem.getBold();
+		        	int offsetX = (int) Math.round(currentItem.getOffsetX() * xScale * textBoxScale);
+		        	int offsetY = (int) Math.round(currentItem.getOffsetY() * yScale * textBoxScale);
+		        	
+		        	if (renderableObject != null) {
+		        		
+		        		String renderableName = renderableObject.getName();
+		        		String renderableFunction = renderableObject.getFunction();
+		            	String imagePath = renderableObject.getImagePath();
+		            	int renderableXSize = (int) Math.round(renderableObject.getXSize() * xScale * textBoxScale);
+		            	int renderableYSize = (int) Math.round(renderableObject.getYSize() * yScale * textBoxScale);
+		            	int renderableX = (int) Math.round(renderableObject.getX() * xScale * textBoxScale);
+		            	int renderableY = (int) Math.round(renderableObject.getY() * yScale * textBoxScale);
+		            	int renderableOpacity = renderableObject.getOpacity();
+		            	Renderable newRenderableObject =  new Renderable(renderableFunction, renderableName, imagePath, 
+		            			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
+		            	
+		            	elementsToReturn[i] =  
+		        				new Element(
+	        						transformIndexes, selector,
+			        				maskIndex, 
+			        				hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
+			        				new TextBox( // First Constructor (Text AND Renderable)
+		        						textBoxScale, function, name, 
+				        				new Text(text, alignX, alignY, offsetX, offsetY, textSize, fontColor, font, bold), 
+				        				newRenderableObject,  
+				        				new RoundedArea(x, y, xSize, ySize, roundPercentage), 
+				        				color, opacity, shadowOffset, 
+				        				stroke, strokeColor
+				        				)
+	        						);
+	            	} else {
+		            		elementsToReturn[i] = 
+			        				 new Element( // Second Constructor (Only Text)
+		        						 transformIndexes, selector, 
+				        				 maskIndex,
+				        				 hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
+		        						 new TextBox(
+		    								 textBoxScale, function, name,
+		    								 new Text(text, alignX, alignY, offsetX, offsetY, textSize, fontColor, font, bold), 
+					        				 new RoundedArea(x, y, xSize, ySize, roundPercentage), 
+					        				 color, opacity, shadowOffset, 
+					        				 stroke, strokeColor));
+	            	}
+            	}
+        	}
+        }
+        
+        Menu finalMenu = new Menu(
+        		menuName,
+        		menuDisplayName,
+        		previousMenuName,
+        		bgColor,
+        		secondarySelections,
+        		areasToReturn,
+        		transformsToReturn,
+        		elementsToReturn
+        		);
+        
+        return finalMenu;
+	}
 }

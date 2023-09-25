@@ -145,7 +145,7 @@ public class DefaultValues {
 									),
 								2, // box color (index of colors)
 								255, // opacity (0-255)
-								8, // shadowOffset
+								12, // shadowOffset
 								5, 6 // strokeWidth, strokeColor
 								)),
 						new Element(
@@ -184,7 +184,7 @@ public class DefaultValues {
 									),
 								2, // box color (index of colors)
 								255, // opacity (0-255)
-								8, // shadowOffset
+								15, // shadowOffset
 								5, 6 // strokeWidth, strokeColor
 								)),
 						new Element(
@@ -223,7 +223,7 @@ public class DefaultValues {
 									),
 								2, // box color (index of colors)
 								255, // opacity (0-255)
-								8, // shadowOffset
+								15, // shadowOffset
 								5, 6 // strokeWidth, strokeColor
 								)),
 						new Element(
@@ -238,7 +238,7 @@ public class DefaultValues {
 							new TextBox(
 								// Text and Renderable
 								1, // scale
-								"setMenu String Customization_Main_Menu", // function
+								"setMenu String Customization_Theme_Builder", // function
 								"CustomizationButton",  // name
 								new Text(
 									"Customization", // text
@@ -262,12 +262,12 @@ public class DefaultValues {
 									),
 								2, // box color (index of colors)
 								255, // opacity (0-255)
-								8, // shadowOffset
+								15, // shadowOffset
 								5, 6 // strokeWidth, strokeColor
 								))
 					}),
 			new Menu( // 1. Customization
-					"Customization Main Menu", // Menu Name
+					"Customization Theme Builder", // Menu Name
 					"Customization", // Menu Display Name
 					"Main Menu",
 					0, // BG Color
@@ -286,7 +286,7 @@ public class DefaultValues {
 								6 // (ease type)
 							),
 							new StoredTransform(
-								-20, 0, // x, y transform
+								0, 0, // x, y transform
 								0.95, 0.95, // scale transform (x, y)
 								0, // rotate transform
 								0, // offset (ms)
@@ -295,15 +295,107 @@ public class DefaultValues {
 							),
 							new StoredTransform(
 								0, 0, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
+								1.05, 1.05, // scale transform (x, y)
+								-20, // rotate transform
 								0, // offset (ms)
-								1000, // animation time (ms)
+								500, // animation time (ms)
 								6 // (ease type)
 							)
 						},
 					new Element[] { // Elements List
-						
+							new Element(
+									new Selector(
+										new int[]{0,0}, // Selector Index
+										new int[][]{{0,0},{0,1},{0,0},{0,0}} // E, S, W, N to select next
+										),
+									-1, // mask index
+									0, // hover effect
+									1, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									new TextBox(
+										// Text and Renderable
+										1.5f, // scale
+										"setMenu String Play_Menu", // function
+										"PlaysButton",  // name
+										new Text(
+											"Play", // text
+											"left", "center", // align
+											-375, -9, // text offset (x, y)
+											50, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+										new Renderable(
+											// Renderable Without Function
+											"PlayPNG", // name
+											"src/textures/play.png", // file source
+											40, 30, 60, 60, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+										new RoundedArea(
+											1810, 325, 1000, 120, 100  // x, y, xSize, ySize
+											),
+										2, // box color (index of colors)
+										255, // opacity (0-255)
+										12, // shadowOffset
+										5, 6 // strokeWidth, strokeColor
+										)),
+							new Element(
+									new Selector(
+										new int[]{0,0}, // Selector Index
+										new int[][]{{0,1},{0,1},{-1,-1},{-1,-1}} // E, S, W, N to select next
+										),
+									-1, // Mask Index
+									2, // hover effect
+									1, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									new TextBox(
+										// Text and Renderable
+										1, // scale
+										"setMenu String Main_Menu", // function
+										"BackButton",  // name
+										new Renderable(
+											// Renderable Without Function
+											"BackPNG", // name
+											"src/textures/back.png", // file source
+											30, 30, 60, 60, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+										new RoundedArea(
+											90, 90, 120, 120,  // x, y, xSize, ySize
+											100 // roundPercentage
+											),
+										2, // box color (index of colors)
+										255, // opacity (0-255)
+										5, // shadowOffset
+										5, 6 // strokeWidth, strokeColor
+										)
+									),
+						new Element(
+							new Selector(
+								new int[]{-1,-1}, // Selector Index
+								new int[][]{{-1,-1},{-1,-1},{-1,-1},{-1,-1}} // E, S, W, N to select next
+								),
+							-1, // Mask Index
+							-1, // hover effect
+							-1, // click effect
+							-1, // arbritraty animation (to be used for scroll)
+							new TextBox(
+								// No Text, No Renderable
+								1, // scale
+								"setMenu String Settings_Menu", // function
+								"SettingsButton",  // name
+								new RoundedArea(
+									960, 560, 800, 800,  // x, y, xSize, ySize
+									5 // roundPercentage
+									),
+								1, // box color (index of colors)
+								255, // opacity (0-255)
+								25, // shadowOffset
+								5, 6 // strokeWidth, strokeColor
+								)
+							)
 					}
 			)
 	};
