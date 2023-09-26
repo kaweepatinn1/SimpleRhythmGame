@@ -38,7 +38,7 @@
     },
     {
       "hotkeyFunction": "Right",
-      "hotkeyOriginalKeyCode": 37,
+      "hotkeyOriginalKeyCode": 39,
       "keyCodes": [
         39,
         -1,
@@ -459,16 +459,16 @@
           "selector": {
             "selectorIndex": [
               0,
-              0
+              1
             ],
             "selectorOptions": [
               [
-                0,
+                1,
                 0
               ],
               [
                 0,
-                1
+                2
               ],
               [
                 0,
@@ -483,14 +483,14 @@
             "secondaryHovered": false
           },
           "textbox": {
-            "scale": 1.5,
-            "function": "setMenu String Play_Menu",
-            "name": "PlaysButton",
+            "scale": 1.0,
+            "function": "setMenu String null",
+            "name": "SkinSelectorButton",
             "text": {
-              "text": "Play",
+              "text": "Skin Selector",
               "alignX": "left",
               "alignY": "center",
-              "offsetX": -375,
+              "offsetX": -250,
               "offsetY": -9,
               "textSize": 50,
               "textColor": 6,
@@ -498,29 +498,80 @@
               "bold": false
             },
             "rectShape": {
-              "x": 1810,
-              "y": 325,
-              "xSize": 1000,
+              "x": 600,
+              "y": 300,
+              "xSize": 600,
               "ySize": 120,
               "roundPercentage": 100
             },
-            "renderableObject": {
-              "name": "PlayPNG",
-              "imagePath": "src/textures/play.png",
-              "x": 40,
-              "y": 30,
-              "xSize": 60,
-              "ySize": 60,
-              "opacity": 255
-            },
             "color": 2,
             "opacity": 255,
-            "shadowOffset": 12,
+            "shadowOffset": 15,
             "strokeWidth": 5.0,
             "strokeColor": 6
           },
           "maskIndex": -1,
-          "hoverEffectIndex": 0,
+          "hoverEffectIndex": 3,
+          "clickEffectIndex": 1,
+          "arbitraryTransformIndex": -1
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              0,
+              2
+            ],
+            "selectorOptions": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "setMenu String null",
+            "name": "ThemeBuilderButton",
+            "text": {
+              "text": "Theme Builder",
+              "alignX": "left",
+              "alignY": "center",
+              "offsetX": -250,
+              "offsetY": -9,
+              "textSize": 50,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 600,
+              "y": 450,
+              "xSize": 600,
+              "ySize": 120,
+              "roundPercentage": 100
+            },
+            "color": 2,
+            "opacity": 255,
+            "shadowOffset": 15,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "maskIndex": -1,
+          "hoverEffectIndex": 3,
           "clickEffectIndex": 1,
           "arbitraryTransformIndex": -1
         },
@@ -540,12 +591,12 @@
                 1
               ],
               [
-                -1,
-                -1
+                0,
+                0
               ],
               [
-                -1,
-                -1
+                0,
+                0
               ]
             ],
             "primaryHovered": false,
@@ -676,6 +727,16 @@
           "rotate": -20.0,
           "delayMillis": 0,
           "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": -200.0,
+          "transformY": 0.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 750,
           "easeType": 6
         }
       ]

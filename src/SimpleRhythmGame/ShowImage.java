@@ -612,6 +612,7 @@ public class ShowImage extends JPanel implements KeyListener {
             	} else {
             		
             		if (hotkeyPressed == "Enter") {
+            			element.animateClick(true);
             			String functionToRun = element.getFunction();
             			boolean ranFunction = Functions.runFunction(functionToRun);
             			if (!ranFunction) {

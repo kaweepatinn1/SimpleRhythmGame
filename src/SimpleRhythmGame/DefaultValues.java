@@ -36,7 +36,7 @@ public class DefaultValues {
 					),
 			new Controls(
 					"Right",
-					37,
+					39,
 					new int[]{39, -1, -1}
 					),
 			new Controls(
@@ -277,7 +277,7 @@ public class DefaultValues {
 							// Insert here
 						},
 						new StoredTransform[] {
-							new StoredTransform(
+							new StoredTransform( // 0. hover move left 100
 								-100, 0, // x, y transform
 								1, 1, // scale transform (x, y)
 								0, // rotate transform
@@ -285,7 +285,7 @@ public class DefaultValues {
 								1000, // animation time (ms)
 								6 // (ease type)
 							),
-							new StoredTransform(
+							new StoredTransform( // 1. click animation (scale down)
 								0, 0, // x, y transform
 								0.95, 0.95, // scale transform (x, y)
 								0, // rotate transform
@@ -293,58 +293,90 @@ public class DefaultValues {
 								100, // animation time (ms)
 								6 // (ease type)
 							),
-							new StoredTransform(
+							new StoredTransform( // 2. hover expand
 								0, 0, // x, y transform
 								1.05, 1.05, // scale transform (x, y)
 								-20, // rotate transform
 								0, // offset (ms)
 								500, // animation time (ms)
 								6 // (ease type)
+							),
+							new StoredTransform( // 3. hover expand (no rotate)
+								-200, 0, // x, y transform
+								1, 1, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								750, // animation time (ms)
+								6 // (ease type)
 							)
 						},
 					new Element[] { // Elements List
 							new Element(
 									new Selector(
-										new int[]{0,0}, // Selector Index
-										new int[][]{{0,0},{0,1},{0,0},{0,0}} // E, S, W, N to select next
+										new int[]{0,1}, // Selector Index
+										new int[][]{{1,0},{0,2},{0,0},{0,0}} // E, S, W, N to select next
 										),
 									-1, // mask index
-									0, // hover effect
+									3, // hover effect
 									1, // click effect
 									-1, // arbritraty animation (to be used for scroll)
 									new TextBox(
 										// Text and Renderable
-										1.5f, // scale
-										"setMenu String Play_Menu", // function
-										"PlaysButton",  // name
+										1f, // scale
+										"setMenu String null", // function
+										"SkinSelectorButton",  // name
 										new Text(
-											"Play", // text
+											"Skin Selector", // text
 											"left", "center", // align
-											-375, -9, // text offset (x, y)
+											-250, -9, // text offset (x, y)
 											50, // text size
 											6, // text color (index of colors)
 											"Archivo Narrow", // font
 											false // bold
 											),
-										new Renderable(
-											// Renderable Without Function
-											"PlayPNG", // name
-											"src/textures/play.png", // file source
-											40, 30, 60, 60, // x, y, xSize, ySize (relative)
-											255 // opacity (0-255)
-											),  // renderable
 										new RoundedArea(
-											1810, 325, 1000, 120, 100  // x, y, xSize, ySize
+											600, 300, 600, 120, 100  // x, y, xSize, ySize
 											),
 										2, // box color (index of colors)
 										255, // opacity (0-255)
-										12, // shadowOffset
+										15, // shadowOffset
+										5, 6 // strokeWidth, strokeColor
+										)),
+							new Element(
+									new Selector(
+										new int[]{0,2}, // Selector Index
+										new int[][]{{1,0},{0,2},{0,0},{0,1}} // E, S, W, N to select next
+										),
+									-1, // mask index
+									3, // hover effect
+									1, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									new TextBox(
+										// Text and Renderable
+										1f, // scale
+										"setMenu String null", // function
+										"ThemeBuilderButton",  // name
+										new Text(
+											"Theme Builder", // text
+											"left", "center", // align
+											-250, -9, // text offset (x, y)
+											50, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+										new RoundedArea(
+											600, 450, 600, 120, 100  // x, y, xSize, ySize
+											),
+										2, // box color (index of colors)
+										255, // opacity (0-255)
+										15, // shadowOffset
 										5, 6 // strokeWidth, strokeColor
 										)),
 							new Element(
 									new Selector(
 										new int[]{0,0}, // Selector Index
-										new int[][]{{0,1},{0,1},{-1,-1},{-1,-1}} // E, S, W, N to select next
+										new int[][]{{0,1},{0,1},{0,0},{0,0}} // E, S, W, N to select next
 										),
 									-1, // Mask Index
 									2, // hover effect
