@@ -119,6 +119,7 @@ public class DefaultValues {
 							0, // hover effect
 							1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
+							-1, // entry animation
 							new TextBox(
 								// Text and Renderable
 								1.5f, // scale
@@ -157,6 +158,7 @@ public class DefaultValues {
 							0, // hover effect
 							1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
+							-1, // entry animation
 							new TextBox(
 								// Text and Renderable
 								1, // scale
@@ -196,6 +198,7 @@ public class DefaultValues {
 							0, // hover effect
 							1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
+							-1, // entry animation
 							new TextBox(
 								// Text and Renderable
 								1, // scale
@@ -235,6 +238,7 @@ public class DefaultValues {
 							0, // hover effect
 							1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
+							-1, // entry animation
 							new TextBox(
 								// Text and Renderable
 								1, // scale
@@ -326,6 +330,7 @@ public class DefaultValues {
 									3, // hover effect
 									1, // click effect
 									-1, // arbritraty animation (to be used for scroll)
+									-1, // entry animation
 									new TextBox(
 										// Text and Renderable
 										1f, // scale
@@ -357,10 +362,11 @@ public class DefaultValues {
 									3, // hover effect
 									1, // click effect
 									-1, // arbritraty animation (to be used for scroll)
+									-1, // entry animation
 									new TextBox(
 										// Text and Renderable
 										1f, // scale
-										"setMenu String null", // function
+										"addPopup int 0", // function
 										"ThemeBuilderButton",  // name
 										new Text(
 											"Theme Builder", // text
@@ -388,6 +394,7 @@ public class DefaultValues {
 									2, // hover effect
 									1, // click effect
 									-1, // arbritraty animation (to be used for scroll)
+									-1, // entry animation
 									new TextBox(
 										// Text and Renderable
 										1, // scale
@@ -419,6 +426,7 @@ public class DefaultValues {
 							-1, // hover effect
 							-1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
+							-1, // entry animation
 							new TextBox(
 								// No Text, No Renderable
 								1, // scale
@@ -435,9 +443,40 @@ public class DefaultValues {
 								)
 							)
 					},
-					new Element[][] {
-						new Element[] {
-								
+					new Element[][] { // Popups List
+						new Element[] { // Popup 0
+								new Element(
+										new Selector(
+											new int[]{5,5}, // Selector Index
+											new int[][]{{1,0},{0,2},{0,0},{0,0}} // E, S, W, N to select next
+											),
+										-1, // mask index
+										3, // hover effect
+										1, // click effect
+										-1, // arbritraty animation (to be used for scroll)
+										-1, // entry animation
+										new TextBox(
+											// Text and Renderable
+											1f, // scale
+											"removePopup int 0", // function
+											"popup",  // name
+											new Text(
+												"popup", // text
+												"left", "center", // align
+												-250, -9, // text offset (x, y)
+												50, // text size
+												6, // text color (index of colors)
+												"Archivo Narrow", // font
+												false // bold
+												),
+											new RoundedArea(
+												1000, 300, 600, 20, 100  // x, y, xSize, ySize
+												),
+											2, // box color (index of colors)
+											255, // opacity (0-255)
+											15, // shadowOffset
+											5, 6 // strokeWidth, strokeColor
+											))
 						}
 					}
 			)

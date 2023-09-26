@@ -96,35 +96,52 @@ public class Menu {
 		return toReturn;
 	}
 	
-	public int[] resetSelectors(boolean resetToDefault) {
+	public int[] resetSelectors(boolean resetToDefault, int popup) {
 		if (resetToDefault) {
 			int[] toReturn = null;
 			boolean found = false;
-			for (int i = 0; i < elements.length ; i++) {
-				if (elements[i].getSelectorIndex()[0] + elements[i].getSelectorIndex()[1] > -1) {
-					elements[i].setPrimaryHovered();
-					toReturn = elements[i].getSelectorIndex();
+			
+			Element[] elementsToCheck = (popup == -1) ? elements : popups[popup];
+			
+			for (int i = 0; i < elementsToCheck.length ; i++) {
+				if (elementsToCheck[i].getSelectorIndex()[0] + elementsToCheck[i].getSelectorIndex()[1] > -1) {
+					elementsToCheck[i].setPrimaryHovered();
+					toReturn = elementsToCheck[i].getSelectorIndex();
 					found = true;
 					break;
 				}
 			} 
+			if (popup == -1) {
+				elements = elementsToCheck;
+			} else {
+				popups[popup] = elementsToCheck;
+			}
+			
 			if (!found) {
 				toReturn = new int[]{-1,-1};
 			}
 			return toReturn;
 		} else {
-			for (int i = 0; i < elements.length ; i++) {
-				Element element = elements[i];
+			Element[] elementsToCheck = (popup == -1) ? elements : popups[popup];
+			
+			for (int i = 0; i < elementsToCheck.length ; i++) {
+				Element element = elementsToCheck[i];
 				element.setNotHovered();
+			}
+			if (popup == -1) {
+				elements = elementsToCheck;
+			} else {
+				popups[popup] = elementsToCheck;
 			}
 			return new int[]{-1,-1};
 		}
 	}
 	
-	public int[] resetSelectors(int[] currentlySelected, int[] lastSelected) {
+	public int[] resetSelectors(int[] currentlySelected, int[] lastSelected, int popup) {
 		boolean found = false;
-		for (int i = 0; i < elements.length ; i++) {
-			Element element = elements[i];
+		Element[] elementsToCheck = (popup == -1) ? elements : popups[popup];
+		for (int i = 0; i < elementsToCheck.length ; i++) {
+			Element element = elementsToCheck[i];
 			int[] elementSelectorIndex = element.getSelectorIndex();
 			
 			boolean setSecondaryHovered = false; // see if the requirements for secondary hovering are met
@@ -147,8 +164,18 @@ public class Menu {
 			}
 		}
 		if (found) {
+			if (popup == -1) {
+				elements = elementsToCheck;
+			} else {
+				popups[popup] = elementsToCheck;
+			}
 			return currentlySelected;
 		} else {
+			if (popup == -1) {
+				elements = elementsToCheck;
+			} else {
+				popups[popup] = elementsToCheck;
+			}
 			return lastSelected;
 		}
 	}
@@ -226,6 +253,7 @@ public class Menu {
             	int hoverEffectIndex = currentElement.getHoverEffectIndex();
             	int clickEffectIndex = currentElement.getClickEffectIndex();
             	int arbitraryTransformIndex = currentElement.getArbitraryTransformIndex();
+            	int entryAnimationTransformIndex = currentElement.getEntryAnimationIndex();
             	
             	if (currentElement.isTextbox()) {
             		
@@ -267,6 +295,7 @@ public class Menu {
     	        						transformIndexes, selector,
     			        				maskIndex,
     			        				hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
+    			        				entryAnimationTransformIndex,
     	        						new TextBox(
             								textBoxScale, function, name,
             								newRenderableObject,
@@ -281,6 +310,7 @@ public class Menu {
     	        						transformIndexes, selector,
     			        				maskIndex,
     			        				hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
+    			        				entryAnimationTransformIndex,
     	        						new TextBox(
             								textBoxScale, function, name,
             								new RoundedArea(x, y, xSize, ySize, roundPercentage), 
@@ -319,6 +349,7 @@ public class Menu {
     	        						transformIndexes, selector,
     			        				maskIndex, 
     			        				hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
+    			        				entryAnimationTransformIndex,
     			        				new TextBox( // First Constructor (Text AND Renderable)
     		        						textBoxScale, function, name, 
     				        				new Text(text, alignX, alignY, offsetX, offsetY, textSize, fontColor, font, bold), 
@@ -334,6 +365,7 @@ public class Menu {
     		        						 transformIndexes, selector, 
     				        				 maskIndex,
     				        				 hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
+    				        				 entryAnimationTransformIndex,
     		        						 new TextBox(
     		    								 textBoxScale, function, name,
     		    								 new Text(text, alignX, alignY, offsetX, offsetY, textSize, fontColor, font, bold), 

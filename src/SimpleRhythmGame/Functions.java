@@ -31,19 +31,30 @@ public class Functions {
 							+ "in method runFunction, or incorrect naming for an object.");
 				}
 			}
-			
-			if (methodName.equals("setMenuIndex")) {
-				setMenuIndex((int) parameters[0]);
-			} else if (methodName.equals("setMenu") && !ShowImage.getTransitioning()) {
-				setMenu((String) parameters[0]);
+			if (!ShowImage.getTransitioning()) {
+				if (methodName.equals("setMenuIndex")) {
+					setMenuIndex((int) parameters[0]);
+				} else if (methodName.equals("setMenu")) {
+					setMenu((String) parameters[0]);
+				} else if (methodName.equals("addPopup")) {
+					addPopup((int) parameters[0]);
+				} else if (methodName.equals("removePopup")) {
+					removePopup((int) parameters[0]);
+				}
 			}
-			
-			//System.out.println((int) objects[0] + 1);
 
 			ranFunction = true;
 		}
 		
 		return ranFunction;
+	}
+	
+	private static void addPopup(int popup) {
+		ShowImage.addPopup(popup);
+	}
+	
+	private static void removePopup(int popup) {
+		ShowImage.removePopup(popup);
 	}
 	
 	private static void setMenuIndex(int menu) {

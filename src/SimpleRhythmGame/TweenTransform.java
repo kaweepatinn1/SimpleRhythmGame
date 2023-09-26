@@ -4,10 +4,10 @@ public class TweenTransform {
 	private SpecialTransform ogTransform;
 	private SpecialTransform newTransform;
 	private long timeToTransformMillis;
-	private long initTimeNano;
+	private double initTimeMillis;
 	private long delayInMillis;
-	private long startTimeNano;
-	private long endTimeNano;
+	private double startTimeMillis;
+	private double endTimeMillis;
 	private int easeType;
 	private boolean boomerang; // instantly deanimate after completion
 	
@@ -18,11 +18,11 @@ public class TweenTransform {
 			long delayInMillis,
 			int easeType
 			) {
-		initTimeNano = Framerate.getCurrentTime();
+		initTimeMillis = Framerate.getCurrentTime();
 		// multiplies by 1000 if not already in nanoseconds.
 		this.delayInMillis = delayInMillis;
-		startTimeNano = initTimeNano + (delayInMillis * 1000000);
-		endTimeNano = startTimeNano + (timeToTransformMillis * 1000000);
+		startTimeMillis = initTimeMillis + delayInMillis;
+		endTimeMillis = startTimeMillis + timeToTransformMillis;
 		this.ogTransform = ogTransform;
 		this.newTransform = newTransform;
 		this.easeType = easeType;
@@ -37,11 +37,11 @@ public class TweenTransform {
 			int easeType,
 			boolean boomerang
 			) {
-		initTimeNano = Framerate.getCurrentTime();
+		initTimeMillis = Framerate.getCurrentTime();
 		// multiplies by 1000 if not already in nanoseconds.
 		this.delayInMillis = delayInMillis;
-		startTimeNano = initTimeNano + (delayInMillis * 1000000);
-		endTimeNano = startTimeNano + (timeToTransformMillis * 1000000);
+		startTimeMillis = initTimeMillis + delayInMillis;
+		endTimeMillis = startTimeMillis + timeToTransformMillis;
 		this.ogTransform = ogTransform;
 		this.newTransform = newTransform;
 		this.easeType = easeType;
@@ -51,9 +51,9 @@ public class TweenTransform {
 	public TweenTransform(
 			TweenTransform storedTransform
 			) {
-		initTimeNano = Framerate.getCurrentTime();
-		startTimeNano = initTimeNano + (storedTransform.getDelayInMillis() * 1000000);
-		endTimeNano = startTimeNano + (storedTransform.getTimeToTransformMillis() * 1000000);
+		initTimeMillis = Framerate.getCurrentTime();
+		startTimeMillis = initTimeMillis + storedTransform.getDelayInMillis();
+		endTimeMillis = startTimeMillis + storedTransform.getTimeToTransformMillis();
 		ogTransform = storedTransform.getOgTransform();
 		newTransform = storedTransform.getNewTransform();
 		easeType = storedTransform.getEaseType();
@@ -72,30 +72,30 @@ public class TweenTransform {
 	}
 	
 	public double getCurrentTime() {
-		long currentTime = Framerate.getCurrentTime();
-		double timePassed = Math.max((currentTime - initTimeNano)
+		double currentTime = Framerate.getCurrentTime();
+		double timePassed = Math.max((currentTime - initTimeMillis)
 				, 0) 
 				/ 
-				(double) (endTimeNano - startTimeNano);
+				(double) (endTimeMillis - startTimeMillis);
 		return Math.min(Math.max(timePassed, 0),1);
 	}
 	
 	public SpecialTransform getCurrentPosition() {
 		SpecialTransform toReturn;
 		if (newTransform != null) {
-			long currentTime = Framerate.getCurrentTime();
-			double timePassed = Math.max((currentTime - startTimeNano)
+			double currentTime = Framerate.getCurrentTime();
+			double timePassed = Math.max((currentTime - startTimeMillis)
 					, 0) 
 					/ 
-					(double) (endTimeNano - startTimeNano);
+					(double) (endTimeMillis - startTimeMillis);
 			if (timePassed >= 1) {
 				if (boomerang) {
 					toReturn = newTransform;
 					
-					initTimeNano = Framerate.getCurrentTime();
+					initTimeMillis = Framerate.getCurrentTime();
 					// multiplies by 1000 if not already in nanoseconds.
-					startTimeNano = initTimeNano + ((50 + delayInMillis) * 1000000);
-					endTimeNano = startTimeNano + ((50 + timeToTransformMillis) * 1000000);
+					startTimeMillis = initTimeMillis + (50 + delayInMillis);
+					endTimeMillis = startTimeMillis + (50 + timeToTransformMillis);
 					SpecialTransform newOgTransform = new SpecialTransform(ogTransform.getAnchorX(),ogTransform.getAnchorY());
 					// will always return to original after boomerang.
 					SpecialTransform newNewTransform = newTransform;

@@ -48,8 +48,8 @@ public class Framerate extends Thread {
 		return nanoSecondPrecision;
 	}
 	
-	public static long getCurrentTime() {
-		long returnTime = ShowImage.getConfig().getNanoSecondPrecision() ? currentTime : currentTime * 1000000;
+	public static double getCurrentTime() {
+		double returnTime = ShowImage.getConfig().getNanoSecondPrecision() ? currentTime / 1000000 : currentTime;
 		return returnTime;
 	}
 	
