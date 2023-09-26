@@ -401,6 +401,9 @@
           "arbitraryTransformIndex": -1
         }
       ],
+      "popups": [
+        []
+      ],
       "secondarySelections": [
         [
           -1,
@@ -682,6 +685,9 @@
           "clickEffectIndex": -1,
           "arbitraryTransformIndex": -1
         }
+      ],
+      "popups": [
+        []
       ],
       "secondarySelections": [
         [

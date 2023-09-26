@@ -17,6 +17,7 @@ public class ShowImage extends JPanel implements KeyListener {
     private static Menu rawCurrentMenu;
     private static Menu scaledMenu;
     private static int[] selected;
+    private static int[] popupIndexes;
     private static Selector[] selectionsList;
     
     private static JFrame frame;
@@ -214,127 +215,137 @@ public class ShowImage extends JPanel implements KeyListener {
                 RenderingHints.VALUE_ANTIALIAS_ON                    
                 );
         
-        for (int i = 0; i < scaledMenu.getElements().length; i++) {
-	        Element currentElement = scaledMenu.getElements()[i];
-	        
-	        Graphics2D g2d = (Graphics2D) g.create();
-	        g2d.setRenderingHints(rh);
-	        
-	        if (currentElement.isTextbox()) {
-	        	
-	        	TextBox textbox = currentElement.getTextbox();
-	        	
-	        	int maskIndex = currentElement.getMaskIndex();
-	        	
-	        	if (maskIndex == -1 || scaledMenu.getMasks().length == 0) {
-	        		Rectangle fullscreenSize = new Rectangle(0, 0, calculatedScreenWidth, calculatedScreenHeight);
-	        		Area noMask = new Area(fullscreenSize);
-	        		g2d.setClip(noMask);
-	        	} else {
-		        	g2d.setClip(getBoxAttributes(scaledMenu.getMasks()[maskIndex]).getArea());
-	        	}
-        		
-	        	RoundedRect roundRectAttributes = getBoxAttributes(textbox.getRectShape());
-	        	
-	        	RoundRectangle2D roundRect = new RoundRectangle2D.Double(
-	        			roundRectAttributes.getX(),
-	        			roundRectAttributes.getY(),
-	        			roundRectAttributes.getXSize(),
-	        			roundRectAttributes.getYSize(),
-	        			roundRectAttributes.getRound(),
-	        			roundRectAttributes.getRound()
-	        			);
-	        	
-	        	Shape finalRect = roundRect;
-	        	
-	        	for (int k = 2 ; k > -1 ; k--) {
-	        		if (currentElement.getTransform()[k].getNewTransform() != null) {
-		        		finalRect = currentElement.getTransform()[k].getCurrentPosition().getFinalTransform().createTransformedShape(finalRect);
-		        	}
-	        	}
-	        
-	        	// grabs the SpecialTransform which grabs the AffineTransform to create a new shape from the transform
-	        	// of roundRect;
-	        	
-	        	if (textbox.getShadowOffset() != 0) { // fills a drop shadow on command
-	        		AffineTransform shadow = new AffineTransform();
-	        		shadow.translate(textbox.getShadowOffset(), textbox.getShadowOffset());
-	        		Shape shadowRect = shadow.createTransformedShape(finalRect);
-	            	g2d.setColor(new Color(0, 0, 0, 100));
-	            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
-	            	g2d.fill(shadowRect);
-	            }
-	        	
-	            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
-	            
-	            float thickness = textbox.getStrokeWidth();
-	            g2d.setStroke(new BasicStroke(thickness));
-	            
-	            g2d.setColor(config.getColors()[textbox.getColor()]); // set box color
-	            g2d.fill(finalRect);
-	            g2d.setColor(config.getColors()[textbox.getStrokeColor()]);
-	            g2d.draw(finalRect);
-	            
-	            g2d.setStroke(new BasicStroke(0));
-	            
-	            // ^ Textbox section
-	            // v Text / Image section
-	            
-	        	for (int k = 2 ; k > -1 ; k--) {
-	        		if (currentElement.getTransform()[k].getNewTransform() != null) {
-	        			g2d.transform(currentElement.getTransform()[k].getCurrentPosition().getFinalTransform());
-		        	}
-	        	}
-	        	
-	            if (textbox.getRenderableObject() != null) { // render image if contained
-	            	Renderable renderable = textbox.getRenderableObject();
-	            	BufferedImage image = renderable.getImage();
-	            	int rule = AlphaComposite.SRC_OVER;
-	                Composite comp = AlphaComposite.getInstance(rule , ((float) renderable.getOpacity())/255);
-	                g2d.setComposite(comp);
-	            	g2d.drawImage(image, textbox.getX() + renderable.getX(), textbox.getY() + renderable.getY(), null);
-	            	g2d.setComposite(AlphaComposite.getInstance(rule , 1));
-	            	// Reset the composite after using it
-	            } 
-	            
-	            if (textbox.getText() != null){ // render text if contained
-	            	
-	            	g2d.setColor(config.getColors()[textbox.getTextColor()]); // set text color
-		            
-		            Font font;
-		            
-	            	font = new Font(textbox.getFont(), textbox.getBold() ? Font.BOLD:Font.PLAIN, textbox.getTextSize());
-	            	g2d.setFont(font);
-		            // Below code grabs the size of the text using the string to be entered
-		            FontMetrics fontMetrics = g2d.getFontMetrics();
-		            
-		            int[] extraAligns = getTextAligns(textbox, fontMetrics);
-		            
-		            int extraAlignX = extraAligns[0];
-		            int extraAlignY = extraAligns[1];
-		            
-		            int finalX = roundRectAttributes.getX() + (textbox.getXSize() / 2) + textbox.getOffsetX() + extraAlignX;
-		            int finalY = roundRectAttributes.getY() + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY;
-		            g2d.drawString(textbox.getText(), finalX, finalY);
-	            }
-
-	        } else if (currentElement.isRenderable()) {
-	        	
-	            Renderable renderable = currentElement.getRenderable();
-	            BufferedImage image = renderable.getImage();
-	            
-	            g2d.setRenderingHints(rh);
-	            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, renderable.getOpacity() / 255f));
-	
-	            g2d.drawImage(image, renderable.getX(), renderable.getY(), null);
-	            g2d.dispose();
-	            
-	        } else {
-        		System.out.println("Fatal Error: currentElement to render is not renderable or textbox.");
-        		System.out.println(currentElement);
+        for (int iter = -1 ; iter < popupIndexes.length + 1 ; iter++) {
+        	Element[] toRender = null;
+        	if (iter == -1) {
+        		toRender = scaledMenu.getElements();
+        	} else {
+            	toRender = scaledMenu.getPopup(iter);
         	}
-	        g2d.dispose();
+        	
+        	for (int i = 0; i < toRender.length; i++) {
+    	        Element currentElement = scaledMenu.getElements()[i];
+    	        
+    	        Graphics2D g2d = (Graphics2D) g.create();
+    	        g2d.setRenderingHints(rh);
+    	        
+    	        if (currentElement.isTextbox()) {
+    	        	
+    	        	TextBox textbox = currentElement.getTextbox();
+    	        	
+    	        	int maskIndex = currentElement.getMaskIndex();
+    	        	
+    	        	if (maskIndex == -1 || scaledMenu.getMasks().length == 0) {
+    	        		Rectangle fullscreenSize = new Rectangle(0, 0, calculatedScreenWidth, calculatedScreenHeight);
+    	        		Area noMask = new Area(fullscreenSize);
+    	        		g2d.setClip(noMask);
+    	        	} else {
+    		        	g2d.setClip(getBoxAttributes(scaledMenu.getMasks()[maskIndex]).getArea());
+    	        	}
+            		
+    	        	RoundedRect roundRectAttributes = getBoxAttributes(textbox.getRectShape());
+    	        	
+    	        	RoundRectangle2D roundRect = new RoundRectangle2D.Double(
+    	        			roundRectAttributes.getX(),
+    	        			roundRectAttributes.getY(),
+    	        			roundRectAttributes.getXSize(),
+    	        			roundRectAttributes.getYSize(),
+    	        			roundRectAttributes.getRound(),
+    	        			roundRectAttributes.getRound()
+    	        			);
+    	        	
+    	        	Shape finalRect = roundRect;
+    	        	
+    	        	for (int k = 2 ; k > -1 ; k--) {
+    	        		if (currentElement.getTransform()[k].getNewTransform() != null) {
+    		        		finalRect = currentElement.getTransform()[k].getCurrentPosition().getFinalTransform().createTransformedShape(finalRect);
+    		        	}
+    	        	}
+    	        
+    	        	// grabs the SpecialTransform which grabs the AffineTransform to create a new shape from the transform
+    	        	// of roundRect;
+    	        	
+    	        	if (textbox.getShadowOffset() != 0) { // fills a drop shadow on command
+    	        		AffineTransform shadow = new AffineTransform();
+    	        		shadow.translate(textbox.getShadowOffset(), textbox.getShadowOffset());
+    	        		Shape shadowRect = shadow.createTransformedShape(finalRect);
+    	            	g2d.setColor(new Color(0, 0, 0, 100));
+    	            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+    	            	g2d.fill(shadowRect);
+    	            }
+    	        	
+    	            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+    	            
+    	            float thickness = textbox.getStrokeWidth();
+    	            g2d.setStroke(new BasicStroke(thickness));
+    	            
+    	            g2d.setColor(config.getColors()[textbox.getColor()]); // set box color
+    	            g2d.fill(finalRect);
+    	            g2d.setColor(config.getColors()[textbox.getStrokeColor()]);
+    	            g2d.draw(finalRect);
+    	            
+    	            g2d.setStroke(new BasicStroke(0));
+    	            
+    	            // ^ Textbox section
+    	            // v Text / Image section
+    	            
+    	        	for (int k = 2 ; k > -1 ; k--) {
+    	        		if (currentElement.getTransform()[k].getNewTransform() != null) {
+    	        			g2d.transform(currentElement.getTransform()[k].getCurrentPosition().getFinalTransform());
+    		        	}
+    	        	}
+    	        	
+    	            if (textbox.getRenderableObject() != null) { // render image if contained
+    	            	Renderable renderable = textbox.getRenderableObject();
+    	            	BufferedImage image = renderable.getImage();
+    	            	int rule = AlphaComposite.SRC_OVER;
+    	                Composite comp = AlphaComposite.getInstance(rule , ((float) renderable.getOpacity())/255);
+    	                g2d.setComposite(comp);
+    	            	g2d.drawImage(image, textbox.getX() + renderable.getX(), textbox.getY() + renderable.getY(), null);
+    	            	g2d.setComposite(AlphaComposite.getInstance(rule , 1));
+    	            	// Reset the composite after using it
+    	            } 
+    	            
+    	            if (textbox.getText() != null){ // render text if contained
+    	            	
+    	            	g2d.setColor(config.getColors()[textbox.getTextColor()]); // set text color
+    		            
+    		            Font font;
+    		            
+    	            	font = new Font(textbox.getFont(), textbox.getBold() ? Font.BOLD:Font.PLAIN, textbox.getTextSize());
+    	            	g2d.setFont(font);
+    		            // Below code grabs the size of the text using the string to be entered
+    		            FontMetrics fontMetrics = g2d.getFontMetrics();
+    		            
+    		            int[] extraAligns = getTextAligns(textbox, fontMetrics);
+    		            
+    		            int extraAlignX = extraAligns[0];
+    		            int extraAlignY = extraAligns[1];
+    		            
+    		            int finalX = roundRectAttributes.getX() + (textbox.getXSize() / 2) + textbox.getOffsetX() + extraAlignX;
+    		            int finalY = roundRectAttributes.getY() + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY;
+    		            g2d.drawString(textbox.getText(), finalX, finalY);
+    	            }
+
+    	        } else if (currentElement.isRenderable()) {
+    	        	
+    	            Renderable renderable = currentElement.getRenderable();
+    	            BufferedImage image = renderable.getImage();
+    	            
+    	            g2d.setRenderingHints(rh);
+    	            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, renderable.getOpacity() / 255f));
+    	
+    	            g2d.drawImage(image, renderable.getX(), renderable.getY(), null);
+    	            g2d.dispose();
+    	            
+    	        } else {
+            		System.out.println("Fatal Error: currentElement to render is not renderable or textbox.");
+            		System.out.println(currentElement);
+            	}
+    	        g2d.dispose();
+            }
         }
+        
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setRenderingHints(rh);
      // Draw Menu Title Box
@@ -468,9 +479,9 @@ public class ShowImage extends JPanel implements KeyListener {
     	if (!transitionBlackOut) {
     		Element currentBox = null;
         	
-            for (int i = 0; i < scaledMenu.getElements().length; i++) {
+            for (int i = scaledMenu.getElements().length - 1 ; i > -1 ; i--) {
                 Element currentElement = scaledMenu.getElements()[i];
-                if (currentElement.getSelectorIndex()[0] + currentElement.getSelectorIndex()[1] > -1) {
+                
                 	if (currentElement.isTextbox()) {
                     	TextBox textbox = currentElement.getTextbox();
         	            RoundedRect roundRectAttributes = getStrokedBoxAttributes(textbox);
@@ -524,7 +535,12 @@ public class ShowImage extends JPanel implements KeyListener {
         	            if ((buttonArea.contains(mouseX, mouseY) && textbox.getOpacity() != 0) ||
         	            	(bounds.contains(mouseX, mouseY) && textbox.getRenderableObject().getOpacity() != 0 && textbox.getRenderableObject() != null)
         	            		) { // sets the current hovered box as this if either its renderable (if there is one) or its shape is hovered AND not invisible
-        	                currentBox = currentElement; 
+        	            	if (currentElement.getSelectorIndex()[0] + currentElement.getSelectorIndex()[1] > -1) {
+        	            		currentBox = currentElement; 
+        	            	} else {
+        	            		currentBox = null;
+        	            	}
+        	                break;
         	                // does not break so that the element which is highest in the hierarchy
         	                // can be selected instead of the first (which would be more background items)
         	                // break;
@@ -537,11 +553,15 @@ public class ShowImage extends JPanel implements KeyListener {
                         Rectangle bounds = new Rectangle(renderable.getX(), renderable.getY(), image.getWidth(), image.getHeight());
 
                         if (bounds.contains(mouseX, mouseY) && renderable.getOpacity() != 0) {
-                        	currentBox = currentElement; 
+                        	if (currentElement.getSelectorIndex()[0] + currentElement.getSelectorIndex()[1] > -1) {
+        	            		currentBox = currentElement; 
+        	            	} else {
+        	            		currentBox = null;
+        	            	}
+                        	break;
                         }
                     }
                 }
-            }
             return currentBox;
     	} else {
     		return null;
@@ -826,12 +846,11 @@ public class ShowImage extends JPanel implements KeyListener {
     				currentMenu[i].deanimateHover();
     			}
     			lastHovered = null;
-    			selected = null;
-    			System.out.println("hi");
+    			selected = scaledMenu.resetSelectors(false);
+    			popupIndexes = new int[] {};
     			currentMenuIndex = transitionTo;
     	    	rawCurrentMenu = config.getMenuFromIndex(currentMenuIndex);
             	scaledMenu = rawCurrentMenu.getScaledMenu(calculatedScreenWidth, calculatedScreenHeight);
-    	    	selected = scaledMenu.resetSelectors(false);
     	    	Element[] tempElementsList = scaledMenu.getElements();
     	        selectionsList = new Selector[tempElementsList.length];
     	        int i = 0;
@@ -862,6 +881,7 @@ public class ShowImage extends JPanel implements KeyListener {
         	rawCurrentMenu = config.getMenuFromIndex(currentMenuIndex);
         	scaledMenu = rawCurrentMenu.getScaledMenu(calculatedScreenWidth, calculatedScreenHeight);
         	selected = scaledMenu.resetSelectors(false);
+        	popupIndexes = new int[] {};
         	Element[] tempElementsList = scaledMenu.getElements();
 	        selectionsList = new Selector[tempElementsList.length];
 	        int i = 0;

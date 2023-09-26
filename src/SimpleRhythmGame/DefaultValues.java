@@ -265,7 +265,13 @@ public class DefaultValues {
 								15, // shadowOffset
 								5, 6 // strokeWidth, strokeColor
 								))
-					}),
+					},
+					new Element[][] {
+						new Element[] {
+								
+						}
+					}
+					),
 			new Menu( // 1. Customization
 					"Customization Theme Builder", // Menu Name
 					"Customization", // Menu Display Name
@@ -428,6 +434,11 @@ public class DefaultValues {
 								5, 6 // strokeWidth, strokeColor
 								)
 							)
+					},
+					new Element[][] {
+						new Element[] {
+								
+						}
 					}
 			)
 	};
