@@ -36,6 +36,7 @@ public class ShowImage extends JPanel implements KeyListener {
     
     private static boolean popupUpdate = false;
     private static double popupTime;
+    private static int fadeOutPopup = -1;
     
     private static boolean transitioning = false;
     // whether or not the menu is currently transitioning (includes the p
@@ -218,18 +219,24 @@ public class ShowImage extends JPanel implements KeyListener {
                 RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON                    
                 );
+        float opacityMulti = 0;
         
         for (int iter = -1 ; iter < popupIndexes.length; iter++) {
         	Element[] toRender = null;
         	if (iter == -1) {
         		toRender = scaledMenu.getElements();
+        		opacityMulti = 1;
         	} else {
             	toRender = scaledMenu.getPopup(iter);
             	Graphics2D g2d = (Graphics2D) g.create();
     	        g2d.setRenderingHints(rh);
     	        Rectangle rect = new Rectangle(0,0,calculatedScreenWidth,calculatedScreenHeight);
     	        g2d.setColor(new Color(0,0,0,255));
-    	        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+    	        opacityMulti = (iter == popupIndexes.length - 1) ? 
+    	        		( fadeOutPopup == -1 ? (float) Math.max(Math.min(((Framerate.getCurrentTime() - popupTime) / 240d),1f),0f)
+    	        				: (float) Math.max(Math.min(1 -((Framerate.getCurrentTime() - popupTime) / 240d),1f),0f))
+    	        		: 1f;
+    	        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f * opacityMulti));
     	        g2d.fill(rect);
     	        g2d.dispose();
         	}
@@ -281,11 +288,12 @@ public class ShowImage extends JPanel implements KeyListener {
     	        		shadow.translate(textbox.getShadowOffset(), textbox.getShadowOffset());
     	        		Shape shadowRect = shadow.createTransformedShape(finalRect);
     	            	g2d.setColor(new Color(0, 0, 0, 100));
-    	            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+    	            	
+    	            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f * opacityMulti));
     	            	g2d.fill(shadowRect);
     	            }
     	        	
-    	            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+    	        	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacityMulti));
     	            
     	            float thickness = textbox.getStrokeWidth();
     	            g2d.setStroke(new BasicStroke(thickness));
@@ -309,11 +317,9 @@ public class ShowImage extends JPanel implements KeyListener {
     	            if (textbox.getRenderableObject() != null) { // render image if contained
     	            	Renderable renderable = textbox.getRenderableObject();
     	            	BufferedImage image = renderable.getImage();
-    	            	int rule = AlphaComposite.SRC_OVER;
-    	                Composite comp = AlphaComposite.getInstance(rule , ((float) renderable.getOpacity())/255);
-    	                g2d.setComposite(comp);
+    	            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacityMulti * ((float) renderable.getOpacity())/255));
     	            	g2d.drawImage(image, textbox.getX() + renderable.getX(), textbox.getY() + renderable.getY(), null);
-    	            	g2d.setComposite(AlphaComposite.getInstance(rule , 1));
+    	            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacityMulti));
     	            	// Reset the composite after using it
     	            } 
     	            
@@ -344,7 +350,7 @@ public class ShowImage extends JPanel implements KeyListener {
     	            BufferedImage image = renderable.getImage();
     	            
     	            g2d.setRenderingHints(rh);
-    	            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, renderable.getOpacity() / 255f));
+    	            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacityMulti * ((float) renderable.getOpacity())/255));
     	
     	            g2d.drawImage(image, renderable.getX(), renderable.getY(), null);
     	            g2d.dispose();
@@ -487,7 +493,7 @@ public class ShowImage extends JPanel implements KeyListener {
     
 
     public static Element checkLocation(int mouseX, int mouseY) {
-    	if (!transitionBlackOut) {
+    	if (!transitionBlackOut && !popupUpdate) {
     		Element currentBox = null;
         	
     		Element[] elementsToCheck;
@@ -591,125 +597,134 @@ public class ShowImage extends JPanel implements KeyListener {
 	}
     
     public void keyPressed(KeyEvent e) {
-        int rawKeyCode = e.getKeyCode();
-        // System.out.println(rawKeyCode);
-        int keyCode = -1;
-        boolean foundKey = false;
-        for (Controls control : config.getControls()) {
-        	for (int customKey : control.getNewKeyCodes())
-        	if (customKey == rawKeyCode) {
-        		keyCode = control.getOriginalKeyCode();
-        		foundKey = true;
-        		break;
-        	}
-        	if (foundKey) {
-        		break;
-        	}
-        }
-        
-        if (foundKey) {
-        	String hotkeyPressed = KeyEvent.getKeyText(keyCode);
-        	
-            if (hotkeyPressed == "Enter"
-            		|| hotkeyPressed == "Up"
-            		|| hotkeyPressed == "Down"
-            		|| hotkeyPressed == "Left"
-            		|| hotkeyPressed == "Right"
-            		) { // arrow keys real keycodes
-            	int[][] directionalOptions = new int[4][2];
-            	boolean found = false;
-            	Element element = null;
-            	Element elementToDeanimate = null; 
-            	// Used so that switching from the same element to itself 
-            	// doesn't cause deanimate; it only deanimates when it is
-            	// a new element being switched to.
-            	for (int i = 0 ; i < selectionsList.length; i++) {
-            		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1] &&
-            				selectionsList[i].getSelectorIndex()[0] + selectionsList[i].getSelectorIndex()[1] > -1) {
-            			directionalOptions = selectionsList[i].getSelectorOptions();
-            			// retrieves directional options from the currently selected item
-            			element = scaledMenu.getElements()[i];
-            			elementToDeanimate = element;
-            			found = true;
-            			break;
-            		}
+    	if (!transitioning && !popupUpdate) {
+    		int rawKeyCode = e.getKeyCode();
+            // System.out.println(rawKeyCode);
+            int keyCode = -1;
+            boolean foundKey = false;
+            for (Controls control : config.getControls()) {
+            	for (int customKey : control.getNewKeyCodes())
+            	if (customKey == rawKeyCode) {
+            		keyCode = control.getOriginalKeyCode();
+            		foundKey = true;
+            		break;
             	}
+            	if (foundKey) {
+            		break;
+            	}
+            }
+            
+            if (foundKey) {
+            	String hotkeyPressed = KeyEvent.getKeyText(keyCode);
             	
-            	if (!found) { // set the selected to 0 instead if not currently selecting a valid item (like if currently on -1,-1)
-            		selected = scaledMenu.resetSelectors(true, getCurrentPopupIndex());
-            		for (int i = 0 ; i < selectionsList.length; i++) {
+                if (hotkeyPressed == "Enter"
+                		|| hotkeyPressed == "Up"
+                		|| hotkeyPressed == "Down"
+                		|| hotkeyPressed == "Left"
+                		|| hotkeyPressed == "Right"
+                		) { // arrow keys real keycodes
+                	Element[] tempElementsList = (getCurrentPopupIndex() == -1) ?
+    	        			scaledMenu.getElements() : scaledMenu.getPopup(getCurrentPopupIndex());
+                	int[][] directionalOptions = new int[4][2];
+                	boolean found = false;
+                	Element element = null;
+                	Element elementToDeanimate = null; 
+                	// Used so that switching from the same element to itself 
+                	// doesn't cause deanimate; it only deanimates when it is
+                	// a new element being switched to.
+                	for (int i = 0 ; i < selectionsList.length; i++) {
                 		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1] &&
                 				selectionsList[i].getSelectorIndex()[0] + selectionsList[i].getSelectorIndex()[1] > -1) {
-                			element = scaledMenu.getElements()[i];
-                			element.animateHover();
-                			lastHovered = element.getName();
+                			directionalOptions = selectionsList[i].getSelectorOptions();
+                			// retrieves directional options from the currently selected item
+                			element = tempElementsList[i];
+                			elementToDeanimate = element;
+                			found = true;
                 			break;
                 		}
                 	}
-            	} else {
-            		
-            		if (hotkeyPressed == "Enter") {
-            			element.animateClick(true);
-            			String functionToRun = element.getFunction();
-            			boolean ranFunction = Functions.runFunction(functionToRun);
-            			if (!ranFunction) {
-                      	System.out.println("ERROR: DID NOT RUN ANY FUNCTION FOR \nElement Name: " + element.getName() + 
-                      			"\nwhich is a \nRenderable: " + element.isRenderable() + "\nTextbox: " + element.isTextbox());
-            			}
-            		} else {
-            			if (hotkeyPressed == "Right") {
-    			        	selected = scaledMenu.resetSelectors(directionalOptions[0], selected, getCurrentPopupIndex());
-    			            } else if (hotkeyPressed == "Down") {
-    			            	selected = scaledMenu.resetSelectors(directionalOptions[1], selected, getCurrentPopupIndex());
-    			            } else if (hotkeyPressed == "Left") {
-    			            	selected = scaledMenu.resetSelectors(directionalOptions[2], selected, getCurrentPopupIndex());
-    	                    } else if (hotkeyPressed == "Up") {
-    	                    	selected = scaledMenu.resetSelectors(directionalOptions[3], selected, getCurrentPopupIndex());
-                        }
-            			for (int i = 0 ; i < selectionsList.length; i++) {
-                    		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1]) {
-                    			element = scaledMenu.getElements()[i];
-                    			if (element.equals(elementToDeanimate)){
-                    				// Do nothing, no change in element.
-                    			} else {
-                    				elementToDeanimate.deanimateHover(false);
-                    				element.animateHover();
-                    				lastHovered = element.getName();
-                    			}
+                	
+                	if (!found) { // set the selected to 0 instead if not currently selecting a valid item (like if currently on -1,-1)
+                		selected = scaledMenu.resetSelectors(true, getCurrentPopupIndex());
+                		for (int i = 0 ; i < selectionsList.length; i++) {
+                    		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1] &&
+                    				selectionsList[i].getSelectorIndex()[0] + selectionsList[i].getSelectorIndex()[1] > -1) {
+                    			element = tempElementsList[i];
+                    			element.animateHover();
+                    			lastHovered = element.getName();
                     			break;
                     		}
                     	}
-            		}
-            	}
-            } 
-            
-            else if (hotkeyPressed == "Escape") {
-            	String menuToEnter = scaledMenu.getPreviousMenuName();
-            	if (menuToEnter != null){
-            		String functionToRun = "setMenu String " + menuToEnter.replace(" ", "_");
-        			Functions.runFunction(functionToRun);
-            	} else {
-            		System.out.println("No Previous Menu");
-            	}
-            	
+                	} else {
+                		
+                		if (hotkeyPressed == "Enter") {
+                			element.animateClick(true);
+                			String functionToRun = element.getFunction();
+                			boolean ranFunction = Functions.runFunction(functionToRun);
+                			if (!ranFunction) {
+                          	System.out.println("ERROR: DID NOT RUN ANY FUNCTION FOR \nElement Name: " + element.getName() + 
+                          			"\nwhich is a \nRenderable: " + element.isRenderable() + "\nTextbox: " + element.isTextbox());
+                			}
+                		} else {
+                			if (hotkeyPressed == "Right") {
+        			        	selected = scaledMenu.resetSelectors(directionalOptions[0], selected, getCurrentPopupIndex());
+        			            } else if (hotkeyPressed == "Down") {
+        			            	selected = scaledMenu.resetSelectors(directionalOptions[1], selected, getCurrentPopupIndex());
+        			            } else if (hotkeyPressed == "Left") {
+        			            	selected = scaledMenu.resetSelectors(directionalOptions[2], selected, getCurrentPopupIndex());
+        	                    } else if (hotkeyPressed == "Up") {
+        	                    	selected = scaledMenu.resetSelectors(directionalOptions[3], selected, getCurrentPopupIndex());
+                            }
+                			for (int i = 0 ; i < selectionsList.length; i++) {
+                        		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1]) {
+                        			element = tempElementsList[i];
+                        			if (element.equals(elementToDeanimate)){
+                        				// Do nothing, no change in element.
+                        			} else {
+                        				elementToDeanimate.deanimateHover(false);
+                        				element.animateHover();
+                        				lastHovered = element.getName();
+                        			}
+                        			break;
+                        		}
+                        	}
+                		}
+                	}
+                } 
+                
+                else if (hotkeyPressed == "Escape") {
+                	String menuToEnter = scaledMenu.getPreviousMenuName();
+                	if (menuToEnter != null){
+                		String functionToRun = "setMenu String " + menuToEnter.replace(" ", "_");
+            			Functions.runFunction(functionToRun);
+                	} else {
+                		System.out.println("No Previous Menu");
+                	}
+                	
+                }
+                
+                String keyText = KeyEvent.getKeyText(rawKeyCode);
+                System.out.println("Bound Key Pressed: " + hotkeyPressed);
+                System.out.println("Raw Key Pressed: " + keyText);
+                
+            } else {
+            	String keyText = KeyEvent.getKeyText(rawKeyCode);
+            	System.out.println("Unbound Key Pressed: " + keyText);
             }
-            
-            
-            String keyText = KeyEvent.getKeyText(rawKeyCode);
-            System.out.println("Bound Key Pressed: " + hotkeyPressed);
-            System.out.println("Raw Key Pressed: " + keyText);
-            
-        } else {
-        	String keyText = KeyEvent.getKeyText(rawKeyCode);
-        	System.out.println("Unbound Key Pressed: " + keyText);
-        }
+    	}
     }
 
     public void keyReleased(KeyEvent e) {
+    	if (!transitioning && !popupUpdate) {
+    		
+    	}
         // Do nothing
     }
 
     public void keyTyped(KeyEvent e) {
+    	if (!transitioning && !popupUpdate) {
+    		
+    	}
         // Do nothing
     }
     
@@ -720,6 +735,7 @@ public class ShowImage extends JPanel implements KeyListener {
 			return -1;
 		}
     }
+
     
     private static Element getElementFromName(String name) { 
     	// get the box for the name given through the parameter
@@ -898,6 +914,68 @@ public class ShowImage extends JPanel implements KeyListener {
     			transitionBlackOut = true;
     		}
     	}
+    	if (popupUpdate) {
+    		if (Framerate.getCurrentTime() > popupTime + 240d) {
+    			Element[] tempElementsList = scaledMenu.getPopup(getCurrentPopupIndex());
+    			for (int i = 0; i < tempElementsList.length ; i++) {
+    				tempElementsList[i].deanimateHover(true);
+    				tempElementsList[i].deanimateClick(true);
+    			}
+    			
+    			if (fadeOutPopup != -1) {
+    				int arrayPos = 0;
+    				int[][] newOgSelecteds = new int[ogSelecteds.length - 1][2];
+    				int[] newPopupIndexes = new int[popupIndexes.length - 1];
+    				for (int i = 0 ; i < popupIndexes.length ; i++) {
+    					int currentIndex = popupIndexes[i];
+    					int[] currentSelected = ogSelecteds[i];
+    					if (currentIndex == fadeOutPopup) {
+    					} else {
+    						newPopupIndexes[arrayPos] = currentIndex;
+    						newOgSelecteds[arrayPos] = currentSelected;
+    						arrayPos++;
+    					}
+    				}
+    				tempElementsList = scaledMenu.getPopup(getCurrentPopupIndex());
+    				
+    				int[] toSelect = ogSelecteds[ogSelecteds.length - 1];
+    				
+    				popupIndexes = newPopupIndexes;
+    				ogSelecteds = newOgSelecteds;
+    				
+    				tempElementsList = (getCurrentPopupIndex() == -1) ?
+    	        			scaledMenu.getElements() : scaledMenu.getPopup(fadeOutPopup);
+    		        selectionsList = new Selector[tempElementsList.length];
+    		        int i = 0;
+    		        for (Element element : tempElementsList) {
+    		        	selectionsList[i] = element.getSelector();
+    		        	i++;
+    		        }
+    		        
+    		        for (int selection = 0 ; selection < selectionsList.length; selection++) {
+//    		        	System.out.println(toSelect[0] + "|" + toSelect[1]);
+//    		        	System.out.println(selectionsList[selection].getSelectorIndex()[0] + "|" + selectionsList[selection].getSelectorIndex()[1]);
+    	        		if (selectionsList[selection].getSelectorIndex()[0] == toSelect[0] && selectionsList[selection].getSelectorIndex()[1] == toSelect[1] &&
+    	        				selectionsList[selection].getSelectorIndex()[0] + selectionsList[selection].getSelectorIndex()[1] > -1) {
+    	        			Element elementToDeanimate = scaledMenu.getElements()[selection];
+    	        			elementToDeanimate.deanimateClick(false);
+    	        			elementToDeanimate.deanimateHover(false);
+    	        			break;
+    	        		}
+    	        	}
+    		        
+    		        if (config.getCursorEnabled()) {
+    					selected = scaledMenu.resetSelectors(false, getCurrentPopupIndex());
+    					
+    				} else {
+    					selected = scaledMenu.resetSelectors(toSelect, new int[] {-1,-1}, getCurrentPopupIndex());
+    				}
+    			}
+    			
+    			popupUpdate = false;
+    			fadeOutPopup = -1;
+    		}
+    	}
     	repaintPanel();
     }
     
@@ -1000,6 +1078,8 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	element.animateEntry();
 	        	i++;
 	        }
+	        popupUpdate = true;
+			popupTime = Framerate.getCurrentTime();
 	        
 			selected = scaledMenu.resetSelectors(false, getCurrentPopupIndex());
 	        
@@ -1012,60 +1092,16 @@ public class ShowImage extends JPanel implements KeyListener {
 		popupTime = Framerate.getCurrentTime();
 		
 		boolean existing = false;
-		int arrayPos = 0;
-		int[][] newOgSelecteds = new int[ogSelecteds.length - 1][2];
-		int[] newPopupIndexes = new int[popupIndexes.length - 1];
 		for (int i = 0 ; i < popupIndexes.length ; i++) {
-			int currentIndex = popupIndexes[i];
-			int[] currentSelected = ogSelecteds[i];
-			if (currentIndex == index) {
+			if (popupIndexes[i] == index) {
 				existing = true;
-			} else {
-				newPopupIndexes[arrayPos] = currentIndex;
-				newOgSelecteds[arrayPos] = currentSelected;
-				arrayPos++;
+				break;
 			}
 		}
 		if (existing) {
-			Element[] tempElementsList = scaledMenu.getPopup(getCurrentPopupIndex());
-			for (int i = 0; i < tempElementsList.length ; i++) {
-				tempElementsList[i].animateExit(false);
-				//TODO: BELOW, and ANIMATE THE POPUP ANIMATIONS
-//				tempElementsList[i].deanimateHover(true);
-//				tempElementsList[i].deanimateClick(true);
-			}
-			
-			int[] toSelect = ogSelecteds[ogSelecteds.length - 1];
-			
-			popupIndexes = newPopupIndexes;
-			ogSelecteds = newOgSelecteds;
-			
-			tempElementsList = (getCurrentPopupIndex() == -1) ?
-        			scaledMenu.getElements() : scaledMenu.getPopup(index);
-	        selectionsList = new Selector[tempElementsList.length];
-	        int i = 0;
-	        for (Element element : tempElementsList) {
-	        	selectionsList[i] = element.getSelector();
-	        	i++;
-	        }
-	        if (config.getCursorEnabled()) {
-				selected = scaledMenu.resetSelectors(false, getCurrentPopupIndex());
-				
-			} else {
-				selected = scaledMenu.resetSelectors(toSelect, new int[] {-1,-1}, getCurrentPopupIndex());
-			}
-	        
-	        for (int selection = 0 ; selection < selectionsList.length; selection++) {
-//	        	System.out.println(toSelect[0] + "|" + toSelect[1]);
-//	        	sSystem.out.println(selectionsList[selection].getSelectorIndex()[0] + "|" + selectionsList[selection].getSelectorIndex()[1]);
-        		if (selectionsList[selection].getSelectorIndex()[0] == toSelect[0] && selectionsList[selection].getSelectorIndex()[1] == toSelect[1] &&
-        				selectionsList[selection].getSelectorIndex()[0] + selectionsList[selection].getSelectorIndex()[1] > -1) {
-        			Element elementToDeanimate = scaledMenu.getElements()[selection];
-        			elementToDeanimate.deanimateClick(false);
-        			elementToDeanimate.deanimateHover(false);
-        			break;
-        		}
-        	}
+	        popupUpdate = true;
+			popupTime = Framerate.getCurrentTime();
+			fadeOutPopup = index;
 	        
 			// System.out.println("Successfully removed popup" + index);
 		} else {
