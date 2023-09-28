@@ -32,7 +32,7 @@ public class Element {
 	
 	public Element(Selector selector, int maskIndex, int hoverEffect, int clickEffect, 
 			int arbitraryTransform, int entryAnimationTransformIndex , Renderable renderable) {
-		transforms = new TweenTransform[3];
+		transforms = new TweenTransform[4];
 		for (int i = 0 ; i < 4 ; i++) {
 			transforms[i] = new TweenTransform(renderable);
 		}
@@ -203,9 +203,9 @@ public class Element {
 		if (getEntryAnimationIndex() != -1) {
 			StoredTransform entryEffect = ShowImage.getTransformsToRender()[getEntryAnimationIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
-					new SpecialTransform(getTransform()[0].getCurrentPosition(), getTextbox().getRectShape()),
+					new SpecialTransform(getTransform()[3].getCurrentPosition(), getTextbox().getRectShape()),
 					new SpecialTransform(entryEffect, getTextbox().getRectShape()),
-					(long) (Math.min((getTransform()[0].getCurrentTime() + 0.5),1) * entryEffect.getTimeToTransformMillis()),
+					(long) (Math.min((getTransform()[3].getCurrentTime() + 0.5),1) * entryEffect.getTimeToTransformMillis()),
 					instant ? 0 : entryEffect.getDelayMillis(),
 					instant ? 0 : entryEffect.getEaseType()
 					);
@@ -217,9 +217,9 @@ public class Element {
 		if (getEntryAnimationIndex() != -1) {
 			StoredTransform entryEffect = ShowImage.getTransformsToRender()[getEntryAnimationIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
-					new SpecialTransform(getTransform()[1].getCurrentPosition(), getTextbox().getRectShape()),
+					new SpecialTransform(getTransform()[3].getCurrentPosition(), getTextbox().getRectShape()),
 					new SpecialTransform(getTextbox().getRectShape()),
-					(long) (Math.min((getTransform()[1].getCurrentTime() + 0.5),1) * entryEffect.getTimeToTransformMillis()),
+					(long) (Math.min((getTransform()[3].getCurrentTime() + 0.5),1) * entryEffect.getTimeToTransformMillis()),
 					entryEffect.getDelayMillis(),
 					entryEffect.getEaseType()
 					);

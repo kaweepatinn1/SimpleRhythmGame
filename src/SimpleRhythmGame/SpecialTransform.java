@@ -12,6 +12,15 @@ public class SpecialTransform {
 	private double scaleY;
 	private double rotate;
 	
+	public SpecialTransform(StoredTransform storedTransform) {
+		transformX = storedTransform.getTransformX();
+		transformY = storedTransform.getTransformY();
+		scaleX = storedTransform.getScaleX();
+		scaleY = storedTransform.getScaleY();
+		rotate = storedTransform.getRotate();
+		updateTransform();
+	}
+	
 	public SpecialTransform(StoredTransform storedTransform, RoundedArea inputArea) {
 		anchorX = inputArea.getX() + inputArea.getXSize() / 2;
 		anchorY = inputArea.getY() + inputArea.getYSize() / 2;

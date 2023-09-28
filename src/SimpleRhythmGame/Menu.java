@@ -46,7 +46,7 @@ public class Menu {
 	}
 	
 	public Color getBGColor() {
-		return DefaultValues.getDefaultColors()[bgColor];
+		return ShowImage.getConfig().getCurrentColors()[bgColor];
 	}
 	
 	public void setBGColor(int bgColor) {
@@ -126,7 +126,21 @@ public class Menu {
 			
 			for (int i = 0; i < elementsToCheck.length ; i++) {
 				Element element = elementsToCheck[i];
-				element.setNotHovered();
+				
+				boolean setSecondaryHovered = false; // see if the requirements for secondary hovering are met
+				for (int[] secondarySelectionIndex : secondarySelections) {
+					if (secondarySelectionIndex[0] == element.getSelectorIndex()[0] && secondarySelectionIndex[1] == element.getSelectorIndex()[1]
+							&& element.getSelectorIndex()[0] + element.getSelectorIndex()[1] > -1) {
+						// the element's index must be on the secondary whitelist and less than currently selected
+						setSecondaryHovered = true;
+					}
+				}
+				
+				if (setSecondaryHovered) {
+					element.setSecondaryHovered();
+				} else {
+					element.setNotHovered();
+				}
 			}
 			if (popup == -1) {
 				elements = elementsToCheck;
@@ -146,7 +160,7 @@ public class Menu {
 			
 			boolean setSecondaryHovered = false; // see if the requirements for secondary hovering are met
 			for (int[] secondarySelectionIndex : secondarySelections) {
-				if (secondarySelectionIndex[0] == elementSelectorIndex[0] && secondarySelectionIndex[1] == elementSelectorIndex[1] && currentlySelected[0] > elementSelectorIndex[0]
+				if (secondarySelectionIndex[0] == elementSelectorIndex[0] && secondarySelectionIndex[1] == elementSelectorIndex[1]
 						&& elementSelectorIndex[0] + elementSelectorIndex[1] > -1) {
 					// the element's index must be on the secondary whitelist and less than currently selected
 					setSecondaryHovered = true;
@@ -255,7 +269,7 @@ public class Menu {
             	int arbitraryTransformIndex = currentElement.getArbitraryTransformIndex();
             	int entryAnimationTransformIndex = currentElement.getEntryAnimationIndex();
             	
-            	if (currentElement.isTextbox()) {
+            	if (currentElement.isTextbox()) { // textbox
             		
     	        	TextBox currentItem = currentElement.getTextbox();
     	        	TweenTransform[] transformIndexes = currentElement.getTransform();
@@ -374,6 +388,9 @@ public class Menu {
     					        				 stroke, strokeColor));
     	            	}
                 	}
+            	} else if (currentElement.isRenderable()) { // no textbox
+            		//TODO
+            		
             	}
         	}
         	

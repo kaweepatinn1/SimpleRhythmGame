@@ -298,9 +298,9 @@ public class ShowImage extends JPanel implements KeyListener {
     	            float thickness = textbox.getStrokeWidth();
     	            g2d.setStroke(new BasicStroke(thickness));
     	            
-    	            g2d.setColor(config.getColors()[textbox.getColor()]); // set box color
+    	            g2d.setColor(config.getCurrentColors()[textbox.getColor()]); // set box color
     	            g2d.fill(finalRect);
-    	            g2d.setColor(config.getColors()[textbox.getStrokeColor()]);
+    	            g2d.setColor(config.getCurrentColors()[textbox.getStrokeColor()]);
     	            g2d.draw(finalRect);
     	            
     	            g2d.setStroke(new BasicStroke(0));
@@ -325,7 +325,7 @@ public class ShowImage extends JPanel implements KeyListener {
     	            
     	            if (textbox.getText() != null){ // render text if contained
     	            	
-    	            	g2d.setColor(config.getColors()[textbox.getTextColor()]); // set text color
+    	            	g2d.setColor(config.getCurrentColors()[textbox.getTextColor()]); // set text color
     		            
     		            Font font;
     		            
@@ -367,7 +367,7 @@ public class ShowImage extends JPanel implements KeyListener {
         g2d.setRenderingHints(rh);
      // Draw Menu Title Box
         g2d.setClip(getBoxAttributes(new RoundedArea(0, 0, calculatedScreenWidth, calculatedScreenHeight, 0)).getArea());
-        g2d.setColor(config.getColors()[1]);
+        g2d.setColor(config.getCurrentColors()[1]);
         int x2Points[] = {
         		calculatedScreenWidth * 30 / 100,
         		calculatedScreenWidth * 34 / 100,
@@ -389,11 +389,11 @@ public class ShowImage extends JPanel implements KeyListener {
                  polyline.lineTo(x2Points[index], y2Points[index]);
         };
         
-        g2d.setColor(config.getColors()[1]);
+        g2d.setColor(config.getCurrentColors()[1]);
         g2d.fill(polyline);
         
         float thickness = 5 * (float) scale;
-        g2d.setColor(config.getColors()[6]);
+        g2d.setColor(config.getCurrentColors()[6]);
         g2d.setStroke(new BasicStroke(thickness));
         g2d.draw(polyline);
         
@@ -693,14 +693,8 @@ public class ShowImage extends JPanel implements KeyListener {
                 } 
                 
                 else if (hotkeyPressed == "Escape") {
-                	String menuToEnter = scaledMenu.getPreviousMenuName();
-                	if (menuToEnter != null){
-                		String functionToRun = "setMenu String " + menuToEnter.replace(" ", "_");
-            			Functions.runFunction(functionToRun);
-                	} else {
-                		System.out.println("No Previous Menu");
-                	}
-                	
+                	String functionToRun = "escapeMenu";
+                	Functions.runFunction(functionToRun);
                 }
                 
                 String keyText = KeyEvent.getKeyText(rawKeyCode);
@@ -734,6 +728,10 @@ public class ShowImage extends JPanel implements KeyListener {
 		} else {
 			return -1;
 		}
+    }
+    
+    public static Menu getCurrentScaledMenu() {
+    	return scaledMenu;
     }
 
     
@@ -1010,12 +1008,20 @@ public class ShowImage extends JPanel implements KeyListener {
         	Element[] tempElementsList = scaledMenu.getElements();
 	        selectionsList = new Selector[tempElementsList.length];
 	        int i = 0;
+	        animateEntryMenu();
 	        for (Element element : tempElementsList) {
 	        	selectionsList[i] = element.getSelector();
 	        	i++;
 	        }
+	        
+	        transitioning = true;
+	    	transitionTime = Framerate.getCurrentTime();
+	    	transitionTo = menu;
+	    	
+	    	animateEntryMenu();
+        } else {
+        	transition(menu);
         }
-    	transition(menu);
 	}
     
     public static void setBG(Color bgColor) {
@@ -1140,7 +1146,7 @@ public class ShowImage extends JPanel implements KeyListener {
         setNewFrameSize(config.getFullscreen(), config.getSizeToForce()); // uses the above raw lists and variables to set the frame size.
         
         if (userHasUsername) {
-        	Functions.setMenu("Main Menu");
+        	Functions.setMenu("Customization Theme Builder");
         } else {
         	Functions.setMenu("Init User");
         }

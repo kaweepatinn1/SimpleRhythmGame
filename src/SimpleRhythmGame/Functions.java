@@ -6,7 +6,7 @@ public class Functions {
 		boolean ranFunction = false;
 		
 		if (function == null) {
-			// Do nothing?
+			// Do nothing.
 		} else {
 			// TODO
 			String[] splitFunction = function.split(" ");
@@ -40,6 +40,14 @@ public class Functions {
 					addPopup((int) parameters[0]);
 				} else if (methodName.equals("removePopup")) {
 					removePopup((int) parameters[0]);
+				} else if (methodName.equals("escapeMenu")) {
+					String menuToEnter = ShowImage.getCurrentScaledMenu().getPreviousMenuName();
+                	if (menuToEnter != null){
+                		String functionToRun = "setMenu String " + menuToEnter.replace(" ", "_");
+            			Functions.runFunction(functionToRun);
+                	} else {
+                		System.out.println("No Previous Menu");
+                	}
 				}
 			}
 

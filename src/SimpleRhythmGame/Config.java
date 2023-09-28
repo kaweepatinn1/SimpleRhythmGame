@@ -3,7 +3,7 @@ package SimpleRhythmGame;
 import java.awt.Color;
 
 public class Config {
-	private static int colorsLength = 7;
+	private final static int colorsLength = 8;
 	
 	private boolean fullscreen;
 	private int sizeToForce;
@@ -19,8 +19,8 @@ public class Config {
 	private int DEBUG_masksColorsOffset;
 	
 	private Controls[] controls;
-	private int[][] colorsRaw;
-	private transient Color[] colors; // used to return faster, not included in json file
+	private String currentColorsChoice;
+	private Theme[] themes; // used to return faster, not included in json file
 	private String[] fonts;
 	private Menu[] menus;
 	
@@ -28,13 +28,15 @@ public class Config {
 		// Do Nothing
 	}
 	
-	public Config(boolean fullscreen, int sizeToForce, Controls[] controls, Color[] colors, String[] fonts, Menu[] menus,
+	public Config(boolean fullscreen, int sizeToForce, Controls[] controls, Theme[] themes, 
+			String currentColorsChoice, String[] fonts, Menu[] menus,
 			boolean DEBUG_drawMasks, int DEBUG_masksColorsOffset, boolean nanoSecondPrecision, int framesToStore,
 			int framerate, boolean shouldLimitFramerate, boolean cursorEnabled) {
 		this.fullscreen = fullscreen;
 		this.sizeToForce = sizeToForce;
 		this.controls = controls;
-		setColors(colors);
+		this.themes = themes;
+		this.currentColorsChoice = currentColorsChoice;
 		this.fonts = fonts;
 		this.menus = menus;
 		this.nanoSecondPrecision = nanoSecondPrecision;
@@ -73,9 +75,13 @@ public class Config {
 	public void setControls(Controls[] controls) {
 		this.controls = controls;
 	}
+	
+	public void setThemes(Theme[] themes) {
+		this.themes = themes;
+	}
 
-	public Color[] getColors() {
-		return colors;
+	public Theme[] getThemes() {
+		return themes;
 //		Color[] toOutputColors = new Color[colorsRaw.length];
 //		for (int i = 0 ; i < colorsRaw.length ; i++) {
 //			int[] color = colorsRaw[i];
@@ -83,22 +89,85 @@ public class Config {
 //		}
 	}
 	
-	public void setIntToColors() {
-		Color[] toSetColors = new Color[colorsRaw.length];
-		for (int i = 0 ; i < colorsRaw.length ; i++) {
-			int[] color = colorsRaw[i];
-			toSetColors[i] = new Color(color[0],color[1],color[2],color[3]);
+	public Theme getThemeOfIndex(int index) {
+		return themes[index];
+	}
+	
+	public boolean addTheme(Theme newTheme) {
+		boolean duplicate = false;
+		for (int i = 0 ; i < themes.length ; i++) {
+			if (themes[i].getThemeName().equals(newTheme.getThemeName())) {
+				duplicate = true;
+			}
 		}
-		this.colors = toSetColors;
+		if (!duplicate) {
+			Theme[] toSetThemes = new Theme[themes.length + 1];
+			System.arraycopy(themes, 0, toSetThemes, 0, themes.length);
+			toSetThemes[toSetThemes.length - 1] = newTheme;
+			themes = toSetThemes;
+			return true;
+		} else {
+			System.out.println("Theme with name \""+ newTheme.getThemeName() +"\" already exists!");
+			return false;
+		}
+	}
+	
+	public boolean updateTheme(Theme newTheme, String themeName) {
+		int index = getIndexFromThemeName(themeName);
+		if (index != -1) {
+			themes[index] = newTheme;
+			return true;
+		} else {
+			System.out.println("Theme \"" + themeName + "\" does not exist!");
+			return false;
+		}
+	}
+	
+	public boolean removeTheme(String themeName) {
+		int index = getIndexFromThemeName(themeName);
+		if (index != -1) {
+			Theme[] toSetThemes = new Theme[themes.length - 1];
+			if (index != 0) {
+				System.arraycopy(themes, 0, toSetThemes, 0, index);
+			}
+			System.arraycopy(themes, index + 1, toSetThemes, index, themes.length - (index + 1));
+			themes = toSetThemes;
+			return true;
+		} else {
+			System.out.println("Theme \"" + themeName + "\" does not exist!");
+			return false;
+		}
+	}
+	
+	public int getIndexFromThemeName(String name) {
+		for (int i = 0 ; i < themes.length ; i++) {
+			Theme theme = themes[i];
+			if (theme.getThemeName().equals(name)) {
+				return i;
+			}
+		}
+		// if search fails
+		return -1;
+	}
+	
+	public Color[] getColorsFromThemeName (String name) {
+		Color[] toSetColors = new Color[colorsLength];
+		Theme theme = themes[getIndexFromThemeName(name)];
+		for (int i = 0 ; i < colorsLength ; i++) {
+			IntColor color = theme.getColorOfIndex(i);
+			toSetColors[i] = color.toColor();
+		}
+		return toSetColors;
+	}
+	
+	public void setColorsForTheme(Color[] colorsInput, String name) {
+		themes[getIndexFromThemeName(name)].setColorsList(colorsInput);
 	}
 
-	public void setColors(Color[] colorsInput) {
-		this.colors = colorsInput;
-		int[][] toInputColors = new int[colorsInput.length][4];
+	public void setColorForConfigThemes(Color[][] colorsInput) {
 		for (int i = 0; i < colorsInput.length ; i++) {
-			toInputColors[i] = new int[]{colorsInput[i].getRed(),colorsInput[i].getGreen(),colorsInput[i].getBlue(),colorsInput[i].getAlpha()};
+			themes[i].setColorsList(colorsInput[i]);
 		}
-		this.colorsRaw = toInputColors;
 	}
 
 	public String[] getFonts() {
@@ -169,5 +238,21 @@ public class Config {
 
 	public void setCursorEnabled(boolean cursorEnabled) {
 		this.cursorEnabled = cursorEnabled;
+	}
+
+	public String getCurrentColorsChoice() {
+		return currentColorsChoice;
+	}
+	
+	public int getCurrentColorsChoiceIndex() {
+		return getIndexFromThemeName(currentColorsChoice);
+	}
+
+	public void setCurrentColorsChoice(String currentColorsChoice) {
+		this.currentColorsChoice = currentColorsChoice;
+	}
+	
+	public Color[] getCurrentColors() {
+		return getColorsFromThemeName(getCurrentColorsChoice());
 	}
 }
