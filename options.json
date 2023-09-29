@@ -995,7 +995,7 @@
             "scale": 1.0,
             "name": "AddTheme",
             "rectShape": {
-              "x": 987,
+              "x": 991,
               "y": 350,
               "xSize": 65,
               "ySize": 65,
@@ -1054,7 +1054,7 @@
             "scale": 1.0,
             "name": "DropDownThemes",
             "rectShape": {
-              "x": 1052,
+              "x": 1054,
               "y": 350,
               "xSize": 65,
               "ySize": 65,
@@ -1298,7 +1298,7 @@
             "function": "addPopup int 0",
             "name": "EditThemeNameButton",
             "rectShape": {
-              "x": 1052,
+              "x": 1054,
               "y": 634,
               "xSize": 65,
               "ySize": 65,
@@ -1357,7 +1357,7 @@
             "scale": 1.0,
             "name": "ThemeText",
             "text": {
-              "text": "%%%%%%%%%%%%%%%%",
+              "text": "%CurrentThemeName",
               "alignX": "right",
               "alignY": "center",
               "offsetX": 240,
