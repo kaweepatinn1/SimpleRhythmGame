@@ -64,7 +64,7 @@
       ]
     }
   ],
-  "currentColorsChoice": "DefaultTheme",
+  "currentThemeChoice": "DefaultTheme",
   "themes": [
     {
       "themeName": "DefaultTheme",
@@ -116,6 +116,12 @@
           "green": 0,
           "blue": 0,
           "alpha": 0
+        },
+        {
+          "red": 255,
+          "green": 255,
+          "blue": 255,
+          "alpha": 255
         }
       ]
     }
@@ -200,6 +206,7 @@
             "strokeWidth": 5.0,
             "strokeColor": 6
           },
+          "hoverOverlap": false,
           "maskIndex": -1,
           "hoverEffectIndex": 0,
           "clickEffectIndex": 1,
@@ -270,6 +277,7 @@
             "strokeWidth": 5.0,
             "strokeColor": 6
           },
+          "hoverOverlap": false,
           "maskIndex": -1,
           "hoverEffectIndex": 0,
           "clickEffectIndex": 1,
@@ -340,6 +348,7 @@
             "strokeWidth": 5.0,
             "strokeColor": 6
           },
+          "hoverOverlap": false,
           "maskIndex": -1,
           "hoverEffectIndex": 0,
           "clickEffectIndex": 1,
@@ -410,6 +419,7 @@
             "strokeWidth": 5.0,
             "strokeColor": 6
           },
+          "hoverOverlap": false,
           "maskIndex": -1,
           "hoverEffectIndex": 0,
           "clickEffectIndex": 1,
@@ -474,6 +484,7 @@
               "strokeWidth": 5.0,
               "strokeColor": 6
             },
+            "hoverOverlap": false,
             "maskIndex": -1,
             "hoverEffectIndex": 3,
             "clickEffectIndex": 1,
@@ -591,6 +602,7 @@
             "strokeWidth": 5.0,
             "strokeColor": 6
           },
+          "hoverOverlap": false,
           "maskIndex": -1,
           "hoverEffectIndex": 3,
           "clickEffectIndex": 1,
@@ -652,6 +664,7 @@
             "strokeWidth": 5.0,
             "strokeColor": 6
           },
+          "hoverOverlap": false,
           "maskIndex": -1,
           "hoverEffectIndex": 3,
           "clickEffectIndex": 1,
@@ -711,6 +724,7 @@
             "strokeWidth": 5.0,
             "strokeColor": 6
           },
+          "hoverOverlap": false,
           "maskIndex": -1,
           "hoverEffectIndex": 2,
           "clickEffectIndex": 4,
@@ -760,6 +774,7 @@
             "strokeWidth": 5.0,
             "strokeColor": 6
           },
+          "hoverOverlap": false,
           "maskIndex": -1,
           "hoverEffectIndex": -1,
           "clickEffectIndex": -1,
@@ -820,6 +835,7 @@
             "strokeWidth": 5.0,
             "strokeColor": 6
           },
+          "hoverOverlap": false,
           "maskIndex": -1,
           "hoverEffectIndex": -1,
           "clickEffectIndex": -1,
@@ -880,6 +896,7 @@
             "strokeWidth": 5.0,
             "strokeColor": 6
           },
+          "hoverOverlap": false,
           "maskIndex": -1,
           "hoverEffectIndex": -1,
           "clickEffectIndex": -1,
@@ -915,7 +932,7 @@
           },
           "textbox": {
             "scale": 1.0,
-            "name": "ThemeText",
+            "name": "ThemeSubtext",
             "text": {
               "text": "Theme",
               "alignX": "left",
@@ -936,10 +953,11 @@
             },
             "color": 7,
             "opacity": 255,
-            "shadowOffset": 15,
+            "shadowOffset": 0,
             "strokeWidth": 5.0,
             "strokeColor": 6
           },
+          "hoverOverlap": false,
           "maskIndex": -1,
           "hoverEffectIndex": -1,
           "clickEffectIndex": -1,
@@ -994,13 +1012,14 @@
             },
             "color": 2,
             "opacity": 255,
-            "shadowOffset": 0,
+            "shadowOffset": 5,
             "strokeWidth": 3.0,
             "strokeColor": 6
           },
+          "hoverOverlap": true,
           "maskIndex": -1,
           "hoverEffectIndex": -1,
-          "clickEffectIndex": -1,
+          "clickEffectIndex": 1,
           "arbitraryTransformIndex": -1,
           "entryAnimationTransformIndex": -1
         },
@@ -1052,13 +1071,14 @@
             },
             "color": 2,
             "opacity": 255,
-            "shadowOffset": 0,
+            "shadowOffset": 5,
             "strokeWidth": 3.0,
             "strokeColor": 6
           },
+          "hoverOverlap": true,
           "maskIndex": -1,
           "hoverEffectIndex": -1,
-          "clickEffectIndex": -1,
+          "clickEffectIndex": 1,
           "arbitraryTransformIndex": -1,
           "entryAnimationTransformIndex": -1
         },
@@ -1110,12 +1130,257 @@
               "ySize": 65,
               "roundPercentage": 0
             },
-            "color": 2,
+            "color": 8,
             "opacity": 255,
-            "shadowOffset": 0,
+            "shadowOffset": 5,
             "strokeWidth": 3.0,
             "strokeColor": 6
           },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": -1
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              1,
+              1
+            ],
+            "selectorOptions": [
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "exportTheme",
+            "name": "ExportThemeButton",
+            "text": {
+              "text": "Export Theme",
+              "alignX": "center",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": -6,
+              "textSize": 35,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1160,
+              "y": 445,
+              "xSize": 300,
+              "ySize": 65,
+              "roundPercentage": 0
+            },
+            "color": 2,
+            "opacity": 255,
+            "shadowOffset": 10,
+            "strokeWidth": 3.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": -1
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "ThemeNameSubtext",
+            "text": {
+              "text": "Theme Name",
+              "alignX": "left",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": -2,
+              "textSize": 40,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 735,
+              "y": 630,
+              "xSize": 0,
+              "ySize": 0,
+              "roundPercentage": 0
+            },
+            "color": 7,
+            "opacity": 255,
+            "shadowOffset": 0,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": -1
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              1,
+              2
+            ],
+            "selectorOptions": [
+              [
+                1,
+                2
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "addPopup int 0",
+            "name": "EditThemeNameButton",
+            "rectShape": {
+              "x": 1052,
+              "y": 634,
+              "xSize": 65,
+              "ySize": 65,
+              "roundPercentage": 0
+            },
+            "renderableObject": {
+              "name": "EditPNG",
+              "imagePath": "src/textures/edit.png",
+              "x": 9,
+              "y": 8,
+              "xSize": 50,
+              "ySize": 50,
+              "opacity": 255
+            },
+            "color": 2,
+            "opacity": 255,
+            "shadowOffset": 5,
+            "strokeWidth": 3.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": true,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": -1
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "ThemeText",
+            "text": {
+              "text": "%%%%%%%%%%%%%%%%",
+              "alignX": "right",
+              "alignY": "center",
+              "offsetX": 240,
+              "offsetY": -6,
+              "textSize": 35,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1335,
+              "y": 634,
+              "xSize": 500,
+              "ySize": 65,
+              "roundPercentage": 0
+            },
+            "color": 8,
+            "opacity": 255,
+            "shadowOffset": 5,
+            "strokeWidth": 3.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
           "maskIndex": -1,
           "hoverEffectIndex": -1,
           "clickEffectIndex": -1,

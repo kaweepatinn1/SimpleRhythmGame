@@ -46,7 +46,7 @@ public class Menu {
 	}
 	
 	public Color getBGColor() {
-		return ShowImage.getConfig().getCurrentColors()[bgColor];
+		return ShowImage.getConfig().getCurrentThemeColors()[bgColor];
 	}
 	
 	public void setBGColor(int bgColor) {
@@ -260,138 +260,8 @@ public class Menu {
         	for (int i = 0; i < rawElementsList.length; i++) {
             	
             	Element currentElement = rawElementsList[i];
-            	Selector selector = currentElement.getSelector();
+            	elementsToReturn[i] = currentElement.scale(xScale, yScale);
             	
-            	int maskIndex = currentElement.getMaskIndex();
-            	
-            	int hoverEffectIndex = currentElement.getHoverEffectIndex();
-            	int clickEffectIndex = currentElement.getClickEffectIndex();
-            	int arbitraryTransformIndex = currentElement.getArbitraryTransformIndex();
-            	int entryAnimationTransformIndex = currentElement.getEntryAnimationIndex();
-            	
-            	if (currentElement.isTextbox()) { // textbox
-            		
-    	        	TextBox currentItem = currentElement.getTextbox();
-    	        	TweenTransform[] transformIndexes = currentElement.getTransform();
-    	        	
-    	        	float textBoxScale = currentItem.getScale();
-    	        	String function = currentItem.getFunction();
-    	        	String name = currentItem.getName();
-    	        	
-    	        	int xSize = (int) Math.round(currentItem.getXSize() * xScale * textBoxScale);
-    	        	int ySize = (int) Math.round(currentItem.getYSize() * yScale * textBoxScale);
-    	        	int x = (int) Math.round(currentItem.getX() * xScale - (xSize / 2));
-    	        	int y = (int) Math.round(currentItem.getY() * yScale - (ySize / 2));
-    	        	int color = currentItem.getColor();
-    	        	int opacity = currentItem.getOpacity();
-    	        	int roundPercentage = currentItem.getRoundPercentage();
-    	        	int shadowOffset = (int) Math.round(currentItem.getShadowOffset() * Math.min(xScale, yScale) * textBoxScale);
-    	        	float stroke = (int) Math.round(currentItem.getStrokeWidth() * Math.min(xScale, yScale) * textBoxScale);
-    	        	int strokeColor = currentItem.getStrokeColor();
-    	        	
-    	        	Renderable renderableObject = currentItem.getRenderableObject();
-    	        	
-    	        	if (currentItem.getText() == null) { // No textbox
-    	        		if (currentItem.getRenderableObject() != null) { // No textbox and no renderable
-    		        		String renderableName = renderableObject.getName();
-    		        		String renderableFunction = renderableObject.getFunction();
-    		            	String imagePath = renderableObject.getImagePath();
-    		            	int renderableXSize = (int) Math.round(renderableObject.getXSize() * xScale * textBoxScale);
-    		            	int renderableYSize = (int) Math.round(renderableObject.getYSize() * yScale * textBoxScale);
-    		            	int renderableX = (int) Math.round(renderableObject.getX() * xScale * textBoxScale);
-    		            	int renderableY = (int) Math.round(renderableObject.getY() * yScale * textBoxScale);
-    		            	int renderableOpacity = renderableObject.getOpacity();
-    		            	Renderable newRenderableObject =  new Renderable(renderableFunction, renderableName, imagePath, 
-    		            			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
-    		            	
-    		            	elementsToReturn[i] =  
-    		        				new Element( // Third Constructor (Only Renderable)
-    	        						transformIndexes, selector,
-    			        				maskIndex,
-    			        				hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
-    			        				entryAnimationTransformIndex,
-    	        						new TextBox(
-            								textBoxScale, function, name,
-            								newRenderableObject,
-            								new RoundedArea(x, y, xSize, ySize, roundPercentage), 
-    				        				color, opacity, shadowOffset, 
-    				        				stroke, strokeColor
-    				        				)
-    	        						);
-    	        		} else { // No textbox and no renderable
-    	        			elementsToReturn[i] =  
-    		        				new Element( // Fourth Constructor (No Renderable or Textbox)
-    	        						transformIndexes, selector,
-    			        				maskIndex,
-    			        				hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
-    			        				entryAnimationTransformIndex,
-    	        						new TextBox(
-            								textBoxScale, function, name,
-            								new RoundedArea(x, y, xSize, ySize, roundPercentage), 
-    				        				color, opacity, shadowOffset, 
-    				        				stroke, strokeColor
-    				        				)
-    	        						);
-    	        		}
-    	        	} else { // Yes Textbox
-    	        		
-    	        		String text = currentItem.getText();
-    		        	String alignX = currentItem.getAlignX();
-    		        	String alignY = currentItem.getAlignY();
-    		        	String font = currentItem.getFont();
-    		        	int textSize = (int) Math.round(currentItem.getTextSize() * Math.min(xScale, yScale) * textBoxScale);
-    		        	int fontColor = currentItem.getTextColor();
-    		        	boolean bold = currentItem.getBold();
-    		        	int offsetX = (int) Math.round(currentItem.getOffsetX() * xScale * textBoxScale);
-    		        	int offsetY = (int) Math.round(currentItem.getOffsetY() * yScale * textBoxScale);
-    		        	
-    		        	if (renderableObject != null) {
-    		        		
-    		        		String renderableName = renderableObject.getName();
-    		        		String renderableFunction = renderableObject.getFunction();
-    		            	String imagePath = renderableObject.getImagePath();
-    		            	int renderableXSize = (int) Math.round(renderableObject.getXSize() * xScale * textBoxScale);
-    		            	int renderableYSize = (int) Math.round(renderableObject.getYSize() * yScale * textBoxScale);
-    		            	int renderableX = (int) Math.round(renderableObject.getX() * xScale * textBoxScale);
-    		            	int renderableY = (int) Math.round(renderableObject.getY() * yScale * textBoxScale);
-    		            	int renderableOpacity = renderableObject.getOpacity();
-    		            	Renderable newRenderableObject =  new Renderable(renderableFunction, renderableName, imagePath, 
-    		            			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
-    		            	
-    		            	elementsToReturn[i] =  
-    		        				new Element(
-    	        						transformIndexes, selector,
-    			        				maskIndex, 
-    			        				hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
-    			        				entryAnimationTransformIndex,
-    			        				new TextBox( // First Constructor (Text AND Renderable)
-    		        						textBoxScale, function, name, 
-    				        				new Text(text, alignX, alignY, offsetX, offsetY, textSize, fontColor, font, bold), 
-    				        				newRenderableObject,  
-    				        				new RoundedArea(x, y, xSize, ySize, roundPercentage), 
-    				        				color, opacity, shadowOffset, 
-    				        				stroke, strokeColor
-    				        				)
-    	        						);
-    	            	} else {
-    		            		elementsToReturn[i] = 
-    			        				 new Element( // Second Constructor (Only Text)
-    		        						 transformIndexes, selector, 
-    				        				 maskIndex,
-    				        				 hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
-    				        				 entryAnimationTransformIndex,
-    		        						 new TextBox(
-    		    								 textBoxScale, function, name,
-    		    								 new Text(text, alignX, alignY, offsetX, offsetY, textSize, fontColor, font, bold), 
-    					        				 new RoundedArea(x, y, xSize, ySize, roundPercentage), 
-    					        				 color, opacity, shadowOffset, 
-    					        				 stroke, strokeColor));
-    	            	}
-                	}
-            	} else if (currentElement.isRenderable()) { // no textbox
-            		//TODO
-            		
-            	}
         	}
         	
         	if (popupsComplete) {

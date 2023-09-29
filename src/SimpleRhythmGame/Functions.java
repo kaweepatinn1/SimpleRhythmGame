@@ -1,5 +1,13 @@
 package SimpleRhythmGame;
 
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
+import java.awt.HeadlessException;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+
 public class Functions {
 	
 	public static boolean runFunction(String function){
@@ -48,6 +56,12 @@ public class Functions {
                 	} else {
                 		System.out.println("No Previous Menu");
                 	}
+				} else if (methodName.equals("exportTheme")) {
+					exportThemeToClipboard();
+				} 
+				
+				  else {
+					System.out.println("No method with name " + methodName + "!");
 				}
 			}
 
@@ -88,4 +102,12 @@ public class Functions {
 			System.out.println("Could not find a menu of name \'" + checkMenu + "\'");
 		}
 	}
+	
+	public static void exportThemeToClipboard() {
+		String toExport = FileIO.getCurrentTheme();
+		
+		FileIO.writeClipboard(toExport);
+	}
+	
+	
 }

@@ -63,6 +63,7 @@ public class DefaultValues {
 				    		new IntColor (255,0,0,255), // 5. Accent Color
 				    		new IntColor (0,0,0,255), // 6. Stroke Color
 				    		new IntColor (0,0,0,0), // 7. Transparent Color
+				    		new IntColor (255,255,255,255), // 8. Display Color
 					}
 					)
 	};
@@ -127,6 +128,7 @@ public class DefaultValues {
 								new int[][]{{0,0},{0,1},{0,0},{0,0}} // E, S, W, N to select next
 								),
 							-1, // mask index
+							false, // hover overlap
 							0, // hover effect
 							1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
@@ -167,6 +169,7 @@ public class DefaultValues {
 								new int[][]{{0,1},{0,2},{0,1},{0,0}} // E, S, W, N to select next
 								),
 							-1, // Mask Index
+							false, // hover overlap
 							0, // hover effect
 							1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
@@ -208,6 +211,7 @@ public class DefaultValues {
 								new int[][]{{0,2},{0,3},{0,2},{0,1}} // E, S, W, N to select next
 								),
 							-1, // Mask Index
+							false, // hover overlap
 							0, // hover effect
 							1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
@@ -249,6 +253,7 @@ public class DefaultValues {
 								new int[][]{{0,3},{0,3},{0,3},{0,2}} // E, S, W, N to select next
 								),
 							-1, // Mask Index
+							false, // hover overlap
 							0, // hover effect
 							1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
@@ -293,6 +298,7 @@ public class DefaultValues {
 											new int[][]{{1,0},{0,2},{0,0},{0,0}} // E, S, W, N to select next
 											),
 										-1, // mask index
+										false, // hover overlap
 										3, // hover effect
 										1, // click effect
 										-1, // arbritraty animation (to be used for scroll)
@@ -386,6 +392,7 @@ public class DefaultValues {
 										new int[][]{{1,0},{0,2},{0,0},{0,0}} // E, S, W, N to select next
 										),
 									-1, // mask index
+									false, // hover overlap
 									3, // hover effect
 									1, // click effect
 									-1, // arbritraty animation (to be used for scroll)
@@ -419,6 +426,7 @@ public class DefaultValues {
 										new int[][]{{1,0},{0,2},{0,0},{0,1}} // E, S, W, N to select next
 										),
 									-1, // mask index
+									false, // hover overlap
 									3, // hover effect
 									1, // click effect
 									-1, // arbritraty animation (to be used for scroll)
@@ -452,6 +460,7 @@ public class DefaultValues {
 										new int[][]{{0,1},{0,1},{0,0},{0,0}} // E, S, W, N to select next
 										),
 									-1, // Mask Index
+									false, // hover overlap
 									2, // hover effect
 									4, // click effect
 									-1, // arbritraty animation (to be used for scroll)
@@ -485,6 +494,7 @@ public class DefaultValues {
 								new int[][]{{-1,-1},{-1,-1},{-1,-1},{-1,-1}} // E, S, W, N to select next
 								),
 							-1, // Mask Index
+							false, // hover overlap
 							-1, // hover effect
 							-1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
@@ -511,6 +521,7 @@ public class DefaultValues {
 									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
 									),
 								-1, // mask index
+								false, // hover overlap
 								-1, // hover effect
 								-1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
@@ -544,6 +555,7 @@ public class DefaultValues {
 									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
 									),
 								-1, // mask index
+								false, // hover overlap
 								-1, // hover effect
 								-1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
@@ -577,6 +589,7 @@ public class DefaultValues {
 									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
 									),
 								-1, // mask index
+								false, // hover overlap
 								-1, // hover effect
 								-1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
@@ -585,7 +598,7 @@ public class DefaultValues {
 									// Text and Renderable
 									1f, // scale
 									null, // function
-									"ThemeText",  // name
+									"ThemeSubtext",  // name
 									new Text(
 										"Theme", // text
 										"left", "center", // align
@@ -600,7 +613,7 @@ public class DefaultValues {
 										),
 									7, // box color (index of colors)
 									255, // opacity (0-255)
-									15, // shadowOffset
+									0, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
 									)),
 /////////////////////////////////////////////////////////////////////////////////////
@@ -610,8 +623,9 @@ public class DefaultValues {
 									new int[][]{{2,0},{1,1},{0,2},{1,0}} // E, S, W, N to select next
 									),
 								-1, // mask index
+								true, // hover overlap
 								-1, // hover effect
-								-1, // click effect
+								1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
 								-1, // entry animation
 								new TextBox(
@@ -631,7 +645,7 @@ public class DefaultValues {
 										),
 									2, // box color (index of colors)
 									255, // opacity (0-255)
-									0, // shadowOffset
+									5, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
 									)),
 /////////////////////////////////////////////////////////////////////////////////////
@@ -641,8 +655,9 @@ public class DefaultValues {
 									new int[][]{{2,0},{1,1},{1,0},{0,0}} // E, S, W, N to select next
 									),
 								-1, // mask index
+								true, // hover overlap
 								-1, // hover effect
-								-1, // click effect
+								1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
 								-1, // entry animation
 								new TextBox(
@@ -662,7 +677,7 @@ public class DefaultValues {
 										),
 									2, // box color (index of colors)
 									255, // opacity (0-255)
-									0, // shadowOffset
+									5, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
 									)),
 /////////////////////////////////////////////////////////////////////////////////////
@@ -672,6 +687,7 @@ public class DefaultValues {
 									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
 									),
 								-1, // mask index
+								false, // hover overlap
 								-1, // hover effect
 								-1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
@@ -693,9 +709,143 @@ public class DefaultValues {
 									new RoundedArea(
 										1335, 350, 500, 65, 0  // x, y, xSize, ySize, round%
 										),
+									8, // box color (index of colors)
+									255, // opacity (0-255)
+									5, // shadowOffset
+									3, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{1,1}, // Selector Index
+									new int[][]{{1,1},{1,2},{0,2},{1,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								-1, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									"exportTheme", // function
+									"ExportThemeButton",  // name
+									new Text(
+										"Export Theme", // text
+										"center", "center", // align
+										0, -6, // text offset (x, y)
+										35, // text size
+										6, // text color (index of colors)
+										"Archivo Narrow", // font
+										false // bold
+										),
+									new RoundedArea(
+										1160, 445, 300, 65, 0  // x, y, xSize, ySize, round%
+										),
 									2, // box color (index of colors)
 									255, // opacity (0-255)
+									10, // shadowOffset
+									3, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								-1, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									null, // function
+									"ThemeNameSubtext",  // name
+									new Text(
+										"Theme Name", // text
+										"left", "center", // align
+										0, -2, // text offset (x, y)
+										40, // text size
+										6, // text color (index of colors)
+										"Archivo Narrow", // font
+										false // bold
+										),
+									new RoundedArea(
+										735, 630, 0, 0, 0  // x, y, xSize, ySize, round%
+										),
+									7, // box color (index of colors)
+									255, // opacity (0-255)
 									0, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+///////////////////////////////////////,//////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{1,2}, // Selector Index
+									new int[][]{{1,2},{1,3},{0,2},{1,1}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								true, // hover overlap
+								-1, // hover effect
+								1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								-1, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									"addPopup int 0", // function
+									"EditThemeNameButton",  // name
+									new Renderable(
+											// Renderable Without Function
+											"EditPNG", // name
+											"src/textures/edit.png", // file source
+											9, 8, 50, 50, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+									new RoundedArea(
+										1052, 634, 65, 65, 0  // x, y, xSize, ySize, round%
+										),
+									2, // box color (index of colors)
+									255, // opacity (0-255)
+									5, // shadowOffset
+									3, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								-1, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									null, // function
+									"ThemeText",  // name
+									new Text(
+										"%CurrentThemeName", // text
+										"right", "center", // align
+										240, -6, // text offset (x, y)
+										35, // text size
+										6, // text color (index of colors)
+										"Archivo Narrow", // font
+										false // bold
+										),
+									new RoundedArea(
+										1335, 634, 500, 65, 0  // x, y, xSize, ySize, round%
+										),
+									8, // box color (index of colors)
+									255, // opacity (0-255)
+									5, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
 									))
 /////////////////////////////////////////////////////////////////////////////////////

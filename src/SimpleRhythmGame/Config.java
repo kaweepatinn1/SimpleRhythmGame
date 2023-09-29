@@ -3,7 +3,7 @@ package SimpleRhythmGame;
 import java.awt.Color;
 
 public class Config {
-	private final static int colorsLength = 8;
+	private final static int colorsLength = 9;
 	
 	private boolean fullscreen;
 	private int sizeToForce;
@@ -19,7 +19,7 @@ public class Config {
 	private int DEBUG_masksColorsOffset;
 	
 	private Controls[] controls;
-	private String currentColorsChoice;
+	private String currentThemeChoice;
 	private Theme[] themes; // used to return faster, not included in json file
 	private String[] fonts;
 	private Menu[] menus;
@@ -29,14 +29,14 @@ public class Config {
 	}
 	
 	public Config(boolean fullscreen, int sizeToForce, Controls[] controls, Theme[] themes, 
-			String currentColorsChoice, String[] fonts, Menu[] menus,
+			String currentThemeChoice, String[] fonts, Menu[] menus,
 			boolean DEBUG_drawMasks, int DEBUG_masksColorsOffset, boolean nanoSecondPrecision, int framesToStore,
 			int framerate, boolean shouldLimitFramerate, boolean cursorEnabled) {
 		this.fullscreen = fullscreen;
 		this.sizeToForce = sizeToForce;
 		this.controls = controls;
 		this.themes = themes;
-		this.currentColorsChoice = currentColorsChoice;
+		this.currentThemeChoice = currentThemeChoice;
 		this.fonts = fonts;
 		this.menus = menus;
 		this.nanoSecondPrecision = nanoSecondPrecision;
@@ -91,6 +91,10 @@ public class Config {
 	
 	public Theme getThemeOfIndex(int index) {
 		return themes[index];
+	}
+	
+	public Theme getCurrentTheme() {
+		return themes[getCurrentThemeChoiceIndex()];
 	}
 	
 	public boolean addTheme(Theme newTheme) {
@@ -156,6 +160,15 @@ public class Config {
 		for (int i = 0 ; i < colorsLength ; i++) {
 			IntColor color = theme.getColorOfIndex(i);
 			toSetColors[i] = color.toColor();
+		}
+		return toSetColors;
+	}
+	
+	public IntColor[] getIntColorsFromThemeName (String name) {
+		IntColor[] toSetColors = new IntColor[colorsLength];
+		Theme theme = themes[getIndexFromThemeName(name)];
+		for (int i = 0 ; i < colorsLength ; i++) {
+			toSetColors[i] = theme.getColorOfIndex(i);
 		}
 		return toSetColors;
 	}
@@ -240,19 +253,23 @@ public class Config {
 		this.cursorEnabled = cursorEnabled;
 	}
 
-	public String getCurrentColorsChoice() {
-		return currentColorsChoice;
+	public String getCurrentThemeChoice() {
+		return currentThemeChoice;
 	}
 	
-	public int getCurrentColorsChoiceIndex() {
-		return getIndexFromThemeName(currentColorsChoice);
+	public int getCurrentThemeChoiceIndex() {
+		return getIndexFromThemeName(currentThemeChoice);
 	}
 
-	public void setCurrentColorsChoice(String currentColorsChoice) {
-		this.currentColorsChoice = currentColorsChoice;
+	public void setCurrentThemeChoice(String currentColorsChoice) {
+		this.currentThemeChoice = currentColorsChoice;
 	}
 	
-	public Color[] getCurrentColors() {
-		return getColorsFromThemeName(getCurrentColorsChoice());
+	public Color[] getCurrentThemeColors() {
+		return getColorsFromThemeName(getCurrentThemeChoice());
+	}
+	
+	public IntColor[] getCurrentThemeIntColors() {
+		return getIntColorsFromThemeName(getCurrentThemeChoice());
 	}
 }

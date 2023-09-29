@@ -1,9 +1,15 @@
 package SimpleRhythmGame;
 
 import java.awt.Color;
+import java.awt.HeadlessException;
+import java.awt.Toolkit;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import com.google.gson.Gson;
@@ -115,5 +121,30 @@ public class FileIO {
 		
 		currentConfigOut(config);
 		return config;
+	}
+	
+	public static String getCurrentTheme() {
+		String toReturn = null;
+		
+		Config config = ShowImage.getConfig();
+		
+		Theme theme = config.getCurrentTheme();
+		Gson gson = new Gson();
+        toReturn = gson.toJson(theme);
+        
+        return toReturn;
+	}
+	
+	public static void writeClipboard(String string) {
+		Toolkit.getDefaultToolkit()
+        .getSystemClipboard()
+        .setContents(
+                new StringSelection(string),
+                null
+        );
+	}
+	
+	public static String readClipboard() throws HeadlessException, UnsupportedFlavorException, IOException {
+	    return (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
 	}
 }
