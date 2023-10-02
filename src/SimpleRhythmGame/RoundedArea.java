@@ -15,6 +15,14 @@ public class RoundedArea {
 		this.roundPercentage = roundPercentage;
 	}
 	
+	public RoundedArea(Renderable renderable) {
+		x = renderable.getX();
+		y = renderable.getY();
+		xSize = renderable.getXSize();
+		ySize = renderable.getYSize();
+		roundPercentage = 0;
+	}
+	
 	public int getX() {
 		return x;
 	}

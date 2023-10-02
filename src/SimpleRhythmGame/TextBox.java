@@ -176,7 +176,7 @@ public class TextBox {
     }
     
     public boolean getBold() {
-        return text.isBold();
+        return text.getBold();
     }
     
     public int getShadowOffset() {

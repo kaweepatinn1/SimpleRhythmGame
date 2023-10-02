@@ -1,7 +1,5 @@
 package SimpleRhythmGame;
 
-import java.awt.Color;
-
 // A READ ONLY CLASS
 
 public class DefaultValues {
@@ -12,6 +10,7 @@ public class DefaultValues {
 	private final static int defaultFramesToStore = 20;
 	private final static int defaultFramerate = 60;
 	private final static boolean defaultShouldLimitFramerate = true;
+	private final static double defaultTransitionTime = 500d;
 	
 	private final static boolean defaultCursorEnabled = true;
 	
@@ -289,9 +288,13 @@ public class DefaultValues {
 								5, 6 // strokeWidth, strokeColor
 								))
 					},
-					new Element[][] {
+					new Popup[] {
 /////////////////////////////////////////////////////////////////////////////////////
-						new Element[] {
+						new Popup(
+							"Standard",
+							"TestPopup",
+							"Test",
+							new Element[] {
 								new Element(
 										new Selector(
 											new int[]{0,0}, // Selector Index
@@ -325,7 +328,8 @@ public class DefaultValues {
 											15, // shadowOffset
 											5, 6 // strokeWidth, strokeColor
 											))
-						}
+							}
+						)
 /////////////////////////////////////////////////////////////////////////////////////
 					}
 					),
@@ -850,12 +854,47 @@ public class DefaultValues {
 									))
 /////////////////////////////////////////////////////////////////////////////////////
 					},
-					new Element[][] { // Popups List
-						new Element[] { // Popup 0
-/////////////////////////////////////////////////////////////////////////////////////
-								
-/////////////////////////////////////////////////////////////////////////////////////
-						}
+					new Popup[] { // Popups List
+							new Popup(
+									"Standard",
+									"TestPopup",
+									"Test",
+									new Element[] {
+										new Element(
+												new Selector(
+													new int[]{1,0}, // Selector Index
+													new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+													),
+												-1, // mask index
+												false, // hover overlap
+												-1, // hover effect
+												1, // click effect
+												-1, // arbritraty animation (to be used for scroll)
+												-1, // entry animation
+												new TextField(
+													// Textfield
+													1f, // scale
+													100, // Max Size
+													"Test", // Name
+													new Text(
+														"%CurrentThemeName", // text
+														"right", "center", // align
+														275, -9, // text offset (x, y)
+														50, // text size
+														6, // text color (index of colors)
+														"Archivo Narrow", // font
+														false // bold
+														),
+													new RoundedArea(
+														960, 500, 600, 100, 0  // x, y, xSize, ySize, round%
+														),
+													8, // box color (index of colors)
+													255, // opacity (0-255)
+													15, // shadowOffset
+													5, 6 // strokeWidth, strokeColor
+													))
+									}
+								)
 					}
 			)
 	};
@@ -869,13 +908,14 @@ public class DefaultValues {
     			getDefaultSelectedTheme(),
     			getDefaultFonts(),
     			getAllDefaultMenus(),
-    			getDefaultDEBUG_drawMasks(),
-    			getDefaultDEBUG_masksColorsOffset(),
     			getDefaultNanoSecondPrecision(),
     			getDefaultFramesToStore(),
     			getDefaultFramerate(),
     			getDefaultShouldLimitFramerate(),
-    			getDefaultCursorEnabled()
+    			getDefaultCursorEnabled(),
+    			getDefaultTransitionTime(),
+    			getDefaultDEBUG_drawMasks(),
+    			getDefaultDEBUG_masksColorsOffset()
     			);
 		return defaultConfig;
 	}
@@ -931,6 +971,10 @@ public class DefaultValues {
 	public static boolean getDefaultCursorEnabled() {
 		return defaultCursorEnabled;
 	}
+
+	public static double getDefaultTransitionTime() {
+		return defaultTransitionTime;
+	}
 	
 	public static boolean getDefaultDEBUG_drawMasks() {
 		return defaultDEBUG_drawMasks;
@@ -939,6 +983,7 @@ public class DefaultValues {
 	public static int getDefaultDEBUG_masksColorsOffset() {
 		return defaultDEBUG_masksColorsOffset;
 	}
+	
 }
 
 /* 

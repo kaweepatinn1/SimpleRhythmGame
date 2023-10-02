@@ -18,8 +18,10 @@ public class ShowImage extends JPanel implements KeyListener {
     private static Menu scaledMenu;
     private static int[] selected;
     private static int[][] ogSelecteds = {};
-    private static int[] popupIndexes;
     private static Selector[] selectionsList;
+    
+    private static String selectedElement;
+    private static int[] popupIndexes;
     
     private static JFrame frame;
     private static Config config;
@@ -63,14 +65,30 @@ public class ShowImage extends JPanel implements KeyListener {
             	if (clickedElement.getClickEffectIndex() != -1) {
             		getElementFromName(clickedElement.getName()).animateClick(true);
             	}
+            	Element element = getElementFromName(selectedElement);
+            	if (element != null) {
+            		if (clickedElement.getName().equals(selectedElement)) {
+            			
+            		} else {
+                		element.getSelector().setUnselected();
+                		selectedElement = null;
+            		}
+        		} else {
+        			String functionToRun = clickedElement.getFunction();
+                    boolean ranFunction = Functions.runFunction(functionToRun);
+                    if (!ranFunction) {
+                    	System.out.println("ERROR: DID NOT RUN ANY FUNCTION FOR \nElement Name: " + clickedElement.getName() + 
+                    			"\nwhich is a \nRenderable: " + clickedElement.isRenderable() + "\nTextbox: " + clickedElement.isTextbox());
+                    } 
+        		}
             	// System.out.println(releasedElement.getName());
-        		String functionToRun = clickedElement.getFunction();
-                boolean ranFunction = Functions.runFunction(functionToRun);
-                if (!ranFunction) {
-                	System.out.println("ERROR: DID NOT RUN ANY FUNCTION FOR \nElement Name: " + clickedElement.getName() + 
-                			"\nwhich is a \nRenderable: " + clickedElement.isRenderable() + "\nTextbox: " + clickedElement.isTextbox());
-                } 
                 mouseDragStart = null;
+        	} else {
+        		Element element = getElementFromName(selectedElement);
+        		if (element != null) {
+        			element.getSelector().setUnselected();
+        			selectedElement = null;
+        		}
         	}
         }
         
@@ -87,15 +105,30 @@ public class ShowImage extends JPanel implements KeyListener {
                 		getElementFromName(mouseDragCurrent).deanimateClick(false);
                 		mouseDragCurrent = null;
                 	}
-            		String functionToRun = releasedElement.getFunction();
-                    boolean ranFunction = Functions.runFunction(functionToRun);
-                    if (!ranFunction) {
-                    	System.out.println("ERROR: DID NOT RUN ANY FUNCTION FOR \nElement Name: " + releasedElement.getName() + 
-                    			"\nwhich is a \nRenderable: " + releasedElement.isRenderable() + "\nTextbox: " + releasedElement.isTextbox());
-                	}
+            		Element element = getElementFromName(selectedElement);
+            		if (element != null) {
+	            		if (releasedElement.getName().equals(selectedElement)) {
+	            			
+	            		} else {
+	                		element.getSelector().setUnselected();
+	                		selectedElement = null;
+	            		}
+            		} else {
+            			String functionToRun = releasedElement.getFunction();
+                        boolean ranFunction = Functions.runFunction(functionToRun);
+                        if (!ranFunction) {
+                        	System.out.println("ERROR: DID NOT RUN ANY FUNCTION FOR \nElement Name: " + releasedElement.getName() + 
+                        			"\nwhich is a \nRenderable: " + releasedElement.isRenderable() + "\nTextbox: " + releasedElement.isTextbox());
+                    	}
+            		}
                 } 
         	} else {
             	// Clicked on nothing.
+        		Element element = getElementFromName(selectedElement);
+        		if (element != null) {
+        			element.getSelector().setUnselected();
+        			selectedElement = null;
+        		}
             }
             currentMouseDragging = false;
     	
@@ -179,7 +212,7 @@ public class ShowImage extends JPanel implements KeyListener {
             	// DO NOTHING
             } else {
             	if (mouseDragCurrent != null && mouseDragStart == mouseDragCurrent) {
-            		System.out.println("deanimate");
+            		// System.out.println("deanimate");
             		getElementFromName(mouseDragCurrent).deanimateClick(false);
             	}
             	mouseDragCurrent = nameOfDraggedElement;
@@ -227,14 +260,14 @@ public class ShowImage extends JPanel implements KeyListener {
         		toRender = scaledMenu.getElements();
         		opacityMulti = 1;
         	} else {
-            	toRender = scaledMenu.getPopup(iter);
+            	toRender = scaledMenu.getPopup(iter).getElements();
             	Graphics2D g2d = (Graphics2D) g.create();
     	        g2d.setRenderingHints(rh);
     	        Rectangle rect = new Rectangle(0,0,calculatedScreenWidth,calculatedScreenHeight);
     	        g2d.setColor(new Color(0,0,0,255));
     	        opacityMulti = (iter == popupIndexes.length - 1) ? 
-    	        		( fadeOutPopup == -1 ? (float) Math.max(Math.min(((Framerate.getCurrentTime() - popupTime) / 240d),1f),0f)
-    	        				: (float) Math.max(Math.min(1 -((Framerate.getCurrentTime() - popupTime) / 240d),1f),0f))
+    	        		( fadeOutPopup == -1 ? (float) Math.max(Math.min(((Framerate.getCurrentTime() - popupTime) / (config.getTransitionTime() * (45f/ 100f))),1f),0f)
+    	        				: (float) Math.max(Math.min(1 -((Framerate.getCurrentTime() - popupTime) / (config.getTransitionTime() * (45f / 100f))),1f),0f))
     	        		: 1f;
     	        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f * opacityMulti));
     	        g2d.fill(rect);
@@ -251,7 +284,9 @@ public class ShowImage extends JPanel implements KeyListener {
     	        
     	        if (currentElement.getSelectorIndex()[0] == selected[0] &&
     	        		currentElement.getSelectorIndex()[1] == selected[1] &&
-    	        		currentElement.getHoverOverlap() == true) {
+    	        		currentElement.getHoverOverlap() == true &&
+    	        		iter == popupIndexes.length - 1 // only sets renderlast on the topmost popup
+    	        		) {
     	        	renderLast = currentElement;
     	        }
     	        
@@ -363,16 +398,22 @@ public class ShowImage extends JPanel implements KeyListener {
         }
     	
     	if (transitioning) {
+    		double transitionProgress = Math.max(Math.min((Framerate.getCurrentTime() - transitionTime) / config.getTransitionTime(),255),0);
+    		double transitionCompleteProgress = 1 - transitionProgress;
     		g2d.setColor(new Color(0,0,0,
-    				Framerate.getCurrentTime() - transitionTime < 280d ?
-    				Math.max(Math.min((int)(Framerate.getCurrentTime() - transitionTime),255),0): 
-    					Math.max(Math.min((int)(550 - (Framerate.getCurrentTime() - transitionTime)),255),0)));
+    				Framerate.getCurrentTime() - transitionTime < (config.getTransitionTime() / 2) ?
+					Math.max(Math.min((int)(transitionProgress * 255f * (100f / 45f)),255),0): 
+						Math.max(Math.min((int)(transitionCompleteProgress * 255f * (100f / 45f)),255),0)
+    					));
     		g2d.fill(new Rectangle(0,0,calculatedScreenWidth,calculatedScreenHeight));
     	}
     }
     
     private int[] getTextAligns(TextBox textbox, FontMetrics fontMetrics){
-    	int textWidth = fontMetrics.stringWidth(textbox.getText());
+    	String text = textbox.getText().substring(0, 1).equals("%") ? 
+    			(String) config.getVariable(textbox.getText()) :
+    			textbox.getText();
+    	int textWidth = fontMetrics.stringWidth(text);
         int textHeight = fontMetrics.getAscent();
         // Initializes extraAlign variables
         int extraAlignX;
@@ -394,6 +435,42 @@ public class ShowImage extends JPanel implements KeyListener {
         	extraAlignY = 0;
         }
         int[] alignReturns = new int[] {extraAlignX, extraAlignY};
+    	return alignReturns;
+    }
+    
+    private int[] getTextAligns(TextField textfield, FontMetrics fontMetrics){
+    	Text textObject = textfield.getTextObject();
+    	
+    	int textWidth = fontMetrics.stringWidth(textfield.getCurrentDisplay());
+        int textHeight = fontMetrics.getAscent();
+        
+        int selectorOffset = textWidth - 
+        		fontMetrics.stringWidth
+        		(textfield.getCurrentDisplay()
+        				.substring(
+        						textfield.getSelectorLocation(),
+        						textfield.getCurrentDisplay().length()
+        						));
+        // Initializes extraAlign variables
+        int extraAlignX;
+        int extraAlignY;
+        // uses the align text settings to determing whether to use the fontMetrics for extraAlignX.
+        if (textObject.getAlignX() == "right") {
+        	extraAlignX = - textWidth;
+        } else if (textObject.getAlignX() == "center") {
+        	extraAlignX = - textWidth / 2;
+        } else { // cases of left, and everything else
+        	extraAlignX = 0;
+        }
+        // same, but for up and down (extraAlignY).
+        if (textObject.getAlignY() == "bottom") {
+        	extraAlignY = textHeight;
+        } else if (textObject.getAlignY() == "center") {
+        	extraAlignY = textHeight / 2;
+        } else { // cases of up, and everything else
+        	extraAlignY = 0;
+        }
+        int[] alignReturns = new int[] {extraAlignX, extraAlignY, selectorOffset};
     	return alignReturns;
     }
     
@@ -458,23 +535,31 @@ public class ShowImage extends JPanel implements KeyListener {
             
             // ^ Textbox section
             // v Text / Image section
-            
-        	for (int k = 3 ; k > -1 ; k--) {
-        		if (currentElement.getTransform()[k].getNewTransform() != null) {
-        			g2d.transform(currentElement.getTransform()[k].getCurrentPosition().getFinalTransform());
-	        	}
-        	}
+            AffineTransform oldForm = g2d.getTransform();
         	
             if (textbox.getRenderableObject() != null) { // render image if contained
+            	for (int k = 3 ; k > -1 ; k--) {
+            		if (currentElement.getTransform()[k].getNewTransform() != null) {
+            			g2d.transform(currentElement.getTransform()[k].getCurrentPosition().getFinalTransform());
+    	        	}
+            	}
             	Renderable renderable = textbox.getRenderableObject();
             	BufferedImage image = renderable.getImage();
             	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacityMulti * ((float) renderable.getOpacity())/255));
             	g2d.drawImage(image, textbox.getX() + renderable.getX(), textbox.getY() + renderable.getY(), null);
             	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacityMulti));
             	// Reset the composite after using it
+            	g2d.setTransform(oldForm);
             } 
             
             if (textbox.getText() != null){ // render text if contained
+            	// g2d.translate(-textbox.getOffsetX(), -textbox.getOffsetY());
+                for (int k = 3 ; k > -1 ; k--) {
+            		if (currentElement.getTransform()[k].getNewTransform() != null) {
+            			g2d.transform(currentElement.getTransform()[k].getCurrentPosition().getFinalTransform());
+    	        	}
+            	}
+                // g2d.translate(textbox.getOffsetX(), textbox.getOffsetY());
             	
             	g2d.setColor(config.getCurrentThemeColors()[textbox.getTextColor()]); // set text color
 	            
@@ -484,6 +569,9 @@ public class ShowImage extends JPanel implements KeyListener {
             	g2d.setFont(font);
 	            // Below code grabs the size of the text using the string to be entered
 	            FontMetrics fontMetrics = g2d.getFontMetrics();
+	            String text = textbox.getText().substring(0, 1).equals("%") ? 
+	        			(String) config.getVariable(textbox.getText()) :
+	        			textbox.getText();
 	            
 	            int[] extraAligns = getTextAligns(textbox, fontMetrics);
 	            
@@ -492,20 +580,136 @@ public class ShowImage extends JPanel implements KeyListener {
 	            
 	            int finalX = roundRectAttributes.getX() + (textbox.getXSize() / 2) + textbox.getOffsetX() + extraAlignX;
 	            int finalY = roundRectAttributes.getY() + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY;
-	            g2d.drawString(textbox.getText(), finalX, finalY);
+	            g2d.drawString(text, finalX, finalY);
+	            
+	            g2d.setTransform(oldForm);
             }
 
-        } else if (currentElement.isRenderable()) {
+        } else if (currentElement.isTextfield()) {
+        	TextField textfield = currentElement.getTextfield();
+        	
+        	int maskIndex = currentElement.getMaskIndex();
+        	
+        	if (maskIndex == -1 || scaledMenu.getMasks().length == 0) {
+        		Rectangle fullscreenSize = new Rectangle(0, 0, calculatedScreenWidth, calculatedScreenHeight);
+        		Area noMask = new Area(fullscreenSize);
+        		g2d.setClip(noMask);
+        	} else {
+	        	g2d.setClip(getBoxAttributes(scaledMenu.getMasks()[maskIndex]).getArea());
+        	}
+    		
+        	RoundedRect roundRectAttributes = getBoxAttributes(textfield.getRectShape());
+        	
+        	RoundRectangle2D roundRect = new RoundRectangle2D.Double(
+        			roundRectAttributes.getX(),
+        			roundRectAttributes.getY(),
+        			roundRectAttributes.getXSize(),
+        			roundRectAttributes.getYSize(),
+        			roundRectAttributes.getRound(),
+        			roundRectAttributes.getRound()
+        			);
+        	
+        	Shape finalRect = roundRect;
+        	
+        	for (int k = 3 ; k > -1 ; k--) {
+        		if (currentElement.getTransform()[k].getNewTransform() != null) {
+	        		finalRect = currentElement.getTransform()[k].getCurrentPosition().getFinalTransform().createTransformedShape(finalRect);
+	        	}
+        	}
+        
+        	// grabs the SpecialTransform which grabs the AffineTransform to create a new shape from the transform
+        	// of roundRect;
+        	
+        	if (textfield.getShadowOffset() != 0) { // fills a drop shadow on command
+        		AffineTransform shadow = new AffineTransform();
+        		shadow.translate(textfield.getShadowOffset(), textfield.getShadowOffset());
+        		Shape shadowRect = shadow.createTransformedShape(finalRect);
+            	g2d.setColor(new Color(0, 0, 0, 100));
+            	
+            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f * opacityMulti));
+            	g2d.fill(shadowRect);
+            }
+        	
+        	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacityMulti));
+            
+            float thickness = textfield.getStrokeWidth();
+            g2d.setStroke(new BasicStroke(thickness));
+            
+            g2d.setColor(config.getCurrentThemeColors()[textfield.getColor()]); // set box color
+            g2d.fill(finalRect);
+            g2d.setColor(config.getCurrentThemeColors()[textfield.getStrokeColor()]);
+            g2d.draw(finalRect);
+            
+            g2d.setStroke(new BasicStroke(0));
+            
+            // ^ Textbox section
+            // v Text / Image section
+        	
+        	Text textObject = textfield.getTextObject();
+        	RoundedArea area = textfield.getRectShape();
+        	
+        	// g2d.translate(-textObject.getOffsetX(), -textObject.getOffsetY());
+            for (int k = 3 ; k > -1 ; k--) {
+        		if (currentElement.getTransform()[k].getNewTransform() != null) {
+        			g2d.transform(currentElement.getTransform()[k].getCurrentPosition().getFinalTransform());
+	        	}
+        	}
+            // g2d.translate(textObject.getOffsetX(), textObject.getOffsetY());
+            	
+        	g2d.setColor(config.getCurrentThemeColors()[textObject.getTextColor()]); // set text color
+            
+            Font font;
+            
+        	font = new Font(textObject.getFont(), textObject.getBold() ? Font.BOLD:Font.PLAIN, textObject.getTextSize());
+        	g2d.setFont(font);
+            // Below code grabs the size of the text using the string to be entered
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            
+            int[] extraAligns = getTextAligns(textfield, fontMetrics);
+            
+            int extraAlignX = extraAligns[0];
+            int extraAlignY = extraAligns[1];
+            
+            int finalX = roundRectAttributes.getX() + (area.getXSize() / 2) + textObject.getOffsetX() + extraAlignX;
+            int finalY = roundRectAttributes.getY() + (area.getYSize() / 2) + textObject.getOffsetY() + extraAlignY;
+            g2d.drawString(textfield.getCurrentDisplay(), finalX, finalY);
+            g2d.setColor(config.getCurrentThemeColors()[5]);
+            if (currentElement.getSelector().isSelected()) {
+            	double pointerTime = currentElement.getTextfield().getPointerTime();
+            	g2d.drawString((Framerate.getCurrentTime() - pointerTime)  % 1000 < 500 ? "|" : "", finalX + extraAligns[2] - (int)(textObject.getTextSize() * 0.1),
+            		finalY - (int)(textObject.getTextSize() * 0.1));
+            }
+    	
+    	} else if (currentElement.isRenderable()) {
         	
             Renderable renderable = currentElement.getRenderable();
             BufferedImage image = renderable.getImage();
+            
+            int maskIndex = currentElement.getMaskIndex();
+        	
+        	if (maskIndex == -1 || scaledMenu.getMasks().length == 0) {
+        		Rectangle fullscreenSize = new Rectangle(0, 0, calculatedScreenWidth, calculatedScreenHeight);
+        		Area noMask = new Area(fullscreenSize);
+        		g2d.setClip(noMask);
+        	} else {
+	        	g2d.setClip(getBoxAttributes(scaledMenu.getMasks()[maskIndex]).getArea());
+        	}
+            
+            for (int k = 3 ; k > -1 ; k--) {
+        		if (currentElement.getTransform()[k].getNewTransform() != null) {
+        			g2d.transform(currentElement.getTransform()[k].getCurrentPosition().getFinalTransform());
+	        	}
+        	}
             
             g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacityMulti * ((float) renderable.getOpacity())/255));
 
             g2d.drawImage(image, renderable.getX(), renderable.getY(), null);
             g2d.dispose();
             
-        } else {
+        } 
+        
+        
+        else {
     		System.out.println("Fatal Error: currentElement to render is not renderable or textbox.");
     		System.out.println(currentElement);
     	}
@@ -519,92 +723,148 @@ public class ShowImage extends JPanel implements KeyListener {
         	
     		Element[] elementsToCheck;
     		if (popupIndexes.length > 0) {
-    			elementsToCheck = scaledMenu.getPopup(popupIndexes.length - 1);
+    			elementsToCheck = scaledMenu.getPopup(popupIndexes.length - 1).getElements();
     		} else {
     			elementsToCheck = scaledMenu.getElements();
     		}
             for (int i = elementsToCheck.length - 1 ; i > -1 ; i--) {
                 Element currentElement = elementsToCheck[i];
                 
-                	if (currentElement.isTextbox()) {
-                    	TextBox textbox = currentElement.getTextbox();
-        	            RoundedRect roundRectAttributes = getStrokedBoxAttributes(textbox);
-        	            // stroked box returns the round rectangle for the box including the surrounding stroke, giving the right hitbox
-        	            Rectangle bounds = new Rectangle();
-        	            
-        	            int x = roundRectAttributes.getX();
-        	        	int y = roundRectAttributes.getY();
-        	        	int xSize = roundRectAttributes.getXSize();
-        	        	int ySize = roundRectAttributes.getYSize();
-        	        	int round = roundRectAttributes.getRound();
-        	        	
-        	        	RoundRectangle2D roundRect = new RoundRectangle2D.Double(x, y, xSize, ySize, round, round);
-        	        	
-                		Shape finalRect = roundRect;
-        	        	
-        	        	for (int k = 3 ; k > -1 ; k--) {
-        	        		if (currentElement.getTransform()[k].getNewTransform() != null) {
-        		        		finalRect = currentElement.getTransform()[k].getCurrentPosition().getFinalTransform().createTransformedShape(finalRect);
-        		        	}
-        	        	}
-        	        	
-        	        	Area buttonArea = new Area(finalRect);
-        	        	
-                		int maskIndex = currentElement.getMaskIndex();
-        	        	
-        	        	if (maskIndex == -1) {
-        	        		// No mask
-        	        	} else {
-        	        		
-                			RoundedRect strokeInclusiveAttributes = getBoxAttributes(scaledMenu.getMasks()[maskIndex]);
-        		        	
-        		        	RoundRectangle2D maskBounds = new RoundRectangle2D.Double(
-        		        			strokeInclusiveAttributes.getX(), 
-        		        			strokeInclusiveAttributes.getY(), 
-        		        			strokeInclusiveAttributes.getXSize(), 
-        		        			strokeInclusiveAttributes.getYSize(), 
-        		        			strokeInclusiveAttributes.getRound(), 
-        		        			strokeInclusiveAttributes.getRound());
-        		        	
-        		        	Area mask = new Area(maskBounds);
-        		        	
-        		        	buttonArea.intersect(mask);
-        	        	}
-        	            
-        	            if (textbox.getRenderableObject() != null) {
-        	            	Renderable renderable = textbox.getRenderableObject();
-        	            	BufferedImage image = renderable.getImage();
-        	            	bounds = new Rectangle(renderable.getX() + x, renderable.getY() + y, image.getWidth(), image.getHeight());
-        	            }
-        	            if ((buttonArea.contains(mouseX, mouseY) && textbox.getOpacity() != 0) ||
-        	            	(bounds.contains(mouseX, mouseY) && textbox.getRenderableObject().getOpacity() != 0 && textbox.getRenderableObject() != null)
-        	            		) { // sets the current hovered box as this if either its renderable (if there is one) or its shape is hovered AND not invisible
-        	            	if (currentElement.getSelectorIndex()[0] + currentElement.getSelectorIndex()[1] > -1) {
-        	            		currentBox = currentElement; 
-        	            	} else {
-        	            		currentBox = null;
-        	            	}
-        	                break;
-        	                // does not break so that the element which is highest in the hierarchy
-        	                // can be selected instead of the first (which would be more background items)
-        	                // break;
-        	            }
-                    } else if (currentElement.isRenderable()) {
-                    	// Check if the mouse click is within the boundaries of any image
-                        Renderable renderable = currentElement.getRenderable();
-                        BufferedImage image = renderable.getImage();
+            	if (currentElement.isTextbox()) {
+                	TextBox textbox = currentElement.getTextbox();
+    	            RoundedRect roundRectAttributes = getStrokedBoxAttributes(textbox);
+    	            // stroked box returns the round rectangle for the box including the surrounding stroke, giving the right hitbox
+    	            Rectangle bounds = new Rectangle();
+    	            
+    	            int x = roundRectAttributes.getX();
+    	        	int y = roundRectAttributes.getY();
+    	        	int xSize = roundRectAttributes.getXSize();
+    	        	int ySize = roundRectAttributes.getYSize();
+    	        	int round = roundRectAttributes.getRound();
+    	        	
+    	        	RoundRectangle2D roundRect = new RoundRectangle2D.Double(x, y, xSize, ySize, round, round);
+    	        	
+            		Shape finalRect = roundRect;
+    	        	
+    	        	for (int k = 3 ; k > -1 ; k--) {
+    	        		if (currentElement.getTransform()[k].getNewTransform() != null) {
+    		        		finalRect = currentElement.getTransform()[k].getCurrentPosition().getFinalTransform().createTransformedShape(finalRect);
+    		        	}
+    	        	}
+    	        	
+    	        	Area buttonArea = new Area(finalRect);
+    	        	
+            		int maskIndex = currentElement.getMaskIndex();
+    	        	
+    	        	if (maskIndex == -1) {
+    	        		// No mask
+    	        	} else {
+    	        		
+            			RoundedRect strokeInclusiveAttributes = getBoxAttributes(scaledMenu.getMasks()[maskIndex]);
+    		        	
+    		        	RoundRectangle2D maskBounds = new RoundRectangle2D.Double(
+    		        			strokeInclusiveAttributes.getX(), 
+    		        			strokeInclusiveAttributes.getY(), 
+    		        			strokeInclusiveAttributes.getXSize(), 
+    		        			strokeInclusiveAttributes.getYSize(), 
+    		        			strokeInclusiveAttributes.getRound(), 
+    		        			strokeInclusiveAttributes.getRound());
+    		        	
+    		        	Area mask = new Area(maskBounds);
+    		        	
+    		        	buttonArea.intersect(mask);
+    	        	}
+    	            
+    	            if (textbox.getRenderableObject() != null) {
+    	            	Renderable renderable = textbox.getRenderableObject();
+    	            	BufferedImage image = renderable.getImage();
+    	            	bounds = new Rectangle(renderable.getX() + x, renderable.getY() + y, image.getWidth(), image.getHeight());
+    	            }
+    	            if ((buttonArea.contains(mouseX, mouseY) && textbox.getOpacity() != 0) ||
+    	            	(bounds.contains(mouseX, mouseY) && textbox.getRenderableObject().getOpacity() != 0 && textbox.getRenderableObject() != null)
+    	            		) { // sets the current hovered box as this if either its renderable (if there is one) or its shape is hovered AND not invisible
+    	            	if (currentElement.getSelectorIndex()[0] + currentElement.getSelectorIndex()[1] > -1) {
+    	            		currentBox = currentElement; 
+    	            	} else {
+    	            		currentBox = null;
+    	            	}
+    	                break;
+    	                // does not break so that the element which is highest in the hierarchy
+    	                // can be selected instead of the first (which would be more background items)
+    	                // break;
+    	            }
+                } else if (currentElement.isTextfield()) {
+	            	TextField textfield = currentElement.getTextfield();
+		            RoundedRect roundRectAttributes = getStrokedBoxAttributes(textfield);
+		            // stroked box returns the round rectangle for the box including the surrounding stroke, giving the right hitbox
+		            
+		            int x = roundRectAttributes.getX();
+		        	int y = roundRectAttributes.getY();
+		        	int xSize = roundRectAttributes.getXSize();
+		        	int ySize = roundRectAttributes.getYSize();
+		        	int round = roundRectAttributes.getRound();
+		        	
+		        	RoundRectangle2D roundRect = new RoundRectangle2D.Double(x, y, xSize, ySize, round, round);
+		        	
+	        		Shape finalRect = roundRect;
+		        	
+		        	for (int k = 3 ; k > -1 ; k--) {
+		        		if (currentElement.getTransform()[k].getNewTransform() != null) {
+			        		finalRect = currentElement.getTransform()[k].getCurrentPosition().getFinalTransform().createTransformedShape(finalRect);
+			        	}
+		        	}
+		        	
+		        	Area buttonArea = new Area(finalRect);
+		        	
+	        		int maskIndex = currentElement.getMaskIndex();
+		        	
+		        	if (maskIndex == -1) {
+		        		// No mask
+		        	} else {
+		        		
+	        			RoundedRect strokeInclusiveAttributes = getBoxAttributes(scaledMenu.getMasks()[maskIndex]);
+			        	
+			        	RoundRectangle2D maskBounds = new RoundRectangle2D.Double(
+			        			strokeInclusiveAttributes.getX(), 
+			        			strokeInclusiveAttributes.getY(), 
+			        			strokeInclusiveAttributes.getXSize(), 
+			        			strokeInclusiveAttributes.getYSize(), 
+			        			strokeInclusiveAttributes.getRound(), 
+			        			strokeInclusiveAttributes.getRound());
+			        	
+			        	Area mask = new Area(maskBounds);
+			        	
+			        	buttonArea.intersect(mask);
+		        	}
+		        	
+		            if (buttonArea.contains(mouseX, mouseY) && textfield.getOpacity() != 0) { 
+		            	// sets the current hovered box as this if its shape is hovered AND not invisible
+		            	if (currentElement.getSelectorIndex()[0] + currentElement.getSelectorIndex()[1] > -1) {
+		            		currentBox = currentElement; 
+		            	} else {
+		            		currentBox = null;
+		            	}
+		                break;
+		                // does not break so that the element which is highest in the hierarchy
+		                // can be selected instead of the first (which would be more background items)
+		                // break;
+    	            }
+	            } else if (currentElement.isRenderable()) {
+                	// Check if the mouse click is within the boundaries of any image
+                    Renderable renderable = currentElement.getRenderable();
+                    BufferedImage image = renderable.getImage();
 
-                        Rectangle bounds = new Rectangle(renderable.getX(), renderable.getY(), image.getWidth(), image.getHeight());
+                    Rectangle bounds = new Rectangle(renderable.getX(), renderable.getY(), image.getWidth(), image.getHeight());
 
-                        if (bounds.contains(mouseX, mouseY) && renderable.getOpacity() != 0) {
-                        	if (currentElement.getSelectorIndex()[0] + currentElement.getSelectorIndex()[1] > -1) {
-        	            		currentBox = currentElement; 
-        	            	} else {
-        	            		currentBox = null;
-        	            	}
-                        	break;
-                        }
+                    if (bounds.contains(mouseX, mouseY) && renderable.getOpacity() != 0) {
+                    	if (currentElement.getSelectorIndex()[0] + currentElement.getSelectorIndex()[1] > -1) {
+    	            		currentBox = currentElement; 
+    	            	} else {
+    	            		currentBox = null;
+    	            	}
+                    	break;
                     }
+                }
                 }
             return currentBox;
     	} else {
@@ -635,92 +895,120 @@ public class ShowImage extends JPanel implements KeyListener {
             	}
             }
             
-            if (foundKey) {
+            if (selectedElement != null) { 
+            	// override if there is a selected element
+            	// also ignore keybinds; use vanilla.
+            	String keyPressedName = KeyEvent.getKeyText(rawKeyCode);
+            	System.out.println(keyPressedName);
+        		Element element = getElementFromName(selectedElement);
+        		if (keyPressedName == "Enter") {
+        			confirmSelectedElement();
+        			element.getSelector().setUnselected();
+        			selectedElement = null;
+        		}
+        		else if (keyPressedName.equals("Left")) {
+        			element.getTextfield().incrementSelector(false);
+        		} 
+        		else if (keyPressedName.equals("Right")) {
+        			element.getTextfield().incrementSelector(true);
+        		} 
+        		else if (keyPressedName.equals("Backspace")) {
+        			element.getTextfield().delChar(true);
+        		} 
+        		else if (keyPressedName.equals("Delete")) {
+        			element.getTextfield().delChar(false);
+        		}
+        		// Characters are handled at keyTyped();
+        	}
+            
+            else if (foundKey) {
             	String hotkeyPressed = KeyEvent.getKeyText(keyCode);
+            		
+	                if (hotkeyPressed.equals("Enter")
+	                		|| hotkeyPressed.equals("Up")
+	                		|| hotkeyPressed.equals("Down")
+	                		|| hotkeyPressed.equals("Left")
+	                		|| hotkeyPressed.equals("Right")
+	                		) { // arrow keys real keycodes
+	                	Element[] tempElementsList = (getCurrentPopupIndex() == -1) ?
+	    	        			scaledMenu.getElements() : scaledMenu.getPopup(getCurrentPopupIndex()).getElements();
+	                	int[][] directionalOptions = new int[4][2];
+	                	boolean found = false;
+	                	Element element = null;
+	                	Element elementToDeanimate = null; 
+	                	// Used so that switching from the same element to itself 
+	                	// doesn't cause deanimate; it only deanimates when it is
+	                	// a new element being switched to.
+	                	for (int i = 0 ; i < selectionsList.length; i++) {
+	                		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1] &&
+	                				selectionsList[i].getSelectorIndex()[0] + selectionsList[i].getSelectorIndex()[1] > -1) {
+	                			directionalOptions = selectionsList[i].getSelectorOptions();
+	                			// retrieves directional options from the currently selected item
+	                			element = tempElementsList[i];
+	                			elementToDeanimate = element;
+	                			found = true;
+	                			break;
+	                		}
+	                	}
+	                	
+	                	if (!found) { // set the selected to 0 instead if not currently selecting a valid item (like if currently on -1,-1)
+	                		selected = scaledMenu.resetSelectors(true, getCurrentPopupIndex());
+	                		for (int i = 0 ; i < selectionsList.length; i++) {
+	                    		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1] &&
+	                    				selectionsList[i].getSelectorIndex()[0] + selectionsList[i].getSelectorIndex()[1] > -1) {
+	                    			element = tempElementsList[i];
+	                    			element.animateHover();
+	                    			lastHovered = element.getName();
+	                    			break;
+	                    		}
+	                    	}
+	                	} else {
+	                		
+	                		if (hotkeyPressed == "Enter") {
+	                			element.animateClick(true);
+	                			String functionToRun = element.getFunction();
+	                			boolean ranFunction = Functions.runFunction(functionToRun);
+	                			if (!ranFunction) {
+	                          	System.out.println("ERROR: DID NOT RUN ANY FUNCTION FOR \nElement Name: " + element.getName() + 
+	                          			"\nwhich is a \nRenderable: " + element.isRenderable() + "\nTextbox: " + element.isTextbox());
+	                			}
+	                		} else {
+	                			if (hotkeyPressed == "Right") {
+	        			        	selected = scaledMenu.resetSelectors(directionalOptions[0], selected, getCurrentPopupIndex());
+	        			            } else if (hotkeyPressed == "Down") {
+	        			            	selected = scaledMenu.resetSelectors(directionalOptions[1], selected, getCurrentPopupIndex());
+	        			            } else if (hotkeyPressed == "Left") {
+	        			            	selected = scaledMenu.resetSelectors(directionalOptions[2], selected, getCurrentPopupIndex());
+	        	                    } else if (hotkeyPressed == "Up") {
+	        	                    	selected = scaledMenu.resetSelectors(directionalOptions[3], selected, getCurrentPopupIndex());
+	                            }
+	                			for (int i = 0 ; i < selectionsList.length; i++) {
+	                        		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1]) {
+	                        			element = tempElementsList[i];
+	                        			if (element.equals(elementToDeanimate)){
+	                        				// Do nothing, no change in element.
+	                        			} else {
+	                        				elementToDeanimate.deanimateHover(false);
+	                        				element.animateHover();
+	                        				lastHovered = element.getName();
+	                        			}
+	                        			break;
+	                        		}
+	                        	}
+	                		}
+	                	}
+	                } 
+	                
+	                else if (hotkeyPressed == "Escape") {
+	                	String functionToRun = "escapeMenu";
+	                	Functions.runFunction(functionToRun);
+	                }
             	
-                if (hotkeyPressed == "Enter"
-                		|| hotkeyPressed == "Up"
-                		|| hotkeyPressed == "Down"
-                		|| hotkeyPressed == "Left"
-                		|| hotkeyPressed == "Right"
-                		) { // arrow keys real keycodes
-                	Element[] tempElementsList = (getCurrentPopupIndex() == -1) ?
-    	        			scaledMenu.getElements() : scaledMenu.getPopup(getCurrentPopupIndex());
-                	int[][] directionalOptions = new int[4][2];
-                	boolean found = false;
-                	Element element = null;
-                	Element elementToDeanimate = null; 
-                	// Used so that switching from the same element to itself 
-                	// doesn't cause deanimate; it only deanimates when it is
-                	// a new element being switched to.
-                	for (int i = 0 ; i < selectionsList.length; i++) {
-                		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1] &&
-                				selectionsList[i].getSelectorIndex()[0] + selectionsList[i].getSelectorIndex()[1] > -1) {
-                			directionalOptions = selectionsList[i].getSelectorOptions();
-                			// retrieves directional options from the currently selected item
-                			element = tempElementsList[i];
-                			elementToDeanimate = element;
-                			found = true;
-                			break;
-                		}
-                	}
-                	
-                	if (!found) { // set the selected to 0 instead if not currently selecting a valid item (like if currently on -1,-1)
-                		selected = scaledMenu.resetSelectors(true, getCurrentPopupIndex());
-                		for (int i = 0 ; i < selectionsList.length; i++) {
-                    		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1] &&
-                    				selectionsList[i].getSelectorIndex()[0] + selectionsList[i].getSelectorIndex()[1] > -1) {
-                    			element = tempElementsList[i];
-                    			element.animateHover();
-                    			lastHovered = element.getName();
-                    			break;
-                    		}
-                    	}
-                	} else {
-                		
-                		if (hotkeyPressed == "Enter") {
-                			element.animateClick(true);
-                			String functionToRun = element.getFunction();
-                			boolean ranFunction = Functions.runFunction(functionToRun);
-                			if (!ranFunction) {
-                          	System.out.println("ERROR: DID NOT RUN ANY FUNCTION FOR \nElement Name: " + element.getName() + 
-                          			"\nwhich is a \nRenderable: " + element.isRenderable() + "\nTextbox: " + element.isTextbox());
-                			}
-                		} else {
-                			if (hotkeyPressed == "Right") {
-        			        	selected = scaledMenu.resetSelectors(directionalOptions[0], selected, getCurrentPopupIndex());
-        			            } else if (hotkeyPressed == "Down") {
-        			            	selected = scaledMenu.resetSelectors(directionalOptions[1], selected, getCurrentPopupIndex());
-        			            } else if (hotkeyPressed == "Left") {
-        			            	selected = scaledMenu.resetSelectors(directionalOptions[2], selected, getCurrentPopupIndex());
-        	                    } else if (hotkeyPressed == "Up") {
-        	                    	selected = scaledMenu.resetSelectors(directionalOptions[3], selected, getCurrentPopupIndex());
-                            }
-                			for (int i = 0 ; i < selectionsList.length; i++) {
-                        		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1]) {
-                        			element = tempElementsList[i];
-                        			if (element.equals(elementToDeanimate)){
-                        				// Do nothing, no change in element.
-                        			} else {
-                        				elementToDeanimate.deanimateHover(false);
-                        				element.animateHover();
-                        				lastHovered = element.getName();
-                        			}
-                        			break;
-                        		}
-                        	}
-                		}
-                	}
-                } 
-                
-                else if (hotkeyPressed == "Escape") {
-                	String functionToRun = "escapeMenu";
-                	Functions.runFunction(functionToRun);
-                }
-                
-                String keyText = KeyEvent.getKeyText(rawKeyCode);
+            	
+            	String keyText = KeyEvent.getKeyText(rawKeyCode);
                 System.out.println("Bound Key Pressed: " + hotkeyPressed);
                 System.out.println("Raw Key Pressed: " + keyText);
+                
                 
             } else {
             	String keyText = KeyEvent.getKeyText(rawKeyCode);
@@ -738,7 +1026,13 @@ public class ShowImage extends JPanel implements KeyListener {
 
     public void keyTyped(KeyEvent e) {
     	if (!transitioning && !popupUpdate) {
-    		
+    		if (selectedElement != null) {
+        		Element element = getElementFromName(selectedElement);
+        		System.out.println(e.getKeyChar());
+        		if (!e.isActionKey() && isAlphaNumeric(e.getKeyChar())) {
+        			element.getTextfield().inputChar(e.getKeyChar());
+        		}
+        	}
     	}
         // Do nothing
     }
@@ -762,14 +1056,14 @@ public class ShowImage extends JPanel implements KeyListener {
     	Element[] elementsToCheck;
     	
     	if (popupIndexes.length > 0) {
-			elementsToCheck = scaledMenu.getPopup(popupIndexes.length - 1);
+			elementsToCheck = scaledMenu.getPopup(popupIndexes.length - 1).getElements();
 		} else {
 			elementsToCheck = scaledMenu.getElements();
 		}
     	
     	for (int i = 0; i < elementsToCheck.length; i++) {
     		Element currentElement = elementsToCheck[i];
-    		if (currentElement.getName() == name) {
+    		if (currentElement.getName().equals(name)) {
     			elementToReturn = currentElement;
     			break;
     		}
@@ -804,6 +1098,28 @@ public class ShowImage extends JPanel implements KeyListener {
     	int ySize = textbox.getYSize();
     	float stroke = textbox.getStrokeWidth();
     	int roundPercentage = textbox.getRoundPercentage();
+    	int round;
+    	x = x - Math.round(stroke / 2);
+    	y = y - Math.round(stroke / 2);
+    	xSize = xSize + Math.round(stroke);
+    	ySize = ySize + Math.round(stroke);
+    	if (xSize < ySize) {
+    		round = xSize * roundPercentage / 100;
+    	} else {
+        	round = ySize * roundPercentage / 100;
+    	}
+    	RoundedRect attributesToReturn = new RoundedRect(x,y,xSize,ySize,round);
+    	return attributesToReturn;
+    }
+    
+    private static RoundedRect getStrokedBoxAttributes(TextField textfield) { 
+    	// gets hitboxes of the box by converting roundpercentage to a useful number, and accounting for stroke
+    	int x = textfield.getX();
+    	int y = textfield.getY();
+    	int xSize = textfield.getXSize();
+    	int ySize = textfield.getYSize();
+    	float stroke = textfield.getStrokeWidth();
+    	int roundPercentage = 0;
     	int round;
     	x = x - Math.round(stroke / 2);
     	y = y - Math.round(stroke / 2);
@@ -904,10 +1220,10 @@ public class ShowImage extends JPanel implements KeyListener {
     
     public static void updateFrame() {
     	if (transitioning) {
-    		if (Framerate.getCurrentTime() > transitionTime + 560d && transitionBlackOut == false) {
+    		if (Framerate.getCurrentTime() > transitionTime + config.getTransitionTime() && transitionBlackOut == false && menuSwitched == true) {
     			transitioning = false;
     			menuSwitched = false;
-    		} else if (Framerate.getCurrentTime() > transitionTime + 280d && transitionBlackOut == true) {
+    		} else if (Framerate.getCurrentTime() > transitionTime + config.getTransitionTime() / 2f && transitionBlackOut == true) {
     			Element[] currentMenu = scaledMenu.getElements();
     			for (int i = 0; i < currentMenu.length ; i++) {
     				currentMenu[i].deanimateHover(true);
@@ -929,13 +1245,13 @@ public class ShowImage extends JPanel implements KeyListener {
     	        animateEntryMenu();
     	        menuSwitched = true;
     	        transitionBlackOut = false;
-    		} else if (Framerate.getCurrentTime() > transitionTime + 260d && transitionBlackOut == false && menuSwitched == false) {
+    		} else if (Framerate.getCurrentTime() > transitionTime + (45f * config.getTransitionTime() / 100f) && transitionBlackOut == false && menuSwitched == false) {
     			transitionBlackOut = true;
     		}
     	}
     	if (popupUpdate) {
-    		if (Framerate.getCurrentTime() > popupTime + 240d) {
-    			Element[] tempElementsList = scaledMenu.getPopup(getCurrentPopupIndex());
+    		if (Framerate.getCurrentTime() > popupTime + config.getTransitionTime() / 2f) {
+    			Element[] tempElementsList = scaledMenu.getPopup(getCurrentPopupIndex()).getElements();
     			for (int i = 0; i < tempElementsList.length ; i++) {
     				tempElementsList[i].deanimateHover(true);
     				tempElementsList[i].deanimateClick(true);
@@ -955,7 +1271,7 @@ public class ShowImage extends JPanel implements KeyListener {
     						arrayPos++;
     					}
     				}
-    				tempElementsList = scaledMenu.getPopup(getCurrentPopupIndex());
+    				tempElementsList = scaledMenu.getPopup(getCurrentPopupIndex()).getElements();
     				
     				int[] toSelect = ogSelecteds[ogSelecteds.length - 1];
     				
@@ -963,7 +1279,7 @@ public class ShowImage extends JPanel implements KeyListener {
     				ogSelecteds = newOgSelecteds;
     				
     				tempElementsList = (getCurrentPopupIndex() == -1) ?
-    	        			scaledMenu.getElements() : scaledMenu.getPopup(fadeOutPopup);
+    	        			scaledMenu.getElements() : scaledMenu.getPopup(fadeOutPopup).getElements();
     		        selectionsList = new Selector[tempElementsList.length];
     		        int i = 0;
     		        for (Element element : tempElementsList) {
@@ -1018,6 +1334,11 @@ public class ShowImage extends JPanel implements KeyListener {
     	}
     }
     
+    public static Object getVairableValue(String variableName) {
+    	//TODO
+    	return null;
+    }
+    
     public static void setMenuFromAnIndex(int menu) {
     	if (init == true) {
             init = false;
@@ -1029,7 +1350,6 @@ public class ShowImage extends JPanel implements KeyListener {
         	Element[] tempElementsList = scaledMenu.getElements();
 	        selectionsList = new Selector[tempElementsList.length];
 	        int i = 0;
-	        animateEntryMenu();
 	        for (Element element : tempElementsList) {
 	        	selectionsList[i] = element.getSelector();
 	        	i++;
@@ -1096,7 +1416,7 @@ public class ShowImage extends JPanel implements KeyListener {
 			ogSelecteds = newOgSelecteds;
 			
         	Element[] tempElementsList = (index == -1) ?
-        			scaledMenu.getElements() : scaledMenu.getPopup(index);
+        			scaledMenu.getElements() : scaledMenu.getPopup(index).getElements();
 	        selectionsList = new Selector[tempElementsList.length];
 	        int i = 0;
 	        for (Element element : tempElementsList) {
@@ -1221,4 +1541,29 @@ public class ShowImage extends JPanel implements KeyListener {
 	public static void setTransitioning(boolean transitioning) {
 		ShowImage.transitioning = transitioning;
 	}
+	
+	public static void setSelectedElement(String textField) {
+		selectedElement = textField;
+		Element element = getElementFromName(selectedElement);
+		element.getTextfield().resetSelector(false);
+		element.setSelected();
+	}
+	
+	public static void confirmSelectedElement() {
+		Element element = getElementFromName(selectedElement);
+		element.getTextfield().confirmEntry();
+		// confirm.
+	}
+	
+	public static void cancelSelectedElement() {
+		Element element = getElementFromName(selectedElement);
+		element.getTextfield().confirmEntry();
+		// confirm.
+	}
+	
+	public static boolean isAlphaNumeric(char ch) {
+	    if ((ch >= '0' & ch <= '9') || (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
+	      return true;
+	    return false;
+	  }
 }

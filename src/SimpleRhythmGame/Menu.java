@@ -11,7 +11,7 @@ public class Menu {
 	private String previousMenuName;
 	private int bgColor;
 	private Element[] elements;
-	private Element[][] popups;
+	private Popup[] popups;
 	private int[][] secondarySelections;
 	private RoundedArea[] masks;
 	private StoredTransform[] transforms;
@@ -20,7 +20,7 @@ public class Menu {
 		String menuName, String menuDisplayName, String previousMenuName, 
 		int bgColor, int[][] secondarySelections, RoundedArea[] masks,
 		StoredTransform[] transforms,
-		Element[] elements, Element[][] popups
+		Element[] elements, Popup[] popups
 		) {
 		this.menuName = menuName;
 		this.menuDisplayName = menuDisplayName;
@@ -57,19 +57,19 @@ public class Menu {
 		return elements;
 	}
 	
-	public Element[][] getPopups(){
+	public Popup[] getPopups(){
 		return popups;
 	}
 	
-	public Element[] getPopup(int index) {
+	public Popup getPopup(int index) {
 		return popups[index];
 	}
 	
-	public void setPopups(Element[][] popups) {
+	public void setPopups(Popup[] popups) {
 		this.popups = popups;
 	}
 	
-	public void setPopup(Element[] popup, int index) {
+	public void setPopup(Popup popup, int index) {
 		this.popups[index] = popup;
 	}
 	
@@ -101,7 +101,7 @@ public class Menu {
 			int[] toReturn = null;
 			boolean found = false;
 			
-			Element[] elementsToCheck = (popup == -1) ? elements : popups[popup];
+			Element[] elementsToCheck = (popup == -1) ? elements : popups[popup].getElements();
 			
 			for (int i = 0; i < elementsToCheck.length ; i++) {
 				if (elementsToCheck[i].getSelectorIndex()[0] + elementsToCheck[i].getSelectorIndex()[1] > -1) {
@@ -114,7 +114,7 @@ public class Menu {
 			if (popup == -1) {
 				elements = elementsToCheck;
 			} else {
-				popups[popup] = elementsToCheck;
+				popups[popup].setElements(elementsToCheck);
 			}
 			
 			if (!found) {
@@ -122,7 +122,7 @@ public class Menu {
 			}
 			return toReturn;
 		} else {
-			Element[] elementsToCheck = (popup == -1) ? elements : popups[popup];
+			Element[] elementsToCheck = (popup == -1) ? elements : popups[popup].getElements();
 			
 			for (int i = 0; i < elementsToCheck.length ; i++) {
 				Element element = elementsToCheck[i];
@@ -145,7 +145,7 @@ public class Menu {
 			if (popup == -1) {
 				elements = elementsToCheck;
 			} else {
-				popups[popup] = elementsToCheck;
+				popups[popup].setElements(elementsToCheck);
 			}
 			return new int[]{-1,-1};
 		}
@@ -153,7 +153,7 @@ public class Menu {
 	
 	public int[] resetSelectors(int[] currentlySelected, int[] lastSelected, int popup) {
 		boolean found = false;
-		Element[] elementsToCheck = (popup == -1) ? elements : popups[popup];
+		Element[] elementsToCheck = (popup == -1) ? elements : popups[popup].getElements();
 		for (int i = 0; i < elementsToCheck.length ; i++) {
 			Element element = elementsToCheck[i];
 			int[] elementSelectorIndex = element.getSelectorIndex();
@@ -181,14 +181,14 @@ public class Menu {
 			if (popup == -1) {
 				elements = elementsToCheck;
 			} else {
-				popups[popup] = elementsToCheck;
+				popups[popup].setElements(elementsToCheck);
 			}
 			return currentlySelected;
 		} else {
 			if (popup == -1) {
 				elements = elementsToCheck;
 			} else {
-				popups[popup] = elementsToCheck;
+				popups[popup].setElements(elementsToCheck);
 			}
 			return lastSelected;
 		}
@@ -244,15 +244,17 @@ public class Menu {
     	}
     	
     	Element[] elementsToReturnFinal = null;
-    	Element[][] popupsToReturn = new Element[popups.length][];
+    	Popup[] popupsToReturn = new Popup[popups.length];
     	
     	for (int iter = 0 ; iter < popups.length + 1 ; iter++) {
     		boolean popupsComplete = (iter == popups.length);
     		Element[] rawElementsList;
+    		Popup rawPopup = null;
     		if (popupsComplete) {
     			rawElementsList = getElements();
     		} else {
-    			rawElementsList = getPopup(iter);
+    			rawPopup = getPopup(iter);
+    			rawElementsList = rawPopup.getElements();
     		}
     		
         	Element[] elementsToReturn = new Element[rawElementsList.length];
@@ -267,7 +269,19 @@ public class Menu {
         	if (popupsComplete) {
         		elementsToReturnFinal = elementsToReturn;
         	} else {
-        		popupsToReturn[iter] = elementsToReturn;
+        		popupsToReturn[iter] = 
+        				rawPopup.getInputItem() != null 
+        				?
+    						new Popup(rawPopup.getType(),
+    								rawPopup.getInputItem(),
+            						rawPopup.getPopupName(),
+            						rawPopup.getPopupTitle(),
+            						elementsToReturn)
+        				: 
+        					new Popup(rawPopup.getType(),
+        						rawPopup.getPopupName(),
+        						rawPopup.getPopupTitle(),
+        						elementsToReturn);
         	}
         
         }

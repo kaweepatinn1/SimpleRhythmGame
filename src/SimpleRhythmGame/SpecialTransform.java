@@ -32,9 +32,31 @@ public class SpecialTransform {
 		updateTransform();
 	}
 	
+	public SpecialTransform(StoredTransform storedTransform, Renderable renderable) {
+		anchorX = renderable.getX() + renderable.getXSize() / 2;
+		anchorY = renderable.getY() + renderable.getYSize() / 2;
+		transformX = storedTransform.getTransformX();
+		transformY = storedTransform.getTransformY();
+		scaleX = storedTransform.getScaleX();
+		scaleY = storedTransform.getScaleY();
+		rotate = storedTransform.getRotate();
+		updateTransform();
+	}
+	
 	public SpecialTransform(SpecialTransform specialTransform, RoundedArea inputArea) {
 		anchorX = inputArea.getX() + inputArea.getXSize() / 2;
 		anchorY = inputArea.getY() + inputArea.getYSize() / 2;
+		transformX = specialTransform.getTransformX();
+		transformY = specialTransform.getTransformY();
+		scaleX = specialTransform.getScaleX();
+		scaleY = specialTransform.getScaleY();
+		rotate = specialTransform.getRotate();
+		updateTransform();
+	}
+	
+	public SpecialTransform(SpecialTransform specialTransform, Renderable renderable) {
+		anchorX = renderable.getX() + renderable.getXSize() / 2;
+		anchorY = renderable.getY() + renderable.getYSize() / 2;
 		transformX = specialTransform.getTransformX();
 		transformY = specialTransform.getTransformY();
 		scaleX = specialTransform.getScaleX();
@@ -109,6 +131,24 @@ public class SpecialTransform {
 	public SpecialTransform(RoundedArea inputArea) {
 		anchorX = inputArea.getX() + inputArea.getXSize() / 2;
 		anchorY = inputArea.getY() + inputArea.getYSize() / 2;
+		transformX = 0;
+		transformY = 0;
+		scaleX = 1;
+		scaleY = 1;
+		rotate = 0;
+		updateTransform();
+	}
+	
+	/**
+	* Uses the cernter of a renderable to set the anchor point of a SpecialTransform
+	* 
+	* @param  Renderable An image stored with X and Y values for location and size, used to set anchor point.
+	* @return      void
+	* @see         {@link #Renderable() Renderable()}
+	*/
+	public SpecialTransform(Renderable renderable) {
+		anchorX = renderable.getX() + renderable.getXSize() / 2;
+		anchorY = renderable.getY() + renderable.getYSize() / 2;
 		transformX = 0;
 		transformY = 0;
 		scaleX = 1;

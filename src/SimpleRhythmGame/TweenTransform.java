@@ -65,6 +65,11 @@ public class TweenTransform {
 		newTransform = null;
 	}
 	
+	public TweenTransform(TextField textfield) {
+		ogTransform = new SpecialTransform(textfield.getRectShape());
+		newTransform = null;
+	}
+	
 	public TweenTransform(Renderable renderable) {
 		ogTransform = new SpecialTransform(renderable.getX(), renderable.getY(), 
 				renderable.getXSize(), renderable.getYSize());

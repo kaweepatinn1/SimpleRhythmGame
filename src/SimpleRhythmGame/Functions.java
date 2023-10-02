@@ -58,8 +58,10 @@ public class Functions {
                 	}
 				} else if (methodName.equals("exportTheme")) {
 					exportThemeToClipboard();
-				} 
-				
+				} else if (methodName.equals("noFunction")){
+					System.out.println("Valid no function");
+				} else if (methodName.equals("enterTextField"))
+					enterTextField((String) parameters[0]);
 				  else {
 					System.out.println("No method with name " + methodName + "!");
 				}
@@ -109,5 +111,7 @@ public class Functions {
 		FileIO.writeClipboard(toExport);
 	}
 	
-	
+	public static void enterTextField(String textField) {
+		ShowImage.setSelectedElement(textField);
+	}
 }

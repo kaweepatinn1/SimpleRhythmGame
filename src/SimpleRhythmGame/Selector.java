@@ -5,12 +5,14 @@ public class Selector {
 	private int[][] selectorOptions; // E, S, W, N
 	private boolean primaryHovered;
 	private boolean secondaryHovered;
+	private boolean selected;
 	
 	public Selector(int[] selectorIndex, int[][] selectorOptions) {
 		this.selectorIndex = selectorIndex;
 		this.selectorOptions = selectorOptions;
 		this.primaryHovered = false;
 		this.secondaryHovered = false;
+		this.selected = false;
 	}
 	
 	public int[] getSelectorIndex() {
@@ -29,6 +31,10 @@ public class Selector {
 		return secondaryHovered;
 	}
 	
+	public boolean isSelected() {
+		return selected;
+	}
+	
 	public void setPrimaryHovered() {
 		primaryHovered = true;
 		secondaryHovered = false;
@@ -42,6 +48,16 @@ public class Selector {
 	public void setNotHovered() {
 		primaryHovered = false;
 		secondaryHovered = false;
+	}
+	
+	public void setSelected() {
+		selected = true;
+		primaryHovered = false;
+		secondaryHovered = false;
+	}
+	
+	public void setUnselected() {
+		selected = false;
 	}
 	
 }

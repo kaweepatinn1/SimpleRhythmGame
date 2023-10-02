@@ -12,6 +12,7 @@ public class Config {
 	private int framesToStore;
 	private int framerate;
 	private boolean shouldLimitFramerate;
+	private double transitionTime;
 	
 	private boolean cursorEnabled;
 	
@@ -29,9 +30,9 @@ public class Config {
 	}
 	
 	public Config(boolean fullscreen, int sizeToForce, Controls[] controls, Theme[] themes, 
-			String currentThemeChoice, String[] fonts, Menu[] menus,
-			boolean DEBUG_drawMasks, int DEBUG_masksColorsOffset, boolean nanoSecondPrecision, int framesToStore,
-			int framerate, boolean shouldLimitFramerate, boolean cursorEnabled) {
+			String currentThemeChoice, String[] fonts, Menu[] menus, boolean nanoSecondPrecision, int framesToStore,
+			int framerate, boolean shouldLimitFramerate, boolean cursorEnabled, double transitionTime,
+			boolean DEBUG_drawMasks, int DEBUG_masksColorsOffset) {
 		this.fullscreen = fullscreen;
 		this.sizeToForce = sizeToForce;
 		this.controls = controls;
@@ -44,6 +45,7 @@ public class Config {
 		this.framerate = framerate;
 		this.shouldLimitFramerate = shouldLimitFramerate;
 		this.cursorEnabled = cursorEnabled;
+		this.transitionTime = transitionTime;
 		this.DEBUG_drawMasks = DEBUG_drawMasks;
 		this.DEBUG_masksColorsOffset = DEBUG_masksColorsOffset;
 	}
@@ -271,5 +273,21 @@ public class Config {
 	
 	public IntColor[] getCurrentThemeIntColors() {
 		return getIntColorsFromThemeName(getCurrentThemeChoice());
+	}
+	
+	public double getTransitionTime() {
+		return transitionTime;
+	}
+	
+	public void setTransitionTime(double transitionTime) {
+		this.transitionTime = transitionTime;
+	}
+	
+	public Object getVariable(String varName) {
+		Object varToReturn = "Variable " + varName + "not found.";
+		if (varName.equals("%CurrentThemeName")) {
+			varToReturn = currentThemeChoice;
+		}
+		return varToReturn;
 	}
 }

@@ -5,6 +5,7 @@
   "framesToStore": 20,
   "framerate": 60,
   "shouldLimitFramerate": true,
+  "transitionTime": 500.0,
   "cursorEnabled": true,
   "DEBUG_drawMasks": false,
   "DEBUG_masksColorsOffset": 0,
@@ -167,7 +168,8 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": false
+            "secondaryHovered": false,
+            "selected": false
           },
           "textbox": {
             "scale": 1.5,
@@ -238,7 +240,8 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": false
+            "secondaryHovered": false,
+            "selected": false
           },
           "textbox": {
             "scale": 1.0,
@@ -309,7 +312,8 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": false
+            "secondaryHovered": false,
+            "selected": false
           },
           "textbox": {
             "scale": 1.0,
@@ -380,7 +384,8 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": false
+            "secondaryHovered": false,
+            "selected": false
           },
           "textbox": {
             "scale": 1.0,
@@ -428,70 +433,76 @@
         }
       ],
       "popups": [
-        [
-          {
-            "selector": {
-              "selectorIndex": [
-                0,
-                0
-              ],
-              "selectorOptions": [
-                [
-                  1,
-                  0
-                ],
-                [
-                  0,
-                  2
-                ],
-                [
+        {
+          "type": "Standard",
+          "popupName": "TestPopup",
+          "popupTitle": "Test",
+          "elements": [
+            {
+              "selector": {
+                "selectorIndex": [
                   0,
                   0
                 ],
-                [
-                  0,
-                  0
-                ]
-              ],
-              "primaryHovered": false,
-              "secondaryHovered": false
-            },
-            "textbox": {
-              "scale": 1.0,
-              "function": "removePopup int 0",
-              "name": "popup",
-              "text": {
-                "text": "SUP",
-                "alignX": "left",
-                "alignY": "center",
-                "offsetX": -250,
-                "offsetY": -9,
-                "textSize": 500,
-                "textColor": 6,
-                "font": "Archivo Narrow",
-                "bold": false
+                "selectorOptions": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    0,
+                    2
+                  ],
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "primaryHovered": false,
+                "secondaryHovered": false,
+                "selected": false
               },
-              "rectShape": {
-                "x": 1000,
-                "y": 300,
-                "xSize": 600,
-                "ySize": 200,
-                "roundPercentage": 100
+              "textbox": {
+                "scale": 1.0,
+                "function": "removePopup int 0",
+                "name": "popup",
+                "text": {
+                  "text": "SUP",
+                  "alignX": "left",
+                  "alignY": "center",
+                  "offsetX": -250,
+                  "offsetY": -9,
+                  "textSize": 500,
+                  "textColor": 6,
+                  "font": "Archivo Narrow",
+                  "bold": false
+                },
+                "rectShape": {
+                  "x": 1000,
+                  "y": 300,
+                  "xSize": 600,
+                  "ySize": 200,
+                  "roundPercentage": 100
+                },
+                "color": 2,
+                "opacity": 255,
+                "shadowOffset": 15,
+                "strokeWidth": 5.0,
+                "strokeColor": 6
               },
-              "color": 2,
-              "opacity": 255,
-              "shadowOffset": 15,
-              "strokeWidth": 5.0,
-              "strokeColor": 6
-            },
-            "hoverOverlap": false,
-            "maskIndex": -1,
-            "hoverEffectIndex": 3,
-            "clickEffectIndex": 1,
-            "arbitraryTransformIndex": -1,
-            "entryAnimationTransformIndex": -1
-          }
-        ]
+              "hoverOverlap": false,
+              "maskIndex": -1,
+              "hoverEffectIndex": 3,
+              "clickEffectIndex": 1,
+              "arbitraryTransformIndex": -1,
+              "entryAnimationTransformIndex": -1
+            }
+          ]
+        }
       ],
       "secondarySelections": [
         [
@@ -572,7 +583,8 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": false
+            "secondaryHovered": false,
+            "selected": false
           },
           "textbox": {
             "scale": 1.0,
@@ -634,7 +646,8 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": false
+            "secondaryHovered": false,
+            "selected": false
           },
           "textbox": {
             "scale": 1.0,
@@ -696,7 +709,8 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": false
+            "secondaryHovered": false,
+            "selected": false
           },
           "textbox": {
             "scale": 1.0,
@@ -756,7 +770,8 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": false
+            "secondaryHovered": false,
+            "selected": false
           },
           "textbox": {
             "scale": 1.0,
@@ -806,7 +821,8 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": false
+            "secondaryHovered": false,
+            "selected": false
           },
           "textbox": {
             "scale": 1.0,
@@ -867,7 +883,8 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": false
+            "secondaryHovered": false,
+            "selected": false
           },
           "textbox": {
             "scale": 1.0,
@@ -928,7 +945,8 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": false
+            "secondaryHovered": false,
+            "selected": false
           },
           "textbox": {
             "scale": 1.0,
@@ -989,7 +1007,8 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": false
+            "secondaryHovered": false,
+            "selected": false
           },
           "textbox": {
             "scale": 1.0,
@@ -1048,7 +1067,8 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": false
+            "secondaryHovered": false,
+            "selected": false
           },
           "textbox": {
             "scale": 1.0,
@@ -1107,7 +1127,8 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": false
+            "secondaryHovered": false,
+            "selected": false
           },
           "textbox": {
             "scale": 1.0,
@@ -1168,7 +1189,8 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": false
+            "secondaryHovered": false,
+            "selected": false
           },
           "textbox": {
             "scale": 1.0,
@@ -1230,7 +1252,8 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": false
+            "secondaryHovered": false,
+            "selected": false
           },
           "textbox": {
             "scale": 1.0,
@@ -1291,7 +1314,8 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": false
+            "secondaryHovered": false,
+            "selected": false
           },
           "textbox": {
             "scale": 1.0,
@@ -1351,7 +1375,8 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": false
+            "secondaryHovered": false,
+            "selected": false
           },
           "textbox": {
             "scale": 1.0,
@@ -1389,7 +1414,78 @@
         }
       ],
       "popups": [
-        []
+        {
+          "type": "Standard",
+          "popupName": "TestPopup",
+          "popupTitle": "Test",
+          "elements": [
+            {
+              "selector": {
+                "selectorIndex": [
+                  1,
+                  0
+                ],
+                "selectorOptions": [
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    1,
+                    0
+                  ]
+                ],
+                "primaryHovered": false,
+                "secondaryHovered": false,
+                "selected": false
+              },
+              "textfield": {
+                "maxSize": 100,
+                "selectorLocation": 0,
+                "pointerTime": 0.0,
+                "scale": 1.0,
+                "name": "Test",
+                "text": {
+                  "text": "%CurrentThemeName",
+                  "alignX": "right",
+                  "alignY": "center",
+                  "offsetX": 275,
+                  "offsetY": -9,
+                  "textSize": 50,
+                  "textColor": 6,
+                  "font": "Archivo Narrow",
+                  "bold": false
+                },
+                "rectShape": {
+                  "x": 960,
+                  "y": 500,
+                  "xSize": 600,
+                  "ySize": 100,
+                  "roundPercentage": 0
+                },
+                "color": 8,
+                "opacity": 255,
+                "shadowOffset": 15,
+                "strokeWidth": 5.0,
+                "strokeColor": 6
+              },
+              "hoverOverlap": false,
+              "maskIndex": -1,
+              "hoverEffectIndex": -1,
+              "clickEffectIndex": 1,
+              "arbitraryTransformIndex": -1,
+              "entryAnimationTransformIndex": -1
+            }
+          ]
+        }
       ],
       "secondarySelections": [
         [

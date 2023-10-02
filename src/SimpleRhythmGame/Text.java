@@ -60,7 +60,7 @@ public class Text {
 	public void setFont(String font) {
 		this.font = font;
 	}
-	public boolean isBold() {
+	public boolean getBold() {
 		return bold;
 	}
 	public void setBold(boolean bold) {
