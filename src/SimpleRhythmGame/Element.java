@@ -187,6 +187,16 @@ public class Element {
 		}
 	}
 	
+	public void setUnselected() {
+		selector.setUnselected();
+		if (getTextbox() != null) {
+			textbox.setStrokeColor(6);
+		}
+		if (getTextfield() != null) {
+			textfield.setStrokeColor(6);
+		}
+	}
+	
 	public String getFunction() {
 		String toReturn = null;
 		if (isRenderable()) {
@@ -268,18 +278,11 @@ public class Element {
 	
 	public void animateClick(boolean boomerang) {
 		if (getClickEffectIndex() != -1) {
-			RoundedArea roundedArea = null;
-			if (isTextbox()) {
-				roundedArea = getTextbox().getRectShape();
-			} else if (isRenderable()) {
-				roundedArea = new RoundedArea(getRenderable());
-			} else if (isTextfield()) {
-				roundedArea = getTextfield().getRectShape();
-			}
+			RoundedArea area = isRenderable() ? renderable.toArea() : (isTextfield() ? getTextfield().getRectShape() : (isTextbox() ? getTextbox().getRectShape() : null));
 			StoredTransform clickEffect = ShowImage.getTransformsToRender()[getClickEffectIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
-					new SpecialTransform(getTransform()[1].getCurrentPosition(), roundedArea),
-					new SpecialTransform(clickEffect, roundedArea),
+					new SpecialTransform(getTransform()[1].getCurrentPosition(), area),
+					new SpecialTransform(clickEffect, area),
 					(long) (Math.min((getTransform()[1].getCurrentTime() + 0.5),1) * clickEffect.getTimeToTransformMillis()),
 					clickEffect.getDelayMillis(),
 					clickEffect.getEaseType(),
@@ -291,18 +294,11 @@ public class Element {
 	
 	public void deanimateClick(boolean instant) {
 		if (getClickEffectIndex() != -1) {
-			RoundedArea roundedArea = null;
-			if (isTextbox()) {
-				roundedArea = getTextbox().getRectShape();
-			} else if (isRenderable()) {
-				roundedArea = new RoundedArea(getRenderable());
-			} else if (isTextfield()) {
-				roundedArea = getTextfield().getRectShape();
-			}
+			RoundedArea area = isRenderable() ? renderable.toArea() : (isTextfield() ? getTextfield().getRectShape() : (isTextbox() ? getTextbox().getRectShape() : null));
 			StoredTransform clickEffect = ShowImage.getTransformsToRender()[getClickEffectIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
-					new SpecialTransform(getTransform()[1].getCurrentPosition(), roundedArea),
-					new SpecialTransform(roundedArea),
+					new SpecialTransform(getTransform()[1].getCurrentPosition(), area),
+					new SpecialTransform(area),
 					instant ? 0 : (long) (Math.min((getTransform()[1].getCurrentTime() + 0.5),1) * clickEffect.getTimeToTransformMillis()),
 					instant ? 0 : clickEffect.getDelayMillis(),
 					clickEffect.getEaseType()
@@ -313,32 +309,27 @@ public class Element {
 	
 	public void animateExit(boolean instant) {
 		if (getEntryAnimationIndex() != -1) {
-			RoundedArea roundedArea = null;
-			if (isTextbox()) {
-				roundedArea = getTextbox().getRectShape();
-			} else if (isRenderable()) {
-				roundedArea = new RoundedArea(getRenderable());
-			} else if (isTextfield()) {
-				roundedArea = getTextfield().getRectShape();
-			}
+			RoundedArea area = isRenderable() ? renderable.toArea() : (isTextfield() ? getTextfield().getRectShape() : (isTextbox() ? getTextbox().getRectShape() : null));
 			StoredTransform entryEffect = ShowImage.getTransformsToRender()[getEntryAnimationIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
-					new SpecialTransform(getTransform()[3].getCurrentPosition(), roundedArea),
-					new SpecialTransform(entryEffect, roundedArea),
-					(long) (Math.min((getTransform()[3].getCurrentTime() + 0.5),1) * entryEffect.getTimeToTransformMillis()),
+					new SpecialTransform(getTransform()[3].getCurrentPosition(), area),
+					new SpecialTransform(entryEffect, area),
+					instant ? 1 : (long) (Math.min((getTransform()[3].getCurrentTime() + 0.5),1) * entryEffect.getTimeToTransformMillis()),
 					instant ? 0 : entryEffect.getDelayMillis(),
-					instant ? 0 : entryEffect.getEaseType()
+					entryEffect.getEaseType()
 					);
 			setTransform(tweenTransform, 3);
 		}
 	}
 	
-	public void animateEntry() {
+	public void animateEntry(boolean reset) {
 		if (getEntryAnimationIndex() != -1) {
+			RoundedArea area = isRenderable() ? renderable.toArea() : (isTextfield() ? getTextfield().getRectShape() : (isTextbox() ? getTextbox().getRectShape() : null));
+			// gets the area depending on the type of element present.
 			StoredTransform entryEffect = ShowImage.getTransformsToRender()[getEntryAnimationIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
-					new SpecialTransform(getTransform()[3].getCurrentPosition(), getTextbox().getRectShape()),
-					new SpecialTransform(getTextbox().getRectShape()),
+					new SpecialTransform(reset ? new SpecialTransform(entryEffect) : getTransform()[3].getCurrentPosition(), area),
+					new SpecialTransform(area),
 					(long) (Math.min((getTransform()[3].getCurrentTime() + 0.5),1) * entryEffect.getTimeToTransformMillis()),
 					entryEffect.getDelayMillis(),
 					entryEffect.getEaseType()
@@ -586,6 +577,8 @@ public class Element {
         	String currentDisplay = currentItem.getUnloadedCurrentDisplay();
         	String name = currentItem.getName();
         	
+        	int[] errorPopupIndexes = currentItem.getErrorPopupIndexes();
+        	
         	int xSize = (int) Math.round(currentItem.getXSize() * xScale * textFieldScale);
         	int ySize = (int) Math.round(currentItem.getYSize() * yScale * textFieldScale);
         	int x = (int) Math.round(currentItem.getX() * xScale - (xSize / 2));
@@ -616,7 +609,7 @@ public class Element {
         				entryAnimationTransformIndex,
 						new TextField(
 							currentDisplay,
-							textFieldScale, maxSize, name,
+							textFieldScale, maxSize, errorPopupIndexes, name,
 							new Text(variableName, alignX, alignY, offsetX, offsetY, textSize, fontColor, font, bold), 
 							new RoundedArea(x, y, xSize, ySize, roundPercentage), 
 	        				color, opacity, shadowOffset, 

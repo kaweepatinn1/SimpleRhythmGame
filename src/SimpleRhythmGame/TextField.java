@@ -5,6 +5,9 @@ public class TextField {
 	private int maxSize; // max allowed size for the string
 	private int selectorLocation; // One dimensional selector
 	private double pointerTime;
+	private int[] errorPopupIndexes; // popups to open on errors
+	// 1. Duplicate Name!
+	// 2. Name cannot be empty!
 	
 	// Other textbox attributes
 	private float scale;
@@ -19,11 +22,12 @@ public class TextField {
     private int strokeColor;
     
     public TextField(
-    		float scale, int maxSize, String name, Text text, RoundedArea rectShape, int color, int opacity,
+    		float scale, int maxSize, int[] errorPopupIndexes, String name, Text text, RoundedArea rectShape, int color, int opacity,
     		int shadowOffset, float strokeWidth, int strokeColor) {
     	this.currentDisplay = null;
     	this.maxSize = maxSize;
     	this.selectorLocation = 0;
+    	this.errorPopupIndexes = errorPopupIndexes;
     	
     	this.scale = scale;
     	this.name = name;
@@ -38,11 +42,12 @@ public class TextField {
     
     public TextField(
     		String currentDisplay,
-    		float scale, int maxSize, String name, Text text, RoundedArea rectShape, int color, int opacity,
+    		float scale, int maxSize, int[] errorPopupIndexes, String name, Text text, RoundedArea rectShape, int color, int opacity,
     		int shadowOffset, float strokeWidth, int strokeColor) {
     	this.currentDisplay = currentDisplay;
     	this.maxSize = maxSize;
     	this.selectorLocation = 0;
+    	this.errorPopupIndexes = errorPopupIndexes;
     	
     	this.scale = scale;
     	this.name = name;
@@ -69,20 +74,37 @@ public class TextField {
     
     public void loadCurrentDisplay() {
     	currentDisplay = (String) ShowImage.getConfig().getVariable(text.getText());
-    	System.out.println("hi");
     	//currentDisplay = text.getText();
     }
     
     public void confirmEntry() {
-    	setVariableValue(text.getText(), currentDisplay);
+    	if (currentDisplay.equals("")) {
+    		ShowImage.cancelElement(ShowImage.getSelectedElement());
+    		ShowImage.addPopup(errorPopupIndexes[1]);
+    	} else {
+    		if (!getUnloadedCurrentDisplay().equals(currentDisplay)) { 
+    			// if the old name is not the same as the new one
+    			String status = ShowImage.getConfig().setVariable(text.getText(), currentDisplay);
+        		if (status.equals("Success")) {
+        			// Success!
+        		} else if (status.equals("Duplicate")){
+        			ShowImage.cancelElement(ShowImage.getSelectedElement());
+        			ShowImage.addPopup(errorPopupIndexes[0]);
+        		}
+    		} else {
+    			// there was no name change
+    			System.out.println("No effect on name!");
+    		}
+    	}
     }
     
-    public void cancelEntry() {
-    	setVariableValue();
+    public void cancelEntry() {    	
+    	loadCurrentDisplay();
+    	selectorLocation = 0;
     }
     
     public void delChar(boolean backspace) {
-    	System.out.println(selectorLocation);
+    	// System.out.println(selectorLocation);
     	if (selectorLocation != 0 && backspace) {
     		currentDisplay = currentDisplay.substring(0, selectorLocation - 1) + currentDisplay.substring(selectorLocation);
         	selectorLocation-- ;
@@ -94,8 +116,10 @@ public class TextField {
     }
     
     public void inputChar(char c) {
-    	currentDisplay = currentDisplay.substring(0, selectorLocation) + c + currentDisplay.substring(selectorLocation);
-    	selectorLocation++ ;
+    	if (currentDisplay.length() < maxSize) {
+    		currentDisplay = currentDisplay.substring(0, selectorLocation) + c + currentDisplay.substring(selectorLocation);
+        	selectorLocation++ ;
+    	}
     	resetPointerTime();
     }
     
@@ -226,5 +250,13 @@ public class TextField {
 	
 	public int getSelectorLocation() {
 		return selectorLocation;
+	}
+	
+	public int[] getErrorPopupIndexes() {
+		return errorPopupIndexes;
+	}
+	
+	public void setErrorPopupIndexes(int[] errorPopupIndexes) {
+		this.errorPopupIndexes = errorPopupIndexes;
 	}
 }

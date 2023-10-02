@@ -1,13 +1,5 @@
 package SimpleRhythmGame;
 
-import java.awt.datatransfer.StringSelection;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.IOException;
-import java.awt.HeadlessException;
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.DataFlavor;
-
 public class Functions {
 	
 	public static boolean runFunction(String function){
@@ -48,6 +40,8 @@ public class Functions {
 					addPopup((int) parameters[0]);
 				} else if (methodName.equals("removePopup")) {
 					removePopup((int) parameters[0]);
+				} else if (methodName.equals("removeThisPopup")) {
+					removeThisPopup();
 				} else if (methodName.equals("escapeMenu")) {
 					String menuToEnter = ShowImage.getCurrentScaledMenu().getPreviousMenuName();
                 	if (menuToEnter != null){
@@ -79,6 +73,10 @@ public class Functions {
 	
 	private static void removePopup(int popup) {
 		ShowImage.removePopup(popup);
+	}
+	
+	private static void removeThisPopup() {
+		ShowImage.removePopup(ShowImage.getCurrentPopupIndex());
 	}
 	
 	private static void setMenuIndex(int menu) {

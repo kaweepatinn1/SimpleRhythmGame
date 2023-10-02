@@ -1,6 +1,5 @@
 package SimpleRhythmGame;
 
-import java.awt.Color;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;

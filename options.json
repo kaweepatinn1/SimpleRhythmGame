@@ -125,6 +125,65 @@
           "alpha": 255
         }
       ]
+    },
+    {
+      "themeName": "TestTheme",
+      "colorsList": [
+        {
+          "red": 102,
+          "green": 102,
+          "blue": 102,
+          "alpha": 255
+        },
+        {
+          "red": 217,
+          "green": 234,
+          "blue": 211,
+          "alpha": 255
+        },
+        {
+          "red": 207,
+          "green": 226,
+          "blue": 243,
+          "alpha": 255
+        },
+        {
+          "red": 255,
+          "green": 255,
+          "blue": 255,
+          "alpha": 255
+        },
+        {
+          "red": 217,
+          "green": 217,
+          "blue": 217,
+          "alpha": 255
+        },
+        {
+          "red": 255,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 0
+        },
+        {
+          "red": 255,
+          "green": 255,
+          "blue": 255,
+          "alpha": 255
+        }
+      ]
     }
   ],
   "fonts": [
@@ -434,7 +493,6 @@
       ],
       "popups": [
         {
-          "type": "Standard",
           "popupName": "TestPopup",
           "popupTitle": "Test",
           "elements": [
@@ -619,7 +677,7 @@
           "hoverEffectIndex": 3,
           "clickEffectIndex": 1,
           "arbitraryTransformIndex": -1,
-          "entryAnimationTransformIndex": -1
+          "entryAnimationTransformIndex": 5
         },
         {
           "selector": {
@@ -682,7 +740,7 @@
           "hoverEffectIndex": 3,
           "clickEffectIndex": 1,
           "arbitraryTransformIndex": -1,
-          "entryAnimationTransformIndex": -1
+          "entryAnimationTransformIndex": 5
         },
         {
           "selector": {
@@ -743,7 +801,7 @@
           "hoverEffectIndex": 2,
           "clickEffectIndex": 4,
           "arbitraryTransformIndex": -1,
-          "entryAnimationTransformIndex": -1
+          "entryAnimationTransformIndex": 8
         },
         {
           "selector": {
@@ -794,7 +852,7 @@
           "hoverEffectIndex": -1,
           "clickEffectIndex": -1,
           "arbitraryTransformIndex": -1,
-          "entryAnimationTransformIndex": -1
+          "entryAnimationTransformIndex": 10
         },
         {
           "selector": {
@@ -856,7 +914,7 @@
           "hoverEffectIndex": -1,
           "clickEffectIndex": -1,
           "arbitraryTransformIndex": -1,
-          "entryAnimationTransformIndex": -1
+          "entryAnimationTransformIndex": 10
         },
         {
           "selector": {
@@ -918,7 +976,7 @@
           "hoverEffectIndex": -1,
           "clickEffectIndex": -1,
           "arbitraryTransformIndex": -1,
-          "entryAnimationTransformIndex": -1
+          "entryAnimationTransformIndex": 10
         },
         {
           "selector": {
@@ -980,7 +1038,7 @@
           "hoverEffectIndex": -1,
           "clickEffectIndex": -1,
           "arbitraryTransformIndex": -1,
-          "entryAnimationTransformIndex": -1
+          "entryAnimationTransformIndex": 10
         },
         {
           "selector": {
@@ -1040,7 +1098,7 @@
           "hoverEffectIndex": -1,
           "clickEffectIndex": 1,
           "arbitraryTransformIndex": -1,
-          "entryAnimationTransformIndex": -1
+          "entryAnimationTransformIndex": 10
         },
         {
           "selector": {
@@ -1100,7 +1158,7 @@
           "hoverEffectIndex": -1,
           "clickEffectIndex": 1,
           "arbitraryTransformIndex": -1,
-          "entryAnimationTransformIndex": -1
+          "entryAnimationTransformIndex": 10
         },
         {
           "selector": {
@@ -1162,7 +1220,7 @@
           "hoverEffectIndex": -1,
           "clickEffectIndex": -1,
           "arbitraryTransformIndex": -1,
-          "entryAnimationTransformIndex": -1
+          "entryAnimationTransformIndex": 10
         },
         {
           "selector": {
@@ -1225,7 +1283,7 @@
           "hoverEffectIndex": -1,
           "clickEffectIndex": 1,
           "arbitraryTransformIndex": -1,
-          "entryAnimationTransformIndex": -1
+          "entryAnimationTransformIndex": 10
         },
         {
           "selector": {
@@ -1287,7 +1345,7 @@
           "hoverEffectIndex": -1,
           "clickEffectIndex": -1,
           "arbitraryTransformIndex": -1,
-          "entryAnimationTransformIndex": -1
+          "entryAnimationTransformIndex": 10
         },
         {
           "selector": {
@@ -1319,7 +1377,7 @@
           },
           "textbox": {
             "scale": 1.0,
-            "function": "addPopup int 0",
+            "function": "enterTextField String ThemeName",
             "name": "EditThemeNameButton",
             "rectShape": {
               "x": 1054,
@@ -1348,7 +1406,7 @@
           "hoverEffectIndex": -1,
           "clickEffectIndex": 1,
           "arbitraryTransformIndex": -1,
-          "entryAnimationTransformIndex": -1
+          "entryAnimationTransformIndex": 10
         },
         {
           "selector": {
@@ -1378,9 +1436,16 @@
             "secondaryHovered": false,
             "selected": false
           },
-          "textbox": {
+          "textfield": {
+            "maxSize": 12,
+            "selectorLocation": 0,
+            "pointerTime": 0.0,
+            "errorPopupIndexes": [
+              1,
+              0
+            ],
             "scale": 1.0,
-            "name": "ThemeText",
+            "name": "ThemeName",
             "text": {
               "text": "%CurrentThemeName",
               "alignX": "right",
@@ -1408,22 +1473,21 @@
           "hoverOverlap": false,
           "maskIndex": -1,
           "hoverEffectIndex": -1,
-          "clickEffectIndex": -1,
+          "clickEffectIndex": 1,
           "arbitraryTransformIndex": -1,
-          "entryAnimationTransformIndex": -1
+          "entryAnimationTransformIndex": 10
         }
       ],
       "popups": [
         {
-          "type": "Standard",
-          "popupName": "TestPopup",
-          "popupTitle": "Test",
+          "popupName": "EmptyInputTheme",
+          "popupTitle": "Input Error!",
           "elements": [
             {
               "selector": {
                 "selectorIndex": [
-                  1,
-                  0
+                  -1,
+                  -1
                 ],
                 "selectorOptions": [
                   [
@@ -1447,31 +1511,29 @@
                 "secondaryHovered": false,
                 "selected": false
               },
-              "textfield": {
-                "maxSize": 100,
-                "selectorLocation": 0,
-                "pointerTime": 0.0,
+              "textbox": {
                 "scale": 1.0,
-                "name": "Test",
+                "function": "noFunction",
+                "name": "ErrorMessage",
                 "text": {
-                  "text": "%CurrentThemeName",
-                  "alignX": "right",
+                  "text": "Input Error!",
+                  "alignX": "center",
                   "alignY": "center",
-                  "offsetX": 275,
-                  "offsetY": -9,
-                  "textSize": 50,
-                  "textColor": 6,
+                  "offsetX": 0,
+                  "offsetY": -100,
+                  "textSize": 80,
+                  "textColor": 5,
                   "font": "Archivo Narrow",
-                  "bold": false
+                  "bold": true
                 },
                 "rectShape": {
                   "x": 960,
                   "y": 500,
                   "xSize": 600,
-                  "ySize": 100,
+                  "ySize": 300,
                   "roundPercentage": 0
                 },
-                "color": 8,
+                "color": 1,
                 "opacity": 255,
                 "shadowOffset": 15,
                 "strokeWidth": 5.0,
@@ -1482,7 +1544,328 @@
               "hoverEffectIndex": -1,
               "clickEffectIndex": 1,
               "arbitraryTransformIndex": -1,
-              "entryAnimationTransformIndex": -1
+              "entryAnimationTransformIndex": 8
+            },
+            {
+              "selector": {
+                "selectorIndex": [
+                  -1,
+                  -1
+                ],
+                "selectorOptions": [
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    1,
+                    0
+                  ]
+                ],
+                "primaryHovered": false,
+                "secondaryHovered": false,
+                "selected": false
+              },
+              "textbox": {
+                "scale": 1.0,
+                "function": "noFunction",
+                "name": "ErrorMessage",
+                "text": {
+                  "text": "Input cannot be empty!",
+                  "alignX": "center",
+                  "alignY": "center",
+                  "offsetX": 0,
+                  "offsetY": -9,
+                  "textSize": 40,
+                  "textColor": 6,
+                  "font": "Archivo Narrow",
+                  "bold": false
+                },
+                "rectShape": {
+                  "x": 960,
+                  "y": 495,
+                  "xSize": 0,
+                  "ySize": 0,
+                  "roundPercentage": 0
+                },
+                "color": 7,
+                "opacity": 255,
+                "shadowOffset": 0,
+                "strokeWidth": 5.0,
+                "strokeColor": 6
+              },
+              "hoverOverlap": false,
+              "maskIndex": -1,
+              "hoverEffectIndex": -1,
+              "clickEffectIndex": 1,
+              "arbitraryTransformIndex": -1,
+              "entryAnimationTransformIndex": 8
+            },
+            {
+              "selector": {
+                "selectorIndex": [
+                  0,
+                  0
+                ],
+                "selectorOptions": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    0,
+                    2
+                  ],
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "primaryHovered": false,
+                "secondaryHovered": false,
+                "selected": false
+              },
+              "textbox": {
+                "scale": 1.0,
+                "function": "removeThisPopup",
+                "name": "popup",
+                "text": {
+                  "text": "Confirm",
+                  "alignX": "center",
+                  "alignY": "center",
+                  "offsetX": 0,
+                  "offsetY": -5,
+                  "textSize": 40,
+                  "textColor": 6,
+                  "font": "Archivo Narrow",
+                  "bold": false
+                },
+                "rectShape": {
+                  "x": 960,
+                  "y": 580,
+                  "xSize": 300,
+                  "ySize": 80,
+                  "roundPercentage": 0
+                },
+                "color": 2,
+                "opacity": 255,
+                "shadowOffset": 8,
+                "strokeWidth": 5.0,
+                "strokeColor": 6
+              },
+              "hoverOverlap": false,
+              "maskIndex": -1,
+              "hoverEffectIndex": -1,
+              "clickEffectIndex": 1,
+              "arbitraryTransformIndex": -1,
+              "entryAnimationTransformIndex": 9
+            }
+          ]
+        },
+        {
+          "popupName": "DuplicateThemeName",
+          "popupTitle": "Input Error!",
+          "elements": [
+            {
+              "selector": {
+                "selectorIndex": [
+                  -1,
+                  -1
+                ],
+                "selectorOptions": [
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    1,
+                    0
+                  ]
+                ],
+                "primaryHovered": false,
+                "secondaryHovered": false,
+                "selected": false
+              },
+              "textbox": {
+                "scale": 1.0,
+                "function": "noFunction",
+                "name": "ErrorMessage",
+                "text": {
+                  "text": "Input Error!",
+                  "alignX": "center",
+                  "alignY": "center",
+                  "offsetX": 0,
+                  "offsetY": -100,
+                  "textSize": 80,
+                  "textColor": 5,
+                  "font": "Archivo Narrow",
+                  "bold": true
+                },
+                "rectShape": {
+                  "x": 960,
+                  "y": 500,
+                  "xSize": 600,
+                  "ySize": 300,
+                  "roundPercentage": 0
+                },
+                "color": 1,
+                "opacity": 255,
+                "shadowOffset": 15,
+                "strokeWidth": 5.0,
+                "strokeColor": 6
+              },
+              "hoverOverlap": false,
+              "maskIndex": -1,
+              "hoverEffectIndex": -1,
+              "clickEffectIndex": 1,
+              "arbitraryTransformIndex": -1,
+              "entryAnimationTransformIndex": 8
+            },
+            {
+              "selector": {
+                "selectorIndex": [
+                  -1,
+                  -1
+                ],
+                "selectorOptions": [
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    1,
+                    0
+                  ]
+                ],
+                "primaryHovered": false,
+                "secondaryHovered": false,
+                "selected": false
+              },
+              "textbox": {
+                "scale": 1.0,
+                "function": "noFunction",
+                "name": "ErrorMessage",
+                "text": {
+                  "text": "This theme name is taken!",
+                  "alignX": "center",
+                  "alignY": "center",
+                  "offsetX": 0,
+                  "offsetY": -9,
+                  "textSize": 40,
+                  "textColor": 6,
+                  "font": "Archivo Narrow",
+                  "bold": false
+                },
+                "rectShape": {
+                  "x": 960,
+                  "y": 495,
+                  "xSize": 0,
+                  "ySize": 0,
+                  "roundPercentage": 0
+                },
+                "color": 7,
+                "opacity": 255,
+                "shadowOffset": 0,
+                "strokeWidth": 5.0,
+                "strokeColor": 6
+              },
+              "hoverOverlap": false,
+              "maskIndex": -1,
+              "hoverEffectIndex": -1,
+              "clickEffectIndex": 1,
+              "arbitraryTransformIndex": -1,
+              "entryAnimationTransformIndex": 8
+            },
+            {
+              "selector": {
+                "selectorIndex": [
+                  0,
+                  0
+                ],
+                "selectorOptions": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    0,
+                    2
+                  ],
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "primaryHovered": false,
+                "secondaryHovered": false,
+                "selected": false
+              },
+              "textbox": {
+                "scale": 1.0,
+                "function": "removeThisPopup",
+                "name": "popup",
+                "text": {
+                  "text": "Confirm",
+                  "alignX": "center",
+                  "alignY": "center",
+                  "offsetX": 0,
+                  "offsetY": -5,
+                  "textSize": 40,
+                  "textColor": 6,
+                  "font": "Archivo Narrow",
+                  "bold": false
+                },
+                "rectShape": {
+                  "x": 960,
+                  "y": 580,
+                  "xSize": 300,
+                  "ySize": 80,
+                  "roundPercentage": 0
+                },
+                "color": 2,
+                "opacity": 255,
+                "shadowOffset": 8,
+                "strokeWidth": 5.0,
+                "strokeColor": 6
+              },
+              "hoverOverlap": false,
+              "maskIndex": -1,
+              "hoverEffectIndex": -1,
+              "clickEffectIndex": 1,
+              "arbitraryTransformIndex": -1,
+              "entryAnimationTransformIndex": 9
             }
           ]
         }
@@ -1551,6 +1934,66 @@
           "rotate": 20.0,
           "delayMillis": 0,
           "timeToTransformMillis": 100,
+          "easeType": 6
+        },
+        {
+          "transformX": 100.0,
+          "transformY": 0.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": -100.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": 100.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": 0.0,
+          "scaleX": 0.0,
+          "scaleY": 0.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": -75.0,
+          "scaleX": 0.0,
+          "scaleY": 0.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": -200.0,
+          "transformY": 0.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
           "easeType": 6
         }
       ]

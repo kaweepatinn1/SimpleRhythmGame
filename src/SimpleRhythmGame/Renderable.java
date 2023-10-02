@@ -1,7 +1,5 @@
 package SimpleRhythmGame;
 
-import java.awt.Image;
-
 // Initialize and read and write class
 
 import java.awt.image.BufferedImage;
@@ -100,6 +98,11 @@ public class Renderable {
     }
     
     public void setImage(BufferedImage image) {
+    	this.image = Scalr.resize(image, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
+		        xSize, ySize, Scalr.OP_ANTIALIAS);
+    }
+    
+    public void resetImage() {
     	try {
         	BufferedImage originalImage = ImageIO.read(getFile());
         	this.image = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
@@ -149,6 +152,10 @@ public class Renderable {
     
     public BufferedImage getImage() {
     	return image;
+    }
+    
+    public RoundedArea toArea() {
+    	return new RoundedArea(x,y,xSize,ySize,0);
     }
 }
 

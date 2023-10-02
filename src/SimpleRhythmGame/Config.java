@@ -290,4 +290,20 @@ public class Config {
 		}
 		return varToReturn;
 	}
+	
+	public String setVariable(String varName, Object value) {
+		if (varName.equals("%CurrentThemeName")) {
+			for (Theme theme : themes) {
+				if (theme.getThemeName().equals((String) value)) {
+					System.out.println("Duplicate Theme Name!");
+					return "Duplicate";
+				}
+			}
+			getCurrentTheme().setThemeName((String) value);
+			currentThemeChoice = (String) value;
+			return "Success";
+		} else {
+			return "VariableNotFound"; // failed to find the variable
+		}
+	}
 }

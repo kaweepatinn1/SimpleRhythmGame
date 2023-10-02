@@ -5,6 +5,9 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.awt.geom.*;
 import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class ShowImage extends JPanel implements KeyListener {
@@ -19,6 +22,9 @@ public class ShowImage extends JPanel implements KeyListener {
     private static int[] selected;
     private static int[][] ogSelecteds = {};
     private static Selector[] selectionsList;
+    private static boolean keyboardInputLast; 
+    // if the last input to the program was made by a keyboard, returns true. else, returns false.
+    // used to disable the mouse input after using the keyboard until hovering an element, or a click is made
     
     private static String selectedElement;
     private static int[] popupIndexes;
@@ -59,21 +65,28 @@ public class ShowImage extends JPanel implements KeyListener {
         public void mouseClicked(MouseEvent e) {
     		int mouseX = e.getX();
         	int mouseY = e.getY();
+        	keyboardInputLast = false;
         	// System.out.println("clicked");
             Element clickedElement = checkLocation(mouseX, mouseY);
             if (clickedElement != null) {
-            	if (clickedElement.getClickEffectIndex() != -1) {
-            		getElementFromName(clickedElement.getName()).animateClick(true);
-            	}
             	Element element = getElementFromName(selectedElement);
             	if (element != null) {
-            		if (clickedElement.getName().equals(selectedElement)) {
-            			
+            		if (clickedElement.getName().equals("Edit"+ selectedElement + "Button")) {
+            			confirmElement(element);
+            			element.getSelector().setUnselected();
+            			element.animateClick(true);
+                		selectedElement = null;
             		} else {
+            			cancelElement(element);
                 		element.getSelector().setUnselected();
+                		element.animateClick(true);
                 		selectedElement = null;
             		}
         		} else {
+        			if (clickedElement.getClickEffectIndex() != -1) {
+                		getElementFromName(clickedElement.getName()).animateClick(true);
+                	}
+        			
         			String functionToRun = clickedElement.getFunction();
                     boolean ranFunction = Functions.runFunction(functionToRun);
                     if (!ranFunction) {
@@ -86,6 +99,7 @@ public class ShowImage extends JPanel implements KeyListener {
         	} else {
         		Element element = getElementFromName(selectedElement);
         		if (element != null) {
+        			cancelElement(element);
         			element.getSelector().setUnselected();
         			selectedElement = null;
         		}
@@ -95,6 +109,7 @@ public class ShowImage extends JPanel implements KeyListener {
         public void mouseReleased(MouseEvent e) {
     		int mouseX = e.getX();
         	int mouseY = e.getY();
+        	keyboardInputLast = false;
         	// System.out.println("released");
         	// System.out.println(mouseDragStart);
             Element releasedElement = checkLocation(mouseX, mouseY);
@@ -107,9 +122,12 @@ public class ShowImage extends JPanel implements KeyListener {
                 	}
             		Element element = getElementFromName(selectedElement);
             		if (element != null) {
-	            		if (releasedElement.getName().equals(selectedElement)) {
-	            			
+	            		if (releasedElement.getName().equals("Edit"+ selectedElement + "Button")) {
+	            			confirmElement(element);
+	            			element.getSelector().setUnselected();
+	                		selectedElement = null;
 	            		} else {
+	            			cancelElement(element);
 	                		element.getSelector().setUnselected();
 	                		selectedElement = null;
 	            		}
@@ -126,6 +144,7 @@ public class ShowImage extends JPanel implements KeyListener {
             	// Clicked on nothing.
         		Element element = getElementFromName(selectedElement);
         		if (element != null) {
+        			cancelElement(element);
         			element.getSelector().setUnselected();
         			selectedElement = null;
         		}
@@ -146,6 +165,7 @@ public class ShowImage extends JPanel implements KeyListener {
         	Element hoveredElement = checkLocation(mouseX, mouseY);
             
         	if (hoveredElement != null) {
+        		keyboardInputLast = false;
         		String nameOfHoveredElement = hoveredElement.getName();
         		selected = scaledMenu.resetSelectors(getElementFromName(nameOfHoveredElement).getSelectorIndex(), selected, getCurrentPopupIndex());
                 if (lastHovered == nameOfHoveredElement) {
@@ -167,19 +187,21 @@ public class ShowImage extends JPanel implements KeyListener {
                 }
                 lastHovered = nameOfHoveredElement; 
         	} else {
-        		selected = scaledMenu.resetSelectors(false, getCurrentPopupIndex());
-        		if (lastHovered == null) {
-        			// Do nothing, nothing has changed.
-        		} else {
-                	if (lastHovered != null) {
-                		Element toDeanimate = getElementFromName(lastHovered);
-                		if (toDeanimate != null) {
-                			toDeanimate.deanimateHover(false);
-                		}
-                	}
-        			// System.out.println("no longer hovering: " + lastHovered);
-                	// System.out.println("hovering: " + null);
-            		lastHovered = null;	
+        		if (keyboardInputLast == false) {
+	        		selected = scaledMenu.resetSelectors(false, getCurrentPopupIndex());
+	        		if (lastHovered == null) {
+	        			// Do nothing, nothing has changed.
+	        		} else {
+	                	if (lastHovered != null) {
+	                		Element toDeanimate = getElementFromName(lastHovered);
+	                		if (toDeanimate != null) {
+	                			toDeanimate.deanimateHover(false);
+	                		}
+	                	}
+	        			// System.out.println("no longer hovering: " + lastHovered);
+	                	// System.out.println("hovering: " + null);
+	            		lastHovered = null;	
+	        		}
         		}
         	}
         }
@@ -189,6 +211,7 @@ public class ShowImage extends JPanel implements KeyListener {
         	int mouseX = e.getX();
         	int mouseY = e.getY();
         	// System.out.println("dragged");
+        	keyboardInputLast = false;
             Element clickedElement = checkLocation(mouseX, mouseY);
             String nameOfDraggedElement;
             if (clickedElement == null) {
@@ -202,7 +225,7 @@ public class ShowImage extends JPanel implements KeyListener {
             	mouseDragStart = nameOfDraggedElement;
             }
             if (mouseDragStart == nameOfDraggedElement && !(mouseDragCurrent == nameOfDraggedElement)) {
-            	if (clickedElement != null){
+            	if ((clickedElement != null && selectedElement == null) || clickedElement.equals(selectedElement)){
             		if (clickedElement.getClickEffectIndex() != -1) {
                 		getElementFromName(nameOfDraggedElement).animateClick(false);
                 	}
@@ -219,6 +242,179 @@ public class ShowImage extends JPanel implements KeyListener {
             }
         }
     };
+    
+    public void keyPressed(KeyEvent e) {
+    	if (!transitioning && !popupUpdate) {
+    		int rawKeyCode = e.getKeyCode();
+            // System.out.println(rawKeyCode);
+            int keyCode = -1;
+            boolean foundKey = false;
+            for (Controls control : config.getControls()) {
+            	for (int customKey : control.getNewKeyCodes())
+            	if (customKey == rawKeyCode) {
+            		keyCode = control.getOriginalKeyCode();
+            		foundKey = true;
+            		break;
+            	}
+            	if (foundKey) {
+            		break;
+            	}
+            }
+            
+            if (selectedElement != null) { 
+            	// override if there is a selected element
+            	// also ignore keybinds; use vanilla.
+            	String keyPressedName = KeyEvent.getKeyText(rawKeyCode);
+            	// System.out.println(keyPressedName);
+        		Element element = getElementFromName(selectedElement);
+        		if (keyPressedName == "Enter") {
+        			confirmElement(element);
+        			element.setUnselected();
+        			element.animateClick(true);
+        			selectedElement = null;
+        		}
+        		else if (keyPressedName.equals("Left")) {
+        			element.getTextfield().incrementSelector(false);
+        		} 
+        		else if (keyPressedName.equals("Right")) {
+        			element.getTextfield().incrementSelector(true);
+        		} 
+        		else if (keyPressedName.equals("Backspace")) {
+        			element.getTextfield().delChar(true);
+        		} 
+        		else if (keyPressedName.equals("Delete")) {
+        			element.getTextfield().delChar(false);
+        		}
+        		else if (keyPressedName.equals("Escape")) {
+        			cancelElement(element);
+        			element.setUnselected();
+        			selectedElement = null;
+        		}
+        		// Characters are handled at keyTyped();
+        	}
+            
+            else if (foundKey) {
+            	String hotkeyPressed = KeyEvent.getKeyText(keyCode);
+            		
+	                if (hotkeyPressed.equals("Enter")
+	                		|| hotkeyPressed.equals("Up")
+	                		|| hotkeyPressed.equals("Down")
+	                		|| hotkeyPressed.equals("Left")
+	                		|| hotkeyPressed.equals("Right")
+	                		) { // arrow keys real keycodes
+	                	keyboardInputLast = true;
+	                	Element[] tempElementsList = (getCurrentPopupIndex() == -1) ?
+	    	        			scaledMenu.getElements() : scaledMenu.getPopup(getCurrentPopupIndex()).getElements();
+	                	int[][] directionalOptions = new int[4][2];
+	                	boolean found = false;
+	                	Element element = null;
+	                	Element elementToDeanimate = null; 
+	                	// Used so that switching from the same element to itself 
+	                	// doesn't cause deanimate; it only deanimates when it is
+	                	// a new element being switched to.
+	                	for (int i = 0 ; i < selectionsList.length; i++) {
+	                		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1] &&
+	                				selectionsList[i].getSelectorIndex()[0] + selectionsList[i].getSelectorIndex()[1] > -1) {
+	                			directionalOptions = selectionsList[i].getSelectorOptions();
+	                			// retrieves directional options from the currently selected item
+	                			element = tempElementsList[i];
+	                			elementToDeanimate = element;
+	                			found = true;
+	                			break;
+	                		}
+	                	}
+	                	
+	                	if (!found) { // set the selected to 0 instead if not currently selecting a valid item (like if currently on -1,-1)
+	                		selected = scaledMenu.resetSelectors(true, getCurrentPopupIndex());
+	                		for (int i = 0 ; i < selectionsList.length; i++) {
+	                    		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1] &&
+	                    				selectionsList[i].getSelectorIndex()[0] + selectionsList[i].getSelectorIndex()[1] > -1) {
+	                    			element = tempElementsList[i];
+	                    			element.animateHover();
+	                    			lastHovered = element.getName();
+	                    			break;
+	                    		}
+	                    	}
+	                	} else {
+	                		
+	                		if (hotkeyPressed == "Enter") {
+	                			element.animateClick(true);
+	                			String functionToRun = element.getFunction();
+	                			boolean ranFunction = Functions.runFunction(functionToRun);
+	                			if (!ranFunction) {
+	                          	System.out.println("ERROR: DID NOT RUN ANY FUNCTION FOR \nElement Name: " + element.getName() + 
+	                          			"\nwhich is a \nRenderable: " + element.isRenderable() + "\nTextbox: " + element.isTextbox());
+	                			}
+	                		} else {
+	                			if (hotkeyPressed == "Right") {
+	        			        	selected = scaledMenu.resetSelectors(directionalOptions[0], selected, getCurrentPopupIndex());
+	        			            } else if (hotkeyPressed == "Down") {
+	        			            	selected = scaledMenu.resetSelectors(directionalOptions[1], selected, getCurrentPopupIndex());
+	        			            } else if (hotkeyPressed == "Left") {
+	        			            	selected = scaledMenu.resetSelectors(directionalOptions[2], selected, getCurrentPopupIndex());
+	        	                    } else if (hotkeyPressed == "Up") {
+	        	                    	selected = scaledMenu.resetSelectors(directionalOptions[3], selected, getCurrentPopupIndex());
+	                            }
+	                			for (int i = 0 ; i < selectionsList.length; i++) {
+	                        		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1]) {
+	                        			element = tempElementsList[i];
+	                        			if (element.equals(elementToDeanimate)){
+	                        				// Do nothing, no change in element.
+	                        			} else {
+	                        				elementToDeanimate.deanimateHover(false);
+	                        				element.animateHover();
+	                        				lastHovered = element.getName();
+	                        			}
+	                        			break;
+	                        		}
+	                        	}
+	                		}
+	                	}
+	                } 
+	                
+	                else if (hotkeyPressed == "Escape") {
+	                	if (popupIndexes.length != 0) {
+	                		removePopup(popupIndexes[popupIndexes.length - 1]);
+	                	} else {
+	                		String functionToRun = "escapeMenu";
+	                		Functions.runFunction(functionToRun);
+	                	}
+	                }
+            	
+            	
+            	String keyText = KeyEvent.getKeyText(rawKeyCode);
+                System.out.println("Bound Key Pressed: " + hotkeyPressed);
+                System.out.println("Raw Key Pressed: " + keyText);
+                
+                
+            } else {
+            	String keyText = KeyEvent.getKeyText(rawKeyCode);
+            	System.out.println("Unbound Key Pressed: " + keyText);
+            }
+    	}
+    }
+
+    public void keyReleased(KeyEvent e) {
+    	if (!transitioning && !popupUpdate) {
+    		
+    	}
+        // Do nothing
+    }
+
+    public void keyTyped(KeyEvent e) {
+    	if (!transitioning && !popupUpdate) {
+    		if (selectedElement != null) {
+        		Element element = getElementFromName(selectedElement);
+        		// System.out.println(e.getKeyChar());
+        		if (!e.isActionKey() && isAlphaNumeric(e.getKeyChar())) {
+        			element.getTextfield().inputChar(e.getKeyChar());
+        		}
+        	}
+    	}
+        // Do nothing
+    }
+    
+    
     
     /*
     setNewFrameSize --> calculateNewScreenDimensions
@@ -260,7 +456,7 @@ public class ShowImage extends JPanel implements KeyListener {
         		toRender = scaledMenu.getElements();
         		opacityMulti = 1;
         	} else {
-            	toRender = scaledMenu.getPopup(iter).getElements();
+            	toRender = scaledMenu.getPopup(popupIndexes[iter]).getElements();
             	Graphics2D g2d = (Graphics2D) g.create();
     	        g2d.setRenderingHints(rh);
     	        Rectangle rect = new Rectangle(0,0,calculatedScreenWidth,calculatedScreenHeight);
@@ -343,7 +539,7 @@ public class ShowImage extends JPanel implements KeyListener {
     			1f, // scale 
 				"", // function
 				"",  // name
-				new Text(scaledMenu.getMenuDisplayName(),
+				new Text(popupIndexes.length < 1 ? scaledMenu.getMenuDisplayName() : scaledMenu.getPopup(popupIndexes.length - 1).getPopupTitle(),
 						"center", "center", // align
 						calculatedScreenWidth * 50 / 100, calculatedScreenHeight * 15 / 400, // text offset (x, y)
 						(int) (75 * scale), // text size
@@ -723,7 +919,8 @@ public class ShowImage extends JPanel implements KeyListener {
         	
     		Element[] elementsToCheck;
     		if (popupIndexes.length > 0) {
-    			elementsToCheck = scaledMenu.getPopup(popupIndexes.length - 1).getElements();
+    			// System.out.println(popupIndexes[popupIndexes.length - 1]);
+    			elementsToCheck = scaledMenu.getPopup(popupIndexes[popupIndexes.length - 1]).getElements();
     		} else {
     			elementsToCheck = scaledMenu.getElements();
     		}
@@ -877,169 +1074,10 @@ public class ShowImage extends JPanel implements KeyListener {
 		return toReturn;
 	}
     
-    public void keyPressed(KeyEvent e) {
-    	if (!transitioning && !popupUpdate) {
-    		int rawKeyCode = e.getKeyCode();
-            // System.out.println(rawKeyCode);
-            int keyCode = -1;
-            boolean foundKey = false;
-            for (Controls control : config.getControls()) {
-            	for (int customKey : control.getNewKeyCodes())
-            	if (customKey == rawKeyCode) {
-            		keyCode = control.getOriginalKeyCode();
-            		foundKey = true;
-            		break;
-            	}
-            	if (foundKey) {
-            		break;
-            	}
-            }
-            
-            if (selectedElement != null) { 
-            	// override if there is a selected element
-            	// also ignore keybinds; use vanilla.
-            	String keyPressedName = KeyEvent.getKeyText(rawKeyCode);
-            	System.out.println(keyPressedName);
-        		Element element = getElementFromName(selectedElement);
-        		if (keyPressedName == "Enter") {
-        			confirmSelectedElement();
-        			element.getSelector().setUnselected();
-        			selectedElement = null;
-        		}
-        		else if (keyPressedName.equals("Left")) {
-        			element.getTextfield().incrementSelector(false);
-        		} 
-        		else if (keyPressedName.equals("Right")) {
-        			element.getTextfield().incrementSelector(true);
-        		} 
-        		else if (keyPressedName.equals("Backspace")) {
-        			element.getTextfield().delChar(true);
-        		} 
-        		else if (keyPressedName.equals("Delete")) {
-        			element.getTextfield().delChar(false);
-        		}
-        		// Characters are handled at keyTyped();
-        	}
-            
-            else if (foundKey) {
-            	String hotkeyPressed = KeyEvent.getKeyText(keyCode);
-            		
-	                if (hotkeyPressed.equals("Enter")
-	                		|| hotkeyPressed.equals("Up")
-	                		|| hotkeyPressed.equals("Down")
-	                		|| hotkeyPressed.equals("Left")
-	                		|| hotkeyPressed.equals("Right")
-	                		) { // arrow keys real keycodes
-	                	Element[] tempElementsList = (getCurrentPopupIndex() == -1) ?
-	    	        			scaledMenu.getElements() : scaledMenu.getPopup(getCurrentPopupIndex()).getElements();
-	                	int[][] directionalOptions = new int[4][2];
-	                	boolean found = false;
-	                	Element element = null;
-	                	Element elementToDeanimate = null; 
-	                	// Used so that switching from the same element to itself 
-	                	// doesn't cause deanimate; it only deanimates when it is
-	                	// a new element being switched to.
-	                	for (int i = 0 ; i < selectionsList.length; i++) {
-	                		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1] &&
-	                				selectionsList[i].getSelectorIndex()[0] + selectionsList[i].getSelectorIndex()[1] > -1) {
-	                			directionalOptions = selectionsList[i].getSelectorOptions();
-	                			// retrieves directional options from the currently selected item
-	                			element = tempElementsList[i];
-	                			elementToDeanimate = element;
-	                			found = true;
-	                			break;
-	                		}
-	                	}
-	                	
-	                	if (!found) { // set the selected to 0 instead if not currently selecting a valid item (like if currently on -1,-1)
-	                		selected = scaledMenu.resetSelectors(true, getCurrentPopupIndex());
-	                		for (int i = 0 ; i < selectionsList.length; i++) {
-	                    		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1] &&
-	                    				selectionsList[i].getSelectorIndex()[0] + selectionsList[i].getSelectorIndex()[1] > -1) {
-	                    			element = tempElementsList[i];
-	                    			element.animateHover();
-	                    			lastHovered = element.getName();
-	                    			break;
-	                    		}
-	                    	}
-	                	} else {
-	                		
-	                		if (hotkeyPressed == "Enter") {
-	                			element.animateClick(true);
-	                			String functionToRun = element.getFunction();
-	                			boolean ranFunction = Functions.runFunction(functionToRun);
-	                			if (!ranFunction) {
-	                          	System.out.println("ERROR: DID NOT RUN ANY FUNCTION FOR \nElement Name: " + element.getName() + 
-	                          			"\nwhich is a \nRenderable: " + element.isRenderable() + "\nTextbox: " + element.isTextbox());
-	                			}
-	                		} else {
-	                			if (hotkeyPressed == "Right") {
-	        			        	selected = scaledMenu.resetSelectors(directionalOptions[0], selected, getCurrentPopupIndex());
-	        			            } else if (hotkeyPressed == "Down") {
-	        			            	selected = scaledMenu.resetSelectors(directionalOptions[1], selected, getCurrentPopupIndex());
-	        			            } else if (hotkeyPressed == "Left") {
-	        			            	selected = scaledMenu.resetSelectors(directionalOptions[2], selected, getCurrentPopupIndex());
-	        	                    } else if (hotkeyPressed == "Up") {
-	        	                    	selected = scaledMenu.resetSelectors(directionalOptions[3], selected, getCurrentPopupIndex());
-	                            }
-	                			for (int i = 0 ; i < selectionsList.length; i++) {
-	                        		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1]) {
-	                        			element = tempElementsList[i];
-	                        			if (element.equals(elementToDeanimate)){
-	                        				// Do nothing, no change in element.
-	                        			} else {
-	                        				elementToDeanimate.deanimateHover(false);
-	                        				element.animateHover();
-	                        				lastHovered = element.getName();
-	                        			}
-	                        			break;
-	                        		}
-	                        	}
-	                		}
-	                	}
-	                } 
-	                
-	                else if (hotkeyPressed == "Escape") {
-	                	String functionToRun = "escapeMenu";
-	                	Functions.runFunction(functionToRun);
-	                }
-            	
-            	
-            	String keyText = KeyEvent.getKeyText(rawKeyCode);
-                System.out.println("Bound Key Pressed: " + hotkeyPressed);
-                System.out.println("Raw Key Pressed: " + keyText);
-                
-                
-            } else {
-            	String keyText = KeyEvent.getKeyText(rawKeyCode);
-            	System.out.println("Unbound Key Pressed: " + keyText);
-            }
-    	}
-    }
-
-    public void keyReleased(KeyEvent e) {
-    	if (!transitioning && !popupUpdate) {
-    		
-    	}
-        // Do nothing
-    }
-
-    public void keyTyped(KeyEvent e) {
-    	if (!transitioning && !popupUpdate) {
-    		if (selectedElement != null) {
-        		Element element = getElementFromName(selectedElement);
-        		System.out.println(e.getKeyChar());
-        		if (!e.isActionKey() && isAlphaNumeric(e.getKeyChar())) {
-        			element.getTextfield().inputChar(e.getKeyChar());
-        		}
-        	}
-    	}
-        // Do nothing
-    }
     
     public static int getCurrentPopupIndex() {
     	if (popupIndexes.length > 0) {
-			return (popupIndexes.length - 1);
+			return (popupIndexes[popupIndexes.length - 1]);
 		} else {
 			return -1;
 		}
@@ -1056,7 +1094,7 @@ public class ShowImage extends JPanel implements KeyListener {
     	Element[] elementsToCheck;
     	
     	if (popupIndexes.length > 0) {
-			elementsToCheck = scaledMenu.getPopup(popupIndexes.length - 1).getElements();
+			elementsToCheck = scaledMenu.getPopup(popupIndexes[popupIndexes.length - 1]).getElements();
 		} else {
 			elementsToCheck = scaledMenu.getElements();
 		}
@@ -1329,8 +1367,18 @@ public class ShowImage extends JPanel implements KeyListener {
     
     public static void animateEntryMenu() {
     	for (Element element : scaledMenu.getElements()) {
-    		element.animateExit(true);
-    		element.animateEntry();
+    		element.animateEntry(true);
+    	}
+    }
+    
+    public static void animateExitPopup(int popupIndex) {
+    	for (Element element : scaledMenu.getPopup(popupIndex).getElements()) {
+    		element.animateExit(false);
+    	}
+    }
+    public static void animateEntryPopup(int popupIndex) {
+    	for (Element element : scaledMenu.getPopup(popupIndex).getElements()) {
+    		element.animateEntry(true);
     	}
     }
     
@@ -1421,14 +1469,12 @@ public class ShowImage extends JPanel implements KeyListener {
 	        int i = 0;
 	        for (Element element : tempElementsList) {
 	        	selectionsList[i] = element.getSelector();
-	        	element.animateExit(true);
-	        	element.animateEntry();
-	        	i++;
 	        }
 	        popupUpdate = true;
 			popupTime = Framerate.getCurrentTime();
 	        
 			selected = scaledMenu.resetSelectors(false, getCurrentPopupIndex());
+			animateEntryPopup(index);
 	        
 			// System.out.println("Successfully added popup" + index);
 		}
@@ -1449,6 +1495,8 @@ public class ShowImage extends JPanel implements KeyListener {
 	        popupUpdate = true;
 			popupTime = Framerate.getCurrentTime();
 			fadeOutPopup = index;
+			lastHovered = null;
+			animateExitPopup(index);
 	        
 			// System.out.println("Successfully removed popup" + index);
 		} else {
@@ -1456,7 +1504,69 @@ public class ShowImage extends JPanel implements KeyListener {
 		}
 	}
 
-    public static void main(String args[]) throws Exception {
+	public static boolean getTransitioning() {
+		return transitioning;
+	}
+
+	public static void setTransitioning(boolean transitioning) {
+		ShowImage.transitioning = transitioning;
+	}
+	
+	public static void setSelectedElement(String textField) {
+		selectedElement = textField;
+		Element element = getElementFromName(selectedElement);
+		element.getTextfield().resetSelector(false);
+		element.setSelected();
+		
+		Element editButton = getElementFromName("Edit" + selectedElement + "Button");
+		if (editButton != null) {
+			BufferedImage newImage;
+			try {
+				newImage = ImageIO.read(new File("src/textures/tick.png"));
+				editButton.getTextbox().getRenderableObject().setImage(newImage);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	
+	public static void confirmElement(Element element) {
+		element.getTextfield().confirmEntry();
+		
+		Element editButton = getElementFromName("Edit" + selectedElement + "Button");
+		if (editButton != null) {
+			editButton.getTextbox().getRenderableObject().resetImage();;
+		}
+		// confirm.
+	}
+	
+	public static void cancelElement(Element element) {
+		element.getTextfield().cancelEntry();
+		
+		Element editButton = getElementFromName("Edit" + selectedElement + "Button");
+		if (editButton != null) {
+			editButton.getTextbox().getRenderableObject().resetImage();;
+		}
+		// cancel.
+	}
+	
+	public static String getSelectedElementName() {
+		return selectedElement;
+	}
+	
+	public static Element getSelectedElement() {
+		return getElementFromName(selectedElement);
+	}
+	
+	public static boolean isAlphaNumeric(char ch) {
+	    if ((ch >= '0' & ch <= '9') || (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch == '_'))
+	      return true;
+	    return false;
+	  }
+	
+	public static void main(String args[]) throws Exception {
     	
     	Framerate.checkCurrentTime();
     	
@@ -1533,37 +1643,4 @@ public class ShowImage extends JPanel implements KeyListener {
         Framerate thread = new Framerate();
         thread.start();
     }
-
-	public static boolean getTransitioning() {
-		return transitioning;
-	}
-
-	public static void setTransitioning(boolean transitioning) {
-		ShowImage.transitioning = transitioning;
-	}
-	
-	public static void setSelectedElement(String textField) {
-		selectedElement = textField;
-		Element element = getElementFromName(selectedElement);
-		element.getTextfield().resetSelector(false);
-		element.setSelected();
-	}
-	
-	public static void confirmSelectedElement() {
-		Element element = getElementFromName(selectedElement);
-		element.getTextfield().confirmEntry();
-		// confirm.
-	}
-	
-	public static void cancelSelectedElement() {
-		Element element = getElementFromName(selectedElement);
-		element.getTextfield().confirmEntry();
-		// confirm.
-	}
-	
-	public static boolean isAlphaNumeric(char ch) {
-	    if ((ch >= '0' & ch <= '9') || (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
-	      return true;
-	    return false;
-	  }
 }

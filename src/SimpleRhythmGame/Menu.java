@@ -270,18 +270,10 @@ public class Menu {
         		elementsToReturnFinal = elementsToReturn;
         	} else {
         		popupsToReturn[iter] = 
-        				rawPopup.getInputItem() != null 
-        				?
-    						new Popup(rawPopup.getType(),
-    								rawPopup.getInputItem(),
-            						rawPopup.getPopupName(),
-            						rawPopup.getPopupTitle(),
-            						elementsToReturn)
-        				: 
-        					new Popup(rawPopup.getType(),
-        						rawPopup.getPopupName(),
-        						rawPopup.getPopupTitle(),
-        						elementsToReturn);
+					new Popup(
+    						rawPopup.getPopupName(),
+    						rawPopup.getPopupTitle(),
+    						elementsToReturn);
         	}
         
         }
