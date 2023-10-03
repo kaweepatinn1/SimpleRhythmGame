@@ -8,6 +8,7 @@ public class Element {
 	private Renderable renderable;
 	private TextBox textbox;
 	private TextField textfield;
+	private OptionsList optionslist;
 	private boolean hoverOverlap; // whether to overlap other elements when hovered.
 	private int maskIndex; // mask to use for this element
 	private int hoverEffectIndex; // animation to play when hovered

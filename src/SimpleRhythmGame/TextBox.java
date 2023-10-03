@@ -1,7 +1,6 @@
 package SimpleRhythmGame;
 
 public class TextBox {
-	// private Tween tween;
 	private float scale;
 	private String function;
 	private String name;

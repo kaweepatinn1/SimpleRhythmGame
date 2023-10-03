@@ -283,24 +283,34 @@ public class Config {
 		this.transitionTime = transitionTime;
 	}
 	
+	public Object[] getObjectList(String objectsName) {
+		Object[] objectsToReturn = new Object[] 
+				{"Objects with title \"" + objectsName + "\" not found."};
+		return new Object[] {0};
+	}
+	
+	public String setObjectList(String objectsName, Object[] newValues) {
+		
+	}
+	
 	public Object getVariable(String varName) {
-		Object varToReturn = "Variable " + varName + "not found.";
+		Object varToReturn = "Variable \"" + varName + "\" not found.";
 		if (varName.equals("%CurrentThemeName")) {
 			varToReturn = currentThemeChoice;
 		}
 		return varToReturn;
 	}
 	
-	public String setVariable(String varName, Object value) {
+	public String setVariable(String varName, Object newValues) {
 		if (varName.equals("%CurrentThemeName")) {
 			for (Theme theme : themes) {
-				if (theme.getThemeName().equals((String) value)) {
+				if (theme.getThemeName().equals((String) newValues)) {
 					System.out.println("Duplicate Theme Name!");
 					return "Duplicate";
 				}
 			}
-			getCurrentTheme().setThemeName((String) value);
-			currentThemeChoice = (String) value;
+			getCurrentTheme().setThemeName((String) newValues);
+			currentThemeChoice = (String) newValues;
 			return "Success";
 		} else {
 			return "VariableNotFound"; // failed to find the variable

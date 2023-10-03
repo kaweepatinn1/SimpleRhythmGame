@@ -401,8 +401,8 @@ public class DefaultValues {
 								100, // animation time (ms)
 								6 // (ease type)
 							),
-							new StoredTransform( // 5. hover move right 100
-								100, 0, // x, y transform
+							new StoredTransform( // 5. hover move right 150
+								150, 0, // x, y transform
 								1, 1, // scale transform (x, y)
 								0, // rotate transform
 								0, // offset (ms)
