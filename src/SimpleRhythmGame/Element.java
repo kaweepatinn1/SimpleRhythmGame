@@ -8,7 +8,7 @@ public class Element {
 	private Renderable renderable;
 	private TextBox textbox;
 	private TextField textfield;
-	private OptionsList optionslist;
+	private OptionsList optionsList;
 	private boolean hoverOverlap; // whether to overlap other elements when hovered.
 	private int maskIndex; // mask to use for this element
 	private int hoverEffectIndex; // animation to play when hovered
@@ -27,6 +27,7 @@ public class Element {
 		this.renderable = null;
 		this.textbox = null;
 		this.textfield = textfield;
+		this.optionsList = null;
 		this.maskIndex = maskIndex;
 		this.hoverOverlap = hoverOverlap;
 		this.hoverEffectIndex = hoverEffect;
@@ -46,6 +47,7 @@ public class Element {
 		this.renderable = null;
 		this.textbox = textbox;
 		this.textfield = null;
+		this.optionsList = null;
 		this.maskIndex = maskIndex;
 		this.hoverOverlap = hoverOverlap;
 		this.hoverEffectIndex = hoverEffect;
@@ -64,6 +66,26 @@ public class Element {
 		this.renderable = renderable;
 		this.textbox = null;
 		this.textfield = null;
+		this.optionsList = null;
+		this.maskIndex = maskIndex;
+		this.hoverOverlap = hoverOverlap;
+		this.hoverEffectIndex = hoverEffect;
+		this.clickEffectIndex = clickEffect;
+		this.arbitraryTransformIndex = arbitraryTransform;
+		this.entryAnimationTransformIndex = entryAnimationTransformIndex;
+	}
+	
+	public Element(Selector selector, int maskIndex, boolean hoverOverlap, int hoverEffect, int clickEffect, 
+			int arbitraryTransform, int entryAnimationTransformIndex , OptionsList optionsList) {
+		transforms = new TweenTransform[4];
+		for (int i = 0 ; i < 4 ; i++) {
+			transforms[i] = new TweenTransform(optionsList);
+		}
+		this.selector = selector;
+		this.renderable = null;
+		this.textbox = null;
+		this.textfield = null;
+		this.optionsList = optionsList;
 		this.maskIndex = maskIndex;
 		this.hoverOverlap = hoverOverlap;
 		this.hoverEffectIndex = hoverEffect;
@@ -108,7 +130,7 @@ public class Element {
 	
 	public Element(TweenTransform[] transforms, Selector selector, int maskIndex,
 			boolean hoverOverlap, int hoverEffect, int clickEffect, 
-			int arbitraryTransform, int entryAnimationTransformIndex ,Renderable renderable) {
+			int arbitraryTransform, int entryAnimationTransformIndex, Renderable renderable) {
 		this.transforms = transforms;
 		this.selector = selector;
 		this.renderable = renderable;
@@ -122,6 +144,84 @@ public class Element {
 		this.entryAnimationTransformIndex = entryAnimationTransformIndex;
 	}
 	
+	public Element(TweenTransform[] transforms, Selector selector, int maskIndex,
+			boolean hoverOverlap, int hoverEffect, int clickEffect, 
+			int arbitraryTransform, int entryAnimationTransformIndex, OptionsList optionsList) {
+		this.transforms = transforms;
+		this.selector = selector;
+		this.renderable = null;
+		this.textbox = null;
+		this.textfield = null;
+		this.optionsList = optionsList;
+		this.maskIndex = maskIndex;
+		this.hoverOverlap = hoverOverlap;
+		this.hoverEffectIndex = hoverEffect;
+		this.clickEffectIndex = clickEffect;
+		this.arbitraryTransformIndex = arbitraryTransform;
+		this.entryAnimationTransformIndex = entryAnimationTransformIndex;
+	}
+	
+	public Element(Element currentElement, int index, int objectsCount, StoredTransform[] transforms) { // ONLY FOR AN OPTIONS LIST ELEMENT
+		this.transforms = currentElement.getTransform();
+		this.selector = new Selector(
+				new int[] {currentElement.getSelectorIndex()[0],
+					currentElement.getSelectorIndex()[1] + index},
+				new int[][]{
+					{currentElement.getSelectorOptions()[0][0],currentElement.getSelectorOptions()[0][1]},
+					{currentElement.getSelectorOptions()[1][0],currentElement.getSelectorOptions()[1][1] + index + (index != objectsCount - 1 ? 1 : 0)},
+					{currentElement.getSelectorOptions()[2][0],currentElement.getSelectorOptions()[2][1]},
+					{currentElement.getSelectorOptions()[3][0],currentElement.getSelectorOptions()[3][1] + index - (index != 0 ? 1 : 0)},
+				}
+				);
+		this.renderable = null;
+		RoundedArea rectShape = currentElement.getOptionsList().getRectShape();
+		this.textbox = new TextBox(
+				currentElement.getOptionsList().getScale(),
+				currentElement.getOptionsList().getFunction() + " int " + index,
+				currentElement.getOptionsList().getName() + index,
+				new Text(
+						(String) ShowImage.getConfig().getVariable(
+								currentElement.getOptionsList().getListObjectsName(), 
+								currentElement.getOptionsList().getTextObject().getText(),
+								index
+								), // grabs to display
+						currentElement.getOptionsList().getTextObject().getAlignX(),
+						currentElement.getOptionsList().getTextObject().getAlignY(),
+						currentElement.getOptionsList().getTextObject().getOffsetX(),
+						currentElement.getOptionsList().getTextObject().getOffsetY(),
+						currentElement.getOptionsList().getTextObject().getTextSize(),
+						currentElement.getOptionsList().getTextObject().getTextColor(),
+						currentElement.getOptionsList().getTextObject().getFont(),
+						currentElement.getOptionsList().getTextObject().getBold()
+						),
+				new RoundedArea(
+						rectShape.getX() + (int) transforms[currentElement.getArbitraryTransformIndex()].getTransformX() * index,
+						rectShape.getY() + (int) transforms[currentElement.getArbitraryTransformIndex()].getTransformY() * index,
+						rectShape.getXSize(),
+						rectShape.getYSize(),
+						rectShape.getRoundPercentage()
+						),
+				currentElement.getOptionsList().getColor(),
+				currentElement.getOptionsList().getOpacity(),
+				currentElement.getOptionsList().getShadowOffset(),
+				currentElement.getOptionsList().getStrokeWidth(),
+				currentElement.getOptionsList().getStrokeColor()
+				);
+		this.textfield = null;
+		this.optionsList = null;
+		this.maskIndex = currentElement.getMaskIndex();
+		this.hoverOverlap = currentElement.getHoverOverlap();
+		this.hoverEffectIndex = currentElement.getHoverEffectIndex();
+		this.clickEffectIndex = currentElement.getClickEffectIndex();
+		this.arbitraryTransformIndex = currentElement.getArbitraryTransformIndex();
+		this.entryAnimationTransformIndex = currentElement.getEntryAnimationIndex();
+		for (int i = 0 ; i < index ; i++) {
+			appendListTransform(transforms); 
+			// !IMPORTANT! Doesn't do anything but splits each element
+			// into new objects for some reason!!!
+		}
+	}
+
 	public Selector getSelector() {
 		return selector;
 	}
@@ -206,6 +306,8 @@ public class Element {
 			toReturn = getTextbox().getFunction();
 		} else if (isTextfield()) {
 			toReturn = "enterTextField String " + getTextfield().getName();
+		} else if (isOptionsList()) {
+			toReturn = getOptionsList().getFunction() + " int " + getOptionsList().getSelector(); 
 		}
 		
 		else {
@@ -224,6 +326,8 @@ public class Element {
 			toReturn = getTextbox().getName();
 		} else if (isTextfield()) {
 			toReturn = getTextfield().getName();
+		} else if (isOptionsList()) {
+			toReturn = getOptionsList().getName();
 		}
 		else {
 			toReturn = "ERROR: READ CONSOLE";
@@ -231,6 +335,55 @@ public class Element {
 					+ "In class: Element, Method: getName()");
 		}
 		return toReturn;
+	}
+	
+	public void appendListTransform(StoredTransform[] transforms) {
+		// Doesn't actually apply anything at all, but somehow makes each element a new object. who knows.
+		if (getArbitraryTransformIndex() != -1) {
+			RoundedArea roundedArea = null;
+			if (isTextbox()) {
+				roundedArea = getTextbox().getRectShape();
+			} else if (isRenderable()) {
+				roundedArea = new RoundedArea(getRenderable());
+			} else if (isTextfield()) {
+				roundedArea = getTextfield().getRectShape();
+			} else if (isOptionsList()) {
+				roundedArea = getOptionsList().getRectShape();
+			}
+			StoredTransform transform = transforms[getArbitraryTransformIndex()];
+			TweenTransform tweenTransform = new TweenTransform(
+					new SpecialTransform(roundedArea),
+					new SpecialTransform(roundedArea),
+					0, // propogation time
+					0, // delay
+					1 // ease type
+					);
+			appendTransform(tweenTransform);
+		}
+	}
+	
+	public void appendListTransform() {
+		if (getArbitraryTransformIndex() != -1) {
+			RoundedArea roundedArea = null;
+			if (isTextbox()) {
+				roundedArea = getTextbox().getRectShape();
+			} else if (isRenderable()) {
+				roundedArea = new RoundedArea(getRenderable());
+			} else if (isTextfield()) {
+				roundedArea = getTextfield().getRectShape();
+			} else if (isOptionsList()) {
+				roundedArea = getOptionsList().getRectShape();
+			}
+			StoredTransform transform = ShowImage.getTransformsToRender()[getArbitraryTransformIndex()];
+			TweenTransform tweenTransform = new TweenTransform(
+					new SpecialTransform(roundedArea),
+					new SpecialTransform(transform, roundedArea),
+					0, // propogation time
+					0, // delay
+					1 // ease type
+					);
+			appendTransform(tweenTransform);
+		}
 	}
 	
 	public void animateHover() {
@@ -279,7 +432,7 @@ public class Element {
 	
 	public void animateClick(boolean boomerang) {
 		if (getClickEffectIndex() != -1) {
-			RoundedArea area = isRenderable() ? renderable.toArea() : (isTextfield() ? getTextfield().getRectShape() : (isTextbox() ? getTextbox().getRectShape() : null));
+			RoundedArea area = isRenderable() ? renderable.toArea() : (isTextfield() ? getTextfield().getRectShape() : (isTextbox() ? getTextbox().getRectShape() : (isOptionsList() ? getOptionsList().getRectShape() : null)));
 			StoredTransform clickEffect = ShowImage.getTransformsToRender()[getClickEffectIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(getTransform()[1].getCurrentPosition(), area),
@@ -295,7 +448,7 @@ public class Element {
 	
 	public void deanimateClick(boolean instant) {
 		if (getClickEffectIndex() != -1) {
-			RoundedArea area = isRenderable() ? renderable.toArea() : (isTextfield() ? getTextfield().getRectShape() : (isTextbox() ? getTextbox().getRectShape() : null));
+			RoundedArea area = isRenderable() ? renderable.toArea() : (isTextfield() ? getTextfield().getRectShape() : (isTextbox() ? getTextbox().getRectShape() : (isOptionsList() ? getOptionsList().getRectShape() : null)));
 			StoredTransform clickEffect = ShowImage.getTransformsToRender()[getClickEffectIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(getTransform()[1].getCurrentPosition(), area),
@@ -310,7 +463,7 @@ public class Element {
 	
 	public void animateExit(boolean instant) {
 		if (getEntryAnimationIndex() != -1) {
-			RoundedArea area = isRenderable() ? renderable.toArea() : (isTextfield() ? getTextfield().getRectShape() : (isTextbox() ? getTextbox().getRectShape() : null));
+			RoundedArea area = isRenderable() ? renderable.toArea() : (isTextfield() ? getTextfield().getRectShape() : (isTextbox() ? getTextbox().getRectShape() : (isOptionsList() ? getOptionsList().getRectShape() : null)));
 			StoredTransform entryEffect = ShowImage.getTransformsToRender()[getEntryAnimationIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(getTransform()[3].getCurrentPosition(), area),
@@ -325,7 +478,7 @@ public class Element {
 	
 	public void animateEntry(boolean reset) {
 		if (getEntryAnimationIndex() != -1) {
-			RoundedArea area = isRenderable() ? renderable.toArea() : (isTextfield() ? getTextfield().getRectShape() : (isTextbox() ? getTextbox().getRectShape() : null));
+			RoundedArea area = isRenderable() ? renderable.toArea() : (isTextfield() ? getTextfield().getRectShape() : (isTextbox() ? getTextbox().getRectShape() : (isOptionsList() ? getOptionsList().getRectShape() : null)));
 			// gets the area depending on the type of element present.
 			StoredTransform entryEffect = ShowImage.getTransformsToRender()[getEntryAnimationIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
@@ -351,6 +504,10 @@ public class Element {
 		return (getTextfield() != null);
 	}
 	
+	public boolean isOptionsList() {
+		return (getOptionsList() != null);
+	}
+	
 	public Renderable getRenderable() {
 		return renderable;
 	}
@@ -361,6 +518,10 @@ public class Element {
 	
 	public TextField getTextfield() {
 		return textfield;
+	}
+	
+	public OptionsList getOptionsList() {
+		return optionsList;
 	}
 
 	public int getHoverEffectIndex() {
@@ -393,6 +554,13 @@ public class Element {
 
 	public void setTransform(TweenTransform transform, int index) {
 		this.transforms[index] = transform;
+	}
+	
+	public void appendTransform(TweenTransform transform) {
+		TweenTransform[] newTransforms = new TweenTransform[transforms.length + 1];
+		System.arraycopy(transforms, 0, newTransforms, 0, transforms.length);
+		newTransforms[newTransforms.length - 1] = transform;
+		transforms = newTransforms;
 	}
 
 	public int getMaskIndex() {
@@ -617,6 +785,57 @@ public class Element {
 	        				stroke, strokeColor
 	        				)
 						);
+    	} else if (currentElement.isOptionsList()) {
+    		OptionsList currentItem = currentElement.getOptionsList();
+        	
+        	float optionsListScale = currentItem.getScale();
+        	
+        	Object[] objects = currentItem.getObjects();
+        	int objectsCount = objects.length;
+        	
+        	String function = currentItem.getFunction();
+        	String listObjects = currentItem.getListObjectsName();
+        	
+        	String name = currentItem.getName();
+        	
+        	int xSize = (int) Math.round(currentItem.getXSize() * xScale * optionsListScale);
+        	int ySize = (int) Math.round(currentItem.getYSize() * yScale * optionsListScale);
+        	int x = (int) Math.round(currentItem.getX() * xScale - (xSize / 2));
+        	int y = (int) Math.round(currentItem.getY() * yScale - (ySize / 2));
+        	int color = currentItem.getColor();
+        	int opacity = currentItem.getOpacity();
+        	int roundPercentage = currentItem.getRoundPercentage();
+        	int shadowOffset = (int) Math.round(currentItem.getShadowOffset() * Math.min(xScale, yScale) * optionsListScale);
+        	float stroke = (int) Math.round(currentItem.getStrokeWidth() * Math.min(xScale, yScale) * optionsListScale);
+        	int strokeColor = currentItem.getStrokeColor();
+        	
+        	Text textItem = currentItem.getTextObject();
+        	String variableName = textItem.getText();
+        	String alignX = textItem.getAlignX();
+        	String alignY = textItem.getAlignY();
+        	String font = textItem.getFont();
+        	int textSize = (int) Math.round(textItem.getTextSize() * Math.min(xScale, yScale) * optionsListScale);
+        	int fontColor = textItem.getTextColor();
+        	boolean bold = textItem.getBold();
+        	int offsetX = (int) Math.round(textItem.getOffsetX() * xScale * optionsListScale);
+        	int offsetY = (int) Math.round(textItem.getOffsetY() * yScale * optionsListScale);
+        	
+        	toReturn =  
+    				new Element( // Third Constructor (Only Renderable)
+						transformIndexes, selector,
+        				maskIndex, hoverOverlap,
+        				hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
+        				entryAnimationTransformIndex,
+						new OptionsList(
+							optionsListScale, function, listObjects, 
+							objects, objectsCount, name,
+							new Text(variableName, alignX, alignY, offsetX, offsetY, textSize, fontColor, font, bold), 
+							new RoundedArea(x, y, xSize, ySize, roundPercentage), 
+	        				color, opacity, shadowOffset, 
+	        				stroke, strokeColor
+	        				)
+						);
+    		
     	}
     	
     	return toReturn;

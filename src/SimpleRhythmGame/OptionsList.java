@@ -26,14 +26,14 @@ public class OptionsList {
     
     public OptionsList(
     		float scale, String function, String listObjects, 
-    		int selector, String name, 
+    		String name, 
     		Text text, RoundedArea rectShape,
 			int color, int opacity, int shadowOffset, 
 			float strokeWidth, int strokeColor) {
 		this.scale = scale;
 		this.function = function;
 		this.listObjectsName = listObjects;
-		this.selector = selector;
+		this.selector = 0;
 		this.setName(name);
 		
 		this.text = text;
@@ -49,14 +49,14 @@ public class OptionsList {
     
     public OptionsList( // TODO call this constructor in scaledmenu
     		float scale, String function, String listObjects, 
-    		int selector, Object[] objects, int objectsCount, String name, 
+    		Object[] objects, int objectsCount, String name, 
     		Text text, RoundedArea rectShape,
 			int color, int opacity, int shadowOffset, 
 			float strokeWidth, int strokeColor) {
 		this.scale = scale;
 		this.function = function;
 		this.listObjectsName = listObjects;
-		this.selector = selector;
+		this.selector = 0;
 		this.setName(name);
 		this.rawObjects = objects;
 		this.objectsCount = objectsCount;
@@ -104,11 +104,11 @@ public class OptionsList {
 		this.function = function;
 	}
 
-	public String getListObjects() {
+	public String getListObjectsName() {
 		return listObjectsName;
 	}
 
-	public void setListObjects(String listObjects) {
+	public void setListObjectsName(String listObjects) {
 		this.listObjectsName = listObjects;
 	}
 
@@ -120,11 +120,11 @@ public class OptionsList {
 		this.selector = selector;
 	}
 
-	public Text getText() {
+	public Text getTextObject() {
 		return text;
 	}
 
-	public void setText(Text text) {
+	public void setTextObject(Text text) {
 		this.text = text;
 	}
 
@@ -177,6 +177,7 @@ public class OptionsList {
 	}
 
 	public int getObjectsCount() {
+		countObjects();
 		return objectsCount;
 	}
 
@@ -190,6 +191,26 @@ public class OptionsList {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public int getX() {
+		return rectShape.getX();
+	}
+	
+	public int getXSize() {
+		return rectShape.getXSize();
+	}
+	
+	public int getY() {
+		return rectShape.getY();
+	}
+	
+	public int getYSize() {
+		return rectShape.getYSize();
+	}
+	
+	public int getRoundPercentage() {
+		return rectShape.getRoundPercentage();
 	}
     
 }

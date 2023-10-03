@@ -265,6 +265,21 @@ public class Config {
 
 	public void setCurrentThemeChoice(String currentColorsChoice) {
 		this.currentThemeChoice = currentColorsChoice;
+		updateDisplays();
+	}
+	
+	public void setCurrentThemeChoice(int indexForChoice) {
+		this.currentThemeChoice = themes[indexForChoice].getThemeName();
+		updateDisplays();
+	}
+	
+	public void updateDisplays() {
+		Menu currentMenu = ShowImage.getCurrentScaledMenu();
+		for (Element element : currentMenu.getElements()) {
+			if (element.isTextfield()) {
+				element.getTextfield().loadCurrentDisplay();
+			}
+		}
 	}
 	
 	public Color[] getCurrentThemeColors() {
@@ -298,6 +313,18 @@ public class Config {
 //	public String setObjectList(String objectsName, Object[] newValues) {
 //		
 //	}
+	
+	public Object getVariable(String varParentName, String varName, int index) {
+		Object[] objectsList = getObjectList(varParentName);
+		Object objectToReturn = null;
+		if (varParentName.equals("%ThemeChoices")) {
+			Theme[] toReadThemes = (Theme[]) objectsList;
+			if (varName.equals("%Name")) {
+				objectToReturn = toReadThemes[index].getThemeName();
+			}
+		}
+		return objectToReturn;
+	}
 	
 	public Object getVariable(String varName) {
 		Object varToReturn = "Variable \"" + varName + "\" not found.";

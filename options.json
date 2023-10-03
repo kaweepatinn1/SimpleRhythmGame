@@ -1,6 +1,6 @@
 {
   "fullscreen": false,
-  "sizeToForce": 1280,
+  "sizeToForce": 1920,
   "nanoSecondPrecision": true,
   "framesToStore": 20,
   "framerate": 60,
@@ -128,6 +128,183 @@
     },
     {
       "themeName": "TestTheme",
+      "colorsList": [
+        {
+          "red": 102,
+          "green": 102,
+          "blue": 102,
+          "alpha": 255
+        },
+        {
+          "red": 217,
+          "green": 234,
+          "blue": 211,
+          "alpha": 255
+        },
+        {
+          "red": 207,
+          "green": 226,
+          "blue": 243,
+          "alpha": 255
+        },
+        {
+          "red": 255,
+          "green": 255,
+          "blue": 255,
+          "alpha": 255
+        },
+        {
+          "red": 217,
+          "green": 217,
+          "blue": 217,
+          "alpha": 255
+        },
+        {
+          "red": 255,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 0
+        },
+        {
+          "red": 255,
+          "green": 255,
+          "blue": 255,
+          "alpha": 255
+        }
+      ]
+    },
+    {
+      "themeName": "TestTheme2",
+      "colorsList": [
+        {
+          "red": 102,
+          "green": 102,
+          "blue": 102,
+          "alpha": 255
+        },
+        {
+          "red": 217,
+          "green": 234,
+          "blue": 211,
+          "alpha": 255
+        },
+        {
+          "red": 207,
+          "green": 226,
+          "blue": 243,
+          "alpha": 255
+        },
+        {
+          "red": 255,
+          "green": 255,
+          "blue": 255,
+          "alpha": 255
+        },
+        {
+          "red": 217,
+          "green": 217,
+          "blue": 217,
+          "alpha": 255
+        },
+        {
+          "red": 255,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 0
+        },
+        {
+          "red": 255,
+          "green": 255,
+          "blue": 255,
+          "alpha": 255
+        }
+      ]
+    },
+    {
+      "themeName": "TestTheme3",
+      "colorsList": [
+        {
+          "red": 102,
+          "green": 102,
+          "blue": 102,
+          "alpha": 255
+        },
+        {
+          "red": 217,
+          "green": 234,
+          "blue": 211,
+          "alpha": 255
+        },
+        {
+          "red": 207,
+          "green": 226,
+          "blue": 243,
+          "alpha": 255
+        },
+        {
+          "red": 255,
+          "green": 255,
+          "blue": 255,
+          "alpha": 255
+        },
+        {
+          "red": 217,
+          "green": 217,
+          "blue": 217,
+          "alpha": 255
+        },
+        {
+          "red": 255,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 0
+        },
+        {
+          "red": 255,
+          "green": 255,
+          "blue": 255,
+          "alpha": 255
+        }
+      ]
+    },
+    {
+      "themeName": "TestTheme4",
       "colorsList": [
         {
           "red": 102,
@@ -1130,6 +1307,7 @@
           },
           "textbox": {
             "scale": 1.0,
+            "function": "addPopup int 2",
             "name": "DropDownThemes",
             "rectShape": {
               "x": 1054,
@@ -1868,6 +2046,78 @@
               "entryAnimationTransformIndex": 9
             }
           ]
+        },
+        {
+          "popupName": "ThemeOptions",
+          "popupTitle": "Theme Options",
+          "elements": [
+            {
+              "selector": {
+                "selectorIndex": [
+                  1,
+                  0
+                ],
+                "selectorOptions": [
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    1,
+                    0
+                  ]
+                ],
+                "primaryHovered": false,
+                "secondaryHovered": false,
+                "selected": false
+              },
+              "optionsList": {
+                "scale": 1.0,
+                "function": "setTheme",
+                "listObjectsName": "%ThemeChoices",
+                "objectsCount": 0,
+                "selector": 0,
+                "name": "popup",
+                "text": {
+                  "text": "%Name",
+                  "alignX": "center",
+                  "alignY": "center",
+                  "offsetX": 0,
+                  "offsetY": -5,
+                  "textSize": 40,
+                  "textColor": 6,
+                  "font": "Archivo Narrow",
+                  "bold": false
+                },
+                "rectShape": {
+                  "x": 960,
+                  "y": 580,
+                  "xSize": 300,
+                  "ySize": 80,
+                  "roundPercentage": 0
+                },
+                "color": 2,
+                "opacity": 255,
+                "shadowOffset": 8,
+                "strokeWidth": 5.0,
+                "strokeColor": 6
+              },
+              "hoverOverlap": false,
+              "maskIndex": 1,
+              "hoverEffectIndex": -1,
+              "clickEffectIndex": 1,
+              "arbitraryTransformIndex": 11,
+              "entryAnimationTransformIndex": -1
+            }
+          ]
         }
       ],
       "secondarySelections": [
@@ -1877,6 +2127,13 @@
         ]
       ],
       "masks": [
+        {
+          "x": 0,
+          "y": 0,
+          "xSize": 1920,
+          "ySize": 1080,
+          "roundPercentage": 0
+        },
         {
           "x": 0,
           "y": 0,
@@ -1994,6 +2251,16 @@
           "rotate": 0.0,
           "delayMillis": 0,
           "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": 120.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 0,
           "easeType": 6
         }
       ]

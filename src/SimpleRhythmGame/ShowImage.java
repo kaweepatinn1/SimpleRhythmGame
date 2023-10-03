@@ -539,7 +539,7 @@ public class ShowImage extends JPanel implements KeyListener {
     			1f, // scale 
 				"", // function
 				"",  // name
-				new Text(popupIndexes.length < 1 ? scaledMenu.getMenuDisplayName() : scaledMenu.getPopup(popupIndexes.length - 1).getPopupTitle(),
+				new Text(popupIndexes.length < 1 ? scaledMenu.getMenuDisplayName() : scaledMenu.getPopup(popupIndexes[popupIndexes.length - 1]).getPopupTitle(),
 						"center", "center", // align
 						calculatedScreenWidth * 50 / 100, calculatedScreenHeight * 15 / 400, // text offset (x, y)
 						(int) (75 * scale), // text size
@@ -698,7 +698,7 @@ public class ShowImage extends JPanel implements KeyListener {
         	
         	Shape finalRect = roundRect;
         	
-        	for (int k = 3 ; k > -1 ; k--) {
+        	for (int k = currentElement.getTransform().length - 1 ; k > -1 ; k--) {
         		if (currentElement.getTransform()[k].getNewTransform() != null) {
 	        		finalRect = currentElement.getTransform()[k].getCurrentPosition().getFinalTransform().createTransformedShape(finalRect);
 	        	}
@@ -734,7 +734,7 @@ public class ShowImage extends JPanel implements KeyListener {
             AffineTransform oldForm = g2d.getTransform();
         	
             if (textbox.getRenderableObject() != null) { // render image if contained
-            	for (int k = 3 ; k > -1 ; k--) {
+            	for (int k = currentElement.getTransform().length - 1 ; k > -1 ; k--) {
             		if (currentElement.getTransform()[k].getNewTransform() != null) {
             			g2d.transform(currentElement.getTransform()[k].getCurrentPosition().getFinalTransform());
     	        	}
@@ -750,7 +750,7 @@ public class ShowImage extends JPanel implements KeyListener {
             
             if (textbox.getText() != null){ // render text if contained
             	// g2d.translate(-textbox.getOffsetX(), -textbox.getOffsetY());
-                for (int k = 3 ; k > -1 ; k--) {
+                for (int k = currentElement.getTransform().length - 1 ; k > -1 ; k--) {
             		if (currentElement.getTransform()[k].getNewTransform() != null) {
             			g2d.transform(currentElement.getTransform()[k].getCurrentPosition().getFinalTransform());
     	        	}
@@ -807,7 +807,7 @@ public class ShowImage extends JPanel implements KeyListener {
         	
         	Shape finalRect = roundRect;
         	
-        	for (int k = 3 ; k > -1 ; k--) {
+        	for (int k = currentElement.getTransform().length - 1 ; k > -1 ; k--) {
         		if (currentElement.getTransform()[k].getNewTransform() != null) {
 	        		finalRect = currentElement.getTransform()[k].getCurrentPosition().getFinalTransform().createTransformedShape(finalRect);
 	        	}
@@ -845,7 +845,7 @@ public class ShowImage extends JPanel implements KeyListener {
         	RoundedArea area = textfield.getRectShape();
         	
         	// g2d.translate(-textObject.getOffsetX(), -textObject.getOffsetY());
-            for (int k = 3 ; k > -1 ; k--) {
+            for (int k = currentElement.getTransform().length - 1 ; k > -1 ; k--) {
         		if (currentElement.getTransform()[k].getNewTransform() != null) {
         			g2d.transform(currentElement.getTransform()[k].getCurrentPosition().getFinalTransform());
 	        	}
@@ -891,7 +891,7 @@ public class ShowImage extends JPanel implements KeyListener {
 	        	g2d.setClip(getBoxAttributes(scaledMenu.getMasks()[maskIndex]).getArea());
         	}
             
-            for (int k = 3 ; k > -1 ; k--) {
+            for (int k = currentElement.getTransform().length - 1 ; k > -1 ; k--) {
         		if (currentElement.getTransform()[k].getNewTransform() != null) {
         			g2d.transform(currentElement.getTransform()[k].getCurrentPosition().getFinalTransform());
 	        	}
@@ -943,7 +943,7 @@ public class ShowImage extends JPanel implements KeyListener {
     	        	
             		Shape finalRect = roundRect;
     	        	
-    	        	for (int k = 3 ; k > -1 ; k--) {
+    	        	for (int k = currentElement.getTransform().length - 1 ; k > -1 ; k--) {
     	        		if (currentElement.getTransform()[k].getNewTransform() != null) {
     		        		finalRect = currentElement.getTransform()[k].getCurrentPosition().getFinalTransform().createTransformedShape(finalRect);
     		        	}
@@ -1005,7 +1005,7 @@ public class ShowImage extends JPanel implements KeyListener {
 		        	
 	        		Shape finalRect = roundRect;
 		        	
-		        	for (int k = 3 ; k > -1 ; k--) {
+		        	for (int k = currentElement.getTransform().length - 1 ; k > -1 ; k--) {
 		        		if (currentElement.getTransform()[k].getNewTransform() != null) {
 			        		finalRect = currentElement.getTransform()[k].getCurrentPosition().getFinalTransform().createTransformedShape(finalRect);
 			        	}
@@ -1469,6 +1469,7 @@ public class ShowImage extends JPanel implements KeyListener {
 	        int i = 0;
 	        for (Element element : tempElementsList) {
 	        	selectionsList[i] = element.getSelector();
+	        	i++;
 	        }
 	        popupUpdate = true;
 			popupTime = Framerate.getCurrentTime();
@@ -1495,6 +1496,7 @@ public class ShowImage extends JPanel implements KeyListener {
 	        popupUpdate = true;
 			popupTime = Framerate.getCurrentTime();
 			fadeOutPopup = index;
+			
 			lastHovered = null;
 			animateExitPopup(index);
 	        

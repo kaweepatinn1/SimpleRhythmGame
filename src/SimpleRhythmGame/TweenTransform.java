@@ -70,6 +70,11 @@ public class TweenTransform {
 		newTransform = null;
 	}
 	
+	public TweenTransform(OptionsList optionsList) {
+		ogTransform = new SpecialTransform(optionsList.getRectShape());
+		newTransform = null;
+	}
+	
 	public TweenTransform(Renderable renderable) {
 		ogTransform = new SpecialTransform(renderable.getX(), renderable.getY(), 
 				renderable.getXSize(), renderable.getYSize());

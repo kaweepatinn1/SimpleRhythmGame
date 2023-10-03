@@ -19,6 +19,13 @@ public class Selector {
 		return selectorIndex;
 	}
 	
+//	public void incrementSelectorIndex() {
+//		selectorIndex[1] = selectorIndex[1] + 1;
+//		selectorOptions[1][1] = selectorOptions[1][1] + 1;
+//		selectorOptions[3][1] = selectorOptions[3][1] + 1;
+//		// increments main, and north and south positions.
+//	}
+	
 	public int[][] getSelectorOptions(){
 		return selectorOptions;
 	}

@@ -4,7 +4,7 @@ package SimpleRhythmGame;
 
 public class DefaultValues {
 	private final static boolean defaultFullscreen = false; // if not fullscreen will force below value
-	private final static int defaultSizeToForce = 1280; // forces this screen size if above is true
+	private final static int defaultSizeToForce = 1920; // forces this screen size if above is true
 	
 	private final static boolean defaultNanoSecondPrecision = true; // true breaks animations
 	private final static int defaultFramesToStore = 20;
@@ -78,7 +78,49 @@ public class DefaultValues {
 				    		new IntColor (0,0,0,0), // 7. Transparent Color
 				    		new IntColor (255,255,255,255), // 8. Display Color
 					}
-					)
+					),
+			new Theme(
+					"TestTheme2",
+					new IntColor[] {
+							new IntColor (102,102,102,255), // 0. BG Color
+							new IntColor (217,234,211,255), // 1. Menu Color
+				    		new IntColor (207,226,243,255), // 2. Buttons Color
+				    		new IntColor (255,255,255,255), // 3. Primary Selection Color
+				    		new IntColor (217,217,217,255), // 4. Secondary Selection Color
+				    		new IntColor (255,0,0,255), // 5. Accent Color
+				    		new IntColor (0,0,0,255), // 6. Stroke Color
+				    		new IntColor (0,0,0,0), // 7. Transparent Color
+				    		new IntColor (255,255,255,255), // 8. Display Color
+					}
+					),
+			new Theme(
+					"TestTheme3",
+					new IntColor[] {
+							new IntColor (102,102,102,255), // 0. BG Color
+							new IntColor (217,234,211,255), // 1. Menu Color
+				    		new IntColor (207,226,243,255), // 2. Buttons Color
+				    		new IntColor (255,255,255,255), // 3. Primary Selection Color
+				    		new IntColor (217,217,217,255), // 4. Secondary Selection Color
+				    		new IntColor (255,0,0,255), // 5. Accent Color
+				    		new IntColor (0,0,0,255), // 6. Stroke Color
+				    		new IntColor (0,0,0,0), // 7. Transparent Color
+				    		new IntColor (255,255,255,255), // 8. Display Color
+					}
+					),
+			new Theme(
+					"TestTheme4",
+					new IntColor[] {
+							new IntColor (102,102,102,255), // 0. BG Color
+							new IntColor (217,234,211,255), // 1. Menu Color
+				    		new IntColor (207,226,243,255), // 2. Buttons Color
+				    		new IntColor (255,255,255,255), // 3. Primary Selection Color
+				    		new IntColor (217,217,217,255), // 4. Secondary Selection Color
+				    		new IntColor (255,0,0,255), // 5. Accent Color
+				    		new IntColor (0,0,0,255), // 6. Stroke Color
+				    		new IntColor (0,0,0,0), // 7. Transparent Color
+				    		new IntColor (255,255,255,255), // 8. Display Color
+					}
+					),
 	};
 	
 	private final static String defaultSelectedTheme = "DefaultTheme";
@@ -357,7 +399,8 @@ public class DefaultValues {
 					0, // BG Color
 					new int[][]{{0,2}}, // Secondary Selections
 					new RoundedArea[]{ // Masks
-							new RoundedArea(0, 0, 1920, 1080, 0) // 0. Full Screen
+							new RoundedArea(0, 0, 1920, 1080, 0), // 0. Full Screen
+							new RoundedArea(0, 0, 1920, 1080, 0), // 1. Full Screen
 							// Insert here
 						},
 						new StoredTransform[] {
@@ -447,6 +490,14 @@ public class DefaultValues {
 								0, // rotate transform
 								0, // offset (ms)
 								500, // animation time (ms)
+								6 // (ease type)
+								),
+							new StoredTransform( // 11. instant 120 y (optionsList)
+								0, 120, // x, y transform
+								1, 1, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								0, // animation time (ms)
 								6 // (ease type)
 								),
 						},
@@ -729,7 +780,7 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									null, // function
+									"addPopup int 2", // function
 									"DropDownThemes",  // name
 									new Renderable(
 											// Renderable Without Function
@@ -1130,7 +1181,48 @@ public class DefaultValues {
 													5, 6 // strokeWidth, strokeColor
 													))
 									}
-							)
+							),
+							new Popup(
+								"ThemeOptions", // Popup Name
+								"Theme Options", // Popup Title
+								new Element[] {
+									new Element(
+										new Selector(
+												new int[]{1,0}, // Selector Index
+												new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+												),
+											1, // mask index
+											false, // hover overlap
+											-1, // hover effect
+											1, // click effect
+											11, // arbritraty animation (to be used for scroll)
+											-1, // entry animation
+											new OptionsList(
+													// Text and Renderable
+													1f, // scale
+													"setTheme", // function
+													"%ThemeChoices", // list objects
+													"popup",  // name
+													new Text(
+														"%Name", // text
+														"center", "center", // align
+														0, -5, // text offset (x, y)
+														40, // text size
+														6, // text color (index of colors)
+														"Archivo Narrow", // font
+														false // bold
+														),
+													new RoundedArea(
+														960, 580, 300, 80, 0  // x, y, xSize, ySize, round%
+														),
+													2, // box color (index of colors)
+													255, // opacity (0-255)
+													8, // shadowOffset
+													5, 6 // strokeWidth, strokeColor
+													)
+											),
+								}
+							),
 					}
 			)
 	};

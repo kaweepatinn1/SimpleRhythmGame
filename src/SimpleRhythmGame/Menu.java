@@ -257,12 +257,38 @@ public class Menu {
     			rawElementsList = rawPopup.getElements();
     		}
     		
-        	Element[] elementsToReturn = new Element[rawElementsList.length];
-        	
-        	for (int i = 0; i < rawElementsList.length; i++) {
+    		int additionalElements = 0;
+    		
+    		for (int i = 0; i < rawElementsList.length; i++) {
             	
             	Element currentElement = rawElementsList[i];
-            	elementsToReturn[i] = currentElement.scale(xScale, yScale);
+            	if (currentElement.isOptionsList()) {
+            		Object[] objects = currentElement.getOptionsList().getObjects();
+                	int objectsCount = objects.length;
+                	additionalElements = additionalElements + objectsCount - 1;
+            	}
+            	
+        	}
+    		
+        	Element[] elementsToReturn = new Element[rawElementsList.length + additionalElements];
+        	
+        	for (int i = 0; i < rawElementsList.length + additionalElements; i++) {
+            	
+            	Element currentElement = rawElementsList[i];
+            	if (currentElement.isOptionsList()) {
+            		Object[] objects = currentElement.getOptionsList().getObjects();
+            		int objectsCount = objects.length;
+            		
+                	for (int index = 0 ; index < objectsCount ; index++) {
+                		Element toRenderElement = new Element(currentElement, index, objectsCount, transforms);
+                		Element scaledElement = toRenderElement.scale(xScale, yScale);
+                		elementsToReturn[i] = scaledElement;
+                		i++;
+                	}
+            	} else {
+            		elementsToReturn[i] = currentElement.scale(xScale, yScale);
+            	}
+            	
             	
         	}
         	
