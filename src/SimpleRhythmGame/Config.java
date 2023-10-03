@@ -286,12 +286,18 @@ public class Config {
 	public Object[] getObjectList(String objectsName) {
 		Object[] objectsToReturn = new Object[] 
 				{"Objects with title \"" + objectsName + "\" not found."};
-		return new Object[] {0};
+		if (objectsName.equals("%ThemeChoices")) {
+			objectsToReturn = themes;
+		} else if (true) {
+			
+		}
+		
+		return objectsToReturn;
 	}
 	
-	public String setObjectList(String objectsName, Object[] newValues) {
-		
-	}
+//	public String setObjectList(String objectsName, Object[] newValues) {
+//		
+//	}
 	
 	public Object getVariable(String varName) {
 		Object varToReturn = "Variable \"" + varName + "\" not found.";

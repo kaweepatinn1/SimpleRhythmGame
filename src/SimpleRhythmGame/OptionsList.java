@@ -4,7 +4,7 @@ public class OptionsList {
 	private float scale;
 	private String function; 
 	// will also be based on selected item
-	
+	private Object[] rawObjects;
 	private String listObjectsName; 
 	// the variable that the list should be populated with
 	// private String listObjectField;
@@ -43,13 +43,43 @@ public class OptionsList {
 		this.shadowOffset = shadowOffset;
 		this.strokeWidth = strokeWidth;
 		this.strokeColor = strokeColor;
+//		setObjects(getObjects());
+//		countObjects();
+	}
+    
+    public OptionsList( // TODO call this constructor in scaledmenu
+    		float scale, String function, String listObjects, 
+    		int selector, Object[] objects, int objectsCount, String name, 
+    		Text text, RoundedArea rectShape,
+			int color, int opacity, int shadowOffset, 
+			float strokeWidth, int strokeColor) {
+		this.scale = scale;
+		this.function = function;
+		this.listObjectsName = listObjects;
+		this.selector = selector;
+		this.setName(name);
+		this.rawObjects = objects;
+		this.objectsCount = objectsCount;
 		
-		countObjects();
+		this.text = text;
+		this.rectShape = rectShape;
+		this.color = color;
+		this.opacity = opacity;
+		this.shadowOffset = shadowOffset;
+		this.strokeWidth = strokeWidth;
+		this.strokeColor = strokeColor;
 	}
     
     public void countObjects() {
-    	Object[] object = ShowImage.getConfig().getObjectList(listObjectsName);
-    	objectsCount = object.length;
+    	objectsCount = rawObjects.length;
+    }
+    
+    public void setObjects(Object[] objects) {
+    	rawObjects = objects;
+    }
+    
+    public Object[] getObjects() {
+    	return ShowImage.getConfig().getObjectList(listObjectsName);
     }
     
 	public void incremenetSelector(boolean forwards) {
