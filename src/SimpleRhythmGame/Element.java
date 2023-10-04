@@ -794,7 +794,8 @@ public class Element {
         	int objectsCount = objects.length;
         	
         	String function = currentItem.getFunction();
-        	String listObjects = currentItem.getListObjectsName();
+        	String listObjectsName = currentItem.getListObjectsName();
+        	int optionsMax = currentItem.getOptionsMax();
         	
         	String name = currentItem.getName();
         	
@@ -827,8 +828,8 @@ public class Element {
         				hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
         				entryAnimationTransformIndex,
 						new OptionsList(
-							optionsListScale, function, listObjects, 
-							objects, objectsCount, name,
+							optionsListScale, function, listObjectsName, 
+							optionsMax, objects, objectsCount, name,
 							new Text(variableName, alignX, alignY, offsetX, offsetY, textSize, fontColor, font, bold), 
 							new RoundedArea(x, y, xSize, ySize, roundPercentage), 
 	        				color, opacity, shadowOffset, 

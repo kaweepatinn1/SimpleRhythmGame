@@ -18,6 +18,7 @@ public class Config {
 	
 	private boolean DEBUG_drawMasks;
 	private int DEBUG_masksColorsOffset;
+	private int DEBUG_masksOpacity;
 	
 	private Controls[] controls;
 	private String currentThemeChoice;
@@ -32,7 +33,7 @@ public class Config {
 	public Config(boolean fullscreen, int sizeToForce, Controls[] controls, Theme[] themes, 
 			String currentThemeChoice, String[] fonts, Menu[] menus, boolean nanoSecondPrecision, int framesToStore,
 			int framerate, boolean shouldLimitFramerate, boolean cursorEnabled, double transitionTime,
-			boolean DEBUG_drawMasks, int DEBUG_masksColorsOffset) {
+			boolean DEBUG_drawMasks, int DEBUG_masksColorsOffset, int DEBUG_masksOpacity) {
 		this.fullscreen = fullscreen;
 		this.sizeToForce = sizeToForce;
 		this.controls = controls;
@@ -48,6 +49,7 @@ public class Config {
 		this.transitionTime = transitionTime;
 		this.DEBUG_drawMasks = DEBUG_drawMasks;
 		this.DEBUG_masksColorsOffset = DEBUG_masksColorsOffset;
+		this.DEBUG_masksOpacity = DEBUG_masksOpacity;
 	}
 	
 	public static int getColorsLenth() {
@@ -246,6 +248,14 @@ public class Config {
 	public void DEBUG_masksColorsOffset(int DEBUG_masksColorsOffset) {
 		this.DEBUG_masksColorsOffset = DEBUG_masksColorsOffset;
 	}
+	
+	public int DEBUG_masksOpacity() {
+		return DEBUG_masksOpacity;
+	}
+	
+	public void DEBUG_masksOpacity(int DEBUG_masksOpacity) {
+		this.DEBUG_masksOpacity = DEBUG_masksOpacity;
+	}
 
 	public boolean getCursorEnabled() {
 		return cursorEnabled;
@@ -344,6 +354,7 @@ public class Config {
 			}
 			getCurrentTheme().setThemeName((String) newValues);
 			currentThemeChoice = (String) newValues;
+			ShowImage.refreshMenu();
 			return "Success";
 		} else {
 			return "VariableNotFound"; // failed to find the variable

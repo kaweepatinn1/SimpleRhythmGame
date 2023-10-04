@@ -177,7 +177,7 @@ public class ShowImage extends JPanel implements KeyListener {
                 	if (lastHovered != null) {
                 		getElementFromName(lastHovered).deanimateHover(false);
 //                		Element lastElementHovered = getElementFromName(lastHovered);
-//                		if (lastElementHovered != null) {
+//                		if (lastElementHovered != null) {`
 //                			lastElementHovered.deanimateHover();
 //                		}
                 	}
@@ -587,7 +587,7 @@ public class ShowImage extends JPanel implements KeyListener {
     			float saturation = 0.8f;
     			float brightness = 1f;
     			Color color = Color.getHSBColor(hue, saturation, brightness);
-    			Color finalColor = new Color(color.getRed(),color.getGreen(),color.getBlue(),127);
+    			Color finalColor = new Color(color.getRed(),color.getGreen(),color.getBlue(),config.DEBUG_masksOpacity());
 	        	g2d.setColor(finalColor);
 	        	g2d.fill(maskBounds);
         	}
@@ -1316,6 +1316,8 @@ public class ShowImage extends JPanel implements KeyListener {
     				popupIndexes = newPopupIndexes;
     				ogSelecteds = newOgSelecteds;
     				
+    				lastHovered = null;
+    				
     				tempElementsList = (getCurrentPopupIndex() == -1) ?
     	        			scaledMenu.getElements() : scaledMenu.getPopup(fadeOutPopup).getElements();
     		        selectionsList = new Selector[tempElementsList.length];
@@ -1448,6 +1450,8 @@ public class ShowImage extends JPanel implements KeyListener {
 		if (existing) {
 			// System.out.println("Popup is already visible!");
 		} else {
+			lastHovered = null;
+			
 			popupUpdate = true;
 			popupTime = Framerate.getCurrentTime();
 			
@@ -1512,6 +1516,10 @@ public class ShowImage extends JPanel implements KeyListener {
 
 	public static void setTransitioning(boolean transitioning) {
 		ShowImage.transitioning = transitioning;
+	}
+	
+	public static void refreshMenu() {
+		scaledMenu = rawCurrentMenu.getScaledMenu(calculatedScreenWidth, calculatedScreenHeight);
 	}
 	
 	public static void setSelectedElement(String textField) {

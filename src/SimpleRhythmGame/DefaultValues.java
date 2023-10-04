@@ -4,7 +4,7 @@ package SimpleRhythmGame;
 
 public class DefaultValues {
 	private final static boolean defaultFullscreen = false; // if not fullscreen will force below value
-	private final static int defaultSizeToForce = 1920; // forces this screen size if above is true
+	private final static int defaultSizeToForce = 1280; // forces this screen size if above is true
 	
 	private final static boolean defaultNanoSecondPrecision = true; // true breaks animations
 	private final static int defaultFramesToStore = 20;
@@ -16,6 +16,7 @@ public class DefaultValues {
 	
 	private final static boolean defaultDEBUG_drawMasks = false; // draws all clipping masks
 	private final static int defaultDEBUG_masksColorsOffset = 0; // changes the seed for drawn colors
+	private final static int defaultDEBUG_MasksOpacity = 80;
 	
 	private final static Controls[] defaultControls = new Controls[] {
 			new Controls(
@@ -66,12 +67,12 @@ public class DefaultValues {
 					}
 					),
 			new Theme(
-					"TestTheme",
+					"ColorTrip",
 					new IntColor[] {
-							new IntColor (102,102,102,255), // 0. BG Color
-							new IntColor (217,234,211,255), // 1. Menu Color
-				    		new IntColor (207,226,243,255), // 2. Buttons Color
-				    		new IntColor (255,255,255,255), // 3. Primary Selection Color
+							new IntColor (0,255,0,255), // 0. BG Color
+							new IntColor (23,55,198,255), // 1. Menu Color
+				    		new IntColor (207,95,235,255), // 2. Buttons Color
+				    		new IntColor (24,255,255,255), // 3. Primary Selection Color
 				    		new IntColor (217,217,217,255), // 4. Secondary Selection Color
 				    		new IntColor (255,0,0,255), // 5. Accent Color
 				    		new IntColor (0,0,0,255), // 6. Stroke Color
@@ -109,6 +110,34 @@ public class DefaultValues {
 					),
 			new Theme(
 					"TestTheme4",
+					new IntColor[] {
+							new IntColor (102,102,102,255), // 0. BG Color
+							new IntColor (217,234,211,255), // 1. Menu Color
+				    		new IntColor (207,226,243,255), // 2. Buttons Color
+				    		new IntColor (255,255,255,255), // 3. Primary Selection Color
+				    		new IntColor (217,217,217,255), // 4. Secondary Selection Color
+				    		new IntColor (255,0,0,255), // 5. Accent Color
+				    		new IntColor (0,0,0,255), // 6. Stroke Color
+				    		new IntColor (0,0,0,0), // 7. Transparent Color
+				    		new IntColor (255,255,255,255), // 8. Display Color
+					}
+					),
+			new Theme(
+					"LastTheme",
+					new IntColor[] {
+							new IntColor (102,102,102,255), // 0. BG Color
+							new IntColor (217,234,211,255), // 1. Menu Color
+				    		new IntColor (207,226,243,255), // 2. Buttons Color
+				    		new IntColor (255,255,255,255), // 3. Primary Selection Color
+				    		new IntColor (217,217,217,255), // 4. Secondary Selection Color
+				    		new IntColor (255,0,0,255), // 5. Accent Color
+				    		new IntColor (0,0,0,255), // 6. Stroke Color
+				    		new IntColor (0,0,0,0), // 7. Transparent Color
+				    		new IntColor (255,255,255,255), // 8. Display Color
+					}
+					),
+			new Theme(
+					"LastTheme2",
 					new IntColor[] {
 							new IntColor (102,102,102,255), // 0. BG Color
 							new IntColor (217,234,211,255), // 1. Menu Color
@@ -400,7 +429,7 @@ public class DefaultValues {
 					new int[][]{{0,2}}, // Secondary Selections
 					new RoundedArea[]{ // Masks
 							new RoundedArea(0, 0, 1920, 1080, 0), // 0. Full Screen
-							new RoundedArea(0, 0, 1920, 1080, 0), // 1. Full Screen
+							new RoundedArea(0, 240, 1920, 700, 0), // 1. Full Screen
 							// Insert here
 						},
 						new StoredTransform[] {
@@ -484,7 +513,7 @@ public class DefaultValues {
 								500, // animation time (ms)
 								6 // (ease type)
 								),
-							new StoredTransform( // 10. -200 x (green box to center)
+							new StoredTransform( // 10. -200 x (f box to center)
 								-200, 0, // x, y transform
 								1, 1, // scale transform (x, y)
 								0, // rotate transform
@@ -493,7 +522,7 @@ public class DefaultValues {
 								6 // (ease type)
 								),
 							new StoredTransform( // 11. instant 120 y (optionsList)
-								0, 120, // x, y transform
+								0, 130, // x, y transform
 								1, 1, // scale transform (x, y)
 								0, // rotate transform
 								0, // offset (ms)
@@ -946,7 +975,7 @@ public class DefaultValues {
 								new TextField(
 										// Textfield
 										1f, // scale
-										12, // Max Size
+										16, // Max Size
 										new int[] { // Error Popup Indexes
 												1, // Field is duplicate!
 												0, // Field is empty
@@ -1187,6 +1216,32 @@ public class DefaultValues {
 								"Theme Options", // Popup Title
 								new Element[] {
 									new Element(
+											new Selector(
+												new int[]{-1,-1}, // Selector Index
+												new int[][]{{-1,-1},{-1,-1},{-1,-1},{-1,-1}} // E, S, W, N to select next
+												),
+											-1, // Mask Index
+											false, // hover overlap
+											-1, // hover effect
+											-1, // click effect
+											-1, // arbritraty animation (to be used for scroll)
+											8, // entry animation
+											new TextBox(
+												// No Text, No Renderable
+												1, // scale
+												null, // function
+												"Green Background",  // name
+												new RoundedArea(
+													960, 560, 400, 800,  // x, y, xSize, ySize, round%
+													5 // roundPercentage
+													),
+												1, // box color (index of colors)
+												255, // opacity (0-255)
+												25, // shadowOffset
+												5, 6 // strokeWidth, strokeColor
+												)
+											),
+									new Element(
 										new Selector(
 												new int[]{1,0}, // Selector Index
 												new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
@@ -1196,12 +1251,13 @@ public class DefaultValues {
 											-1, // hover effect
 											1, // click effect
 											11, // arbritraty animation (to be used for scroll)
-											-1, // entry animation
+											8, // entry animation
 											new OptionsList(
 													// Text and Renderable
 													1f, // scale
 													"setTheme", // function
 													"%ThemeChoices", // list objects
+													5, // max amount of options
 													"popup",  // name
 													new Text(
 														"%Name", // text
@@ -1213,7 +1269,7 @@ public class DefaultValues {
 														false // bold
 														),
 													new RoundedArea(
-														960, 580, 300, 80, 0  // x, y, xSize, ySize, round%
+														960, 300, 300, 80, 0  // x, y, xSize, ySize, round%
 														),
 													2, // box color (index of colors)
 													255, // opacity (0-255)
@@ -1243,7 +1299,8 @@ public class DefaultValues {
     			getDefaultCursorEnabled(),
     			getDefaultTransitionTime(),
     			getDefaultDEBUG_drawMasks(),
-    			getDefaultDEBUG_masksColorsOffset()
+    			getDefaultDEBUG_masksColorsOffset(),
+    			getDefaultDEBUG_masksOpacity()
     			);
 		return defaultConfig;
 	}
@@ -1310,6 +1367,10 @@ public class DefaultValues {
 	
 	public static int getDefaultDEBUG_masksColorsOffset() {
 		return defaultDEBUG_masksColorsOffset;
+	}
+
+	public static int getDefaultDEBUG_masksOpacity() {
+		return defaultDEBUG_MasksOpacity;
 	}
 	
 }

@@ -11,6 +11,7 @@ public class OptionsList {
 	// if the list texts should show a field of the object,
 	// use this to specify which field to show.
 	// moved into text's getText() field.
+	private int optionsMax;
 	private int objectsCount;
 	private int selector;
 	private String name;
@@ -25,14 +26,15 @@ public class OptionsList {
     private int strokeColor;
     
     public OptionsList(
-    		float scale, String function, String listObjects, 
-    		String name, 
+    		float scale, String function, String listObjectsName, 
+    		int optionsMax, String name, 
     		Text text, RoundedArea rectShape,
 			int color, int opacity, int shadowOffset, 
 			float strokeWidth, int strokeColor) {
 		this.scale = scale;
 		this.function = function;
-		this.listObjectsName = listObjects;
+		this.listObjectsName = listObjectsName;
+		this.optionsMax = optionsMax;
 		this.selector = 0;
 		this.setName(name);
 		
@@ -48,14 +50,15 @@ public class OptionsList {
 	}
     
     public OptionsList( // TODO call this constructor in scaledmenu
-    		float scale, String function, String listObjects, 
-    		Object[] objects, int objectsCount, String name, 
+    		float scale, String function, String listObjectsName, 
+    		int optionsMax, Object[] objects, int objectsCount, String name, 
     		Text text, RoundedArea rectShape,
 			int color, int opacity, int shadowOffset, 
 			float strokeWidth, int strokeColor) {
 		this.scale = scale;
 		this.function = function;
-		this.listObjectsName = listObjects;
+		this.listObjectsName = listObjectsName;
+		this.optionsMax = optionsMax;
 		this.selector = 0;
 		this.setName(name);
 		this.rawObjects = objects;
@@ -94,6 +97,14 @@ public class OptionsList {
 
 	public void setScale(float scale) {
 		this.scale = scale;
+	}
+	
+	public int getOptionsMax() {
+		return optionsMax;
+	}
+	
+	public void setOptionsMax(int optionsMax) {
+		this.optionsMax = optionsMax;
 	}
 
 	public String getFunction() {
