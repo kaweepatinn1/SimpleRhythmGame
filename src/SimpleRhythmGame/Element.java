@@ -404,7 +404,7 @@ public class Element {
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(getTransform()[2].getCurrentPosition(), roundedArea),
 					new SpecialTransform(scrollEffect, roundedArea),
-					(long) (Math.max((1.5 - getTransform()[2].getCurrentTime() / 2),1) * scrollEffect.getTimeToTransformMillis()),
+					scrollEffect.getTimeToTransformMillis(),
 					scrollEffect.getDelayMillis(),
 					scrollEffect.getEaseType()
 					);
@@ -426,7 +426,7 @@ public class Element {
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(getTransform()[0].getCurrentPosition(), roundedArea),
 					new SpecialTransform(hoverEffect, roundedArea),
-					(long) (Math.min((getTransform()[0].getCurrentTime() + 0.5),1) * hoverEffect.getTimeToTransformMillis()),
+					hoverEffect.getTimeToTransformMillis(),
 					hoverEffect.getDelayMillis(),
 					hoverEffect.getEaseType()
 					);
@@ -448,7 +448,7 @@ public class Element {
 				TweenTransform tweenTransform = new TweenTransform(
 						new SpecialTransform(getTransform()[0].getCurrentPosition(), roundedArea),
 						new SpecialTransform(roundedArea),
-						instant ? 0 : (long) (Math.min((getTransform()[0].getCurrentTime() + 0.5),1) * hoverEffect.getTimeToTransformMillis()),
+						instant ? 0 : hoverEffect.getTimeToTransformMillis(),
 						instant ? 0 : hoverEffect.getDelayMillis(),
 						hoverEffect.getEaseType()
 						);
@@ -463,7 +463,7 @@ public class Element {
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(getTransform()[1].getCurrentPosition(), area),
 					new SpecialTransform(clickEffect, area),
-					(long) (Math.min((getTransform()[1].getCurrentTime() + 0.5),1) * clickEffect.getTimeToTransformMillis()),
+					clickEffect.getTimeToTransformMillis(),
 					clickEffect.getDelayMillis(),
 					clickEffect.getEaseType(),
 					boomerang
@@ -479,7 +479,7 @@ public class Element {
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(getTransform()[1].getCurrentPosition(), area),
 					new SpecialTransform(area),
-					instant ? 0 : (long) (Math.min((getTransform()[1].getCurrentTime() + 0.5),1) * clickEffect.getTimeToTransformMillis()),
+					instant ? 0 : clickEffect.getTimeToTransformMillis(),
 					instant ? 0 : clickEffect.getDelayMillis(),
 					clickEffect.getEaseType()
 					);
@@ -494,7 +494,7 @@ public class Element {
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(getTransform()[3].getCurrentPosition(), area),
 					new SpecialTransform(entryEffect, area),
-					instant ? 1 : (long) (Math.min((getTransform()[3].getCurrentTime() + 0.5),1) * entryEffect.getTimeToTransformMillis()),
+					instant ? 1 : entryEffect.getTimeToTransformMillis(),
 					instant ? 0 : entryEffect.getDelayMillis(),
 					entryEffect.getEaseType()
 					);
@@ -507,13 +507,17 @@ public class Element {
 			RoundedArea area = isRenderable() ? renderable.toArea() : (isTextfield() ? getTextfield().getRectShape() : (isTextbox() ? getTextbox().getRectShape() : (isOptionsList() ? getOptionsList().getRectShape() : null)));
 			// gets the area depending on the type of element present.
 			StoredTransform entryEffect = ShowImage.getTransformsToRender()[getEntryAnimationIndex()];
+			// System.out.println((Math.min((getTransform()[3].getCurrentTime() + 0.5),1)));
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(reset ? new SpecialTransform(entryEffect) : getTransform()[3].getCurrentPosition(), area),
 					new SpecialTransform(area),
-					(long) (Math.min((getTransform()[3].getCurrentTime() + 0.5),1) * entryEffect.getTimeToTransformMillis()),
+					entryEffect.getTimeToTransformMillis(),
 					entryEffect.getDelayMillis(),
 					entryEffect.getEaseType()
 					);
+			// TODO consider fixing: (long) (Math.min((getTransform()[3].getCurrentTime() + 0.5),1) * entryEffect.getTimeToTransformMillis()), 
+			// which multiplies to getTimeToTransformMillis(). Sometimes getCurrentTime returns 0 for the first element of an optionsList,
+			// which I don't understand.
 			setTransform(tweenTransform, 3);
 		}
 	}

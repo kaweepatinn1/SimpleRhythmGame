@@ -187,28 +187,28 @@
       ]
     },
     {
-      "themeName": "TestTheme2",
+      "themeName": "ColorTrip",
       "colorsList": [
         {
-          "red": 102,
-          "green": 102,
-          "blue": 102,
+          "red": 0,
+          "green": 255,
+          "blue": 0,
           "alpha": 255
         },
         {
-          "red": 217,
-          "green": 234,
-          "blue": 211,
+          "red": 23,
+          "green": 55,
+          "blue": 198,
           "alpha": 255
         },
         {
           "red": 207,
-          "green": 226,
-          "blue": 243,
+          "green": 95,
+          "blue": 235,
           "alpha": 255
         },
         {
-          "red": 255,
+          "red": 24,
           "green": 255,
           "blue": 255,
           "alpha": 255
@@ -246,28 +246,28 @@
       ]
     },
     {
-      "themeName": "TestTheme3",
+      "themeName": "ColorTrip",
       "colorsList": [
         {
-          "red": 102,
-          "green": 102,
-          "blue": 102,
+          "red": 0,
+          "green": 255,
+          "blue": 0,
           "alpha": 255
         },
         {
-          "red": 217,
-          "green": 234,
-          "blue": 211,
+          "red": 23,
+          "green": 55,
+          "blue": 198,
           "alpha": 255
         },
         {
           "red": 207,
-          "green": 226,
-          "blue": 243,
+          "green": 95,
+          "blue": 235,
           "alpha": 255
         },
         {
-          "red": 255,
+          "red": 24,
           "green": 255,
           "blue": 255,
           "alpha": 255
@@ -305,28 +305,28 @@
       ]
     },
     {
-      "themeName": "TestTheme4",
+      "themeName": "ColorTrip",
       "colorsList": [
         {
-          "red": 102,
-          "green": 102,
-          "blue": 102,
+          "red": 0,
+          "green": 255,
+          "blue": 0,
           "alpha": 255
         },
         {
-          "red": 217,
-          "green": 234,
-          "blue": 211,
+          "red": 23,
+          "green": 55,
+          "blue": 198,
           "alpha": 255
         },
         {
           "red": 207,
-          "green": 226,
-          "blue": 243,
+          "green": 95,
+          "blue": 235,
           "alpha": 255
         },
         {
-          "red": 255,
+          "red": 24,
           "green": 255,
           "blue": 255,
           "alpha": 255
@@ -364,28 +364,28 @@
       ]
     },
     {
-      "themeName": "LastTheme",
+      "themeName": "ColorTrip",
       "colorsList": [
         {
-          "red": 102,
-          "green": 102,
-          "blue": 102,
+          "red": 0,
+          "green": 255,
+          "blue": 0,
           "alpha": 255
         },
         {
-          "red": 217,
-          "green": 234,
-          "blue": 211,
+          "red": 23,
+          "green": 55,
+          "blue": 198,
           "alpha": 255
         },
         {
           "red": 207,
-          "green": 226,
-          "blue": 243,
+          "green": 95,
+          "blue": 235,
           "alpha": 255
         },
         {
-          "red": 255,
+          "red": 24,
           "green": 255,
           "blue": 255,
           "alpha": 255
@@ -423,28 +423,323 @@
       ]
     },
     {
-      "themeName": "LastTheme2",
+      "themeName": "ColorTrip",
       "colorsList": [
         {
-          "red": 102,
-          "green": 102,
-          "blue": 102,
+          "red": 0,
+          "green": 255,
+          "blue": 0,
           "alpha": 255
         },
         {
-          "red": 217,
-          "green": 234,
-          "blue": 211,
+          "red": 23,
+          "green": 55,
+          "blue": 198,
           "alpha": 255
         },
         {
           "red": 207,
-          "green": 226,
-          "blue": 243,
+          "green": 95,
+          "blue": 235,
+          "alpha": 255
+        },
+        {
+          "red": 24,
+          "green": 255,
+          "blue": 255,
+          "alpha": 255
+        },
+        {
+          "red": 217,
+          "green": 217,
+          "blue": 217,
           "alpha": 255
         },
         {
           "red": 255,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 0
+        },
+        {
+          "red": 255,
+          "green": 255,
+          "blue": 255,
+          "alpha": 255
+        }
+      ]
+    },
+    {
+      "themeName": "ColorTrip",
+      "colorsList": [
+        {
+          "red": 0,
+          "green": 255,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 23,
+          "green": 55,
+          "blue": 198,
+          "alpha": 255
+        },
+        {
+          "red": 207,
+          "green": 95,
+          "blue": 235,
+          "alpha": 255
+        },
+        {
+          "red": 24,
+          "green": 255,
+          "blue": 255,
+          "alpha": 255
+        },
+        {
+          "red": 217,
+          "green": 217,
+          "blue": 217,
+          "alpha": 255
+        },
+        {
+          "red": 255,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 0
+        },
+        {
+          "red": 255,
+          "green": 255,
+          "blue": 255,
+          "alpha": 255
+        }
+      ]
+    },
+    {
+      "themeName": "ColorTrip",
+      "colorsList": [
+        {
+          "red": 0,
+          "green": 255,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 23,
+          "green": 55,
+          "blue": 198,
+          "alpha": 255
+        },
+        {
+          "red": 207,
+          "green": 95,
+          "blue": 235,
+          "alpha": 255
+        },
+        {
+          "red": 24,
+          "green": 255,
+          "blue": 255,
+          "alpha": 255
+        },
+        {
+          "red": 217,
+          "green": 217,
+          "blue": 217,
+          "alpha": 255
+        },
+        {
+          "red": 255,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 0
+        },
+        {
+          "red": 255,
+          "green": 255,
+          "blue": 255,
+          "alpha": 255
+        }
+      ]
+    },
+    {
+      "themeName": "ColorTrip",
+      "colorsList": [
+        {
+          "red": 0,
+          "green": 255,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 23,
+          "green": 55,
+          "blue": 198,
+          "alpha": 255
+        },
+        {
+          "red": 207,
+          "green": 95,
+          "blue": 235,
+          "alpha": 255
+        },
+        {
+          "red": 24,
+          "green": 255,
+          "blue": 255,
+          "alpha": 255
+        },
+        {
+          "red": 217,
+          "green": 217,
+          "blue": 217,
+          "alpha": 255
+        },
+        {
+          "red": 255,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 0
+        },
+        {
+          "red": 255,
+          "green": 255,
+          "blue": 255,
+          "alpha": 255
+        }
+      ]
+    },
+    {
+      "themeName": "ColorTrip",
+      "colorsList": [
+        {
+          "red": 0,
+          "green": 255,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 23,
+          "green": 55,
+          "blue": 198,
+          "alpha": 255
+        },
+        {
+          "red": 207,
+          "green": 95,
+          "blue": 235,
+          "alpha": 255
+        },
+        {
+          "red": 24,
+          "green": 255,
+          "blue": 255,
+          "alpha": 255
+        },
+        {
+          "red": 217,
+          "green": 217,
+          "blue": 217,
+          "alpha": 255
+        },
+        {
+          "red": 255,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 0
+        },
+        {
+          "red": 255,
+          "green": 255,
+          "blue": 255,
+          "alpha": 255
+        }
+      ]
+    },
+    {
+      "themeName": "ColorTrip",
+      "colorsList": [
+        {
+          "red": 0,
+          "green": 255,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 23,
+          "green": 55,
+          "blue": 198,
+          "alpha": 255
+        },
+        {
+          "red": 207,
+          "green": 95,
+          "blue": 235,
+          "alpha": 255
+        },
+        {
+          "red": 24,
           "green": 255,
           "blue": 255,
           "alpha": 255
@@ -2270,7 +2565,7 @@
                 },
                 "rectShape": {
                   "x": 960,
-                  "y": 300,
+                  "y": 320,
                   "xSize": 300,
                   "ySize": 80,
                   "roundPercentage": 0
@@ -2292,16 +2587,77 @@
               "selector": {
                 "selectorIndex": [
                   0,
-                  1
+                  0
                 ],
                 "selectorOptions": [
                   [
-                    1,
+                    2,
+                    0
+                  ],
+                  [
+                    2,
                     0
                   ],
                   [
                     0,
-                    2
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "primaryHovered": false,
+                "secondaryHovered": false,
+                "selected": false
+              },
+              "textbox": {
+                "scale": 1.0,
+                "function": "scroll String ThemeChoices boolean false",
+                "name": "ThemeChoicesScrollUp",
+                "rectShape": {
+                  "x": 960,
+                  "y": 210,
+                  "xSize": 120,
+                  "ySize": 50,
+                  "roundPercentage": 0
+                },
+                "renderableObject": {
+                  "name": "UpPNG",
+                  "imagePath": "src/textures/up.png",
+                  "x": 15,
+                  "y": 7,
+                  "xSize": 90,
+                  "ySize": 36,
+                  "opacity": 255
+                },
+                "color": 2,
+                "opacity": 255,
+                "shadowOffset": 8,
+                "strokeWidth": 5.0,
+                "strokeColor": 6
+              },
+              "hoverOverlap": false,
+              "maskIndex": -1,
+              "hoverEffectIndex": -1,
+              "clickEffectIndex": 1,
+              "arbitraryTransformIndex": -1,
+              "entryAnimationTransformIndex": 8
+            },
+            {
+              "selector": {
+                "selectorIndex": [
+                  2,
+                  0
+                ],
+                "selectorOptions": [
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    2,
+                    0
                   ],
                   [
                     0,
@@ -2319,37 +2675,35 @@
               "textbox": {
                 "scale": 1.0,
                 "function": "scroll String ThemeChoices boolean true",
-                "name": "SkinSelectorButton",
-                "text": {
-                  "text": "Skin Selector",
-                  "alignX": "left",
-                  "alignY": "center",
-                  "offsetX": -250,
-                  "offsetY": -9,
-                  "textSize": 50,
-                  "textColor": 6,
-                  "font": "Archivo Narrow",
-                  "bold": false
-                },
+                "name": "ThemeChoicesScrollDown",
                 "rectShape": {
-                  "x": 600,
-                  "y": 300,
-                  "xSize": 600,
-                  "ySize": 120,
-                  "roundPercentage": 100
+                  "x": 960,
+                  "y": 910,
+                  "xSize": 120,
+                  "ySize": 50,
+                  "roundPercentage": 0
+                },
+                "renderableObject": {
+                  "name": "DownPNG",
+                  "imagePath": "src/textures/down.png",
+                  "x": 15,
+                  "y": 7,
+                  "xSize": 90,
+                  "ySize": 36,
+                  "opacity": 255
                 },
                 "color": 2,
                 "opacity": 255,
-                "shadowOffset": 15,
+                "shadowOffset": 8,
                 "strokeWidth": 5.0,
                 "strokeColor": 6
               },
               "hoverOverlap": false,
               "maskIndex": -1,
-              "hoverEffectIndex": 3,
+              "hoverEffectIndex": -1,
               "clickEffectIndex": 1,
               "arbitraryTransformIndex": -1,
-              "entryAnimationTransformIndex": 5
+              "entryAnimationTransformIndex": 8
             }
           ]
         }
@@ -2370,9 +2724,9 @@
         },
         {
           "x": 0,
-          "y": 240,
+          "y": 250,
           "xSize": 1920,
-          "ySize": 700,
+          "ySize": 625,
           "roundPercentage": 0
         }
       ],
@@ -2489,12 +2843,12 @@
         },
         {
           "transformX": 0.0,
-          "transformY": 130.0,
+          "transformY": 120.0,
           "scaleX": 1.0,
           "scaleY": 1.0,
           "rotate": 0.0,
           "delayMillis": 0,
-          "timeToTransformMillis": 250,
+          "timeToTransformMillis": 400,
           "easeType": 6
         }
       ]

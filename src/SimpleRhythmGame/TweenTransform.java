@@ -22,7 +22,10 @@ public class TweenTransform {
 		// multiplies by 1000 if not already in nanoseconds.
 		this.delayInMillis = delayInMillis;
 		startTimeMillis = initTimeMillis + delayInMillis;
+		// System.out.println(startTimeMillis);
+		// System.out.println(timeToTransformMillis);
 		endTimeMillis = startTimeMillis + timeToTransformMillis;
+		// System.out.println(endTimeMillis);
 		this.timeToTransformMillis = timeToTransformMillis;
 		this.ogTransform = ogTransform;
 		this.newTransform = newTransform;
@@ -101,6 +104,9 @@ public class TweenTransform {
 					, 0) 
 					/ 
 					(double) (endTimeMillis - startTimeMillis);
+//			System.out.println(timePassed);
+//			System.out.println(endTimeMillis);
+//			System.out.println(startTimeMillis);
 			if (timePassed >= 1) {
 				if (boomerang) {
 					toReturn = newTransform;
