@@ -58,6 +58,9 @@ public class Functions {
 					enterTextField((String) parameters[0]);
 				} else if (methodName.equals("setTheme")) {
 					setTheme((int) parameters[0]);
+				} else if (methodName.equals("scroll")) {
+					scrollOptionsList((String) parameters[0], (boolean) parameters[1]);
+					
 				} else {
 					System.out.println("No method with name " + methodName + "!");
 					System.out.println(parameters[0].toString());
@@ -119,5 +122,9 @@ public class Functions {
 	public static void setTheme(int index) {
 		ShowImage.getConfig().setCurrentThemeChoice(index);
 		removeThisPopup();
+	}
+	
+	public static void scrollOptionsList(String listName, boolean down) {
+		ShowImage.scrollOptionsList(listName, down);
 	}
 }

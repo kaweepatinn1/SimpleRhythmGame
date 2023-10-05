@@ -23,6 +23,7 @@ public class TweenTransform {
 		this.delayInMillis = delayInMillis;
 		startTimeMillis = initTimeMillis + delayInMillis;
 		endTimeMillis = startTimeMillis + timeToTransformMillis;
+		this.timeToTransformMillis = timeToTransformMillis;
 		this.ogTransform = ogTransform;
 		this.newTransform = newTransform;
 		this.easeType = easeType;
@@ -42,6 +43,7 @@ public class TweenTransform {
 		this.delayInMillis = delayInMillis;
 		startTimeMillis = initTimeMillis + delayInMillis;
 		endTimeMillis = startTimeMillis + timeToTransformMillis;
+		this.timeToTransformMillis = timeToTransformMillis;
 		this.ogTransform = ogTransform;
 		this.newTransform = newTransform;
 		this.easeType = easeType;
@@ -54,6 +56,7 @@ public class TweenTransform {
 		initTimeMillis = Framerate.getCurrentTime();
 		startTimeMillis = initTimeMillis + storedTransform.getDelayInMillis();
 		endTimeMillis = startTimeMillis + storedTransform.getTimeToTransformMillis();
+		timeToTransformMillis = storedTransform.getTimeToTransformMillis();
 		ogTransform = storedTransform.getOgTransform();
 		newTransform = storedTransform.getNewTransform();
 		easeType = storedTransform.getEaseType();

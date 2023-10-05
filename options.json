@@ -2254,9 +2254,9 @@
                 "function": "setTheme",
                 "listObjectsName": "%ThemeChoices",
                 "optionsMax": 5,
+                "scrollPosition": 0,
                 "objectsCount": 0,
-                "selector": 0,
-                "name": "popup",
+                "name": "ThemeChoices",
                 "text": {
                   "text": "%Name",
                   "alignX": "center",
@@ -2287,6 +2287,69 @@
               "clickEffectIndex": 1,
               "arbitraryTransformIndex": 11,
               "entryAnimationTransformIndex": 8
+            },
+            {
+              "selector": {
+                "selectorIndex": [
+                  0,
+                  1
+                ],
+                "selectorOptions": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    0,
+                    2
+                  ],
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "primaryHovered": false,
+                "secondaryHovered": false,
+                "selected": false
+              },
+              "textbox": {
+                "scale": 1.0,
+                "function": "scroll String ThemeChoices boolean true",
+                "name": "SkinSelectorButton",
+                "text": {
+                  "text": "Skin Selector",
+                  "alignX": "left",
+                  "alignY": "center",
+                  "offsetX": -250,
+                  "offsetY": -9,
+                  "textSize": 50,
+                  "textColor": 6,
+                  "font": "Archivo Narrow",
+                  "bold": false
+                },
+                "rectShape": {
+                  "x": 600,
+                  "y": 300,
+                  "xSize": 600,
+                  "ySize": 120,
+                  "roundPercentage": 100
+                },
+                "color": 2,
+                "opacity": 255,
+                "shadowOffset": 15,
+                "strokeWidth": 5.0,
+                "strokeColor": 6
+              },
+              "hoverOverlap": false,
+              "maskIndex": -1,
+              "hoverEffectIndex": 3,
+              "clickEffectIndex": 1,
+              "arbitraryTransformIndex": -1,
+              "entryAnimationTransformIndex": 5
             }
           ]
         }
@@ -2431,7 +2494,7 @@
           "scaleY": 1.0,
           "rotate": 0.0,
           "delayMillis": 0,
-          "timeToTransformMillis": 0,
+          "timeToTransformMillis": 250,
           "easeType": 6
         }
       ]

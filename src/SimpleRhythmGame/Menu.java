@@ -265,19 +265,24 @@ public class Menu {
             	if (currentElement.isOptionsList()) {
             		Object[] objects = currentElement.getOptionsList().getObjects();
                 	int objectsCount = objects.length;
-                	additionalElements = additionalElements + objectsCount - 1;
+                	additionalElements = additionalElements + objectsCount;
             	}
             	
         	}
     		
         	Element[] elementsToReturn = new Element[rawElementsList.length + additionalElements];
         	
-        	for (int i = 0; i < rawElementsList.length + additionalElements; i++) {
+        	int i = 0;
+        	for (int elementsNumber = 0; elementsNumber < rawElementsList.length; elementsNumber++) {
             	
-            	Element currentElement = rawElementsList[i];
+            	Element currentElement = rawElementsList[elementsNumber];
             	if (currentElement.isOptionsList()) {
             		Object[] objects = currentElement.getOptionsList().getObjects();
             		int objectsCount = objects.length;
+            		
+            		Element scaledOptionsList = currentElement.scale(xScale, yScale);
+            		elementsToReturn[i] = scaledOptionsList;
+            		i++;
             		
                 	for (int index = 0 ; index < objectsCount ; index++) {
                 		Element toRenderElement = new Element(currentElement, index, objectsCount, transforms); // still unscaled
@@ -287,6 +292,7 @@ public class Menu {
                 	}
             	} else {
             		elementsToReturn[i] = currentElement.scale(xScale, yScale);
+            		i++;
             	}
             	
             	

@@ -902,7 +902,9 @@ public class ShowImage extends JPanel implements KeyListener {
             g2d.drawImage(image, renderable.getX(), renderable.getY(), null);
             g2d.dispose();
             
-        } 
+        } else if (currentElement.isOptionsList()) {
+        	// does not render
+        }
         
         
         else {
@@ -1110,6 +1112,20 @@ public class ShowImage extends JPanel implements KeyListener {
     	
     	return elementToReturn;
     }
+    
+    public static void scrollOptionsList(String listName, boolean down) {
+    	Element optionsListElement = getElementFromName(listName);
+    	OptionsList optionsList = optionsListElement.getOptionsList();
+    	optionsList.incrementScrollPosition(down);
+    	String matchingName = optionsListElement.getName();
+    	Element[] tempElementsList = (getCurrentPopupIndex() == -1) ?
+    			scaledMenu.getElements() : scaledMenu.getPopup(getCurrentPopupIndex()).getElements();
+    	for (Element element : tempElementsList) {
+			if (element.getName().split("#")[0].equals(matchingName)) {
+    			element.animateScroll(optionsList.getScrollPosition() * optionsList.getOptionsMax());
+			}
+		}
+	}
     
     private static RoundedRect getBoxAttributes(RoundedArea roundedArea) { 
     	// gets values to use for rendering the box not including stroke (added after) by converting roundpercentage to a useful number

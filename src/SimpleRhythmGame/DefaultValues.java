@@ -521,12 +521,12 @@ public class DefaultValues {
 								500, // animation time (ms)
 								6 // (ease type)
 								),
-							new StoredTransform( // 11. instant 120 y (optionsList)
+							new StoredTransform( // 11. 120 y (optionsList)
 								0, 130, // x, y transform
 								1, 1, // scale transform (x, y)
 								0, // rotate transform
 								0, // offset (ms)
-								0, // animation time (ms)
+								250, // animation time (ms)
 								6 // (ease type)
 								),
 						},
@@ -1258,7 +1258,7 @@ public class DefaultValues {
 													"setTheme", // function
 													"%ThemeChoices", // list objects
 													5, // max amount of options
-													"popup",  // name
+													"ThemeChoices",  // name
 													new Text(
 														"%Name", // text
 														"center", "center", // align
@@ -1277,6 +1277,39 @@ public class DefaultValues {
 													5, 6 // strokeWidth, strokeColor
 													)
 											),
+									new Element(
+											new Selector(
+												new int[]{0,1}, // Selector Index
+												new int[][]{{1,0},{0,2},{0,0},{0,0}} // E, S, W, N to select next
+												),
+											-1, // mask index
+											false, // hover overlap
+											3, // hover effect
+											1, // click effect
+											-1, // arbritraty animation (to be used for scroll)
+											5, // entry animation
+											new TextBox(
+												// Text and Renderable
+												1f, // scale
+												"scroll String ThemeChoices boolean true", // function
+												"SkinSelectorButton",  // name
+												new Text(
+													"Skin Selector", // text
+													"left", "center", // align
+													-250, -9, // text offset (x, y)
+													50, // text size
+													6, // text color (index of colors)
+													"Archivo Narrow", // font
+													false // bold
+													),
+												new RoundedArea(
+													600, 300, 600, 120, 100  // x, y, xSize, ySize, round%
+													),
+												2, // box color (index of colors)
+												255, // opacity (0-255)
+												15, // shadowOffset
+												5, 6 // strokeWidth, strokeColor
+												)),
 								}
 							),
 					}

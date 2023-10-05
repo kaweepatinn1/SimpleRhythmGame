@@ -162,6 +162,7 @@ public class Element {
 	}
 	
 	public Element(Element currentElement, int index, int objectsCount, StoredTransform[] transforms) { // ONLY FOR AN OPTIONS LIST ELEMENT
+		OptionsList optionsList = currentElement.getOptionsList();
 		this.transforms = currentElement.getTransform();
 		this.selector = new Selector(
 				new int[] {currentElement.getSelectorIndex()[0],
@@ -178,7 +179,7 @@ public class Element {
 		this.textbox = new TextBox(
 				currentElement.getOptionsList().getScale(),
 				currentElement.getOptionsList().getFunction() + " int " + index,
-				currentElement.getOptionsList().getName() + index,
+				currentElement.getOptionsList().getName() + '#' + index,
 				new Text(
 						(String) ShowImage.getConfig().getVariable(
 								currentElement.getOptionsList().getListObjectsName(), 
@@ -307,7 +308,7 @@ public class Element {
 		} else if (isTextfield()) {
 			toReturn = "enterTextField String " + getTextfield().getName();
 		} else if (isOptionsList()) {
-			toReturn = getOptionsList().getFunction() + " int " + getOptionsList().getSelector(); 
+			toReturn = getOptionsList().getFunction(); 
 		}
 		
 		else {
@@ -383,6 +384,31 @@ public class Element {
 					1 // ease type
 					);
 			appendTransform(tweenTransform);
+		}
+	}
+	
+	public void animateScroll(int factor) {
+		if (getArbitraryTransformIndex() != -1) {
+			RoundedArea roundedArea = null;
+			if (isTextbox()) {
+				roundedArea = getTextbox().getRectShape();
+			} else if (isRenderable()) {
+				roundedArea = new RoundedArea(getRenderable());
+			} else if (isTextfield()) {
+				roundedArea = getTextfield().getRectShape();
+			} else if (isOptionsList()) {
+				roundedArea = getOptionsList().getRectShape();
+			}
+			StoredTransform rawScrollEffect = ShowImage.getTransformsToRender()[getArbitraryTransformIndex()];
+			StoredTransform scrollEffect = rawScrollEffect.scaleTransform(-factor);
+			TweenTransform tweenTransform = new TweenTransform(
+					new SpecialTransform(getTransform()[2].getCurrentPosition(), roundedArea),
+					new SpecialTransform(scrollEffect, roundedArea),
+					(long) (Math.max((1.5 - getTransform()[2].getCurrentTime() / 2),1) * scrollEffect.getTimeToTransformMillis()),
+					scrollEffect.getDelayMillis(),
+					scrollEffect.getEaseType()
+					);
+			setTransform(tweenTransform, 2);
 		}
 	}
 	
@@ -796,6 +822,7 @@ public class Element {
         	String function = currentItem.getFunction();
         	String listObjectsName = currentItem.getListObjectsName();
         	int optionsMax = currentItem.getOptionsMax();
+        	int scrollPosition = 0;
         	
         	String name = currentItem.getName();
         	
@@ -829,7 +856,7 @@ public class Element {
         				entryAnimationTransformIndex,
 						new OptionsList(
 							optionsListScale, function, listObjectsName, 
-							optionsMax, objects, objectsCount, name,
+							optionsMax, scrollPosition, objects, objectsCount, name,
 							new Text(variableName, alignX, alignY, offsetX, offsetY, textSize, fontColor, font, bold), 
 							new RoundedArea(x, y, xSize, ySize, roundPercentage), 
 	        				color, opacity, shadowOffset, 

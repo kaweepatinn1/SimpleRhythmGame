@@ -44,6 +44,17 @@ public class StoredTransform {
 		this.easeType = clone.easeType;
 	}
 	
+	public StoredTransform scaleTransform(double scale) {
+		double newTransformX = transformX * scale;
+		double newTransformY = transformY * scale;
+		double newScaleX = Math.pow(scaleX, scale);
+		double newScaleY = Math.pow(scaleY, scale);
+		double newRotate = rotate * scale;
+		
+		return new StoredTransform(newTransformX, newTransformY, newScaleX, newScaleY, newRotate,
+				delayMillis, timeToTransformMillis, easeType);
+	}
+	
 	public double getTransformX() {
 		return transformX;
 	}

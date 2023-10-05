@@ -12,8 +12,8 @@ public class OptionsList {
 	// use this to specify which field to show.
 	// moved into text's getText() field.
 	private int optionsMax;
+	private int scrollPosition;
 	private int objectsCount;
-	private int selector;
 	private String name;
 	
 	private Text text;
@@ -35,7 +35,7 @@ public class OptionsList {
 		this.function = function;
 		this.listObjectsName = listObjectsName;
 		this.optionsMax = optionsMax;
-		this.selector = 0;
+		this.scrollPosition = 0;
 		this.setName(name);
 		
 		this.text = text;
@@ -51,7 +51,8 @@ public class OptionsList {
     
     public OptionsList( // TODO call this constructor in scaledmenu
     		float scale, String function, String listObjectsName, 
-    		int optionsMax, Object[] objects, int objectsCount, String name, 
+    		int optionsMax, int scrollPosition, Object[] objects, 
+    		int objectsCount, String name, 
     		Text text, RoundedArea rectShape,
 			int color, int opacity, int shadowOffset, 
 			float strokeWidth, int strokeColor) {
@@ -59,7 +60,7 @@ public class OptionsList {
 		this.function = function;
 		this.listObjectsName = listObjectsName;
 		this.optionsMax = optionsMax;
-		this.selector = 0;
+		this.scrollPosition = scrollPosition;
 		this.setName(name);
 		this.rawObjects = objects;
 		this.objectsCount = objectsCount;
@@ -84,12 +85,6 @@ public class OptionsList {
     public Object[] getObjects() {
     	return ShowImage.getConfig().getObjectList(listObjectsName);
     }
-    
-	public void incremenetSelector(boolean forwards) {
-		selector = forwards ? 
-			selector + (selector < objectsCount - 1 ? 1 : 0) :
-			selector - (selector > 0 ? 1 : 0);
-	}
     
 	public float getScale() {
 		return scale;
@@ -121,14 +116,6 @@ public class OptionsList {
 
 	public void setListObjectsName(String listObjects) {
 		this.listObjectsName = listObjects;
-	}
-
-	public int getSelector() {
-		return selector;
-	}
-
-	public void setSelector(int selector) {
-		this.selector = selector;
 	}
 
 	public Text getTextObject() {
@@ -222,6 +209,23 @@ public class OptionsList {
 	
 	public int getRoundPercentage() {
 		return rectShape.getRoundPercentage();
+	}
+	
+	public int getScrollPosition() {
+		return scrollPosition;
+	}
+	
+	public void incrementScrollPosition(boolean forwards) {
+		if (forwards) {
+			scrollPosition = scrollPosition + (objectsCount > optionsMax * (scrollPosition + 1) ? 1 : 0);
+		} else {
+			scrollPosition = scrollPosition - (scrollPosition > 0 ? 1 : 0);
+		}
+			
+	}
+	
+	public void setScrollPosition(int scrollPosition) {
+		this.scrollPosition = scrollPosition;
 	}
     
 }
