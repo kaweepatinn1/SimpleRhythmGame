@@ -134,6 +134,18 @@ public class FileIO {
         return toReturn;
 	}
 	
+	public static Theme JSONtoTheme(String input) {
+		Gson gson = new Gson();
+		Theme toReturn = null;
+		try {
+			toReturn = gson.fromJson(input, Theme.class);
+		} catch (Throwable throwable) {
+			System.out.println(throwable);
+		}
+		
+		return toReturn;
+	}
+	
 	public static void writeClipboard(String string) {
 		Toolkit.getDefaultToolkit()
         .getSystemClipboard()
@@ -143,7 +155,21 @@ public class FileIO {
         );
 	}
 	
-	public static String readClipboard() throws HeadlessException, UnsupportedFlavorException, IOException {
-	    return (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
+	public static String readClipboard() {
+	    try {
+			return (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
+		} catch (HeadlessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (UnsupportedFlavorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

@@ -559,7 +559,7 @@ public class ShowImage extends JPanel implements KeyListener {
     	
     	FontMetrics fontMetrics = g2d.getFontMetrics();
     	
-        int[] extraAligns = getTextAligns(titletextbox, fontMetrics);
+        int[] extraAligns = getTextAligns(titletextbox, fontMetrics, titletextbox.getText());
         
         int extraAlignX = extraAligns[0];
         int extraAlignY = extraAligns[1];
@@ -605,10 +605,7 @@ public class ShowImage extends JPanel implements KeyListener {
     	}
     }
     
-    private int[] getTextAligns(TextBox textbox, FontMetrics fontMetrics){
-    	String text = textbox.getText().substring(0, 1).equals("%") ? 
-    			(String) config.getVariable(textbox.getText()) :
-    			textbox.getText();
+    private int[] getTextAligns(TextBox textbox, FontMetrics fontMetrics, String text){ 	
     	int textWidth = fontMetrics.stringWidth(text);
         int textHeight = fontMetrics.getAscent();
         // Initializes extraAlign variables
@@ -769,14 +766,19 @@ public class ShowImage extends JPanel implements KeyListener {
 	        			(String) config.getVariable(textbox.getText()) :
 	        			textbox.getText();
 	            
-	            int[] extraAligns = getTextAligns(textbox, fontMetrics);
-	            
-	            int extraAlignX = extraAligns[0];
-	            int extraAlignY = extraAligns[1];
-	            
-	            int finalX = roundRectAttributes.getX() + (textbox.getXSize() / 2) + textbox.getOffsetX() + extraAlignX;
-	            int finalY = roundRectAttributes.getY() + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY;
-	            g2d.drawString(text, finalX, finalY);
+	            String[] splitText = text.split("%br%");
+	            for (int i = 0 ; i < splitText.length ; i++) {
+	            	String lineText = splitText[i];
+	            	int[] extraAligns = getTextAligns(textbox, fontMetrics, lineText);
+		            
+		            int extraAlignX = extraAligns[0];
+		            int extraAlignY = extraAligns[1];
+		            
+		            int finalX = roundRectAttributes.getX() + (textbox.getXSize() / 2) + textbox.getOffsetX() + extraAlignX;
+		            int finalY = roundRectAttributes.getY() + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY;
+		            finalY = finalY + (fontMetrics.getAscent() * i);
+		            g2d.drawString(lineText, finalX, finalY);
+	            }
 	            
 	            g2d.setTransform(oldForm);
             }

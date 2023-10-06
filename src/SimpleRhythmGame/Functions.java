@@ -52,6 +52,8 @@ public class Functions {
                 	}
 				} else if (methodName.equals("exportTheme")) {
 					exportThemeToClipboard();
+				} else if (methodName.equals("importTheme")) {
+					importThemeFromClipboard();
 				} else if (methodName.equals("noFunction")){
 					System.out.println("Valid no function");
 				} else if (methodName.equals("enterTextField")) {
@@ -60,10 +62,18 @@ public class Functions {
 					setTheme((int) parameters[0]);
 				} else if (methodName.equals("scroll")) {
 					scrollOptionsList((String) parameters[0], (boolean) parameters[1]);
-					
-				} else {
+				} else if (methodName.equals("addTheme")) {
+					addTheme();
+				} else if (methodName.equals("deleteTheme")) {
+					deleteTheme();
+				} 
+				
+				
+				else {
 					System.out.println("No method with name " + methodName + "!");
-					System.out.println(parameters[0].toString());
+					for (int i = 0 ; i < parameters.length ; i++) {
+						System.out.println("Parameter \'" + i + "\' was " + parameters[i].toString());
+					}
 				}
 			}
 
@@ -115,6 +125,15 @@ public class Functions {
 		FileIO.writeClipboard(toExport);
 	}
 	
+	public static void importThemeFromClipboard() {
+		Theme newTheme = FileIO.JSONtoTheme(FileIO.readClipboard());
+		if (newTheme != null) {
+			ShowImage.getConfig().importTheme(newTheme);
+		} else {
+			addPopup(4);
+		}
+	}
+	
 	public static void enterTextField(String textField) {
 		ShowImage.setSelectedElement(textField);
 	}
@@ -126,5 +145,13 @@ public class Functions {
 	
 	public static void scrollOptionsList(String listName, boolean down) {
 		ShowImage.scrollOptionsList(listName, down);
+	}
+	
+	public static void addTheme() {
+		ShowImage.getConfig().addTheme();
+	}
+	
+	public static void deleteTheme() {
+		ShowImage.getConfig().removeTheme(ShowImage.getConfig().getCurrentThemeChoice());
 	}
 }

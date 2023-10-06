@@ -101,23 +101,65 @@ public class Config {
 		return themes[getCurrentThemeChoiceIndex()];
 	}
 	
-	public boolean addTheme(Theme newTheme) {
+	public boolean importTheme(Theme theme) {
 		boolean duplicate = false;
 		for (int i = 0 ; i < themes.length ; i++) {
-			if (themes[i].getThemeName().equals(newTheme.getThemeName())) {
+			if (themes[i].getThemeName().equals(theme.getThemeName())) {
 				duplicate = true;
+				break;
 			}
 		}
-		if (!duplicate) {
+		
+		if (duplicate) {
+			Functions.runFunction("addPopup int 1");
+			return false;
+		} else {
 			Theme[] toSetThemes = new Theme[themes.length + 1];
 			System.arraycopy(themes, 0, toSetThemes, 0, themes.length);
-			toSetThemes[toSetThemes.length - 1] = newTheme;
+			toSetThemes[toSetThemes.length - 1] = theme;
 			themes = toSetThemes;
+			setCurrentThemeChoice(theme.getThemeName());
+			ShowImage.refreshMenu();
 			return true;
-		} else {
-			System.out.println("Theme with name \""+ newTheme.getThemeName() +"\" already exists!");
-			return false;
 		}
+	}
+	
+	public boolean addTheme() {
+		boolean duplicate = true;
+		int iteration = -1;
+		while (duplicate == true) {
+			iteration++;
+			boolean stillDuplicate = false;
+			for (int i = 0 ; i < themes.length ; i++) {
+				if (themes[i].getThemeName().equals("NewTheme" + iteration)) {
+					stillDuplicate = true;
+					break;
+				}
+			}
+			if (!stillDuplicate) {
+				duplicate = false;
+			}
+		}
+		Theme[] toSetThemes = new Theme[themes.length + 1];
+		System.arraycopy(themes, 0, toSetThemes, 0, themes.length);
+		toSetThemes[toSetThemes.length - 1] = new Theme(
+				"NewTheme" + iteration,
+				new IntColor[] {
+						new IntColor (102,102,102,255), // 0. BG Color
+						new IntColor (217,234,211,255), // 1. Menu Color
+			    		new IntColor (207,226,243,255), // 2. Buttons Color
+			    		new IntColor (255,255,255,255), // 3. Primary Selection Color
+			    		new IntColor (217,217,217,255), // 4. Secondary Selection Color
+			    		new IntColor (255,0,0,255), // 5. Accent Color
+			    		new IntColor (0,0,0,255), // 6. Stroke Color
+			    		new IntColor (0,0,0,0), // 7. Transparent Color
+			    		new IntColor (255,255,255,255), // 8. Display Color
+				}
+				);
+		themes = toSetThemes;
+		setCurrentThemeChoice("NewTheme" + iteration);
+		ShowImage.refreshMenu();
+		return true;
 	}
 	
 	public boolean updateTheme(Theme newTheme, String themeName) {
@@ -132,17 +174,24 @@ public class Config {
 	}
 	
 	public boolean removeTheme(String themeName) {
-		int index = getIndexFromThemeName(themeName);
-		if (index != -1) {
-			Theme[] toSetThemes = new Theme[themes.length - 1];
-			if (index != 0) {
-				System.arraycopy(themes, 0, toSetThemes, 0, index);
+		if (themes.length > 1) {
+			int index = getIndexFromThemeName(themeName);
+			if (index != -1) {
+				Theme[] toSetThemes = new Theme[themes.length - 1];
+				if (index != 0) {
+					System.arraycopy(themes, 0, toSetThemes, 0, index);
+				}
+				System.arraycopy(themes, index + 1, toSetThemes, index, themes.length - (index + 1));
+				currentThemeChoice = index < (themes.length - 1) ? themes[index + 1].getThemeName() : themes[index - 1].getThemeName();
+				themes = toSetThemes;
+				ShowImage.refreshMenu();
+				return true;
+			} else {
+				System.out.println("Theme \"" + themeName + "\" does not exist!");
+				return false;
 			}
-			System.arraycopy(themes, index + 1, toSetThemes, index, themes.length - (index + 1));
-			themes = toSetThemes;
-			return true;
 		} else {
-			System.out.println("Theme \"" + themeName + "\" does not exist!");
+			System.out.println("Cannot remove last theme!");
 			return false;
 		}
 	}
@@ -338,14 +387,20 @@ public class Config {
 	
 	public Object getVariable(String varName) {
 		Object varToReturn = "Variable \"" + varName + "\" not found.";
-		if (varName.equals("%CurrentThemeName")) {
+		String[] splitVariable = varName.split(" ");
+		if (splitVariable[0].equals("%CurrentThemeName")) {
 			varToReturn = currentThemeChoice;
+		}
+		if (splitVariable[0].equals("%CurrentThemeColor")) {
+			IntColor color = getCurrentTheme().getColorOfIndex(Integer.parseInt(splitVariable[1]));
+			varToReturn = color.toHex();
 		}
 		return varToReturn;
 	}
 	
 	public String setVariable(String varName, Object newValues) {
-		if (varName.equals("%CurrentThemeName")) {
+		String[] splitVariable = varName.split(" ");
+		if (splitVariable[0].equals("%CurrentThemeName")) {
 			for (Theme theme : themes) {
 				if (theme.getThemeName().equals((String) newValues)) {
 					System.out.println("Duplicate Theme Name!");
@@ -356,8 +411,28 @@ public class Config {
 			currentThemeChoice = (String) newValues;
 			ShowImage.refreshMenu();
 			return "Success";
-		} else {
+		} else if (splitVariable[0].equals("%CurrentThemeColor")) {
+			if (((String) newValues).length() != 7){
+				return "HexInvalid";
+			}
+			for (int i = 1 ; i < ((String) newValues).length() ; i++) {
+				if (!isHex(((String) newValues).charAt(i))) {
+					return "HexInvalid";
+				}
+			}
+			getCurrentTheme().getColorOfIndex(Integer.parseInt(splitVariable[1])).setColor((String) newValues);
+			ShowImage.refreshMenu();
+			return "Success";
+		}
+		else {
 			return "VariableNotFound"; // failed to find the variable
 		}
+	}
+	
+	public boolean isHex(char ch) {
+		if ((ch >= '0' & ch <= '9') || (ch >= 'a' && ch <= 'f') || (ch >= 'A' && ch <= 'F')) {
+			return true;
+		}
+		return false;
 	}
 }

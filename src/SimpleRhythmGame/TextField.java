@@ -90,6 +90,12 @@ public class TextField {
         		} else if (status.equals("Duplicate")){
         			ShowImage.cancelElement(ShowImage.getSelectedElement());
         			ShowImage.addPopup(errorPopupIndexes[0]);
+        		} else if (status.equals("VariableNotFound")) {
+        			System.out.println("Variable " + text.getText() + " not found!");
+        			ShowImage.cancelElement(ShowImage.getSelectedElement());
+        		} else if (status.equals("HexInvalid")) {
+        			ShowImage.cancelElement(ShowImage.getSelectedElement());
+        			ShowImage.addPopup(errorPopupIndexes[2]);
         		}
     		} else {
     			// there was no name change
