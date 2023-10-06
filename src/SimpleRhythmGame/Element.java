@@ -196,8 +196,8 @@ public class Element {
 						currentElement.getOptionsList().getTextObject().getBold()
 						),
 				new RoundedArea(
-						rectShape.getX() + (int) transforms[currentElement.getArbitraryTransformIndex()].getTransformX() * index,
-						rectShape.getY() + (int) transforms[currentElement.getArbitraryTransformIndex()].getTransformY() * index,
+						rectShape.getX(),
+						rectShape.getY(),
 						rectShape.getXSize(),
 						rectShape.getYSize(),
 						rectShape.getRoundPercentage()
@@ -216,11 +216,9 @@ public class Element {
 		this.clickEffectIndex = currentElement.getClickEffectIndex();
 		this.arbitraryTransformIndex = currentElement.getArbitraryTransformIndex();
 		this.entryAnimationTransformIndex = currentElement.getEntryAnimationIndex();
-		for (int i = 0 ; i < index ; i++) {
-			appendListTransform(transforms); 
+		appendListTransform(transforms, index); 
 			// !IMPORTANT! Doesn't do anything but splits each element
 			// into new objects for some reason!!!
-		}
 	}
 
 	public Selector getSelector() {
@@ -338,7 +336,7 @@ public class Element {
 		return toReturn;
 	}
 	
-	public void appendListTransform(StoredTransform[] transforms) {
+	public void appendListTransform(StoredTransform[] transforms, int index) {
 		// Doesn't actually apply anything at all, but somehow makes each element a new object. who knows.
 		if (getArbitraryTransformIndex() != -1) {
 			RoundedArea roundedArea = null;
@@ -351,11 +349,12 @@ public class Element {
 			} else if (isOptionsList()) {
 				roundedArea = getOptionsList().getRectShape();
 			}
-			StoredTransform transform = transforms[getArbitraryTransformIndex()];
+			StoredTransform unscaledTransform = transforms[getArbitraryTransformIndex()];
+			StoredTransform transform = unscaledTransform.scaleTransform(index);
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(roundedArea),
-					new SpecialTransform(roundedArea),
-					0, // propogation time
+					new SpecialTransform(transform, roundedArea),
+					1, // propogation time
 					0, // delay
 					1 // ease type
 					);
@@ -399,6 +398,14 @@ public class Element {
 			} else if (isOptionsList()) {
 				roundedArea = getOptionsList().getRectShape();
 			}
+//			for (int i = 3 ; i < transforms.length ; i++) {
+//				roundedArea.incrementX(transforms[i].getNewTransform() != null ? 
+//						(int) transforms[i].getNewTransform().getTransformX() :
+//							0);
+//				roundedArea.incrementY(transforms[i].getNewTransform() != null ? 
+//						(int) transforms[i].getNewTransform().getTransformY() :
+//							0);
+//			}
 			StoredTransform rawScrollEffect = ShowImage.getTransformsToRender()[getArbitraryTransformIndex()];
 			StoredTransform scrollEffect = rawScrollEffect.scaleTransform(-factor);
 			TweenTransform tweenTransform = new TweenTransform(
@@ -422,6 +429,14 @@ public class Element {
 			} else if (isTextfield()) {
 				roundedArea = getTextfield().getRectShape();
 			}
+//			for (int i = 1 ; i < transforms.length ; i++) {
+//				roundedArea.incrementX(transforms[i].getNewTransform() != null ? 
+//						(int) transforms[i].getNewTransform().getTransformX() :
+//							0);
+//				roundedArea.incrementY(transforms[i].getNewTransform() != null ? 
+//						(int) transforms[i].getNewTransform().getTransformY() :
+//							0);
+//			}
 			StoredTransform hoverEffect = ShowImage.getTransformsToRender()[getHoverEffectIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(getTransform()[0].getCurrentPosition(), roundedArea),
@@ -444,6 +459,14 @@ public class Element {
 			} else if (isTextfield()) {
 				roundedArea = getTextfield().getRectShape();
 			}
+//			for (int i = 1 ; i < transforms.length ; i++) {
+//				roundedArea.incrementX(transforms[i].getNewTransform() != null ? 
+//						(int) transforms[i].getNewTransform().getTransformX() :
+//							0);
+//				roundedArea.incrementY(transforms[i].getNewTransform() != null ? 
+//						(int) transforms[i].getNewTransform().getTransformY() :
+//							0);
+//			}
 				StoredTransform hoverEffect = ShowImage.getTransformsToRender()[getHoverEffectIndex()];
 				TweenTransform tweenTransform = new TweenTransform(
 						new SpecialTransform(getTransform()[0].getCurrentPosition(), roundedArea),
@@ -459,6 +482,14 @@ public class Element {
 	public void animateClick(boolean boomerang) {
 		if (getClickEffectIndex() != -1) {
 			RoundedArea area = isRenderable() ? renderable.toArea() : (isTextfield() ? getTextfield().getRectShape() : (isTextbox() ? getTextbox().getRectShape() : (isOptionsList() ? getOptionsList().getRectShape() : null)));
+//			for (int i = 2 ; i < transforms.length ; i++) {
+//				area.incrementX(transforms[i].getNewTransform() != null ? 
+//						(int) transforms[i].getNewTransform().getTransformX() :
+//							0);
+//				area.incrementY(transforms[i].getNewTransform() != null ? 
+//						(int) transforms[i].getNewTransform().getTransformY() :
+//							0);
+//			}
 			StoredTransform clickEffect = ShowImage.getTransformsToRender()[getClickEffectIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(getTransform()[1].getCurrentPosition(), area),
@@ -475,6 +506,14 @@ public class Element {
 	public void deanimateClick(boolean instant) {
 		if (getClickEffectIndex() != -1) {
 			RoundedArea area = isRenderable() ? renderable.toArea() : (isTextfield() ? getTextfield().getRectShape() : (isTextbox() ? getTextbox().getRectShape() : (isOptionsList() ? getOptionsList().getRectShape() : null)));
+//			for (int i = 2 ; i < transforms.length ; i++) {
+//				area.incrementX(transforms[i].getNewTransform() != null ? 
+//						(int) transforms[i].getNewTransform().getTransformX() :
+//							0);
+//				area.incrementY(transforms[i].getNewTransform() != null ? 
+//						(int) transforms[i].getNewTransform().getTransformY() :
+//							0);
+//			}
 			StoredTransform clickEffect = ShowImage.getTransformsToRender()[getClickEffectIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(getTransform()[1].getCurrentPosition(), area),
@@ -490,6 +529,14 @@ public class Element {
 	public void animateExit(boolean instant) {
 		if (getEntryAnimationIndex() != -1) {
 			RoundedArea area = isRenderable() ? renderable.toArea() : (isTextfield() ? getTextfield().getRectShape() : (isTextbox() ? getTextbox().getRectShape() : (isOptionsList() ? getOptionsList().getRectShape() : null)));
+//			for (int i = 4 ; i < transforms.length ; i++) {
+//				area.incrementX(transforms[i].getNewTransform() != null ? 
+//						(int) transforms[i].getNewTransform().getTransformX() :
+//							0);
+//				area.incrementY(transforms[i].getNewTransform() != null ? 
+//						(int) transforms[i].getNewTransform().getTransformY() :
+//							0);
+//			}
 			StoredTransform entryEffect = ShowImage.getTransformsToRender()[getEntryAnimationIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(getTransform()[3].getCurrentPosition(), area),
@@ -505,6 +552,14 @@ public class Element {
 	public void animateEntry(boolean reset) {
 		if (getEntryAnimationIndex() != -1) {
 			RoundedArea area = isRenderable() ? renderable.toArea() : (isTextfield() ? getTextfield().getRectShape() : (isTextbox() ? getTextbox().getRectShape() : (isOptionsList() ? getOptionsList().getRectShape() : null)));
+//			for (int i = 4 ; i < transforms.length ; i++) {
+//				area.incrementX(transforms[i].getNewTransform() != null ? 
+//						(int) transforms[i].getNewTransform().getTransformX() :
+//							0);
+//				area.incrementY(transforms[i].getNewTransform() != null ? 
+//						(int) transforms[i].getNewTransform().getTransformY() :
+//							0);
+//			}
 			// gets the area depending on the type of element present.
 			StoredTransform entryEffect = ShowImage.getTransformsToRender()[getEntryAnimationIndex()];
 			// System.out.println((Math.min((getTransform()[3].getCurrentTime() + 0.5),1)));

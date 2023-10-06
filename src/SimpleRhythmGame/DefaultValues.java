@@ -15,7 +15,7 @@ public class DefaultValues {
 	private final static boolean defaultCursorEnabled = true;
 	
 	private final static boolean defaultDEBUG_drawMasks = false; // draws all clipping masks
-	private final static int defaultDEBUG_masksColorsOffset = 0; // changes the seed for drawn colors
+	private final static int defaultDEBUG_masksColorsOffset = 10; // changes the seed for drawn colors
 	private final static int defaultDEBUG_MasksOpacity = 80; // out of 255
 	
 	private final static Controls[] defaultControls = new Controls[] {
@@ -81,7 +81,7 @@ public class DefaultValues {
 					}
 					),
 			new Theme(
-					"ColorTrip",
+					"ColorTrip1",
 					new IntColor[] {
 							new IntColor (0,255,0,255), // 0. BG Color
 							new IntColor (23,55,198,255), // 1. Menu Color
@@ -95,7 +95,7 @@ public class DefaultValues {
 					}
 					),
 			new Theme(
-					"ColorTrip",
+					"ColorTrip2",
 					new IntColor[] {
 							new IntColor (0,255,0,255), // 0. BG Color
 							new IntColor (23,55,198,255), // 1. Menu Color
@@ -109,7 +109,7 @@ public class DefaultValues {
 					}
 					),
 			new Theme(
-					"ColorTrip",
+					"ColorTrip3",
 					new IntColor[] {
 							new IntColor (0,255,0,255), // 0. BG Color
 							new IntColor (23,55,198,255), // 1. Menu Color
@@ -123,7 +123,7 @@ public class DefaultValues {
 					}
 					),
 			new Theme(
-					"ColorTrip",
+					"ColorTrip4",
 					new IntColor[] {
 							new IntColor (0,255,0,255), // 0. BG Color
 							new IntColor (23,55,198,255), // 1. Menu Color
@@ -138,7 +138,7 @@ public class DefaultValues {
 					),
 			
 			new Theme(
-					"ColorTrip",
+					"ColorTrip5",
 					new IntColor[] {
 							new IntColor (0,255,0,255), // 0. BG Color
 							new IntColor (23,55,198,255), // 1. Menu Color
@@ -152,7 +152,7 @@ public class DefaultValues {
 					}
 					),
 			new Theme(
-					"ColorTrip",
+					"ColorTrip6",
 					new IntColor[] {
 							new IntColor (0,255,0,255), // 0. BG Color
 							new IntColor (23,55,198,255), // 1. Menu Color
@@ -166,7 +166,7 @@ public class DefaultValues {
 					}
 					),
 			new Theme(
-					"ColorTrip",
+					"ColorTrip7",
 					new IntColor[] {
 							new IntColor (0,255,0,255), // 0. BG Color
 							new IntColor (23,55,198,255), // 1. Menu Color
@@ -180,7 +180,7 @@ public class DefaultValues {
 					}
 					),
 			new Theme(
-					"ColorTrip",
+					"ColorTrip8",
 					new IntColor[] {
 							new IntColor (0,255,0,255), // 0. BG Color
 							new IntColor (23,55,198,255), // 1. Menu Color
@@ -194,7 +194,7 @@ public class DefaultValues {
 					}
 					),
 			new Theme(
-					"ColorTrip",
+					"ColorTrip9",
 					new IntColor[] {
 							new IntColor (0,255,0,255), // 0. BG Color
 							new IntColor (23,55,198,255), // 1. Menu Color
@@ -208,7 +208,7 @@ public class DefaultValues {
 					}
 					),
 			new Theme(
-					"ColorTrip",
+					"ColorTrip10",
 					new IntColor[] {
 							new IntColor (0,255,0,255), // 0. BG Color
 							new IntColor (23,55,198,255), // 1. Menu Color
@@ -501,7 +501,7 @@ public class DefaultValues {
 					new int[][]{{0,2}}, // Secondary Selections
 					new RoundedArea[]{ // Masks
 							new RoundedArea(0, 0, 1920, 1080, 0), // 0. Full Screen
-							new RoundedArea(0, 250, 1920, 625, 0), // 1. Full Screen
+							new RoundedArea(800, 250, 320, 625, 0), // 1. Full Screen
 							// Insert here
 						},
 						new StoredTransform[] {
@@ -1071,6 +1071,31 @@ public class DefaultValues {
 									5, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
 									)),
+/////////////////////////////////////////////////////////////////////////////////////
+//						new Element(
+//								new Selector(
+//									new int[]{2,0}, // Selector Index
+//									new int[][]{{2,0},{2,0},{0,0},{0,0}} // E, S, W, N to select next
+//									),
+//								-1, // mask index
+//								false, // hover overlap
+//								-1, // hover effect
+//								1, // click effect
+//								-1, // arbritraty animation (to be used for scroll)
+//								8, // entry animation
+//								new TextBox(
+//									// Text and Renderable
+//									1f, // scale
+//									"editColor int 0", // function
+//									"EditColor1",  // name
+//									new RoundedArea(
+//										860, 910, 120, 50, 0  // x, y, xSize, ySize, round%
+//										),
+//									2, // box color (index of colors)
+//									255, // opacity (0-255)
+//									8, // shadowOffset
+//									5, 6 // strokeWidth, strokeColor
+//									)),
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 					},

@@ -23,6 +23,14 @@ public class RoundedArea {
 		roundPercentage = 0;
 	}
 	
+	public void incrementX(int x) {
+		this.x = this.x - x;
+	}
+	
+	public void incrementY(int Y) {
+		this.y = this.y - y;
+	}
+	
 	public int getX() {
 		return x;
 	}

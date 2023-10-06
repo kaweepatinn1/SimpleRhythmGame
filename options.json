@@ -8,7 +8,7 @@
   "transitionTime": 500.0,
   "cursorEnabled": true,
   "DEBUG_drawMasks": false,
-  "DEBUG_masksColorsOffset": 0,
+  "DEBUG_masksColorsOffset": 10,
   "DEBUG_masksOpacity": 80,
   "controls": [
     {
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "themeName": "ColorTrip",
+      "themeName": "ColorTrip1",
       "colorsList": [
         {
           "red": 0,
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "themeName": "ColorTrip",
+      "themeName": "ColorTrip2",
       "colorsList": [
         {
           "red": 0,
@@ -305,7 +305,7 @@
       ]
     },
     {
-      "themeName": "ColorTrip",
+      "themeName": "ColorTrip3",
       "colorsList": [
         {
           "red": 0,
@@ -364,7 +364,7 @@
       ]
     },
     {
-      "themeName": "ColorTrip",
+      "themeName": "ColorTrip4",
       "colorsList": [
         {
           "red": 0,
@@ -423,7 +423,7 @@
       ]
     },
     {
-      "themeName": "ColorTrip",
+      "themeName": "ColorTrip5",
       "colorsList": [
         {
           "red": 0,
@@ -482,7 +482,7 @@
       ]
     },
     {
-      "themeName": "ColorTrip",
+      "themeName": "ColorTrip6",
       "colorsList": [
         {
           "red": 0,
@@ -541,7 +541,7 @@
       ]
     },
     {
-      "themeName": "ColorTrip",
+      "themeName": "ColorTrip7",
       "colorsList": [
         {
           "red": 0,
@@ -600,7 +600,7 @@
       ]
     },
     {
-      "themeName": "ColorTrip",
+      "themeName": "ColorTrip8",
       "colorsList": [
         {
           "red": 0,
@@ -659,7 +659,7 @@
       ]
     },
     {
-      "themeName": "ColorTrip",
+      "themeName": "ColorTrip9",
       "colorsList": [
         {
           "red": 0,
@@ -718,7 +718,7 @@
       ]
     },
     {
-      "themeName": "ColorTrip",
+      "themeName": "ColorTrip10",
       "colorsList": [
         {
           "red": 0,
@@ -2723,9 +2723,9 @@
           "roundPercentage": 0
         },
         {
-          "x": 0,
+          "x": 800,
           "y": 250,
-          "xSize": 1920,
+          "xSize": 320,
           "ySize": 625,
           "roundPercentage": 0
         }
