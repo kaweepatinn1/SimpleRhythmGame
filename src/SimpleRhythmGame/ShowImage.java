@@ -613,17 +613,17 @@ public class ShowImage extends JPanel implements KeyListener {
         int extraAlignX;
         int extraAlignY;
         // uses the align text settings to determing whether to use the fontMetrics for extraAlignX.
-        if (textbox.getAlignX() == "right") {
+        if (textbox.getAlignX().equals("right")) {
         	extraAlignX = - textWidth;
-        } else if (textbox.getAlignX() == "center") {
+        } else if (textbox.getAlignX().equals("center")) {
         	extraAlignX = - textWidth / 2;
         } else { // cases of left, and everything else
         	extraAlignX = 0;
         }
         // same, but for up and down (extraAlignY).
-        if (textbox.getAlignY() == "bottom") {
+        if (textbox.getAlignY().equals("bottom")) {
         	extraAlignY = textHeight;
-        } else if (textbox.getAlignY() == "center") {
+        } else if (textbox.getAlignY().equals("center")) {
         	extraAlignY = textHeight / 2;
         } else { // cases of up, and everything else
         	extraAlignY = 0;
@@ -1199,7 +1199,7 @@ public class ShowImage extends JPanel implements KeyListener {
     			    cursorImg, new Point(0, 0), "blank cursor");
     		panel.setCursor(blankCursor);
     	}
-    	FileIO.currentConfigOut(config);
+    	FileIO.currentConfigOut();
     }
     
     public static Config getConfig() {
@@ -1636,21 +1636,21 @@ public class ShowImage extends JPanel implements KeyListener {
         // READ INITIALIZATION STATUS
         
         // for username
-        boolean userHasUsername = true;
+        boolean userHasUsername = false;
         // String userUsername = xx;
         // UUID userUUID = xx;
         
         // TODO: ADD BELOW TO A COMMENT ONCE DEV IS FINISHED:
         // System.out.println(currentMenuIndex);
         
-        boolean useConfig = false; // use during development. TODO: set to true on completion
+        boolean useConfig = true; // use during development. TODO: set to true on completion
         
         File configFile = new File("./options.json");
-        if(configFile.exists() && !configFile.isDirectory() && useConfig) { 
+        if (configFile.exists() && !configFile.isDirectory() && useConfig) { 
             config = FileIO.currentConfigIn();
         } else {
         	config = DefaultValues.getDefaultConfigs();
-        	FileIO.currentConfigOut(config);
+        	FileIO.currentConfigOut();
         }
         
         setNewFrameSize(config.getFullscreen(), config.getSizeToForce()); // uses the above raw lists and variables to set the frame size.

@@ -66,6 +66,7 @@ public class Config {
 
 	public void setFullscreen(boolean fullscreen) {
 		this.fullscreen = fullscreen;
+		FileIO.currentConfigOut();
 	}
 
 	public int getSizeToForce() {
@@ -74,6 +75,7 @@ public class Config {
 
 	public void setSizeToForce(int sizeToForce) {
 		this.sizeToForce = sizeToForce;
+		FileIO.currentConfigOut();
 	}
 
 	public Controls[] getControls() {
@@ -82,10 +84,12 @@ public class Config {
 
 	public void setControls(Controls[] controls) {
 		this.controls = controls;
+		FileIO.currentConfigOut();
 	}
 	
 	public void setThemes(Theme[] themes) {
 		this.themes = themes;
+		FileIO.currentConfigOut();
 	}
 
 	public Theme[] getThemes() {
@@ -124,6 +128,7 @@ public class Config {
 			themes = toSetThemes;
 			setCurrentThemeChoice(theme.getThemeName());
 			ShowImage.refreshMenu();
+			FileIO.currentConfigOut();
 			return true;
 		}
 	}
@@ -163,6 +168,7 @@ public class Config {
 		themes = toSetThemes;
 		setCurrentThemeChoice("NewTheme" + iteration);
 		ShowImage.refreshMenu();
+		FileIO.currentConfigOut();
 		return true;
 	}
 	
@@ -170,6 +176,7 @@ public class Config {
 		int index = getIndexFromThemeName(themeName);
 		if (index != -1) {
 			themes[index] = newTheme;
+			FileIO.currentConfigOut();
 			return true;
 		} else {
 			System.out.println("Theme \"" + themeName + "\" does not exist!");
@@ -189,6 +196,7 @@ public class Config {
 				currentThemeChoice = index < (themes.length - 1) ? themes[index + 1].getThemeName() : themes[index - 1].getThemeName();
 				themes = toSetThemes;
 				ShowImage.refreshMenu();
+				FileIO.currentConfigOut();
 				return true;
 			} else {
 				System.out.println("Theme \"" + themeName + "\" does not exist!");
@@ -232,12 +240,14 @@ public class Config {
 	
 	public void setColorsForTheme(Color[] colorsInput, String name) {
 		themes[getIndexFromThemeName(name)].setColorsList(colorsInput);
+		FileIO.currentConfigOut();
 	}
 
 	public void setColorForConfigThemes(Color[][] colorsInput) {
 		for (int i = 0; i < colorsInput.length ; i++) {
 			themes[i].setColorsList(colorsInput[i]);
 		}
+		FileIO.currentConfigOut();
 	}
 
 	public String[] getFonts() {
@@ -246,6 +256,7 @@ public class Config {
 
 	public void setFonts(String[] fonts) {
 		this.fonts = fonts;
+		FileIO.currentConfigOut();
 	}
 
 	public Menu[] getMenus() {
@@ -258,6 +269,7 @@ public class Config {
 
 	public void setMenus(Menu[] menus) {
 		this.menus = menus;
+		FileIO.currentConfigOut();
 	}
 	
 	public boolean getNanoSecondPrecision() {
@@ -275,6 +287,7 @@ public class Config {
 	public void setFramerate(int framerate) {
 		this.framerate = framerate;
 		Framerate.set(framerate);
+		FileIO.currentConfigOut();
 	}
 	
 	public boolean getShouldLimitFramerate() {
@@ -284,6 +297,7 @@ public class Config {
 	public void setShouldLimitFramerate(boolean limitFramerate) {
 		this.shouldLimitFramerate = limitFramerate;
 		Framerate.setShouldLimitFramerate(limitFramerate);
+		FileIO.currentConfigOut();
 	}
 	
 	public boolean DEBUG_drawMasks() {
@@ -292,6 +306,7 @@ public class Config {
 	
 	public void DEBUG_drawMasks(boolean DEBUG_drawMasks) {
 		this.DEBUG_drawMasks = DEBUG_drawMasks;
+		FileIO.currentConfigOut();
 	}
 	
 	public int DEBUG_masksColorsOffset() {
@@ -300,6 +315,7 @@ public class Config {
 	
 	public void DEBUG_masksColorsOffset(int DEBUG_masksColorsOffset) {
 		this.DEBUG_masksColorsOffset = DEBUG_masksColorsOffset;
+		FileIO.currentConfigOut();
 	}
 	
 	public int DEBUG_masksOpacity() {
@@ -308,6 +324,7 @@ public class Config {
 	
 	public void DEBUG_masksOpacity(int DEBUG_masksOpacity) {
 		this.DEBUG_masksOpacity = DEBUG_masksOpacity;
+		FileIO.currentConfigOut();
 	}
 
 	public boolean getCursorEnabled() {
@@ -316,6 +333,7 @@ public class Config {
 
 	public void setCursorEnabled(boolean cursorEnabled) {
 		this.cursorEnabled = cursorEnabled;
+		FileIO.currentConfigOut();
 	}
 
 	public String getCurrentThemeChoice() {
@@ -329,17 +347,20 @@ public class Config {
 	public void setCurrentThemeChoice(String currentColorsChoice) {
 		this.currentThemeChoice = currentColorsChoice;
 		updateDisplays();
+		FileIO.currentConfigOut();
 	}
 	
 	public void setCurrentThemeChoice(int indexForChoice) {
 		this.currentThemeChoice = themes[indexForChoice].getThemeName();
 		updateDisplays();
+		FileIO.currentConfigOut();
 	}
 	
 	public void setCurrentSkinChoice(int indexForSkin) {
 		this.currentSkinChoice = getSkinName(indexForSkin);
 		ShowImage.bufferCurrentSkin();
 		updateDisplays();
+		FileIO.currentConfigOut();
 	}
 	
 	public void updateDisplays() {
@@ -383,6 +404,7 @@ public class Config {
 	
 	public void setTransitionTime(double transitionTime) {
 		this.transitionTime = transitionTime;
+		FileIO.currentConfigOut();
 	}
 	
 	public Object[] getObjectList(String objectsName) {
@@ -466,7 +488,9 @@ public class Config {
 			getCurrentTheme().setThemeName((String) newValues);
 			currentThemeChoice = (String) newValues;
 			ShowImage.refreshMenu();
+			FileIO.currentConfigOut();
 			return "Success";
+			
 		} else if (splitVariable[0].equals("%CurrentThemeColor")) {
 			if (((String) newValues).length() != 7){
 				return "HexInvalid";
@@ -478,6 +502,7 @@ public class Config {
 			}
 			getCurrentTheme().getColorOfIndex(Integer.parseInt(splitVariable[1])).setColor((String) newValues);
 			ShowImage.refreshMenu();
+			FileIO.currentConfigOut();
 			return "Success";
 		}
 		else {
@@ -499,5 +524,6 @@ public class Config {
 	public void setCurrentSkinChoice(String currentSkinChoice) {
 		this.currentSkinChoice = currentSkinChoice;
 		ShowImage.bufferCurrentSkin();
+		FileIO.currentConfigOut();
 	}
 }

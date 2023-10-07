@@ -3,7 +3,7 @@ package SimpleRhythmGame;
 // Initialize and then read only class.
 
 public class Element {
-	private transient TweenTransform[] transforms;
+	private TweenTransform[] transforms;
 	private Selector selector;
 	private Renderable renderable;
 	private TextBox textbox;

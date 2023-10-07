@@ -3,7 +3,7 @@ package SimpleRhythmGame;
 import java.awt.geom.AffineTransform;
 
 public class SpecialTransform {
-	private AffineTransform finalTransform;
+	private transient AffineTransform finalTransform;
 	private double anchorX;
 	private double anchorY;
 	private double transformX;

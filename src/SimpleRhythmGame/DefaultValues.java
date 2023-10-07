@@ -818,9 +818,9 @@ public class DefaultValues {
 										false // bold
 										),
 									new RoundedArea(
-										1035, 472, 20, 180, 50  // x, y, xSize, ySize, round%
+										1035, 472, 10, 180, 50  // x, y, xSize, ySize, round%
 										),
-									5, // box color (index of colors)
+									6, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor

@@ -24,11 +24,22 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException; 
 
 public class FileIO {
-	public static void currentConfigOut(Config config) {
+	public static void currentConfigOut() {
 		String path = "./options.json";
 		try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
 	        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-	        String jsonString = gson.toJson(config);
+	        String jsonString = gson.toJson(ShowImage.getConfig());
+	        out.write(jsonString);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	public static void configOut(Config thisConfig) {
+		String path = "./options.json";
+		try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
+	        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	        String jsonString = gson.toJson(thisConfig);
 	        out.write(jsonString);
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -125,7 +136,7 @@ public class FileIO {
 			System.out.println("RESET INVALID MENUS");
 		}
 		
-		currentConfigOut(config);
+		configOut(config);
 		return config;
 	}
 	
