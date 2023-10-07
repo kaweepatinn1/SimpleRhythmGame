@@ -65,6 +65,42 @@ public class Renderable {
         }
     }
     
+    public Renderable(String function, String name, int note, int x, int y,
+    		int xSize, int ySize, int opacity) { // note type renderable
+        this.function = function;
+    	this.name = name;
+    	this.imagePath = "#" + note;
+        this.x = x;
+        this.y = y;
+        this.xSize = xSize;
+        this.ySize = ySize;
+        this.opacity = opacity;
+        if (imagePath.charAt(0) == '#') {
+    		BufferedImage originalImage = ShowImage.getNoteImage(Integer.parseInt(imagePath.substring(1)) - 1);
+        	BufferedImage scaledImage = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
+                    xSize, ySize, Scalr.OP_ANTIALIAS);
+        	this.image = scaledImage;
+    	}
+    }
+    
+    public Renderable(String name, int note, int x, int y,
+    		int xSize, int ySize, int opacity) { // note type renderable
+        this.function = null;
+    	this.name = name;
+    	this.imagePath = "#" + note;
+        this.x = x;
+        this.y = y;
+        this.xSize = xSize;
+        this.ySize = ySize;
+        this.opacity = opacity;
+        if (imagePath.charAt(0) == '#') {
+    		BufferedImage originalImage = ShowImage.getNoteImage(Integer.parseInt(imagePath.substring(1)) - 1);
+        	BufferedImage scaledImage = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
+                    xSize, ySize, Scalr.OP_ANTIALIAS);
+        	this.image = scaledImage;
+    	}
+    }
+    
     public void setFunction(String function) {
     	this.function = function;
     }
@@ -75,6 +111,7 @@ public class Renderable {
     
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+        resetImage();
     }
 
     public void setX(int x) {
@@ -103,15 +140,22 @@ public class Renderable {
     }
     
     public void resetImage() {
-    	try {
-        	BufferedImage originalImage = ImageIO.read(getFile());
-        	this.image = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
+    	if (imagePath.charAt(0) == '#') {
+    		BufferedImage originalImage = ShowImage.getNoteImage(Integer.parseInt(imagePath.substring(1)) - 1);
+        	BufferedImage scaledImage = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
                     xSize, ySize, Scalr.OP_ANTIALIAS);
-        } catch(IOException e){
-        	this.image = null;
-            System.out.println (e.toString());
-            System.out.println("Could not find file: " + getFile());
-        }
+        	this.image = scaledImage;
+    	} else {
+    		try {
+            	BufferedImage originalImage = ImageIO.read(getFile());
+            	this.image = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
+                        xSize, ySize, Scalr.OP_ANTIALIAS);
+            } catch(IOException e){
+            	this.image = null;
+                System.out.println (e.toString());
+                System.out.println("Could not find file: " + getFile());
+            }
+    	}
     }
     
     public String getFunction() {
@@ -147,11 +191,19 @@ public class Renderable {
     }
     
     public File getFile() {
-    	return new File(imagePath);
+    	if (imagePath.charAt(0) == '%') {
+    		if (ShowImage.getConfig() != null) {
+    			return new File((String) ShowImage.getConfig().getVariable(imagePath));
+    		} else {
+    			return new File("src/textures/skins/" + DefaultValues.getDefaultSelectedSkin());
+    		}
+    	} else {
+    		return new File(imagePath);
+    	}
     }
     
     public BufferedImage getImage() {
-    	return image;
+		return image;
     }
     
     public RoundedArea toArea() {

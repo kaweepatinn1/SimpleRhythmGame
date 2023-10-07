@@ -3,7 +3,7 @@ package SimpleRhythmGame;
 // A READ ONLY CLASS
 
 public class DefaultValues {
-	private final static boolean defaultFullscreen = false; // if not fullscreen will force below value
+	private final static boolean defaultFullscreen = true; // if not fullscreen will force below value
 	private final static int defaultSizeToForce = 1280; // forces this screen size if above is true
 	
 	private final static boolean defaultNanoSecondPrecision = true; // true breaks animations
@@ -83,6 +83,7 @@ public class DefaultValues {
 	};
 	
 	private final static String defaultSelectedTheme = "DefaultTheme";
+	private final static String defaultSelectedSkin = "DefaultSkin.png";
 	
 	private final static String[] defaultFonts = new String[] {
 			"src/fonts/ArchivoNarrow-Bold.ttf",
@@ -167,7 +168,7 @@ public class DefaultValues {
 									// Renderable Without Function
 									"PlayPNG", // name
 									"src/textures/play.png", // file source
-									40, 30, 60, 60, // x, y, xSize, ySize (relative)
+									55, 45, 90, 90, // x, y, xSize, ySize (relative)
 									255 // opacity (0-255)
 									),  // renderable
 								new RoundedArea(
@@ -277,7 +278,7 @@ public class DefaultValues {
 							new TextBox(
 								// Text and Renderable
 								1, // scale
-								"setMenu String Customization_Theme_Builder", // function
+								"setMenu String Customization_Skin_Selector", // function
 								"CustomizationButton",  // name
 								new Text(
 									"Customization", // text
@@ -349,17 +350,15 @@ public class DefaultValues {
 /////////////////////////////////////////////////////////////////////////////////////
 					}
 					),
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-			new Menu( // 1. Customization
-					"Customization Theme Builder", // Menu Name
+			new Menu( // 1. Skin Selector
+					"Customization Skin Selector", // Menu Name
 					"Customization", // Menu Display Name
-					"Main Menu",
+					"Main Menu", // Parent Menu
 					0, // BG Color
-					new int[][]{{0,2}}, // Secondary Selections
+					new int[][]{{0,1}}, // Secondary Selections
 					new RoundedArea[]{ // Masks
 							new RoundedArea(0, 0, 1920, 1080, 0), // 0. Full Screen
-							new RoundedArea(800, 250, 320, 625, 0), // 1. Full Screen
+							new RoundedArea(400, 250, 1120, 625, 0), // 1. Skin Choices
 							// Insert here
 						},
 						new StoredTransform[] {
@@ -476,7 +475,906 @@ public class DefaultValues {
 									new TextBox(
 										// Text and Renderable
 										1f, // scale
-										"setMenu String skinSelector", // function
+										"setMenu String null", // function
+										"SkinSelectorButton",  // name
+										new Text(
+											"Skin Selector", // text
+											"left", "center", // align
+											-250, -9, // text offset (x, y)
+											50, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+										new RoundedArea(
+											600, 300, 600, 120, 100  // x, y, xSize, ySize, round%
+											),
+										2, // box color (index of colors)
+										255, // opacity (0-255)
+										15, // shadowOffset
+										5, 6 // strokeWidth, strokeColor
+										)),
+/////////////////////////////////////////////////////////////////////////////////////
+							new Element(
+									new Selector(
+										new int[]{0,2}, // Selector Index
+										new int[][]{{1,0},{0,2},{0,0},{0,1}} // E, S, W, N to select next
+										),
+									-1, // mask index
+									false, // hover overlap
+									3, // hover effect
+									1, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									5, // entry animation
+									new TextBox(
+										// Text and Renderable
+										1f, // scale
+										"setMenu String Customization_Theme_Builder", // function
+										"ThemeBuilderButton",  // name
+										new Text(
+											"Theme Builder", // text
+											"left", "center", // align
+											-250, -9, // text offset (x, y)
+											50, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+										new RoundedArea(
+											600, 450, 600, 120, 100  // x, y, xSize, ySize, round%
+											),
+										2, // box color (index of colors)
+										255, // opacity (0-255)
+										15, // shadowOffset
+										5, 6 // strokeWidth, strokeColor
+										)),
+/////////////////////////////////////////////////////////////////////////////////////
+							new Element(
+									new Selector(
+										new int[]{0,0}, // Selector Index
+										new int[][]{{0,1},{0,1},{0,0},{0,0}} // E, S, W, N to select next
+										),
+									-1, // Mask Index
+									false, // hover overlap
+									2, // hover effect
+									4, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									8, // entry animation
+									new TextBox(
+										// Text and Renderable
+										1, // scale
+										"escapeMenu", // function
+										"BackButton",  // name
+										new Renderable(
+											// Renderable Without Function
+											"BackPNG", // name
+											"src/textures/back.png", // file source
+											30, 30, 60, 60, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+										new RoundedArea(
+											90, 90, 120, 120,  // x, y, xSize, ySize, round%
+											100 // roundPercentage
+											),
+										2, // box color (index of colors)
+										255, // opacity (0-255)
+										5, // shadowOffset
+										5, 6 // strokeWidth, strokeColor
+										)
+									),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+							new Selector(
+								new int[]{-1,-1}, // Selector Index
+								new int[][]{{-1,-1},{-1,-1},{-1,-1},{-1,-1}} // E, S, W, N to select next
+								),
+							-1, // Mask Index
+							false, // hover overlap
+							-1, // hover effect
+							-1, // click effect
+							-1, // arbritraty animation (to be used for scroll)
+							10, // entry animation
+							new TextBox(
+								// No Text, No Renderable
+								1, // scale
+								null, // function
+								"Green Background",  // name
+								new RoundedArea(
+									1160, 560, 1200, 800,  // x, y, xSize, ySize, round%
+									5 // roundPercentage
+									),
+								1, // box color (index of colors)
+								255, // opacity (0-255)
+								25, // shadowOffset
+								5, 6 // strokeWidth, strokeColor
+								)
+							),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								10, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									null, // function
+									"SkinSelectorSubtitle",  // name
+									new Text(
+										"Skin Select", // text
+										"center", "center", // align
+										0, -50, // text offset (x, y)
+										60, // text size
+										6, // text color (index of colors)
+										"Archivo Narrow", // font
+										false // bold
+										),
+									new RoundedArea(
+										1160, 270, 850, 0, 0  // x, y, xSize, ySize, round%
+										),
+									7, // box color (index of colors)
+									255, // opacity (0-255)
+									0, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								10, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									null, // function
+									"SkinSubtext",  // name
+									new Text(
+										"Skin", // text
+										"left", "center", // align
+										0, -2, // text offset (x, y)
+										50, // text size
+										6, // text color (index of colors)
+										"Archivo Narrow", // font
+										false // bold
+										),
+									new RoundedArea(
+										735, 325, 0, 0, 0  // x, y, xSize, ySize, round%
+										),
+									7, // box color (index of colors)
+									255, // opacity (0-255)
+									0, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{2,0}, // Selector Index
+									new int[][]{{2,0},{1,1},{1,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								true, // hover overlap
+								-1, // hover effect
+								1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								10, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									"addPopup int 0", // function
+									"DropDownThemes",  // name
+									new Renderable(
+											// Renderable Without Function
+											"DropDownPNG", // name
+											"src/textures/dropdown.png", // file source
+											8, 7, 50, 50, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+									new RoundedArea(
+										1054, 330, 65, 65, 0  // x, y, xSize, ySize, round%
+										),
+									2, // box color (index of colors)
+									255, // opacity (0-255)
+									5, // shadowOffset
+									3, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								10, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									null, // function
+									"SkinName",  // name
+									new Text(
+										"%CurrentSkinName", // text
+										"right", "center", // align
+										240, -6, // text offset (x, y)
+										35, // text size
+										6, // text color (index of colors)
+										"Archivo Narrow", // font
+										false // bold
+										),
+									new RoundedArea(
+										1335, 330, 500, 65, 0  // x, y, xSize, ySize, round%
+										),
+									8, // box color (index of colors)
+									255, // opacity (0-255)
+									5, // shadowOffset
+									3, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								10, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									null, // function
+									"CurrentSkinSubitle",  // name
+									new Text(
+										"Current Skin", // text
+										"center", "center", // align
+										0, -50, // text offset (x, y)
+										60, // text size
+										6, // text color (index of colors)
+										"Archivo Narrow", // font
+										false // bold
+										),
+									new RoundedArea(
+										1160, 645, 850, 0, 0  // x, y, xSize, ySize, round%
+										),
+									7, // box color (index of colors)
+									255, // opacity (0-255)
+									15, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								10, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									null, // function
+									"Description",  // name
+									new Text(
+										"Tip:", // text
+										"left", "center", // align
+										28, -70, // text offset (x, y)
+										45, // text size
+										6, // text color (index of colors)
+										"Archivo Narrow", // font
+										false // bold
+										),
+									new RoundedArea(
+										1035, 472, 0, 0, 0  // x, y, xSize, ySize, round%
+										),
+									7, // box color (index of colors)
+									255, // opacity (0-255)
+									15, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								10, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									null, // function
+									"Description",  // name
+									new Text(
+										"Custom skins must be 150px by 100px%br%and in the png format to be registered%br%by the system", // text
+										"left", "center", // align
+										28, -12, // text offset (x, y)
+										35, // text size
+										6, // text color (index of colors)
+										"Archivo Narrow", // font
+										false // bold
+										),
+									new RoundedArea(
+										1035, 472, 20, 180, 50  // x, y, xSize, ySize, round%
+										),
+									5, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{3,3},{1,4},{1,3},{1,2}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								10, // entry animation
+								new TextBox(
+									//Text
+									1f, // scale
+									"noFunction", // function
+									"CurrentSkin", // name
+									new Text(
+											"Current Skin", // text
+											"center", "center", // align
+											0, -9, // text offset (x, y)
+											50, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+									new Renderable(
+											// Renderable Without Function
+											"CurrentSkin", // name
+											"%CurrentSkinPath", // image "path"
+											0, 0, 270, 180, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+									new RoundedArea(
+										872, 472, 270, 180, 0  // x, y, xSize, ySize, round%
+										),
+									8, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{3,3},{1,4},{1,3},{1,2}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								10, // entry animation
+								new TextBox(
+									//Text
+									1f, // scale
+									"noFunction", // function
+									"Texture1", // name
+									new Text(
+											"Texture 1", // text
+											"center", "center", // align
+											0, 125, // text offset (x, y)
+											50, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+									new Renderable(
+											// Renderable Without Function
+											"Texture1", // name
+											1, // note
+											0, 0, 180, 180, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+									new RoundedArea(
+										700, 770, 180, 180, 0  // x, y, xSize, ySize, round%
+										),
+									1, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{3,3},{1,4},{1,3},{1,2}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								10, // entry animation
+								new TextBox(
+									//Text
+									1f, // scale
+									"noFunction", // function
+									"Texture2", // name
+									new Text(
+											"Texture 2", // text
+											"center", "center", // align
+											0, 125, // text offset (x, y)
+											50, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+									new Renderable(
+											// Renderable Without Function
+											"Texture2", // name
+											2, // note
+											0, 0, 180, 180, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+									new RoundedArea(
+										930, 770, 180, 180, 0  // x, y, xSize, ySize, round%
+										),
+									1, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{3,3},{1,4},{1,3},{1,2}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								10, // entry animation
+								new TextBox(
+									//Text
+									1f, // scale
+									"noFunction", // function
+									"Texture3", // name
+									new Text(
+											"Texture 3", // text
+											"center", "center", // align
+											0, 125, // text offset (x, y)
+											50, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+									new Renderable(
+											// Renderable Without Function
+											"Texture3", // name
+											3, // note
+											0, 0, 180, 180, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+									new RoundedArea(
+										1160, 770, 180, 180, 0  // x, y, xSize, ySize, round%
+										),
+									1, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{3,3},{1,4},{1,3},{1,2}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								10, // entry animation
+								new TextBox(
+									//Text
+									1f, // scale
+									"noFunction", // function
+									"Texture4", // name
+									new Text(
+											"Texture 4", // text
+											"center", "center", // align
+											0, 125, // text offset (x, y)
+											50, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+									new Renderable(
+											// Renderable Without Function
+											"Texture4", // name
+											4, // note
+											0, 0, 180, 180, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+									new RoundedArea(
+										1390, 770, 180, 180, 0  // x, y, xSize, ySize, round%
+										),
+									1, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{3,3},{1,4},{1,3},{1,2}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								10, // entry animation
+								new TextBox(
+									//Text
+									1f, // scale
+									"noFunction", // function
+									"Texture5", // name
+									new Text(
+											"Texture 5", // text
+											"center", "center", // align
+											0, 125, // text offset (x, y)
+											50, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+									new Renderable(
+											// Renderable Without Function
+											"Texture5", // name
+											5, // note
+											0, 0, 180, 180, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+									new RoundedArea(
+										1620, 770, 180, 180, 0  // x, y, xSize, ySize, round%
+										),
+									1, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+					},
+					new Popup[] { // Popups List
+							new Popup(
+								"ThemeOptions", // Popup Name
+								"Theme Options", // Popup Title
+								new Element[] {
+									new Element(
+											new Selector(
+												new int[]{-1,-1}, // Selector Index
+												new int[][]{{-1,-1},{-1,-1},{-1,-1},{-1,-1}} // E, S, W, N to select next
+												),
+											-1, // Mask Index
+											false, // hover overlap
+											-1, // hover effect
+											-1, // click effect
+											-1, // arbritraty animation (to be used for scroll)
+											8, // entry animation
+											new TextBox(
+												// No Text, No Renderable
+												1, // scale
+												null, // function
+												"Green Background",  // name
+												new RoundedArea(
+													960, 560, 1200, 800,  // x, y, xSize, ySize, round%
+													5 // roundPercentage
+													),
+												1, // box color (index of colors)
+												255, // opacity (0-255)
+												25, // shadowOffset
+												5, 6 // strokeWidth, strokeColor
+												)
+											),
+/////////////////////////////////////////////////////////////////////////////////////
+									new Element(
+											new Selector(
+													new int[]{2,0}, // Selector Index
+													new int[][]{{3,0},{2,0},{1,0},{2,0}} // E, S, W, N to select next
+													),
+												1, // mask index
+												false, // hover overlap
+												-1, // hover effect
+												1, // click effect
+												11, // arbritraty animation (to be used for scroll)
+												8, // entry animation
+												new OptionsList(
+														// Text and Renderable
+														1f, // scale
+														"setSkin", // function
+														"%SkinChoices", // list objects
+														5, // max amount of options
+														"SkinChoices",  // name
+														new Text(
+															"%Name", // text
+															"center", "center", // align
+															0, -5, // text offset (x, y)
+															40, // text size
+															6, // text color (index of colors)
+															"Archivo Narrow", // font
+															false // bold
+															),
+														new RoundedArea(
+															960, 320, 1100, 80, 0  // x, y, xSize, ySize, round%
+															),
+														2, // box color (index of colors)
+														255, // opacity (0-255)
+														8, // shadowOffset
+														5, 6 // strokeWidth, strokeColor
+														)
+												),
+/////////////////////////////////////////////////////////////////////////////////////
+									new Element(
+											new Selector(
+												new int[]{1,0}, // Selector Index
+												new int[][]{{2,0},{2,0},{0,0},{0,0}} // E, S, W, N to select next
+												),
+											-1, // mask index
+											false, // hover overlap
+											-1, // hover effect
+											1, // click effect
+											-1, // arbritraty animation (to be used for scroll)
+											8, // entry animation
+											new TextBox(
+												// Text and Renderable
+												1f, // scale
+												"scroll String SkinChoices boolean false", // function
+												"ThemeChoicesScrollUp",  // name
+												new Renderable(
+														// Renderable Without Function
+														"UpPNG", // name
+														"src/textures/up.png", // file source
+														15, 7, 90, 36, // x, y, xSize, ySize (relative)
+														255 // opacity (0-255)
+														),  // renderable
+												new RoundedArea(
+													960, 210, 120, 50, 0  // x, y, xSize, ySize, round%
+													),
+												2, // box color (index of colors)
+												255, // opacity (0-255)
+												8, // shadowOffset
+												5, 6 // strokeWidth, strokeColor
+												)),
+/////////////////////////////////////////////////////////////////////////////////////
+									new Element(
+											new Selector(
+												new int[]{3,0}, // Selector Index
+												new int[][]{{3,0},{3,0},{2,0},{2,0}} // E, S, W, N to select next
+												),
+											-1, // mask index
+											false, // hover overlap
+											-1, // hover effect
+											1, // click effect
+											-1, // arbritraty animation (to be used for scroll)
+											8, // entry animation
+											new TextBox(
+												// Text and Renderable
+												1f, // scale
+												"scroll String SkinChoices boolean true", // function
+												"ThemeChoicesScrollDown",  // name
+												new Renderable(
+														// Renderable Without Function
+														"DownPNG", // name
+														"src/textures/down.png", // file source
+														15, 7, 90, 36, // x, y, xSize, ySize (relative)
+														255 // opacity (0-255)
+														),  // renderable
+												new RoundedArea(
+													960, 910, 120, 50, 0  // x, y, xSize, ySize, round%
+													),
+												2, // box color (index of colors)
+												255, // opacity (0-255)
+												8, // shadowOffset
+												5, 6 // strokeWidth, strokeColor
+												)),
+/////////////////////////////////////////////////////////////////////////////////////
+									new Element(
+											new Selector(
+												new int[]{0,0}, // Selector Index
+												new int[][]{{1,0},{1,0},{0,0},{0,0}} // E, S, W, N to select next
+												),
+											-1, // Mask Index
+											false, // hover overlap
+											2, // hover effect
+											4, // click effect
+											-1, // arbritraty animation (to be used for scroll)
+											8, // entry animation
+											new TextBox(
+												// Text and Renderable
+												1, // scale
+												"removePopup int 0", // function
+												"BackButton",  // name
+												new Renderable(
+													// Renderable Without Function
+													"BackPNG", // name
+													"src/textures/back.png", // file source
+													30, 30, 60, 60, // x, y, xSize, ySize (relative)
+													255 // opacity (0-255)
+													),  // renderable
+												new RoundedArea(
+													90, 90, 120, 120,  // x, y, xSize, ySize, round%
+													100 // roundPercentage
+													),
+												2, // box color (index of colors)
+												255, // opacity (0-255)
+												5, // shadowOffset
+												5, 6 // strokeWidth, strokeColor
+												)
+											),
+		/////////////////////////////////////////////////////////////////////////////////////
+								}
+							)
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+					}
+			),
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+			new Menu( // 2. Theme Builder
+					"Customization Theme Builder", // Menu Name
+					"Customization", // Menu Display Name
+					"Main Menu", // Parent Menu
+					0, // BG Color
+					new int[][]{{0,2}}, // Secondary Selections
+					new RoundedArea[]{ // Masks
+							new RoundedArea(0, 0, 1920, 1080, 0), // 0. Full Screen
+							new RoundedArea(800, 250, 320, 625, 0), // 1. Theme Choices
+							// Insert here
+						},
+						new StoredTransform[] {
+							new StoredTransform( // 0. hover move left 100
+								-100, 0, // x, y transform
+								1, 1, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								1000, // animation time (ms)
+								6 // (ease type)
+							),
+							new StoredTransform( // 1. click animation (scale down)
+								0, 0, // x, y transform
+								0.95, 0.95, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								100, // animation time (ms)
+								6 // (ease type)
+							),
+							new StoredTransform( // 2. hover expand
+								0, 0, // x, y transform
+								1.05, 1.05, // scale transform (x, y)
+								-20, // rotate transform
+								0, // offset (ms)
+								500, // animation time (ms)
+								6 // (ease type)
+							),
+							new StoredTransform( // 3. hover expand (no rotate)
+								-200, 0, // x, y transform
+								1, 1, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								750, // animation time (ms)
+								6 // (ease type)
+							),
+							new StoredTransform( // 4. click animation (scale down and rotate back)
+								0, 0, // x, y transform
+								0.95, 0.95, // scale transform (x, y)
+								20, // rotate transform
+								0, // offset (ms)
+								100, // animation time (ms)
+								6 // (ease type)
+							),
+							new StoredTransform( // 5. hover move right 150
+								150, 0, // x, y transform
+								1, 1, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								500, // animation time (ms)
+								6 // (ease type)
+								),
+							new StoredTransform( // 6. hover move up 100
+								0, -100, // x, y transform
+								1, 1, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								500, // animation time (ms)
+								6 // (ease type)
+								),
+							new StoredTransform( // 7. hover move down 100
+								0, 100, // x, y transform
+								1, 1, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								500, // animation time (ms)
+								6 // (ease type)
+								),
+							new StoredTransform( // 8. 0 scale
+								0, 0, // x, y transform
+								0, 0, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								500, // animation time (ms)
+								6 // (ease type)
+								),
+							new StoredTransform( // 9. 0 scale, centered up 75
+								0, -75, // x, y transform
+								0, 0, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								500, // animation time (ms)
+								6 // (ease type)
+								),
+							new StoredTransform( // 10. -200 x (f box to center)
+								-200, 0, // x, y transform
+								1, 1, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								500, // animation time (ms)
+								6 // (ease type)
+								),
+							new StoredTransform( // 11. 120 y (optionsList)
+								0, 120, // x, y transform
+								1, 1, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								400, // animation time (ms)
+								6 // (ease type)
+								),
+						},
+					new Element[] { // Elements List
+/////////////////////////////////////////////////////////////////////////////////////
+							new Element(
+									new Selector(
+										new int[]{0,1}, // Selector Index
+										new int[][]{{1,0},{0,2},{0,0},{0,0}} // E, S, W, N to select next
+										),
+									-1, // mask index
+									false, // hover overlap
+									3, // hover effect
+									1, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									5, // entry animation
+									new TextBox(
+										// Text and Renderable
+										1f, // scale
+										"setMenu String Customization_Skin_Selector", // function
 										"SkinSelectorButton",  // name
 										new Text(
 											"Skin Selector", // text
@@ -961,7 +1859,7 @@ public class DefaultValues {
 											),
 										
 									new RoundedArea(
-										740, 700, 120, 60, 0  // x, y, xSize, ySize, round%
+										672, 700, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
 									8, // box color (index of colors)
 									255, // opacity (0-255)
@@ -1002,7 +1900,7 @@ public class DefaultValues {
 											255 // opacity (0-255)
 											),  // renderable
 									new RoundedArea(
-										740, 760, 120, 60, 0  // x, y, xSize, ySize, round%
+										672, 760, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
 									0, // box color (index of colors)
 									255, // opacity (0-255)
@@ -1042,7 +1940,7 @@ public class DefaultValues {
 											),
 										
 									new RoundedArea(
-										880, 700, 120, 60, 0  // x, y, xSize, ySize, round%
+										812, 700, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
 									8, // box color (index of colors)
 									255, // opacity (0-255)
@@ -1083,7 +1981,7 @@ public class DefaultValues {
 											255 // opacity (0-255)
 											),  // renderable
 									new RoundedArea(
-										880, 760, 120, 60, 0  // x, y, xSize, ySize, round%
+										812, 760, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
 									1, // box color (index of colors)
 									255, // opacity (0-255)
@@ -1123,7 +2021,7 @@ public class DefaultValues {
 											),
 										
 									new RoundedArea(
-										1020, 700, 120, 60, 0  // x, y, xSize, ySize, round%
+										952, 700, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
 									8, // box color (index of colors)
 									255, // opacity (0-255)
@@ -1164,7 +2062,7 @@ public class DefaultValues {
 											255 // opacity (0-255)
 											),  // renderable
 									new RoundedArea(
-										1020, 760, 120, 60, 0  // x, y, xSize, ySize, round%
+										952, 760, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
 									2, // box color (index of colors)
 									255, // opacity (0-255)
@@ -1204,7 +2102,7 @@ public class DefaultValues {
 											),
 										
 									new RoundedArea(
-										1160, 700, 120, 60, 0  // x, y, xSize, ySize, round%
+										1092, 700, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
 									8, // box color (index of colors)
 									255, // opacity (0-255)
@@ -1245,7 +2143,7 @@ public class DefaultValues {
 											255 // opacity (0-255)
 											),  // renderable
 									new RoundedArea(
-										1160, 760, 120, 60, 0  // x, y, xSize, ySize, round%
+										1092, 760, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
 									3, // box color (index of colors)
 									255, // opacity (0-255)
@@ -1285,7 +2183,7 @@ public class DefaultValues {
 											),
 										
 									new RoundedArea(
-										1300, 700, 120, 60, 0  // x, y, xSize, ySize, round%
+										1232, 700, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
 									8, // box color (index of colors)
 									255, // opacity (0-255)
@@ -1326,7 +2224,7 @@ public class DefaultValues {
 											255 // opacity (0-255)
 											),  // renderable
 									new RoundedArea(
-										1300, 760, 120, 60, 0  // x, y, xSize, ySize, round%
+										1232, 760, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
 									4, // box color (index of colors)
 									255, // opacity (0-255)
@@ -1366,7 +2264,7 @@ public class DefaultValues {
 											),
 										
 									new RoundedArea(
-										1440, 700, 120, 60, 0  // x, y, xSize, ySize, round%
+										1372, 700, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
 									8, // box color (index of colors)
 									255, // opacity (0-255)
@@ -1407,7 +2305,7 @@ public class DefaultValues {
 											255 // opacity (0-255)
 											),  // renderable
 									new RoundedArea(
-										1440, 760, 120, 60, 0  // x, y, xSize, ySize, round%
+										1372, 760, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
 									5, // box color (index of colors)
 									255, // opacity (0-255)
@@ -1447,7 +2345,7 @@ public class DefaultValues {
 											),
 										
 									new RoundedArea(
-										1580, 700, 120, 60, 0  // x, y, xSize, ySize, round%
+										1518, 700, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
 									8, // box color (index of colors)
 									255, // opacity (0-255)
@@ -1488,9 +2386,91 @@ public class DefaultValues {
 											255 // opacity (0-255)
 											),  // renderable
 									new RoundedArea(
-										1580, 760, 120, 60, 0  // x, y, xSize, ySize, round%
+										1518, 760, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
 									6, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+						
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{2,3},{1,4},{0,2},{1,2}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								10, // entry animation
+								new TextField(
+										// Textfield
+										1f, // scale
+										16, // Max Size
+										new int[] { // Error Popup Indexes
+												1, // Field is duplicate!
+												0, // Field is empty
+												3, // Not a valid input
+											},
+										"Color8", // Name
+										new Text(
+											"%CurrentThemeColor 8", // text
+											"center", "center", // align
+											0, -6, // text offset (x, y)
+											25, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+										
+									new RoundedArea(
+										1652, 700, 120, 60, 0  // x, y, xSize, ySize, round%
+										),
+									8, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									3, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{8,3}, // Selector Index
+									new int[][]{{8,3},{1,4},{7,3},{1,2}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								10, // entry animation
+								new TextBox(
+									//Text
+									1f, // scale
+									"enterTextField String Color8", // function
+									"EditColor8Button", // name
+									new Text(
+											"Display%br%Color", // text
+											"center", "center", // align
+											0, 50, // text offset (x, y)
+											25, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+									new Renderable(
+											// Renderable Without Function
+											"EditPNG", // name
+											"src/textures/edit.png", // file source
+											36, 6, 50, 50, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+									new RoundedArea(
+										1652, 760, 120, 60, 0  // x, y, xSize, ySize, round%
+										),
+									8, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -1523,7 +2503,7 @@ public class DefaultValues {
 										false // bold
 										),
 									new RoundedArea(
-										1000, 900, 300, 65, 0  // x, y, xSize, ySize, round%
+										1002, 900, 300, 65, 0  // x, y, xSize, ySize, round%
 										),
 									2, // box color (index of colors)
 									255, // opacity (0-255)
@@ -1557,7 +2537,7 @@ public class DefaultValues {
 										true // bold
 										),
 									new RoundedArea(
-										1320, 900, 300, 65, 0  // x, y, xSize, ySize, round%
+										1322, 900, 300, 65, 0  // x, y, xSize, ySize, round%
 										),
 									5, // box color (index of colors)
 									255, // opacity (0-255)
@@ -1819,8 +2799,8 @@ public class DefaultValues {
 /////////////////////////////////////////////////////////////////////////////////////
 									new Element(
 											new Selector(
-													new int[]{1,0}, // Selector Index
-													new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+													new int[]{2,0}, // Selector Index
+													new int[][]{{3,0},{2,0},{1,0},{2,0}} // E, S, W, N to select next
 													),
 												1, // mask index
 												false, // hover overlap
@@ -1856,7 +2836,7 @@ public class DefaultValues {
 /////////////////////////////////////////////////////////////////////////////////////
 									new Element(
 											new Selector(
-												new int[]{0,0}, // Selector Index
+												new int[]{1,0}, // Selector Index
 												new int[][]{{2,0},{2,0},{0,0},{0,0}} // E, S, W, N to select next
 												),
 											-1, // mask index
@@ -1888,8 +2868,8 @@ public class DefaultValues {
 /////////////////////////////////////////////////////////////////////////////////////
 									new Element(
 											new Selector(
-												new int[]{2,0}, // Selector Index
-												new int[][]{{2,0},{2,0},{0,0},{0,0}} // E, S, W, N to select next
+												new int[]{3,0}, // Selector Index
+												new int[][]{{3,0},{3,0},{2,0},{2,0}} // E, S, W, N to select next
 												),
 											-1, // mask index
 											false, // hover overlap
@@ -1921,7 +2901,7 @@ public class DefaultValues {
 									new Element(
 											new Selector(
 												new int[]{0,0}, // Selector Index
-												new int[][]{{0,1},{0,1},{0,0},{0,0}} // E, S, W, N to select next
+												new int[][]{{1,0},{1,0},{0,0},{0,0}} // E, S, W, N to select next
 												),
 											-1, // Mask Index
 											false, // hover overlap
@@ -2085,7 +3065,7 @@ public class DefaultValues {
 													"noFunction", // function
 													"ErrorMessage",  // name
 													new Text(
-														"Invalid Clipboard!", // text
+														"Invalid Import!", // text
 														"center", "center", // align
 														0, -100, // text offset (x, y)
 														80, // text size
@@ -2178,12 +3158,14 @@ public class DefaultValues {
 	};
 	
 	public static Config getDefaultConfigs() {
+		ShowImage.bufferSkin(defaultSelectedSkin);
 		Config defaultConfig = new Config(
     			getDefaultFullscreen(),
     			getDefaultSizeToForce(),
     			getDefaultControls(),
     			getDefaultThemes(),
     			getDefaultSelectedTheme(),
+    			getDefaultSelectedSkin(),
     			getDefaultFonts(),
     			getAllDefaultMenus(),
     			getDefaultNanoSecondPrecision(),
@@ -2227,6 +3209,10 @@ public class DefaultValues {
 		return defaultSelectedTheme;
 	}
 	
+	public static String getDefaultSelectedSkin() {
+		return defaultSelectedSkin;
+	}
+
 	public static String[] getDefaultFonts() {
 		return defaultFonts;
 	}

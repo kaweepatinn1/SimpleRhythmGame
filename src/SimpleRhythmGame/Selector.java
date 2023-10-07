@@ -15,6 +15,14 @@ public class Selector {
 		this.selected = false;
 	}
 	
+	public Selector() {
+		selectorIndex = new int[] {-1,-1};
+		selectorOptions = new int[][] {{-1,-1},{-1,-1},{-1,-1},{-1,-1}};
+		this.primaryHovered = false;
+		this.secondaryHovered = false;
+		this.selected = false;
+	}
+	
 	public int[] getSelectorIndex() {
 		return selectorIndex;
 	}

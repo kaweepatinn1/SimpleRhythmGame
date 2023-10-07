@@ -41,6 +41,7 @@ public class ShowImage extends JPanel implements KeyListener {
     
     // whether or not the next frame to be drawn should force reset the positions
     // and other values of elements, masks, and transforms
+    private static BufferedImage currentSkin;
     
     private static boolean popupUpdate = false;
     private static double popupTime;
@@ -531,7 +532,7 @@ public class ShowImage extends JPanel implements KeyListener {
         
         float thickness = 5 * (float) scale;
         g2d.setColor(config.getCurrentThemeColors()[6]);
-        g2d.setStroke(new BasicStroke(thickness));
+        g2d.setStroke(new BasicStroke(thickness, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
         g2d.draw(polyline);
         
     	TextBox titletextbox = new TextBox(
@@ -716,15 +717,8 @@ public class ShowImage extends JPanel implements KeyListener {
         	
         	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacityMulti));
             
-            float thickness = textbox.getStrokeWidth();
-            g2d.setStroke(new BasicStroke(thickness));
-            
             g2d.setColor(config.getCurrentThemeColors()[textbox.getColor()]); // set box color
             g2d.fill(finalRect);
-            g2d.setColor(config.getCurrentThemeColors()[textbox.getStrokeColor()]);
-            g2d.draw(finalRect);
-            
-            g2d.setStroke(new BasicStroke(0));
             
             // ^ Textbox section
             // v Text / Image section
@@ -782,6 +776,12 @@ public class ShowImage extends JPanel implements KeyListener {
 	            
 	            g2d.setTransform(oldForm);
             }
+            
+            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacityMulti));
+            float thickness = textbox.getStrokeWidth();
+            g2d.setStroke(new BasicStroke(thickness, BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER));
+            g2d.setColor(config.getCurrentThemeColors()[textbox.getStrokeColor()]);
+            g2d.draw(finalRect);
 
         } else if (currentElement.isTextfield()) {
         	TextField textfield = currentElement.getTextfield();
@@ -831,14 +831,14 @@ public class ShowImage extends JPanel implements KeyListener {
         	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacityMulti));
             
             float thickness = textfield.getStrokeWidth();
-            g2d.setStroke(new BasicStroke(thickness));
+            g2d.setStroke(new BasicStroke(thickness, BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER));
             
             g2d.setColor(config.getCurrentThemeColors()[textfield.getColor()]); // set box color
             g2d.fill(finalRect);
             g2d.setColor(config.getCurrentThemeColors()[textfield.getStrokeColor()]);
             g2d.draw(finalRect);
             
-            g2d.setStroke(new BasicStroke(0));
+            g2d.setStroke(new BasicStroke(0, BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER));
             
             // ^ Textbox section
             // v Text / Image section
@@ -978,8 +978,7 @@ public class ShowImage extends JPanel implements KeyListener {
     	            
     	            if (textbox.getRenderableObject() != null) {
     	            	Renderable renderable = textbox.getRenderableObject();
-    	            	BufferedImage image = renderable.getImage();
-    	            	bounds = new Rectangle(renderable.getX() + x, renderable.getY() + y, image.getWidth(), image.getHeight());
+    	            	bounds = new Rectangle(renderable.getX() + x, renderable.getY() + y, renderable.getXSize(), renderable.getYSize());
     	            }
     	            if ((buttonArea.contains(mouseX, mouseY) && textbox.getOpacity() != 0) ||
     	            	(bounds.contains(mouseX, mouseY) && textbox.getRenderableObject().getOpacity() != 0 && textbox.getRenderableObject() != null)
@@ -1560,6 +1559,38 @@ public class ShowImage extends JPanel implements KeyListener {
 		}
 	}
 	
+	public static BufferedImage getNoteImage(int index) {
+		BufferedImage toReturn = null;
+		int x = (index / 2) * 50; // quotient
+		int y = (index % 2) * 50; // remainder
+		if (currentSkin != null) {
+			toReturn = currentSkin.getSubimage(x, y, 50, 50);
+		} 
+		else {
+			try {
+				if (config == null) {
+					toReturn = ImageIO.read(new File("src/textures/skins/" + DefaultValues.getDefaultSelectedSkin())).getSubimage(x, y, 50, 50);
+				} else {
+					toReturn = ImageIO.read(new File("src/textures/skins/" + config.getCurrentSkinChoice())).getSubimage(x, y, 50, 50);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return toReturn;
+	}
+	
+	public static void bufferCurrentSkin() {
+		String imagePath = "src/textures/skins/" + config.getCurrentSkinChoice();
+		currentSkin = FileIO.readImageFile(imagePath);
+	}
+	
+	public static void bufferSkin(String skinName) {
+		String imagePath = "src/textures/skins/" + skinName;
+		currentSkin = FileIO.readImageFile(imagePath);
+	}
+	
 	public static void confirmElement(Element element) {
 		element.getTextfield().confirmEntry();
 		
@@ -1625,7 +1656,7 @@ public class ShowImage extends JPanel implements KeyListener {
         setNewFrameSize(config.getFullscreen(), config.getSizeToForce()); // uses the above raw lists and variables to set the frame size.
         
         if (userHasUsername) {
-        	Functions.setMenu("Customization Theme Builder");
+        	Functions.setMenu("Customization Skin Selector");
         } else {
         	Functions.setMenu("Init User");
         }

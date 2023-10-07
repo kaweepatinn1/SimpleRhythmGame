@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
+// Class used to help debug. Not created by me.
+
 /** 
  * Class which controls System.out prints in console <br/>
  * this class will helps developers to control prints in console

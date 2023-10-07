@@ -60,6 +60,8 @@ public class Functions {
 					enterTextField((String) parameters[0]);
 				} else if (methodName.equals("setTheme")) {
 					setTheme((int) parameters[0]);
+				} else if (methodName.equals("setSkin")) {
+					setSkin((int) parameters[0]);
 				} else if (methodName.equals("scroll")) {
 					scrollOptionsList((String) parameters[0], (boolean) parameters[1]);
 				} else if (methodName.equals("addTheme")) {
@@ -106,7 +108,7 @@ public class Functions {
 		String checkMenu = menuName.replace("_", " ");
 		// convert menu name in function from "_" to " ", 
 		// as space bar is the delimiter in the function definition
-		for (Menu menu : DefaultValues.getAllDefaultMenus()) {
+		for (Menu menu : ShowImage.getConfig().getMenus()) {
 			if (menu.getMenuName().equals(checkMenu)) {
 				setMenuIndex(menuNumber);
 				foundMenu = true;
@@ -140,6 +142,11 @@ public class Functions {
 	
 	public static void setTheme(int index) {
 		ShowImage.getConfig().setCurrentThemeChoice(index);
+		removeThisPopup();
+	}
+	
+	public static void setSkin(int index) {
+		ShowImage.getConfig().setCurrentSkinChoice(index);
 		removeThisPopup();
 	}
 	

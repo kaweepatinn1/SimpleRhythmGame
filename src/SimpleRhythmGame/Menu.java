@@ -285,7 +285,7 @@ public class Menu {
             		i++;
             		
                 	for (int index = 0 ; index < objectsCount ; index++) {
-                		Element toRenderElement = new Element(currentElement, index, objectsCount, transformsToReturn); // still unscaled
+                		Element toRenderElement = new Element(currentElement, index, objectsCount, transformsToReturn, transforms); // still unscaled
                 		Element scaledElement = toRenderElement.scale(xScale, yScale);
                 		elementsToReturn[i] = scaledElement;
                 		i++;

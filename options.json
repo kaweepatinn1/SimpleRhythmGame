@@ -1,5 +1,5 @@
 {
-  "fullscreen": false,
+  "fullscreen": true,
   "sizeToForce": 1280,
   "nanoSecondPrecision": true,
   "framesToStore": 20,
@@ -67,6 +67,7 @@
     }
   ],
   "currentThemeChoice": "DefaultTheme",
+  "currentSkinChoice": "DefaultSkin.png",
   "themes": [
     {
       "themeName": "DefaultTheme",
@@ -129,596 +130,6 @@
     },
     {
       "themeName": "ColorTrip",
-      "colorsList": [
-        {
-          "red": 0,
-          "green": 255,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 23,
-          "green": 55,
-          "blue": 198,
-          "alpha": 255
-        },
-        {
-          "red": 207,
-          "green": 95,
-          "blue": 235,
-          "alpha": 255
-        },
-        {
-          "red": 24,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        },
-        {
-          "red": 217,
-          "green": 217,
-          "blue": 217,
-          "alpha": 255
-        },
-        {
-          "red": 255,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 0
-        },
-        {
-          "red": 255,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        }
-      ]
-    },
-    {
-      "themeName": "ColorTrip1",
-      "colorsList": [
-        {
-          "red": 0,
-          "green": 255,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 23,
-          "green": 55,
-          "blue": 198,
-          "alpha": 255
-        },
-        {
-          "red": 207,
-          "green": 95,
-          "blue": 235,
-          "alpha": 255
-        },
-        {
-          "red": 24,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        },
-        {
-          "red": 217,
-          "green": 217,
-          "blue": 217,
-          "alpha": 255
-        },
-        {
-          "red": 255,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 0
-        },
-        {
-          "red": 255,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        }
-      ]
-    },
-    {
-      "themeName": "ColorTrip2",
-      "colorsList": [
-        {
-          "red": 0,
-          "green": 255,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 23,
-          "green": 55,
-          "blue": 198,
-          "alpha": 255
-        },
-        {
-          "red": 207,
-          "green": 95,
-          "blue": 235,
-          "alpha": 255
-        },
-        {
-          "red": 24,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        },
-        {
-          "red": 217,
-          "green": 217,
-          "blue": 217,
-          "alpha": 255
-        },
-        {
-          "red": 255,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 0
-        },
-        {
-          "red": 255,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        }
-      ]
-    },
-    {
-      "themeName": "ColorTrip3",
-      "colorsList": [
-        {
-          "red": 0,
-          "green": 255,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 23,
-          "green": 55,
-          "blue": 198,
-          "alpha": 255
-        },
-        {
-          "red": 207,
-          "green": 95,
-          "blue": 235,
-          "alpha": 255
-        },
-        {
-          "red": 24,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        },
-        {
-          "red": 217,
-          "green": 217,
-          "blue": 217,
-          "alpha": 255
-        },
-        {
-          "red": 255,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 0
-        },
-        {
-          "red": 255,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        }
-      ]
-    },
-    {
-      "themeName": "ColorTrip4",
-      "colorsList": [
-        {
-          "red": 0,
-          "green": 255,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 23,
-          "green": 55,
-          "blue": 198,
-          "alpha": 255
-        },
-        {
-          "red": 207,
-          "green": 95,
-          "blue": 235,
-          "alpha": 255
-        },
-        {
-          "red": 24,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        },
-        {
-          "red": 217,
-          "green": 217,
-          "blue": 217,
-          "alpha": 255
-        },
-        {
-          "red": 255,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 0
-        },
-        {
-          "red": 255,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        }
-      ]
-    },
-    {
-      "themeName": "ColorTrip5",
-      "colorsList": [
-        {
-          "red": 0,
-          "green": 255,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 23,
-          "green": 55,
-          "blue": 198,
-          "alpha": 255
-        },
-        {
-          "red": 207,
-          "green": 95,
-          "blue": 235,
-          "alpha": 255
-        },
-        {
-          "red": 24,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        },
-        {
-          "red": 217,
-          "green": 217,
-          "blue": 217,
-          "alpha": 255
-        },
-        {
-          "red": 255,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 0
-        },
-        {
-          "red": 255,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        }
-      ]
-    },
-    {
-      "themeName": "ColorTrip6",
-      "colorsList": [
-        {
-          "red": 0,
-          "green": 255,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 23,
-          "green": 55,
-          "blue": 198,
-          "alpha": 255
-        },
-        {
-          "red": 207,
-          "green": 95,
-          "blue": 235,
-          "alpha": 255
-        },
-        {
-          "red": 24,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        },
-        {
-          "red": 217,
-          "green": 217,
-          "blue": 217,
-          "alpha": 255
-        },
-        {
-          "red": 255,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 0
-        },
-        {
-          "red": 255,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        }
-      ]
-    },
-    {
-      "themeName": "ColorTrip7",
-      "colorsList": [
-        {
-          "red": 0,
-          "green": 255,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 23,
-          "green": 55,
-          "blue": 198,
-          "alpha": 255
-        },
-        {
-          "red": 207,
-          "green": 95,
-          "blue": 235,
-          "alpha": 255
-        },
-        {
-          "red": 24,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        },
-        {
-          "red": 217,
-          "green": 217,
-          "blue": 217,
-          "alpha": 255
-        },
-        {
-          "red": 255,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 0
-        },
-        {
-          "red": 255,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        }
-      ]
-    },
-    {
-      "themeName": "ColorTrip8",
-      "colorsList": [
-        {
-          "red": 0,
-          "green": 255,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 23,
-          "green": 55,
-          "blue": 198,
-          "alpha": 255
-        },
-        {
-          "red": 207,
-          "green": 95,
-          "blue": 235,
-          "alpha": 255
-        },
-        {
-          "red": 24,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        },
-        {
-          "red": 217,
-          "green": 217,
-          "blue": 217,
-          "alpha": 255
-        },
-        {
-          "red": 255,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 0
-        },
-        {
-          "red": 255,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        }
-      ]
-    },
-    {
-      "themeName": "ColorTrip9",
-      "colorsList": [
-        {
-          "red": 0,
-          "green": 255,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 23,
-          "green": 55,
-          "blue": 198,
-          "alpha": 255
-        },
-        {
-          "red": 207,
-          "green": 95,
-          "blue": 235,
-          "alpha": 255
-        },
-        {
-          "red": 24,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        },
-        {
-          "red": 217,
-          "green": 217,
-          "blue": 217,
-          "alpha": 255
-        },
-        {
-          "red": 255,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 255
-        },
-        {
-          "red": 0,
-          "green": 0,
-          "blue": 0,
-          "alpha": 0
-        },
-        {
-          "red": 255,
-          "green": 255,
-          "blue": 255,
-          "alpha": 255
-        }
-      ]
-    },
-    {
-      "themeName": "ColorTrip10",
       "colorsList": [
         {
           "red": 0,
@@ -846,10 +257,10 @@
             "renderableObject": {
               "name": "PlayPNG",
               "imagePath": "src/textures/play.png",
-              "x": 40,
-              "y": 30,
-              "xSize": 60,
-              "ySize": 60,
+              "x": 55,
+              "y": 45,
+              "xSize": 90,
+              "ySize": 90,
               "opacity": 255
             },
             "color": 2,
@@ -1039,7 +450,7 @@
           },
           "textbox": {
             "scale": 1.0,
-            "function": "setMenu String Customization_Theme_Builder",
+            "function": "setMenu String Customization_Skin_Selector",
             "name": "CustomizationButton",
             "text": {
               "text": "Customization",
@@ -1202,6 +613,1570 @@
       ]
     },
     {
+      "menuName": "Customization Skin Selector",
+      "menuDisplayName": "Customization",
+      "previousMenuName": "Main Menu",
+      "bgColor": 0,
+      "elements": [
+        {
+          "selector": {
+            "selectorIndex": [
+              0,
+              1
+            ],
+            "selectorOptions": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "setMenu String null",
+            "name": "SkinSelectorButton",
+            "text": {
+              "text": "Skin Selector",
+              "alignX": "left",
+              "alignY": "center",
+              "offsetX": -250,
+              "offsetY": -9,
+              "textSize": 50,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 600,
+              "y": 300,
+              "xSize": 600,
+              "ySize": 120,
+              "roundPercentage": 100
+            },
+            "color": 2,
+            "opacity": 255,
+            "shadowOffset": 15,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": 3,
+          "clickEffectIndex": 1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 5
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              0,
+              2
+            ],
+            "selectorOptions": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "setMenu String Customization_Theme_Builder",
+            "name": "ThemeBuilderButton",
+            "text": {
+              "text": "Theme Builder",
+              "alignX": "left",
+              "alignY": "center",
+              "offsetX": -250,
+              "offsetY": -9,
+              "textSize": 50,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 600,
+              "y": 450,
+              "xSize": 600,
+              "ySize": 120,
+              "roundPercentage": 100
+            },
+            "color": 2,
+            "opacity": 255,
+            "shadowOffset": 15,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": 3,
+          "clickEffectIndex": 1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 5
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              0,
+              0
+            ],
+            "selectorOptions": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "escapeMenu",
+            "name": "BackButton",
+            "rectShape": {
+              "x": 90,
+              "y": 90,
+              "xSize": 120,
+              "ySize": 120,
+              "roundPercentage": 100
+            },
+            "renderableObject": {
+              "name": "BackPNG",
+              "imagePath": "src/textures/back.png",
+              "x": 30,
+              "y": 30,
+              "xSize": 60,
+              "ySize": 60,
+              "opacity": 255
+            },
+            "color": 2,
+            "opacity": 255,
+            "shadowOffset": 5,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": 2,
+          "clickEffectIndex": 4,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 8
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                -1,
+                -1
+              ],
+              [
+                -1,
+                -1
+              ],
+              [
+                -1,
+                -1
+              ],
+              [
+                -1,
+                -1
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "Green Background",
+            "rectShape": {
+              "x": 1160,
+              "y": 560,
+              "xSize": 1200,
+              "ySize": 800,
+              "roundPercentage": 5
+            },
+            "color": 1,
+            "opacity": 255,
+            "shadowOffset": 25,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "SkinSelectorSubtitle",
+            "text": {
+              "text": "Skin Select",
+              "alignX": "center",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": -50,
+              "textSize": 60,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1160,
+              "y": 270,
+              "xSize": 850,
+              "ySize": 0,
+              "roundPercentage": 0
+            },
+            "color": 7,
+            "opacity": 255,
+            "shadowOffset": 0,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "SkinSubtext",
+            "text": {
+              "text": "Skin",
+              "alignX": "left",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": -2,
+              "textSize": 50,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 735,
+              "y": 325,
+              "xSize": 0,
+              "ySize": 0,
+              "roundPercentage": 0
+            },
+            "color": 7,
+            "opacity": 255,
+            "shadowOffset": 0,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              2,
+              0
+            ],
+            "selectorOptions": [
+              [
+                2,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "addPopup int 0",
+            "name": "DropDownThemes",
+            "rectShape": {
+              "x": 1054,
+              "y": 330,
+              "xSize": 65,
+              "ySize": 65,
+              "roundPercentage": 0
+            },
+            "renderableObject": {
+              "name": "DropDownPNG",
+              "imagePath": "src/textures/dropdown.png",
+              "x": 8,
+              "y": 7,
+              "xSize": 50,
+              "ySize": 50,
+              "opacity": 255
+            },
+            "color": 2,
+            "opacity": 255,
+            "shadowOffset": 5,
+            "strokeWidth": 3.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": true,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "SkinName",
+            "text": {
+              "text": "%CurrentSkinName",
+              "alignX": "right",
+              "alignY": "center",
+              "offsetX": 240,
+              "offsetY": -6,
+              "textSize": 35,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1335,
+              "y": 330,
+              "xSize": 500,
+              "ySize": 65,
+              "roundPercentage": 0
+            },
+            "color": 8,
+            "opacity": 255,
+            "shadowOffset": 5,
+            "strokeWidth": 3.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "CurrentSkinSubitle",
+            "text": {
+              "text": "Current Skin",
+              "alignX": "center",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": -50,
+              "textSize": 60,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1160,
+              "y": 645,
+              "xSize": 850,
+              "ySize": 0,
+              "roundPercentage": 0
+            },
+            "color": 7,
+            "opacity": 255,
+            "shadowOffset": 15,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "Description",
+            "text": {
+              "text": "Tip:",
+              "alignX": "left",
+              "alignY": "center",
+              "offsetX": 28,
+              "offsetY": -70,
+              "textSize": 45,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1035,
+              "y": 472,
+              "xSize": 0,
+              "ySize": 0,
+              "roundPercentage": 0
+            },
+            "color": 7,
+            "opacity": 255,
+            "shadowOffset": 15,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "Description",
+            "text": {
+              "text": "Custom skins must be 150px by 100px%br%and in the png format to be registered%br%by the system",
+              "alignX": "left",
+              "alignY": "center",
+              "offsetX": 28,
+              "offsetY": -12,
+              "textSize": 35,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1035,
+              "y": 472,
+              "xSize": 20,
+              "ySize": 180,
+              "roundPercentage": 50
+            },
+            "color": 5,
+            "opacity": 255,
+            "shadowOffset": 8,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                3,
+                3
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "noFunction",
+            "name": "CurrentSkin",
+            "text": {
+              "text": "Current Skin",
+              "alignX": "center",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": -9,
+              "textSize": 50,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 872,
+              "y": 472,
+              "xSize": 270,
+              "ySize": 180,
+              "roundPercentage": 0
+            },
+            "renderableObject": {
+              "name": "CurrentSkin",
+              "imagePath": "%CurrentSkinPath",
+              "x": 0,
+              "y": 0,
+              "xSize": 270,
+              "ySize": 180,
+              "opacity": 255
+            },
+            "color": 8,
+            "opacity": 255,
+            "shadowOffset": 8,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                3,
+                3
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "noFunction",
+            "name": "Texture1",
+            "text": {
+              "text": "Texture 1",
+              "alignX": "center",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": 125,
+              "textSize": 50,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 700,
+              "y": 770,
+              "xSize": 180,
+              "ySize": 180,
+              "roundPercentage": 0
+            },
+            "renderableObject": {
+              "name": "Texture1",
+              "imagePath": "#1",
+              "x": 0,
+              "y": 0,
+              "xSize": 180,
+              "ySize": 180,
+              "opacity": 255
+            },
+            "color": 1,
+            "opacity": 255,
+            "shadowOffset": 8,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                3,
+                3
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "noFunction",
+            "name": "Texture2",
+            "text": {
+              "text": "Texture 2",
+              "alignX": "center",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": 125,
+              "textSize": 50,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 930,
+              "y": 770,
+              "xSize": 180,
+              "ySize": 180,
+              "roundPercentage": 0
+            },
+            "renderableObject": {
+              "name": "Texture2",
+              "imagePath": "#2",
+              "x": 0,
+              "y": 0,
+              "xSize": 180,
+              "ySize": 180,
+              "opacity": 255
+            },
+            "color": 1,
+            "opacity": 255,
+            "shadowOffset": 8,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                3,
+                3
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "noFunction",
+            "name": "Texture3",
+            "text": {
+              "text": "Texture 3",
+              "alignX": "center",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": 125,
+              "textSize": 50,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1160,
+              "y": 770,
+              "xSize": 180,
+              "ySize": 180,
+              "roundPercentage": 0
+            },
+            "renderableObject": {
+              "name": "Texture3",
+              "imagePath": "#3",
+              "x": 0,
+              "y": 0,
+              "xSize": 180,
+              "ySize": 180,
+              "opacity": 255
+            },
+            "color": 1,
+            "opacity": 255,
+            "shadowOffset": 8,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                3,
+                3
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "noFunction",
+            "name": "Texture4",
+            "text": {
+              "text": "Texture 4",
+              "alignX": "center",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": 125,
+              "textSize": 50,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1390,
+              "y": 770,
+              "xSize": 180,
+              "ySize": 180,
+              "roundPercentage": 0
+            },
+            "renderableObject": {
+              "name": "Texture4",
+              "imagePath": "#4",
+              "x": 0,
+              "y": 0,
+              "xSize": 180,
+              "ySize": 180,
+              "opacity": 255
+            },
+            "color": 1,
+            "opacity": 255,
+            "shadowOffset": 8,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                3,
+                3
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "noFunction",
+            "name": "Texture5",
+            "text": {
+              "text": "Texture 5",
+              "alignX": "center",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": 125,
+              "textSize": 50,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1620,
+              "y": 770,
+              "xSize": 180,
+              "ySize": 180,
+              "roundPercentage": 0
+            },
+            "renderableObject": {
+              "name": "Texture5",
+              "imagePath": "#5",
+              "x": 0,
+              "y": 0,
+              "xSize": 180,
+              "ySize": 180,
+              "opacity": 255
+            },
+            "color": 1,
+            "opacity": 255,
+            "shadowOffset": 8,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        }
+      ],
+      "popups": [
+        {
+          "popupName": "ThemeOptions",
+          "popupTitle": "Theme Options",
+          "elements": [
+            {
+              "selector": {
+                "selectorIndex": [
+                  -1,
+                  -1
+                ],
+                "selectorOptions": [
+                  [
+                    -1,
+                    -1
+                  ],
+                  [
+                    -1,
+                    -1
+                  ],
+                  [
+                    -1,
+                    -1
+                  ],
+                  [
+                    -1,
+                    -1
+                  ]
+                ],
+                "primaryHovered": false,
+                "secondaryHovered": false,
+                "selected": false
+              },
+              "textbox": {
+                "scale": 1.0,
+                "name": "Green Background",
+                "rectShape": {
+                  "x": 960,
+                  "y": 560,
+                  "xSize": 1200,
+                  "ySize": 800,
+                  "roundPercentage": 5
+                },
+                "color": 1,
+                "opacity": 255,
+                "shadowOffset": 25,
+                "strokeWidth": 5.0,
+                "strokeColor": 6
+              },
+              "hoverOverlap": false,
+              "maskIndex": -1,
+              "hoverEffectIndex": -1,
+              "clickEffectIndex": -1,
+              "arbitraryTransformIndex": -1,
+              "entryAnimationTransformIndex": 8
+            },
+            {
+              "selector": {
+                "selectorIndex": [
+                  2,
+                  0
+                ],
+                "selectorOptions": [
+                  [
+                    3,
+                    0
+                  ],
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    2,
+                    0
+                  ]
+                ],
+                "primaryHovered": false,
+                "secondaryHovered": false,
+                "selected": false
+              },
+              "optionsList": {
+                "scale": 1.0,
+                "function": "setSkin",
+                "listObjectsName": "%SkinChoices",
+                "optionsMax": 5,
+                "scrollPosition": 0,
+                "objectsCount": 0,
+                "name": "SkinChoices",
+                "text": {
+                  "text": "%Name",
+                  "alignX": "center",
+                  "alignY": "center",
+                  "offsetX": 0,
+                  "offsetY": -5,
+                  "textSize": 40,
+                  "textColor": 6,
+                  "font": "Archivo Narrow",
+                  "bold": false
+                },
+                "rectShape": {
+                  "x": 960,
+                  "y": 320,
+                  "xSize": 1100,
+                  "ySize": 80,
+                  "roundPercentage": 0
+                },
+                "color": 2,
+                "opacity": 255,
+                "shadowOffset": 8,
+                "strokeWidth": 5.0,
+                "strokeColor": 6
+              },
+              "hoverOverlap": false,
+              "maskIndex": 1,
+              "hoverEffectIndex": -1,
+              "clickEffectIndex": 1,
+              "arbitraryTransformIndex": 11,
+              "entryAnimationTransformIndex": 8
+            },
+            {
+              "selector": {
+                "selectorIndex": [
+                  1,
+                  0
+                ],
+                "selectorOptions": [
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "primaryHovered": false,
+                "secondaryHovered": false,
+                "selected": false
+              },
+              "textbox": {
+                "scale": 1.0,
+                "function": "scroll String SkinChoices boolean false",
+                "name": "ThemeChoicesScrollUp",
+                "rectShape": {
+                  "x": 960,
+                  "y": 210,
+                  "xSize": 120,
+                  "ySize": 50,
+                  "roundPercentage": 0
+                },
+                "renderableObject": {
+                  "name": "UpPNG",
+                  "imagePath": "src/textures/up.png",
+                  "x": 15,
+                  "y": 7,
+                  "xSize": 90,
+                  "ySize": 36,
+                  "opacity": 255
+                },
+                "color": 2,
+                "opacity": 255,
+                "shadowOffset": 8,
+                "strokeWidth": 5.0,
+                "strokeColor": 6
+              },
+              "hoverOverlap": false,
+              "maskIndex": -1,
+              "hoverEffectIndex": -1,
+              "clickEffectIndex": 1,
+              "arbitraryTransformIndex": -1,
+              "entryAnimationTransformIndex": 8
+            },
+            {
+              "selector": {
+                "selectorIndex": [
+                  3,
+                  0
+                ],
+                "selectorOptions": [
+                  [
+                    3,
+                    0
+                  ],
+                  [
+                    3,
+                    0
+                  ],
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    2,
+                    0
+                  ]
+                ],
+                "primaryHovered": false,
+                "secondaryHovered": false,
+                "selected": false
+              },
+              "textbox": {
+                "scale": 1.0,
+                "function": "scroll String SkinChoices boolean true",
+                "name": "ThemeChoicesScrollDown",
+                "rectShape": {
+                  "x": 960,
+                  "y": 910,
+                  "xSize": 120,
+                  "ySize": 50,
+                  "roundPercentage": 0
+                },
+                "renderableObject": {
+                  "name": "DownPNG",
+                  "imagePath": "src/textures/down.png",
+                  "x": 15,
+                  "y": 7,
+                  "xSize": 90,
+                  "ySize": 36,
+                  "opacity": 255
+                },
+                "color": 2,
+                "opacity": 255,
+                "shadowOffset": 8,
+                "strokeWidth": 5.0,
+                "strokeColor": 6
+              },
+              "hoverOverlap": false,
+              "maskIndex": -1,
+              "hoverEffectIndex": -1,
+              "clickEffectIndex": 1,
+              "arbitraryTransformIndex": -1,
+              "entryAnimationTransformIndex": 8
+            },
+            {
+              "selector": {
+                "selectorIndex": [
+                  0,
+                  0
+                ],
+                "selectorOptions": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "primaryHovered": false,
+                "secondaryHovered": false,
+                "selected": false
+              },
+              "textbox": {
+                "scale": 1.0,
+                "function": "removePopup int 0",
+                "name": "BackButton",
+                "rectShape": {
+                  "x": 90,
+                  "y": 90,
+                  "xSize": 120,
+                  "ySize": 120,
+                  "roundPercentage": 100
+                },
+                "renderableObject": {
+                  "name": "BackPNG",
+                  "imagePath": "src/textures/back.png",
+                  "x": 30,
+                  "y": 30,
+                  "xSize": 60,
+                  "ySize": 60,
+                  "opacity": 255
+                },
+                "color": 2,
+                "opacity": 255,
+                "shadowOffset": 5,
+                "strokeWidth": 5.0,
+                "strokeColor": 6
+              },
+              "hoverOverlap": false,
+              "maskIndex": -1,
+              "hoverEffectIndex": 2,
+              "clickEffectIndex": 4,
+              "arbitraryTransformIndex": -1,
+              "entryAnimationTransformIndex": 8
+            }
+          ]
+        }
+      ],
+      "secondarySelections": [
+        [
+          0,
+          1
+        ]
+      ],
+      "masks": [
+        {
+          "x": 0,
+          "y": 0,
+          "xSize": 1920,
+          "ySize": 1080,
+          "roundPercentage": 0
+        },
+        {
+          "x": 400,
+          "y": 250,
+          "xSize": 1120,
+          "ySize": 625,
+          "roundPercentage": 0
+        }
+      ],
+      "transforms": [
+        {
+          "transformX": -100.0,
+          "transformY": 0.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 1000,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": 0.0,
+          "scaleX": 0.95,
+          "scaleY": 0.95,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 100,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": 0.0,
+          "scaleX": 1.05,
+          "scaleY": 1.05,
+          "rotate": -20.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": -200.0,
+          "transformY": 0.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 750,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": 0.0,
+          "scaleX": 0.95,
+          "scaleY": 0.95,
+          "rotate": 20.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 100,
+          "easeType": 6
+        },
+        {
+          "transformX": 150.0,
+          "transformY": 0.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": -100.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": 100.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": 0.0,
+          "scaleX": 0.0,
+          "scaleY": 0.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": -75.0,
+          "scaleX": 0.0,
+          "scaleY": 0.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": -200.0,
+          "transformY": 0.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": 120.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 400,
+          "easeType": 6
+        }
+      ]
+    },
+    {
       "menuName": "Customization Theme Builder",
       "menuDisplayName": "Customization",
       "previousMenuName": "Main Menu",
@@ -1237,7 +2212,7 @@
           },
           "textbox": {
             "scale": 1.0,
-            "function": "setMenu String skinSelector",
+            "function": "setMenu String Customization_Skin_Selector",
             "name": "SkinSelectorButton",
             "text": {
               "text": "Skin Selector",
@@ -2121,7 +3096,7 @@
               "bold": false
             },
             "rectShape": {
-              "x": 740,
+              "x": 672,
               "y": 700,
               "xSize": 120,
               "ySize": 60,
@@ -2184,7 +3159,7 @@
               "bold": false
             },
             "rectShape": {
-              "x": 740,
+              "x": 672,
               "y": 760,
               "xSize": 120,
               "ySize": 60,
@@ -2263,7 +3238,7 @@
               "bold": false
             },
             "rectShape": {
-              "x": 880,
+              "x": 812,
               "y": 700,
               "xSize": 120,
               "ySize": 60,
@@ -2326,7 +3301,7 @@
               "bold": false
             },
             "rectShape": {
-              "x": 880,
+              "x": 812,
               "y": 760,
               "xSize": 120,
               "ySize": 60,
@@ -2405,7 +3380,7 @@
               "bold": false
             },
             "rectShape": {
-              "x": 1020,
+              "x": 952,
               "y": 700,
               "xSize": 120,
               "ySize": 60,
@@ -2468,7 +3443,7 @@
               "bold": false
             },
             "rectShape": {
-              "x": 1020,
+              "x": 952,
               "y": 760,
               "xSize": 120,
               "ySize": 60,
@@ -2547,7 +3522,7 @@
               "bold": false
             },
             "rectShape": {
-              "x": 1160,
+              "x": 1092,
               "y": 700,
               "xSize": 120,
               "ySize": 60,
@@ -2610,7 +3585,7 @@
               "bold": false
             },
             "rectShape": {
-              "x": 1160,
+              "x": 1092,
               "y": 760,
               "xSize": 120,
               "ySize": 60,
@@ -2689,7 +3664,7 @@
               "bold": false
             },
             "rectShape": {
-              "x": 1300,
+              "x": 1232,
               "y": 700,
               "xSize": 120,
               "ySize": 60,
@@ -2752,7 +3727,7 @@
               "bold": false
             },
             "rectShape": {
-              "x": 1300,
+              "x": 1232,
               "y": 760,
               "xSize": 120,
               "ySize": 60,
@@ -2831,7 +3806,7 @@
               "bold": false
             },
             "rectShape": {
-              "x": 1440,
+              "x": 1372,
               "y": 700,
               "xSize": 120,
               "ySize": 60,
@@ -2894,7 +3869,7 @@
               "bold": false
             },
             "rectShape": {
-              "x": 1440,
+              "x": 1372,
               "y": 760,
               "xSize": 120,
               "ySize": 60,
@@ -2973,7 +3948,7 @@
               "bold": false
             },
             "rectShape": {
-              "x": 1580,
+              "x": 1518,
               "y": 700,
               "xSize": 120,
               "ySize": 60,
@@ -3036,7 +4011,7 @@
               "bold": false
             },
             "rectShape": {
-              "x": 1580,
+              "x": 1518,
               "y": 760,
               "xSize": 120,
               "ySize": 60,
@@ -3052,6 +4027,148 @@
               "opacity": 255
             },
             "color": 6,
+            "opacity": 255,
+            "shadowOffset": 8,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                2,
+                3
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textfield": {
+            "maxSize": 16,
+            "selectorLocation": 0,
+            "pointerTime": 0.0,
+            "errorPopupIndexes": [
+              1,
+              0,
+              3
+            ],
+            "scale": 1.0,
+            "name": "Color8",
+            "text": {
+              "text": "%CurrentThemeColor 8",
+              "alignX": "center",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": -6,
+              "textSize": 25,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1652,
+              "y": 700,
+              "xSize": 120,
+              "ySize": 60,
+              "roundPercentage": 0
+            },
+            "color": 8,
+            "opacity": 255,
+            "shadowOffset": 8,
+            "strokeWidth": 3.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        },
+        {
+          "selector": {
+            "selectorIndex": [
+              8,
+              3
+            ],
+            "selectorOptions": [
+              [
+                8,
+                3
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                7,
+                3
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "enterTextField String Color8",
+            "name": "EditColor8Button",
+            "text": {
+              "text": "Display%br%Color",
+              "alignX": "center",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": 50,
+              "textSize": 25,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1652,
+              "y": 760,
+              "xSize": 120,
+              "ySize": 60,
+              "roundPercentage": 0
+            },
+            "renderableObject": {
+              "name": "EditPNG",
+              "imagePath": "src/textures/edit.png",
+              "x": 36,
+              "y": 6,
+              "xSize": 50,
+              "ySize": 50,
+              "opacity": 255
+            },
+            "color": 8,
             "opacity": 255,
             "shadowOffset": 8,
             "strokeWidth": 5.0,
@@ -3108,7 +4225,7 @@
               "bold": false
             },
             "rectShape": {
-              "x": 1000,
+              "x": 1002,
               "y": 900,
               "xSize": 300,
               "ySize": 65,
@@ -3171,7 +4288,7 @@
               "bold": true
             },
             "rectShape": {
-              "x": 1320,
+              "x": 1322,
               "y": 900,
               "xSize": 300,
               "ySize": 65,
@@ -3640,10 +4757,14 @@
             {
               "selector": {
                 "selectorIndex": [
-                  1,
+                  2,
                   0
                 ],
                 "selectorOptions": [
+                  [
+                    3,
+                    0
+                  ],
                   [
                     2,
                     0
@@ -3653,11 +4774,7 @@
                     0
                   ],
                   [
-                    0,
-                    0
-                  ],
-                  [
-                    1,
+                    2,
                     0
                   ]
                 ],
@@ -3707,7 +4824,7 @@
             {
               "selector": {
                 "selectorIndex": [
-                  0,
+                  1,
                   0
                 ],
                 "selectorOptions": [
@@ -3768,12 +4885,16 @@
             {
               "selector": {
                 "selectorIndex": [
-                  2,
+                  3,
                   0
                 ],
                 "selectorOptions": [
                   [
-                    2,
+                    3,
+                    0
+                  ],
+                  [
+                    3,
                     0
                   ],
                   [
@@ -3781,11 +4902,7 @@
                     0
                   ],
                   [
-                    0,
-                    0
-                  ],
-                  [
-                    0,
+                    2,
                     0
                   ]
                 ],
@@ -3834,12 +4951,12 @@
                 ],
                 "selectorOptions": [
                   [
-                    0,
-                    1
+                    1,
+                    0
                   ],
                   [
-                    0,
-                    1
+                    1,
+                    0
                   ],
                   [
                     0,
@@ -4121,7 +5238,7 @@
                 "function": "noFunction",
                 "name": "ErrorMessage",
                 "text": {
-                  "text": "Invalid Clipboard!",
+                  "text": "Invalid Import!",
                   "alignX": "center",
                   "alignY": "center",
                   "offsetX": 0,

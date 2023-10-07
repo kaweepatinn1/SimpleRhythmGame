@@ -161,8 +161,8 @@ public class Element {
 		this.entryAnimationTransformIndex = entryAnimationTransformIndex;
 	}
 	
-	public Element(Element currentElement, int index, int objectsCount, StoredTransform[] transforms) { // ONLY FOR AN OPTIONS LIST ELEMENT
-		OptionsList optionsList = currentElement.getOptionsList();
+	public Element(Element currentElement, int index, int objectsCount, StoredTransform[] transforms, StoredTransform[] unscaledTransforms) { // ONLY FOR AN OPTIONS LIST ELEMENT
+		OptionsList currentOptionsList = currentElement.getOptionsList();
 		this.transforms = currentElement.getTransform();
 		this.selector = new Selector(
 				new int[] {currentElement.getSelectorIndex()[0],
@@ -196,8 +196,10 @@ public class Element {
 						currentElement.getOptionsList().getTextObject().getBold()
 						),
 				new RoundedArea(
-						rectShape.getX(),
-						rectShape.getY(),
+						rectShape.getX() + 
+						(index % currentOptionsList.getOptionsMax()) * ((int) unscaledTransforms[currentElement.getArbitraryTransformIndex()].getTransformX()),
+						rectShape.getY() +
+						(index % currentOptionsList.getOptionsMax()) * ((int) unscaledTransforms[currentElement.getArbitraryTransformIndex()].getTransformY()),
 						rectShape.getXSize(),
 						rectShape.getYSize(),
 						rectShape.getRoundPercentage()
@@ -216,7 +218,7 @@ public class Element {
 		this.clickEffectIndex = currentElement.getClickEffectIndex();
 		this.arbitraryTransformIndex = currentElement.getArbitraryTransformIndex();
 		this.entryAnimationTransformIndex = currentElement.getEntryAnimationIndex();
-		appendListTransform(transforms, index); 
+		appendListTransform(transforms, index, currentElement); 
 			// !IMPORTANT! Doesn't do anything but splits each element
 			// into new objects for some reason!!!
 	}
@@ -336,7 +338,7 @@ public class Element {
 		return toReturn;
 	}
 	
-	public void appendListTransform(StoredTransform[] transforms, int index) {
+	public void appendListTransform(StoredTransform[] transforms, int index, Element currentElement) {
 		// Doesn't actually apply anything at all, but somehow makes each element a new object. who knows.
 		if (getArbitraryTransformIndex() != -1) {
 			RoundedArea roundedArea = null;
@@ -350,7 +352,9 @@ public class Element {
 				roundedArea = getOptionsList().getRectShape();
 			}
 			StoredTransform unscaledTransform = transforms[getArbitraryTransformIndex()];
-			StoredTransform transform = unscaledTransform.scaleTransform(index);
+			StoredTransform transform = unscaledTransform.scaleTransform((
+					index / currentElement.getOptionsList().getOptionsMax())
+					* currentElement.getOptionsList().getOptionsMax());
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(roundedArea),
 					new SpecialTransform(transform, roundedArea),
@@ -704,16 +708,26 @@ public class Element {
         	
         	if (currentItem.getText() == null) { // No textbox
         		if (currentItem.getRenderableObject() != null) { // No textbox and no renderable
-	        		String renderableName = renderableObject.getName();
-	        		String renderableFunction = renderableObject.getFunction();
-	            	String imagePath = renderableObject.getImagePath();
-	            	int renderableXSize = (int) Math.round(renderableObject.getXSize() * xScale * textBoxScale);
-	            	int renderableYSize = (int) Math.round(renderableObject.getYSize() * yScale * textBoxScale);
-	            	int renderableX = (int) Math.round(renderableObject.getX() * xScale * textBoxScale);
-	            	int renderableY = (int) Math.round(renderableObject.getY() * yScale * textBoxScale);
-	            	int renderableOpacity = renderableObject.getOpacity();
-	            	Renderable newRenderableObject =  new Renderable(renderableFunction, renderableName, imagePath, 
-	            			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
+            		String renderableName = renderableObject.getName();
+            		String renderableFunction = renderableObject.getFunction();
+                	String imagePath = renderableObject.getImagePath();
+                	int note = -1;
+                	if (imagePath.charAt(0) == '#') {
+                		note = Integer.parseInt(imagePath.substring(1));
+                	}
+                	int renderableXSize = (int) Math.round(renderableObject.getXSize() * xScale);
+                	int renderableYSize = (int) Math.round(renderableObject.getYSize() * yScale);
+                	int renderableX = (int) Math.round(renderableObject.getX() * xScale);
+                	int renderableY = (int) Math.round(renderableObject.getY() * yScale);
+                	int renderableOpacity = renderableObject.getOpacity();
+                	Renderable newRenderableObject = null;
+                	if (note == -1) {
+                		newRenderableObject =  new Renderable(renderableFunction, renderableName, imagePath, 
+                    			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
+                	} else {
+                		newRenderableObject =  new Renderable(renderableFunction, renderableName, note, 
+                    			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
+                	}
 	            	
 	            	toReturn =  
 	        				new Element( // Third Constructor (Only Renderable)
@@ -757,17 +771,26 @@ public class Element {
 	        	int offsetY = (int) Math.round(currentItem.getOffsetY() * yScale * textBoxScale);
 	        	
 	        	if (renderableObject != null) {
-	        		
 	        		String renderableName = renderableObject.getName();
 	        		String renderableFunction = renderableObject.getFunction();
 	            	String imagePath = renderableObject.getImagePath();
-	            	int renderableXSize = (int) Math.round(renderableObject.getXSize() * xScale * textBoxScale);
-	            	int renderableYSize = (int) Math.round(renderableObject.getYSize() * yScale * textBoxScale);
-	            	int renderableX = (int) Math.round(renderableObject.getX() * xScale * textBoxScale);
-	            	int renderableY = (int) Math.round(renderableObject.getY() * yScale * textBoxScale);
+	            	int note = -1;
+	            	if (imagePath.charAt(0) == '#') {
+	            		note = Integer.parseInt(imagePath.substring(1));
+	            	}
+	            	int renderableXSize = (int) Math.round(renderableObject.getXSize() * xScale);
+	            	int renderableYSize = (int) Math.round(renderableObject.getYSize() * yScale);
+	            	int renderableX = (int) Math.round(renderableObject.getX() * xScale);
+	            	int renderableY = (int) Math.round(renderableObject.getY() * yScale);
 	            	int renderableOpacity = renderableObject.getOpacity();
-	            	Renderable newRenderableObject =  new Renderable(renderableFunction, renderableName, imagePath, 
-	            			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
+	            	Renderable newRenderableObject = null;
+	            	if (note == -1) {
+	            		newRenderableObject =  new Renderable(renderableFunction, renderableName, imagePath, 
+	                			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
+	            	} else {
+	            		newRenderableObject =  new Renderable(renderableFunction, renderableName, note, 
+	                			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
+	            	}
 	            	
 	            	toReturn =  
 	        				new Element(
@@ -806,14 +829,23 @@ public class Element {
     		String renderableName = renderableObject.getName();
     		String renderableFunction = renderableObject.getFunction();
         	String imagePath = renderableObject.getImagePath();
+        	int note = -1;
+        	if (imagePath.charAt(0) == '#') {
+        		note = Integer.parseInt(imagePath.substring(1));
+        	}
         	int renderableXSize = (int) Math.round(renderableObject.getXSize() * xScale);
         	int renderableYSize = (int) Math.round(renderableObject.getYSize() * yScale);
         	int renderableX = (int) Math.round(renderableObject.getX() * xScale);
         	int renderableY = (int) Math.round(renderableObject.getY() * yScale);
         	int renderableOpacity = renderableObject.getOpacity();
-        	Renderable newRenderableObject =  new Renderable(renderableFunction, renderableName, imagePath, 
-        			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
-        	
+        	Renderable newRenderableObject = null;
+        	if (note == -1) {
+        		newRenderableObject =  new Renderable(renderableFunction, renderableName, imagePath, 
+            			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
+        	} else {
+        		newRenderableObject =  new Renderable(renderableFunction, renderableName, note, 
+            			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
+        	}
         	toReturn =  
     				new Element(
 						transformIndexes, selector,
@@ -909,7 +941,7 @@ public class Element {
         	
         	toReturn =  
     				new Element( // Third Constructor (Only Renderable)
-						transformIndexes, selector,
+						transformIndexes, new Selector(),
         				maskIndex, hoverOverlap,
         				hoverEffectIndex, clickEffectIndex, arbitraryTransformIndex,
         				entryAnimationTransformIndex,

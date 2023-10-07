@@ -1,15 +1,22 @@
 package SimpleRhythmGame;
 
 import java.awt.HeadlessException;
+
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import javax.imageio.ImageIO;
+
+import org.imgscalr.Scalr;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -171,5 +178,46 @@ public class FileIO {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public static BufferedImage readImageFile(String filePath) {
+		BufferedImage returnImage = null;
+		try {
+        	returnImage = ImageIO.read(new File(filePath));
+        } catch(IOException e){
+            System.out.println (e.toString());
+            System.out.println("Could not find file: " + filePath);
+        }
+		return returnImage;
+	}
+	
+	public static String[] getSkinNames() {
+		File directory = new File("src/textures/skins");
+		File[] listOfFiles = directory.listFiles();
+		String[] fileNames = new String[listOfFiles.length];
+		int files = 0;
+		
+		for (int i = 0; i < listOfFiles.length; i++) {
+		  if (listOfFiles[i].isFile()) {
+			  if (listOfFiles[i].getName().substring(listOfFiles[i].getName().length() - 4).toLowerCase().equals(".png")) {
+				  try {
+					  BufferedImage image = ImageIO.read(listOfFiles[i]);
+					  if (image.getWidth() == 150 && image.getHeight() == 100) {
+						  // must be 150x100 to cache
+						  fileNames[files] = listOfFiles[i].getName();
+						  files++;
+						  // System.out.println(fileNames[files - 1]);
+					  }
+				  } catch (IOException e) {
+					  e.printStackTrace();
+				  }
+			  }
+		  } else if (listOfFiles[i].isDirectory()) {
+		  }
+		}
+		
+		String[] finalNames = new String[files];
+		System.arraycopy(fileNames, 0, finalNames, 0, files);
+		return finalNames;
 	}
 }

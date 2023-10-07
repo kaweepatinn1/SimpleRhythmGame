@@ -22,6 +22,7 @@ public class Config {
 	
 	private Controls[] controls;
 	private String currentThemeChoice;
+	private String currentSkinChoice;
 	private Theme[] themes; // used to return faster, not included in json file
 	private String[] fonts;
 	private Menu[] menus;
@@ -31,7 +32,8 @@ public class Config {
 	}
 	
 	public Config(boolean fullscreen, int sizeToForce, Controls[] controls, Theme[] themes, 
-			String currentThemeChoice, String[] fonts, Menu[] menus, boolean nanoSecondPrecision, int framesToStore,
+			String currentThemeChoice, String currentSkinChoice,
+			String[] fonts, Menu[] menus, boolean nanoSecondPrecision, int framesToStore,
 			int framerate, boolean shouldLimitFramerate, boolean cursorEnabled, double transitionTime,
 			boolean DEBUG_drawMasks, int DEBUG_masksColorsOffset, int DEBUG_masksOpacity) {
 		this.fullscreen = fullscreen;
@@ -39,6 +41,8 @@ public class Config {
 		this.controls = controls;
 		this.themes = themes;
 		this.currentThemeChoice = currentThemeChoice;
+		this.currentSkinChoice = currentSkinChoice;
+		ShowImage.bufferSkin(currentSkinChoice);
 		this.fonts = fonts;
 		this.menus = menus;
 		this.nanoSecondPrecision = nanoSecondPrecision;
@@ -332,13 +336,37 @@ public class Config {
 		updateDisplays();
 	}
 	
+	public void setCurrentSkinChoice(int indexForSkin) {
+		this.currentSkinChoice = getSkinName(indexForSkin);
+		ShowImage.bufferCurrentSkin();
+		updateDisplays();
+	}
+	
 	public void updateDisplays() {
 		Menu currentMenu = ShowImage.getCurrentScaledMenu();
 		for (Element element : currentMenu.getElements()) {
 			if (element.isTextfield()) {
 				element.getTextfield().loadCurrentDisplay();
 			}
+			else if (element.isTextbox()) {
+				if (element.getTextbox().getRenderableObject() != null) {
+					if (element.getTextbox().getRenderableObject().getImagePath().charAt(0) == '%' ||
+							element.getTextbox().getRenderableObject().getImagePath().charAt(0) == '#') {
+						element.getTextbox().getRenderableObject().resetImage();
+					}
+				}
+			}
+			else if (element.isRenderable()) {
+				if (element.getRenderable().getImagePath().charAt(0) == '%' ||
+						element.getRenderable().getImagePath().charAt(0) == '#') {
+					element.getRenderable().resetImage();
+				}
+			}
 		}
+	}
+	
+	public String getSkinName(int index) {
+		return FileIO.getSkinNames()[index];
 	}
 	
 	public Color[] getCurrentThemeColors() {
@@ -362,8 +390,12 @@ public class Config {
 				{"Objects with title \"" + objectsName + "\" not found."};
 		if (objectsName.equals("%ThemeChoices")) {
 			objectsToReturn = themes;
-		} else if (true) {
-			
+		} else if (objectsName.equals("%SkinChoices")) {
+			objectsToReturn = FileIO.getSkinNames();
+		}
+		
+		else if (true) {
+			System.out.println("No code for getting " + objectsName);
 		}
 		
 		return objectsToReturn;
@@ -380,7 +412,25 @@ public class Config {
 			Theme[] toReadThemes = (Theme[]) objectsList;
 			if (varName.equals("%Name")) {
 				objectToReturn = toReadThemes[index].getThemeName();
+			} 
+			
+			else {
+				System.out.println("No code for getting data field \'" + varName + "\' from parent \'" + varParentName + "\'");
 			}
+		} else if (varParentName.equals("%SkinChoices")) {
+			String[] names = (String[]) objectsList;
+			if (varName.equals("%Name")) {
+				objectToReturn = names[index];
+			} 
+			
+			else {
+				System.out.println("No code for getting data field \'" + varName + "\' from parent \'" + varParentName + "\'");
+			}
+			
+		} 
+		
+		else {
+			System.out.println("No code for getting variable from parent " + varParentName);
 		}
 		return objectToReturn;
 	}
@@ -391,9 +441,15 @@ public class Config {
 		if (splitVariable[0].equals("%CurrentThemeName")) {
 			varToReturn = currentThemeChoice;
 		}
-		if (splitVariable[0].equals("%CurrentThemeColor")) {
+		else if (splitVariable[0].equals("%CurrentThemeColor")) {
 			IntColor color = getCurrentTheme().getColorOfIndex(Integer.parseInt(splitVariable[1]));
 			varToReturn = color.toHex();
+		}
+		else if (splitVariable[0].equals("%CurrentSkinName")) {
+			varToReturn = currentSkinChoice;
+		}
+		else if (splitVariable[0].equals("%CurrentSkinPath")) {
+			varToReturn = "src/textures/skins/" + currentSkinChoice;
 		}
 		return varToReturn;
 	}
@@ -434,5 +490,14 @@ public class Config {
 			return true;
 		}
 		return false;
+	}
+
+	public String getCurrentSkinChoice() {
+		return currentSkinChoice;
+	}
+
+	public void setCurrentSkinChoice(String currentSkinChoice) {
+		this.currentSkinChoice = currentSkinChoice;
+		ShowImage.bufferCurrentSkin();
 	}
 }

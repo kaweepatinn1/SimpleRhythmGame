@@ -9,6 +9,7 @@ public class RoundedRect {
     private int xSize;
     private int ySize;
     private int round;
+    // different from RoundedArea - counts rounds in terms of pixels and not percentage.
     
     public RoundedRect(int x, int y, int xSize, int ySize, int round) {
     	this.x = x;
