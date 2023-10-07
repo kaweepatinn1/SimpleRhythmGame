@@ -1,12 +1,16 @@
 {
-  "fullscreen": true,
+  "fullscreen": false,
   "sizeToForce": 1280,
   "nanoSecondPrecision": true,
   "framesToStore": 20,
   "framerate": 60,
   "shouldLimitFramerate": true,
+  "displayFramerate": false,
   "transitionTime": 500.0,
   "cursorEnabled": true,
+  "masterVolume": 50,
+  "musicVolume": 50,
+  "SFXVolume": 50,
   "DEBUG_drawMasks": false,
   "DEBUG_masksColorsOffset": 10,
   "DEBUG_masksOpacity": 80,
@@ -66,8 +70,8 @@
       ]
     }
   ],
-  "currentThemeChoice": "ColorTrip",
-  "currentSkinChoice": "DefaultSkin - Copy - Copy.PNG",
+  "currentThemeChoice": "DefaultTheme",
+  "currentSkinChoice": "DefaultSkin.png",
   "themes": [
     {
       "themeName": "DefaultTheme",
@@ -992,17 +996,8 @@
           "transforms": [
             {
               "ogTransform": {
-                "anchorX": 800.0,
-                "anchorY": 400.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 800.0,
-                "anchorY": 400.0,
+                "anchorX": 900.0,
+                "anchorY": 360.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -1010,38 +1005,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 2.3914823E7,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3914823E7,
-              "easeType": 6,
-              "boomerang": false
-            },
-            {
-              "ogTransform": {
-                "anchorX": 800.0,
-                "anchorY": 400.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 800.0,
-                "anchorY": 400.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 2.3914823E7,
-              "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3914823E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             },
             {
@@ -1064,29 +1032,38 @@
             },
             {
               "ogTransform": {
-                "anchorX": 800.0,
-                "anchorY": 400.0,
-                "transformX": 200.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 800.0,
-                "anchorY": 400.0,
+                "anchorX": 900.0,
+                "anchorY": 360.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3914823E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3915323E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 900.0,
+                "anchorY": 360.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -1114,7 +1091,7 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": true,
+            "secondaryHovered": false,
             "selected": false
           },
           "textbox": {
@@ -1156,17 +1133,8 @@
           "transforms": [
             {
               "ogTransform": {
-                "anchorX": 800.0,
-                "anchorY": 600.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 800.0,
-                "anchorY": 600.0,
+                "anchorX": 900.0,
+                "anchorY": 510.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -1174,38 +1142,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 2.3914823E7,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3914823E7,
-              "easeType": 6,
-              "boomerang": false
-            },
-            {
-              "ogTransform": {
-                "anchorX": 800.0,
-                "anchorY": 600.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 800.0,
-                "anchorY": 600.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 2.3914823E7,
-              "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3914823E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             },
             {
@@ -1228,29 +1169,38 @@
             },
             {
               "ogTransform": {
-                "anchorX": 800.0,
-                "anchorY": 600.0,
-                "transformX": 200.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 800.0,
-                "anchorY": 600.0,
+                "anchorX": 900.0,
+                "anchorY": 510.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3914823E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3915323E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 900.0,
+                "anchorY": 510.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -1320,17 +1270,8 @@
           "transforms": [
             {
               "ogTransform": {
-                "anchorX": 120.0,
-                "anchorY": 120.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 120.0,
-                "anchorY": 120.0,
+                "anchorX": 150.0,
+                "anchorY": 150.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -1338,38 +1279,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 2.3914823E7,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3914823E7,
-              "easeType": 6,
-              "boomerang": false
-            },
-            {
-              "ogTransform": {
-                "anchorX": 120.0,
-                "anchorY": 120.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 120.0,
-                "anchorY": 120.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 2.3914823E7,
-              "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3914823E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             },
             {
@@ -1392,29 +1306,38 @@
             },
             {
               "ogTransform": {
-                "anchorX": 120.0,
-                "anchorY": 120.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 0.0,
-                "scaleY": 0.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 120.0,
-                "anchorY": 120.0,
+                "anchorX": 150.0,
+                "anchorY": 150.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3914823E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3915323E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 150.0,
+                "anchorY": 150.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -1536,29 +1459,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1547.0,
-                "anchorY": 747.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1547.0,
-                "anchorY": 747.0,
+                "anchorX": 1760.0,
+                "anchorY": 960.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3914823E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3915323E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -1670,29 +1584,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1547.0,
-                "anchorY": 360.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1547.0,
-                "anchorY": 360.0,
+                "anchorX": 1585.0,
+                "anchorY": 270.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3914823E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3915323E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -1815,29 +1720,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 980.0,
-                "anchorY": 433.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 980.0,
-                "anchorY": 433.0,
+                "anchorX": 735.0,
+                "anchorY": 325.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3914823E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3915323E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -1924,29 +1820,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1405.0,
-                "anchorY": 440.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 0.9608899999999999,
-                "scaleY": 0.9608899999999999,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1405.0,
-                "anchorY": 440.0,
+                "anchorX": 1086.0,
+                "anchorY": 362.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 100,
-              "initTimeMillis": 2.3916528E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3916528E7,
-              "endTimeMillis": 2.3916628E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             },
             {
@@ -1969,29 +1856,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1405.0,
-                "anchorY": 440.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1405.0,
-                "anchorY": 440.0,
+                "anchorX": 1086.0,
+                "anchorY": 362.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3914823E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3915323E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -2018,7 +1896,7 @@
                 0
               ]
             ],
-            "primaryHovered": true,
+            "primaryHovered": false,
             "secondaryHovered": false,
             "selected": false
           },
@@ -2113,29 +1991,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1780.0,
-                "anchorY": 440.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1780.0,
-                "anchorY": 440.0,
+                "anchorX": 1585.0,
+                "anchorY": 362.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3914823E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3915323E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -2258,29 +2127,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1547.0,
-                "anchorY": 860.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1547.0,
-                "anchorY": 860.0,
+                "anchorX": 1585.0,
+                "anchorY": 645.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3914823E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3915323E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -2403,29 +2263,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1380.0,
-                "anchorY": 629.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1380.0,
-                "anchorY": 629.0,
+                "anchorX": 1035.0,
+                "anchorY": 472.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3914823E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3915323E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -2494,7 +2345,7 @@
           "transforms": [
             {
               "ogTransform": {
-                "anchorX": 1040.0,
+                "anchorX": 1037.0,
                 "anchorY": 562.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
@@ -2512,7 +2363,7 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1040.0,
+                "anchorX": 1037.0,
                 "anchorY": 562.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
@@ -2530,7 +2381,7 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1040.0,
+                "anchorX": 1037.0,
                 "anchorY": 562.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
@@ -2548,29 +2399,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1380.0,
-                "anchorY": 629.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1380.0,
-                "anchorY": 629.0,
+                "anchorX": 1037.0,
+                "anchorY": 562.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3914823E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3915323E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -2618,7 +2460,7 @@
             "rectShape": {
               "x": 1035,
               "y": 472,
-              "xSize": 10,
+              "xSize": 5,
               "ySize": 180,
               "roundPercentage": 50
             },
@@ -2657,17 +2499,8 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1163.0,
-                "anchorY": 629.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1163.0,
-                "anchorY": 629.0,
+                "anchorX": 1007.0,
+                "anchorY": 562.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -2675,11 +2508,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 2.3914823E7,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3914823E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             },
             {
@@ -2702,29 +2535,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1163.0,
-                "anchorY": 629.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1163.0,
-                "anchorY": 629.0,
+                "anchorX": 1007.0,
+                "anchorY": 562.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3914823E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3915323E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -2821,17 +2645,8 @@
             },
             {
               "ogTransform": {
-                "anchorX": 933.0,
-                "anchorY": 1027.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 933.0,
-                "anchorY": 1027.0,
+                "anchorX": 790.0,
+                "anchorY": 860.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -2839,11 +2654,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 2.3914823E7,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3914823E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             },
             {
@@ -2866,29 +2681,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 933.0,
-                "anchorY": 1027.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 933.0,
-                "anchorY": 1027.0,
+                "anchorX": 790.0,
+                "anchorY": 860.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3914823E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3915323E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -2985,17 +2791,8 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1240.0,
-                "anchorY": 1027.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1240.0,
-                "anchorY": 1027.0,
+                "anchorX": 1020.0,
+                "anchorY": 860.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -3003,11 +2800,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 2.3914823E7,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3914823E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             },
             {
@@ -3030,29 +2827,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1240.0,
-                "anchorY": 1027.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1240.0,
-                "anchorY": 1027.0,
+                "anchorX": 1020.0,
+                "anchorY": 860.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3914823E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3915323E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -3149,17 +2937,8 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1547.0,
-                "anchorY": 1027.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1547.0,
-                "anchorY": 1027.0,
+                "anchorX": 1250.0,
+                "anchorY": 860.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -3167,11 +2946,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 2.3914823E7,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3914823E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             },
             {
@@ -3194,29 +2973,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1547.0,
-                "anchorY": 1027.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1547.0,
-                "anchorY": 1027.0,
+                "anchorX": 1250.0,
+                "anchorY": 860.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3914823E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3915323E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -3313,17 +3083,8 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1853.0,
-                "anchorY": 1027.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1853.0,
-                "anchorY": 1027.0,
+                "anchorX": 1480.0,
+                "anchorY": 860.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -3331,11 +3092,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 2.3914823E7,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3914823E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             },
             {
@@ -3358,29 +3119,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1853.0,
-                "anchorY": 1027.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1853.0,
-                "anchorY": 1027.0,
+                "anchorX": 1480.0,
+                "anchorY": 860.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3914823E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3915323E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -3477,17 +3229,8 @@
             },
             {
               "ogTransform": {
-                "anchorX": 2160.0,
-                "anchorY": 1027.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 2160.0,
-                "anchorY": 1027.0,
+                "anchorX": 1710.0,
+                "anchorY": 860.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -3495,11 +3238,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 2.3914823E7,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3914823E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             },
             {
@@ -3522,29 +3265,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 2160.0,
-                "anchorY": 1027.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 2160.0,
-                "anchorY": 1027.0,
+                "anchorX": 1710.0,
+                "anchorY": 860.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3914823E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3914823E7,
-              "endTimeMillis": 2.3915323E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -3683,29 +3417,20 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 747.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 0.0,
-                    "scaleY": 0.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 747.0,
+                    "anchorX": 1560.0,
+                    "anchorY": 960.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
                     "scaleY": 1.0,
                     "rotate": 0.0
                   },
-                  "timeToTransformMillis": 500,
-                  "initTimeMillis": 2.3916528E7,
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 2.3916528E7,
-                  "endTimeMillis": 2.3917028E7,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 }
               ],
@@ -3781,17 +3506,8 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 427.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 427.0,
+                    "anchorX": 1510.0,
+                    "anchorY": 360.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
@@ -3799,11 +3515,11 @@
                     "rotate": 0.0
                   },
                   "timeToTransformMillis": 0,
-                  "initTimeMillis": 2.3916786E7,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 2.3916786E7,
-                  "endTimeMillis": 2.3916786E7,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 },
                 {
@@ -3826,29 +3542,20 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 427.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 0.0,
-                    "scaleY": 0.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 427.0,
+                    "anchorX": 1510.0,
+                    "anchorY": 360.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
                     "scaleY": 1.0,
                     "rotate": 0.0
                   },
-                  "timeToTransformMillis": 500,
-                  "initTimeMillis": 2.3916528E7,
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 2.3916528E7,
-                  "endTimeMillis": 2.3917028E7,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 }
               ],
@@ -3940,17 +3647,8 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 280.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 280.0,
+                    "anchorX": 1020.0,
+                    "anchorY": 235.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
@@ -3958,11 +3656,11 @@
                     "rotate": 0.0
                   },
                   "timeToTransformMillis": 0,
-                  "initTimeMillis": 2.3916786E7,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 2.3916786E7,
-                  "endTimeMillis": 2.3916786E7,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 },
                 {
@@ -3985,29 +3683,20 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 280.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 0.0,
-                    "scaleY": 0.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 280.0,
+                    "anchorX": 1020.0,
+                    "anchorY": 235.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
                     "scaleY": 1.0,
                     "rotate": 0.0
                   },
-                  "timeToTransformMillis": 500,
-                  "initTimeMillis": 2.3916528E7,
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 2.3916528E7,
-                  "endTimeMillis": 2.3917028E7,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 }
               ],
@@ -4093,17 +3782,8 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 1213.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 1213.0,
+                    "anchorX": 1020.0,
+                    "anchorY": 935.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
@@ -4111,11 +3791,11 @@
                     "rotate": 0.0
                   },
                   "timeToTransformMillis": 0,
-                  "initTimeMillis": 2.3916786E7,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 2.3916786E7,
-                  "endTimeMillis": 2.3916786E7,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 },
                 {
@@ -4138,29 +3818,20 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 1213.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 0.0,
-                    "scaleY": 0.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 1213.0,
+                    "anchorX": 1020.0,
+                    "anchorY": 935.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
                     "scaleY": 1.0,
                     "rotate": 0.0
                   },
-                  "timeToTransformMillis": 500,
-                  "initTimeMillis": 2.3916528E7,
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 2.3916528E7,
-                  "endTimeMillis": 2.3917028E7,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 }
               ],
@@ -4228,17 +3899,8 @@
               "transforms": [
                 {
                   "ogTransform": {
-                    "anchorX": 120.0,
-                    "anchorY": 120.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 120.0,
-                    "anchorY": 120.0,
+                    "anchorX": 150.0,
+                    "anchorY": 150.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
@@ -4246,38 +3908,11 @@
                     "rotate": 0.0
                   },
                   "timeToTransformMillis": 0,
-                  "initTimeMillis": 2.3916786E7,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 2.3916786E7,
-                  "endTimeMillis": 2.3916786E7,
-                  "easeType": 6,
-                  "boomerang": false
-                },
-                {
-                  "ogTransform": {
-                    "anchorX": 120.0,
-                    "anchorY": 120.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 120.0,
-                    "anchorY": 120.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotate": 0.0
-                  },
-                  "timeToTransformMillis": 0,
-                  "initTimeMillis": 2.3916786E7,
-                  "delayInMillis": 0,
-                  "startTimeMillis": 2.3916786E7,
-                  "endTimeMillis": 2.3916786E7,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 },
                 {
@@ -4300,29 +3935,38 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 120.0,
-                    "anchorY": 120.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 0.0,
-                    "scaleY": 0.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 120.0,
-                    "anchorY": 120.0,
+                    "anchorX": 150.0,
+                    "anchorY": 150.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
                     "scaleY": 1.0,
                     "rotate": 0.0
                   },
-                  "timeToTransformMillis": 500,
-                  "initTimeMillis": 2.3916528E7,
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 2.3916528E7,
-                  "endTimeMillis": 2.3917028E7,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
+                  "boomerang": false
+                },
+                {
+                  "ogTransform": {
+                    "anchorX": 150.0,
+                    "anchorY": 150.0,
+                    "transformX": 0.0,
+                    "transformY": 0.0,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotate": 0.0
+                  },
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
+                  "delayInMillis": 0,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 }
               ],
@@ -4598,29 +4242,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 800.0,
-                "anchorY": 400.0,
-                "transformX": 200.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 800.0,
-                "anchorY": 400.0,
+                "anchorX": 900.0,
+                "anchorY": 360.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -4744,29 +4379,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 800.0,
-                "anchorY": 600.0,
-                "transformX": 200.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 800.0,
-                "anchorY": 600.0,
+                "anchorX": 900.0,
+                "anchorY": 510.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -4794,7 +4420,7 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": true,
+            "secondaryHovered": false,
             "selected": false
           },
           "textbox": {
@@ -4890,29 +4516,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 120.0,
-                "anchorY": 120.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 0.0,
-                "scaleY": 0.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 120.0,
-                "anchorY": 120.0,
+                "anchorX": 150.0,
+                "anchorY": 150.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -5034,29 +4651,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1547.0,
-                "anchorY": 747.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1547.0,
-                "anchorY": 747.0,
+                "anchorX": 1760.0,
+                "anchorY": 960.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -5168,29 +4776,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1547.0,
-                "anchorY": 360.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1547.0,
-                "anchorY": 360.0,
+                "anchorX": 1585.0,
+                "anchorY": 270.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -5313,29 +4912,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1547.0,
-                "anchorY": 740.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1547.0,
-                "anchorY": 740.0,
+                "anchorX": 1585.0,
+                "anchorY": 555.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -5458,29 +5048,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 980.0,
-                "anchorY": 433.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 980.0,
-                "anchorY": 433.0,
+                "anchorX": 735.0,
+                "anchorY": 325.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -5603,29 +5184,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1321.0,
-                "anchorY": 440.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1321.0,
-                "anchorY": 440.0,
+                "anchorX": 1023.0,
+                "anchorY": 362.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -5711,29 +5283,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1405.0,
-                "anchorY": 440.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 0.95,
-                "scaleY": 0.95,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1405.0,
-                "anchorY": 440.0,
+                "anchorX": 1086.0,
+                "anchorY": 362.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 100,
-              "initTimeMillis": 2.3911414E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3911464E7,
-              "endTimeMillis": 2.3911614E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             },
             {
@@ -5756,29 +5319,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1405.0,
-                "anchorY": 440.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1405.0,
-                "anchorY": 440.0,
+                "anchorX": 1086.0,
+                "anchorY": 362.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -5805,7 +5359,7 @@
                 0
               ]
             ],
-            "primaryHovered": true,
+            "primaryHovered": false,
             "secondaryHovered": false,
             "selected": false
           },
@@ -5900,29 +5454,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1780.0,
-                "anchorY": 440.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1780.0,
-                "anchorY": 440.0,
+                "anchorX": 1585.0,
+                "anchorY": 362.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -6045,29 +5590,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1547.0,
-                "anchorY": 567.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1547.0,
-                "anchorY": 567.0,
+                "anchorX": 1310.0,
+                "anchorY": 457.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -6191,29 +5727,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 980.0,
-                "anchorY": 813.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 980.0,
-                "anchorY": 813.0,
+                "anchorX": 735.0,
+                "anchorY": 610.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -6336,29 +5863,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1405.0,
-                "anchorY": 819.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1405.0,
-                "anchorY": 819.0,
+                "anchorX": 1086.0,
+                "anchorY": 646.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -6480,29 +5998,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1780.0,
-                "anchorY": 819.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1780.0,
-                "anchorY": 819.0,
+                "anchorX": 1585.0,
+                "anchorY": 646.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -6632,29 +6141,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 896.0,
-                "anchorY": 933.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 896.0,
-                "anchorY": 933.0,
+                "anchorX": 732.0,
+                "anchorY": 730.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -6785,29 +6285,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 896.0,
-                "anchorY": 1013.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 896.0,
-                "anchorY": 1013.0,
+                "anchorX": 732.0,
+                "anchorY": 790.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -6940,29 +6431,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1083.0,
-                "anchorY": 933.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1083.0,
-                "anchorY": 933.0,
+                "anchorX": 872.0,
+                "anchorY": 730.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -7093,29 +6575,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1083.0,
-                "anchorY": 1013.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1083.0,
-                "anchorY": 1013.0,
+                "anchorX": 872.0,
+                "anchorY": 790.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -7248,29 +6721,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1269.0,
-                "anchorY": 933.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1269.0,
-                "anchorY": 933.0,
+                "anchorX": 1012.0,
+                "anchorY": 730.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -7401,29 +6865,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1269.0,
-                "anchorY": 1013.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1269.0,
-                "anchorY": 1013.0,
+                "anchorX": 1012.0,
+                "anchorY": 790.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -7556,29 +7011,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1456.0,
-                "anchorY": 933.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1456.0,
-                "anchorY": 933.0,
+                "anchorX": 1152.0,
+                "anchorY": 730.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -7709,29 +7155,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1456.0,
-                "anchorY": 1013.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1456.0,
-                "anchorY": 1013.0,
+                "anchorX": 1152.0,
+                "anchorY": 790.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -7864,29 +7301,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1643.0,
-                "anchorY": 933.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1643.0,
-                "anchorY": 933.0,
+                "anchorX": 1292.0,
+                "anchorY": 730.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -8017,29 +7445,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1643.0,
-                "anchorY": 1013.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1643.0,
-                "anchorY": 1013.0,
+                "anchorX": 1292.0,
+                "anchorY": 790.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -8172,29 +7591,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1829.0,
-                "anchorY": 933.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1829.0,
-                "anchorY": 933.0,
+                "anchorX": 1432.0,
+                "anchorY": 730.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -8325,29 +7735,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1829.0,
-                "anchorY": 1013.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1829.0,
-                "anchorY": 1013.0,
+                "anchorX": 1432.0,
+                "anchorY": 790.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -8480,29 +7881,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 2024.0,
-                "anchorY": 933.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 2024.0,
-                "anchorY": 933.0,
+                "anchorX": 1578.0,
+                "anchorY": 730.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -8633,29 +8025,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 2024.0,
-                "anchorY": 1013.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 2024.0,
-                "anchorY": 1013.0,
+                "anchorX": 1578.0,
+                "anchorY": 790.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -8788,29 +8171,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 2203.0,
-                "anchorY": 933.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 2203.0,
-                "anchorY": 933.0,
+                "anchorX": 1712.0,
+                "anchorY": 730.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -8941,29 +8315,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 2203.0,
-                "anchorY": 1013.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 2203.0,
-                "anchorY": 1013.0,
+                "anchorX": 1712.0,
+                "anchorY": 790.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -9096,29 +8461,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1336.0,
-                "anchorY": 1200.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1336.0,
-                "anchorY": 1200.0,
+                "anchorX": 1152.0,
+                "anchorY": 932.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -9242,29 +8598,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1763.0,
-                "anchorY": 1200.0,
-                "transformX": -266.66666666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1763.0,
-                "anchorY": 1200.0,
+                "anchorX": 1472.0,
+                "anchorY": 932.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 2.3910206E7,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 2.3910206E7,
-              "endTimeMillis": 2.3910706E7,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -10228,29 +9575,20 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 747.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 0.0,
-                    "scaleY": 0.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 747.0,
+                    "anchorX": 1160.0,
+                    "anchorY": 960.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
                     "scaleY": 1.0,
                     "rotate": 0.0
                   },
-                  "timeToTransformMillis": 500,
-                  "initTimeMillis": 2.3911303E7,
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 2.3911303E7,
-                  "endTimeMillis": 2.3911803E7,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 }
               ],
@@ -10326,17 +9664,8 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 427.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 427.0,
+                    "anchorX": 1110.0,
+                    "anchorY": 360.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
@@ -10344,11 +9673,11 @@
                     "rotate": 0.0
                   },
                   "timeToTransformMillis": 0,
-                  "initTimeMillis": 2.3911559E7,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 2.3911559E7,
-                  "endTimeMillis": 2.3911559E7,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 },
                 {
@@ -10371,29 +9700,20 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 427.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 0.0,
-                    "scaleY": 0.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 427.0,
+                    "anchorX": 1110.0,
+                    "anchorY": 360.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
                     "scaleY": 1.0,
                     "rotate": 0.0
                   },
-                  "timeToTransformMillis": 500,
-                  "initTimeMillis": 2.3911303E7,
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 2.3911303E7,
-                  "endTimeMillis": 2.3911803E7,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 }
               ],
@@ -10485,17 +9805,8 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 280.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 280.0,
+                    "anchorX": 1020.0,
+                    "anchorY": 235.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
@@ -10503,11 +9814,11 @@
                     "rotate": 0.0
                   },
                   "timeToTransformMillis": 0,
-                  "initTimeMillis": 2.3911559E7,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 2.3911559E7,
-                  "endTimeMillis": 2.3911559E7,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 },
                 {
@@ -10530,29 +9841,20 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 280.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 0.0,
-                    "scaleY": 0.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 280.0,
+                    "anchorX": 1020.0,
+                    "anchorY": 235.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
                     "scaleY": 1.0,
                     "rotate": 0.0
                   },
-                  "timeToTransformMillis": 500,
-                  "initTimeMillis": 2.3911303E7,
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 2.3911303E7,
-                  "endTimeMillis": 2.3911803E7,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 }
               ],
@@ -10638,17 +9940,8 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 1213.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 1213.0,
+                    "anchorX": 1020.0,
+                    "anchorY": 935.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
@@ -10656,11 +9949,11 @@
                     "rotate": 0.0
                   },
                   "timeToTransformMillis": 0,
-                  "initTimeMillis": 2.3911559E7,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 2.3911559E7,
-                  "endTimeMillis": 2.3911559E7,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 },
                 {
@@ -10683,29 +9976,20 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 1213.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 0.0,
-                    "scaleY": 0.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 1280.0,
-                    "anchorY": 1213.0,
+                    "anchorX": 1020.0,
+                    "anchorY": 935.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
                     "scaleY": 1.0,
                     "rotate": 0.0
                   },
-                  "timeToTransformMillis": 500,
-                  "initTimeMillis": 2.3911303E7,
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 2.3911303E7,
-                  "endTimeMillis": 2.3911803E7,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 }
               ],
@@ -10773,17 +10057,8 @@
               "transforms": [
                 {
                   "ogTransform": {
-                    "anchorX": 120.0,
-                    "anchorY": 120.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 120.0,
-                    "anchorY": 120.0,
+                    "anchorX": 150.0,
+                    "anchorY": 150.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
@@ -10791,38 +10066,11 @@
                     "rotate": 0.0
                   },
                   "timeToTransformMillis": 0,
-                  "initTimeMillis": 2.3911559E7,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 2.3911559E7,
-                  "endTimeMillis": 2.3911559E7,
-                  "easeType": 6,
-                  "boomerang": false
-                },
-                {
-                  "ogTransform": {
-                    "anchorX": 120.0,
-                    "anchorY": 120.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 120.0,
-                    "anchorY": 120.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotate": 0.0
-                  },
-                  "timeToTransformMillis": 0,
-                  "initTimeMillis": 2.3911559E7,
-                  "delayInMillis": 0,
-                  "startTimeMillis": 2.3911559E7,
-                  "endTimeMillis": 2.3911559E7,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 },
                 {
@@ -10845,29 +10093,38 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 120.0,
-                    "anchorY": 120.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 0.0,
-                    "scaleY": 0.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 120.0,
-                    "anchorY": 120.0,
+                    "anchorX": 150.0,
+                    "anchorY": 150.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
                     "scaleY": 1.0,
                     "rotate": 0.0
                   },
-                  "timeToTransformMillis": 500,
-                  "initTimeMillis": 2.3911303E7,
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 2.3911303E7,
-                  "endTimeMillis": 2.3911803E7,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
+                  "boomerang": false
+                },
+                {
+                  "ogTransform": {
+                    "anchorX": 150.0,
+                    "anchorY": 150.0,
+                    "transformX": 0.0,
+                    "transformY": 0.0,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotate": 0.0
+                  },
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
+                  "delayInMillis": 0,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 }
               ],
@@ -11786,6 +11043,1106 @@
           "x": 800,
           "y": 250,
           "xSize": 320,
+          "ySize": 625,
+          "roundPercentage": 0
+        }
+      ],
+      "transforms": [
+        {
+          "transformX": -100.0,
+          "transformY": 0.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 1000,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": 0.0,
+          "scaleX": 0.95,
+          "scaleY": 0.95,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 100,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": 0.0,
+          "scaleX": 1.05,
+          "scaleY": 1.05,
+          "rotate": -20.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": -200.0,
+          "transformY": 0.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 750,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": 0.0,
+          "scaleX": 0.95,
+          "scaleY": 0.95,
+          "rotate": 20.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 100,
+          "easeType": 6
+        },
+        {
+          "transformX": 150.0,
+          "transformY": 0.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": -100.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": 100.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": 0.0,
+          "scaleX": 0.0,
+          "scaleY": 0.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": -75.0,
+          "scaleX": 0.0,
+          "scaleY": 0.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": -200.0,
+          "transformY": 0.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 500,
+          "easeType": 6
+        },
+        {
+          "transformX": 0.0,
+          "transformY": 120.0,
+          "scaleX": 1.0,
+          "scaleY": 1.0,
+          "rotate": 0.0,
+          "delayMillis": 0,
+          "timeToTransformMillis": 400,
+          "easeType": 6
+        }
+      ]
+    },
+    {
+      "menuName": "Settings Menu",
+      "menuDisplayName": "Settings",
+      "previousMenuName": "Main Menu",
+      "bgColor": 0,
+      "elements": [
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 900.0,
+                "anchorY": 360.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 900.0,
+                "anchorY": 360.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 900.0,
+                "anchorY": 360.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 900.0,
+                "anchorY": 360.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              0,
+              1
+            ],
+            "selectorOptions": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "setMenu String null",
+            "name": "SettingsButton",
+            "text": {
+              "text": "Settings",
+              "alignX": "left",
+              "alignY": "center",
+              "offsetX": -250,
+              "offsetY": -9,
+              "textSize": 50,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 600,
+              "y": 300,
+              "xSize": 600,
+              "ySize": 120,
+              "roundPercentage": 100
+            },
+            "color": 2,
+            "opacity": 255,
+            "shadowOffset": 15,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": 3,
+          "clickEffectIndex": 1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 5
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 150.0,
+                "anchorY": 150.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 150.0,
+                "anchorY": 150.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 150.0,
+                "anchorY": 150.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 150.0,
+                "anchorY": 150.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              0,
+              0
+            ],
+            "selectorOptions": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "escapeMenu",
+            "name": "BackButton",
+            "rectShape": {
+              "x": 90,
+              "y": 90,
+              "xSize": 120,
+              "ySize": 120,
+              "roundPercentage": 100
+            },
+            "renderableObject": {
+              "name": "BackPNG",
+              "imagePath": "src/textures/back.png",
+              "x": 30,
+              "y": 30,
+              "xSize": 60,
+              "ySize": 60,
+              "opacity": 255
+            },
+            "color": 2,
+            "opacity": 255,
+            "shadowOffset": 5,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": 2,
+          "clickEffectIndex": 4,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 8
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 1760.0,
+                "anchorY": 960.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1760.0,
+                "anchorY": 960.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1760.0,
+                "anchorY": 960.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1760.0,
+                "anchorY": 960.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                -1,
+                -1
+              ],
+              [
+                -1,
+                -1
+              ],
+              [
+                -1,
+                -1
+              ],
+              [
+                -1,
+                -1
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "Green Background",
+            "rectShape": {
+              "x": 1160,
+              "y": 560,
+              "xSize": 1200,
+              "ySize": 800,
+              "roundPercentage": 5
+            },
+            "color": 1,
+            "opacity": 255,
+            "shadowOffset": 25,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 1585.0,
+                "anchorY": 270.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1585.0,
+                "anchorY": 270.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1585.0,
+                "anchorY": 270.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1585.0,
+                "anchorY": 270.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "SettingsSubtitle",
+            "text": {
+              "text": "Settings",
+              "alignX": "center",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": -50,
+              "textSize": 60,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1160,
+              "y": 270,
+              "xSize": 850,
+              "ySize": 0,
+              "roundPercentage": 0
+            },
+            "color": 7,
+            "opacity": 255,
+            "shadowOffset": 0,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 735.0,
+                "anchorY": 335.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 735.0,
+                "anchorY": 335.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 735.0,
+                "anchorY": 335.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 735.0,
+                "anchorY": 335.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "MasterVolumeSubtext",
+            "text": {
+              "text": "Master Volume",
+              "alignX": "left",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": -2,
+              "textSize": 40,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 735,
+              "y": 335,
+              "xSize": 0,
+              "ySize": 0,
+              "roundPercentage": 0
+            },
+            "color": 7,
+            "opacity": 255,
+            "shadowOffset": 0,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 1086.0,
+                "anchorY": 371.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1086.0,
+                "anchorY": 371.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1086.0,
+                "anchorY": 371.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1086.0,
+                "anchorY": 371.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              1,
+              0
+            ],
+            "selectorOptions": [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "enterTextField String MasterVolume",
+            "name": "EditMasterVolumeButton",
+            "rectShape": {
+              "x": 1054,
+              "y": 339,
+              "xSize": 65,
+              "ySize": 65,
+              "roundPercentage": 0
+            },
+            "renderableObject": {
+              "name": "EditPNG",
+              "imagePath": "src/textures/edit.png",
+              "x": 9,
+              "y": 8,
+              "xSize": 50,
+              "ySize": 50,
+              "opacity": 255
+            },
+            "color": 2,
+            "opacity": 255,
+            "shadowOffset": 5,
+            "strokeWidth": 3.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": true,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 1585.0,
+                "anchorY": 371.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1585.0,
+                "anchorY": 371.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1585.0,
+                "anchorY": 371.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1585.0,
+                "anchorY": 371.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textfield": {
+            "maxSize": 16,
+            "selectorLocation": 0,
+            "pointerTime": 0.0,
+            "errorPopupIndexes": [
+              1,
+              0
+            ],
+            "scale": 1.0,
+            "name": "MasterVolume",
+            "text": {
+              "text": "%MasterVolume",
+              "alignX": "right",
+              "alignY": "center",
+              "offsetX": 240,
+              "offsetY": -6,
+              "textSize": 35,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1335,
+              "y": 339,
+              "xSize": 500,
+              "ySize": 65,
+              "roundPercentage": 0
+            },
+            "color": 8,
+            "opacity": 255,
+            "shadowOffset": 5,
+            "strokeWidth": 3.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 10
+        }
+      ],
+      "popups": [],
+      "secondarySelections": [
+        [
+          0,
+          1
+        ]
+      ],
+      "masks": [
+        {
+          "x": 0,
+          "y": 0,
+          "xSize": 1920,
+          "ySize": 1080,
+          "roundPercentage": 0
+        },
+        {
+          "x": 400,
+          "y": 250,
+          "xSize": 1120,
           "ySize": 625,
           "roundPercentage": 0
         }

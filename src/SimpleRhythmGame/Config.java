@@ -12,9 +12,15 @@ public class Config {
 	private int framesToStore;
 	private int framerate;
 	private boolean shouldLimitFramerate;
-	private double transitionTime;
+	private boolean displayFramerate;
+	
+	private double transitionTime; // for transitioning between screens
 	
 	private boolean cursorEnabled;
+	
+	private int masterVolume;
+	private int musicVolume;
+	private int SFXVolume;
 	
 	private boolean DEBUG_drawMasks;
 	private int DEBUG_masksColorsOffset;
@@ -34,7 +40,9 @@ public class Config {
 	public Config(boolean fullscreen, int sizeToForce, Controls[] controls, Theme[] themes, 
 			String currentThemeChoice, String currentSkinChoice,
 			String[] fonts, Menu[] menus, boolean nanoSecondPrecision, int framesToStore,
-			int framerate, boolean shouldLimitFramerate, boolean cursorEnabled, double transitionTime,
+			int framerate, boolean shouldLimitFramerate, boolean displayFramerate,
+			boolean cursorEnabled, double transitionTime,
+			int masterVolume, int musicVolume, int SFXVolume,
 			boolean DEBUG_drawMasks, int DEBUG_masksColorsOffset, int DEBUG_masksOpacity) {
 		this.fullscreen = fullscreen;
 		this.sizeToForce = sizeToForce;
@@ -49,8 +57,12 @@ public class Config {
 		this.framesToStore = framesToStore;
 		this.framerate = framerate;
 		this.shouldLimitFramerate = shouldLimitFramerate;
+		this.displayFramerate = displayFramerate;
 		this.cursorEnabled = cursorEnabled;
 		this.transitionTime = transitionTime;
+		this.masterVolume = masterVolume;
+		this.musicVolume = musicVolume;
+		this.SFXVolume = SFXVolume;
 		this.DEBUG_drawMasks = DEBUG_drawMasks;
 		this.DEBUG_masksColorsOffset = DEBUG_masksColorsOffset;
 		this.DEBUG_masksOpacity = DEBUG_masksOpacity;
@@ -473,6 +485,9 @@ public class Config {
 		else if (splitVariable[0].equals("%CurrentSkinPath")) {
 			varToReturn = "src/textures/skins/" + currentSkinChoice;
 		}
+		else if (splitVariable[0].equals("%MasterVolume")) {
+			varToReturn = Integer.toString(getMasterVolume());
+		}
 		return varToReturn;
 	}
 	
@@ -525,5 +540,37 @@ public class Config {
 		this.currentSkinChoice = currentSkinChoice;
 		ShowImage.bufferCurrentSkin();
 		FileIO.currentConfigOut();
+	}
+
+	public boolean isDisplayFramerate() {
+		return displayFramerate;
+	}
+
+	public void setDisplayFramerate(boolean displayFramerate) {
+		this.displayFramerate = displayFramerate;
+	}
+
+	public int getMasterVolume() {
+		return masterVolume;
+	}
+
+	public void setMasterVolume(int masterVolume) {
+		this.masterVolume = masterVolume;
+	}
+
+	public int getMusicVolume() {
+		return musicVolume;
+	}
+
+	public void setMusicVolume(int musicVolume) {
+		this.musicVolume = musicVolume;
+	}
+
+	public int getSFXVolume() {
+		return SFXVolume;
+	}
+
+	public void setSFXVolume(int sFXVolume) {
+		SFXVolume = sFXVolume;
 	}
 }

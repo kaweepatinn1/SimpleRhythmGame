@@ -16,8 +16,6 @@ import java.io.PrintWriter;
 
 import javax.imageio.ImageIO;
 
-import org.imgscalr.Scalr;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;

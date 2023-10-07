@@ -3,16 +3,22 @@ package SimpleRhythmGame;
 // A READ ONLY CLASS
 
 public class DefaultValues {
-	private final static boolean defaultFullscreen = true; // if not fullscreen will force below value
+	private final static boolean defaultFullscreen = false; // if not fullscreen will force below value
 	private final static int defaultSizeToForce = 1280; // forces this screen size if above is true
 	
 	private final static boolean defaultNanoSecondPrecision = true; // true breaks animations
 	private final static int defaultFramesToStore = 20;
 	private final static int defaultFramerate = 60;
 	private final static boolean defaultShouldLimitFramerate = true;
+	private final static boolean defaultDisplayFramerate = false;
+	
 	private final static double defaultTransitionTime = 500d;
 	
 	private final static boolean defaultCursorEnabled = true;
+	
+	private final static int defaultMasterVolume = 50;
+	private final static int defaultMusicVolume = 50;
+	private final static int defaultSFXVolume = 50;
 	
 	private final static boolean defaultDEBUG_drawMasks = false; // draws all clipping masks
 	private final static int defaultDEBUG_masksColorsOffset = 10; // changes the seed for drawn colors
@@ -818,7 +824,7 @@ public class DefaultValues {
 										false // bold
 										),
 									new RoundedArea(
-										1035, 472, 10, 180, 50  // x, y, xSize, ySize, round%
+										1035, 472, 5, 180, 50  // x, y, xSize, ySize, round%
 										),
 									6, // box color (index of colors)
 									255, // opacity (0-255)
@@ -3153,8 +3159,361 @@ public class DefaultValues {
 									)
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
+					
 					}
-			)
+			),
+			new Menu( // 3. Settings
+					"Settings Menu", // Menu Name
+					"Settings", // Menu Display Name
+					"Main Menu", // Parent Menu
+					0, // BG Color
+					new int[][]{{0,1}}, // Secondary Selections
+					new RoundedArea[]{ // Masks
+							new RoundedArea(0, 0, 1920, 1080, 0), // 0. Full Screen
+							new RoundedArea(400, 250, 1120, 625, 0), // 1. Skin Choices
+							// Insert here
+						},
+						new StoredTransform[] {
+							new StoredTransform( // 0. hover move left 100
+								-100, 0, // x, y transform
+								1, 1, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								1000, // animation time (ms)
+								6 // (ease type)
+							),
+							new StoredTransform( // 1. click animation (scale down)
+								0, 0, // x, y transform
+								0.95, 0.95, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								100, // animation time (ms)
+								6 // (ease type)
+							),
+							new StoredTransform( // 2. hover expand
+								0, 0, // x, y transform
+								1.05, 1.05, // scale transform (x, y)
+								-20, // rotate transform
+								0, // offset (ms)
+								500, // animation time (ms)
+								6 // (ease type)
+							),
+							new StoredTransform( // 3. hover expand (no rotate)
+								-200, 0, // x, y transform
+								1, 1, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								750, // animation time (ms)
+								6 // (ease type)
+							),
+							new StoredTransform( // 4. click animation (scale down and rotate back)
+								0, 0, // x, y transform
+								0.95, 0.95, // scale transform (x, y)
+								20, // rotate transform
+								0, // offset (ms)
+								100, // animation time (ms)
+								6 // (ease type)
+							),
+							new StoredTransform( // 5. hover move right 150
+								150, 0, // x, y transform
+								1, 1, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								500, // animation time (ms)
+								6 // (ease type)
+								),
+							new StoredTransform( // 6. hover move up 100
+								0, -100, // x, y transform
+								1, 1, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								500, // animation time (ms)
+								6 // (ease type)
+								),
+							new StoredTransform( // 7. hover move down 100
+								0, 100, // x, y transform
+								1, 1, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								500, // animation time (ms)
+								6 // (ease type)
+								),
+							new StoredTransform( // 8. 0 scale
+								0, 0, // x, y transform
+								0, 0, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								500, // animation time (ms)
+								6 // (ease type)
+								),
+							new StoredTransform( // 9. 0 scale, centered up 75
+								0, -75, // x, y transform
+								0, 0, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								500, // animation time (ms)
+								6 // (ease type)
+								),
+							new StoredTransform( // 10. -200 x (f box to center)
+								-200, 0, // x, y transform
+								1, 1, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								500, // animation time (ms)
+								6 // (ease type)
+								),
+							new StoredTransform( // 11. 120 y (optionsList)
+								0, 120, // x, y transform
+								1, 1, // scale transform (x, y)
+								0, // rotate transform
+								0, // offset (ms)
+								400, // animation time (ms)
+								6 // (ease type)
+								),
+						},
+					new Element[] { // Elements List
+/////////////////////////////////////////////////////////////////////////////////////
+							new Element(
+									new Selector(
+										new int[]{0,1}, // Selector Index
+										new int[][]{{1,0},{0,1},{0,0},{0,0}} // E, S, W, N to select next
+										),
+									-1, // mask index
+									false, // hover overlap
+									3, // hover effect
+									1, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									5, // entry animation
+									new TextBox(
+										// Text and Renderable
+										1f, // scale
+										"setMenu String null", // function
+										"SettingsButton",  // name
+										new Text(
+											"Settings", // text
+											"left", "center", // align
+											-250, -9, // text offset (x, y)
+											50, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+										new RoundedArea(
+											600, 300, 600, 120, 100  // x, y, xSize, ySize, round%
+											),
+										2, // box color (index of colors)
+										255, // opacity (0-255)
+										15, // shadowOffset
+										5, 6 // strokeWidth, strokeColor
+										)),
+/////////////////////////////////////////////////////////////////////////////////////
+							new Element(
+									new Selector(
+										new int[]{0,0}, // Selector Index
+										new int[][]{{0,1},{0,1},{0,0},{0,0}} // E, S, W, N to select next
+										),
+									-1, // Mask Index
+									false, // hover overlap
+									2, // hover effect
+									4, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									8, // entry animation
+									new TextBox(
+										// Text and Renderable
+										1, // scale
+										"escapeMenu", // function
+										"BackButton",  // name
+										new Renderable(
+											// Renderable Without Function
+											"BackPNG", // name
+											"src/textures/back.png", // file source
+											30, 30, 60, 60, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+										new RoundedArea(
+											90, 90, 120, 120,  // x, y, xSize, ySize, round%
+											100 // roundPercentage
+											),
+										2, // box color (index of colors)
+										255, // opacity (0-255)
+										5, // shadowOffset
+										5, 6 // strokeWidth, strokeColor
+										)
+									),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+							new Selector(
+								new int[]{-1,-1}, // Selector Index
+								new int[][]{{-1,-1},{-1,-1},{-1,-1},{-1,-1}} // E, S, W, N to select next
+								),
+							-1, // Mask Index
+							false, // hover overlap
+							-1, // hover effect
+							-1, // click effect
+							-1, // arbritraty animation (to be used for scroll)
+							10, // entry animation
+							new TextBox(
+								// No Text, No Renderable
+								1, // scale
+								null, // function
+								"Green Background",  // name
+								new RoundedArea(
+									1160, 560, 1200, 800,  // x, y, xSize, ySize, round%
+									5 // roundPercentage
+									),
+								1, // box color (index of colors)
+								255, // opacity (0-255)
+								25, // shadowOffset
+								5, 6 // strokeWidth, strokeColor
+								)
+							),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								10, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									null, // function
+									"SettingsSubtitle",  // name
+									new Text(
+										"Settings", // text
+										"center", "center", // align
+										0, -50, // text offset (x, y)
+										60, // text size
+										6, // text color (index of colors)
+										"Archivo Narrow", // font
+										false // bold
+										),
+									new RoundedArea(
+										1160, 270, 850, 0, 0  // x, y, xSize, ySize, round%
+										),
+									7, // box color (index of colors)
+									255, // opacity (0-255)
+									0, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+						
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								10, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									null, // function
+									"MasterVolumeSubtext",  // name
+									new Text(
+										"Master Volume", // text
+										"left", "center", // align
+										0, -2, // text offset (x, y)
+										40, // text size
+										6, // text color (index of colors)
+										"Archivo Narrow", // font
+										false // bold
+										),
+									new RoundedArea(
+										735, 335, 0, 0, 0  // x, y, xSize, ySize, round%
+										),
+									7, // box color (index of colors)
+									255, // opacity (0-255)
+									0, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+///////////////////////////////////////,//////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{1,0}, // Selector Index
+									new int[][]{{1,0},{1,1},{0,1},{1,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								true, // hover overlap
+								-1, // hover effect
+								1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								10, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									"enterTextField String MasterVolume", // function
+									"EditMasterVolumeButton",  // name
+									new Renderable(
+											// Renderable Without Function
+											"EditPNG", // name
+											"src/textures/edit.png", // file source
+											9, 8, 50, 50, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+									new RoundedArea(
+										1054, 339, 65, 65, 0  // x, y, xSize, ySize, round%
+										),
+									2, // box color (index of colors)
+									255, // opacity (0-255)
+									5, // shadowOffset
+									3, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								10, // entry animation
+								new TextField(
+										// Textfield
+										1f, // scale
+										16, // Max Size
+										new int[] { // Error Popup Indexes
+												1, // Field is duplicate!
+												0, // Field is empty
+											},
+										"MasterVolume", // Name
+										new Text(
+											"%MasterVolume", // text
+											"right", "center", // align
+											240, -6, // text offset (x, y)
+											35, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+									new RoundedArea(
+										1305, 339, 440, 65, 0  // x, y, xSize, ySize, round%
+										),
+									8, // box color (index of colors)
+									255, // opacity (0-255)
+									5, // shadowOffset
+									3, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+					},
+					new Popup[] { // Popups List
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+					}
+			),
 	};
 	
 	public static Config getDefaultConfigs() {
@@ -3172,8 +3531,12 @@ public class DefaultValues {
     			getDefaultFramesToStore(),
     			getDefaultFramerate(),
     			getDefaultShouldLimitFramerate(),
+    			getDefaultDisplayFramerate(),
     			getDefaultCursorEnabled(),
     			getDefaultTransitionTime(),
+    			getDefaultMasterVolume(),
+    			getDefaultMusicVolume(),
+    			getDefaultSFXVolume(),
     			getDefaultDEBUG_drawMasks(),
     			getDefaultDEBUG_masksColorsOffset(),
     			getDefaultDEBUG_masksOpacity()
@@ -3233,12 +3596,28 @@ public class DefaultValues {
 		return defaultShouldLimitFramerate;
 	}
 	
+	public static boolean getDefaultDisplayFramerate() {
+		return defaultDisplayFramerate;
+	}
+	
 	public static boolean getDefaultCursorEnabled() {
 		return defaultCursorEnabled;
 	}
 
 	public static double getDefaultTransitionTime() {
 		return defaultTransitionTime;
+	}
+	
+	public static int getDefaultMasterVolume() {
+		return defaultMasterVolume;
+	}
+	
+	public static int getDefaultMusicVolume() {
+		return defaultMusicVolume;
+	}
+	
+	public static int getDefaultSFXVolume() {
+		return defaultSFXVolume;
 	}
 	
 	public static boolean getDefaultDEBUG_drawMasks() {

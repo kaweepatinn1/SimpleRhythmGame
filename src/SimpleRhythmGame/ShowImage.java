@@ -1636,14 +1636,14 @@ public class ShowImage extends JPanel implements KeyListener {
         // READ INITIALIZATION STATUS
         
         // for username
-        boolean userHasUsername = false;
+        boolean userHasUsername = true;
         // String userUsername = xx;
         // UUID userUUID = xx;
         
         // TODO: ADD BELOW TO A COMMENT ONCE DEV IS FINISHED:
         // System.out.println(currentMenuIndex);
         
-        boolean useConfig = true; // use during development. TODO: set to true on completion
+        boolean useConfig = false; // use during development. TODO: set to true on completion
         
         File configFile = new File("./options.json");
         if (configFile.exists() && !configFile.isDirectory() && useConfig) { 
@@ -1656,7 +1656,7 @@ public class ShowImage extends JPanel implements KeyListener {
         setNewFrameSize(config.getFullscreen(), config.getSizeToForce()); // uses the above raw lists and variables to set the frame size.
         
         if (userHasUsername) {
-        	Functions.setMenu("Customization Skin Selector");
+        	Functions.setMenu("Settings Menu");
         } else {
         	Functions.setMenu("Init User");
         }
