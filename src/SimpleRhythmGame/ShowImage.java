@@ -94,6 +94,7 @@ public class ShowImage extends JPanel implements KeyListener {
                     	System.out.println("ERROR: DID NOT RUN ANY FUNCTION FOR \nElement Name: " + clickedElement.getName() + 
                     			"\nwhich is a \nRenderable: " + clickedElement.isRenderable() + "\nTextbox: " + clickedElement.isTextbox());
                     } 
+                    selected = scaledMenu.resetSelectors(getElementFromName(clickedElement.getName()).getSelectorIndex(), selected, getCurrentPopupIndex());
         		}
             	// System.out.println(releasedElement.getName());
                 mouseDragStart = null;
@@ -125,6 +126,10 @@ public class ShowImage extends JPanel implements KeyListener {
             		if (element != null) {
 	            		if (releasedElement.getName().equals("Edit"+ selectedElement + "Button")) {
 	            			confirmElement(element);
+	            			if (element.getTextfield().getInputType() != TextField.Input_BOOLEAN) {
+	            				element.getSelector().setUnselected();
+		                		selectedElement = null;
+	            			}
 	            			element.getSelector().setUnselected();
 	                		selectedElement = null;
 	            		} else {
@@ -139,6 +144,7 @@ public class ShowImage extends JPanel implements KeyListener {
                         	System.out.println("ERROR: DID NOT RUN ANY FUNCTION FOR \nElement Name: " + releasedElement.getName() + 
                         			"\nwhich is a \nRenderable: " + releasedElement.isRenderable() + "\nTextbox: " + releasedElement.isTextbox());
                     	}
+                        selected = scaledMenu.resetSelectors(getElementFromName(releasedElement.getName()).getSelectorIndex(), selected, getCurrentPopupIndex());
             		}
                 } 
         	} else {
@@ -407,7 +413,14 @@ public class ShowImage extends JPanel implements KeyListener {
     		if (selectedElement != null) {
         		Element element = getElementFromName(selectedElement);
         		// System.out.println(e.getKeyChar());
-        		if (!e.isActionKey() && isAlphaNumeric(e.getKeyChar())) {
+        		if (element.getTextfield().getInputType() == TextField.Input_NUMERIC &&
+        				!e.isActionKey() && isNumeric(e.getKeyChar())) {
+        			element.getTextfield().inputChar(e.getKeyChar());
+        		} else if (element.getTextfield().getInputType() == TextField.Input_ALPHANUMERIC &&
+        				!e.isActionKey() && isAlphaNumeric(e.getKeyChar())) {
+        			element.getTextfield().inputChar(e.getKeyChar());
+        		} else if (element.getTextfield().getInputType() == TextField.Input_HEXADECIMAL &&
+        				!e.isActionKey() && isHexadecimal(e.getKeyChar())) {
         			element.getTextfield().inputChar(e.getKeyChar());
         		}
         	}
@@ -1540,23 +1553,29 @@ public class ShowImage extends JPanel implements KeyListener {
 	}
 	
 	public static void setSelectedElement(String textField) {
-		selectedElement = textField;
-		Element element = getElementFromName(selectedElement);
-		element.getTextfield().resetSelector(false);
-		element.setSelected();
-		
-		Element editButton = getElementFromName("Edit" + selectedElement + "Button");
-		if (editButton != null) {
-			BufferedImage newImage;
-			try {
-				newImage = ImageIO.read(new File("src/textures/tick.png"));
-				editButton.getTextbox().getRenderableObject().setImage(newImage);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		Element element = getElementFromName(textField);
+		if (element.getTextfield().getInputType() != TextField.Input_BOOLEAN) {
+			selectedElement = textField;
 			
+			element.getTextfield().resetSelector(false);
+			element.setSelected();
+			
+			Element editButton = getElementFromName("Edit" + selectedElement + "Button");
+			if (editButton != null) {
+				BufferedImage newImage;
+				try {
+					newImage = ImageIO.read(new File("src/textures/tick.png"));
+					editButton.getTextbox().getRenderableObject().setImage(newImage);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		} else {
+			element.getTextfield().confirmEntry();
 		}
+		
 	}
 	
 	public static BufferedImage getNoteImage(int index) {
@@ -1619,11 +1638,29 @@ public class ShowImage extends JPanel implements KeyListener {
 		return getElementFromName(selectedElement);
 	}
 	
+	public static boolean isNumeric(char ch) {
+	    if ((ch >= '0' & ch <= '9')) {
+	    	return true;
+	    } else {
+	    	return false;
+	    }
+	}
+	
 	public static boolean isAlphaNumeric(char ch) {
-	    if ((ch >= '0' & ch <= '9') || (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch == '_'))
-	      return true;
-	    return false;
-	  }
+	    if ((ch >= '0' & ch <= '9') || (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch == '_')) {
+	    	return true;
+	    } else {
+	    	return false;
+	    }
+	}
+	
+	public static boolean isHexadecimal(char ch) {
+	    if ((ch >= '0' & ch <= '9') || (ch >= 'a' && ch <= 'f') || (ch >= 'A' && ch <= 'F') || (ch == '#')) {
+	    	return true;
+	    } else {
+	    	return false;
+	    }
+	}
 	
 	public static void main(String args[]) throws Exception {
     	

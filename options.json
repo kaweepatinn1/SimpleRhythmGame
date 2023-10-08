@@ -4,7 +4,7 @@
   "nanoSecondPrecision": true,
   "framesToStore": 20,
   "framerate": 60,
-  "shouldLimitFramerate": true,
+  "limitFramerate": false,
   "displayFramerate": false,
   "transitionTime": 500.0,
   "cursorEnabled": true,
@@ -71,7 +71,7 @@
     }
   ],
   "currentThemeChoice": "DefaultTheme",
-  "currentSkinChoice": "DefaultSkin - Copy.png",
+  "currentSkinChoice": "DefaultSkin.png",
   "themes": [
     {
       "themeName": "DefaultTheme",
@@ -212,17 +212,8 @@
           "transforms": [
             {
               "ogTransform": {
-                "anchorX": 1207.0,
-                "anchorY": 217.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1207.0,
-                "anchorY": 217.0,
+                "anchorX": 2310.0,
+                "anchorY": 385.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -230,38 +221,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 1.02427559E8,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02427559E8,
-              "easeType": 6,
-              "boomerang": false
-            },
-            {
-              "ogTransform": {
-                "anchorX": 1207.0,
-                "anchorY": 217.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1207.0,
-                "anchorY": 217.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 1.02427559E8,
-              "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02427559E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             },
             {
@@ -284,29 +248,38 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1207.0,
-                "anchorY": 217.0,
+                "anchorX": 2310.0,
+                "anchorY": 385.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "newTransform": {
-                "anchorX": 1207.0,
-                "anchorY": 217.0,
-                "transformX": 50.0,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 2310.0,
+                "anchorY": 385.0,
+                "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427307E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427307E8,
-              "endTimeMillis": 1.02427807E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -385,17 +358,8 @@
           "transforms": [
             {
               "ogTransform": {
-                "anchorX": 1107.0,
-                "anchorY": 340.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1107.0,
-                "anchorY": 340.0,
+                "anchorX": 2160.0,
+                "anchorY": 570.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -403,38 +367,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 1.02427559E8,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02427559E8,
-              "easeType": 6,
-              "boomerang": false
-            },
-            {
-              "ogTransform": {
-                "anchorX": 1107.0,
-                "anchorY": 340.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1107.0,
-                "anchorY": 340.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 1.02427559E8,
-              "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02427559E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             },
             {
@@ -457,29 +394,38 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1107.0,
-                "anchorY": 340.0,
+                "anchorX": 2160.0,
+                "anchorY": 570.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "newTransform": {
-                "anchorX": 1107.0,
-                "anchorY": 340.0,
-                "transformX": 50.0,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 2160.0,
+                "anchorY": 570.0,
+                "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427307E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427307E8,
-              "endTimeMillis": 1.02427807E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -558,17 +504,8 @@
           "transforms": [
             {
               "ogTransform": {
-                "anchorX": 1107.0,
-                "anchorY": 440.0,
-                "transformX": -2.316318019550704,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1107.0,
-                "anchorY": 440.0,
+                "anchorX": 2160.0,
+                "anchorY": 720.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -576,38 +513,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 1.02427559E8,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02427559E8,
-              "easeType": 6,
-              "boomerang": false
-            },
-            {
-              "ogTransform": {
-                "anchorX": 1107.0,
-                "anchorY": 440.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1107.0,
-                "anchorY": 440.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 1.02427559E8,
-              "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02427559E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             },
             {
@@ -630,29 +540,38 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1107.0,
-                "anchorY": 440.0,
+                "anchorX": 2160.0,
+                "anchorY": 720.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "newTransform": {
-                "anchorX": 1107.0,
-                "anchorY": 440.0,
-                "transformX": 50.0,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 2160.0,
+                "anchorY": 720.0,
+                "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427307E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427307E8,
-              "endTimeMillis": 1.02427807E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -731,17 +650,8 @@
           "transforms": [
             {
               "ogTransform": {
-                "anchorX": 1107.0,
-                "anchorY": 540.0,
-                "transformX": -16.264210666666663,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1107.0,
-                "anchorY": 540.0,
+                "anchorX": 2160.0,
+                "anchorY": 870.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -749,38 +659,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 1.02427559E8,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02427559E8,
-              "easeType": 6,
-              "boomerang": false
-            },
-            {
-              "ogTransform": {
-                "anchorX": 1107.0,
-                "anchorY": 540.0,
-                "transformX": -2.8456296296296286,
-                "transformY": 0.0,
-                "scaleX": 0.9893288888888889,
-                "scaleY": 0.9893288888888889,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1107.0,
-                "anchorY": 540.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 1.02427559E8,
-              "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02427559E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             },
             {
@@ -803,29 +686,38 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1107.0,
-                "anchorY": 540.0,
+                "anchorX": 2160.0,
+                "anchorY": 870.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "newTransform": {
-                "anchorX": 1107.0,
-                "anchorY": 540.0,
-                "transformX": 50.0,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 2160.0,
+                "anchorY": 870.0,
+                "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427307E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427307E8,
-              "endTimeMillis": 1.02427807E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -1214,29 +1106,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 400.0,
-                "anchorY": 200.0,
-                "transformX": 100.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 400.0,
-                "anchorY": 200.0,
+                "anchorX": 900.0,
+                "anchorY": 360.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427559E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02428059E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -1264,7 +1147,7 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": true,
+            "secondaryHovered": false,
             "selected": false
           },
           "textbox": {
@@ -1360,29 +1243,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 400.0,
-                "anchorY": 300.0,
-                "transformX": 100.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 400.0,
-                "anchorY": 300.0,
+                "anchorX": 900.0,
+                "anchorY": 510.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427559E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02428059E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -1506,29 +1380,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 60.0,
-                "anchorY": 60.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 0.0,
-                "scaleY": 0.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 60.0,
-                "anchorY": 60.0,
+                "anchorX": 150.0,
+                "anchorY": 150.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427559E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02428059E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -1650,29 +1515,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 773.0,
-                "anchorY": 373.0,
-                "transformX": -133.33333333333331,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 773.0,
-                "anchorY": 373.0,
+                "anchorX": 1760.0,
+                "anchorY": 960.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427559E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02428059E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -1784,29 +1640,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 773.0,
-                "anchorY": 180.0,
-                "transformX": -133.33333333333331,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 773.0,
-                "anchorY": 180.0,
+                "anchorX": 1585.0,
+                "anchorY": 270.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427559E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02428059E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -1929,29 +1776,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 490.0,
-                "anchorY": 217.0,
-                "transformX": -133.33333333333331,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 490.0,
-                "anchorY": 217.0,
+                "anchorX": 735.0,
+                "anchorY": 325.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427559E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02428059E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -2038,29 +1876,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 703.0,
-                "anchorY": 220.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 0.95,
-                "scaleY": 0.95,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 703.0,
-                "anchorY": 220.0,
+                "anchorX": 1086.0,
+                "anchorY": 362.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 100,
-              "initTimeMillis": 1.02428656E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02428706E8,
-              "endTimeMillis": 1.02428856E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             },
             {
@@ -2083,29 +1912,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 703.0,
-                "anchorY": 220.0,
-                "transformX": -133.33333333333331,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 703.0,
-                "anchorY": 220.0,
+                "anchorX": 1086.0,
+                "anchorY": 362.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427559E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02428059E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -2132,7 +1952,7 @@
                 0
               ]
             ],
-            "primaryHovered": true,
+            "primaryHovered": false,
             "secondaryHovered": false,
             "selected": false
           },
@@ -2227,29 +2047,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 890.0,
-                "anchorY": 220.0,
-                "transformX": -133.33333333333331,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 890.0,
-                "anchorY": 220.0,
+                "anchorX": 1585.0,
+                "anchorY": 362.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427559E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02428059E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -2372,29 +2183,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 773.0,
-                "anchorY": 430.0,
-                "transformX": -133.33333333333331,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 773.0,
-                "anchorY": 430.0,
+                "anchorX": 1585.0,
+                "anchorY": 645.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427559E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02428059E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -2517,29 +2319,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 690.0,
-                "anchorY": 315.0,
-                "transformX": -133.33333333333331,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 690.0,
-                "anchorY": 315.0,
+                "anchorX": 1035.0,
+                "anchorY": 472.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427559E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02428059E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -2662,29 +2455,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 690.0,
-                "anchorY": 315.0,
-                "transformX": -133.33333333333331,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 690.0,
-                "anchorY": 315.0,
+                "anchorX": 1037.0,
+                "anchorY": 562.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427559E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02428059E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -2807,29 +2591,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 581.0,
-                "anchorY": 315.0,
-                "transformX": -133.33333333333331,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 581.0,
-                "anchorY": 315.0,
+                "anchorX": 1007.0,
+                "anchorY": 562.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427559E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02428059E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -2962,29 +2737,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 467.0,
-                "anchorY": 513.0,
-                "transformX": -133.33333333333331,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 467.0,
-                "anchorY": 513.0,
+                "anchorX": 790.0,
+                "anchorY": 860.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427559E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02428059E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -3117,29 +2883,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 620.0,
-                "anchorY": 513.0,
-                "transformX": -133.33333333333331,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 620.0,
-                "anchorY": 513.0,
+                "anchorX": 1020.0,
+                "anchorY": 860.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427559E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02428059E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -3272,29 +3029,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 773.0,
-                "anchorY": 513.0,
-                "transformX": -133.33333333333331,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 773.0,
-                "anchorY": 513.0,
+                "anchorX": 1250.0,
+                "anchorY": 860.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427559E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02428059E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -3427,29 +3175,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 927.0,
-                "anchorY": 513.0,
-                "transformX": -133.33333333333331,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 927.0,
-                "anchorY": 513.0,
+                "anchorX": 1480.0,
+                "anchorY": 860.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427559E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02428059E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -3582,29 +3321,20 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1080.0,
-                "anchorY": 513.0,
-                "transformX": -133.33333333333331,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "newTransform": {
-                "anchorX": 1080.0,
-                "anchorY": 513.0,
+                "anchorX": 1710.0,
+                "anchorY": 860.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02427559E8,
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02427559E8,
-              "endTimeMillis": 1.02428059E8,
-              "easeType": 6,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
               "boomerang": false
             }
           ],
@@ -3743,29 +3473,20 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 640.0,
-                    "anchorY": 373.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 0.0,
-                    "scaleY": 0.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 640.0,
-                    "anchorY": 373.0,
+                    "anchorX": 1560.0,
+                    "anchorY": 960.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
                     "scaleY": 1.0,
                     "rotate": 0.0
                   },
-                  "timeToTransformMillis": 500,
-                  "initTimeMillis": 1.02428542E8,
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 1.02428542E8,
-                  "endTimeMillis": 1.02429042E8,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 }
               ],
@@ -3841,17 +3562,8 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 640.0,
-                    "anchorY": 213.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 640.0,
-                    "anchorY": 213.0,
+                    "anchorX": 1510.0,
+                    "anchorY": 360.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
@@ -3859,11 +3571,11 @@
                     "rotate": 0.0
                   },
                   "timeToTransformMillis": 0,
-                  "initTimeMillis": 1.02428802E8,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 1.02428802E8,
-                  "endTimeMillis": 1.02428802E8,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 },
                 {
@@ -3886,29 +3598,20 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 640.0,
-                    "anchorY": 213.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 0.0,
-                    "scaleY": 0.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 640.0,
-                    "anchorY": 213.0,
+                    "anchorX": 1510.0,
+                    "anchorY": 360.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
                     "scaleY": 1.0,
                     "rotate": 0.0
                   },
-                  "timeToTransformMillis": 500,
-                  "initTimeMillis": 1.02428542E8,
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 1.02428542E8,
-                  "endTimeMillis": 1.02429042E8,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 }
               ],
@@ -4000,17 +3703,8 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 640.0,
-                    "anchorY": 140.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 640.0,
-                    "anchorY": 140.0,
+                    "anchorX": 1020.0,
+                    "anchorY": 235.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
@@ -4018,11 +3712,11 @@
                     "rotate": 0.0
                   },
                   "timeToTransformMillis": 0,
-                  "initTimeMillis": 1.02428802E8,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 1.02428802E8,
-                  "endTimeMillis": 1.02428802E8,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 },
                 {
@@ -4045,29 +3739,20 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 640.0,
-                    "anchorY": 140.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 0.0,
-                    "scaleY": 0.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 640.0,
-                    "anchorY": 140.0,
+                    "anchorX": 1020.0,
+                    "anchorY": 235.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
                     "scaleY": 1.0,
                     "rotate": 0.0
                   },
-                  "timeToTransformMillis": 500,
-                  "initTimeMillis": 1.02428542E8,
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 1.02428542E8,
-                  "endTimeMillis": 1.02429042E8,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 }
               ],
@@ -4153,17 +3838,8 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 640.0,
-                    "anchorY": 607.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 640.0,
-                    "anchorY": 607.0,
+                    "anchorX": 1020.0,
+                    "anchorY": 935.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
@@ -4171,11 +3847,11 @@
                     "rotate": 0.0
                   },
                   "timeToTransformMillis": 0,
-                  "initTimeMillis": 1.02428802E8,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 1.02428802E8,
-                  "endTimeMillis": 1.02428802E8,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 },
                 {
@@ -4198,29 +3874,20 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 640.0,
-                    "anchorY": 607.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 0.0,
-                    "scaleY": 0.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 640.0,
-                    "anchorY": 607.0,
+                    "anchorX": 1020.0,
+                    "anchorY": 935.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
                     "scaleY": 1.0,
                     "rotate": 0.0
                   },
-                  "timeToTransformMillis": 500,
-                  "initTimeMillis": 1.02428542E8,
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 1.02428542E8,
-                  "endTimeMillis": 1.02429042E8,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 }
               ],
@@ -4288,17 +3955,8 @@
               "transforms": [
                 {
                   "ogTransform": {
-                    "anchorX": 60.0,
-                    "anchorY": 60.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 60.0,
-                    "anchorY": 60.0,
+                    "anchorX": 150.0,
+                    "anchorY": 150.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
@@ -4306,38 +3964,11 @@
                     "rotate": 0.0
                   },
                   "timeToTransformMillis": 0,
-                  "initTimeMillis": 1.02428802E8,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 1.02428802E8,
-                  "endTimeMillis": 1.02428802E8,
-                  "easeType": 6,
-                  "boomerang": false
-                },
-                {
-                  "ogTransform": {
-                    "anchorX": 60.0,
-                    "anchorY": 60.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 60.0,
-                    "anchorY": 60.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotate": 0.0
-                  },
-                  "timeToTransformMillis": 0,
-                  "initTimeMillis": 1.02428802E8,
-                  "delayInMillis": 0,
-                  "startTimeMillis": 1.02428802E8,
-                  "endTimeMillis": 1.02428802E8,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 },
                 {
@@ -4360,29 +3991,38 @@
                 },
                 {
                   "ogTransform": {
-                    "anchorX": 60.0,
-                    "anchorY": 60.0,
-                    "transformX": 0.0,
-                    "transformY": 0.0,
-                    "scaleX": 0.0,
-                    "scaleY": 0.0,
-                    "rotate": 0.0
-                  },
-                  "newTransform": {
-                    "anchorX": 60.0,
-                    "anchorY": 60.0,
+                    "anchorX": 150.0,
+                    "anchorY": 150.0,
                     "transformX": 0.0,
                     "transformY": 0.0,
                     "scaleX": 1.0,
                     "scaleY": 1.0,
                     "rotate": 0.0
                   },
-                  "timeToTransformMillis": 500,
-                  "initTimeMillis": 1.02428542E8,
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
                   "delayInMillis": 0,
-                  "startTimeMillis": 1.02428542E8,
-                  "endTimeMillis": 1.02429042E8,
-                  "easeType": 6,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
+                  "boomerang": false
+                },
+                {
+                  "ogTransform": {
+                    "anchorX": 150.0,
+                    "anchorY": 150.0,
+                    "transformX": 0.0,
+                    "transformY": 0.0,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotate": 0.0
+                  },
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
+                  "delayInMillis": 0,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
                   "boomerang": false
                 }
               ],
@@ -6723,7 +6363,7 @@
             "selected": false
           },
           "textfield": {
-            "maxSize": 16,
+            "maxSize": 7,
             "selectorLocation": 0,
             "pointerTime": 0.0,
             "errorPopupIndexes": [
@@ -7014,7 +6654,7 @@
             "selected": false
           },
           "textfield": {
-            "maxSize": 16,
+            "maxSize": 7,
             "selectorLocation": 0,
             "pointerTime": 0.0,
             "errorPopupIndexes": [
@@ -7305,7 +6945,7 @@
             "selected": false
           },
           "textfield": {
-            "maxSize": 16,
+            "maxSize": 7,
             "selectorLocation": 0,
             "pointerTime": 0.0,
             "errorPopupIndexes": [
@@ -7596,7 +7236,7 @@
             "selected": false
           },
           "textfield": {
-            "maxSize": 16,
+            "maxSize": 7,
             "selectorLocation": 0,
             "pointerTime": 0.0,
             "errorPopupIndexes": [
@@ -7887,7 +7527,7 @@
             "selected": false
           },
           "textfield": {
-            "maxSize": 16,
+            "maxSize": 7,
             "selectorLocation": 0,
             "pointerTime": 0.0,
             "errorPopupIndexes": [
@@ -8178,7 +7818,7 @@
             "selected": false
           },
           "textfield": {
-            "maxSize": 16,
+            "maxSize": 7,
             "selectorLocation": 0,
             "pointerTime": 0.0,
             "errorPopupIndexes": [
@@ -8469,7 +8109,7 @@
             "selected": false
           },
           "textfield": {
-            "maxSize": 16,
+            "maxSize": 7,
             "selectorLocation": 0,
             "pointerTime": 0.0,
             "errorPopupIndexes": [
@@ -8760,7 +8400,7 @@
             "selected": false
           },
           "textfield": {
-            "maxSize": 16,
+            "maxSize": 7,
             "selectorLocation": 0,
             "pointerTime": 0.0,
             "errorPopupIndexes": [
@@ -11847,7 +11487,7 @@
               "ogTransform": {
                 "anchorX": 400.0,
                 "anchorY": 200.0,
-                "transformX": -5.0117902716131235,
+                "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
@@ -11863,10 +11503,10 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 1.02426657E8,
+              "initTimeMillis": 1.19312184E8,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02426657E8,
-              "endTimeMillis": 1.02426657E8,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312184E8,
               "easeType": 6,
               "boomerang": false
             },
@@ -11890,10 +11530,10 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 1.02426657E8,
+              "initTimeMillis": 1.19312184E8,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02426657E8,
-              "endTimeMillis": 1.02426657E8,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312184E8,
               "easeType": 6,
               "boomerang": false
             },
@@ -11919,7 +11559,7 @@
               "ogTransform": {
                 "anchorX": 400.0,
                 "anchorY": 200.0,
-                "transformX": 0.0,
+                "transformX": 100.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
@@ -11928,17 +11568,17 @@
               "newTransform": {
                 "anchorX": 400.0,
                 "anchorY": 200.0,
-                "transformX": 100.0,
+                "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
               "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02426394E8,
+              "initTimeMillis": 1.19312184E8,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02426394E8,
-              "endTimeMillis": 1.02426894E8,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
               "easeType": 6,
               "boomerang": false
             }
@@ -12013,9 +11653,9 @@
                 "anchorY": 60.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
-                "scaleX": 1.03379546688,
-                "scaleY": 1.03379546688,
-                "rotate": -13.518186751999998
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
               },
               "newTransform": {
                 "anchorX": 60.0,
@@ -12027,10 +11667,10 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 1.02426657E8,
+              "initTimeMillis": 1.19312184E8,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02426657E8,
-              "endTimeMillis": 1.02426657E8,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312184E8,
               "easeType": 6,
               "boomerang": false
             },
@@ -12040,9 +11680,9 @@
                 "anchorY": 60.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
-                "scaleX": 0.9935822222222223,
-                "scaleY": 0.9935822222222223,
-                "rotate": 2.567111111111111
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
               },
               "newTransform": {
                 "anchorX": 60.0,
@@ -12054,10 +11694,10 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 1.02426657E8,
+              "initTimeMillis": 1.19312184E8,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02426657E8,
-              "endTimeMillis": 1.02426657E8,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312184E8,
               "easeType": 6,
               "boomerang": false
             },
@@ -12085,8 +11725,8 @@
                 "anchorY": 60.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
+                "scaleX": 0.0,
+                "scaleY": 0.0,
                 "rotate": 0.0
               },
               "newTransform": {
@@ -12094,15 +11734,15 @@
                 "anchorY": 60.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
-                "scaleX": 0.0,
-                "scaleY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
                 "rotate": 0.0
               },
               "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02426394E8,
+              "initTimeMillis": 1.19312184E8,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02426394E8,
-              "endTimeMillis": 1.02426894E8,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
               "easeType": 6,
               "boomerang": false
             }
@@ -12227,7 +11867,7 @@
               "ogTransform": {
                 "anchorX": 773.0,
                 "anchorY": 373.0,
-                "transformX": 0.0,
+                "transformX": -133.33333333333331,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
@@ -12236,17 +11876,17 @@
               "newTransform": {
                 "anchorX": 773.0,
                 "anchorY": 373.0,
-                "transformX": -133.33333333333331,
+                "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
               "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02426394E8,
+              "initTimeMillis": 1.19312184E8,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02426394E8,
-              "endTimeMillis": 1.02426894E8,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
               "easeType": 6,
               "boomerang": false
             }
@@ -12361,7 +12001,7 @@
               "ogTransform": {
                 "anchorX": 773.0,
                 "anchorY": 180.0,
-                "transformX": 0.0,
+                "transformX": -133.33333333333331,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
@@ -12370,17 +12010,17 @@
               "newTransform": {
                 "anchorX": 773.0,
                 "anchorY": 180.0,
-                "transformX": -133.33333333333331,
+                "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
               "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02426394E8,
+              "initTimeMillis": 1.19312184E8,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02426394E8,
-              "endTimeMillis": 1.02426894E8,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
               "easeType": 6,
               "boomerang": false
             }
@@ -12414,9 +12054,9 @@
           },
           "textbox": {
             "scale": 1.0,
-            "name": "SettingsSubtitle",
+            "name": "SoundsSubtitle",
             "text": {
-              "text": "Settings",
+              "text": "Sounds",
               "alignX": "center",
               "alignY": "center",
               "offsetX": 0,
@@ -12506,7 +12146,7 @@
               "ogTransform": {
                 "anchorX": 490.0,
                 "anchorY": 223.0,
-                "transformX": 0.0,
+                "transformX": -133.33333333333331,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
@@ -12515,17 +12155,17 @@
               "newTransform": {
                 "anchorX": 490.0,
                 "anchorY": 223.0,
-                "transformX": -133.33333333333331,
+                "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
               "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02426394E8,
+              "initTimeMillis": 1.19312184E8,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02426394E8,
-              "endTimeMillis": 1.02426894E8,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
               "easeType": 6,
               "boomerang": false
             }
@@ -12631,10 +12271,10 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 1.02426657E8,
+              "initTimeMillis": 1.19312184E8,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02426657E8,
-              "endTimeMillis": 1.02426657E8,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312184E8,
               "easeType": 6,
               "boomerang": false
             },
@@ -12660,7 +12300,7 @@
               "ogTransform": {
                 "anchorX": 949.0,
                 "anchorY": 226.0,
-                "transformX": 0.0,
+                "transformX": -133.33333333333331,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
@@ -12669,17 +12309,17 @@
               "newTransform": {
                 "anchorX": 949.0,
                 "anchorY": 226.0,
-                "transformX": -133.33333333333331,
+                "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
               "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02426394E8,
+              "initTimeMillis": 1.19312184E8,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02426394E8,
-              "endTimeMillis": 1.02426894E8,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
               "easeType": 6,
               "boomerang": false
             }
@@ -12784,10 +12424,10 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 1.02426657E8,
+              "initTimeMillis": 1.19312184E8,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02426657E8,
-              "endTimeMillis": 1.02426657E8,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312184E8,
               "easeType": 6,
               "boomerang": false
             },
@@ -12813,7 +12453,7 @@
               "ogTransform": {
                 "anchorX": 1010.0,
                 "anchorY": 226.0,
-                "transformX": 0.0,
+                "transformX": -133.33333333333331,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
@@ -12822,17 +12462,17 @@
               "newTransform": {
                 "anchorX": 1010.0,
                 "anchorY": 226.0,
-                "transformX": -133.33333333333331,
+                "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
               "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02426394E8,
+              "initTimeMillis": 1.19312184E8,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02426394E8,
-              "endTimeMillis": 1.02426894E8,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
               "easeType": 6,
               "boomerang": false
             }
@@ -12865,7 +12505,7 @@
             "selected": false
           },
           "textfield": {
-            "maxSize": 16,
+            "maxSize": 3,
             "selectorLocation": 0,
             "pointerTime": 0.0,
             "errorPopupIndexes": [
@@ -12966,7 +12606,7 @@
               "ogTransform": {
                 "anchorX": 887.0,
                 "anchorY": 226.0,
-                "transformX": 0.0,
+                "transformX": -133.33333333333331,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
@@ -12975,17 +12615,17 @@
               "newTransform": {
                 "anchorX": 887.0,
                 "anchorY": 226.0,
-                "transformX": -133.33333333333331,
+                "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
               "timeToTransformMillis": 500,
-              "initTimeMillis": 1.02426394E8,
+              "initTimeMillis": 1.19312184E8,
               "delayInMillis": 0,
-              "startTimeMillis": 1.02426394E8,
-              "endTimeMillis": 1.02426894E8,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
               "easeType": 6,
               "boomerang": false
             }
@@ -13050,9 +12690,3162 @@
           "clickEffectIndex": -1,
           "arbitraryTransformIndex": -1,
           "entryAnimationTransformIndex": 22
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 735.0,
+                "anchorY": 415.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 735.0,
+                "anchorY": 415.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 735.0,
+                "anchorY": 415.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 490.0,
+                "anchorY": 277.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 490.0,
+                "anchorY": 277.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
+              "easeType": 6,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "MusicVolumeSubtext",
+            "text": {
+              "text": "Music Volume",
+              "alignX": "left",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": -2,
+              "textSize": 40,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 735,
+              "y": 415,
+              "xSize": 0,
+              "ySize": 0,
+              "roundPercentage": 0
+            },
+            "color": 7,
+            "opacity": 255,
+            "shadowOffset": 0,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 22
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 1456.0,
+                "anchorY": 451.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 949.0,
+                "anchorY": 279.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 279.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312184E8,
+              "easeType": 6,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1456.0,
+                "anchorY": 451.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 949.0,
+                "anchorY": 279.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 279.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
+              "easeType": 6,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              1,
+              1
+            ],
+            "selectorOptions": [
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "enterTextField String MusicVolume",
+            "name": "EditMusicVolumeButton",
+            "rectShape": {
+              "x": 1424,
+              "y": 419,
+              "xSize": 65,
+              "ySize": 65,
+              "roundPercentage": 0
+            },
+            "renderableObject": {
+              "name": "EditPNG",
+              "imagePath": "src/textures/edit.png",
+              "x": 9,
+              "y": 8,
+              "xSize": 50,
+              "ySize": 50,
+              "opacity": 255
+            },
+            "color": 2,
+            "opacity": 255,
+            "shadowOffset": 5,
+            "strokeWidth": 3.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": true,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 0,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 22
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 1575.0,
+                "anchorY": 451.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 279.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 279.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312184E8,
+              "easeType": 6,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1575.0,
+                "anchorY": 451.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 279.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 279.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
+              "easeType": 6,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textfield": {
+            "maxSize": 3,
+            "selectorLocation": 0,
+            "pointerTime": 0.0,
+            "errorPopupIndexes": [
+              1,
+              0
+            ],
+            "inputType": 1,
+            "scale": 1.0,
+            "name": "MusicVolume",
+            "text": {
+              "text": "%MusicVolume",
+              "alignX": "right",
+              "alignY": "center",
+              "offsetX": 20,
+              "offsetY": -6,
+              "textSize": 35,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1515,
+              "y": 419,
+              "xSize": 120,
+              "ySize": 65,
+              "roundPercentage": 0
+            },
+            "color": 8,
+            "opacity": 255,
+            "shadowOffset": 5,
+            "strokeWidth": 3.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 0,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 22
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 1330.0,
+                "anchorY": 419.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1330.0,
+                "anchorY": 419.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1330.0,
+                "anchorY": 419.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 887.0,
+                "anchorY": 279.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 887.0,
+                "anchorY": 279.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
+              "easeType": 6,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "PercentageSign2",
+            "text": {
+              "text": "%",
+              "alignX": "right",
+              "alignY": "center",
+              "offsetX": 232,
+              "offsetY": -6,
+              "textSize": 35,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1330,
+              "y": 419,
+              "xSize": 0,
+              "ySize": 0,
+              "roundPercentage": 0
+            },
+            "color": 7,
+            "opacity": 255,
+            "shadowOffset": 0,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 22
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 735.0,
+                "anchorY": 495.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 735.0,
+                "anchorY": 495.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 735.0,
+                "anchorY": 495.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 490.0,
+                "anchorY": 330.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 490.0,
+                "anchorY": 330.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
+              "easeType": 6,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "SFXVolumeSubtext",
+            "text": {
+              "text": "SFX Volume",
+              "alignX": "left",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": -2,
+              "textSize": 40,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 735,
+              "y": 495,
+              "xSize": 0,
+              "ySize": 0,
+              "roundPercentage": 0
+            },
+            "color": 7,
+            "opacity": 255,
+            "shadowOffset": 0,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 22
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 1456.0,
+                "anchorY": 531.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 949.0,
+                "anchorY": 333.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 333.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312184E8,
+              "easeType": 6,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1456.0,
+                "anchorY": 531.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 949.0,
+                "anchorY": 333.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 333.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
+              "easeType": 6,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              1,
+              2
+            ],
+            "selectorOptions": [
+              [
+                1,
+                2
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "enterTextField String SFXVolume",
+            "name": "EditSFXVolumeButton",
+            "rectShape": {
+              "x": 1424,
+              "y": 499,
+              "xSize": 65,
+              "ySize": 65,
+              "roundPercentage": 0
+            },
+            "renderableObject": {
+              "name": "EditPNG",
+              "imagePath": "src/textures/edit.png",
+              "x": 9,
+              "y": 8,
+              "xSize": 50,
+              "ySize": 50,
+              "opacity": 255
+            },
+            "color": 2,
+            "opacity": 255,
+            "shadowOffset": 5,
+            "strokeWidth": 3.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": true,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 0,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 22
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 1575.0,
+                "anchorY": 531.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 333.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 333.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312184E8,
+              "easeType": 6,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1575.0,
+                "anchorY": 531.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 333.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 333.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
+              "easeType": 6,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textfield": {
+            "maxSize": 3,
+            "selectorLocation": 0,
+            "pointerTime": 0.0,
+            "errorPopupIndexes": [
+              1,
+              0
+            ],
+            "inputType": 1,
+            "scale": 1.0,
+            "name": "SFXVolume",
+            "text": {
+              "text": "%SFXVolume",
+              "alignX": "right",
+              "alignY": "center",
+              "offsetX": 20,
+              "offsetY": -6,
+              "textSize": 35,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1515,
+              "y": 499,
+              "xSize": 120,
+              "ySize": 65,
+              "roundPercentage": 0
+            },
+            "color": 8,
+            "opacity": 255,
+            "shadowOffset": 5,
+            "strokeWidth": 3.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 0,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 22
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 1330.0,
+                "anchorY": 499.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1330.0,
+                "anchorY": 499.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1330.0,
+                "anchorY": 499.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 887.0,
+                "anchorY": 333.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 887.0,
+                "anchorY": 333.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
+              "easeType": 6,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "PercentageSign3",
+            "text": {
+              "text": "%",
+              "alignX": "right",
+              "alignY": "center",
+              "offsetX": 232,
+              "offsetY": -6,
+              "textSize": 35,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1330,
+              "y": 499,
+              "xSize": 0,
+              "ySize": 0,
+              "roundPercentage": 0
+            },
+            "color": 7,
+            "opacity": 255,
+            "shadowOffset": 0,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 22
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 1585.0,
+                "anchorY": 640.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1585.0,
+                "anchorY": 640.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1585.0,
+                "anchorY": 640.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 773.0,
+                "anchorY": 427.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 773.0,
+                "anchorY": 427.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
+              "easeType": 6,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "GraphicsSubtitle",
+            "text": {
+              "text": "Graphics",
+              "alignX": "center",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": -50,
+              "textSize": 60,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1160,
+              "y": 640,
+              "xSize": 850,
+              "ySize": 0,
+              "roundPercentage": 0
+            },
+            "color": 7,
+            "opacity": 255,
+            "shadowOffset": 0,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 22
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 735.0,
+                "anchorY": 703.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 735.0,
+                "anchorY": 703.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 735.0,
+                "anchorY": 703.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 490.0,
+                "anchorY": 469.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 490.0,
+                "anchorY": 469.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
+              "easeType": 6,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "MaxFramerateSubtext",
+            "text": {
+              "text": "Maximum Framerate",
+              "alignX": "left",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": -2,
+              "textSize": 40,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 735,
+              "y": 703,
+              "xSize": 0,
+              "ySize": 0,
+              "roundPercentage": 0
+            },
+            "color": 7,
+            "opacity": 255,
+            "shadowOffset": 0,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 22
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 1456.0,
+                "anchorY": 739.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 949.0,
+                "anchorY": 471.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 471.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312184E8,
+              "easeType": 6,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1456.0,
+                "anchorY": 739.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 949.0,
+                "anchorY": 471.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 471.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
+              "easeType": 6,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              1,
+              3
+            ],
+            "selectorOptions": [
+              [
+                1,
+                3
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "enterTextField String MaxFramerate",
+            "name": "EditMaxFramerateButton",
+            "rectShape": {
+              "x": 1424,
+              "y": 707,
+              "xSize": 65,
+              "ySize": 65,
+              "roundPercentage": 0
+            },
+            "renderableObject": {
+              "name": "EditPNG",
+              "imagePath": "src/textures/edit.png",
+              "x": 9,
+              "y": 8,
+              "xSize": 50,
+              "ySize": 50,
+              "opacity": 255
+            },
+            "color": 2,
+            "opacity": 255,
+            "shadowOffset": 5,
+            "strokeWidth": 3.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": true,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 0,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 22
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 1575.0,
+                "anchorY": 739.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 471.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 471.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312184E8,
+              "easeType": 6,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1575.0,
+                "anchorY": 739.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 471.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 471.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
+              "easeType": 6,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textfield": {
+            "maxSize": 3,
+            "selectorLocation": 0,
+            "pointerTime": 0.0,
+            "errorPopupIndexes": [
+              1,
+              0
+            ],
+            "inputType": 1,
+            "scale": 1.0,
+            "name": "MaxFramerate",
+            "text": {
+              "text": "%MaxFramerate",
+              "alignX": "right",
+              "alignY": "center",
+              "offsetX": 48,
+              "offsetY": -6,
+              "textSize": 35,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1515,
+              "y": 707,
+              "xSize": 120,
+              "ySize": 65,
+              "roundPercentage": 0
+            },
+            "color": 8,
+            "opacity": 255,
+            "shadowOffset": 5,
+            "strokeWidth": 3.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 0,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 22
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 735.0,
+                "anchorY": 783.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 735.0,
+                "anchorY": 783.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 735.0,
+                "anchorY": 783.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 490.0,
+                "anchorY": 522.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 490.0,
+                "anchorY": 522.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
+              "easeType": 6,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "LimitFramerateSubtext",
+            "text": {
+              "text": "Limit Framerate",
+              "alignX": "left",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": -2,
+              "textSize": 40,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 735,
+              "y": 783,
+              "xSize": 0,
+              "ySize": 0,
+              "roundPercentage": 0
+            },
+            "color": 7,
+            "opacity": 255,
+            "shadowOffset": 0,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 22
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 1456.0,
+                "anchorY": 819.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 949.0,
+                "anchorY": 525.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 0.95,
+                "scaleY": 0.95,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 525.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 100,
+              "initTimeMillis": 1.19314598E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19314598E8,
+              "endTimeMillis": 1.19314698E8,
+              "easeType": 6,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1456.0,
+                "anchorY": 819.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 949.0,
+                "anchorY": 525.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 525.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
+              "easeType": 6,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              1,
+              4
+            ],
+            "selectorOptions": [
+              [
+                1,
+                4
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                3
+              ]
+            ],
+            "primaryHovered": true,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "enterTextField String LimitFramerate",
+            "name": "EditLimitFramerateButton",
+            "rectShape": {
+              "x": 1424,
+              "y": 787,
+              "xSize": 65,
+              "ySize": 65,
+              "roundPercentage": 0
+            },
+            "renderableObject": {
+              "name": "EditPNG",
+              "imagePath": "src/textures/edit.png",
+              "x": 9,
+              "y": 8,
+              "xSize": 50,
+              "ySize": 50,
+              "opacity": 255
+            },
+            "color": 2,
+            "opacity": 255,
+            "shadowOffset": 5,
+            "strokeWidth": 3.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": true,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 0,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 22
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 1575.0,
+                "anchorY": 819.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 525.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 525.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312184E8,
+              "easeType": 6,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1575.0,
+                "anchorY": 819.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 525.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 525.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
+              "easeType": 6,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textfield": {
+            "maxSize": 3,
+            "selectorLocation": 0,
+            "pointerTime": 0.0,
+            "errorPopupIndexes": [
+              1,
+              0
+            ],
+            "inputType": 0,
+            "scale": 1.0,
+            "name": "LimitFramerate",
+            "text": {
+              "text": "%LimitFramerate",
+              "alignX": "right",
+              "alignY": "center",
+              "offsetX": 48,
+              "offsetY": -6,
+              "textSize": 35,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1515,
+              "y": 787,
+              "xSize": 120,
+              "ySize": 65,
+              "roundPercentage": 0
+            },
+            "color": 8,
+            "opacity": 255,
+            "shadowOffset": 5,
+            "strokeWidth": 3.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 0,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 22
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 735.0,
+                "anchorY": 863.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 735.0,
+                "anchorY": 863.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 735.0,
+                "anchorY": 863.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 490.0,
+                "anchorY": 575.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 490.0,
+                "anchorY": 575.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
+              "easeType": 6,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "name": "DisplayFramerateSubtext",
+            "text": {
+              "text": "Display Framerate",
+              "alignX": "left",
+              "alignY": "center",
+              "offsetX": 0,
+              "offsetY": -2,
+              "textSize": 40,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 735,
+              "y": 863,
+              "xSize": 0,
+              "ySize": 0,
+              "roundPercentage": 0
+            },
+            "color": 7,
+            "opacity": 255,
+            "shadowOffset": 0,
+            "strokeWidth": 5.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": -1,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 22
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 1456.0,
+                "anchorY": 899.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 949.0,
+                "anchorY": 578.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 578.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312184E8,
+              "easeType": 6,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1456.0,
+                "anchorY": 899.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 949.0,
+                "anchorY": 578.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 578.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
+              "easeType": 6,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              1,
+              5
+            ],
+            "selectorOptions": [
+              [
+                1,
+                5
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                4
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textbox": {
+            "scale": 1.0,
+            "function": "enterTextField String DisplayFramerate",
+            "name": "EditDisplayFramerateButton",
+            "rectShape": {
+              "x": 1424,
+              "y": 867,
+              "xSize": 65,
+              "ySize": 65,
+              "roundPercentage": 0
+            },
+            "renderableObject": {
+              "name": "EditPNG",
+              "imagePath": "src/textures/edit.png",
+              "x": 9,
+              "y": 8,
+              "xSize": 50,
+              "ySize": 50,
+              "opacity": 255
+            },
+            "color": 2,
+            "opacity": 255,
+            "shadowOffset": 5,
+            "strokeWidth": 3.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": true,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 0,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 22
+        },
+        {
+          "transforms": [
+            {
+              "ogTransform": {
+                "anchorX": 1575.0,
+                "anchorY": 899.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 578.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 578.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312184E8,
+              "easeType": 6,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1575.0,
+                "anchorY": 899.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 0.0,
+              "delayInMillis": 0,
+              "startTimeMillis": 0.0,
+              "endTimeMillis": 0.0,
+              "easeType": 0,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 578.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 578.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.19312184E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.19312184E8,
+              "endTimeMillis": 1.19312684E8,
+              "easeType": 6,
+              "boomerang": false
+            }
+          ],
+          "selector": {
+            "selectorIndex": [
+              -1,
+              -1
+            ],
+            "selectorOptions": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "primaryHovered": false,
+            "secondaryHovered": false,
+            "selected": false
+          },
+          "textfield": {
+            "maxSize": 3,
+            "selectorLocation": 0,
+            "pointerTime": 0.0,
+            "errorPopupIndexes": [
+              1,
+              0
+            ],
+            "inputType": 0,
+            "scale": 1.0,
+            "name": "DisplayFramerate",
+            "text": {
+              "text": "%DisplayFramerate",
+              "alignX": "right",
+              "alignY": "center",
+              "offsetX": 48,
+              "offsetY": -6,
+              "textSize": 35,
+              "textColor": 6,
+              "font": "Archivo Narrow",
+              "bold": false
+            },
+            "rectShape": {
+              "x": 1515,
+              "y": 867,
+              "xSize": 120,
+              "ySize": 65,
+              "roundPercentage": 0
+            },
+            "color": 8,
+            "opacity": 255,
+            "shadowOffset": 5,
+            "strokeWidth": 3.0,
+            "strokeColor": 6
+          },
+          "hoverOverlap": false,
+          "maskIndex": -1,
+          "hoverEffectIndex": -1,
+          "clickEffectIndex": 0,
+          "arbitraryTransformIndex": -1,
+          "entryAnimationTransformIndex": 22
         }
       ],
-      "popups": [],
+      "popups": [
+        {
+          "popupName": "EmptyInputTheme",
+          "popupTitle": "Input Error!",
+          "elements": [
+            {
+              "transforms": [
+                {
+                  "ogTransform": {
+                    "anchorX": 1260.0,
+                    "anchorY": 650.0,
+                    "transformX": 0.0,
+                    "transformY": 0.0,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotate": 0.0
+                  },
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
+                  "delayInMillis": 0,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
+                  "boomerang": false
+                },
+                {
+                  "ogTransform": {
+                    "anchorX": 1260.0,
+                    "anchorY": 650.0,
+                    "transformX": 0.0,
+                    "transformY": 0.0,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotate": 0.0
+                  },
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
+                  "delayInMillis": 0,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
+                  "boomerang": false
+                },
+                {
+                  "ogTransform": {
+                    "anchorX": 1260.0,
+                    "anchorY": 650.0,
+                    "transformX": 0.0,
+                    "transformY": 0.0,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotate": 0.0
+                  },
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
+                  "delayInMillis": 0,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
+                  "boomerang": false
+                },
+                {
+                  "ogTransform": {
+                    "anchorX": 1260.0,
+                    "anchorY": 650.0,
+                    "transformX": 0.0,
+                    "transformY": 0.0,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotate": 0.0
+                  },
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
+                  "delayInMillis": 0,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
+                  "boomerang": false
+                }
+              ],
+              "selector": {
+                "selectorIndex": [
+                  -1,
+                  -1
+                ],
+                "selectorOptions": [
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    1,
+                    0
+                  ]
+                ],
+                "primaryHovered": false,
+                "secondaryHovered": false,
+                "selected": false
+              },
+              "textbox": {
+                "scale": 1.0,
+                "function": "noFunction",
+                "name": "ErrorMessage",
+                "text": {
+                  "text": "Input Error!",
+                  "alignX": "center",
+                  "alignY": "center",
+                  "offsetX": 0,
+                  "offsetY": -100,
+                  "textSize": 80,
+                  "textColor": 5,
+                  "font": "Archivo Narrow",
+                  "bold": true
+                },
+                "rectShape": {
+                  "x": 960,
+                  "y": 500,
+                  "xSize": 600,
+                  "ySize": 300,
+                  "roundPercentage": 0
+                },
+                "color": 1,
+                "opacity": 255,
+                "shadowOffset": 15,
+                "strokeWidth": 5.0,
+                "strokeColor": 6
+              },
+              "hoverOverlap": false,
+              "maskIndex": -1,
+              "hoverEffectIndex": -1,
+              "clickEffectIndex": 0,
+              "arbitraryTransformIndex": -1,
+              "entryAnimationTransformIndex": 19
+            },
+            {
+              "transforms": [
+                {
+                  "ogTransform": {
+                    "anchorX": 960.0,
+                    "anchorY": 495.0,
+                    "transformX": 0.0,
+                    "transformY": 0.0,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotate": 0.0
+                  },
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
+                  "delayInMillis": 0,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
+                  "boomerang": false
+                },
+                {
+                  "ogTransform": {
+                    "anchorX": 960.0,
+                    "anchorY": 495.0,
+                    "transformX": 0.0,
+                    "transformY": 0.0,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotate": 0.0
+                  },
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
+                  "delayInMillis": 0,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
+                  "boomerang": false
+                },
+                {
+                  "ogTransform": {
+                    "anchorX": 960.0,
+                    "anchorY": 495.0,
+                    "transformX": 0.0,
+                    "transformY": 0.0,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotate": 0.0
+                  },
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
+                  "delayInMillis": 0,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
+                  "boomerang": false
+                },
+                {
+                  "ogTransform": {
+                    "anchorX": 960.0,
+                    "anchorY": 495.0,
+                    "transformX": 0.0,
+                    "transformY": 0.0,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotate": 0.0
+                  },
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
+                  "delayInMillis": 0,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
+                  "boomerang": false
+                }
+              ],
+              "selector": {
+                "selectorIndex": [
+                  -1,
+                  -1
+                ],
+                "selectorOptions": [
+                  [
+                    2,
+                    0
+                  ],
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    1,
+                    0
+                  ]
+                ],
+                "primaryHovered": false,
+                "secondaryHovered": false,
+                "selected": false
+              },
+              "textbox": {
+                "scale": 1.0,
+                "function": "noFunction",
+                "name": "ErrorMessage",
+                "text": {
+                  "text": "Input cannot be empty!",
+                  "alignX": "center",
+                  "alignY": "center",
+                  "offsetX": 0,
+                  "offsetY": -9,
+                  "textSize": 40,
+                  "textColor": 6,
+                  "font": "Archivo Narrow",
+                  "bold": false
+                },
+                "rectShape": {
+                  "x": 960,
+                  "y": 495,
+                  "xSize": 0,
+                  "ySize": 0,
+                  "roundPercentage": 0
+                },
+                "color": 7,
+                "opacity": 255,
+                "shadowOffset": 0,
+                "strokeWidth": 5.0,
+                "strokeColor": 6
+              },
+              "hoverOverlap": false,
+              "maskIndex": -1,
+              "hoverEffectIndex": -1,
+              "clickEffectIndex": 0,
+              "arbitraryTransformIndex": -1,
+              "entryAnimationTransformIndex": 19
+            },
+            {
+              "transforms": [
+                {
+                  "ogTransform": {
+                    "anchorX": 1110.0,
+                    "anchorY": 620.0,
+                    "transformX": 0.0,
+                    "transformY": 0.0,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotate": 0.0
+                  },
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
+                  "delayInMillis": 0,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
+                  "boomerang": false
+                },
+                {
+                  "ogTransform": {
+                    "anchorX": 1110.0,
+                    "anchorY": 620.0,
+                    "transformX": 0.0,
+                    "transformY": 0.0,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotate": 0.0
+                  },
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
+                  "delayInMillis": 0,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
+                  "boomerang": false
+                },
+                {
+                  "ogTransform": {
+                    "anchorX": 1110.0,
+                    "anchorY": 620.0,
+                    "transformX": 0.0,
+                    "transformY": 0.0,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotate": 0.0
+                  },
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
+                  "delayInMillis": 0,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
+                  "boomerang": false
+                },
+                {
+                  "ogTransform": {
+                    "anchorX": 1110.0,
+                    "anchorY": 620.0,
+                    "transformX": 0.0,
+                    "transformY": 0.0,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotate": 0.0
+                  },
+                  "timeToTransformMillis": 0,
+                  "initTimeMillis": 0.0,
+                  "delayInMillis": 0,
+                  "startTimeMillis": 0.0,
+                  "endTimeMillis": 0.0,
+                  "easeType": 0,
+                  "boomerang": false
+                }
+              ],
+              "selector": {
+                "selectorIndex": [
+                  0,
+                  0
+                ],
+                "selectorOptions": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    0,
+                    2
+                  ],
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "primaryHovered": false,
+                "secondaryHovered": false,
+                "selected": false
+              },
+              "textbox": {
+                "scale": 1.0,
+                "function": "removeThisPopup",
+                "name": "popup",
+                "text": {
+                  "text": "Confirm",
+                  "alignX": "center",
+                  "alignY": "center",
+                  "offsetX": 0,
+                  "offsetY": -5,
+                  "textSize": 40,
+                  "textColor": 6,
+                  "font": "Archivo Narrow",
+                  "bold": false
+                },
+                "rectShape": {
+                  "x": 960,
+                  "y": 580,
+                  "xSize": 300,
+                  "ySize": 80,
+                  "roundPercentage": 0
+                },
+                "color": 2,
+                "opacity": 255,
+                "shadowOffset": 8,
+                "strokeWidth": 5.0,
+                "strokeColor": 6
+              },
+              "hoverOverlap": false,
+              "maskIndex": -1,
+              "hoverEffectIndex": -1,
+              "clickEffectIndex": 0,
+              "arbitraryTransformIndex": -1,
+              "entryAnimationTransformIndex": 19
+            }
+          ]
+        }
+      ],
       "secondarySelections": [
         [
           0,

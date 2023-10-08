@@ -86,11 +86,11 @@ public class TextField {
     }
     
     public void confirmEntry() {
-    	if (currentDisplay.equals("")) {
+    	if (currentDisplay.equals("") && inputType != TextField.Input_BOOLEAN) {
     		ShowImage.cancelElement(ShowImage.getSelectedElement());
     		ShowImage.addPopup(errorPopupIndexes[1]);
     	} else {
-    		if (!getUnloadedCurrentDisplay().equals(currentDisplay)) { 
+    		if (!getUnloadedCurrentDisplay().equals(currentDisplay) || inputType == TextField.Input_BOOLEAN) { 
     			// if the old name is not the same as the new one
     			String status = ShowImage.getConfig().setVariable(text.getText(), currentDisplay);
         		if (status.equals("Success")) {

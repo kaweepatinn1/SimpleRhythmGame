@@ -30,7 +30,7 @@ public class Framerate extends Thread {
 		// May not be precise. 
 		// Real framerate value is actually: (1000 / Math.ceil((1000 / framerate)))
 		// Consider adding a ms per frame option instead.
-		limitFramerate = ShowImage.getConfig().getShouldLimitFramerate();
+		limitFramerate = ShowImage.getConfig().getLimitFramerate();
 		// limitFramerate will limit the framerate to one frame per ms (1000fps)
 		
 		setNanoPrecision(ShowImage.getConfig().getNanoSecondPrecision());

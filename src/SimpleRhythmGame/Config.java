@@ -11,7 +11,7 @@ public class Config {
 	private boolean nanoSecondPrecision;
 	private int framesToStore;
 	private int framerate;
-	private boolean shouldLimitFramerate;
+	private boolean limitFramerate;
 	private boolean displayFramerate;
 	
 	private double transitionTime; // for transitioning between screens
@@ -56,7 +56,7 @@ public class Config {
 		this.nanoSecondPrecision = nanoSecondPrecision;
 		this.framesToStore = framesToStore;
 		this.framerate = framerate;
-		this.shouldLimitFramerate = shouldLimitFramerate;
+		this.limitFramerate = shouldLimitFramerate;
 		this.displayFramerate = displayFramerate;
 		this.cursorEnabled = cursorEnabled;
 		this.transitionTime = transitionTime;
@@ -302,12 +302,12 @@ public class Config {
 		FileIO.currentConfigOut();
 	}
 	
-	public boolean getShouldLimitFramerate() {
-		return shouldLimitFramerate;
+	public boolean getLimitFramerate() {
+		return limitFramerate;
 	}
 	
 	public void setShouldLimitFramerate(boolean limitFramerate) {
-		this.shouldLimitFramerate = limitFramerate;
+		this.limitFramerate = limitFramerate;
 		Framerate.setShouldLimitFramerate(limitFramerate);
 		FileIO.currentConfigOut();
 	}
@@ -488,6 +488,21 @@ public class Config {
 		else if (splitVariable[0].equals("%MasterVolume")) {
 			varToReturn = Integer.toString(getMasterVolume());
 		}
+		else if (splitVariable[0].equals("%MusicVolume")) {
+			varToReturn = Integer.toString(getMusicVolume());
+		}
+		else if (splitVariable[0].equals("%SFXVolume")) {
+			varToReturn = Integer.toString(getSFXVolume());
+		}
+		else if (splitVariable[0].equals("%MaxFramerate")) {
+			varToReturn = Integer.toString(getFramerate());
+		}
+		else if (splitVariable[0].equals("%LimitFramerate")) {
+			varToReturn = Boolean.toString(getLimitFramerate());
+		}
+		else if (splitVariable[0].equals("%DisplayFramerate")) {
+			varToReturn = Boolean.toString(getDisplayFramerate());
+		}
 		return varToReturn;
 	}
 	
@@ -519,9 +534,36 @@ public class Config {
 			ShowImage.refreshMenu();
 			FileIO.currentConfigOut();
 			return "Success";
-		} else if (splitVariable[0].equals("MasterVolume")) {
-			//TODO
-			return null;
+		} else if (splitVariable[0].equals("%MasterVolume")) {
+			masterVolume = Math.min(Integer.parseInt((String) newValues), 100);
+			ShowImage.refreshMenu();
+			FileIO.currentConfigOut();
+			return "Success";
+		} else if (splitVariable[0].equals("%MusicVolume")) {
+			musicVolume = Math.min(Integer.parseInt((String) newValues), 100);
+			ShowImage.refreshMenu();
+			FileIO.currentConfigOut();
+			return "Success";
+		} else if (splitVariable[0].equals("%SFXVolume")) {
+			SFXVolume = Math.min(Integer.parseInt((String) newValues), 100);
+			ShowImage.refreshMenu();
+			FileIO.currentConfigOut();
+			return "Success";
+		} else if (splitVariable[0].equals("%MaxFramerate")) {
+			framerate = Math.min(Integer.parseInt((String) newValues), 250);
+			ShowImage.refreshMenu();
+			FileIO.currentConfigOut();
+			return "Success";
+		} else if (splitVariable[0].equals("%LimitFramerate")) {
+			limitFramerate = !limitFramerate;
+			ShowImage.refreshMenu();
+			FileIO.currentConfigOut();
+			return "Success";
+		} else if (splitVariable[0].equals("%DisplayFramerate")) {
+			displayFramerate = !displayFramerate;
+			ShowImage.refreshMenu();
+			FileIO.currentConfigOut();
+			return "Success";
 		}
 		else {
 			return "VariableNotFound"; // failed to find the variable
@@ -545,7 +587,7 @@ public class Config {
 		FileIO.currentConfigOut();
 	}
 
-	public boolean isDisplayFramerate() {
+	public boolean getDisplayFramerate() {
 		return displayFramerate;
 	}
 
