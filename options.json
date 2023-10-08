@@ -3,9 +3,9 @@
   "sizeToForce": 1280,
   "nanoSecondPrecision": true,
   "framesToStore": 20,
-  "framerate": 60,
+  "framerate": 250,
   "limitFramerate": true,
-  "displayFramerate": false,
+  "displayFramerate": true,
   "transitionTime": 500.0,
   "cursorEnabled": true,
   "masterVolume": 50,
@@ -11485,8 +11485,17 @@
           "transforms": [
             {
               "ogTransform": {
-                "anchorX": 900.0,
-                "anchorY": 360.0,
+                "anchorX": 400.0,
+                "anchorY": 200.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 400.0,
+                "anchorY": 200.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -11494,11 +11503,38 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868342E8,
+              "easeType": 6,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 400.0,
+                "anchorY": 200.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 400.0,
+                "anchorY": 200.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 1.37868342E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868342E8,
+              "easeType": 6,
               "boomerang": false
             },
             {
@@ -11521,38 +11557,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 900.0,
-                "anchorY": 360.0,
+                "anchorX": 400.0,
+                "anchorY": 200.0,
+                "transformX": 100.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 400.0,
+                "anchorY": 200.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
-              "boomerang": false
-            },
-            {
-              "ogTransform": {
-                "anchorX": 900.0,
-                "anchorY": 360.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
-              "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -11580,7 +11607,7 @@
               ]
             ],
             "primaryHovered": false,
-            "secondaryHovered": false,
+            "secondaryHovered": true,
             "selected": false
           },
           "textbox": {
@@ -11622,8 +11649,17 @@
           "transforms": [
             {
               "ogTransform": {
-                "anchorX": 150.0,
-                "anchorY": 150.0,
+                "anchorX": 60.0,
+                "anchorY": 60.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 60.0,
+                "anchorY": 60.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -11631,11 +11667,38 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868342E8,
+              "easeType": 6,
+              "boomerang": false
+            },
+            {
+              "ogTransform": {
+                "anchorX": 60.0,
+                "anchorY": 60.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 60.0,
+                "anchorY": 60.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 0,
+              "initTimeMillis": 1.37868342E8,
+              "delayInMillis": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868342E8,
+              "easeType": 6,
               "boomerang": false
             },
             {
@@ -11658,38 +11721,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 150.0,
-                "anchorY": 150.0,
+                "anchorX": 60.0,
+                "anchorY": 60.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 0.0,
+                "scaleY": 0.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 60.0,
+                "anchorY": 60.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
-              "boomerang": false
-            },
-            {
-              "ogTransform": {
-                "anchorX": 150.0,
-                "anchorY": 150.0,
-                "transformX": 0.0,
-                "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-                "rotate": 0.0
-              },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
-              "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -11811,20 +11865,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1760.0,
-                "anchorY": 960.0,
+                "anchorX": 773.0,
+                "anchorY": 373.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 773.0,
+                "anchorY": 373.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -11936,20 +11999,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1585.0,
-                "anchorY": 270.0,
+                "anchorX": 773.0,
+                "anchorY": 180.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 773.0,
+                "anchorY": 180.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -12072,20 +12144,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 735.0,
-                "anchorY": 335.0,
+                "anchorX": 490.0,
+                "anchorY": 223.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 490.0,
+                "anchorY": 223.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -12172,8 +12253,17 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1456.0,
-                "anchorY": 371.0,
+                "anchorX": 949.0,
+                "anchorY": 226.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 226.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -12181,11 +12271,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868342E8,
+              "easeType": 6,
               "boomerang": false
             },
             {
@@ -12208,20 +12298,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1456.0,
-                "anchorY": 371.0,
+                "anchorX": 949.0,
+                "anchorY": 226.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 226.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -12307,8 +12406,17 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1575.0,
-                "anchorY": 371.0,
+                "anchorX": 1010.0,
+                "anchorY": 226.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 226.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -12316,11 +12424,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868342E8,
+              "easeType": 6,
               "boomerang": false
             },
             {
@@ -12343,20 +12451,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1575.0,
-                "anchorY": 371.0,
+                "anchorX": 1010.0,
+                "anchorY": 226.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 226.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -12487,20 +12604,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1330.0,
-                "anchorY": 339.0,
+                "anchorX": 887.0,
+                "anchorY": 226.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 887.0,
+                "anchorY": 226.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -12623,20 +12749,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 735.0,
-                "anchorY": 415.0,
+                "anchorX": 490.0,
+                "anchorY": 277.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 490.0,
+                "anchorY": 277.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -12723,8 +12858,17 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1456.0,
-                "anchorY": 451.0,
+                "anchorX": 949.0,
+                "anchorY": 279.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 279.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -12732,11 +12876,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868342E8,
+              "easeType": 6,
               "boomerang": false
             },
             {
@@ -12759,20 +12903,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1456.0,
-                "anchorY": 451.0,
+                "anchorX": 949.0,
+                "anchorY": 279.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 279.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -12858,8 +13011,17 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1575.0,
-                "anchorY": 451.0,
+                "anchorX": 1010.0,
+                "anchorY": 279.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 279.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -12867,11 +13029,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868342E8,
+              "easeType": 6,
               "boomerang": false
             },
             {
@@ -12894,20 +13056,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1575.0,
-                "anchorY": 451.0,
+                "anchorX": 1010.0,
+                "anchorY": 279.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 279.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -13038,20 +13209,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1330.0,
-                "anchorY": 419.0,
+                "anchorX": 887.0,
+                "anchorY": 279.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 887.0,
+                "anchorY": 279.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -13174,20 +13354,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 735.0,
-                "anchorY": 495.0,
+                "anchorX": 490.0,
+                "anchorY": 330.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 490.0,
+                "anchorY": 330.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -13274,8 +13463,17 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1456.0,
-                "anchorY": 531.0,
+                "anchorX": 949.0,
+                "anchorY": 333.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 333.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -13283,11 +13481,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868342E8,
+              "easeType": 6,
               "boomerang": false
             },
             {
@@ -13310,20 +13508,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1456.0,
-                "anchorY": 531.0,
+                "anchorX": 949.0,
+                "anchorY": 333.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 333.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -13409,8 +13616,17 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1575.0,
-                "anchorY": 531.0,
+                "anchorX": 1010.0,
+                "anchorY": 333.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 333.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -13418,11 +13634,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868342E8,
+              "easeType": 6,
               "boomerang": false
             },
             {
@@ -13445,20 +13661,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1575.0,
-                "anchorY": 531.0,
+                "anchorX": 1010.0,
+                "anchorY": 333.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 333.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -13589,20 +13814,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1330.0,
-                "anchorY": 499.0,
+                "anchorX": 887.0,
+                "anchorY": 333.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 887.0,
+                "anchorY": 333.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -13725,20 +13959,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1585.0,
-                "anchorY": 640.0,
+                "anchorX": 773.0,
+                "anchorY": 427.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 773.0,
+                "anchorY": 427.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -13861,20 +14104,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 735.0,
-                "anchorY": 703.0,
+                "anchorX": 490.0,
+                "anchorY": 469.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 490.0,
+                "anchorY": 469.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -13961,20 +14213,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1456.0,
-                "anchorY": 739.0,
+                "anchorX": 949.0,
+                "anchorY": 471.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 0.95361,
+                "scaleY": 0.95361,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 471.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 100,
+              "initTimeMillis": 1.37870909E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37870909E8,
+              "endTimeMillis": 1.37871009E8,
+              "easeType": 6,
               "boomerang": false
             },
             {
@@ -13997,20 +14258,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1456.0,
-                "anchorY": 739.0,
+                "anchorX": 949.0,
+                "anchorY": 471.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 471.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -14096,20 +14366,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1575.0,
-                "anchorY": 739.0,
+                "anchorX": 1010.0,
+                "anchorY": 471.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 0.95,
+                "scaleY": 0.95,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 471.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 100,
+              "initTimeMillis": 1.37871897E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37871947E8,
+              "endTimeMillis": 1.37872097E8,
+              "easeType": 6,
               "boomerang": false
             },
             {
@@ -14132,20 +14411,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1575.0,
-                "anchorY": 739.0,
+                "anchorX": 1010.0,
+                "anchorY": 471.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 471.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -14276,20 +14564,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 735.0,
-                "anchorY": 783.0,
+                "anchorX": 490.0,
+                "anchorY": 522.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 490.0,
+                "anchorY": 522.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -14376,8 +14673,17 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1456.0,
-                "anchorY": 819.0,
+                "anchorX": 949.0,
+                "anchorY": 525.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 525.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -14385,11 +14691,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868342E8,
+              "easeType": 6,
               "boomerang": false
             },
             {
@@ -14412,20 +14718,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1456.0,
-                "anchorY": 819.0,
+                "anchorX": 949.0,
+                "anchorY": 525.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 525.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -14511,8 +14826,17 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1575.0,
-                "anchorY": 819.0,
+                "anchorX": 1010.0,
+                "anchorY": 525.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 525.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -14520,11 +14844,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868342E8,
+              "easeType": 6,
               "boomerang": false
             },
             {
@@ -14547,20 +14871,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1575.0,
-                "anchorY": 819.0,
+                "anchorX": 1010.0,
+                "anchorY": 525.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 525.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -14691,20 +15024,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 735.0,
-                "anchorY": 863.0,
+                "anchorX": 490.0,
+                "anchorY": 575.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 490.0,
+                "anchorY": 575.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -14791,21 +15133,30 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1456.0,
-                "anchorY": 899.0,
+                "anchorX": 949.0,
+                "anchorY": 578.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
-                "scaleX": 1.0,
-                "scaleY": 1.0,
+                "scaleX": 0.97116,
+                "scaleY": 0.97116,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 578.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 0.95,
+                "scaleY": 0.95,
+                "rotate": 0.0
+              },
+              "timeToTransformMillis": 100,
+              "initTimeMillis": 1.37874657E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
-              "boomerang": false
+              "startTimeMillis": 1.37874657E8,
+              "endTimeMillis": 1.37874757E8,
+              "easeType": 6,
+              "boomerang": true
             },
             {
               "ogTransform": {
@@ -14827,20 +15178,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1456.0,
-                "anchorY": 899.0,
+                "anchorX": 949.0,
+                "anchorY": 578.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 949.0,
+                "anchorY": 578.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],
@@ -14867,7 +15227,7 @@
                 4
               ]
             ],
-            "primaryHovered": false,
+            "primaryHovered": true,
             "secondaryHovered": false,
             "selected": false
           },
@@ -14926,8 +15286,17 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1575.0,
-                "anchorY": 899.0,
+                "anchorX": 1010.0,
+                "anchorY": 578.0,
+                "transformX": 0.0,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 578.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
@@ -14935,11 +15304,11 @@
                 "rotate": 0.0
               },
               "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868342E8,
+              "easeType": 6,
               "boomerang": false
             },
             {
@@ -14962,20 +15331,29 @@
             },
             {
               "ogTransform": {
-                "anchorX": 1575.0,
-                "anchorY": 899.0,
+                "anchorX": 1010.0,
+                "anchorY": 578.0,
+                "transformX": -133.33333333333331,
+                "transformY": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "rotate": 0.0
+              },
+              "newTransform": {
+                "anchorX": 1010.0,
+                "anchorY": 578.0,
                 "transformX": 0.0,
                 "transformY": 0.0,
                 "scaleX": 1.0,
                 "scaleY": 1.0,
                 "rotate": 0.0
               },
-              "timeToTransformMillis": 0,
-              "initTimeMillis": 0.0,
+              "timeToTransformMillis": 500,
+              "initTimeMillis": 1.37868342E8,
               "delayInMillis": 0,
-              "startTimeMillis": 0.0,
-              "endTimeMillis": 0.0,
-              "easeType": 0,
+              "startTimeMillis": 1.37868342E8,
+              "endTimeMillis": 1.37868842E8,
+              "easeType": 6,
               "boomerang": false
             }
           ],

@@ -299,6 +299,7 @@ public class Config {
 	public void setFramerate(int framerate) {
 		this.framerate = framerate;
 		Framerate.set(framerate);
+		ShowImage.refreshMenu();
 		FileIO.currentConfigOut();
 	}
 	
@@ -306,7 +307,7 @@ public class Config {
 		return limitFramerate;
 	}
 	
-	public void setShouldLimitFramerate(boolean limitFramerate) {
+	public void setLimitFramerate(boolean limitFramerate) {
 		this.limitFramerate = limitFramerate;
 		Framerate.setShouldLimitFramerate(limitFramerate);
 		FileIO.currentConfigOut();
@@ -535,34 +536,22 @@ public class Config {
 			FileIO.currentConfigOut();
 			return "Success";
 		} else if (splitVariable[0].equals("%MasterVolume")) {
-			masterVolume = Math.min(Integer.parseInt((String) newValues), 100);
-			ShowImage.refreshMenu();
-			FileIO.currentConfigOut();
+			setMasterVolume(Math.min(Integer.parseInt((String) newValues), 100));
 			return "Success";
 		} else if (splitVariable[0].equals("%MusicVolume")) {
-			musicVolume = Math.min(Integer.parseInt((String) newValues), 100);
-			ShowImage.refreshMenu();
-			FileIO.currentConfigOut();
+			setMusicVolume(Math.min(Integer.parseInt((String) newValues), 100));
 			return "Success";
 		} else if (splitVariable[0].equals("%SFXVolume")) {
-			SFXVolume = Math.min(Integer.parseInt((String) newValues), 100);
-			ShowImage.refreshMenu();
-			FileIO.currentConfigOut();
+			setSFXVolume(Math.min(Integer.parseInt((String) newValues), 100));
 			return "Success";
 		} else if (splitVariable[0].equals("%MaxFramerate")) {
-			framerate = Math.max(Math.min(Integer.parseInt((String) newValues), 250), 30);
-			ShowImage.refreshMenu();
-			FileIO.currentConfigOut();
+			setFramerate(Math.max(Math.min(Integer.parseInt((String) newValues), 250), 30));
 			return "Success";
 		} else if (splitVariable[0].equals("%LimitFramerate")) {
-			limitFramerate = !limitFramerate;
-			ShowImage.refreshMenu();
-			FileIO.currentConfigOut();
+			setLimitFramerate(!getLimitFramerate());
 			return "Success";
 		} else if (splitVariable[0].equals("%DisplayFramerate")) {
-			displayFramerate = !displayFramerate;
-			ShowImage.refreshMenu();
-			FileIO.currentConfigOut();
+			setDisplayFramerate(!getDisplayFramerate());
 			return "Success";
 		}
 		else {
@@ -593,6 +582,8 @@ public class Config {
 
 	public void setDisplayFramerate(boolean displayFramerate) {
 		this.displayFramerate = displayFramerate;
+		ShowImage.refreshMenu();
+		FileIO.currentConfigOut();
 	}
 
 	public int getMasterVolume() {
@@ -601,6 +592,8 @@ public class Config {
 
 	public void setMasterVolume(int masterVolume) {
 		this.masterVolume = masterVolume;
+		ShowImage.refreshMenu();
+		FileIO.currentConfigOut();
 	}
 
 	public int getMusicVolume() {
@@ -609,6 +602,8 @@ public class Config {
 
 	public void setMusicVolume(int musicVolume) {
 		this.musicVolume = musicVolume;
+		ShowImage.refreshMenu();
+		FileIO.currentConfigOut();
 	}
 
 	public int getSFXVolume() {
@@ -617,5 +612,6 @@ public class Config {
 
 	public void setSFXVolume(int sFXVolume) {
 		SFXVolume = sFXVolume;
+		ShowImage.refreshMenu();
 	}
 }

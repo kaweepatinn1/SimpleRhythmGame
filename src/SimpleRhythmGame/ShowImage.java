@@ -555,7 +555,7 @@ public class ShowImage extends JPanel implements KeyListener {
         		// TextBox with Text
     			1f, // scale 
 				"", // function
-				"",  // name
+				"Title",  // name
 				new Text(popupIndexes.length < 1 ? scaledMenu.getMenuDisplayName() : scaledMenu.getPopup(popupIndexes[popupIndexes.length - 1]).getPopupTitle(),
 						"center", "center", // align
 						calculatedScreenWidth * 50 / 100, calculatedScreenHeight * 15 / 400, // text offset (x, y)
@@ -570,12 +570,11 @@ public class ShowImage extends JPanel implements KeyListener {
 				0, // shadowOffset
 				0, 0 // strokeWidth, strokeColor
         		),
-    			
     			new TextBox(
     	        		// TextBox with Text
     	    			1f, // scale 
     					"", // function
-    					"",  // name
+    					"FPS",  // name
     					new Text(Integer.toString(Framerate.getFramerate()) + " FPS", // text
     							"right", "center", // align
     							calculatedScreenWidth * 98 / 100, calculatedScreenHeight * 10 / 400, // text offset (x, y)
@@ -593,20 +592,22 @@ public class ShowImage extends JPanel implements KeyListener {
     	};
     	
     	for (TextBox textbox : titleTextbox) {
-    		Font font = new Font(textbox.getFont(), textbox.getBold() ? Font.BOLD:Font.PLAIN , textbox.getTextSize());
-        	g2d.setFont(font);
-        	
-        	FontMetrics fontMetrics = g2d.getFontMetrics();
-        	
-            int[] extraAligns = getTextAligns(textbox, fontMetrics, textbox.getText());
-            
-            int extraAlignX = extraAligns[0];
-            int extraAlignY = extraAligns[1];
-            
-            g2d.setColor(config.getCurrentThemeColors()[textbox.getTextColor()]);
-            int finalX = textbox.getOffsetX() + extraAlignX;
-            int finalY = textbox.getOffsetY() + extraAlignY;
-            g2d.drawString(textbox.getText(), finalX, finalY);
+    		if (!textbox.getName().equals("FPS") || config.getDisplayFramerate() == true) {
+	    		Font font = new Font(textbox.getFont(), textbox.getBold() ? Font.BOLD:Font.PLAIN , textbox.getTextSize());
+	        	g2d.setFont(font);
+	        	
+	        	FontMetrics fontMetrics = g2d.getFontMetrics();
+	        	
+	            int[] extraAligns = getTextAligns(textbox, fontMetrics, textbox.getText());
+	            
+	            int extraAlignX = extraAligns[0];
+	            int extraAlignY = extraAligns[1];
+	            
+	            g2d.setColor(config.getCurrentThemeColors()[textbox.getTextColor()]);
+	            int finalX = textbox.getOffsetX() + extraAlignX;
+	            int finalY = textbox.getOffsetY() + extraAlignY;
+	            g2d.drawString(textbox.getText(), finalX, finalY);
+    		}
     	}
     	
     	
