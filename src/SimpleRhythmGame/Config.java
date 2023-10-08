@@ -470,7 +470,7 @@ public class Config {
 	}
 	
 	public Object getVariable(String varName) {
-		Object varToReturn = "Variable \"" + varName + "\" not found.";
+		Object varToReturn = varName;
 		String[] splitVariable = varName.split(" ");
 		if (splitVariable[0].equals("%CurrentThemeName")) {
 			varToReturn = currentThemeChoice;
@@ -519,6 +519,9 @@ public class Config {
 			ShowImage.refreshMenu();
 			FileIO.currentConfigOut();
 			return "Success";
+		} else if (splitVariable[0].equals("MasterVolume")) {
+			//TODO
+			return null;
 		}
 		else {
 			return "VariableNotFound"; // failed to find the variable

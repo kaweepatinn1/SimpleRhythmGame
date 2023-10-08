@@ -247,10 +247,10 @@ public class Element {
 		if (!selector.isSelected()) {
 			selector.setPrimaryHovered();
 			if (getTextbox() != null) {
-				textbox.setStrokeColor(3);
+				textbox.setStrokeColor(DefaultValues.Color_PRIMARYSELECTOR);
 			}
 			if (getTextfield() != null) {
-				textfield.setStrokeColor(3);
+				textfield.setStrokeColor(DefaultValues.Color_PRIMARYSELECTOR);
 			}
 		}
 	}
@@ -259,10 +259,10 @@ public class Element {
 		if (!selector.isSelected()) {
 			selector.setSecondaryHovered();
 			if (getTextbox() != null) {
-				textbox.setStrokeColor(4);
+				textbox.setStrokeColor(DefaultValues.Color_SECONDARYSELECTOR);
 			}
 			if (getTextfield() != null) {
-				textfield.setStrokeColor(4);
+				textfield.setStrokeColor(DefaultValues.Color_SECONDARYSELECTOR);
 			}
 		}
 	}
@@ -271,10 +271,10 @@ public class Element {
 		if (!selector.isSelected()) {
 			selector.setNotHovered();
 			if (getTextbox() != null) {
-				textbox.setStrokeColor(6);
+				textbox.setStrokeColor(DefaultValues.Color_STROKE);
 			}
 			if (getTextfield() != null) {
-				textfield.setStrokeColor(6);
+				textfield.setStrokeColor(DefaultValues.Color_STROKE);
 			}
 		}
 	}
@@ -282,20 +282,20 @@ public class Element {
 	public void setSelected() {
 		selector.setSelected();
 		if (getTextbox() != null) {
-			textbox.setStrokeColor(5);
+			textbox.setStrokeColor(DefaultValues.Color_ACCENT);
 		}
 		if (getTextfield() != null) {
-			textfield.setStrokeColor(5);
+			textfield.setStrokeColor(DefaultValues.Color_ACCENT);
 		}
 	}
 	
 	public void setUnselected() {
 		selector.setUnselected();
 		if (getTextbox() != null) {
-			textbox.setStrokeColor(6);
+			textbox.setStrokeColor(DefaultValues.Color_STROKE);
 		}
 		if (getTextfield() != null) {
-			textfield.setStrokeColor(6);
+			textfield.setStrokeColor(DefaultValues.Color_STROKE);
 		}
 	}
 	
@@ -862,6 +862,7 @@ public class Element {
         	
         	String currentDisplay = currentItem.getUnloadedCurrentDisplay();
         	String name = currentItem.getName();
+        	int inputType = currentItem.getInputType();
         	
         	int[] errorPopupIndexes = currentItem.getErrorPopupIndexes();
         	
@@ -895,7 +896,8 @@ public class Element {
         				entryAnimationTransformIndex,
 						new TextField(
 							currentDisplay,
-							textFieldScale, maxSize, errorPopupIndexes, name,
+							textFieldScale, maxSize, errorPopupIndexes, 
+							inputType, name,
 							new Text(variableName, alignX, alignY, offsetX, offsetY, textSize, fontColor, font, bold), 
 							new RoundedArea(x, y, xSize, ySize, roundPercentage), 
 	        				color, opacity, shadowOffset, 

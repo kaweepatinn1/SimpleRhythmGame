@@ -6,6 +6,12 @@ public class TextField {
 	private int selectorLocation; // One dimensional selector
 	private double pointerTime;
 	private int[] errorPopupIndexes; // popups to open on errors
+	private int inputType;
+	
+	public static final int Input_BOOLEAN = 0;
+	public static final int Input_NUMERIC = 1;
+	public static final int Input_ALPHANUMERIC = 2;
+	public static final int Input_HEXADECIMAL = 3;
 	// 1. Duplicate Name!
 	// 2. Name cannot be empty!
 	
@@ -22,7 +28,7 @@ public class TextField {
     private int strokeColor;
     
     public TextField(
-    		float scale, int maxSize, int[] errorPopupIndexes, String name, Text text, RoundedArea rectShape, int color, int opacity,
+    		float scale, int maxSize, int[] errorPopupIndexes, int inputType, String name, Text text, RoundedArea rectShape, int color, int opacity,
     		int shadowOffset, float strokeWidth, int strokeColor) {
     	this.currentDisplay = null;
     	this.maxSize = maxSize;
@@ -30,6 +36,7 @@ public class TextField {
     	this.errorPopupIndexes = errorPopupIndexes;
     	
     	this.scale = scale;
+    	this.inputType = inputType;
     	this.name = name;
     	this.text = text;
     	this.rectShape = rectShape;
@@ -42,7 +49,7 @@ public class TextField {
     
     public TextField(
     		String currentDisplay,
-    		float scale, int maxSize, int[] errorPopupIndexes, String name, Text text, RoundedArea rectShape, int color, int opacity,
+    		float scale, int maxSize, int[] errorPopupIndexes, int inputType, String name, Text text, RoundedArea rectShape, int color, int opacity,
     		int shadowOffset, float strokeWidth, int strokeColor) {
     	this.currentDisplay = currentDisplay;
     	this.maxSize = maxSize;
@@ -50,6 +57,7 @@ public class TextField {
     	this.errorPopupIndexes = errorPopupIndexes;
     	
     	this.scale = scale;
+    	this.inputType = inputType;
     	this.name = name;
     	this.text = text;
     	this.rectShape = rectShape;
@@ -264,5 +272,13 @@ public class TextField {
 	
 	public void setErrorPopupIndexes(int[] errorPopupIndexes) {
 		this.errorPopupIndexes = errorPopupIndexes;
+	}
+
+	public int getInputType() {
+		return inputType;
+	}
+
+	public void setInputType(int inputType) {
+		this.inputType = inputType;
 	}
 }

@@ -57,6 +57,16 @@ public class DefaultValues {
 					)
 	};
 	
+	public final static int Color_BG = 0;
+	public final static int Color_MENU = 1;
+	public final static int Color_BUTTONS = 2;
+	public final static int Color_PRIMARYSELECTOR = 3;
+	public final static int Color_SECONDARYSELECTOR = 4;
+	public final static int Color_ACCENT = 5;
+	public final static int Color_STROKE = 6;
+	public final static int Color_TRANSPARENT = 7;
+	public final static int Color_DISPLAY = 8;
+	
 	private final static Theme[] defaultThemes = new Theme[] {
 			new Theme(
 					"DefaultTheme",
@@ -102,7 +112,176 @@ public class DefaultValues {
 			"src/fonts/ArchivoNarrow-SemiBoldItalic.ttf"
 	};
 	
-	// Default Popups:
+	// StoredTransform Static Final References:
+	public static final int TransformIndex_ClickScaleDown = 0;
+	public static final int TransformIndex_1sLeft100 = 1;
+	public static final int TransformIndex_1sRight100 = 2;
+	public static final int TransformIndex_1sUp100 = 3;
+	public static final int TransformIndex_1sDown100 = 4;
+	public static final int TransformIndex_500msLeft100 = 5;
+	public static final int TransformIndex_500msRight100 = 6;
+	public static final int TransformIndex_500msUp100 = 7;
+	public static final int TransformIndex_500msDown100 = 8;
+	public static final int TransformIndex_1sLeft150 = 9;
+	public static final int TransformIndex_1sRight150 = 10;
+	public static final int TransformIndex_1sUp150 = 11;
+	public static final int TransformIndex_1sDown150 = 12;
+	public static final int TransformIndex_500msLeft150 = 13;
+	public static final int TransformIndex_500msRight150 = 14;
+	public static final int TransformIndex_500msUp150 = 15;
+	public static final int TransformIndex_500msDown150 = 16;
+	public static final int TransformIndex_500msScaleUp = 17;
+	public static final int TransformIndex_500msScaleUpRotateLeft20 = 18;
+	public static final int TransformIndex_500msScale0 = 19;
+	public static final int TransformIndex_ClickScaleDownRotate20 = 20;
+	
+	// Popup & Element Static Final References:
+	
+	public static final Popup Popup_INPUTEMPTY() { 
+			return new Popup( // Empty Input Error
+					"EmptyInputTheme", // Popup Name
+					"Input Error!", // Popup Title
+					new Element[] {
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								DefaultValues.TransformIndex_500msScale0, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									"noFunction", // function
+									"ErrorMessage",  // name
+									new Text(
+										"Input Error!", // text
+										"center", "center", // align
+										0, -100, // text offset (x, y)
+										80, // text size
+										5, // text color (index of colors)
+										"Archivo Narrow", // font
+										true // bold
+										),
+									new RoundedArea(
+										960, 500, 600, 300, 0  // x, y, xSize, ySize, round%
+										),
+									Color_MENU, // box color (index of colors)
+									255, // opacity (0-255)
+									15, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								DefaultValues.TransformIndex_500msScale0, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									"noFunction", // function
+									"ErrorMessage",  // name
+									new Text(
+										"Input cannot be empty!", // text
+										"center", "center", // align
+										0, -9, // text offset (x, y)
+										40, // text size
+										6, // text color (index of colors)
+										"Archivo Narrow", // font
+										false // bold
+										),
+									new RoundedArea(
+										960, 495, 0, 0, 0  // x, y, xSize, ySize, round%
+										),
+									Color_TRANSPARENT, // box color (index of colors)
+									255, // opacity (0-255)
+									0, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{0,0}, // Selector Index
+									new int[][]{{1,0},{0,2},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								DefaultValues.TransformIndex_500msScale0, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									"removeThisPopup", // function
+									"popup",  // name
+									new Text(
+										"Confirm", // text
+										"center", "center", // align
+										0, -5, // text offset (x, y)
+										40, // text size
+										6, // text color (index of colors)
+										"Archivo Narrow", // font
+										false // bold
+										),
+									new RoundedArea(
+										960, 580, 300, 80, 0  // x, y, xSize, ySize, round%
+										),
+									Color_BUTTONS, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+					}
+			);
+	}
+		
+	public final static Element Element_BACKBUTTON() { 
+			return new Element(
+					new Selector(
+						new int[]{0,0}, // Selector Index
+						new int[][]{{0,1},{0,1},{0,0},{0,0}} // E, S, W, N to select next
+						),
+					-1, // Mask Index
+					false, // hover overlap
+					DefaultValues.TransformIndex_500msScaleUpRotateLeft20, // hover effect
+					DefaultValues.TransformIndex_ClickScaleDownRotate20, // click effect
+					-1, // arbritraty animation (to be used for scroll)
+					DefaultValues.TransformIndex_500msScale0, // entry animation
+					new TextBox(
+						// Text and Renderable
+						1, // scale
+						"escapeMenu", // function
+						"BackButton",  // name
+						new Renderable(
+							// Renderable Without Function
+							"BackPNG", // name
+							"src/textures/back.png", // file source
+							30, 30, 60, 60, // x, y, xSize, ySize (relative)
+							255 // opacity (0-255)
+							),  // renderable
+						new RoundedArea(
+							90, 90, 120, 120,  // x, y, xSize, ySize, round%
+							100 // roundPercentage
+							),
+						Color_BUTTONS, // box color (index of colors)
+						255, // opacity (0-255)
+						5, // shadowOffset
+						5, 6 // strokeWidth, strokeColor
+						)
+					);
+	}
 	
 	private final static Menu[] defaultMenus = new Menu[] {
 /////////////////////////////////////////////////////////////////////////////////////
@@ -118,14 +297,27 @@ public class DefaultValues {
 						// Insert here
 					},
 					new StoredTransform[] {
-						new StoredTransform(
-							-100, 0, // x, y transform
-							1, 1, // scale transform (x, y)
-							0, // rotate transform
-							0, // offset (ms)
-							1000, // animation time (ms)
-							6 // (ease type)
-						),
+						StoredTransform.Transform_ClickScaleDown,
+						StoredTransform.Transform_1sLeft100,
+						StoredTransform.Transform_1sRight100,
+						StoredTransform.Transform_1sUp100,
+						StoredTransform.Transform_1sDown100,
+						StoredTransform.Transform_500msLeft100,
+						StoredTransform.Transform_500msRight100,
+						StoredTransform.Transform_500msUp100,
+						StoredTransform.Transform_500msDown100,
+						StoredTransform.Transform_1sLeft150,
+						StoredTransform.Transform_1sRight150,
+						StoredTransform.Transform_1sUp150,
+						StoredTransform.Transform_1sDown150,
+						StoredTransform.Transform_500msLeft150,
+						StoredTransform.Transform_500msRight150,
+						StoredTransform.Transform_500msUp150,
+						StoredTransform.Transform_500msDown150,
+						StoredTransform.Transform_500msScaleUp,
+						StoredTransform.Transform_500msScaleUpRotateLeft20,
+						StoredTransform.Transform_500msScale0,
+						StoredTransform.Transform_ClickScaleDownRotate20,
 						new StoredTransform(
 							-20, 0, // x, y transform
 							0.95, 0.95, // scale transform (x, y)
@@ -152,10 +344,10 @@ public class DefaultValues {
 								),
 							-1, // mask index
 							false, // hover overlap
-							0, // hover effect
-							1, // click effect
+							DefaultValues.TransformIndex_1sLeft100, // hover effect
+							21, // click effect
 							-1, // arbritraty animation (to be used for scroll)
-							2, // entry animation
+							22, // entry animation
 							new TextBox(
 								// Text and Renderable
 								1.5f, // scale
@@ -180,7 +372,7 @@ public class DefaultValues {
 								new RoundedArea(
 									1810, 325, 1000, 120, 100  // x, y, xSize, ySize, round%
 									),
-								2, // box color (index of colors)
+								Color_BUTTONS, // box color (index of colors)
 								255, // opacity (0-255)
 								12, // shadowOffset
 								5, 6 // strokeWidth, strokeColor
@@ -193,10 +385,10 @@ public class DefaultValues {
 								),
 							-1, // Mask Index
 							false, // hover overlap
-							0, // hover effect
-							1, // click effect
+							DefaultValues.TransformIndex_1sLeft100, // hover effect
+							21, // click effect
 							-1, // arbritraty animation (to be used for scroll)
-							2, // entry animation
+							22, // entry animation
 							new TextBox(
 								// Text and Renderable
 								1, // scale
@@ -222,7 +414,7 @@ public class DefaultValues {
 									1660, 510, 1000, 120,  // x, y, xSize, ySize, round%
 									100 // roundPercentage
 									),
-								2, // box color (index of colors)
+								Color_BUTTONS, // box color (index of colors)
 								255, // opacity (0-255)
 								15, // shadowOffset
 								5, 6 // strokeWidth, strokeColor
@@ -235,10 +427,10 @@ public class DefaultValues {
 								),
 							-1, // Mask Index
 							false, // hover overlap
-							0, // hover effect
-							1, // click effect
+							DefaultValues.TransformIndex_1sLeft100, // hover effect
+							21, // click effect
 							-1, // arbritraty animation (to be used for scroll)
-							2, // entry animation
+							22, // entry animation
 							new TextBox(
 								// Text and Renderable
 								1, // scale
@@ -264,7 +456,7 @@ public class DefaultValues {
 									1660, 660, 1000, 120,  // x, y, xSize, ySize, round%
 									100 // roundPercentage
 									),
-								2, // box color (index of colors)
+								Color_BUTTONS, // box color (index of colors)
 								255, // opacity (0-255)
 								15, // shadowOffset
 								5, 6 // strokeWidth, strokeColor
@@ -277,10 +469,10 @@ public class DefaultValues {
 								),
 							-1, // Mask Index
 							false, // hover overlap
-							0, // hover effect
-							1, // click effect
+							DefaultValues.TransformIndex_1sLeft100, // hover effect
+							21, // click effect
 							-1, // arbritraty animation (to be used for scroll)
-							2, // entry animation
+							22, // entry animation
 							new TextBox(
 								// Text and Renderable
 								1, // scale
@@ -306,7 +498,7 @@ public class DefaultValues {
 									1660, 810, 1000, 120,  // x, y, xSize, ySize, round%
 									100 // roundPercentage
 									),
-								2, // box color (index of colors)
+								Color_BUTTONS, // box color (index of colors)
 								255, // opacity (0-255)
 								15, // shadowOffset
 								5, 6 // strokeWidth, strokeColor
@@ -314,48 +506,9 @@ public class DefaultValues {
 					},
 					new Popup[] {
 /////////////////////////////////////////////////////////////////////////////////////
-						new Popup(
-							"TestPopup",
-							"Test",
-							new Element[] {
-								new Element(
-										new Selector(
-											new int[]{0,0}, // Selector Index
-											new int[][]{{1,0},{0,2},{0,0},{0,0}} // E, S, W, N to select next
-											),
-										-1, // mask index
-										false, // hover overlap
-										3, // hover effect
-										1, // click effect
-										-1, // arbritraty animation (to be used for scroll)
-										-1, // entry animation
-										new TextBox(
-											// Text and Renderable
-											1f, // scale
-											"removePopup int 0", // function
-											"popup",  // name
-											new Text(
-												"SUP", // text
-												"left", "center", // align
-												-250, -9, // text offset (x, y)
-												500, // text size
-												6, // text color (index of colors)
-												"Archivo Narrow", // font
-												false // bold
-												),
-											new RoundedArea(
-												1000, 300, 600, 200, 100  // x, y, xSize, ySize, round%
-												),
-											2, // box color (index of colors)
-											255, // opacity (0-255)
-											15, // shadowOffset
-											5, 6 // strokeWidth, strokeColor
-											))
-							}
-						)
 /////////////////////////////////////////////////////////////////////////////////////
 					}
-					),
+				),
 			new Menu( // 1. Skin Selector
 					"Customization Skin Selector", // Menu Name
 					"Customization", // Menu Display Name
@@ -368,102 +521,51 @@ public class DefaultValues {
 							// Insert here
 						},
 						new StoredTransform[] {
-							new StoredTransform( // 0. hover move left 100
-								-100, 0, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								1000, // animation time (ms)
-								6 // (ease type)
-							),
-							new StoredTransform( // 1. click animation (scale down)
-								0, 0, // x, y transform
-								0.95, 0.95, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								100, // animation time (ms)
-								6 // (ease type)
-							),
-							new StoredTransform( // 2. hover expand
-								0, 0, // x, y transform
-								1.05, 1.05, // scale transform (x, y)
-								-20, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-							),
-							new StoredTransform( // 3. hover expand (no rotate)
-								-200, 0, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								750, // animation time (ms)
-								6 // (ease type)
-							),
-							new StoredTransform( // 4. click animation (scale down and rotate back)
-								0, 0, // x, y transform
-								0.95, 0.95, // scale transform (x, y)
-								20, // rotate transform
-								0, // offset (ms)
-								100, // animation time (ms)
-								6 // (ease type)
-							),
-							new StoredTransform( // 5. hover move right 150
-								150, 0, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
+							StoredTransform.Transform_ClickScaleDown,
+							StoredTransform.Transform_1sLeft100,
+							StoredTransform.Transform_1sRight100,
+							StoredTransform.Transform_1sUp100,
+							StoredTransform.Transform_1sDown100,
+							StoredTransform.Transform_500msLeft100,
+							StoredTransform.Transform_500msRight100,
+							StoredTransform.Transform_500msUp100,
+							StoredTransform.Transform_500msDown100,
+							StoredTransform.Transform_1sLeft150,
+							StoredTransform.Transform_1sRight150,
+							StoredTransform.Transform_1sUp150,
+							StoredTransform.Transform_1sDown150,
+							StoredTransform.Transform_500msLeft150,
+							StoredTransform.Transform_500msRight150,
+							StoredTransform.Transform_500msUp150,
+							StoredTransform.Transform_500msDown150,
+							StoredTransform.Transform_500msScaleUp,
+							StoredTransform.Transform_500msScaleUpRotateLeft20,
+							StoredTransform.Transform_500msScale0,
+							StoredTransform.Transform_ClickScaleDownRotate20, // 20
+							new StoredTransform( // 3 --> 21. hover (no rotate)
+									-200, 0, // x, y transform
+									1, 1, // scale transform (x, y)
+									0, // rotate transform
+									0, // offset (ms)
+									750, // animation time (ms)
+									6 // (ease type)
 								),
-							new StoredTransform( // 6. hover move up 100
-								0, -100, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-								),
-							new StoredTransform( // 7. hover move down 100
-								0, 100, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-								),
-							new StoredTransform( // 8. 0 scale
-								0, 0, // x, y transform
-								0, 0, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-								),
-							new StoredTransform( // 9. 0 scale, centered up 75
-								0, -75, // x, y transform
-								0, 0, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-								),
-							new StoredTransform( // 10. -200 x (f box to center)
-								-200, 0, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-								),
-							new StoredTransform( // 11. 120 y (optionsList)
-								0, 120, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								400, // animation time (ms)
-								6 // (ease type)
-								),
+							new StoredTransform( // 10 --> 22. -200 x (f box to center)
+									-200, 0, // x, y transform
+									1, 1, // scale transform (x, y)
+									0, // rotate transform
+									0, // offset (ms)
+									500, // animation time (ms)
+									6 // (ease type)
+									),
+							new StoredTransform( // 11 --> 23. 120 y (optionsList)
+									0, 120, // x, y transform
+									1, 1, // scale transform (x, y)
+									0, // rotate transform
+									0, // offset (ms)
+									400, // animation time (ms)
+									6 // (ease type)
+									),
 						},
 					new Element[] { // Elements List
 /////////////////////////////////////////////////////////////////////////////////////
@@ -474,10 +576,10 @@ public class DefaultValues {
 										),
 									-1, // mask index
 									false, // hover overlap
-									3, // hover effect
-									1, // click effect
+									21, // hover effect
+									DefaultValues.TransformIndex_ClickScaleDown, // click effect
 									-1, // arbritraty animation (to be used for scroll)
-									5, // entry animation
+									DefaultValues.TransformIndex_500msRight150, // entry animation
 									new TextBox(
 										// Text and Renderable
 										1f, // scale
@@ -495,7 +597,7 @@ public class DefaultValues {
 										new RoundedArea(
 											600, 300, 600, 120, 100  // x, y, xSize, ySize, round%
 											),
-										2, // box color (index of colors)
+										Color_BUTTONS, // box color (index of colors)
 										255, // opacity (0-255)
 										15, // shadowOffset
 										5, 6 // strokeWidth, strokeColor
@@ -508,10 +610,10 @@ public class DefaultValues {
 										),
 									-1, // mask index
 									false, // hover overlap
-									3, // hover effect
-									1, // click effect
+									21, // hover effect
+									DefaultValues.TransformIndex_ClickScaleDown, // click effect
 									-1, // arbritraty animation (to be used for scroll)
-									5, // entry animation
+									DefaultValues.TransformIndex_500msRight150, // entry animation
 									new TextBox(
 										// Text and Renderable
 										1f, // scale
@@ -529,45 +631,13 @@ public class DefaultValues {
 										new RoundedArea(
 											600, 450, 600, 120, 100  // x, y, xSize, ySize, round%
 											),
-										2, // box color (index of colors)
+										Color_BUTTONS, // box color (index of colors)
 										255, // opacity (0-255)
 										15, // shadowOffset
 										5, 6 // strokeWidth, strokeColor
 										)),
 /////////////////////////////////////////////////////////////////////////////////////
-							new Element(
-									new Selector(
-										new int[]{0,0}, // Selector Index
-										new int[][]{{0,1},{0,1},{0,0},{0,0}} // E, S, W, N to select next
-										),
-									-1, // Mask Index
-									false, // hover overlap
-									2, // hover effect
-									4, // click effect
-									-1, // arbritraty animation (to be used for scroll)
-									8, // entry animation
-									new TextBox(
-										// Text and Renderable
-										1, // scale
-										"escapeMenu", // function
-										"BackButton",  // name
-										new Renderable(
-											// Renderable Without Function
-											"BackPNG", // name
-											"src/textures/back.png", // file source
-											30, 30, 60, 60, // x, y, xSize, ySize (relative)
-											255 // opacity (0-255)
-											),  // renderable
-										new RoundedArea(
-											90, 90, 120, 120,  // x, y, xSize, ySize, round%
-											100 // roundPercentage
-											),
-										2, // box color (index of colors)
-										255, // opacity (0-255)
-										5, // shadowOffset
-										5, 6 // strokeWidth, strokeColor
-										)
-									),
+							DefaultValues.Element_BACKBUTTON(),
 /////////////////////////////////////////////////////////////////////////////////////
 						new Element(
 							new Selector(
@@ -579,7 +649,7 @@ public class DefaultValues {
 							-1, // hover effect
 							-1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
-							10, // entry animation
+							22, // entry animation
 							new TextBox(
 								// No Text, No Renderable
 								1, // scale
@@ -589,7 +659,7 @@ public class DefaultValues {
 									1160, 560, 1200, 800,  // x, y, xSize, ySize, round%
 									5 // roundPercentage
 									),
-								1, // box color (index of colors)
+								Color_MENU, // box color (index of colors)
 								255, // opacity (0-255)
 								25, // shadowOffset
 								5, 6 // strokeWidth, strokeColor
@@ -606,7 +676,7 @@ public class DefaultValues {
 								-1, // hover effect
 								-1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -624,7 +694,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1160, 270, 850, 0, 0  // x, y, xSize, ySize, round%
 										),
-									7, // box color (index of colors)
+									Color_TRANSPARENT, // box color (index of colors)
 									255, // opacity (0-255)
 									0, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -640,7 +710,7 @@ public class DefaultValues {
 								-1, // hover effect
 								-1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -658,7 +728,7 @@ public class DefaultValues {
 									new RoundedArea(
 										735, 325, 0, 0, 0  // x, y, xSize, ySize, round%
 										),
-									7, // box color (index of colors)
+									Color_TRANSPARENT, // box color (index of colors)
 									255, // opacity (0-255)
 									0, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -672,9 +742,9 @@ public class DefaultValues {
 								-1, // mask index
 								true, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -690,7 +760,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1054, 330, 65, 65, 0  // x, y, xSize, ySize, round%
 										),
-									2, // box color (index of colors)
+									Color_BUTTONS, // box color (index of colors)
 									255, // opacity (0-255)
 									5, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
@@ -706,7 +776,7 @@ public class DefaultValues {
 								-1, // hover effect
 								-1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -724,7 +794,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1335, 330, 500, 65, 0  // x, y, xSize, ySize, round%
 										),
-									8, // box color (index of colors)
+									Color_DISPLAY, // box color (index of colors)
 									255, // opacity (0-255)
 									5, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
@@ -740,7 +810,7 @@ public class DefaultValues {
 								-1, // hover effect
 								-1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -758,7 +828,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1160, 645, 850, 0, 0  // x, y, xSize, ySize, round%
 										),
-									7, // box color (index of colors)
+									Color_TRANSPARENT, // box color (index of colors)
 									255, // opacity (0-255)
 									15, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -774,7 +844,7 @@ public class DefaultValues {
 								-1, // hover effect
 								-1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -792,7 +862,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1035, 472, 0, 0, 0  // x, y, xSize, ySize, round%
 										),
-									7, // box color (index of colors)
+									Color_TRANSPARENT, // box color (index of colors)
 									255, // opacity (0-255)
 									15, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -808,7 +878,7 @@ public class DefaultValues {
 								-1, // hover effect
 								-1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -826,7 +896,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1035, 472, 5, 180, 50  // x, y, xSize, ySize, round%
 										),
-									6, // box color (index of colors)
+									Color_STROKE, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -840,9 +910,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									//Text
 									1f, // scale
@@ -867,7 +937,7 @@ public class DefaultValues {
 									new RoundedArea(
 										872, 472, 270, 180, 0  // x, y, xSize, ySize, round%
 										),
-									8, // box color (index of colors)
+									Color_DISPLAY, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -881,9 +951,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									//Text
 									1f, // scale
@@ -908,7 +978,7 @@ public class DefaultValues {
 									new RoundedArea(
 										700, 770, 180, 180, 0  // x, y, xSize, ySize, round%
 										),
-									1, // box color (index of colors)
+									Color_MENU, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -922,9 +992,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									//Text
 									1f, // scale
@@ -949,7 +1019,7 @@ public class DefaultValues {
 									new RoundedArea(
 										930, 770, 180, 180, 0  // x, y, xSize, ySize, round%
 										),
-									1, // box color (index of colors)
+									Color_MENU, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -963,9 +1033,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									//Text
 									1f, // scale
@@ -990,7 +1060,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1160, 770, 180, 180, 0  // x, y, xSize, ySize, round%
 										),
-									1, // box color (index of colors)
+									Color_MENU, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -1004,9 +1074,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									//Text
 									1f, // scale
@@ -1031,7 +1101,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1390, 770, 180, 180, 0  // x, y, xSize, ySize, round%
 										),
-									1, // box color (index of colors)
+									Color_MENU, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -1045,9 +1115,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									//Text
 									1f, // scale
@@ -1072,7 +1142,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1620, 770, 180, 180, 0  // x, y, xSize, ySize, round%
 										),
-									1, // box color (index of colors)
+									Color_MENU, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -1095,7 +1165,7 @@ public class DefaultValues {
 											-1, // hover effect
 											-1, // click effect
 											-1, // arbritraty animation (to be used for scroll)
-											8, // entry animation
+											DefaultValues.TransformIndex_500msScale0, // entry animation
 											new TextBox(
 												// No Text, No Renderable
 												1, // scale
@@ -1105,7 +1175,7 @@ public class DefaultValues {
 													960, 560, 1200, 800,  // x, y, xSize, ySize, round%
 													5 // roundPercentage
 													),
-												1, // box color (index of colors)
+												Color_MENU, // box color (index of colors)
 												255, // opacity (0-255)
 												25, // shadowOffset
 												5, 6 // strokeWidth, strokeColor
@@ -1120,9 +1190,9 @@ public class DefaultValues {
 												1, // mask index
 												false, // hover overlap
 												-1, // hover effect
-												1, // click effect
-												11, // arbritraty animation (to be used for scroll)
-												8, // entry animation
+												DefaultValues.TransformIndex_ClickScaleDown, // click effect
+												23, // arbritraty animation (to be used for scroll)
+												DefaultValues.TransformIndex_500msScale0, // entry animation
 												new OptionsList(
 														// Text and Renderable
 														1f, // scale
@@ -1142,7 +1212,7 @@ public class DefaultValues {
 														new RoundedArea(
 															960, 320, 1100, 80, 0  // x, y, xSize, ySize, round%
 															),
-														2, // box color (index of colors)
+														Color_BUTTONS, // box color (index of colors)
 														255, // opacity (0-255)
 														8, // shadowOffset
 														5, 6 // strokeWidth, strokeColor
@@ -1157,9 +1227,9 @@ public class DefaultValues {
 											-1, // mask index
 											false, // hover overlap
 											-1, // hover effect
-											1, // click effect
+											DefaultValues.TransformIndex_ClickScaleDown, // click effect
 											-1, // arbritraty animation (to be used for scroll)
-											8, // entry animation
+											DefaultValues.TransformIndex_500msScale0, // entry animation
 											new TextBox(
 												// Text and Renderable
 												1f, // scale
@@ -1175,7 +1245,7 @@ public class DefaultValues {
 												new RoundedArea(
 													960, 210, 120, 50, 0  // x, y, xSize, ySize, round%
 													),
-												2, // box color (index of colors)
+												Color_BUTTONS, // box color (index of colors)
 												255, // opacity (0-255)
 												8, // shadowOffset
 												5, 6 // strokeWidth, strokeColor
@@ -1189,9 +1259,9 @@ public class DefaultValues {
 											-1, // mask index
 											false, // hover overlap
 											-1, // hover effect
-											1, // click effect
+											DefaultValues.TransformIndex_ClickScaleDown, // click effect
 											-1, // arbritraty animation (to be used for scroll)
-											8, // entry animation
+											DefaultValues.TransformIndex_500msScale0, // entry animation
 											new TextBox(
 												// Text and Renderable
 												1f, // scale
@@ -1207,45 +1277,13 @@ public class DefaultValues {
 												new RoundedArea(
 													960, 910, 120, 50, 0  // x, y, xSize, ySize, round%
 													),
-												2, // box color (index of colors)
+												Color_BUTTONS, // box color (index of colors)
 												255, // opacity (0-255)
 												8, // shadowOffset
 												5, 6 // strokeWidth, strokeColor
 												)),
 /////////////////////////////////////////////////////////////////////////////////////
-									new Element(
-											new Selector(
-												new int[]{0,0}, // Selector Index
-												new int[][]{{1,0},{1,0},{0,0},{0,0}} // E, S, W, N to select next
-												),
-											-1, // Mask Index
-											false, // hover overlap
-											2, // hover effect
-											4, // click effect
-											-1, // arbritraty animation (to be used for scroll)
-											8, // entry animation
-											new TextBox(
-												// Text and Renderable
-												1, // scale
-												"removePopup int 0", // function
-												"BackButton",  // name
-												new Renderable(
-													// Renderable Without Function
-													"BackPNG", // name
-													"src/textures/back.png", // file source
-													30, 30, 60, 60, // x, y, xSize, ySize (relative)
-													255 // opacity (0-255)
-													),  // renderable
-												new RoundedArea(
-													90, 90, 120, 120,  // x, y, xSize, ySize, round%
-													100 // roundPercentage
-													),
-												2, // box color (index of colors)
-												255, // opacity (0-255)
-												5, // shadowOffset
-												5, 6 // strokeWidth, strokeColor
-												)
-											),
+									DefaultValues.Element_BACKBUTTON(),
 		/////////////////////////////////////////////////////////////////////////////////////
 								}
 							)
@@ -1267,102 +1305,51 @@ public class DefaultValues {
 							// Insert here
 						},
 						new StoredTransform[] {
-							new StoredTransform( // 0. hover move left 100
-								-100, 0, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								1000, // animation time (ms)
-								6 // (ease type)
-							),
-							new StoredTransform( // 1. click animation (scale down)
-								0, 0, // x, y transform
-								0.95, 0.95, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								100, // animation time (ms)
-								6 // (ease type)
-							),
-							new StoredTransform( // 2. hover expand
-								0, 0, // x, y transform
-								1.05, 1.05, // scale transform (x, y)
-								-20, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-							),
-							new StoredTransform( // 3. hover expand (no rotate)
-								-200, 0, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								750, // animation time (ms)
-								6 // (ease type)
-							),
-							new StoredTransform( // 4. click animation (scale down and rotate back)
-								0, 0, // x, y transform
-								0.95, 0.95, // scale transform (x, y)
-								20, // rotate transform
-								0, // offset (ms)
-								100, // animation time (ms)
-								6 // (ease type)
-							),
-							new StoredTransform( // 5. hover move right 150
-								150, 0, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-								),
-							new StoredTransform( // 6. hover move up 100
-								0, -100, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-								),
-							new StoredTransform( // 7. hover move down 100
-								0, 100, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-								),
-							new StoredTransform( // 8. 0 scale
-								0, 0, // x, y transform
-								0, 0, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-								),
-							new StoredTransform( // 9. 0 scale, centered up 75
-								0, -75, // x, y transform
-								0, 0, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-								),
-							new StoredTransform( // 10. -200 x (f box to center)
-								-200, 0, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-								),
-							new StoredTransform( // 11. 120 y (optionsList)
-								0, 120, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								400, // animation time (ms)
-								6 // (ease type)
-								),
+								StoredTransform.Transform_ClickScaleDown,
+								StoredTransform.Transform_1sLeft100,
+								StoredTransform.Transform_1sRight100,
+								StoredTransform.Transform_1sUp100,
+								StoredTransform.Transform_1sDown100,
+								StoredTransform.Transform_500msLeft100,
+								StoredTransform.Transform_500msRight100,
+								StoredTransform.Transform_500msUp100,
+								StoredTransform.Transform_500msDown100,
+								StoredTransform.Transform_1sLeft150,
+								StoredTransform.Transform_1sRight150,
+								StoredTransform.Transform_1sUp150,
+								StoredTransform.Transform_1sDown150,
+								StoredTransform.Transform_500msLeft150,
+								StoredTransform.Transform_500msRight150,
+								StoredTransform.Transform_500msUp150,
+								StoredTransform.Transform_500msDown150,
+								StoredTransform.Transform_500msScaleUp,
+								StoredTransform.Transform_500msScaleUpRotateLeft20,
+								StoredTransform.Transform_500msScale0,
+								StoredTransform.Transform_ClickScaleDownRotate20, // 20
+								new StoredTransform( // 3 --> 21. hover expand (no rotate)
+										-200, 0, // x, y transform
+										1, 1, // scale transform (x, y)
+										0, // rotate transform
+										0, // offset (ms)
+										750, // animation time (ms)
+										6 // (ease type)
+									),
+								new StoredTransform( // 10 --> 22. -200 x (f box to center)
+										-200, 0, // x, y transform
+										1, 1, // scale transform (x, y)
+										0, // rotate transform
+										0, // offset (ms)
+										500, // animation time (ms)
+										6 // (ease type)
+										),
+								new StoredTransform( // 11 --> 23. 120 y (optionsList)
+										0, 120, // x, y transform
+										1, 1, // scale transform (x, y)
+										0, // rotate transform
+										0, // offset (ms)
+										400, // animation time (ms)
+										6 // (ease type)
+										)
 						},
 					new Element[] { // Elements List
 /////////////////////////////////////////////////////////////////////////////////////
@@ -1373,10 +1360,10 @@ public class DefaultValues {
 										),
 									-1, // mask index
 									false, // hover overlap
-									3, // hover effect
+									21, // hover effect
 									1, // click effect
 									-1, // arbritraty animation (to be used for scroll)
-									5, // entry animation
+									DefaultValues.TransformIndex_500msRight150, // entry animation
 									new TextBox(
 										// Text and Renderable
 										1f, // scale
@@ -1394,7 +1381,7 @@ public class DefaultValues {
 										new RoundedArea(
 											600, 300, 600, 120, 100  // x, y, xSize, ySize, round%
 											),
-										2, // box color (index of colors)
+										Color_BUTTONS, // box color (index of colors)
 										255, // opacity (0-255)
 										15, // shadowOffset
 										5, 6 // strokeWidth, strokeColor
@@ -1407,10 +1394,10 @@ public class DefaultValues {
 										),
 									-1, // mask index
 									false, // hover overlap
-									3, // hover effect
+									21, // hover effect
 									1, // click effect
 									-1, // arbritraty animation (to be used for scroll)
-									5, // entry animation
+									DefaultValues.TransformIndex_500msRight150, // entry animation
 									new TextBox(
 										// Text and Renderable
 										1f, // scale
@@ -1428,45 +1415,13 @@ public class DefaultValues {
 										new RoundedArea(
 											600, 450, 600, 120, 100  // x, y, xSize, ySize, round%
 											),
-										2, // box color (index of colors)
+										Color_BUTTONS, // box color (index of colors)
 										255, // opacity (0-255)
 										15, // shadowOffset
 										5, 6 // strokeWidth, strokeColor
 										)),
 /////////////////////////////////////////////////////////////////////////////////////
-							new Element(
-									new Selector(
-										new int[]{0,0}, // Selector Index
-										new int[][]{{0,1},{0,1},{0,0},{0,0}} // E, S, W, N to select next
-										),
-									-1, // Mask Index
-									false, // hover overlap
-									2, // hover effect
-									4, // click effect
-									-1, // arbritraty animation (to be used for scroll)
-									8, // entry animation
-									new TextBox(
-										// Text and Renderable
-										1, // scale
-										"escapeMenu", // function
-										"BackButton",  // name
-										new Renderable(
-											// Renderable Without Function
-											"BackPNG", // name
-											"src/textures/back.png", // file source
-											30, 30, 60, 60, // x, y, xSize, ySize (relative)
-											255 // opacity (0-255)
-											),  // renderable
-										new RoundedArea(
-											90, 90, 120, 120,  // x, y, xSize, ySize, round%
-											100 // roundPercentage
-											),
-										2, // box color (index of colors)
-										255, // opacity (0-255)
-										5, // shadowOffset
-										5, 6 // strokeWidth, strokeColor
-										)
-									),
+							DefaultValues.Element_BACKBUTTON(),
 /////////////////////////////////////////////////////////////////////////////////////
 						new Element(
 							new Selector(
@@ -1478,7 +1433,7 @@ public class DefaultValues {
 							-1, // hover effect
 							-1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
-							10, // entry animation
+							22, // entry animation
 							new TextBox(
 								// No Text, No Renderable
 								1, // scale
@@ -1488,7 +1443,7 @@ public class DefaultValues {
 									1160, 560, 1200, 800,  // x, y, xSize, ySize, round%
 									5 // roundPercentage
 									),
-								1, // box color (index of colors)
+								Color_MENU, // box color (index of colors)
 								255, // opacity (0-255)
 								25, // shadowOffset
 								5, 6 // strokeWidth, strokeColor
@@ -1505,7 +1460,7 @@ public class DefaultValues {
 								-1, // hover effect
 								-1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -1523,7 +1478,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1160, 270, 850, 0, 0  // x, y, xSize, ySize, round%
 										),
-									7, // box color (index of colors)
+									Color_TRANSPARENT, // box color (index of colors)
 									255, // opacity (0-255)
 									0, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -1539,7 +1494,7 @@ public class DefaultValues {
 								-1, // hover effect
 								-1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -1557,7 +1512,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1160, 555, 850, 0, 0  // x, y, xSize, ySize, round%
 										),
-									7, // box color (index of colors)
+									Color_TRANSPARENT, // box color (index of colors)
 									255, // opacity (0-255)
 									15, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -1573,7 +1528,7 @@ public class DefaultValues {
 								-1, // hover effect
 								-1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -1591,7 +1546,7 @@ public class DefaultValues {
 									new RoundedArea(
 										735, 325, 0, 0, 0  // x, y, xSize, ySize, round%
 										),
-									7, // box color (index of colors)
+									Color_TRANSPARENT, // box color (index of colors)
 									255, // opacity (0-255)
 									0, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -1605,9 +1560,9 @@ public class DefaultValues {
 								-1, // mask index
 								true, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -1623,7 +1578,7 @@ public class DefaultValues {
 									new RoundedArea(
 										991, 330, 65, 65, 0  // x, y, xSize, ySize, round%
 										),
-									2, // box color (index of colors)
+									Color_BUTTONS, // box color (index of colors)
 									255, // opacity (0-255)
 									5, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
@@ -1637,9 +1592,9 @@ public class DefaultValues {
 								-1, // mask index
 								true, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -1655,7 +1610,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1054, 330, 65, 65, 0  // x, y, xSize, ySize, round%
 										),
-									2, // box color (index of colors)
+									Color_BUTTONS, // box color (index of colors)
 									255, // opacity (0-255)
 									5, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
@@ -1671,7 +1626,7 @@ public class DefaultValues {
 								-1, // hover effect
 								-1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -1689,7 +1644,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1335, 330, 500, 65, 0  // x, y, xSize, ySize, round%
 										),
-									8, // box color (index of colors)
+									Color_DISPLAY, // box color (index of colors)
 									255, // opacity (0-255)
 									5, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
@@ -1703,9 +1658,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -1723,7 +1678,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1160, 425, 300, 65, 0  // x, y, xSize, ySize, round%
 										),
-									2, // box color (index of colors)
+									Color_BUTTONS, // box color (index of colors)
 									255, // opacity (0-255)
 									10, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
@@ -1739,7 +1694,7 @@ public class DefaultValues {
 								-1, // hover effect
 								-1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -1757,7 +1712,7 @@ public class DefaultValues {
 									new RoundedArea(
 										735, 610, 0, 0, 0  // x, y, xSize, ySize, round%
 										),
-									7, // box color (index of colors)
+									Color_TRANSPARENT, // box color (index of colors)
 									255, // opacity (0-255)
 									0, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -1771,9 +1726,9 @@ public class DefaultValues {
 								-1, // mask index
 								true, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -1789,7 +1744,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1054, 614, 65, 65, 0  // x, y, xSize, ySize, round%
 										),
-									2, // box color (index of colors)
+									Color_BUTTONS, // box color (index of colors)
 									255, // opacity (0-255)
 									5, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
@@ -1803,9 +1758,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextField(
 										// Textfield
 										1f, // scale
@@ -1814,6 +1769,7 @@ public class DefaultValues {
 												1, // Field is duplicate!
 												0, // Field is empty
 											},
+										TextField.Input_ALPHANUMERIC, // input type
 										"ThemeName", // Name
 										new Text(
 											"%CurrentThemeName", // text
@@ -1827,7 +1783,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1335, 614, 500, 65, 0  // x, y, xSize, ySize, round%
 										),
-									8, // box color (index of colors)
+									Color_DISPLAY, // box color (index of colors)
 									255, // opacity (0-255)
 									5, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
@@ -1841,9 +1797,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextField(
 										// Textfield
 										1f, // scale
@@ -1853,6 +1809,7 @@ public class DefaultValues {
 												0, // Field is empty
 												3, // Not a valid input
 											},
+										TextField.Input_HEXADECIMAL, // input type
 										"Color0", // Name
 										new Text(
 											"%CurrentThemeColor 0", // text
@@ -1867,7 +1824,7 @@ public class DefaultValues {
 									new RoundedArea(
 										672, 700, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
-									8, // box color (index of colors)
+									Color_DISPLAY, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
@@ -1881,9 +1838,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									//Text
 									1f, // scale
@@ -1908,7 +1865,7 @@ public class DefaultValues {
 									new RoundedArea(
 										672, 760, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
-									0, // box color (index of colors)
+									Color_BG, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -1922,9 +1879,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextField(
 										// Textfield
 										1f, // scale
@@ -1934,6 +1891,7 @@ public class DefaultValues {
 												0, // Field is empty
 												3, // Not a valid input
 											},
+										TextField.Input_HEXADECIMAL, // input type
 										"Color1", // Name
 										new Text(
 											"%CurrentThemeColor 1", // text
@@ -1948,7 +1906,7 @@ public class DefaultValues {
 									new RoundedArea(
 										812, 700, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
-									8, // box color (index of colors)
+									Color_DISPLAY, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
@@ -1962,9 +1920,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									//Text
 									1f, // scale
@@ -1989,7 +1947,7 @@ public class DefaultValues {
 									new RoundedArea(
 										812, 760, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
-									1, // box color (index of colors)
+									Color_MENU, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -2003,9 +1961,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextField(
 										// Textfield
 										1f, // scale
@@ -2015,6 +1973,7 @@ public class DefaultValues {
 												0, // Field is empty
 												3, // Not a valid input
 											},
+										TextField.Input_HEXADECIMAL, // input type
 										"Color2", // Name
 										new Text(
 											"%CurrentThemeColor 2", // text
@@ -2029,7 +1988,7 @@ public class DefaultValues {
 									new RoundedArea(
 										952, 700, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
-									8, // box color (index of colors)
+									Color_DISPLAY, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
@@ -2043,9 +2002,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									//Text
 									1f, // scale
@@ -2070,7 +2029,7 @@ public class DefaultValues {
 									new RoundedArea(
 										952, 760, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
-									2, // box color (index of colors)
+									Color_BUTTONS, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -2084,9 +2043,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextField(
 										// Textfield
 										1f, // scale
@@ -2096,6 +2055,7 @@ public class DefaultValues {
 												0, // Field is empty
 												3, // Not a valid input
 											},
+										TextField.Input_HEXADECIMAL, // input type
 										"Color3", // Name
 										new Text(
 											"%CurrentThemeColor 3", // text
@@ -2110,7 +2070,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1092, 700, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
-									8, // box color (index of colors)
+									Color_DISPLAY, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
@@ -2124,9 +2084,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									//Text
 									1f, // scale
@@ -2151,7 +2111,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1092, 760, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
-									3, // box color (index of colors)
+									Color_PRIMARYSELECTOR, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -2165,9 +2125,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextField(
 										// Textfield
 										1f, // scale
@@ -2177,6 +2137,7 @@ public class DefaultValues {
 												0, // Field is empty
 												3, // Not a valid input
 											},
+										TextField.Input_HEXADECIMAL, // input type
 										"Color4", // Name
 										new Text(
 											"%CurrentThemeColor 4", // text
@@ -2191,7 +2152,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1232, 700, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
-									8, // box color (index of colors)
+									Color_DISPLAY, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
@@ -2205,9 +2166,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									//Text
 									1f, // scale
@@ -2232,7 +2193,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1232, 760, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
-									4, // box color (index of colors)
+									Color_SECONDARYSELECTOR, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -2246,9 +2207,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextField(
 										// Textfield
 										1f, // scale
@@ -2258,6 +2219,7 @@ public class DefaultValues {
 												0, // Field is empty
 												3, // Not a valid input
 											},
+										TextField.Input_HEXADECIMAL, // input type
 										"Color5", // Name
 										new Text(
 											"%CurrentThemeColor 5", // text
@@ -2272,7 +2234,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1372, 700, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
-									8, // box color (index of colors)
+									Color_DISPLAY, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
@@ -2286,9 +2248,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									//Text
 									1f, // scale
@@ -2313,7 +2275,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1372, 760, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
-									5, // box color (index of colors)
+									Color_ACCENT, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -2327,9 +2289,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextField(
 										// Textfield
 										1f, // scale
@@ -2339,6 +2301,7 @@ public class DefaultValues {
 												0, // Field is empty
 												3, // Not a valid input
 											},
+										TextField.Input_HEXADECIMAL, // input type
 										"Color6", // Name
 										new Text(
 											"%CurrentThemeColor 6", // text
@@ -2353,7 +2316,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1518, 700, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
-									8, // box color (index of colors)
+									Color_DISPLAY, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
@@ -2367,9 +2330,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									//Text
 									1f, // scale
@@ -2394,7 +2357,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1518, 760, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
-									6, // box color (index of colors)
+									Color_STROKE, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -2409,9 +2372,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextField(
 										// Textfield
 										1f, // scale
@@ -2421,6 +2384,7 @@ public class DefaultValues {
 												0, // Field is empty
 												3, // Not a valid input
 											},
+										TextField.Input_HEXADECIMAL, // input type
 										"Color8", // Name
 										new Text(
 											"%CurrentThemeColor 8", // text
@@ -2435,7 +2399,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1652, 700, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
-									8, // box color (index of colors)
+									Color_DISPLAY, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
@@ -2449,9 +2413,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									//Text
 									1f, // scale
@@ -2476,7 +2440,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1652, 760, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
-									8, // box color (index of colors)
+									Color_DISPLAY, // box color (index of colors)
 									255, // opacity (0-255)
 									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -2491,9 +2455,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -2511,7 +2475,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1002, 900, 300, 65, 0  // x, y, xSize, ySize, round%
 										),
-									2, // box color (index of colors)
+									Color_BUTTONS, // box color (index of colors)
 									255, // opacity (0-255)
 									10, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
@@ -2525,9 +2489,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -2545,7 +2509,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1322, 900, 300, 65, 0  // x, y, xSize, ySize, round%
 										),
-									5, // box color (index of colors)
+									Color_ACCENT, // box color (index of colors)
 									255, // opacity (0-255)
 									10, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
@@ -2554,115 +2518,7 @@ public class DefaultValues {
 /////////////////////////////////////////////////////////////////////////////////////
 					},
 					new Popup[] { // Popups List
-							new Popup( // Empty Input Error
-									"EmptyInputTheme", // Popup Name
-									"Input Error!", // Popup Title
-									new Element[] {
-										new Element(
-												new Selector(
-													new int[]{-1,-1}, // Selector Index
-													new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
-													),
-												-1, // mask index
-												false, // hover overlap
-												-1, // hover effect
-												1, // click effect
-												-1, // arbritraty animation (to be used for scroll)
-												8, // entry animation
-												new TextBox(
-													// Text and Renderable
-													1f, // scale
-													"noFunction", // function
-													"ErrorMessage",  // name
-													new Text(
-														"Input Error!", // text
-														"center", "center", // align
-														0, -100, // text offset (x, y)
-														80, // text size
-														5, // text color (index of colors)
-														"Archivo Narrow", // font
-														true // bold
-														),
-													new RoundedArea(
-														960, 500, 600, 300, 0  // x, y, xSize, ySize, round%
-														),
-													1, // box color (index of colors)
-													255, // opacity (0-255)
-													15, // shadowOffset
-													5, 6 // strokeWidth, strokeColor
-													)),
-/////////////////////////////////////////////////////////////////////////////////////
-										new Element(
-												new Selector(
-													new int[]{-1,-1}, // Selector Index
-													new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
-													),
-												-1, // mask index
-												false, // hover overlap
-												-1, // hover effect
-												1, // click effect
-												-1, // arbritraty animation (to be used for scroll)
-												8, // entry animation
-												new TextBox(
-													// Text and Renderable
-													1f, // scale
-													"noFunction", // function
-													"ErrorMessage",  // name
-													new Text(
-														"Input cannot be empty!", // text
-														"center", "center", // align
-														0, -9, // text offset (x, y)
-														40, // text size
-														6, // text color (index of colors)
-														"Archivo Narrow", // font
-														false // bold
-														),
-													new RoundedArea(
-														960, 495, 0, 0, 0  // x, y, xSize, ySize, round%
-														),
-													7, // box color (index of colors)
-													255, // opacity (0-255)
-													0, // shadowOffset
-													5, 6 // strokeWidth, strokeColor
-													)),
-/////////////////////////////////////////////////////////////////////////////////////
-										new Element(
-												new Selector(
-													new int[]{0,0}, // Selector Index
-													new int[][]{{1,0},{0,2},{0,0},{0,0}} // E, S, W, N to select next
-													),
-												-1, // mask index
-												false, // hover overlap
-												-1, // hover effect
-												1, // click effect
-												-1, // arbritraty animation (to be used for scroll)
-												9, // entry animation
-												new TextBox(
-													// Text and Renderable
-													1f, // scale
-													"removeThisPopup", // function
-													"popup",  // name
-													new Text(
-														"Confirm", // text
-														"center", "center", // align
-														0, -5, // text offset (x, y)
-														40, // text size
-														6, // text color (index of colors)
-														"Archivo Narrow", // font
-														false // bold
-														),
-													new RoundedArea(
-														960, 580, 300, 80, 0  // x, y, xSize, ySize, round%
-														),
-													2, // box color (index of colors)
-													255, // opacity (0-255)
-													8, // shadowOffset
-													5, 6 // strokeWidth, strokeColor
-													)),
-									}
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-							),
+							DefaultValues.Popup_INPUTEMPTY(),
 							new Popup( // Duplicate Theme Name Error
 									"DuplicateThemeName", // Popup Name
 									"Input Error!", // Popup Title
@@ -2675,9 +2531,9 @@ public class DefaultValues {
 												-1, // mask index
 												false, // hover overlap
 												-1, // hover effect
-												1, // click effect
+												DefaultValues.TransformIndex_ClickScaleDown, // click effect
 												-1, // arbritraty animation (to be used for scroll)
-												8, // entry animation
+												DefaultValues.TransformIndex_500msScale0, // entry animation
 												new TextBox(
 													// Text and Renderable
 													1f, // scale
@@ -2695,7 +2551,7 @@ public class DefaultValues {
 													new RoundedArea(
 														960, 500, 600, 300, 0  // x, y, xSize, ySize, round%
 														),
-													1, // box color (index of colors)
+													Color_MENU, // box color (index of colors)
 													255, // opacity (0-255)
 													15, // shadowOffset
 													5, 6 // strokeWidth, strokeColor
@@ -2709,9 +2565,9 @@ public class DefaultValues {
 												-1, // mask index
 												false, // hover overlap
 												-1, // hover effect
-												1, // click effect
+												DefaultValues.TransformIndex_ClickScaleDown, // click effect
 												-1, // arbritraty animation (to be used for scroll)
-												8, // entry animation
+												DefaultValues.TransformIndex_500msScale0, // entry animation
 												new TextBox(
 													// Text and Renderable
 													1f, // scale
@@ -2729,7 +2585,7 @@ public class DefaultValues {
 													new RoundedArea(
 														960, 495, 0, 0, 0  // x, y, xSize, ySize, round%
 														),
-													7, // box color (index of colors)
+													Color_TRANSPARENT, // box color (index of colors)
 													255, // opacity (0-255)
 													0, // shadowOffset
 													5, 6 // strokeWidth, strokeColor
@@ -2743,9 +2599,9 @@ public class DefaultValues {
 												-1, // mask index
 												false, // hover overlap
 												-1, // hover effect
-												1, // click effect
+												DefaultValues.TransformIndex_ClickScaleDown, // click effect
 												-1, // arbritraty animation (to be used for scroll)
-												9, // entry animation
+												DefaultValues.TransformIndex_500msScale0, // entry animation
 												new TextBox(
 													// Text and Renderable
 													1f, // scale
@@ -2763,7 +2619,7 @@ public class DefaultValues {
 													new RoundedArea(
 														960, 580, 300, 80, 0  // x, y, xSize, ySize, round%
 														),
-													2, // box color (index of colors)
+													Color_BUTTONS, // box color (index of colors)
 													255, // opacity (0-255)
 													8, // shadowOffset
 													5, 6 // strokeWidth, strokeColor
@@ -2786,7 +2642,7 @@ public class DefaultValues {
 											-1, // hover effect
 											-1, // click effect
 											-1, // arbritraty animation (to be used for scroll)
-											8, // entry animation
+											DefaultValues.TransformIndex_500msScale0, // entry animation
 											new TextBox(
 												// No Text, No Renderable
 												1, // scale
@@ -2796,7 +2652,7 @@ public class DefaultValues {
 													960, 560, 400, 800,  // x, y, xSize, ySize, round%
 													5 // roundPercentage
 													),
-												1, // box color (index of colors)
+												Color_MENU, // box color (index of colors)
 												255, // opacity (0-255)
 												25, // shadowOffset
 												5, 6 // strokeWidth, strokeColor
@@ -2811,9 +2667,9 @@ public class DefaultValues {
 												1, // mask index
 												false, // hover overlap
 												-1, // hover effect
-												1, // click effect
-												11, // arbritraty animation (to be used for scroll)
-												8, // entry animation
+												DefaultValues.TransformIndex_ClickScaleDown, // click effect
+												23, // arbritraty animation (to be used for scroll)
+												DefaultValues.TransformIndex_500msScale0, // entry animation
 												new OptionsList(
 														// Text and Renderable
 														1f, // scale
@@ -2833,7 +2689,7 @@ public class DefaultValues {
 														new RoundedArea(
 															960, 320, 300, 80, 0  // x, y, xSize, ySize, round%
 															),
-														2, // box color (index of colors)
+														Color_BUTTONS, // box color (index of colors)
 														255, // opacity (0-255)
 														8, // shadowOffset
 														5, 6 // strokeWidth, strokeColor
@@ -2848,9 +2704,9 @@ public class DefaultValues {
 											-1, // mask index
 											false, // hover overlap
 											-1, // hover effect
-											1, // click effect
+											DefaultValues.TransformIndex_ClickScaleDown, // click effect
 											-1, // arbritraty animation (to be used for scroll)
-											8, // entry animation
+											DefaultValues.TransformIndex_500msScale0, // entry animation
 											new TextBox(
 												// Text and Renderable
 												1f, // scale
@@ -2866,7 +2722,7 @@ public class DefaultValues {
 												new RoundedArea(
 													960, 210, 120, 50, 0  // x, y, xSize, ySize, round%
 													),
-												2, // box color (index of colors)
+												Color_BUTTONS, // box color (index of colors)
 												255, // opacity (0-255)
 												8, // shadowOffset
 												5, 6 // strokeWidth, strokeColor
@@ -2880,9 +2736,9 @@ public class DefaultValues {
 											-1, // mask index
 											false, // hover overlap
 											-1, // hover effect
-											1, // click effect
+											DefaultValues.TransformIndex_ClickScaleDown, // click effect
 											-1, // arbritraty animation (to be used for scroll)
-											8, // entry animation
+											DefaultValues.TransformIndex_500msScale0, // entry animation
 											new TextBox(
 												// Text and Renderable
 												1f, // scale
@@ -2898,45 +2754,13 @@ public class DefaultValues {
 												new RoundedArea(
 													960, 910, 120, 50, 0  // x, y, xSize, ySize, round%
 													),
-												2, // box color (index of colors)
+												Color_BUTTONS, // box color (index of colors)
 												255, // opacity (0-255)
 												8, // shadowOffset
 												5, 6 // strokeWidth, strokeColor
 												)),
 /////////////////////////////////////////////////////////////////////////////////////
-									new Element(
-											new Selector(
-												new int[]{0,0}, // Selector Index
-												new int[][]{{1,0},{1,0},{0,0},{0,0}} // E, S, W, N to select next
-												),
-											-1, // Mask Index
-											false, // hover overlap
-											2, // hover effect
-											4, // click effect
-											-1, // arbritraty animation (to be used for scroll)
-											8, // entry animation
-											new TextBox(
-												// Text and Renderable
-												1, // scale
-												"removePopup int 2", // function
-												"BackButton",  // name
-												new Renderable(
-													// Renderable Without Function
-													"BackPNG", // name
-													"src/textures/back.png", // file source
-													30, 30, 60, 60, // x, y, xSize, ySize (relative)
-													255 // opacity (0-255)
-													),  // renderable
-												new RoundedArea(
-													90, 90, 120, 120,  // x, y, xSize, ySize, round%
-													100 // roundPercentage
-													),
-												2, // box color (index of colors)
-												255, // opacity (0-255)
-												5, // shadowOffset
-												5, 6 // strokeWidth, strokeColor
-												)
-											),
+									DefaultValues.Element_BACKBUTTON(),
 		/////////////////////////////////////////////////////////////////////////////////////
 									
 									
@@ -2954,9 +2778,9 @@ public class DefaultValues {
 												-1, // mask index
 												false, // hover overlap
 												-1, // hover effect
-												1, // click effect
+												DefaultValues.TransformIndex_ClickScaleDown, // click effect
 												-1, // arbritraty animation (to be used for scroll)
-												8, // entry animation
+												DefaultValues.TransformIndex_500msScale0, // entry animation
 												new TextBox(
 													// Text and Renderable
 													1f, // scale
@@ -2974,7 +2798,7 @@ public class DefaultValues {
 													new RoundedArea(
 														960, 500, 600, 300, 0  // x, y, xSize, ySize, round%
 														),
-													1, // box color (index of colors)
+													Color_MENU, // box color (index of colors)
 													255, // opacity (0-255)
 													15, // shadowOffset
 													5, 6 // strokeWidth, strokeColor
@@ -2988,9 +2812,9 @@ public class DefaultValues {
 												-1, // mask index
 												false, // hover overlap
 												-1, // hover effect
-												1, // click effect
+												DefaultValues.TransformIndex_ClickScaleDown, // click effect
 												-1, // arbritraty animation (to be used for scroll)
-												8, // entry animation
+												DefaultValues.TransformIndex_500msScale0, // entry animation
 												new TextBox(
 													// Text and Renderable
 													1f, // scale
@@ -3008,7 +2832,7 @@ public class DefaultValues {
 													new RoundedArea(
 														960, 495, 0, 0, 0  // x, y, xSize, ySize, round%
 														),
-													7, // box color (index of colors)
+													Color_TRANSPARENT, // box color (index of colors)
 													255, // opacity (0-255)
 													0, // shadowOffset
 													5, 6 // strokeWidth, strokeColor
@@ -3022,9 +2846,9 @@ public class DefaultValues {
 												-1, // mask index
 												false, // hover overlap
 												-1, // hover effect
-												1, // click effect
+												DefaultValues.TransformIndex_ClickScaleDown, // click effect
 												-1, // arbritraty animation (to be used for scroll)
-												9, // entry animation
+												DefaultValues.TransformIndex_500msScale0, // entry animation
 												new TextBox(
 													// Text and Renderable
 													1f, // scale
@@ -3042,7 +2866,7 @@ public class DefaultValues {
 													new RoundedArea(
 														960, 580, 300, 80, 0  // x, y, xSize, ySize, round%
 														),
-													2, // box color (index of colors)
+													Color_BUTTONS, // box color (index of colors)
 													255, // opacity (0-255)
 													8, // shadowOffset
 													5, 6 // strokeWidth, strokeColor
@@ -3062,9 +2886,9 @@ public class DefaultValues {
 												-1, // mask index
 												false, // hover overlap
 												-1, // hover effect
-												1, // click effect
+												DefaultValues.TransformIndex_ClickScaleDown, // click effect
 												-1, // arbritraty animation (to be used for scroll)
-												8, // entry animation
+												DefaultValues.TransformIndex_500msScale0, // entry animation
 												new TextBox(
 													// Text and Renderable
 													1f, // scale
@@ -3082,7 +2906,7 @@ public class DefaultValues {
 													new RoundedArea(
 														960, 500, 600, 300, 0  // x, y, xSize, ySize, round%
 														),
-													1, // box color (index of colors)
+													Color_MENU, // box color (index of colors)
 													255, // opacity (0-255)
 													15, // shadowOffset
 													5, 6 // strokeWidth, strokeColor
@@ -3096,9 +2920,9 @@ public class DefaultValues {
 												-1, // mask index
 												false, // hover overlap
 												-1, // hover effect
-												1, // click effect
+												DefaultValues.TransformIndex_ClickScaleDown, // click effect
 												-1, // arbritraty animation (to be used for scroll)
-												8, // entry animation
+												DefaultValues.TransformIndex_500msScale0, // entry animation
 												new TextBox(
 													// Text and Renderable
 													1f, // scale
@@ -3116,7 +2940,7 @@ public class DefaultValues {
 													new RoundedArea(
 														960, 495, 0, 0, 0  // x, y, xSize, ySize, round%
 														),
-													7, // box color (index of colors)
+													Color_TRANSPARENT, // box color (index of colors)
 													255, // opacity (0-255)
 													0, // shadowOffset
 													5, 6 // strokeWidth, strokeColor
@@ -3130,9 +2954,9 @@ public class DefaultValues {
 												-1, // mask index
 												false, // hover overlap
 												-1, // hover effect
-												1, // click effect
+												DefaultValues.TransformIndex_ClickScaleDown, // click effect
 												-1, // arbritraty animation (to be used for scroll)
-												9, // entry animation
+												DefaultValues.TransformIndex_500msScale0, // entry animation
 												new TextBox(
 													// Text and Renderable
 													1f, // scale
@@ -3150,12 +2974,12 @@ public class DefaultValues {
 													new RoundedArea(
 														960, 580, 300, 80, 0  // x, y, xSize, ySize, round%
 														),
-													2, // box color (index of colors)
+													Color_BUTTONS, // box color (index of colors)
 													255, // opacity (0-255)
 													8, // shadowOffset
 													5, 6 // strokeWidth, strokeColor
 													))
-									}
+											}
 									)
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
@@ -3174,102 +2998,43 @@ public class DefaultValues {
 							// Insert here
 						},
 						new StoredTransform[] {
-							new StoredTransform( // 0. hover move left 100
-								-100, 0, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								1000, // animation time (ms)
-								6 // (ease type)
-							),
-							new StoredTransform( // 1. click animation (scale down)
-								0, 0, // x, y transform
-								0.95, 0.95, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								100, // animation time (ms)
-								6 // (ease type)
-							),
-							new StoredTransform( // 2. hover expand
-								0, 0, // x, y transform
-								1.05, 1.05, // scale transform (x, y)
-								-20, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-							),
-							new StoredTransform( // 3. hover expand (no rotate)
-								-200, 0, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								750, // animation time (ms)
-								6 // (ease type)
-							),
-							new StoredTransform( // 4. click animation (scale down and rotate back)
-								0, 0, // x, y transform
-								0.95, 0.95, // scale transform (x, y)
-								20, // rotate transform
-								0, // offset (ms)
-								100, // animation time (ms)
-								6 // (ease type)
-							),
-							new StoredTransform( // 5. hover move right 150
-								150, 0, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-								),
-							new StoredTransform( // 6. hover move up 100
-								0, -100, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-								),
-							new StoredTransform( // 7. hover move down 100
-								0, 100, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-								),
-							new StoredTransform( // 8. 0 scale
-								0, 0, // x, y transform
-								0, 0, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-								),
-							new StoredTransform( // 9. 0 scale, centered up 75
-								0, -75, // x, y transform
-								0, 0, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-								),
-							new StoredTransform( // 10. -200 x (f box to center)
-								-200, 0, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								500, // animation time (ms)
-								6 // (ease type)
-								),
-							new StoredTransform( // 11. 120 y (optionsList)
-								0, 120, // x, y transform
-								1, 1, // scale transform (x, y)
-								0, // rotate transform
-								0, // offset (ms)
-								400, // animation time (ms)
-								6 // (ease type)
-								),
+								StoredTransform.Transform_ClickScaleDown,
+								StoredTransform.Transform_1sLeft100,
+								StoredTransform.Transform_1sRight100,
+								StoredTransform.Transform_1sUp100,
+								StoredTransform.Transform_1sDown100,
+								StoredTransform.Transform_500msLeft100,
+								StoredTransform.Transform_500msRight100,
+								StoredTransform.Transform_500msUp100,
+								StoredTransform.Transform_500msDown100,
+								StoredTransform.Transform_1sLeft150,
+								StoredTransform.Transform_1sRight150,
+								StoredTransform.Transform_1sUp150,
+								StoredTransform.Transform_1sDown150,
+								StoredTransform.Transform_500msLeft150,
+								StoredTransform.Transform_500msRight150,
+								StoredTransform.Transform_500msUp150,
+								StoredTransform.Transform_500msDown150,
+								StoredTransform.Transform_500msScaleUp,
+								StoredTransform.Transform_500msScaleUpRotateLeft20,
+								StoredTransform.Transform_500msScale0,
+								StoredTransform.Transform_ClickScaleDownRotate20, // 20
+								new StoredTransform( // 3 --> 21. hover expand (no rotate)
+										-200, 0, // x, y transform
+										1, 1, // scale transform (x, y)
+										0, // rotate transform
+										0, // offset (ms)
+										750, // animation time (ms)
+										6 // (ease type)
+									),
+								new StoredTransform( // 10 --> 22. -200 x (f box to center)
+										-200, 0, // x, y transform
+										1, 1, // scale transform (x, y)
+										0, // rotate transform
+										0, // offset (ms)
+										500, // animation time (ms)
+										6 // (ease type)
+										),
 						},
 					new Element[] { // Elements List
 /////////////////////////////////////////////////////////////////////////////////////
@@ -3280,10 +3045,10 @@ public class DefaultValues {
 										),
 									-1, // mask index
 									false, // hover overlap
-									3, // hover effect
-									1, // click effect
+									21, // hover effect
+									DefaultValues.TransformIndex_ClickScaleDown, // click effect
 									-1, // arbritraty animation (to be used for scroll)
-									5, // entry animation
+									DefaultValues.TransformIndex_500msRight150, // entry animation
 									new TextBox(
 										// Text and Renderable
 										1f, // scale
@@ -3301,45 +3066,13 @@ public class DefaultValues {
 										new RoundedArea(
 											600, 300, 600, 120, 100  // x, y, xSize, ySize, round%
 											),
-										2, // box color (index of colors)
+										Color_BUTTONS, // box color (index of colors)
 										255, // opacity (0-255)
 										15, // shadowOffset
 										5, 6 // strokeWidth, strokeColor
 										)),
 /////////////////////////////////////////////////////////////////////////////////////
-							new Element(
-									new Selector(
-										new int[]{0,0}, // Selector Index
-										new int[][]{{0,1},{0,1},{0,0},{0,0}} // E, S, W, N to select next
-										),
-									-1, // Mask Index
-									false, // hover overlap
-									2, // hover effect
-									4, // click effect
-									-1, // arbritraty animation (to be used for scroll)
-									8, // entry animation
-									new TextBox(
-										// Text and Renderable
-										1, // scale
-										"escapeMenu", // function
-										"BackButton",  // name
-										new Renderable(
-											// Renderable Without Function
-											"BackPNG", // name
-											"src/textures/back.png", // file source
-											30, 30, 60, 60, // x, y, xSize, ySize (relative)
-											255 // opacity (0-255)
-											),  // renderable
-										new RoundedArea(
-											90, 90, 120, 120,  // x, y, xSize, ySize, round%
-											100 // roundPercentage
-											),
-										2, // box color (index of colors)
-										255, // opacity (0-255)
-										5, // shadowOffset
-										5, 6 // strokeWidth, strokeColor
-										)
-									),
+							DefaultValues.Element_BACKBUTTON(),
 /////////////////////////////////////////////////////////////////////////////////////
 						new Element(
 							new Selector(
@@ -3351,7 +3084,7 @@ public class DefaultValues {
 							-1, // hover effect
 							-1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
-							10, // entry animation
+							22, // entry animation
 							new TextBox(
 								// No Text, No Renderable
 								1, // scale
@@ -3361,7 +3094,7 @@ public class DefaultValues {
 									1160, 560, 1200, 800,  // x, y, xSize, ySize, round%
 									5 // roundPercentage
 									),
-								1, // box color (index of colors)
+								Color_MENU, // box color (index of colors)
 								255, // opacity (0-255)
 								25, // shadowOffset
 								5, 6 // strokeWidth, strokeColor
@@ -3378,7 +3111,7 @@ public class DefaultValues {
 								-1, // hover effect
 								-1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -3396,7 +3129,7 @@ public class DefaultValues {
 									new RoundedArea(
 										1160, 270, 850, 0, 0  // x, y, xSize, ySize, round%
 										),
-									7, // box color (index of colors)
+									Color_TRANSPARENT, // box color (index of colors)
 									255, // opacity (0-255)
 									0, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -3413,7 +3146,7 @@ public class DefaultValues {
 								-1, // hover effect
 								-1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -3431,7 +3164,7 @@ public class DefaultValues {
 									new RoundedArea(
 										735, 335, 0, 0, 0  // x, y, xSize, ySize, round%
 										),
-									7, // box color (index of colors)
+									Color_TRANSPARENT, // box color (index of colors)
 									255, // opacity (0-255)
 									0, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
@@ -3445,9 +3178,9 @@ public class DefaultValues {
 								-1, // mask index
 								true, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -3461,9 +3194,9 @@ public class DefaultValues {
 											255 // opacity (0-255)
 											),  // renderable
 									new RoundedArea(
-										1054, 339, 65, 65, 0  // x, y, xSize, ySize, round%
+										1424, 339, 65, 65, 0  // x, y, xSize, ySize, round%
 										),
-									2, // box color (index of colors)
+									Color_BUTTONS, // box color (index of colors)
 									255, // opacity (0-255)
 									5, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
@@ -3477,9 +3210,9 @@ public class DefaultValues {
 								-1, // mask index
 								false, // hover overlap
 								-1, // hover effect
-								1, // click effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								10, // entry animation
+								22, // entry animation
 								new TextField(
 										// Textfield
 										1f, // scale
@@ -3488,25 +3221,60 @@ public class DefaultValues {
 												1, // Field is duplicate!
 												0, // Field is empty
 											},
+										TextField.Input_NUMERIC, // input type
 										"MasterVolume", // Name
 										new Text(
 											"%MasterVolume", // text
 											"right", "center", // align
-											240, -6, // text offset (x, y)
+											20, -6, // text offset (x, y)
 											35, // text size
 											6, // text color (index of colors)
 											"Archivo Narrow", // font
 											false // bold
 											),
 									new RoundedArea(
-										1305, 339, 440, 65, 0  // x, y, xSize, ySize, round%
+										1515, 339, 120, 65, 0  // x, y, xSize, ySize, round%
 										),
-									8, // box color (index of colors)
+									Color_DISPLAY, // box color (index of colors)
 									255, // opacity (0-255)
 									5, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
 									)),
 /////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								22, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									null, // function
+									"PercentageSign1",  // name
+									new Text(
+											"%", // text
+											"right", "center", // align
+											232, -6, // text offset (x, y)
+											35, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+									new RoundedArea(
+											1330, 339, 0, 0, 0  // x, y, xSize, ySize, round%
+											),
+									Color_TRANSPARENT, // box color (index of colors)
+									255, // opacity (0-255)
+									0, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+///////////////////////////////////////,//////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 					},
 					new Popup[] { // Popups List

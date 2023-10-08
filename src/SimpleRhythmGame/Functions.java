@@ -43,13 +43,7 @@ public class Functions {
 				} else if (methodName.equals("removeThisPopup")) {
 					removeThisPopup();
 				} else if (methodName.equals("escapeMenu")) {
-					String menuToEnter = ShowImage.getCurrentScaledMenu().getPreviousMenuName();
-                	if (menuToEnter != null){
-                		String functionToRun = "setMenu String " + menuToEnter.replace(" ", "_");
-            			Functions.runFunction(functionToRun);
-                	} else {
-                		System.out.println("No Previous Menu");
-                	}
+					escapeMenu();
 				} else if (methodName.equals("exportTheme")) {
 					exportThemeToClipboard();
 				} else if (methodName.equals("importTheme")) {
@@ -95,6 +89,20 @@ public class Functions {
 	
 	private static void removeThisPopup() {
 		ShowImage.removePopup(ShowImage.getCurrentPopupIndex());
+	}
+	
+	private static void escapeMenu() {
+		if (ShowImage.getCurrentPopupIndex() == -1) {
+			String menuToEnter = ShowImage.getCurrentScaledMenu().getPreviousMenuName();
+        	if (menuToEnter != null){
+        		String functionToRun = "setMenu String " + menuToEnter.replace(" ", "_");
+    			Functions.runFunction(functionToRun);
+        	} else {
+        		System.out.println("No Previous Menu");
+        	}
+		} else {
+			removeThisPopup();
+		}
 	}
 	
 	private static void setMenuIndex(int menu) {
