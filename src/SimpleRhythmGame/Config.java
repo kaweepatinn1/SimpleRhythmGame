@@ -550,7 +550,7 @@ public class Config {
 			FileIO.currentConfigOut();
 			return "Success";
 		} else if (splitVariable[0].equals("%MaxFramerate")) {
-			framerate = Math.min(Integer.parseInt((String) newValues), 250);
+			framerate = Math.max(Math.min(Integer.parseInt((String) newValues), 250), 30);
 			ShowImage.refreshMenu();
 			FileIO.currentConfigOut();
 			return "Success";

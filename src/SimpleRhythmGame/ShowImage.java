@@ -278,6 +278,8 @@ public class ShowImage extends JPanel implements KeyListener {
         			confirmElement(element);
         			element.setUnselected();
         			element.animateClick(true);
+        			selected = scaledMenu.resetSelectors(getElementFromName("Edit" + selectedElement + "Button").getSelectorIndex(), selected, getCurrentPopupIndex());
+        			keyboardInputLast = true;
         			selectedElement = null;
         		}
         		else if (keyPressedName.equals("Left")) {
@@ -548,7 +550,8 @@ public class ShowImage extends JPanel implements KeyListener {
         g2d.setStroke(new BasicStroke(thickness, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
         g2d.draw(polyline);
         
-    	TextBox titletextbox = new TextBox(
+    	TextBox[] titleTextbox = new TextBox[] {
+    			new TextBox(
         		// TextBox with Text
     			1f, // scale 
 				"", // function
@@ -557,30 +560,56 @@ public class ShowImage extends JPanel implements KeyListener {
 						"center", "center", // align
 						calculatedScreenWidth * 50 / 100, calculatedScreenHeight * 15 / 400, // text offset (x, y)
 						(int) (75 * scale), // text size
-						6, // text color (index of colors)
+						DefaultValues.Color_STROKE, // text color (index of colors)
 						"Archivo Narrow", // font
 						true // bold
 						), // text
 				new RoundedArea(0,0,0,0,0),  // x, y, xSize, ySize
-				1, // box color (index of colors)
+				DefaultValues.Color_TRANSPARENT, // box color (index of colors)
 				0, // opacity (0-255)
 				0, // shadowOffset
 				0, 0 // strokeWidth, strokeColor
-        		);
+        		),
+    			
+    			new TextBox(
+    	        		// TextBox with Text
+    	    			1f, // scale 
+    					"", // function
+    					"",  // name
+    					new Text(Integer.toString(Framerate.getFramerate()) + " FPS", // text
+    							"right", "center", // align
+    							calculatedScreenWidth * 98 / 100, calculatedScreenHeight * 10 / 400, // text offset (x, y)
+    							(int) (40 * scale), // text size
+    							DefaultValues.Color_ACCENT, // text color (index of colors)
+    							"Archivo Narrow", // font
+    							false // bold
+    							), // text
+    					new RoundedArea(0,0,0,0,0),  // x, y, xSize, ySize
+    					DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+    					0, // opacity (0-255)
+    					0, // shadowOffset
+    					0, 0 // strokeWidth, strokeColor
+    	        		),
+    	};
     	
-    	Font font = new Font(titletextbox.getFont(), titletextbox.getBold() ? Font.BOLD:Font.PLAIN , titletextbox.getTextSize());
-    	g2d.setFont(font);
+    	for (TextBox textbox : titleTextbox) {
+    		Font font = new Font(textbox.getFont(), textbox.getBold() ? Font.BOLD:Font.PLAIN , textbox.getTextSize());
+        	g2d.setFont(font);
+        	
+        	FontMetrics fontMetrics = g2d.getFontMetrics();
+        	
+            int[] extraAligns = getTextAligns(textbox, fontMetrics, textbox.getText());
+            
+            int extraAlignX = extraAligns[0];
+            int extraAlignY = extraAligns[1];
+            
+            g2d.setColor(config.getCurrentThemeColors()[textbox.getTextColor()]);
+            int finalX = textbox.getOffsetX() + extraAlignX;
+            int finalY = textbox.getOffsetY() + extraAlignY;
+            g2d.drawString(textbox.getText(), finalX, finalY);
+    	}
     	
-    	FontMetrics fontMetrics = g2d.getFontMetrics();
     	
-        int[] extraAligns = getTextAligns(titletextbox, fontMetrics, titletextbox.getText());
-        
-        int extraAlignX = extraAligns[0];
-        int extraAlignY = extraAligns[1];
-        
-        int finalX = titletextbox.getOffsetX() + extraAlignX;
-        int finalY = titletextbox.getOffsetY() + extraAlignY;
-        g2d.drawString(titletextbox.getText(), finalX, finalY);
         
         // Draw Masks
         

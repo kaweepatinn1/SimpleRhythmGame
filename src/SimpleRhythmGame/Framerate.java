@@ -10,7 +10,7 @@ public class Framerate extends Thread {
 	
 	private static boolean limitFramerate;
 	
-	private int currentFramerate;
+	private static int currentFramerate;
 	
 	private static long[] frameTimeStoreNanos;
 	private static long lastFrameTimeNanos;
@@ -132,15 +132,15 @@ public class Framerate extends Thread {
 		}
 	  }
 	
-	public void setUserFramerate(int setFramerate) {
+	public static void setUserFramerate(int setFramerate) {
 		framerate = setFramerate;
 	}
 	
-	public int getUserSetFramerate() {
+	public static int getUserSetFramerate() {
 		return framerate;
 	}
 	
-	public void setFramesToStore(int setFramesToStore) {
+	public static void setFramesToStore(int setFramesToStore) {
 		framesToStore = setFramesToStore;
 		frameTimeStoreMillis = new long[framesToStore]; 
 		Arrays.fill(frameTimeStoreMillis, -1);
@@ -149,16 +149,16 @@ public class Framerate extends Thread {
 		Arrays.fill(frameTimeStoreNanos, -1);
 	}
 	
-	public int getFramesToStore() {
+	public static int getFramesToStore() {
 		return framesToStore;
 	}
 	
-	public int getFramerate() {
+	public static int getFramerate() {
 		return currentFramerate;
 	}
 	
 
-	public void setNanoPrecision(boolean extraPrecision) {
+	public static void setNanoPrecision(boolean extraPrecision) {
 		nanoSecondPrecision = extraPrecision;
 		if (nanoSecondPrecision) {
 			lastFrameTimeNanos = System.nanoTime();
@@ -167,7 +167,7 @@ public class Framerate extends Thread {
 		}
 	}
 	
-	public boolean getNanoPrecision() {
+	public static boolean getNanoPrecision() {
 		return nanoSecondPrecision;
 	}
 
