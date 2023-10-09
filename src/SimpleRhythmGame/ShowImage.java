@@ -244,8 +244,8 @@ public class ShowImage extends JPanel implements KeyListener {
             	mouseDragStart = nameOfDraggedElement;
             }
             if (mouseDragStart == nameOfDraggedElement && !(mouseDragCurrent == nameOfDraggedElement)) {
-            	if ((clickedElement != null && selectedElement == null) || clickedElement.getName().equals(selectedElement)){
-            		if (clickedElement.getClickEffectIndex() != -1) {
+            	if ((clickedElement != null )){
+            		if (clickedElement.getClickEffectIndex() != -1 && (selectedElement == null || clickedElement.getName().equals(selectedElement))) {
                 		getElementFromName(nameOfDraggedElement).animateClick(false);
                 	}
             	}
