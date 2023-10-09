@@ -59,6 +59,7 @@ public class IntColor {
 	}
 	
 	public void setColor(String hex) {
+		// System.out.println(hex);
 		red = Integer.parseInt(hex.substring(1, 3),16);
 		green = Integer.parseInt(hex.substring(3, 5),16);
 		blue = Integer.parseInt(hex.substring(5, 7),16);
@@ -105,9 +106,9 @@ public class IntColor {
 	}
 	
 	public String toHex() {
-		String r = Integer.toHexString(red).toUpperCase() + (Integer.toHexString(red).toUpperCase().length() == 1 ? "0" : "");
-		String g = Integer.toHexString(green).toUpperCase() + (Integer.toHexString(green).toUpperCase().length() == 1 ? "0" : "");
-		String b = Integer.toHexString(blue).toUpperCase() + (Integer.toHexString(blue).toUpperCase().length() == 1 ? "0" : "");
+		String r = (Integer.toHexString(red).toUpperCase().length() == 1 ? "0" : "") + Integer.toHexString(red).toUpperCase();
+		String g = (Integer.toHexString(green).toUpperCase().length() == 1 ? "0" : "") + Integer.toHexString(green).toUpperCase();
+		String b = (Integer.toHexString(blue).toUpperCase().length() == 1 ? "0" : "") + Integer.toHexString(blue).toUpperCase();
 		return '#' + 
 				r +
 				g + 

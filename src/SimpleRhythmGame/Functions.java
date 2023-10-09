@@ -62,7 +62,9 @@ public class Functions {
 					addTheme();
 				} else if (methodName.equals("deleteTheme")) {
 					deleteTheme();
-				} 
+				} else if (methodName.equals("editKeybind")) {
+					editKeybind((String) parameters[0], (int) parameters[1], (int) parameters[2]);
+				}
 				
 				
 				else {
@@ -168,5 +170,11 @@ public class Functions {
 	
 	public static void deleteTheme() {
 		ShowImage.getConfig().removeTheme(ShowImage.getConfig().getCurrentThemeChoice());
+	}
+	
+	public static void editKeybind(String keybind, int index, int popupToOpen) {
+		ShowImage.setSelectedElement("EditControl" + keybind + index);
+		addPopup(popupToOpen);
+		
 	}
 }

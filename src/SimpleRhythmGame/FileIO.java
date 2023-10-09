@@ -51,33 +51,6 @@ public class FileIO {
 		// written to config after reading from json.
 		
 		// VALIDATE CONFIG
-		boolean controlsValid = true;
-		
-		if (config.getControls() != null) {
-			if (config.getControls() instanceof Controls[]) {
-				Controls[] controls = config.getControls();
-				Controls[] defaultControls = DefaultValues.getDefaultControls();
-				for (int i = 0 ; i < controls.length ; i++) {
-					
-					if (!(controls[i].getOriginalKeyCode() == defaultControls[i].getOriginalKeyCode()
-							&& controls[i].getFunction().equals(defaultControls[i].getFunction()))) {
-						
-						System.out.println("Validated control setting for " + defaultControls[i].getFunction() + " ");
-						controls[i] = defaultControls[i]; // validate the config
-					
-					}
-				}
-			} else {
-				controlsValid = false;
-			}
-		} else {
-			controlsValid = false;
-		}
-		
-		if (!controlsValid) {
-			config.setControls(DefaultValues.getDefaultControls());
-			System.out.println("RESET INVALID CONTROLS");
-		}
 		
 		boolean colorsValid = true;
 		

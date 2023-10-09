@@ -1,6 +1,7 @@
 package SimpleRhythmGame;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 
 public class Config {
 	private final static int colorsLength = 9;
@@ -92,6 +93,15 @@ public class Config {
 
 	public Controls[] getControls() {
 		return controls;
+	}
+	
+	public Controls getControlsByAction(String action) {
+		for (Controls control : controls) {
+			if (control.getFunction().equals(action)) {
+				return control;
+			}
+		}
+		return null;
 	}
 
 	public void setControls(Controls[] controls) {
@@ -504,6 +514,38 @@ public class Config {
 		else if (splitVariable[0].equals("%DisplayFramerate")) {
 			varToReturn = Boolean.toString(getDisplayFramerate());
 		}
+		
+		else if (splitVariable[0].equals("%Keybind")) {
+			Controls control = getControlsByAction(splitVariable[1]);
+			if (control != null) {
+				int keyNumber =
+						(control.getKeybindCode(Integer.parseInt(splitVariable[2])));
+				if (keyNumber == -1) {
+					varToReturn = "";
+				} else {
+					String keyName =  KeyEvent.getKeyText(keyNumber);
+
+					if (keyName.equals("Enter")) {
+						varToReturn = "Enter";
+					} else if (keyName.equals("Escape")) {
+						varToReturn = "Esc";
+					} else if (keyName.equals("Left")) {
+						varToReturn = "←";
+					} else if (keyName.equals("Right")) {
+						varToReturn = "→";
+					} else if (keyName.equals("Up")) {
+						varToReturn = "↑";
+					} else if (keyName.equals("Down")) {
+						varToReturn = "↓";
+					} else {
+						varToReturn = keyName;
+					}
+				}
+			} else {
+				varToReturn = "No Control";
+			}
+			
+		}
 		return varToReturn;
 	}
 	
@@ -524,6 +566,9 @@ public class Config {
 			
 		} else if (splitVariable[0].equals("%CurrentThemeColor")) {
 			if (((String) newValues).length() != 7){
+				return "HexInvalid";
+			}
+			if (!(((String) newValues).charAt(0) == '#')){
 				return "HexInvalid";
 			}
 			for (int i = 1 ; i < ((String) newValues).length() ; i++) {
@@ -553,7 +598,21 @@ public class Config {
 		} else if (splitVariable[0].equals("%DisplayFramerate")) {
 			setDisplayFramerate(!getDisplayFramerate());
 			return "Success";
+		} else if (splitVariable[0].equals("%Keybind")) {
+			Controls control = getControlsByAction(splitVariable[1]);
+			if (control != null) {
+				if (KeyEvent.getKeyText((int) newValues).equals("Backspace")) {
+					control.setKeybindCode(-1, Integer.parseInt(splitVariable[2]));
+				} else {
+					control.setKeybindCode((int) newValues, Integer.parseInt(splitVariable[2]));
+				}
+				return "Success";
+			} else {
+				System.out.println("No control called " + splitVariable[1]);
+				return "Fail";
+			}
 		}
+		
 		else {
 			return "VariableNotFound"; // failed to find the variable
 		}
