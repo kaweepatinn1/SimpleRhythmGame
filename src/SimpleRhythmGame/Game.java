@@ -21,6 +21,7 @@ public class Game {
 	private int notesHit;
 	private int notesMissed;
 	private int accuracy;
-	private int health;
 	// stored so doesn't have to be calculated every frame, and only every hit
+	private int health;
+	private boolean noFail;
 }
