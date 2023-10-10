@@ -608,6 +608,7 @@ public class Config {
 				} else {
 					control.setKeybindCode((int) newValues, Integer.parseInt(splitVariable[2]));
 				}
+				FileIO.currentConfigOut();
 				return "Success";
 			} else {
 				System.out.println("No control called " + splitVariable[1]);

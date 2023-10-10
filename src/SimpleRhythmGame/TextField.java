@@ -94,7 +94,7 @@ public class TextField {
     			// if the old name is not the same as the new one
     			String status = ShowImage.getConfig().setVariable(text.getText(), currentDisplay);
         		if (status.equals("Success")) {
-        			// Success!
+        			// Success!! Do nothing extra :)
         		} else if (status.equals("Duplicate")){
         			ShowImage.cancelElement(ShowImage.getSelectedElement());
         			ShowImage.addPopup(errorPopupIndexes[0]);
