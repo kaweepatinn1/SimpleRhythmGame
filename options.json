@@ -4,7 +4,7 @@
   "nanoSecondPrecision": true,
   "framesToStore": 20,
   "framerate": 60,
-  "limitFramerate": true,
+  "limitFramerate": false,
   "displayFramerate": false,
   "transitionTime": 500.0,
   "cursorEnabled": true,

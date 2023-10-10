@@ -291,7 +291,7 @@ public class ShowImage extends JPanel implements KeyListener {
                 	String keyPressedName = KeyEvent.getKeyText(rawKeyCode);
                 	// System.out.println(keyPressedName);
             		
-            		if (keyPressedName == "Enter") {
+            		if (keyPressedName.equals("Enter")) {
             			selected = scaledMenu.resetSelectors(getElementFromName("Edit" + selectedElement + "Button").getSelectorIndex(), selected, getCurrentPopupIndex());
             			confirmElement(element);
             			element.setUnselected();
@@ -407,7 +407,7 @@ public class ShowImage extends JPanel implements KeyListener {
 	                    	}
 	                	} else {
 	                		
-	                		if (keyPressed == "Enter") {
+	                		if (keyPressed.equals("Enter")) {
 	                			element.animateClick(true);
 	                			String functionToRun = element.getFunction();
 	                			boolean ranFunction = Functions.runFunction(functionToRun);
@@ -416,13 +416,13 @@ public class ShowImage extends JPanel implements KeyListener {
 	                          			"\nwhich is a \nRenderable: " + element.isRenderable() + "\nTextbox: " + element.isTextbox());
 	                			}
 	                		} else {
-	                			if (keyPressed == "Right") {
+	                			if (keyPressed.equals("Right")) {
 	        			        	selected = scaledMenu.resetSelectors(directionalOptions[0], selected, getCurrentPopupIndex());
-	        			            } else if (keyPressed == "Down") {
+	        			            } else if (keyPressed.equals("Down")) {
 	        			            	selected = scaledMenu.resetSelectors(directionalOptions[1], selected, getCurrentPopupIndex());
-	        			            } else if (keyPressed == "Left") {
+	        			            } else if (keyPressed.equals("Left")) {
 	        			            	selected = scaledMenu.resetSelectors(directionalOptions[2], selected, getCurrentPopupIndex());
-	        	                    } else if (keyPressed == "Up") {
+	        	                    } else if (keyPressed.equals("Up")) {
 	        	                    	selected = scaledMenu.resetSelectors(directionalOptions[3], selected, getCurrentPopupIndex());
 	                            }
 	                			for (int i = 0 ; i < selectionsList.length; i++) {
@@ -1789,7 +1789,8 @@ public class ShowImage extends JPanel implements KeyListener {
         	Functions.setMenu("Init User");
         }
         
-        panel = new ShowImage(); // runs showimage class (top of this class) to show text and renderables into a panel
+        panel = new ShowImage(); 
+        // runs showimage class (top of this class) to show text and renderables into a panel
         
         if (config.getCursorEnabled()) {
     		panel.setCursor(Cursor.getDefaultCursor());
