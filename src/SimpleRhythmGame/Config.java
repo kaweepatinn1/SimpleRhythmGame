@@ -590,7 +590,7 @@ public class Config {
 			setSFXVolume(Math.min(Integer.parseInt((String) newValues), 100));
 			return "Success";
 		} else if (splitVariable[0].equals("%MaxFramerate")) {
-			setFramerate(Math.max(Math.min(Integer.parseInt((String) newValues), 250), 30));
+			setFramerate(Math.max(Math.min(Integer.parseInt((String) newValues), 250), 10));
 			return "Success";
 		} else if (splitVariable[0].equals("%LimitFramerate")) {
 			setLimitFramerate(!getLimitFramerate());

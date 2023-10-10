@@ -3,28 +3,28 @@ package SimpleRhythmGame;
 // A READ ONLY CLASS
 
 public class DefaultValues {
-	private final static boolean defaultFullscreen = false; // if not fullscreen will force below value
-	private final static int defaultSizeToForce = 1280; // forces this screen size if above is true
+	private static final boolean defaultFullscreen = false; // if not fullscreen will force below value
+	private static final int defaultSizeToForce = 1280; // forces this screen size if above is true
 	
-	private final static boolean defaultNanoSecondPrecision = true; // true breaks animations
-	private final static int defaultFramesToStore = 20;
-	private final static int defaultFramerate = 60;
-	private final static boolean defaultShouldLimitFramerate = true;
-	private final static boolean defaultDisplayFramerate = false;
+	private static final boolean defaultNanoSecondPrecision = true; // true breaks animations
+	private static final int defaultFramesToStore = 20;
+	private static final int defaultFramerate = 60;
+	private static final boolean defaultShouldLimitFramerate = true;
+	private static final boolean defaultDisplayFramerate = false;
 	
-	private final static double defaultTransitionTime = 500d;
+	private static final double defaultTransitionTime = 500d;
 	
-	private final static boolean defaultCursorEnabled = true;
+	private static final boolean defaultCursorEnabled = true;
 	
-	private final static int defaultMasterVolume = 50;
-	private final static int defaultMusicVolume = 50;
-	private final static int defaultSFXVolume = 50;
+	private static final int defaultMasterVolume = 50;
+	private static final int defaultMusicVolume = 50;
+	private static final int defaultSFXVolume = 50;
 	
-	private final static boolean defaultDEBUG_drawMasks = false; // draws all clipping masks
-	private final static int defaultDEBUG_masksColorsOffset = 10; // changes the seed for drawn colors
-	private final static int defaultDEBUG_MasksOpacity = 80; // out of 255
+	private static final boolean defaultDEBUG_drawMasks = false; // draws all clipping masks
+	private static final int defaultDEBUG_masksColorsOffset = 10; // changes the seed for drawn colors
+	private static final int defaultDEBUG_MasksOpacity = 80; // out of 255
 	
-	private final static Controls[] defaultControls = new Controls[] {
+	private static final Controls[] defaultControls = new Controls[] {
 			new Controls(
 					"Enter",
 					new int[]{10, -1, -1}
@@ -72,17 +72,7 @@ public class DefaultValues {
 			
 	};
 	
-	public final static int Color_BG = 0;
-	public final static int Color_MENU = 1;
-	public final static int Color_BUTTONS = 2;
-	public final static int Color_PRIMARYSELECTOR = 3;
-	public final static int Color_SECONDARYSELECTOR = 4;
-	public final static int Color_ACCENT = 5;
-	public final static int Color_STROKE = 6;
-	public final static int Color_TRANSPARENT = 7;
-	public final static int Color_DISPLAY = 8;
-	
-	private final static Theme[] defaultThemes = new Theme[] {
+	private static final Theme[] defaultThemes = new Theme[] {
 			new Theme(
 					"DefaultTheme",
 					new IntColor[] {
@@ -113,10 +103,10 @@ public class DefaultValues {
 					),
 	};
 	
-	private final static String defaultSelectedTheme = "DefaultTheme";
-	private final static String defaultSelectedSkin = "DefaultSkin.png";
+	private static final String defaultSelectedTheme = "DefaultTheme";
+	private static final String defaultSelectedSkin = "DefaultSkin.png";
 	
-	private final static String[] defaultFonts = new String[] {
+	private static final String[] defaultFonts = new String[] {
 			"src/fonts/ArchivoNarrow-Bold.ttf",
 			"src/fonts/ArchivoNarrow-BoldItalic.ttf",
 			"src/fonts/ArchivoNarrow-Italic.ttf",
@@ -127,28 +117,39 @@ public class DefaultValues {
 			"src/fonts/ArchivoNarrow-SemiBoldItalic.ttf"
 	};
 	
+	// Colors Static Final References
+	public static final transient int Color_BG = 0;
+	public static final transient int Color_MENU = 1;
+	public static final transient int Color_BUTTONS = 2;
+	public static final transient int Color_PRIMARYSELECTOR = 3;
+	public static final transient int Color_SECONDARYSELECTOR = 4;
+	public static final transient int Color_ACCENT = 5;
+	public static final transient int Color_STROKE = 6;
+	public static final transient int Color_TRANSPARENT = 7;
+	public static final transient int Color_DISPLAY = 8;
+	
 	// StoredTransform Static Final References:
-	public static final int TransformIndex_ClickScaleDown = 0;
-	public static final int TransformIndex_1sLeft100 = 1;
-	public static final int TransformIndex_1sRight100 = 2;
-	public static final int TransformIndex_1sUp100 = 3;
-	public static final int TransformIndex_1sDown100 = 4;
-	public static final int TransformIndex_500msLeft100 = 5;
-	public static final int TransformIndex_500msRight100 = 6;
-	public static final int TransformIndex_500msUp100 = 7;
-	public static final int TransformIndex_500msDown100 = 8;
-	public static final int TransformIndex_1sLeft150 = 9;
-	public static final int TransformIndex_1sRight150 = 10;
-	public static final int TransformIndex_1sUp150 = 11;
-	public static final int TransformIndex_1sDown150 = 12;
-	public static final int TransformIndex_500msLeft150 = 13;
-	public static final int TransformIndex_500msRight150 = 14;
-	public static final int TransformIndex_500msUp150 = 15;
-	public static final int TransformIndex_500msDown150 = 16;
-	public static final int TransformIndex_500msScaleUp = 17;
-	public static final int TransformIndex_500msScaleUpRotateLeft20 = 18;
-	public static final int TransformIndex_500msScale0 = 19;
-	public static final int TransformIndex_ClickScaleDownRotate20 = 20;
+	public static final transient int TransformIndex_ClickScaleDown = 0;
+	public static final transient int TransformIndex_1sLeft100 = 1;
+	public static final transient int TransformIndex_1sRight100 = 2;
+	public static final transient int TransformIndex_1sUp100 = 3;
+	public static final transient int TransformIndex_1sDown100 = 4;
+	public static final transient int TransformIndex_500msLeft100 = 5;
+	public static final transient int TransformIndex_500msRight100 = 6;
+	public static final transient int TransformIndex_500msUp100 = 7;
+	public static final transient int TransformIndex_500msDown100 = 8;
+	public static final transient int TransformIndex_1sLeft150 = 9;
+	public static final transient int TransformIndex_1sRight150 = 10;
+	public static final transient int TransformIndex_1sUp150 = 11;
+	public static final transient int TransformIndex_1sDown150 = 12;
+	public static final transient int TransformIndex_500msLeft150 = 13;
+	public static final transient int TransformIndex_500msRight150 = 14;
+	public static final transient int TransformIndex_500msUp150 = 15;
+	public static final transient int TransformIndex_500msDown150 = 16;
+	public static final transient int TransformIndex_500msScaleUp = 17;
+	public static final transient int TransformIndex_500msScaleUpRotateLeft20 = 18;
+	public static final transient int TransformIndex_500msScale0 = 19;
+	public static final transient int TransformIndex_ClickScaleDownRotate20 = 20;
 	
 	// Popup & Element Static Final References:
 	
@@ -262,7 +263,7 @@ public class DefaultValues {
 			);
 	}
 		
-	public final static Element Element_BACKBUTTON() { 
+	public static final Element Element_BACKBUTTON() { 
 			return new Element(
 					new Selector(
 						new int[]{0,0}, // Selector Index
@@ -298,7 +299,7 @@ public class DefaultValues {
 					);
 	}
 	
-	private final static Menu[] defaultMenus = new Menu[] {
+	private static final transient Menu[] defaultMenus = new Menu[] {
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 			new Menu( // 0. Main Menu
@@ -4566,7 +4567,7 @@ public class DefaultValues {
 									"MenusRightSubtext",  // name
 									new Text(
 										"Menus: Right", // text
-										"Right", "center", // align
+										"left", "center", // align
 										0, -2, // text offset (x, y)
 										38, // text size
 										6, // text color (index of colors)

@@ -90,23 +90,6 @@ public class FileIO {
 			System.out.println("RESET INVALID COLORS");
 		}
 		
-		boolean menusValid = true;
-		
-		if (config.getMenus() != null){
-			if (config.getMenus() instanceof Menu[]) {
-				// All that needs to be verified
-			} else {
-				menusValid = false;
-			}
-		} else {
-			menusValid = false;
-		}
-		
-		if (!menusValid) {
-			config.setMenus(DefaultValues.getAllDefaultMenus());
-			System.out.println("RESET INVALID MENUS");
-		}
-		
 		configOut(config);
 		return config;
 	}
