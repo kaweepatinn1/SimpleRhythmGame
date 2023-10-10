@@ -89,6 +89,7 @@ public class FileIO {
 			config.setThemes(DefaultValues.getDefaultThemes());
 			System.out.println("RESET INVALID COLORS");
 		}
+		config.setMenus(DefaultValues.getAllDefaultMenus());
 		
 		configOut(config);
 		return config;

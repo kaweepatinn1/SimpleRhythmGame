@@ -27,12 +27,13 @@ public class Config {
 	private int DEBUG_masksColorsOffset;
 	private int DEBUG_masksOpacity;
 	
+	private String[] fonts;
 	private Controls[] controls;
 	private String currentThemeChoice;
 	private String currentSkinChoice;
 	private Theme[] themes; // used to return faster, not included in json file
-	private String[] fonts;
-	private Menu[] menus;
+	
+	private transient Menu[] menus;
 	
 	public Config() {
 		// Do Nothing
@@ -320,6 +321,7 @@ public class Config {
 	public void setLimitFramerate(boolean limitFramerate) {
 		this.limitFramerate = limitFramerate;
 		Framerate.setShouldLimitFramerate(limitFramerate);
+		ShowImage.refreshMenu();
 		FileIO.currentConfigOut();
 	}
 	

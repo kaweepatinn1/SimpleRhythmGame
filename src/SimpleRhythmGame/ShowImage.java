@@ -1784,7 +1784,7 @@ public class ShowImage extends JPanel implements KeyListener {
         setNewFrameSize(config.getFullscreen(), config.getSizeToForce()); // uses the above raw lists and variables to set the frame size.
         
         if (userHasUsername) {
-        	Functions.setMenu("Settings Controls Menu");
+        	Functions.setMenu("Settings General Menu");
         } else {
         	Functions.setMenu("Init User");
         }
