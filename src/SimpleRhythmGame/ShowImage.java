@@ -1819,6 +1819,9 @@ public class ShowImage extends JPanel implements KeyListener {
         	ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(font)));
         }
         
+        Sound.initSFX(); 
+        // loads the predeclared sounds into the sounds class and buffers them
+        
         /* 
         String []fontFamilies = ge.getAvailableFontFamilyNames();
         for (String var : fontFamilies) {

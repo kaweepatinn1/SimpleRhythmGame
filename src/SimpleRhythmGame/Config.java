@@ -656,6 +656,7 @@ public class Config {
 		this.masterVolume = masterVolume;
 		ShowImage.refreshMenu();
 		FileIO.currentConfigOut();
+		Sound.updateVolume();
 	}
 
 	public int getMusicVolume() {
@@ -666,6 +667,7 @@ public class Config {
 		this.musicVolume = musicVolume;
 		ShowImage.refreshMenu();
 		FileIO.currentConfigOut();
+		Sound.updateVolume();
 	}
 
 	public int getSFXVolume() {
@@ -675,5 +677,19 @@ public class Config {
 	public void setSFXVolume(int sFXVolume) {
 		SFXVolume = sFXVolume;
 		ShowImage.refreshMenu();
+		FileIO.currentConfigOut();
+		Sound.updateVolume();
+	}
+	
+	public float getFinalSFXVolume() {
+		float volMaster = getMasterVolume();
+		float volSFX = getSFXVolume();
+		return Math.max(Math.min(((volMaster * volSFX) / 10000f),1),0);
+	}
+	
+	public float getFinalMusicVolume() { // returns a value from 0-1.
+		float volMaster = getMasterVolume();
+		float volMusic = getMusicVolume();
+		return Math.max(Math.min(((volMaster * volMusic) / 10000f),1),0);
 	}
 }

@@ -47,7 +47,7 @@ public class Level {
 		return author;
 	}
 
-	public int getBpm() {
+	public int getBPM() {
 		return bpm;
 	}
 

@@ -153,6 +153,15 @@ public class DefaultValues {
 	
 	// Popup & Element Static Final References:
 	
+	public static final Popup Popup_GAMEPAUSE() {
+		return new Popup(
+				"PausedPopup", // Popup Name
+				"Game Paused", // Popup Title
+				new Element[] {
+				}
+		);
+	}
+	
 	public static final Popup Popup_INPUTEMPTY() { 
 			return new Popup( // Empty Input Error
 					"EmptyInputTheme", // Popup Name

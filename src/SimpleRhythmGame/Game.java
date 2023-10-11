@@ -2,11 +2,16 @@ package SimpleRhythmGame;
 
 public class Game {
 	private Level currentLevel;
-	private Note[] noteQueue; 
+	private AudioPlayer player;
+	
 	private Menu rawGameMenu;
+	
+	private Note[] rawNotes;
 	// the unrendered notes queue. First in first out.
-	private Element[] currentNotes; 
-	// notes that should be currently rendered. First in first out.
+	private Note[] currentNotes;
+	private Note[] futureNotes;
+	private int[] currentNotesLimits; 
+	// defines
 	private double millisPassed; 
 // 	time in millis since the song has started. set when
 //	paused to recalculate millisStarted once resumed.
@@ -28,12 +33,13 @@ public class Game {
 	
 	public Game(Level level, boolean noFail) {
 		currentLevel = level;
-		noteQueue = currentLevel.getSortedNotes();
-		currentNotes = null;
-		loadCurrentNotes(); // refreshes noteQueue into currentNotes.
+		rawNotes = currentLevel.getSortedNotes();
+		currentNotes = new Note[] {};
+		
+		currentNotesLimits = new int[] {0,0};
+		refreshCurrentNotes(); // refreshes noteQueue into currentNotes.
 		rawGameMenu = generateGameMenu(); // uses currentNotes to initially generate the game menu
-		millisPassed = -1;
-		millisStarted = Framerate.getCurrentTime();
+		millisPassed = 0;
 		score = 0;
 		combo = 0;
 		notesHit = 0;
@@ -41,6 +47,123 @@ public class Game {
 		updateAccuracy();
 		health = 100;
 		this.noFail = noFail;
+		
+		player = new AudioPlayer();
+        player.loadAudio("/levels/" + level.getName() + "/" + level.getName() + ".wav");
+        player.setVolume(ShowImage.getConfig().getFinalMusicVolume());
+        start();
+	}
+
+	private void start() {
+		millisStarted = Framerate.getCurrentTime();
+		player.play();
+	}
+	
+	public void updateCurrentNotes() {
+		if (currentNotesLimits != null) {
+			currentNotes = new Note[] {};
+		} else {
+			System.arraycopy(rawNotes,currentNotesLimits[0],currentNotes,0,currentNotesLimits[1] - currentNotesLimits[0]);
+		}
+	}
+	
+	public void updateFutureNotes() {
+		if (currentNotesLimits != null) {
+			futureNotes = rawNotes;
+		} else {
+			System.arraycopy(rawNotes,currentNotesLimits[1],currentNotes,0,rawNotes.length - currentNotesLimits[1]);
+		}
+	}
+
+	public void refreshCurrentNotes() {
+		double currentTime = Framerate.getCurrentTime() - millisStarted;
+		boolean updateCurrent = false;
+		boolean updateFuture = false;
+		for (Note note : getCurrentNotes()) {
+			float speed = note.getSpeed();
+			int bar = note.getBar();
+			int beat = note.getBeat();
+			int subBeatTop = note.getSubBeat()[0];
+			int subBeatBottom = note.getSubBeat()[1];
+			
+			double beatTime = 60d / (double) currentLevel.getBPM();
+			double subBeatTime = ((double) subBeatTop / (double) subBeatBottom);
+			double barTime = (double) currentLevel.getTimeSignature()[0] * beatTime;
+			
+			double noteIntendedMillisFromStart = (barTime * bar) * (beatTime * beat) + (subBeatTime * subBeatTop);
+			double millisOff = noteIntendedMillisFromStart - currentTime;
+			int noteLocationX = 400 + (int) (speed * (millisOff));
+			
+			if (noteLocationX < -180 - (5000 * speed)) {
+				// three second leeway, so that this function only has to be run every three seconds.
+				currentNotesLimits[0]++;
+				updateCurrent = true;
+			} else {
+				break; // this is why it's important for the queue to be sorted.
+				// breaks as soon as we know this element should be displayed.
+			}
+		}
+		
+		for (Note note : getFutureNotes()) {
+			float speed = note.getSpeed();
+			int bar = note.getBar();
+			int beat = note.getBeat();
+			int subBeatTop = note.getSubBeat()[0];
+			int subBeatBottom = note.getSubBeat()[1];
+			
+			double beatTime = 60d / (double) currentLevel.getBPM();
+			double subBeatTime = ((double) subBeatTop / (double) subBeatBottom);
+			double barTime = (double) currentLevel.getTimeSignature()[0] * beatTime;
+			
+			double noteIntendedMillisFromStart = (barTime * bar) * (beatTime * beat) + (subBeatTime * subBeatTop);
+			double millisOff = noteIntendedMillisFromStart - currentTime;
+			int noteLocationX = 400 + (int) (speed * (millisOff));
+			
+			if (noteLocationX < 2100 + (5000 * speed)) {
+				// three second leeway, so that this function only has to be run every three seconds.
+				currentNotesLimits[1]++;
+				updateFuture = true;
+			} else {
+				break; // this is why it's important for the queue to be sorted.
+				// breaks as soon as we know this element should be displayed.
+			}
+		}
+		
+		if (updateCurrent) {
+			updateCurrentNotes();
+		}
+		if (updateFuture) {
+			updateFutureNotes();
+		}
+	}
+	
+	private Note[] getCurrentNotes() {
+		return currentNotes;
+	}
+	
+	private Note[] getFutureNotes() {
+		return futureNotes;
+	}
+
+	private Menu generateGameMenu() {
+		//Element[] gameElements;
+		Menu menuToReturn = new Menu(
+				"Gameplay", // Menu name
+				currentLevel.getName(), // Menu Display Name
+				"%Pause", // Previous Menu
+				DefaultValues.Color_BG, // BGColor
+				new int[][]{{-1,-1}}, // Secondary Selections
+				new RoundedArea[]{ // Masks
+					new RoundedArea(0, 0, 1920, 1080, 0) // 0. Full Screen
+					// Insert here
+				},
+				new StoredTransform[] {},
+				new Element[] {
+						
+				}, // Elements
+				new Popup[] {DefaultValues.Popup_GAMEPAUSE()} // Popups
+				);
+		return menuToReturn;
 	}
 
 	public void hit() {
@@ -49,14 +172,6 @@ public class Game {
 	
 	public void miss() {
 		
-	}
-
-	public Element[] getCurrentNotes() {
-		return currentNotes;
-	}
-
-	public void setCurrentNotes(Element[] currentNotes) {
-		this.currentNotes = currentNotes;
 	}
 
 	public double getMillisPassed() {
@@ -104,7 +219,7 @@ public class Game {
 	}
 
 	public Note[] getNoteQueue() {
-		return noteQueue;
+		return rawNotes;
 	}
 
 	public Menu getRawGameMenu() {
