@@ -6,18 +6,25 @@ public class Level {
 	private String author;
 	
 	private int bpm;
+	private float pps; // pixels per second the notes should move at (relative to 1920)
 	private int totalTimeSeconds;
 	private int[] timeSignature;
 	private Note notes[];
 	
-	public Level(String name, String songPath, String author, int bpm, int totalTimeSeconds, int[] timeSignature, Note[] notes) {
+	public Level(String name, String songPath, String author, int bpm, int pps, int totalTimeSeconds, int[] timeSignature, Note[] notes) {
 		super();
 		this.name = name;
 		this.songPath = songPath;
 		this.author = author;
 		this.bpm = bpm;
+		this.pps = pps;
 		this.timeSignature = timeSignature;
 		this.notes = notes;
+	}
+	
+	public Note[] getSortedNotes() {
+		//TODO
+		return null;
 	}
 	
 	public int getTotalNotes() {
@@ -83,9 +90,12 @@ public class Level {
 	public void setNotes(Note[] notes) {
 		this.notes = notes;
 	}
-	
-	public Note[] getSortedNotes() {
-		//TODO
-		return null;
+
+	public float getPps() {
+		return pps;
+	}
+
+	public void setPps(float pps) {
+		this.pps = pps;
 	}
 }

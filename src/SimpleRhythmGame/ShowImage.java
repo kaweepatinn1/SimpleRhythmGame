@@ -1771,7 +1771,7 @@ public class ShowImage extends JPanel implements KeyListener {
         // TODO: ADD BELOW TO A COMMENT ONCE DEV IS FINISHED:
         // System.out.println(currentMenuIndex);
         
-        boolean useConfig = true; // use during development. TODO: set to true on completion
+        boolean useConfig = false; // use during development. TODO: set to true on completion
         
         File configFile = new File("./options.json");
         if (configFile.exists() && !configFile.isDirectory() && useConfig) { 

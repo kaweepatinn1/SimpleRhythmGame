@@ -1,13 +1,14 @@
 package SimpleRhythmGame;
 
-public class StoredLevel {
-	private Level level;
+public class LevelStats {
+	private String levelName;
 	private int highscore;
 	private int longestCombo;
 	private boolean completed;
 	private boolean flawless;
 	
-	public Level level() {
-		return level;
+	public Level getLevel() {
+		//TODO
+		return null;
 	}
 }

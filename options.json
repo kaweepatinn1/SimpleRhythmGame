@@ -5,7 +5,7 @@
   "framesToStore": 20,
   "framerate": 60,
   "limitFramerate": true,
-  "displayFramerate": true,
+  "displayFramerate": false,
   "transitionTime": 500.0,
   "cursorEnabled": true,
   "masterVolume": 50,
@@ -45,7 +45,7 @@
       "hotkeyFunction": "Up",
       "keyCodes": [
         38,
-        87,
+        -1,
         -1
       ]
     },
@@ -53,7 +53,7 @@
       "hotkeyFunction": "Down",
       "keyCodes": [
         40,
-        83,
+        -1,
         -1
       ]
     },
@@ -61,7 +61,7 @@
       "hotkeyFunction": "Left",
       "keyCodes": [
         37,
-        65,
+        -1,
         -1
       ]
     },
@@ -69,7 +69,7 @@
       "hotkeyFunction": "Right",
       "keyCodes": [
         39,
-        68,
+        -1,
         -1
       ]
     },
