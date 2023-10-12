@@ -60,6 +60,9 @@ public class ShowImage extends JPanel implements KeyListener {
     private static int calculatedScreenHeight;
     private static int calculatedScreenWidth;
     private static double scale;
+    
+    private static Game game;
+    private static String state;
 
     private static MouseListener mouseListener = new MouseAdapter() {
         @Override
@@ -1753,6 +1756,14 @@ public class ShowImage extends JPanel implements KeyListener {
 	    }
 	}
 	
+	public static String getState() {
+		return state;
+	}
+	
+	public static void setState(String newState) {
+		state = newState;
+	}
+	
 	public static void main(String args[]) throws Exception {
     	
     	Framerate.checkCurrentTime();
@@ -1834,4 +1845,47 @@ public class ShowImage extends JPanel implements KeyListener {
         Framerate thread = new Framerate();
         thread.start();
     }
+	
+	public static void startGame(Level level) {
+		Level tempLevel = new Level(
+				"testlevel", // name
+				"nano", // author
+				60, //bpm
+				1f, // pps
+				10, // total time
+				new int[] {4,4}, // time signature
+				new Note[] {
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								1, // bar
+								1, // beat
+								new int[] {0,0}, // subbeat
+								1f // speed
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								1, // bar
+								2, // beat
+								new int[] {0,0}, // subbeat
+								1f // speed
+								),
+				} // notes
+				);
+		game = new Game(tempLevel, config.getNoFail());
+		//Level level = FileIO.getLevel(levelName);
+		game.run();
+	}
+	
+	public static void pause() {
+		setState("Paused");
+		//game.pause();
+	}
+	
+	public static void resume() {
+		game.refreshCurrentNotes();
+		setState("Playing");
+		//game.resume();
+	}
 }

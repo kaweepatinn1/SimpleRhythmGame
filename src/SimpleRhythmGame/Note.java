@@ -9,7 +9,7 @@ public class Note {
 	// value 0 is the numerator, and value 1 is the denominator.
 	// says where to place each note if it does not fall on a full beat. 
 	// 1/2, 1/3, and 2/3 should be most common
-	private float speed; // pixels per millisecond to move across the screen at.
+	private float speed; // multi for level pps.
 	
 	public transient static final int Note_HIHAT = 0;
 	public transient static final int Note_SNAREDRUM = 1;

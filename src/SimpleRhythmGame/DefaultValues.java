@@ -20,6 +20,8 @@ public class DefaultValues {
 	private static final int defaultMusicVolume = 50;
 	private static final int defaultSFXVolume = 50;
 	
+	private static final boolean defaultNoFail = false;
+	
 	private static final boolean defaultDEBUG_drawMasks = false; // draws all clipping masks
 	private static final int defaultDEBUG_masksColorsOffset = 10; // changes the seed for drawn colors
 	private static final int defaultDEBUG_MasksOpacity = 80; // out of 255
@@ -5929,6 +5931,7 @@ public class DefaultValues {
     			getDefaultMasterVolume(),
     			getDefaultMusicVolume(),
     			getDefaultSFXVolume(),
+    			getDefaultNoFail(),
     			getDefaultDEBUG_drawMasks(),
     			getDefaultDEBUG_masksColorsOffset(),
     			getDefaultDEBUG_masksOpacity()
@@ -6010,6 +6013,10 @@ public class DefaultValues {
 	
 	public static int getDefaultSFXVolume() {
 		return defaultSFXVolume;
+	}
+	
+	public static boolean getDefaultNoFail() {
+		return defaultNoFail;
 	}
 	
 	public static boolean getDefaultDEBUG_drawMasks() {

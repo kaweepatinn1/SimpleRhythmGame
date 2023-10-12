@@ -1,6 +1,6 @@
 package SimpleRhythmGame;
 
-public class Game {
+public class Game extends Thread {
 	private Level currentLevel;
 	private AudioPlayer player;
 	
@@ -30,6 +30,7 @@ public class Game {
 	// stored so doesn't have to be calculated every frame, and only every hit
 	private int health;
 	private boolean noFail;
+	private boolean running;
 	
 	public Game(Level level, boolean noFail) {
 		currentLevel = level;
@@ -51,10 +52,10 @@ public class Game {
 		player = new AudioPlayer();
         player.loadAudio("/levels/" + level.getName() + "/" + level.getName() + ".wav");
         player.setVolume(ShowImage.getConfig().getFinalMusicVolume());
-        start();
+        init();
 	}
 
-	private void start() {
+	public void init() {
 		millisStarted = Framerate.getCurrentTime();
 		player.play();
 	}
@@ -117,9 +118,9 @@ public class Game {
 			
 			double noteIntendedMillisFromStart = (barTime * bar) * (beatTime * beat) + (subBeatTime * subBeatTop);
 			double millisOff = noteIntendedMillisFromStart - currentTime;
-			int noteLocationX = 400 + (int) (speed * (millisOff));
+			int noteLocationX = 400 + (int) (currentLevel.getPPS() * speed * (millisOff));
 			
-			if (noteLocationX < 2100 + (5000 * speed)) {
+			if (noteLocationX < 2100 + (5000 * currentLevel.getPPS() * speed)) {
 				// three second leeway, so that this function only has to be run every three seconds.
 				currentNotesLimits[1]++;
 				updateFuture = true;
@@ -134,6 +135,20 @@ public class Game {
 		}
 		if (updateFuture) {
 			updateFutureNotes();
+		}
+	}
+	
+	public void run() {
+		while(running) {
+			if (ShowImage.getState() != "Paused") {
+				refreshCurrentNotes();
+			}
+			try {
+				Thread.sleep(4000); // 4 second refresh, so one full second leeway to refresh.
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	

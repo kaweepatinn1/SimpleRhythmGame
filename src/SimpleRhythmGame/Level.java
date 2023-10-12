@@ -2,22 +2,21 @@ package SimpleRhythmGame;
 
 public class Level {
 	private String name;
-	private String songPath;
 	private String author;
 	
 	private int bpm;
-	private float pps; // pixels per second the notes should move at (relative to 1920)
+	private float pps; // pixels per millisecond the notes should move at (relative to 1920)
 	private int totalTimeSeconds;
 	private int[] timeSignature;
 	private Note notes[];
 	
-	public Level(String name, String songPath, String author, int bpm, int pps, int totalTimeSeconds, int[] timeSignature, Note[] notes) {
+	public Level(String name, String author, int bpm, float pps, int totalTimeSeconds, int[] timeSignature, Note[] notes) {
 		super();
 		this.name = name;
-		this.songPath = songPath;
 		this.author = author;
 		this.bpm = bpm;
 		this.pps = pps;
+		this.totalTimeSeconds = totalTimeSeconds;
 		this.timeSignature = timeSignature;
 		this.notes = notes;
 	}
@@ -37,10 +36,6 @@ public class Level {
 
 	public String getName() {
 		return name;
-	}
-
-	public String getSongPath() {
-		return songPath;
 	}
 
 	public String getAuthor() {
@@ -67,10 +62,6 @@ public class Level {
 		this.name = name;
 	}
 
-	public void setSongPath(String songPath) {
-		this.songPath = songPath;
-	}
-
 	public void setAuthor(String author) {
 		this.author = author;
 	}
@@ -91,11 +82,11 @@ public class Level {
 		this.notes = notes;
 	}
 
-	public float getPps() {
+	public float getPPS() {
 		return pps;
 	}
 
-	public void setPps(float pps) {
+	public void setPPS(float pps) {
 		this.pps = pps;
 	}
 }

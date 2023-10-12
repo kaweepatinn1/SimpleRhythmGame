@@ -23,6 +23,8 @@ public class Config {
 	private int musicVolume;
 	private int SFXVolume;
 	
+	private boolean noFail;
+	
 	private boolean DEBUG_drawMasks;
 	private int DEBUG_masksColorsOffset;
 	private int DEBUG_masksOpacity;
@@ -44,7 +46,7 @@ public class Config {
 			String[] fonts, Menu[] menus, boolean nanoSecondPrecision, int framesToStore,
 			int framerate, boolean shouldLimitFramerate, boolean displayFramerate,
 			boolean cursorEnabled, double transitionTime,
-			int masterVolume, int musicVolume, int SFXVolume,
+			int masterVolume, int musicVolume, int SFXVolume, boolean noFail,
 			boolean DEBUG_drawMasks, int DEBUG_masksColorsOffset, int DEBUG_masksOpacity) {
 		this.fullscreen = fullscreen;
 		this.sizeToForce = sizeToForce;
@@ -65,6 +67,7 @@ public class Config {
 		this.masterVolume = masterVolume;
 		this.musicVolume = musicVolume;
 		this.SFXVolume = SFXVolume;
+		this.noFail = noFail;
 		this.DEBUG_drawMasks = DEBUG_drawMasks;
 		this.DEBUG_masksColorsOffset = DEBUG_masksColorsOffset;
 		this.DEBUG_masksOpacity = DEBUG_masksOpacity;
@@ -691,5 +694,15 @@ public class Config {
 		float volMaster = getMasterVolume();
 		float volMusic = getMusicVolume();
 		return Math.max(Math.min(((volMaster * volMusic) / 10000f),1),0);
+	}
+	
+	public boolean getNoFail() {
+		return noFail;
+	}
+	
+	public void setNoFail(boolean noFail) {
+		this.noFail = noFail;
+		ShowImage.refreshMenu();
+		FileIO.currentConfigOut();
 	}
 }
