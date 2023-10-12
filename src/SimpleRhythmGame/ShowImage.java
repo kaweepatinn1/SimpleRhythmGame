@@ -1875,6 +1875,7 @@ public class ShowImage extends JPanel implements KeyListener {
 				);
 		game = new Game(tempLevel, config.getNoFail());
 		//Level level = FileIO.getLevel(levelName);
+		// TODO update the raw menu and scale it
 		game.run();
 	}
 	
