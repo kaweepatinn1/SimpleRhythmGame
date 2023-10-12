@@ -87,7 +87,6 @@ public class Functions {
 		//Level level = FileIO.getLevel(levelName);
 		Level level = null;
 		ShowImage.startGame(level);
-		
 	}
 
 	private static void addPopup(int popup) {

@@ -101,6 +101,12 @@ public class Renderable {
     	}
     }
     
+    public static BufferedImage resize(BufferedImage originalImage, int newX, int newY) {
+    	BufferedImage scaledImage = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
+                newX, newY, Scalr.OP_ANTIALIAS);
+    	return scaledImage;
+    }
+    
     public void setFunction(String function) {
     	this.function = function;
     }

@@ -1,19 +1,26 @@
 package SimpleRhythmGame;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class Level {
 	private String name;
 	private String author;
 	
+	private double songOffset; // ms offset for the entire song
+
 	private int bpm;
 	private float pps; // pixels per millisecond the notes should move at (relative to 1920)
 	private int totalTimeSeconds;
 	private int[] timeSignature;
 	private Note notes[];
 	
-	public Level(String name, String author, int bpm, float pps, int totalTimeSeconds, int[] timeSignature, Note[] notes) {
+	public Level(String name, String author, double songOffset, int bpm, float pps, 
+			int totalTimeSeconds, int[] timeSignature, Note[] notes) {
 		super();
 		this.name = name;
 		this.author = author;
+		this.songOffset = songOffset;
 		this.bpm = bpm;
 		this.pps = pps;
 		this.totalTimeSeconds = totalTimeSeconds;
@@ -22,8 +29,10 @@ public class Level {
 	}
 	
 	public Note[] getSortedNotes() {
-		//TODO
-		return null;
+		Note[] sortedNotes = new Note[notes.length];
+		System.arraycopy(notes, 0, sortedNotes, 0, notes.length);
+		Arrays.sort(sortedNotes, Comparator.comparing(Note::getComparableTime));
+		return sortedNotes;
 	}
 	
 	public int getTotalNotes() {
@@ -88,5 +97,13 @@ public class Level {
 
 	public void setPPS(float pps) {
 		this.pps = pps;
+	}
+
+	public double getSongOffset() {
+		return songOffset;
+	}
+
+	public void setSongOffset(double offset) {
+		this.songOffset = offset;
 	}
 }

@@ -155,6 +155,31 @@ public class DefaultValues {
 	
 	// Popup & Element Static Final References:
 	
+	public static final StoredTransform[] StoredTransforms_DEFAULT() {
+		return new StoredTransform[] {
+				StoredTransform.Transform_ClickScaleDown,
+				StoredTransform.Transform_1sLeft100,
+				StoredTransform.Transform_1sRight100,
+				StoredTransform.Transform_1sUp100,
+				StoredTransform.Transform_1sDown100,
+				StoredTransform.Transform_500msLeft100,
+				StoredTransform.Transform_500msRight100,
+				StoredTransform.Transform_500msUp100,
+				StoredTransform.Transform_500msDown100,
+				StoredTransform.Transform_1sLeft150,
+				StoredTransform.Transform_1sRight150,
+				StoredTransform.Transform_1sUp150,
+				StoredTransform.Transform_1sDown150,
+				StoredTransform.Transform_500msLeft150,
+				StoredTransform.Transform_500msRight150,
+				StoredTransform.Transform_500msUp150,
+				StoredTransform.Transform_500msDown150,
+				StoredTransform.Transform_500msScaleUp,
+				StoredTransform.Transform_500msScaleUpRotateLeft20,
+				StoredTransform.Transform_500msScale0,
+				StoredTransform.Transform_ClickScaleDownRotate20};
+	}
+	
 	public static final Popup Popup_GAMEPAUSE() {
 		return new Popup(
 				"PausedPopup", // Popup Name
@@ -378,7 +403,7 @@ public class DefaultValues {
 							new TextBox(
 								// Text and Renderable
 								1.5f, // scale
-								"setMenu String Play_Menu", // function
+								"playLevel String a", // function
 								"PlaysButton",  // name
 								new Text(
 									"Play", // text

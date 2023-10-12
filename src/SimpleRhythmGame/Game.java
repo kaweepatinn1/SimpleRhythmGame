@@ -1,5 +1,7 @@
 package SimpleRhythmGame;
 
+import java.awt.image.BufferedImage;
+
 public class Game extends Thread {
 	private Level currentLevel;
 	private AudioPlayer player;
@@ -30,15 +32,18 @@ public class Game extends Thread {
 	// stored so doesn't have to be calculated every frame, and only every hit
 	private int health;
 	private boolean noFail;
-	private boolean running;
+	private boolean unpaused;
+	
+	private static transient BufferedImage noteImages[];
+	
+	public static final int hitLocation = 400;
 	
 	public Game(Level level, boolean noFail) {
 		currentLevel = level;
 		rawNotes = currentLevel.getSortedNotes();
 		currentNotes = new Note[] {};
-		
+		futureNotes = rawNotes;
 		currentNotesLimits = new int[] {0,0};
-		refreshCurrentNotes(); // refreshes noteQueue into currentNotes.
 		rawGameMenu = generateGameMenu(); // uses currentNotes to initially generate the game menu
 		millisPassed = 0;
 		score = 0;
@@ -52,12 +57,28 @@ public class Game extends Thread {
 		player = new AudioPlayer();
         player.loadAudio("/levels/" + level.getName() + "/" + level.getName() + ".wav");
         player.setVolume(ShowImage.getConfig().getFinalMusicVolume());
-        init();
+        
+        noteImages = new BufferedImage[5];
+        for (int i = 0 ; i < 5 ; i++) {
+        	noteImages[i] = Renderable.resize(ShowImage.getNoteImage(i), (int) (ShowImage.getScale() * 100), (int) (ShowImage.getScale() * 100));
+        }
+	}
+	
+	public static BufferedImage getNoteImage(int index) {
+		return noteImages[index];
 	}
 
 	public void init() {
-		millisStarted = Framerate.getCurrentTime();
+		millisStarted = Framerate.getCurrentTime() + 2500;
+		refreshCurrentNotes();
+		try {
+			Thread.sleep(2500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		player.play();
+		unpaused = true;
 	}
 	
 	public void updateCurrentNotes() {
@@ -77,25 +98,16 @@ public class Game extends Thread {
 	}
 
 	public void refreshCurrentNotes() {
-		double currentTime = Framerate.getCurrentTime() - millisStarted;
+		double currentTime = unpaused ? Framerate.getCurrentTime() - millisStarted : millisPassed;
 		boolean updateCurrent = false;
 		boolean updateFuture = false;
 		for (Note note : getCurrentNotes()) {
-			float speed = note.getSpeed();
-			int bar = note.getBar();
-			int beat = note.getBeat();
-			int subBeatTop = note.getSubBeat()[0];
-			int subBeatBottom = note.getSubBeat()[1];
 			
-			double beatTime = 60d / (double) currentLevel.getBPM();
-			double subBeatTime = ((double) subBeatTop / (double) subBeatBottom);
-			double barTime = (double) currentLevel.getTimeSignature()[0] * beatTime;
+			int noteLocationX = hitLocation + 
+					(int) (currentLevel.getPPS() * note.getSpeed() * 
+							(currentTime - note.getCalculatedTimeFromStart(currentLevel)));
 			
-			double noteIntendedMillisFromStart = (barTime * bar) * (beatTime * beat) + (subBeatTime * subBeatTop);
-			double millisOff = noteIntendedMillisFromStart - currentTime;
-			int noteLocationX = 400 + (int) (speed * (millisOff));
-			
-			if (noteLocationX < -180 - (5000 * speed)) {
+			if (noteLocationX < -180 - (5000 * currentLevel.getPPS() * note.getSpeed())) {
 				// three second leeway, so that this function only has to be run every three seconds.
 				currentNotesLimits[0]++;
 				updateCurrent = true;
@@ -106,21 +118,13 @@ public class Game extends Thread {
 		}
 		
 		for (Note note : getFutureNotes()) {
-			float speed = note.getSpeed();
-			int bar = note.getBar();
-			int beat = note.getBeat();
-			int subBeatTop = note.getSubBeat()[0];
-			int subBeatBottom = note.getSubBeat()[1];
+//			System.out.println(currentTime);
+//			System.out.println(note.getCalculatedTimeFromStart(currentLevel));
+			int noteLocationX = hitLocation + 
+					(int) (currentLevel.getPPS() * note.getSpeed() * 
+							(currentTime - note.getCalculatedTimeFromStart(currentLevel)));
 			
-			double beatTime = 60d / (double) currentLevel.getBPM();
-			double subBeatTime = ((double) subBeatTop / (double) subBeatBottom);
-			double barTime = (double) currentLevel.getTimeSignature()[0] * beatTime;
-			
-			double noteIntendedMillisFromStart = (barTime * bar) * (beatTime * beat) + (subBeatTime * subBeatTop);
-			double millisOff = noteIntendedMillisFromStart - currentTime;
-			int noteLocationX = 400 + (int) (currentLevel.getPPS() * speed * (millisOff));
-			
-			if (noteLocationX < 2100 + (5000 * currentLevel.getPPS() * speed)) {
+			if (noteLocationX < 2100 + (5000 * currentLevel.getPPS() * note.getSpeed())) {
 				// three second leeway, so that this function only has to be run every three seconds.
 				currentNotesLimits[1]++;
 				updateFuture = true;
@@ -138,9 +142,31 @@ public class Game extends Thread {
 		}
 	}
 	
+	public void pauseGame() {
+		player.pause();
+		millisPassed = Framerate.getCurrentTime() - millisStarted;
+		unpaused = false;
+	}
+	
+	public void resumeGame() {
+		player.resume();
+		millisStarted = Framerate.getCurrentTime() - millisPassed;
+		millisPassed = 0;
+		unpaused = true;
+		refreshCurrentNotes();
+	}
+	
 	public void run() {
-		while(running) {
-			if (ShowImage.getState() != "Paused") {
+		try {
+			Thread.sleep((int) ShowImage.getConfig().getTransitionTime() * 2);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		init();
+		refreshCurrentNotes();
+		while(unpaused) {
+			if (!ShowImage.getState().equals("Paused")) {
 				refreshCurrentNotes();
 			}
 			try {
@@ -152,7 +178,7 @@ public class Game extends Thread {
 		}
 	}
 	
-	private Note[] getCurrentNotes() {
+	public Note[] getCurrentNotes() {
 		return currentNotes;
 	}
 	
@@ -160,7 +186,7 @@ public class Game extends Thread {
 		return futureNotes;
 	}
 
-	private Menu generateGameMenu() {
+	public Menu generateGameMenu() {
 		//Element[] gameElements;
 		Menu menuToReturn = new Menu(
 				"Gameplay", // Menu name
@@ -169,12 +195,62 @@ public class Game extends Thread {
 				DefaultValues.Color_BG, // BGColor
 				new int[][]{{-1,-1}}, // Secondary Selections
 				new RoundedArea[]{ // Masks
-					new RoundedArea(0, 0, 1920, 1080, 0) // 0. Full Screen
+					new RoundedArea(0, 0, 1920, 1080, 0), // 0. Full Screen
+					new RoundedArea(88, 163, 1746, 796, 0) // 1. Notes
 					// Insert here
 				},
-				new StoredTransform[] {},
+				DefaultValues.StoredTransforms_DEFAULT(),
 				new Element[] {
-						
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{-1,-1},{-1,-1},{-1,-1},{-1,-1}} // E, S, W, N to select next
+									),
+								-1, // Mask Index
+								false, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								DefaultValues.TransformIndex_500msScale0, // entry animation
+								new TextBox(
+									// No Text, No Renderable
+									1, // scale
+									null, // function
+									"Green Background",  // name
+									new RoundedArea(
+										960, 560, 1750, 800,  // x, y, xSize, ySize, round%
+										5 // roundPercentage
+										),
+									DefaultValues.Color_MENU, // box color (index of colors)
+									255, // opacity (0-255)
+									25, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)
+								),
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								DefaultValues.TransformIndex_500msScale0, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									"GameRenderLast", // function
+									"ErrorMessage",  // name
+									new RoundedArea(
+										400, 560, 0, 800, 0  // x, y, xSize, ySize, round%
+										),
+									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+									255, // opacity (0-255)
+									0, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
 				}, // Elements
 				new Popup[] {DefaultValues.Popup_GAMEPAUSE()} // Popups
 				);
@@ -233,7 +309,7 @@ public class Game extends Thread {
 		return currentLevel;
 	}
 
-	public Note[] getNoteQueue() {
+	public Note[] getFullNoteQueue() {
 		return rawNotes;
 	}
 

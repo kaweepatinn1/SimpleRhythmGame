@@ -6,9 +6,11 @@ import java.awt.image.BufferedImage;
 import java.awt.geom.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.util.List;
 
 public class ShowImage extends JPanel implements KeyListener {
     /**
@@ -27,7 +29,11 @@ public class ShowImage extends JPanel implements KeyListener {
     // used to disable the mouse input after using the keyboard until hovering an element, or a click is made
     
     private static String selectedElement;
-    private static int[] popupIndexes;
+    public static double getScale() {
+		return scale;
+	}
+
+	private static int[] popupIndexes;
     
     private static JFrame frame;
     private static Config config;
@@ -62,7 +68,7 @@ public class ShowImage extends JPanel implements KeyListener {
     private static double scale;
     
     private static Game game;
-    private static String state;
+    private static String state = "NotPlaying";
 
     private static MouseListener mouseListener = new MouseAdapter() {
         @Override
@@ -533,6 +539,8 @@ public class ShowImage extends JPanel implements KeyListener {
                 );
         float opacityMulti = 0;
         
+        List<Element> finalElements = new ArrayList<>();
+        
         for (int iter = -1 ; iter < popupIndexes.length; iter++) {
         	Element[] toRender = null;
         	if (iter == -1) {
@@ -557,7 +565,11 @@ public class ShowImage extends JPanel implements KeyListener {
         	
         	for (int i = 0; i < toRender.length; i++) {
     	        Element currentElement = toRender[i];
-    	        
+    	        if (currentElement.getFunction() != null) {
+    	        	if (currentElement.getFunction().equals("GameRenderLast")) {
+    	        		finalElements.add(currentElement);
+    	        	}
+    	        }
     	        Graphics2D g2d = (Graphics2D) g.create();
     	        g2d.setRenderingHints(rh);
     	        
@@ -582,6 +594,20 @@ public class ShowImage extends JPanel implements KeyListener {
         	}
         	
         }
+        
+        if (!state.equals("NotPlaying")) {
+        	Graphics2D g2d = (Graphics2D) g.create();
+        	g2d.setRenderingHints(rh);
+        	
+        	renderGameLoop(game, g2d);
+        }
+        
+        for (int i = 0; i < finalElements.size(); i++) {
+    		Graphics2D g2d = (Graphics2D) g.create();
+	        g2d.setRenderingHints(rh);
+	        
+    		renderElement(finalElements.get(i), g2d, 1f);
+    	}
         
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setRenderingHints(rh);
@@ -776,6 +802,24 @@ public class ShowImage extends JPanel implements KeyListener {
         }
         int[] alignReturns = new int[] {extraAlignX, extraAlignY, selectorOffset};
     	return alignReturns;
+    }
+    
+    public void renderGameLoop(Game game, Graphics2D g2d) {
+    	double currentTime = Framerate.getCurrentTime() - game.getMillisStarted();
+    	Level currentLevel = game.getCurrentLevel();
+    	for (Note note : game.getFullNoteQueue()) {
+    		double noteLocationX = Game.hitLocation + 
+					(currentLevel.getPPS() * note.getSpeed() * 
+							(note.getCalculatedTimeFromStart(currentLevel) - currentTime));
+    		
+    		int scaledNoteLocation = (int) (noteLocationX * scale);
+//    		System.out.println(note.getBeat());
+//    		System.out.println(scaledNoteLocation);
+//    		System.out.println(note.getType());
+    		g2d.setClip(getBoxAttributes(scaledMenu.getMasks()[1]).getArea());
+    		g2d.drawImage(Game.getNoteImage(note.getType()), scaledNoteLocation, Note.typeLocations[note.getType()], null);
+    	}
+    	
     }
     
     public void renderElement(Element currentElement, Graphics2D g2d, float opacityMulti) {
@@ -1394,7 +1438,13 @@ public class ShowImage extends JPanel implements KeyListener {
     			lastHovered = null;
     			popupIndexes = new int[] {};
     			currentMenuIndex = transitionTo;
-    	    	rawCurrentMenu = config.getMenuFromIndex(currentMenuIndex);
+    			if (currentMenuIndex == -1) {
+    				rawCurrentMenu = game.generateGameMenu();
+    				setState("Playing");
+    			} else {
+    				rawCurrentMenu = config.getMenuFromIndex(currentMenuIndex);
+    				setState("NotPlaying");
+    			}
             	scaledMenu = rawCurrentMenu.getScaledMenu(calculatedScreenWidth, calculatedScreenHeight);
     			selected = scaledMenu.resetSelectors(false, getCurrentPopupIndex());
     			Element[] tempElementsList = scaledMenu.getElements();
@@ -1509,7 +1559,10 @@ public class ShowImage extends JPanel implements KeyListener {
     }
     
     public static void setMenuFromAnIndex(int menu) {
-    	if (init == true) {
+    	if (menu == -1) { // game
+    		transition(menu);
+    	}
+    	else if (init == true) {
             init = false;
     		currentMenuIndex = menu;
         	rawCurrentMenu = config.getMenuFromIndex(currentMenuIndex);
@@ -1795,7 +1848,7 @@ public class ShowImage extends JPanel implements KeyListener {
         setNewFrameSize(config.getFullscreen(), config.getSizeToForce()); // uses the above raw lists and variables to set the frame size.
         
         if (userHasUsername) {
-        	Functions.setMenu("Settings General Menu");
+        	Functions.setMenu("Main Menu");
         } else {
         	Functions.setMenu("Init User");
         }
@@ -1850,7 +1903,8 @@ public class ShowImage extends JPanel implements KeyListener {
 		Level tempLevel = new Level(
 				"testlevel", // name
 				"nano", // author
-				60, //bpm
+				0d, // ms offset
+				75, // bpm
 				1f, // pps
 				10, // total time
 				new int[] {4,4}, // time signature
@@ -1861,32 +1915,80 @@ public class ShowImage extends JPanel implements KeyListener {
 								1, // bar
 								1, // beat
 								new int[] {0,0}, // subbeat
-								1f // speed
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								1, // bar
+								2, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
 								),
 						new Note(
 								Note.Note_HIHAT, // note type
 								0, // note subtype
 								1, // bar
+								3, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								1, // bar
+								4, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_CRASHCYMBAL, // note type
+								0, // note subtype
+								2, // bar
+								1, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								0, // note subtype
+								2, // bar
 								2, // beat
 								new int[] {0,0}, // subbeat
-								1f // speed
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_RIDECYMBAL, // note type
+								0, // note subtype
+								2, // bar
+								3, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
 								),
 				} // notes
 				);
 		game = new Game(tempLevel, config.getNoFail());
 		//Level level = FileIO.getLevel(levelName);
 		// TODO update the raw menu and scale it
-		game.run();
+		setMenuFromAnIndex(-1);
+		game.start();
 	}
 	
-	public static void pause() {
+	public static void pauseGame() {
 		setState("Paused");
-		//game.pause();
+		//game.pauseGame();
 	}
 	
-	public static void resume() {
+	public static void resumeGame() {
 		game.refreshCurrentNotes();
 		setState("Playing");
-		//game.resume();
+		//game.resumeGame();
 	}
 }
