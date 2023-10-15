@@ -8,19 +8,22 @@ public class Level {
 	private String author;
 	
 	private double songOffset; // ms offset for the entire song
-
+	private long metronomeOffset; // ms offset for the metronome
+	
 	private int bpm;
 	private float pps; // pixels per millisecond the notes should move at (relative to 1920)
 	private int totalTimeSeconds;
 	private int[] timeSignature;
 	private Note notes[];
 	
-	public Level(String name, String author, double songOffset, int bpm, float pps, 
+	public Level(String name, String author, double songOffset, 
+			long metronomeOffset, int bpm, float pps, 
 			int totalTimeSeconds, int[] timeSignature, Note[] notes) {
 		super();
 		this.name = name;
 		this.author = author;
 		this.songOffset = songOffset;
+		this.metronomeOffset = metronomeOffset;
 		this.bpm = bpm;
 		this.pps = pps;
 		this.totalTimeSeconds = totalTimeSeconds;
@@ -105,5 +108,13 @@ public class Level {
 
 	public void setSongOffset(double offset) {
 		this.songOffset = offset;
+	}
+
+	public long getMetronomeOffset() {
+		return metronomeOffset;
+	}
+
+	public void setMetronomeOffset(long metronomeOffset) {
+		this.metronomeOffset = metronomeOffset;
 	}
 }

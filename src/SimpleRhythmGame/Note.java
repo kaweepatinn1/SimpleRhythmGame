@@ -18,7 +18,7 @@ public class Note {
 	public transient static final int Note_SNAREDRUM = 1;
 	public transient static final int Note_CRASHCYMBAL = 2;
 	public transient static final int Note_TOM = 3;
-	public transient static final int Note_RIDECYMBAL = 4;
+	public transient static final int Note_KICKDRUM = 4;
 	
 	public Note(int type, int subtype, int bar, int beat, 
 			int[] subBeat, float speed, double noteOffset) {
@@ -41,7 +41,7 @@ public class Note {
 		double barTime = (double) level.getTimeSignature()[0] * beatTime;
 		
 		double noteIntendedSecondsFromStart = (barTime * (bar - 1)) + (beatTime * (beat - 1)) + (subBeatTime * getSubBeat()[0])
-				+ getNoteOffset() + level.getSongOffset();
+				+ getNoteOffset() / 1000 + level.getSongOffset() / 100;
 		// System.out.println(noteIntendedSecondsFromStart);
 		double noteIntendedMillisFromStart = noteIntendedSecondsFromStart * 1000;
 		return noteIntendedMillisFromStart;

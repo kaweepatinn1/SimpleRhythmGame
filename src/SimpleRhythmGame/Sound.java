@@ -2,26 +2,28 @@ package SimpleRhythmGame;
 
 public class Sound {
 	private static final String[] sfxNames = {
-//			"Hit",
-//			"Miss",
-//			"HiHat",
-//			"SnareDrum",
-//			"CrashCymbal",
-//			"HighTom",
-//			"MediumTom",
-//			"FloorTom",
-//			"RideCymbal"
+			"HiHat1",
+			"HiHat2",
+			"SnareDrum1",
+			"CrashCymbal1",
+			"Tom1",
+			"Tom2",
+			"Tom3",
+			"KickDrum1",
+			"Metronome1",
+			"Metronome2",
 	};
 	private static AudioPlayer[] sfx;
-	public static final int SFX_hit = 0;
-	public static final int SFX_miss = 1;
-	public static final int SFX_hiHat = 2;
-	public static final int SFX_snareDrum = 3;
-	public static final int SFX_crashCymbal = 4;
-	public static final int SFX_highTom = 5;
-	public static final int SFX_mediumTom = 6;
-	public static final int SFX_floorTom = 7;
-	public static final int SFX_rideCymbal = 8;
+	public static final int[] SFX_hiHat1 = {0,0,0};
+	public static final int[] SFX_hiHat2 = {1,0,1};
+	public static final int[] SFX_snareDrum1 = {2,1,0};
+	public static final int[] SFX_crashCymbal1 = {3,2,0};
+	public static final int[] SFX_tom1 = {4,3,0};
+	public static final int[] SFX_tom2 = {5,3,1};
+	public static final int[] SFX_tom3 = {6,3,2};
+	public static final int[] SFX_kickDrum1 = {7,4,0};
+	public static final int[] SFX_metronome1 = {8,5,0};
+	public static final int[] SFX_metronome2 = {9,5,1};
 	
 	public static void initSFX(){
 		sfx = new AudioPlayer[sfxNames.length];
@@ -33,6 +35,10 @@ public class Sound {
 		}
 	}
 	
+	public static AudioPlayer[] sfx() {
+		return sfx;
+	}
+	
 	public static void updateVolume() {
 		for (AudioPlayer audio : sfx) {
 			audio.setVolume(ShowImage.getConfig().getFinalSFXVolume());
@@ -40,7 +46,8 @@ public class Sound {
 	}
 	
 	public static void playSound(int index) {
-		AudioPlayer soundToPlay = new AudioPlayer(sfx[index]);
-		soundToPlay.play();
+		AudioPlayer soundToPlay = sfx[index];
+		soundToPlay.setFramePosition(0);
+		soundToPlay.getClip().start();;
 	}
 }

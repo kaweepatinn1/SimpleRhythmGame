@@ -68,7 +68,7 @@ public class DefaultValues {
 					new int[]{78, -1, -1}
 					),
 			new Controls(
-					"RideCymbal", // drum 5
+					"KickDrum", // drum 5
 					new int[]{77, -1, -1}
 					),
 			

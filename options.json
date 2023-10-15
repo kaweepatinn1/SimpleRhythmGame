@@ -107,7 +107,7 @@
       ]
     },
     {
-      "hotkeyFunction": "RideCymbal",
+      "hotkeyFunction": "KickDrum",
       "keyCodes": [
         77,
         -1,

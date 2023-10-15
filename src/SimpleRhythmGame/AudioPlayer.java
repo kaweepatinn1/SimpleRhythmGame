@@ -9,6 +9,7 @@ import javax.sound.sampled.*;
 public class AudioPlayer {
     private Clip clip;
     private Long currentFrame;
+    private boolean toClose;
     
     public AudioPlayer(AudioPlayer audioPlayer) {
     	this.clip = audioPlayer.clip;
@@ -21,14 +22,10 @@ public class AudioPlayer {
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
-        clip.addLineListener(new LineListener() {
-    	    @Override
-    	    public void update(LineEvent event) {
-    	        if (event.getType() == LineEvent.Type.STOP) {
-    	            clip.close();
-    	        }
-    	    }
-    	}); // auto close on complete
+    }
+    
+    public Clip getClip() {
+    	return clip;
     }
     
     public AudioPlayer(String filePath) {
@@ -37,14 +34,6 @@ public class AudioPlayer {
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
-    	clip.addLineListener(new LineListener() {
-    	    @Override
-    	    public void update(LineEvent event) {
-    	        if (event.getType() == LineEvent.Type.STOP) {
-    	            clip.close();
-    	        }
-    	    }
-    	}); // auto close on complete
     	loadAudio(filePath);
     }
 
@@ -60,8 +49,17 @@ public class AudioPlayer {
             e.printStackTrace();
         }
     }
+    
+    public void setToClose(boolean close) {
+    	toClose = close;
+    }
+    
+    public boolean getToClose() {
+    	return toClose;
+    }
 
     public void play() {
+    	clip.setFramePosition(0);
         clip.start();
     }
 
@@ -95,4 +93,10 @@ public class AudioPlayer {
         FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);        
         gainControl.setValue(20f * (float) Math.log10(volume));
     }
+
+	public void setFramePosition(int i) {
+		clip.setFramePosition(i);
+		// TODO Auto-generated method stub
+		
+	}
 }

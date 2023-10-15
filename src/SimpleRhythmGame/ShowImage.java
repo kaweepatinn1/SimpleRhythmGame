@@ -7,6 +7,7 @@ import java.awt.geom.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -291,7 +292,21 @@ public class ShowImage extends JPanel implements KeyListener {
             	}
             }
             
-            if (selectedElement != null) { 
+            if (state.equals("Playing")) {
+            	if (keyPressed.equals("HiHat")) {
+            		Sound.playSound(Sound.SFX_hiHat1[0]);
+            	} else if (keyPressed.equals("SnareDrum")) {
+            		Sound.playSound(Sound.SFX_snareDrum1[0]);
+            	} else if (keyPressed.equals("CrashCymbal")) {
+            		Sound.playSound(Sound.SFX_crashCymbal1[0]);
+            	} else if (keyPressed.equals("Tom")) {
+            		Sound.playSound(Sound.SFX_tom1[0]);
+            	} else if (keyPressed.equals("KickDrum")) {
+            		Sound.playSound(Sound.SFX_kickDrum1[0]);
+            	}
+            }
+            
+            else if (selectedElement != null) { 
             	Element element = getElementFromName(selectedElement);
             	// override if there is a selected element
             	
@@ -1904,6 +1919,7 @@ public class ShowImage extends JPanel implements KeyListener {
 				"testlevel", // name
 				"nano", // author
 				0d, // ms offset
+				100, // ms metronome offset
 				75, // bpm
 				1f, // pps
 				10, // total time
@@ -1964,7 +1980,7 @@ public class ShowImage extends JPanel implements KeyListener {
 								0 // ms offset
 								),
 						new Note(
-								Note.Note_RIDECYMBAL, // note type
+								Note.Note_KICKDRUM, // note type
 								0, // note subtype
 								2, // bar
 								3, // beat
@@ -1979,6 +1995,9 @@ public class ShowImage extends JPanel implements KeyListener {
 		// TODO update the raw menu and scale it
 		setMenuFromAnIndex(-1);
 		game.start();
+		
+		Metronome metronome = new Metronome();
+		metronome.start();
 	}
 	
 	public static void pauseGame() {
@@ -1990,5 +2009,9 @@ public class ShowImage extends JPanel implements KeyListener {
 		game.refreshCurrentNotes();
 		setState("Playing");
 		//game.resumeGame();
+	}
+
+	public static Game getGame() {
+		return game;
 	}
 }

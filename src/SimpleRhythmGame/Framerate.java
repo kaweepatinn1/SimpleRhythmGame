@@ -65,6 +65,12 @@ public class Framerate extends Thread {
 	
 	public void run() { // game render loop
 		while(true) {
+			try {
+				Thread.sleep(0);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			// Thread Runnable
 			
 			// System.out.println(milliTime);
@@ -126,6 +132,12 @@ public class Framerate extends Thread {
 					ShowImage.updateFrame();
 				} else {
 					// Does not render frame if the wait has not been long enough
+					try {
+						Thread.sleep(0);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 			
