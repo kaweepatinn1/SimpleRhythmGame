@@ -157,6 +157,7 @@ public class Game extends Thread {
 	}
 	
 	public void run() {
+		System.out.println(Thread.currentThread().getPriority());
 		try {
 			Thread.sleep((int) ShowImage.getConfig().getTransitionTime() * 2);
 		} catch (InterruptedException e) {

@@ -1919,8 +1919,8 @@ public class ShowImage extends JPanel implements KeyListener {
 				"testlevel", // name
 				"nano", // author
 				0d, // ms offset
-				100, // ms metronome offset
-				75, // bpm
+				0, // ms metronome offset (100 here)
+				60, // bpm
 				1f, // pps
 				10, // total time
 				new int[] {4,4}, // time signature
@@ -1988,6 +1988,132 @@ public class ShowImage extends JPanel implements KeyListener {
 								1f, // speed
 								0 // ms offset
 								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								2, // bar
+								4, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								3, // bar
+								1, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								3, // bar
+								2, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								3, // bar
+								3, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_CRASHCYMBAL, // note type
+								0, // note subtype
+								3, // bar
+								4, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								0, // note subtype
+								4, // bar
+								1, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								4, // bar
+								2, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								4, // bar
+								3, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								4, // bar
+								4, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								5, // bar
+								1, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								5, // bar
+								2, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_CRASHCYMBAL, // note type
+								0, // note subtype
+								5, // bar
+								3, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								0, // note subtype
+								5, // bar
+								4, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								6, // bar
+								1, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
 				} // notes
 				);
 		game = new Game(tempLevel, config.getNoFail());
@@ -1996,8 +2122,10 @@ public class ShowImage extends JPanel implements KeyListener {
 		setMenuFromAnIndex(-1);
 		game.start();
 		
-		Metronome metronome = new Metronome();
-		metronome.start();
+		if (game.getCurrentLevel().getMetronomeOffset() > -1) {
+			Metronome metronome = new Metronome();
+			metronome.start();
+		}
 	}
 	
 	public static void pauseGame() {

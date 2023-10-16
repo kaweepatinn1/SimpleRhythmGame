@@ -2,46 +2,30 @@ package SimpleRhythmGame;
 
 public class Metronome extends Thread {
 	public void run() {
+		Thread.currentThread().setPriority(7);
+		System.out.println(Thread.currentThread().getPriority());
 		Level level = ShowImage.getGame().getCurrentLevel();
-		try {
-			Thread.sleep((long) level.getMetronomeOffset());
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		double levelStartTime = Framerate.getCurrentTime() + 2500;
 		double timePerClick = 60000d / level.getBPM();
-		try {
-			Thread.sleep((long) (2300 % timePerClick));
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		double extraDelay = (2500 % timePerClick) % 1;
-		int hardNote = ((int) (2500 - level.getMetronomeOffset()/ timePerClick) % level.getTimeSignature()[0]);
+		
+		int lastNotePlayed = (int) Math.floor((Framerate.getCurrentTime() - levelStartTime) / timePerClick);
+		
 		while (ShowImage.getState() == "Playing") {
-			if (hardNote == 0) {
-				Sound.playSound(Sound.SFX_metronome1[0]);
-				hardNote = level.getTimeSignature()[0] - 1;
-			} else {
-				Sound.playSound(Sound.SFX_metronome2[0]);
-				hardNote--;
+			int currentNote = (int) Math.floor((Framerate.getCurrentTime() - levelStartTime) / timePerClick);
+			if (currentNote > lastNotePlayed) {
+				if ((lastNotePlayed % level.getTimeSignature()[0]) == (level.getTimeSignature()[0] - 1)) {
+					Sound.playSound(Sound.SFX_metronome1[0]);
+					lastNotePlayed = currentNote;
+				} else {
+					Sound.playSound(Sound.SFX_metronome2[0]);
+					lastNotePlayed = currentNote;
+				}
 			}
 			try {
-				Thread.sleep((long) timePerClick);
+				Thread.sleep(10);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			extraDelay = extraDelay + (timePerClick % 1);
-			if (extraDelay > 1) {
-				try {
-					Thread.sleep((long) extraDelay);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				extraDelay = extraDelay % 1;
 			}
 		}
 	}
