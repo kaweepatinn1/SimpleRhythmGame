@@ -822,7 +822,7 @@ public class ShowImage extends JPanel implements KeyListener {
     public void renderGameLoop(Game game, Graphics2D g2d) {
     	double currentTime = Framerate.getCurrentTime() - game.getMillisStarted();
     	Level currentLevel = game.getCurrentLevel();
-    	for (Note note : game.getFullNoteQueue()) {
+    	for (Note note : game.getCurrentNotes()) {
     		double noteLocationX = Game.hitLocation + 
 					(currentLevel.getPPS() * note.getSpeed() * 
 							(note.getCalculatedTimeFromStart(currentLevel) - currentTime));
@@ -831,7 +831,7 @@ public class ShowImage extends JPanel implements KeyListener {
 //    		System.out.println(note.getBeat());
 //    		System.out.println(scaledNoteLocation);
 //    		System.out.println(note.getType());
-    		g2d.setClip(getBoxAttributes(scaledMenu.getMasks()[1]).getArea());
+	    	g2d.setClip(getBoxAttributes(scaledMenu.getMasks()[1]).getArea());
     		g2d.drawImage(Game.getNoteImage(note.getType()), scaledNoteLocation, Note.typeLocations[note.getType()], null);
     	}
     	
@@ -1919,8 +1919,8 @@ public class ShowImage extends JPanel implements KeyListener {
 				"testlevel", // name
 				"nano", // author
 				0d, // ms offset
-				0, // ms metronome offset (100 here)
-				60, // bpm
+				200, // ms metronome offset (100 here)
+				75, // bpm
 				1f, // pps
 				10, // total time
 				new int[] {4,4}, // time signature
@@ -2121,9 +2121,8 @@ public class ShowImage extends JPanel implements KeyListener {
 		// TODO update the raw menu and scale it
 		setMenuFromAnIndex(-1);
 		game.start();
-		
 		if (game.getCurrentLevel().getMetronomeOffset() > -1) {
-			Metronome metronome = new Metronome();
+			Thread metronome = new Thread(new Metronome());
 			metronome.start();
 		}
 	}

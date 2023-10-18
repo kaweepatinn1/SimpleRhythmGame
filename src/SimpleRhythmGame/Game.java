@@ -82,7 +82,7 @@ public class Game extends Thread {
 	}
 	
 	public void updateCurrentNotes() {
-		if (currentNotesLimits != null) {
+		if (currentNotesLimits == null) {
 			currentNotes = new Note[] {};
 		} else {
 			System.arraycopy(rawNotes,currentNotesLimits[0],currentNotes,0,currentNotesLimits[1] - currentNotesLimits[0]);
@@ -90,7 +90,7 @@ public class Game extends Thread {
 	}
 	
 	public void updateFutureNotes() {
-		if (currentNotesLimits != null) {
+		if (currentNotesLimits == null) {
 			futureNotes = rawNotes;
 		} else {
 			System.arraycopy(rawNotes,currentNotesLimits[1],currentNotes,0,rawNotes.length - currentNotesLimits[1]);
@@ -105,7 +105,7 @@ public class Game extends Thread {
 			
 			int noteLocationX = hitLocation + 
 					(int) (currentLevel.getPPS() * note.getSpeed() * 
-							(currentTime - note.getCalculatedTimeFromStart(currentLevel)));
+							(note.getCalculatedTimeFromStart(currentLevel) - currentTime));
 			
 			if (noteLocationX < -180 - (5000 * currentLevel.getPPS() * note.getSpeed())) {
 				// three second leeway, so that this function only has to be run every three seconds.
@@ -122,7 +122,7 @@ public class Game extends Thread {
 //			System.out.println(note.getCalculatedTimeFromStart(currentLevel));
 			int noteLocationX = hitLocation + 
 					(int) (currentLevel.getPPS() * note.getSpeed() * 
-							(currentTime - note.getCalculatedTimeFromStart(currentLevel)));
+							(note.getCalculatedTimeFromStart(currentLevel) - currentTime));
 			
 			if (noteLocationX < 2100 + (5000 * currentLevel.getPPS() * note.getSpeed())) {
 				// three second leeway, so that this function only has to be run every three seconds.

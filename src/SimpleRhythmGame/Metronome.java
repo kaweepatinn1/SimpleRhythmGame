@@ -5,24 +5,27 @@ public class Metronome extends Thread {
 		Thread.currentThread().setPriority(7);
 		System.out.println(Thread.currentThread().getPriority());
 		Level level = ShowImage.getGame().getCurrentLevel();
-		double levelStartTime = Framerate.getCurrentTime() + 2500;
+		double levelStartTime = Framerate.getCurrentTime() + 2500 + level.getMetronomeOffset();
 		double timePerClick = 60000d / level.getBPM();
 		
 		int lastNotePlayed = (int) Math.floor((Framerate.getCurrentTime() - levelStartTime) / timePerClick);
-		
-		while (ShowImage.getState() == "Playing") {
-			int currentNote = (int) Math.floor((Framerate.getCurrentTime() - levelStartTime) / timePerClick);
-			if (currentNote > lastNotePlayed) {
-				if ((lastNotePlayed % level.getTimeSignature()[0]) == (level.getTimeSignature()[0] - 1)) {
-					Sound.playSound(Sound.SFX_metronome1[0]);
-					lastNotePlayed = currentNote;
-				} else {
-					Sound.playSound(Sound.SFX_metronome2[0]);
-					lastNotePlayed = currentNote;
+		System.out.println(ShowImage.getState());
+		int timeSignatureDiv = level.getTimeSignature()[0];
+		while (!ShowImage.getState().equals("Stopped")) {
+			if (ShowImage.getState().equals("Playing")) {
+				int currentNote = (int) Math.floor((Framerate.getCurrentTime() - levelStartTime) / timePerClick);
+				if (currentNote > lastNotePlayed) {
+					if (((lastNotePlayed % timeSignatureDiv) + timeSignatureDiv) % timeSignatureDiv == 0) {
+						Sound.playSound(Sound.SFX_metronome1[0]);
+						lastNotePlayed = currentNote;
+					} else {
+						Sound.playSound(Sound.SFX_metronome2[0]);
+						lastNotePlayed = currentNote;
+					}
 				}
 			}
 			try {
-				Thread.sleep(10);
+				Thread.sleep(1);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
