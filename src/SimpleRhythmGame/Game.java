@@ -28,7 +28,7 @@ public class Game extends Thread {
 	private int combo;
 	private int notesHit;
 	private int notesMissed;
-	private int accuracy;
+	private double accuracy;
 	// stored so doesn't have to be calculated every frame, and only every hit
 	private int health;
 	private boolean noFail;
@@ -85,7 +85,9 @@ public class Game extends Thread {
 		if (currentNotesLimits == null) {
 			currentNotes = new Note[] {};
 		} else {
-			System.arraycopy(rawNotes,currentNotesLimits[0],currentNotes,0,currentNotesLimits[1] - currentNotesLimits[0]);
+			Note[] toUpdate = new Note[currentNotesLimits[1] - currentNotesLimits[0]];
+			System.arraycopy(rawNotes,currentNotesLimits[0],toUpdate,0,currentNotesLimits[1] - currentNotesLimits[0]);
+			currentNotes = toUpdate;
 		}
 	}
 	
@@ -93,7 +95,9 @@ public class Game extends Thread {
 		if (currentNotesLimits == null) {
 			futureNotes = rawNotes;
 		} else {
-			System.arraycopy(rawNotes,currentNotesLimits[1],currentNotes,0,rawNotes.length - currentNotesLimits[1]);
+			Note[] toUpdate = new Note[rawNotes.length - currentNotesLimits[1]];
+			System.arraycopy(rawNotes,currentNotesLimits[1],toUpdate,0,rawNotes.length - currentNotesLimits[1]);
+			futureNotes = toUpdate;
 		}
 	}
 
@@ -139,6 +143,7 @@ public class Game extends Thread {
 		}
 		if (updateFuture) {
 			updateFutureNotes();
+			updateCurrentNotes();
 		}
 	}
 	
@@ -243,15 +248,172 @@ public class Game extends Thread {
 									// Text and Renderable
 									1f, // scale
 									"GameRenderLast", // function
-									"ErrorMessage",  // name
+									"Hit Line",  // name
 									new RoundedArea(
-										400, 560, 0, 800, 0  // x, y, xSize, ySize, round%
+										400, 612, 0, 685, 0  // x, y, xSize, ySize, round%
 										),
 									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
 									255, // opacity (0-255)
 									0, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
 									)),
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								DefaultValues.TransformIndex_500msScale0, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									"null", // function
+									"Stats Divider",  // name
+									new RoundedArea(
+										960, 270, 1750, 0, 0  // x, y, xSize, ySize, round%
+										),
+									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+									255, // opacity (0-255)
+									0, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+						new Element(
+								new Selector(
+										new int[]{-1,-1}, // Selector Index
+										new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+										),
+									-1, // mask index
+									false, // hover overlap
+									-1, // hover effect
+									-1, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									DefaultValues.TransformIndex_500msScale0, // entry animation
+								new TextBox(
+									//Text
+									1f, // scale
+									"noFunction", // function
+									"ScoreTitle", // name
+									new Text(
+											"Score: ", // text
+											"left", "center", // align
+											0, -9, // text offset (x, y)
+											50, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+									new RoundedArea(
+										123, 217, 0, 0, 0  // x, y, xSize, ySize, round%
+										),
+									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+						new Element(
+								new Selector(
+										new int[]{-1,-1}, // Selector Index
+										new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+										),
+									-1, // mask index
+									false, // hover overlap
+									-1, // hover effect
+									-1, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									DefaultValues.TransformIndex_500msScale0, // entry animation
+								new TextBox(
+									//Text
+									1f, // scale
+									"noFunction", // function
+									"Score", // name
+									new Text(
+											"%ScorePercentage", // text
+											"left", "center", // align
+											0, -9, // text offset (x, y)
+											50, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+									new RoundedArea(
+										250, 219, 0, 0, 0  // x, y, xSize, ySize, round%
+										),
+									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+						new Element(
+								new Selector(
+										new int[]{-1,-1}, // Selector Index
+										new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+										),
+									-1, // mask index
+									false, // hover overlap
+									-1, // hover effect
+									-1, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									DefaultValues.TransformIndex_500msScale0, // entry animation
+								new TextBox(
+									//Text
+									1f, // scale
+									"noFunction", // function
+									"ComboTitle", // name
+									new Text(
+											"Combo", // text
+											"right", "center", // align
+											0, -9, // text offset (x, y)
+											50, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+									new RoundedArea(
+										1805, 217, 0, 0, 0  // x, y, xSize, ySize, round%
+										),
+									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+						new Element(
+								new Selector(
+										new int[]{-1,-1}, // Selector Index
+										new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+										),
+									-1, // mask index
+									false, // hover overlap
+									-1, // hover effect
+									-1, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									DefaultValues.TransformIndex_500msScale0, // entry animation
+								new TextBox(
+									//Text
+									1f, // scale
+									"noFunction", // function
+									"Combo", // name
+									new Text(
+											"%Combo", // text
+											"right", "center", // align
+											0, -9, // text offset (x, y)
+											50, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+									new RoundedArea(
+										1658, 217, 0, 0, 0  // x, y, xSize, ySize, round%
+										),
+									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
 				}, // Elements
 				new Popup[] {DefaultValues.Popup_GAMEPAUSE()} // Popups
 				);
@@ -334,17 +496,36 @@ public class Game extends Thread {
 		return notesMissed;
 	}
 
-	public int getAccuracy() {
+	public double getAccuracy() {
 		updateAccuracy();
 		return accuracy;
 	}
 	
 	private void updateAccuracy() {
-		accuracy = (notesMissed == 0) ? 100 : (notesHit / (notesHit + notesMissed));
+		accuracy = (notesMissed == 0) ? 100 : Math.round(((double) notesHit / (double) (notesHit + notesMissed)) * 10d) / 10d;
 	}
 
 	public boolean isNoFail() {
 		return noFail;
+	}
+	
+	/**
+	* Returns the closest note to the current time
+	*
+	* @param  level  The current level.
+	* @return      the time offset as a double.
+	*/
+	public Note getClosestNote(int type) {
+		for (Note note : currentNotes) {
+			if (note.getType() == type) {
+				if (note.getCurrentTimeOffset(currentLevel) > -ShowImage.getConfig().getFORCED_millisecondLeniency() &&
+						note.getCurrentTimeOffset(currentLevel) < ShowImage.getConfig().getFORCED_millisecondLeniency() * 2) {
+					// within one leniencies forwards and two backwards
+					return note;
+				}
+			}
+		}
+		return null;
 	}
 	
 }

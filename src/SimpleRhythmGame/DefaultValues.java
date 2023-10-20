@@ -20,7 +20,8 @@ public class DefaultValues {
 	private static final int defaultMusicVolume = 50;
 	private static final int defaultSFXVolume = 50;
 	
-	private static final boolean defaultNoFail = false;
+	private static final boolean defaultFORCED_noFail = false;
+	private static final int defaultFORCED_millisecondLeniency = 200; // amount of ms we are lenient to missed notes
 	
 	private static final boolean defaultDEBUG_drawMasks = false; // draws all clipping masks
 	private static final int defaultDEBUG_masksColorsOffset = 10; // changes the seed for drawn colors
@@ -5956,7 +5957,6 @@ public class DefaultValues {
     			getDefaultMasterVolume(),
     			getDefaultMusicVolume(),
     			getDefaultSFXVolume(),
-    			getDefaultNoFail(),
     			getDefaultDEBUG_drawMasks(),
     			getDefaultDEBUG_masksColorsOffset(),
     			getDefaultDEBUG_masksOpacity()
@@ -6040,8 +6040,12 @@ public class DefaultValues {
 		return defaultSFXVolume;
 	}
 	
-	public static boolean getDefaultNoFail() {
-		return defaultNoFail;
+	public static boolean getDefaultFORCED_noFail() {
+		return defaultFORCED_noFail;
+	}
+
+	public static int getDefaultFORCED_millisecondLeniency() {
+		return defaultFORCED_millisecondLeniency;
 	}
 	
 	public static boolean getDefaultDEBUG_drawMasks() {
@@ -6055,5 +6059,6 @@ public class DefaultValues {
 	public static int getDefaultDEBUG_masksOpacity() {
 		return defaultDEBUG_MasksOpacity;
 	}
+
 	
 }

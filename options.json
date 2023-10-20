@@ -11,7 +11,6 @@
   "masterVolume": 50,
   "musicVolume": 50,
   "SFXVolume": 50,
-  "noFail": false,
   "DEBUG_drawMasks": false,
   "DEBUG_masksColorsOffset": 10,
   "DEBUG_masksOpacity": 80,

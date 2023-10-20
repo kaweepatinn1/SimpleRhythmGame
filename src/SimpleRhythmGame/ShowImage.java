@@ -294,13 +294,24 @@ public class ShowImage extends JPanel implements KeyListener {
             
             if (state.equals("Playing")) {
             	if (keyPressed.equals("HiHat")) {
+            		Note note = game.getClosestNote(Note.Note_HIHAT);
+            		if (note != null) {
+            			
+            		} else {
+            			Sound.playRandomSoundOfType(Sound.SFX_hiHat1[0]);
+            		}
             		Sound.playSound(Sound.SFX_hiHat1[0]);
             	} else if (keyPressed.equals("SnareDrum")) {
             		Sound.playSound(Sound.SFX_snareDrum1[0]);
             	} else if (keyPressed.equals("CrashCymbal")) {
             		Sound.playSound(Sound.SFX_crashCymbal1[0]);
             	} else if (keyPressed.equals("Tom")) {
-            		Sound.playSound(Sound.SFX_tom1[0]);
+            		Note note = game.getClosestNote(Note.Note_TOM);
+            		if (note != null) {
+            			
+            		} else {
+            			Sound.playRandomSoundOfType(Sound.SFX_tom1[0]);
+            		}
             	} else if (keyPressed.equals("KickDrum")) {
             		Sound.playSound(Sound.SFX_kickDrum1[0]);
             	}
@@ -2116,7 +2127,7 @@ public class ShowImage extends JPanel implements KeyListener {
 								),
 				} // notes
 				);
-		game = new Game(tempLevel, config.getNoFail());
+		game = new Game(tempLevel, config.getFORCED_noFail());
 		//Level level = FileIO.getLevel(levelName);
 		// TODO update the raw menu and scale it
 		setMenuFromAnIndex(-1);

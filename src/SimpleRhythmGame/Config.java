@@ -1,6 +1,7 @@
 package SimpleRhythmGame;
 
 import java.awt.Color;
+import java.text.DecimalFormat;
 import java.awt.event.KeyEvent;
 
 public class Config {
@@ -23,7 +24,8 @@ public class Config {
 	private int musicVolume;
 	private int SFXVolume;
 	
-	private boolean noFail;
+	private transient boolean FORCED_noFail;
+	private transient int FORCED_millisecondLeniency;
 	
 	private boolean DEBUG_drawMasks;
 	private int DEBUG_masksColorsOffset;
@@ -46,7 +48,7 @@ public class Config {
 			String[] fonts, Menu[] menus, boolean nanoSecondPrecision, int framesToStore,
 			int framerate, boolean shouldLimitFramerate, boolean displayFramerate,
 			boolean cursorEnabled, double transitionTime,
-			int masterVolume, int musicVolume, int SFXVolume, boolean noFail,
+			int masterVolume, int musicVolume, int SFXVolume,
 			boolean DEBUG_drawMasks, int DEBUG_masksColorsOffset, int DEBUG_masksOpacity) {
 		this.fullscreen = fullscreen;
 		this.sizeToForce = sizeToForce;
@@ -67,7 +69,6 @@ public class Config {
 		this.masterVolume = masterVolume;
 		this.musicVolume = musicVolume;
 		this.SFXVolume = SFXVolume;
-		this.noFail = noFail;
 		this.DEBUG_drawMasks = DEBUG_drawMasks;
 		this.DEBUG_masksColorsOffset = DEBUG_masksColorsOffset;
 		this.DEBUG_masksOpacity = DEBUG_masksOpacity;
@@ -550,6 +551,13 @@ public class Config {
 				varToReturn = "No Control";
 			}
 			
+		} else if (splitVariable[0].equals("%ScorePercentage")) {
+			DecimalFormat formatter = new DecimalFormat("#,###.00");
+			String percentage = formatter.format(ShowImage.getGame().getAccuracy()).equals("100.0") ? "100" : Double.toString(ShowImage.getGame().getAccuracy());
+			varToReturn = Integer.toString(ShowImage.getGame().getScore()) 
+					+ " // " + percentage + "%";
+		} else if (splitVariable[0].equals("%Combo")) {
+			varToReturn = Integer.toString(ShowImage.getGame().getCombo());
 		}
 		return varToReturn;
 	}
@@ -696,13 +704,21 @@ public class Config {
 		return Math.max(Math.min(((volMaster * volMusic) / 10000f),1),0);
 	}
 	
-	public boolean getNoFail() {
-		return noFail;
+	public boolean getFORCED_noFail() {
+		return FORCED_noFail;
 	}
 	
-	public void setNoFail(boolean noFail) {
-		this.noFail = noFail;
+	public void setFORCED_noFail(boolean FORCED_noFail) {
+		this.FORCED_noFail = FORCED_noFail;
 		ShowImage.refreshMenu();
 		FileIO.currentConfigOut();
+	}
+
+	public int getFORCED_millisecondLeniency() {
+		return FORCED_millisecondLeniency;
+	}
+
+	public void setFORCED_millisecondLeniency(int FORCED_millisecondLeniency) {
+		this.FORCED_millisecondLeniency = FORCED_millisecondLeniency;
 	}
 }

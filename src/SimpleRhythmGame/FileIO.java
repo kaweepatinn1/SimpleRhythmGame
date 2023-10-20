@@ -91,6 +91,9 @@ public class FileIO {
 		}
 		config.setMenus(DefaultValues.getAllDefaultMenus());
 		
+		config.setFORCED_noFail(DefaultValues.getDefaultFORCED_noFail());
+		config.setFORCED_millisecondLeniency(DefaultValues.getDefaultFORCED_millisecondLeniency());
+		
 		configOut(config);
 		return config;
 	}

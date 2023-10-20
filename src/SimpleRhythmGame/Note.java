@@ -12,7 +12,7 @@ public class Note {
 	private float speed; // multi for level pps.
 	private double noteOffset; // extra offset for this note (ms)
 	
-	public transient static final int[] typeLocations = {200,280,360,440,520};
+	public transient static final int[] typeLocations = {220,300,380,460,540};
 	
 	public transient static final int Note_HIHAT = 0;
 	public transient static final int Note_SNAREDRUM = 1;
@@ -101,5 +101,16 @@ public class Note {
 
 	public void setSpeed(float speed) {
 		this.speed = speed;
+	}
+	
+	/**
+	* Returns the amount of milliseconds the user has missed the note by.
+	* Positive means too early and negative means too late.
+	*
+	* @param  level  The current level.
+	* @return      the time offset as a double.
+	*/
+	public double getCurrentTimeOffset(Level level) {
+		return getCalculatedTimeFromStart(level) - Framerate.getCurrentTime();
 	}
 }
