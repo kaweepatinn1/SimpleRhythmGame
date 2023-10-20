@@ -109,6 +109,10 @@ public class Note {
 		this.speed = speed;
 	}
 	
+	public int getSoundIndex() {
+		return Sound.getSoundIndex(type, subtype);
+	}
+	
 	/**
 	* Returns the amount of milliseconds the user has missed the note by.
 	* Positive means too early and negative means too late.

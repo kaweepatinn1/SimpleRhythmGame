@@ -1,6 +1,8 @@
 package SimpleRhythmGame;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Game extends Thread {
 	private Level currentLevel;
@@ -10,7 +12,7 @@ public class Game extends Thread {
 	
 	private Note[] rawNotes;
 	// the unrendered notes queue. First in first out.
-	private Note[] currentNotes;
+	private ArrayList<Note> currentNotes;
 	private Note[] futureNotes;
 	private int[] currentNotesLimits; 
 	// defines
@@ -41,7 +43,7 @@ public class Game extends Thread {
 	public Game(Level level, boolean noFail) {
 		currentLevel = level;
 		rawNotes = currentLevel.getSortedNotes();
-		currentNotes = new Note[] {};
+		currentNotes = new ArrayList<>();
 		futureNotes = rawNotes;
 		currentNotesLimits = new int[] {0,0};
 		rawGameMenu = generateGameMenu(); // uses currentNotes to initially generate the game menu
@@ -90,11 +92,11 @@ public class Game extends Thread {
 	
 	public void updateCurrentNotes() {
 		if (currentNotesLimits == null) {
-			currentNotes = new Note[] {};
+			currentNotes = new ArrayList<>();;
 		} else {
 			Note[] toUpdate = new Note[currentNotesLimits[1] - currentNotesLimits[0]];
 			System.arraycopy(rawNotes,currentNotesLimits[0],toUpdate,0,currentNotesLimits[1] - currentNotesLimits[0]);
-			currentNotes = toUpdate;
+			currentNotes = new ArrayList<>(Arrays.asList(toUpdate));
 		}
 	}
 	
@@ -191,7 +193,7 @@ public class Game extends Thread {
 		}
 	}
 	
-	public Note[] getCurrentNotes() {
+	public ArrayList<Note> getCurrentNotes() {
 		return currentNotes;
 	}
 	
@@ -427,8 +429,8 @@ public class Game extends Thread {
 		return menuToReturn;
 	}
 
-	public void hit() {
-		
+	public void hit(Note note) {
+		currentNotes.remove(note);
 	}
 	
 	public void miss() {
@@ -527,7 +529,7 @@ public class Game extends Thread {
 			if (note.getType() == type) {
 				if (note.getCurrentTimeOffset(currentLevel) > -ShowImage.getConfig().getFORCED_millisecondLeniency() &&
 						note.getCurrentTimeOffset(currentLevel) < ShowImage.getConfig().getFORCED_millisecondLeniency() * 2) {
-					// within one leniencies forwards and two backwards
+					// within one leniency forwards and two backwards
 					return note;
 				}
 			}

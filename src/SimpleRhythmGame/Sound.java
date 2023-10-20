@@ -83,4 +83,13 @@ public class Sound {
 		int noteToPlay = allIndexesOfType[(int) Math.floor(Math.random() * allIndexesOfType.length)][0];
 		playSound(noteToPlay);
 	}
+	
+	public static int getSoundIndex(int type, int subtype) {
+		for (int[] index : allNotesIndexes) {
+			if (index[1] == type && index[2] == subtype) {
+				return index[0];
+			}
+		}
+		return -1;
+	}
 }

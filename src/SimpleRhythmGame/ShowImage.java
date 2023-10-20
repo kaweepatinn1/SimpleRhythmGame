@@ -295,7 +295,7 @@ public class ShowImage extends JPanel implements KeyListener {
             	if (keyPressed.equals("HiHat")) {
             		Note note = game.getClosestNote(Note.Note_HIHAT);
             		if (note != null) {
-            			
+            			Sound.playSound(note.getSoundIndex());
             		} else {
             			Sound.playRandomSoundOfType(Sound.SFX_hiHat1[0]);
             		}
@@ -307,7 +307,8 @@ public class ShowImage extends JPanel implements KeyListener {
             	} else if (keyPressed.equals("Tom")) {
             		Note note = game.getClosestNote(Note.Note_TOM);
             		if (note != null) {
-            			
+            			Sound.playSound(note.getSoundIndex());
+            			game.hit(note);
             		} else {
             			Sound.playRandomSoundOfType(Sound.SFX_tom1[0]);
             		}
