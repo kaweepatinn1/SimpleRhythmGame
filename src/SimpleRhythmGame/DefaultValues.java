@@ -3,7 +3,7 @@ package SimpleRhythmGame;
 // A READ ONLY CLASS
 
 public class DefaultValues {
-	private static final boolean defaultFullscreen = false; // if not fullscreen will force below value
+	private static final boolean defaultFullscreen = true; // if not fullscreen will force below value
 	private static final int defaultSizeToForce = 1280; // forces this screen size if above is true
 	
 	private static final boolean defaultNanoSecondPrecision = true; // true breaks animations

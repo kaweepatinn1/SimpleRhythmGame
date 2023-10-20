@@ -12,7 +12,9 @@ public class Note {
 	private float speed; // multi for level pps.
 	private double noteOffset; // extra offset for this note (ms)
 	
-	public transient static final int[] typeLocations = {220,300,380,460,540};
+	private transient double timeFromStart; // not initialized until after the program runs
+	
+	public transient static final int[] typeLocations = {330,450,570,690,810};
 	
 	public transient static final int Note_HIHAT = 0;
 	public transient static final int Note_SNAREDRUM = 1;
@@ -35,7 +37,11 @@ public class Note {
 		return (bar * 1000000) + (beat * 1000) + (subBeat[1] == 0 ? 0 : subBeat[0] / subBeat[1]);
 	}
 	
-	public double getCalculatedTimeFromStart(Level level) {
+	public double getCalculatedTimeFromStart() {
+		return timeFromStart;
+	}
+	
+	public void calculateTimeFromStart(Level level) {
 		double beatTime = 60d / (double) level.getBPM();
 		double subBeatTime = getSubBeat()[1] == 0 ? 0 : ((double) getSubBeat()[0] / (double) getSubBeat()[1]);
 		double barTime = (double) level.getTimeSignature()[0] * beatTime;
@@ -44,7 +50,7 @@ public class Note {
 				+ getNoteOffset() / 1000 + level.getSongOffset() / 100;
 		// System.out.println(noteIntendedSecondsFromStart);
 		double noteIntendedMillisFromStart = noteIntendedSecondsFromStart * 1000;
-		return noteIntendedMillisFromStart;
+		timeFromStart = noteIntendedMillisFromStart;
 	}
 
 	public double getNoteOffset() {
@@ -111,6 +117,6 @@ public class Note {
 	* @return      the time offset as a double.
 	*/
 	public double getCurrentTimeOffset(Level level) {
-		return getCalculatedTimeFromStart(level) - Framerate.getCurrentTime();
+		return timeFromStart - Framerate.getCurrentTime();
 	}
 }

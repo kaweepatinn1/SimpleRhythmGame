@@ -7,7 +7,6 @@ import java.awt.geom.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -833,17 +832,17 @@ public class ShowImage extends JPanel implements KeyListener {
     public void renderGameLoop(Game game, Graphics2D g2d) {
     	double currentTime = Framerate.getCurrentTime() - game.getMillisStarted();
     	Level currentLevel = game.getCurrentLevel();
+    	g2d.setClip(getBoxAttributes(scaledMenu.getMasks()[1]).getArea());
     	for (Note note : game.getCurrentNotes()) {
     		double noteLocationX = Game.hitLocation + 
 					(currentLevel.getPPS() * note.getSpeed() * 
-							(note.getCalculatedTimeFromStart(currentLevel) - currentTime));
+							(note.getCalculatedTimeFromStart() - currentTime));
     		
     		int scaledNoteLocation = (int) (noteLocationX * scale);
 //    		System.out.println(note.getBeat());
 //    		System.out.println(scaledNoteLocation);
 //    		System.out.println(note.getType());
-	    	g2d.setClip(getBoxAttributes(scaledMenu.getMasks()[1]).getArea());
-    		g2d.drawImage(Game.getNoteImage(note.getType()), scaledNoteLocation, Note.typeLocations[note.getType()], null);
+    		g2d.drawImage(Game.getNoteImage(note.getType()), scaledNoteLocation, (int) (Note.typeLocations[note.getType()] * scale), null);
     	}
     	
     }

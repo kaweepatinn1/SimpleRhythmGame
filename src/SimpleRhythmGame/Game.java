@@ -67,8 +67,15 @@ public class Game extends Thread {
 	public static BufferedImage getNoteImage(int index) {
 		return noteImages[index];
 	}
+	
+	public void calculateNotesTimeFromStart() {
+		for (Note note : rawNotes) {
+			note.calculateTimeFromStart(currentLevel);
+		}
+	}
 
 	public void init() {
+		calculateNotesTimeFromStart();
 		millisStarted = Framerate.getCurrentTime() + 2500;
 		refreshCurrentNotes();
 		try {
@@ -109,7 +116,7 @@ public class Game extends Thread {
 			
 			int noteLocationX = hitLocation + 
 					(int) (currentLevel.getPPS() * note.getSpeed() * 
-							(note.getCalculatedTimeFromStart(currentLevel) - currentTime));
+							(note.getCalculatedTimeFromStart() - currentTime));
 			
 			if (noteLocationX < -180 - (5000 * currentLevel.getPPS() * note.getSpeed())) {
 				// three second leeway, so that this function only has to be run every three seconds.
@@ -126,7 +133,7 @@ public class Game extends Thread {
 //			System.out.println(note.getCalculatedTimeFromStart(currentLevel));
 			int noteLocationX = hitLocation + 
 					(int) (currentLevel.getPPS() * note.getSpeed() * 
-							(note.getCalculatedTimeFromStart(currentLevel) - currentTime));
+							(note.getCalculatedTimeFromStart() - currentTime));
 			
 			if (noteLocationX < 2100 + (5000 * currentLevel.getPPS() * note.getSpeed())) {
 				// three second leeway, so that this function only has to be run every three seconds.
