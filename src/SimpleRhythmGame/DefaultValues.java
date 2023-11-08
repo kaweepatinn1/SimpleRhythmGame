@@ -2450,7 +2450,7 @@ public class DefaultValues {
 											),
 										
 									new RoundedArea(
-										1652, 700, 120, 60, 0  // x, y, xSize, ySize, round%
+										1664, 700, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
 									Color_DISPLAY, // box color (index of colors)
 									255, // opacity (0-255)
@@ -2491,7 +2491,7 @@ public class DefaultValues {
 											255 // opacity (0-255)
 											),  // renderable
 									new RoundedArea(
-										1652, 760, 120, 60, 0  // x, y, xSize, ySize, round%
+										1664, 760, 120, 60, 0  // x, y, xSize, ySize, round%
 										),
 									Color_DISPLAY, // box color (index of colors)
 									255, // opacity (0-255)
