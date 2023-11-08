@@ -1,5 +1,5 @@
 {
-  "fullscreen": true,
+  "fullscreen": false,
   "sizeToForce": 1280,
   "nanoSecondPrecision": true,
   "framesToStore": 20,

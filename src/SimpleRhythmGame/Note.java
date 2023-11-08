@@ -120,7 +120,4 @@ public class Note {
 	* @param  level  The current level.
 	* @return      the time offset as a double.
 	*/
-	public double getCurrentTimeOffset(Level level) {
-		return timeFromStart - Framerate.getCurrentTime();
-	}
 }

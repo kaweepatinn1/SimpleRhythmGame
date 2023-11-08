@@ -430,7 +430,9 @@ public class Game extends Thread {
 	}
 
 	public void hit(Note note) {
+		// Check note timing
 		currentNotes.remove(note);
+		System.out.println(note);
 	}
 	
 	public void miss() {
@@ -527,14 +529,20 @@ public class Game extends Thread {
 	public Note getClosestNote(int type) {
 		for (Note note : currentNotes) {
 			if (note.getType() == type) {
-				if (note.getCurrentTimeOffset(currentLevel) > -ShowImage.getConfig().getFORCED_millisecondLeniency() &&
-						note.getCurrentTimeOffset(currentLevel) < ShowImage.getConfig().getFORCED_millisecondLeniency() * 2) {
+				System.out.println(getTimeSinceGameStart());
+				System.out.println(note.getCalculatedTimeFromStart() - ShowImage.getConfig().getFORCED_millisecondLeniency());
+				if ( getTimeSinceGameStart() > note.getCalculatedTimeFromStart() - ShowImage.getConfig().getFORCED_millisecondLeniency() &&
+						note.getCalculatedTimeFromStart() < note.getCalculatedTimeFromStart() + (ShowImage.getConfig().getFORCED_millisecondLeniency() * 2)) {
 					// within one leniency forwards and two backwards
 					return note;
 				}
 			}
 		}
 		return null;
+	}
+	
+	public double getTimeSinceGameStart() {
+		return Framerate.getCurrentTime() - getMillisStarted();
 	}
 	
 }

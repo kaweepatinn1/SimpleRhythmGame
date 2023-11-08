@@ -296,14 +296,28 @@ public class ShowImage extends JPanel implements KeyListener {
             		Note note = game.getClosestNote(Note.Note_HIHAT);
             		if (note != null) {
             			Sound.playSound(note.getSoundIndex());
+            			game.hit(note);
             		} else {
             			Sound.playRandomSoundOfType(Sound.SFX_hiHat1[0]);
             		}
             		Sound.playSound(Sound.SFX_hiHat1[0]);
             	} else if (keyPressed.equals("SnareDrum")) {
-            		Sound.playSound(Sound.SFX_snareDrum1[0]);
+        			Note note = game.getClosestNote(Note.Note_SNAREDRUM);
+        			System.out.println(note);
+            		if (note != null) {
+            			Sound.playSound(Sound.SFX_snareDrum1[0]);
+            			game.hit(note);
+            		} else {
+            			Sound.playSound(Sound.SFX_snareDrum1[0]);
+            		}
             	} else if (keyPressed.equals("CrashCymbal")) {
-            		Sound.playSound(Sound.SFX_crashCymbal1[0]);
+            		Note note = game.getClosestNote(Note.Note_CRASHCYMBAL);
+            		if (note != null) {
+            			Sound.playSound(Sound.SFX_crashCymbal1[0]);
+            			game.hit(note);
+            		} else {
+            			Sound.playSound(Sound.SFX_crashCymbal1[0]);
+            		}
             	} else if (keyPressed.equals("Tom")) {
             		Note note = game.getClosestNote(Note.Note_TOM);
             		if (note != null) {
@@ -313,7 +327,13 @@ public class ShowImage extends JPanel implements KeyListener {
             			Sound.playRandomSoundOfType(Sound.SFX_tom1[0]);
             		}
             	} else if (keyPressed.equals("KickDrum")) {
-            		Sound.playSound(Sound.SFX_kickDrum1[0]);
+            		Note note = game.getClosestNote(Note.Note_KICKDRUM);
+            		if (note != null) {
+            			Sound.playSound(Sound.SFX_kickDrum1[0]);
+            			game.hit(note);
+            		} else {
+            			Sound.playSound(Sound.SFX_kickDrum1[0]);
+            		}
             	}
             }
             

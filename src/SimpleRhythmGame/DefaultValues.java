@@ -3,7 +3,7 @@ package SimpleRhythmGame;
 // A READ ONLY CLASS
 
 public class DefaultValues {
-	private static final boolean defaultFullscreen = true; // if not fullscreen will force below value
+	private static final boolean defaultFullscreen = false; // if not fullscreen will force below value
 	private static final int defaultSizeToForce = 1280; // forces this screen size if above is true
 	
 	private static final boolean defaultNanoSecondPrecision = true; // true breaks animations
@@ -5553,9 +5553,9 @@ public class DefaultValues {
 									// Text and Renderable
 									1f, // scale
 									null, // function
-									"RideCymbalSubtext",  // name
+									"KickDrumSubtext",  // name
 									new Text(
-										"Ride Cymbal", // text
+										"Kick Drum", // text
 										"Down", "center", // align
 										0, -2, // text offset (x, y)
 										38, // text size
@@ -5586,10 +5586,10 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"editKeybind String RideCymbal int 0 int 1", // function
-									"EditControlRideCymbal0",  // name
+									"editKeybind String KickDrum int 0 int 1", // function
+									"EditControlKickDrum0",  // name
 									new Text(
-											"%Keybind RideCymbal 0", // text
+											"%Keybind KickDrum 0", // text
 											"center", "center", // align
 											0, -6, // text offset (x, y)
 											35, // text size
@@ -5620,10 +5620,10 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"editKeybind String RideCymbal int 1 int 1", // function
-									"EditControlRideCymbal1",  // name
+									"editKeybind String KickDrum int 1 int 1", // function
+									"EditControlKickDrum1",  // name
 									new Text(
-											"%Keybind RideCymbal 1", // text
+											"%Keybind KickDrum 1", // text
 											"center", "center", // align
 											0, -6, // text offset (x, y)
 											35, // text size
@@ -5654,10 +5654,10 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"editKeybind String RideCymbal int 2 int 1", // function
-									"EditControlRideCymbal2",  // name
+									"editKeybind String KickDrum int 2 int 1", // function
+									"EditControlKickDrum2",  // name
 									new Text(
-											"%Keybind RideCymbal 2", // text
+											"%Keybind KickDrum 2", // text
 											"center", "center", // align
 											0, -6, // text offset (x, y)
 											35, // text size
@@ -5959,7 +5959,9 @@ public class DefaultValues {
     			getDefaultSFXVolume(),
     			getDefaultDEBUG_drawMasks(),
     			getDefaultDEBUG_masksColorsOffset(),
-    			getDefaultDEBUG_masksOpacity()
+    			getDefaultDEBUG_masksOpacity(),
+    			getDefaultFORCED_noFail(),
+    			getDefaultFORCED_millisecondLeniency()
     			);
 		return defaultConfig;
 	}

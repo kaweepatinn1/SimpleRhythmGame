@@ -49,7 +49,8 @@ public class Config {
 			int framerate, boolean shouldLimitFramerate, boolean displayFramerate,
 			boolean cursorEnabled, double transitionTime,
 			int masterVolume, int musicVolume, int SFXVolume,
-			boolean DEBUG_drawMasks, int DEBUG_masksColorsOffset, int DEBUG_masksOpacity) {
+			boolean DEBUG_drawMasks, int DEBUG_masksColorsOffset, int DEBUG_masksOpacity,
+			boolean FORCED_noFail, int FORCED_millisecondLeniency) {
 		this.fullscreen = fullscreen;
 		this.sizeToForce = sizeToForce;
 		this.controls = controls;
@@ -72,6 +73,8 @@ public class Config {
 		this.DEBUG_drawMasks = DEBUG_drawMasks;
 		this.DEBUG_masksColorsOffset = DEBUG_masksColorsOffset;
 		this.DEBUG_masksOpacity = DEBUG_masksOpacity;
+		this.FORCED_noFail = FORCED_noFail;
+		this.FORCED_millisecondLeniency = FORCED_millisecondLeniency;
 	}
 	
 	public static int getColorsLenth() {
