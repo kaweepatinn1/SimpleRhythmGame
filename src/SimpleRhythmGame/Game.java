@@ -13,7 +13,7 @@ public class Game extends Thread {
 	private Note[] rawNotes;
 	// the unrendered notes queue. First in first out.
 	private ArrayList<Note> currentNotes;
-	private Note[] futureNotes;
+	private ArrayList<Note> futureNotes;
 	private int[] currentNotesLimits; 
 	// defines
 	private double millisPassed; 
@@ -44,7 +44,7 @@ public class Game extends Thread {
 		currentLevel = level;
 		rawNotes = currentLevel.getSortedNotes();
 		currentNotes = new ArrayList<>();
-		futureNotes = rawNotes;
+		futureNotes = new ArrayList<>(Arrays.asList(rawNotes));
 		currentNotesLimits = new int[] {0,0};
 		rawGameMenu = generateGameMenu(); // uses currentNotes to initially generate the game menu
 		millisPassed = 0;
@@ -102,11 +102,11 @@ public class Game extends Thread {
 	
 	public void updateFutureNotes() {
 		if (currentNotesLimits == null) {
-			futureNotes = rawNotes;
+			futureNotes = new ArrayList<>(Arrays.asList(rawNotes));;
 		} else {
 			Note[] toUpdate = new Note[rawNotes.length - currentNotesLimits[1]];
 			System.arraycopy(rawNotes,currentNotesLimits[1],toUpdate,0,rawNotes.length - currentNotesLimits[1]);
-			futureNotes = toUpdate;
+			futureNotes = new ArrayList<>(Arrays.asList(toUpdate));;
 		}
 	}
 
@@ -143,7 +143,7 @@ public class Game extends Thread {
 				updateFuture = true;
 			} else {
 				break; // this is why it's important for the queue to be sorted.
-				// breaks as soon as we know this element should be displayed.
+				// breaks as soon as we know this element should not be displayed.
 			}
 		}
 		
@@ -429,14 +429,29 @@ public class Game extends Thread {
 		return menuToReturn;
 	}
 
-	public void hit(Note note) {
+	public void hit(Object[] noteInfo) {
 		// Check note timing
-		currentNotes.remove(note);
-		System.out.println(note);
+		futureNotes.remove((Note) noteInfo[0]);
+		currentNotes.remove((Note) noteInfo[0]);
+		System.out.println(noteInfo[1]);
+		incrementNotesHit();
+		// x2 for 5, x3 for 10, x4 for 15 and x5 for 20	
+		boolean perfect = Math.abs((double) noteInfo[1]) < 100;
+		System.out.println(perfect);
+		int timingScore = 200 - (int) Math.abs((double) noteInfo[1]);
+		// 200 points minus each ms delay
+		int comboMulti = Math.min(((combo / 5) + 1) , 5);
+		incrementScore(timingScore * comboMulti);
+		incrementCombo(true);
+		incrementHealth(1);
+		//System.out.println(note);
 	}
 	
 	public void miss() {
-		
+		System.out.println("Miss!");
+		incrementNotesMissed();
+		incrementCombo(false);
+		incrementHealth(-10);
 	}
 
 	public double getMillisPassed() {
@@ -497,10 +512,12 @@ public class Game extends Thread {
 	
 	public void incrementNotesHit() {
 		notesHit++;
+		updateAccuracy();
 	}
 	
 	public void incrementNotesMissed() {
 		notesMissed++;
+		updateAccuracy();
 	}
 
 	public int getNotesMissed() {
@@ -508,12 +525,11 @@ public class Game extends Thread {
 	}
 
 	public double getAccuracy() {
-		updateAccuracy();
 		return accuracy;
 	}
 	
 	private void updateAccuracy() {
-		accuracy = (notesMissed == 0) ? 100 : Math.round(((double) notesHit / (double) (notesHit + notesMissed)) * 10d) / 10d;
+		accuracy = (notesMissed == 0) ? 100 : Math.round(((double) notesHit / (double) (notesHit + notesMissed)) * 1000d) / 10d;
 	}
 
 	public boolean isNoFail() {
@@ -526,15 +542,15 @@ public class Game extends Thread {
 	* @param  level  The current level.
 	* @return      the time offset as a double.
 	*/
-	public Note getClosestNote(int type) {
+	public Object[] getClosestNote(int type) {
 		for (Note note : currentNotes) {
 			if (note.getType() == type) {
-				System.out.println(getTimeSinceGameStart());
-				System.out.println(note.getCalculatedTimeFromStart() - ShowImage.getConfig().getFORCED_millisecondLeniency());
+				// System.out.println("Time since start: " + getTimeSinceGameStart());
+				// System.out.println("Time to hit: " + note.getCalculatedTimeFromStart());
 				if ( getTimeSinceGameStart() > note.getCalculatedTimeFromStart() - ShowImage.getConfig().getFORCED_millisecondLeniency() &&
-						note.getCalculatedTimeFromStart() < note.getCalculatedTimeFromStart() + (ShowImage.getConfig().getFORCED_millisecondLeniency() * 2)) {
-					// within one leniency forwards and two backwards
-					return note;
+						getTimeSinceGameStart() < note.getCalculatedTimeFromStart() + (ShowImage.getConfig().getFORCED_millisecondLeniency() * 1)) {
+					// within one leniency forwards and backwards (positive is late, neg is early)
+					return new Object[] {note, getTimeSinceGameStart() - note.getCalculatedTimeFromStart()};
 				}
 			}
 		}

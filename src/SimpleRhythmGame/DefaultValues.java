@@ -21,7 +21,7 @@ public class DefaultValues {
 	private static final int defaultSFXVolume = 50;
 	
 	private static final boolean defaultFORCED_noFail = false;
-	private static final int defaultFORCED_millisecondLeniency = 200; // amount of ms we are lenient to missed notes
+	private static final int defaultFORCED_millisecondLeniency = 100; // amount of ms we are lenient to missed notes
 	
 	private static final boolean defaultDEBUG_drawMasks = false; // draws all clipping masks
 	private static final int defaultDEBUG_masksColorsOffset = 10; // changes the seed for drawn colors

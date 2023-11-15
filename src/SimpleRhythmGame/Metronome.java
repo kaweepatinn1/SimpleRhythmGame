@@ -13,7 +13,8 @@ public class Metronome extends Thread {
 		int timeSignatureDiv = level.getTimeSignature()[0];
 		while (!ShowImage.getState().equals("Stopped")) {
 			if (ShowImage.getState().equals("Playing")) {
-				int currentNote = (int) Math.floor((Framerate.getCurrentTime() - levelStartTime) / timePerClick);
+				int currentNote = (int) Math.floor((Framerate.getCurrentTime() + 50 - levelStartTime) / timePerClick);
+				// 50ms delay is to account for the processing and play delay of the sfx.
 				if (currentNote > lastNotePlayed) {
 					if (((lastNotePlayed % timeSignatureDiv) + timeSignatureDiv) % timeSignatureDiv == 0) {
 						Sound.playSound(Sound.SFX_metronome1[0]);

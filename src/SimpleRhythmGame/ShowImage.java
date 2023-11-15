@@ -293,46 +293,56 @@ public class ShowImage extends JPanel implements KeyListener {
             
             if (state.equals("Playing")) {
             	if (keyPressed.equals("HiHat")) {
-            		Note note = game.getClosestNote(Note.Note_HIHAT);
-            		if (note != null) {
+            		Object[] noteInfo = game.getClosestNote(Note.Note_HIHAT);
+            		if (noteInfo != null) {
+            			Note note = (Note) noteInfo[0];
             			Sound.playSound(note.getSoundIndex());
-            			game.hit(note);
+            			game.hit(noteInfo);
             		} else {
             			Sound.playRandomSoundOfType(Sound.SFX_hiHat1[0]);
+            			game.miss();
             		}
             		Sound.playSound(Sound.SFX_hiHat1[0]);
             	} else if (keyPressed.equals("SnareDrum")) {
-        			Note note = game.getClosestNote(Note.Note_SNAREDRUM);
-        			System.out.println(note);
-            		if (note != null) {
+        			Object[] noteInfo = game.getClosestNote(Note.Note_SNAREDRUM);
+        			//System.out.println(note);
+            		if (noteInfo != null) {
+            			Note note = (Note) noteInfo[0];
             			Sound.playSound(Sound.SFX_snareDrum1[0]);
-            			game.hit(note);
+            			game.hit(noteInfo);
             		} else {
             			Sound.playSound(Sound.SFX_snareDrum1[0]);
+            			game.miss();
             		}
             	} else if (keyPressed.equals("CrashCymbal")) {
-            		Note note = game.getClosestNote(Note.Note_CRASHCYMBAL);
-            		if (note != null) {
+            		Object[] noteInfo = game.getClosestNote(Note.Note_CRASHCYMBAL);
+            		if (noteInfo != null) {
+            			Note note = (Note) noteInfo[0];
             			Sound.playSound(Sound.SFX_crashCymbal1[0]);
-            			game.hit(note);
+            			game.hit(noteInfo);
             		} else {
             			Sound.playSound(Sound.SFX_crashCymbal1[0]);
+            			game.miss();
             		}
             	} else if (keyPressed.equals("Tom")) {
-            		Note note = game.getClosestNote(Note.Note_TOM);
-            		if (note != null) {
+            		Object[] noteInfo = game.getClosestNote(Note.Note_TOM);
+            		if (noteInfo != null) {
+            			Note note = (Note) noteInfo[0];
             			Sound.playSound(note.getSoundIndex());
-            			game.hit(note);
+            			game.hit(noteInfo);
             		} else {
             			Sound.playRandomSoundOfType(Sound.SFX_tom1[0]);
+            			game.miss();
             		}
             	} else if (keyPressed.equals("KickDrum")) {
-            		Note note = game.getClosestNote(Note.Note_KICKDRUM);
-            		if (note != null) {
+            		Object[] noteInfo = game.getClosestNote(Note.Note_KICKDRUM);
+            		if (noteInfo != null) {
+            			Note note = (Note) noteInfo[0];
             			Sound.playSound(Sound.SFX_kickDrum1[0]);
-            			game.hit(note);
+            			game.hit(noteInfo);
             		} else {
             			Sound.playSound(Sound.SFX_kickDrum1[0]);
+            			game.miss();
             		}
             	}
             }
