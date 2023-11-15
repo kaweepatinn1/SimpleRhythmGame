@@ -198,7 +198,13 @@ public class Game extends Thread {
 	}
 	
 	private Note[] getFutureNotes() {
-		return futureNotes;
+		Note[] arrayToReturn = new Note[futureNotes.size()];
+		int i = 0;
+		for (Note note : futureNotes) {
+			arrayToReturn[i] = note;
+			i++;
+		}
+		return arrayToReturn;
 	}
 
 	public Menu generateGameMenu() {
