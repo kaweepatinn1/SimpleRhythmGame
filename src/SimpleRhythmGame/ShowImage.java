@@ -1957,17 +1957,17 @@ public class ShowImage extends JPanel implements KeyListener {
 	
 	public static void startGame(Level level) {
 		Level tempLevel = new Level(
-				"testlevel", // name
+				"Tutorial", // name
 				"nano", // author
 				0d, // ms offset
-				200, // ms metronome offset (100 here)
+				200, // ms metronome offset (200 here)
 				75, // bpm
-				1f, // pps
+				1.5f, // pps
 				10, // total time
 				new int[] {4,4}, // time signature
 				new Note[] {
 						new Note(
-								Note.Note_HIHAT, // note type
+								Note.Note_KICKDRUM, // note type
 								0, // note subtype
 								1, // bar
 								1, // beat
@@ -1985,7 +1985,7 @@ public class ShowImage extends JPanel implements KeyListener {
 								0 // ms offset
 								),
 						new Note(
-								Note.Note_HIHAT, // note type
+								Note.Note_KICKDRUM, // note type
 								0, // note subtype
 								1, // bar
 								3, // beat
@@ -2003,7 +2003,7 @@ public class ShowImage extends JPanel implements KeyListener {
 								0 // ms offset
 								),
 						new Note(
-								Note.Note_CRASHCYMBAL, // note type
+								Note.Note_KICKDRUM, // note type
 								0, // note subtype
 								2, // bar
 								1, // beat
@@ -2012,7 +2012,7 @@ public class ShowImage extends JPanel implements KeyListener {
 								0 // ms offset
 								),
 						new Note(
-								Note.Note_TOM, // note type
+								Note.Note_SNAREDRUM, // note type
 								0, // note subtype
 								2, // bar
 								2, // beat
@@ -2030,7 +2030,7 @@ public class ShowImage extends JPanel implements KeyListener {
 								0 // ms offset
 								),
 						new Note(
-								Note.Note_HIHAT, // note type
+								Note.Note_SNAREDRUM, // note type
 								0, // note subtype
 								2, // bar
 								4, // beat
@@ -2039,7 +2039,7 @@ public class ShowImage extends JPanel implements KeyListener {
 								0 // ms offset
 								),
 						new Note(
-								Note.Note_SNAREDRUM, // note type
+								Note.Note_KICKDRUM, // note type
 								0, // note subtype
 								3, // bar
 								1, // beat
@@ -2051,13 +2051,31 @@ public class ShowImage extends JPanel implements KeyListener {
 								Note.Note_HIHAT, // note type
 								0, // note subtype
 								3, // bar
+								1, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								3, // bar
 								2, // beat
 								new int[] {0,0}, // subbeat
 								1f, // speed
 								0 // ms offset
 								),
 						new Note(
-								Note.Note_SNAREDRUM, // note type
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								3, // bar
+								2, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
 								0, // note subtype
 								3, // bar
 								3, // beat
@@ -2066,7 +2084,16 @@ public class ShowImage extends JPanel implements KeyListener {
 								0 // ms offset
 								),
 						new Note(
-								Note.Note_CRASHCYMBAL, // note type
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								3, // bar
+								3, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
 								0, // note subtype
 								3, // bar
 								4, // beat
@@ -2075,11 +2102,11 @@ public class ShowImage extends JPanel implements KeyListener {
 								0 // ms offset
 								),
 						new Note(
-								Note.Note_TOM, // note type
+								Note.Note_HIHAT, // note type
 								0, // note subtype
-								4, // bar
-								1, // beat
-								new int[] {0,0}, // subbeat
+								3, // bar
+								4, // beat
+								new int[] {1,2}, // subbeat
 								1f, // speed
 								0 // ms offset
 								),
@@ -2087,6 +2114,24 @@ public class ShowImage extends JPanel implements KeyListener {
 								Note.Note_KICKDRUM, // note type
 								0, // note subtype
 								4, // bar
+								1, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								4, // bar
+								1, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								4, // bar
 								2, // beat
 								new int[] {0,0}, // subbeat
 								1f, // speed
@@ -2096,8 +2141,26 @@ public class ShowImage extends JPanel implements KeyListener {
 								Note.Note_HIHAT, // note type
 								0, // note subtype
 								4, // bar
+								2, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								4, // bar
 								3, // beat
 								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								4, // bar
+								3, // beat
+								new int[] {1,2}, // subbeat
 								1f, // speed
 								0 // ms offset
 								),
@@ -2113,9 +2176,45 @@ public class ShowImage extends JPanel implements KeyListener {
 						new Note(
 								Note.Note_HIHAT, // note type
 								0, // note subtype
+								4, // bar
+								4, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
 								5, // bar
 								1, // beat
-								new int[] {0,0}, // subbeat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								5, // bar
+								1, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								5, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								5, // bar
+								1, // beat
+								new int[] {3,4}, // subbeat
 								1f, // speed
 								0 // ms offset
 								),
@@ -2124,7 +2223,16 @@ public class ShowImage extends JPanel implements KeyListener {
 								0, // note subtype
 								5, // bar
 								2, // beat
-								new int[] {0,0}, // subbeat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								5, // bar
+								2, // beat
+								new int[] {1,4}, // subbeat
 								1f, // speed
 								0 // ms offset
 								),
@@ -2132,16 +2240,52 @@ public class ShowImage extends JPanel implements KeyListener {
 								Note.Note_CRASHCYMBAL, // note type
 								0, // note subtype
 								5, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								5, // bar
 								3, // beat
 								new int[] {0,0}, // subbeat
 								1f, // speed
 								0 // ms offset
 								),
 						new Note(
-								Note.Note_TOM, // note type
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								5, // bar
+								3, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
 								0, // note subtype
 								5, // bar
 								4, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								5, // bar
+								4, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								6, // bar
+								1, // beat
 								new int[] {0,0}, // subbeat
 								1f, // speed
 								0 // ms offset
@@ -2151,7 +2295,304 @@ public class ShowImage extends JPanel implements KeyListener {
 								0, // note subtype
 								6, // bar
 								1, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								6, // bar
+								2, // beat
 								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								6, // bar
+								2, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								6, // bar
+								3, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								6, // bar
+								3, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								6, // bar
+								4, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								6, // bar
+								4, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								7, // bar
+								1, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								7, // bar
+								1, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								7, // bar
+								2, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								7, // bar
+								2, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								7, // bar
+								3, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								7, // bar
+								3, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								7, // bar
+								4, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								7, // bar
+								4, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								8, // bar
+								1, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								8, // bar
+								1, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								8, // bar
+								2, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								8, // bar
+								2, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								8, // bar
+								3, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								8, // bar
+								3, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								8, // bar
+								4, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								8, // bar
+								4, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								9, // bar
+								1, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								9, // bar
+								1, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								9, // bar
+								2, // beat
+								new int[] {0,0}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								0, // note subtype
+								9, // bar
+								2, // beat
+								new int[] {1,2}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								9, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								9, // bar
+								3, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								9, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								9, // bar
+								3, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								9, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								9, // bar
+								4, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_CRASHCYMBAL, // note type
+								0, // note subtype
+								9, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
 								1f, // speed
 								0 // ms offset
 								),

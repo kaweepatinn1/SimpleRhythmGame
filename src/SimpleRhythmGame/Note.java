@@ -43,10 +43,10 @@ public class Note {
 	
 	public void calculateTimeFromStart(Level level) {
 		double beatTime = 60d / (double) level.getBPM();
-		double subBeatTime = getSubBeat()[1] == 0 ? 0 : ((double) getSubBeat()[0] / (double) getSubBeat()[1]);
+		double subBeatRatio = getSubBeat()[1] == 0 ? 0 : ((double) getSubBeat()[0] / (double) getSubBeat()[1]);
 		double barTime = (double) level.getTimeSignature()[0] * beatTime;
 		
-		double noteIntendedSecondsFromStart = (barTime * (bar - 1)) + (beatTime * (beat - 1)) + (subBeatTime * getSubBeat()[0])
+		double noteIntendedSecondsFromStart = (barTime * (bar - 1)) + (beatTime * (beat - 1)) + (subBeatRatio * beatTime)
 				+ getNoteOffset() / 1000 + level.getSongOffset() / 100;
 		// System.out.println(noteIntendedSecondsFromStart);
 		double noteIntendedMillisFromStart = noteIntendedSecondsFromStart * 1000;
