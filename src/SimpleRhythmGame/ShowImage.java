@@ -1962,7 +1962,7 @@ public class ShowImage extends JPanel implements KeyListener {
 				0d, // ms offset
 				200, // ms metronome offset (200 here)
 				75, // bpm
-				1.5f, // pps
+				1f, // pps
 				10, // total time
 				new int[] {4,4}, // time signature
 				new Note[] {
