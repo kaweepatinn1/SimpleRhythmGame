@@ -25,6 +25,7 @@ public class Framerate extends Thread {
 	// UPDATE: archived nanoseconds as it takes too long to call.
 	
 	public Framerate(){
+		checkCurrentTime();
 		setFramesToStore(ShowImage.getConfig().getFramesToStore());
 		framerate = ShowImage.getConfig().getFramerate();
 		// May not be precise. 

@@ -4,7 +4,7 @@ package SimpleRhythmGame;
 
 public class DefaultValues {
 	private static final boolean defaultFullscreen = false; // if not fullscreen will force below value
-	private static final int defaultSizeToForce = 1280; // forces this screen size if above is true
+	private static final int defaultSizeToForce = 1280; // forces this screen size (width) if above is true
 	
 	private static final boolean defaultNanoSecondPrecision = true; // true breaks animations
 	private static final int defaultFramesToStore = 20;
@@ -6202,9 +6202,9 @@ public class DefaultValues {
 									// Text and Renderable
 									1f, // scale
 									null, // function
-									"SoundsSubtitle",  // name
+									"ScreenSubtitle",  // name
 									new Text(
-										"Sounds", // text
+										"Screen", // text
 										"center", "center", // align
 										0, -50, // text offset (x, y)
 										60, // text size
@@ -6237,9 +6237,9 @@ public class DefaultValues {
 									// Text and Renderable
 									1f, // scale
 									null, // function
-									"MasterVolumeSubtext",  // name
+									"WidthSubtext",  // name
 									new Text(
-										"Master Volume", // text
+										"Screen Width", // text
 										"left", "center", // align
 										0, -2, // text offset (x, y)
 										40, // text size
@@ -6270,8 +6270,8 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"enterTextField String MasterVolume", // function
-									"EditMasterVolumeButton",  // name
+									"enterTextField String ScreenWidth", // function
+									"EditScreenWidthButton",  // name
 									new Renderable(
 											// Renderable Without Function
 											"EditPNG", // name
@@ -6308,11 +6308,11 @@ public class DefaultValues {
 												0, // Field is empty
 											},
 										TextField.Input_NUMERIC, // input type
-										"MasterVolume", // Name
+										"ScreenWidth", // Name
 										new Text(
-											"%MasterVolume", // text
+											"%ScreenWidth", // text
 											"right", "center", // align
-											20, -6, // text offset (x, y)
+											45, -6, // text offset (x, y)
 											35, // text size
 											6, // text color (index of colors)
 											"Archivo Narrow", // font
@@ -6342,43 +6342,9 @@ public class DefaultValues {
 									// Text and Renderable
 									1f, // scale
 									null, // function
-									"PercentageSign1",  // name
+									"FullscreenSubtext",  // name
 									new Text(
-											"%", // text
-											"right", "center", // align
-											232, -6, // text offset (x, y)
-											35, // text size
-											6, // text color (index of colors)
-											"Archivo Narrow", // font
-											false // bold
-											),
-									new RoundedArea(
-											1330, 339, 0, 0, 0  // x, y, xSize, ySize, round%
-											),
-									Color_TRANSPARENT, // box color (index of colors)
-									255, // opacity (0-255)
-									0, // shadowOffset
-									5, 6 // strokeWidth, strokeColor
-									)),
-/////////////////////////////////////////////////////////////////////////////////////
-						new Element(
-								new Selector(
-									new int[]{-1,-1}, // Selector Index
-									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
-									),
-								-1, // mask index
-								false, // hover overlap
-								-1, // hover effect
-								-1, // click effect
-								-1, // arbritraty animation (to be used for scroll)
-								22, // entry animation
-								new TextBox(
-									// Text and Renderable
-									1f, // scale
-									null, // function
-									"MusicVolumeSubtext",  // name
-									new Text(
-										"Music Volume", // text
+										"Fullscreen", // text
 										"left", "center", // align
 										0, -2, // text offset (x, y)
 										40, // text size
@@ -6397,8 +6363,8 @@ public class DefaultValues {
 /////////////////////////////////////////////////////////////////////////////////////
 						new Element(
 								new Selector(
-									new int[]{1,1}, // Selector Index
-									new int[][]{{1,1},{1,2},{0,1},{1,0}} // E, S, W, N to select next
+									new int[]{1,4}, // Selector Index
+									new int[][]{{1,4},{1,5},{0,1},{1,3}} // E, S, W, N to select next
 									),
 								-1, // mask index
 								true, // hover overlap
@@ -6409,8 +6375,8 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"enterTextField String MusicVolume", // function
-									"EditMusicVolumeButton",  // name
+									"enterTextField String Fullscreen", // function
+									"EditFullscreenButton",  // name
 									new Renderable(
 											// Renderable Without Function
 											"EditPNG", // name
@@ -6446,12 +6412,12 @@ public class DefaultValues {
 												1, // Field is duplicate!
 												0, // Field is empty
 											},
-										TextField.Input_NUMERIC, // input type
-										"MusicVolume", // Name
+										TextField.Input_BOOLEAN, // input type
+										"Fullscreen", // Name
 										new Text(
-											"%MusicVolume", // text
+											"%Fullscreen", // text
 											"right", "center", // align
-											20, -6, // text offset (x, y)
+											48, -6, // text offset (x, y)
 											35, // text size
 											6, // text color (index of colors)
 											"Archivo Narrow", // font
@@ -6464,40 +6430,6 @@ public class DefaultValues {
 									255, // opacity (0-255)
 									5, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
-									)),
-/////////////////////////////////////////////////////////////////////////////////////
-						new Element(
-								new Selector(
-									new int[]{-1,-1}, // Selector Index
-									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
-									),
-								-1, // mask index
-								false, // hover overlap
-								-1, // hover effect
-								-1, // click effect
-								-1, // arbritraty animation (to be used for scroll)
-								22, // entry animation
-								new TextBox(
-									// Text and Renderable
-									1f, // scale
-									null, // function
-									"PercentageSign2",  // name
-									new Text(
-											"%", // text
-											"right", "center", // align
-											232, -6, // text offset (x, y)
-											35, // text size
-											6, // text color (index of colors)
-											"Archivo Narrow", // font
-											false // bold
-											),
-									new RoundedArea(
-											1330, 419, 0, 0, 0  // x, y, xSize, ySize, round%
-											),
-									Color_TRANSPARENT, // box color (index of colors)
-									255, // opacity (0-255)
-									0, // shadowOffset
-									5, 6 // strokeWidth, strokeColor
 									)),
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////

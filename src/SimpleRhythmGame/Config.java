@@ -87,6 +87,7 @@ public class Config {
 
 	public void setFullscreen(boolean fullscreen) {
 		this.fullscreen = fullscreen;
+		ShowImage.setNewFrameSize(fullscreen, sizeToForce);
 		FileIO.currentConfigOut();
 	}
 
@@ -96,6 +97,7 @@ public class Config {
 
 	public void setSizeToForce(int sizeToForce) {
 		this.sizeToForce = sizeToForce;
+		ShowImage.setNewFrameSize(fullscreen, sizeToForce);
 		FileIO.currentConfigOut();
 	}
 
@@ -561,6 +563,10 @@ public class Config {
 					+ " // " + percentage + "%";
 		} else if (splitVariable[0].equals("%Combo")) {
 			varToReturn = Integer.toString(ShowImage.getGame().getCombo());
+		} else if (splitVariable[0].equals("%ScreenWidth")) {
+			varToReturn = Integer.toString(getSizeToForce());
+		} else if (splitVariable[0].equals("%Fullscreen")) {
+			varToReturn = Boolean.toString(getFullscreen());
 		}
 		return varToReturn;
 	}
@@ -628,6 +634,12 @@ public class Config {
 				System.out.println("No control called " + splitVariable[1]);
 				return "Fail";
 			}
+		} else if (splitVariable[0].equals("%ScreenWidth")) {
+			setSizeToForce(Math.max(Math.min(Integer.parseInt((String) newValues), 3840), 540));
+			return "Success";
+		} else if (splitVariable[0].equals("%Fullscreen")) {
+			setFullscreen(!getFullscreen());
+			return "Success";
 		}
 		
 		else {

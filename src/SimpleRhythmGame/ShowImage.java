@@ -1468,7 +1468,7 @@ public class ShowImage extends JPanel implements KeyListener {
         return toReturn;
     }
     
-    private static void setNewFrameSize(boolean fullscreen, int size) { 
+    public static void setNewFrameSize(boolean fullscreen, int size) { 
     	// sets the screen size to provided integer or fullscreen, depending on the passed boolean.
     	frame = new JFrame("Simple Rhythm Game");
     	if (fullscreen) {
@@ -1482,6 +1482,9 @@ public class ShowImage extends JPanel implements KeyListener {
     
     public static void updateFrame() {
     	if (transitioning) {
+    		System.out.println(Framerate.getCurrentTime());
+    		System.out.println(transitionTime);
+    		System.out.println(config.getTransitionTime());
     		if (Framerate.getCurrentTime() > transitionTime + config.getTransitionTime() && transitionBlackOut == false && menuSwitched == true) {
     			transitioning = false;
     			menuSwitched = false;
@@ -1635,6 +1638,8 @@ public class ShowImage extends JPanel implements KeyListener {
 	        
 	        transitioning = true;
 	    	transitionTime = Framerate.getCurrentTime();
+	    	System.out.println(Framerate.getCurrentTime());
+	    	System.out.println(transitionTime);
 	    	transitionTo = menu;
 	    	
 	    	animateEntryMenu();
