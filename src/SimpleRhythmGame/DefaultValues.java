@@ -6220,7 +6220,6 @@ public class DefaultValues {
 									0, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
 									)),
-						
 /////////////////////////////////////////////////////////////////////////////////////
 						new Element(
 								new Selector(
@@ -6302,7 +6301,7 @@ public class DefaultValues {
 								new TextField(
 										// Textfield
 										1f, // scale
-										3, // Max Size
+										4, // Max Size
 										new int[] { // Error Popup Indexes
 												1, // Field is duplicate!
 												0, // Field is empty
@@ -6430,6 +6429,42 @@ public class DefaultValues {
 									255, // opacity (0-255)
 									5, // shadowOffset
 									3, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								22, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									null, // function
+									"ScreenSubtitle",  // name
+									new Text(
+										"Note: Screen Width is overriden by the Fullscreen option%br%"
+										+ "Screen Width capped at your screen's resolution (max),%br%"
+										+ "and 540px (min).", // text
+										"center", "center", // align
+										0, 40, // text offset (x, y)
+										40, // text size
+										6, // text color (index of colors)
+										"Archivo Narrow", // font
+										false // bold
+										),
+									new RoundedArea(
+										1160, 490, 850, 0, 0  // x, y, xSize, ySize, round%
+										),
+									Color_TRANSPARENT, // box color (index of colors)
+									255, // opacity (0-255)
+									0, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
 									)),
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////

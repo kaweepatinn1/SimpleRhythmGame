@@ -65,7 +65,7 @@ public class Framerate extends Thread {
 	}
 	
 	public void run() { // game render loop
-		System.out.println(Thread.currentThread().getPriority());
+//		System.out.println(Thread.currentThread().getPriority());
 		while(true) {
 			try {
 				Thread.sleep(0);

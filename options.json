@@ -1,6 +1,6 @@
 {
   "fullscreen": false,
-  "sizeToForce": 540,
+  "sizeToForce": 1280,
   "nanoSecondPrecision": true,
   "framesToStore": 20,
   "framerate": 60,

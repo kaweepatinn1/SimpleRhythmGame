@@ -1,6 +1,8 @@
 package SimpleRhythmGame;
 
 import java.awt.Color;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.text.DecimalFormat;
 import java.awt.event.KeyEvent;
 
@@ -88,6 +90,7 @@ public class Config {
 	public void setFullscreen(boolean fullscreen) {
 		this.fullscreen = fullscreen;
 		ShowImage.setNewFrameSize(fullscreen, sizeToForce);
+		Functions.setMenu("Settings_Screen_Menu");
 		FileIO.currentConfigOut();
 	}
 
@@ -98,6 +101,7 @@ public class Config {
 	public void setSizeToForce(int sizeToForce) {
 		this.sizeToForce = sizeToForce;
 		ShowImage.setNewFrameSize(fullscreen, sizeToForce);
+		Functions.setMenu("Settings_Screen_Menu");
 		FileIO.currentConfigOut();
 	}
 
@@ -635,7 +639,8 @@ public class Config {
 				return "Fail";
 			}
 		} else if (splitVariable[0].equals("%ScreenWidth")) {
-			setSizeToForce(Math.max(Math.min(Integer.parseInt((String) newValues), 3840), 540));
+			GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+			setSizeToForce(Math.max(Math.min(Integer.parseInt((String) newValues), gd.getDisplayMode().getWidth()), 540));
 			return "Success";
 		} else if (splitVariable[0].equals("%Fullscreen")) {
 			setFullscreen(!getFullscreen());

@@ -1451,15 +1451,18 @@ public class ShowImage extends JPanel implements KeyListener {
         // System.out.println("scaled" + screenScaledWidth);
         // System.out.println("scaled" + screenScaledHeight);
         
-        int screenWidth = (int) Math.min(screenScaledWidth, screenScaledHeight * 16 / 9);
-        int screenHeight = (int) screenWidth / 16 * 9;
+        int screenWidth = (int) Math.min(screenScaledWidth, (int) (screenScaledHeight * 16f / 9f));
+        int screenHeight = (int) (screenWidth / 16f * 9f);
         
         int[] toReturn = {screenWidth, screenHeight};
         // System.out.println(java.awt.Toolkit.getDefaultToolkit().getScreenResolution());
         // System.out.println("final" + screenWidth);
         // System.out.println("final" + screenHeight);
+        System.out.println(sizeToForce);
+        System.out.println(screenWidth);
+//      frame.setBounds(screenDefaultWidth, screenDefaultHeight, screenWidth, screenHeight)
         frame.setSize(screenWidth, screenHeight);
-        
+        //TODO
         calculatedScreenWidth = screenWidth;
         calculatedScreenHeight = screenHeight;
         double xScale = (double) calculatedScreenWidth / 1920d;
@@ -1470,11 +1473,12 @@ public class ShowImage extends JPanel implements KeyListener {
     
     public static void setNewFrameSize(boolean fullscreen, int size) { 
     	// sets the screen size to provided integer or fullscreen, depending on the passed boolean.
-    	frame = new JFrame("Simple Rhythm Game");
+    	// frame = new JFrame("Simple Rhythm Game");
+//    	frame.setVisible(false);
     	if (fullscreen) {
     		calculateNewScreenDimensions(false, 0);
             frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-            frame.setUndecorated(true);
+//            frame.setUndecorated(true);
     	} else {
     		calculateNewScreenDimensions(true, size);
     	}
@@ -1482,9 +1486,9 @@ public class ShowImage extends JPanel implements KeyListener {
     
     public static void updateFrame() {
     	if (transitioning) {
-    		System.out.println(Framerate.getCurrentTime());
-    		System.out.println(transitionTime);
-    		System.out.println(config.getTransitionTime());
+//    		System.out.println(Framerate.getCurrentTime());
+//    		System.out.println(transitionTime);
+//    		System.out.println(config.getTransitionTime());
     		if (Framerate.getCurrentTime() > transitionTime + config.getTransitionTime() && transitionBlackOut == false && menuSwitched == true) {
     			transitioning = false;
     			menuSwitched = false;
@@ -1907,7 +1911,6 @@ public class ShowImage extends JPanel implements KeyListener {
         }
         
         setNewFrameSize(config.getFullscreen(), config.getSizeToForce()); // uses the above raw lists and variables to set the frame size.
-        
         if (userHasUsername) {
         	Functions.setMenu("Main Menu");
         } else {
