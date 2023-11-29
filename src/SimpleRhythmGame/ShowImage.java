@@ -1458,11 +1458,11 @@ public class ShowImage extends JPanel implements KeyListener {
         // System.out.println(java.awt.Toolkit.getDefaultToolkit().getScreenResolution());
         // System.out.println("final" + screenWidth);
         // System.out.println("final" + screenHeight);
-        System.out.println(sizeToForce);
-        System.out.println(screenWidth);
+//        System.out.println(sizeToForce);
+//        System.out.println(screenWidth);
 //      frame.setBounds(screenDefaultWidth, screenDefaultHeight, screenWidth, screenHeight)
         frame.setSize(screenWidth, screenHeight);
-        //TODO
+        
         calculatedScreenWidth = screenWidth;
         calculatedScreenHeight = screenHeight;
         double xScale = (double) calculatedScreenWidth / 1920d;
@@ -1642,8 +1642,8 @@ public class ShowImage extends JPanel implements KeyListener {
 	        
 	        transitioning = true;
 	    	transitionTime = Framerate.getCurrentTime();
-	    	System.out.println(Framerate.getCurrentTime());
-	    	System.out.println(transitionTime);
+//	    	System.out.println(Framerate.getCurrentTime());
+//	    	System.out.println(transitionTime);
 	    	transitionTo = menu;
 	    	
 	    	animateEntryMenu();
