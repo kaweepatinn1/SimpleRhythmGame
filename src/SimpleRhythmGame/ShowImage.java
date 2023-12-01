@@ -464,6 +464,10 @@ public class ShowImage extends JPanel implements KeyListener {
 	                		for (int i = 0 ; i < selectionsList.length; i++) {
 	                    		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1] &&
 	                    				selectionsList[i].getSelectorIndex()[0] + selectionsList[i].getSelectorIndex()[1] > -1) {
+//	                    			Element initialElement = tempElementsList[i];
+//	                    			if (initialElement.getName().charAt(initialElement.getName().length() - 2) == '#') {
+//	                    				initialElement.getName();
+//	                    			} Can one day be added to improve navigation in optionslist when scrolled
 	                    			element = tempElementsList[i];
 	                    			element.animateHover();
 	                    			lastHovered = element.getName();

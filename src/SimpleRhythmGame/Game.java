@@ -257,7 +257,7 @@ public class Game extends Thread {
 						new Element(
 								new Selector(
 									new int[]{-1,-1}, // Selector Index
-									new int[][]{{-1,-1},{-1,-1},{-1,-1},{-1,-1}} // E, S, W, N to select next
+									new int[][]{{-1,-1},{-	1,-1},{-1,-1},{-1,-1}} // E, S, W, N to select next
 									),
 								-1, // Mask Index
 								false, // hover overlap
