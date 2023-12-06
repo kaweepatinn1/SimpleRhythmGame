@@ -6727,7 +6727,7 @@ public class DefaultValues {
 /////////////////////////////////////////////////////////////////////////////////////
 					}
 			),
-			new Menu( // 3. Settings
+			new Menu( // 5. Play Menu
 					"Play Menu", // Menu Name
 					"Play", // Menu Display Name
 					"Main Menu", // Parent Menu
@@ -6799,14 +6799,14 @@ public class DefaultValues {
 							-1, // hover effect
 							-1, // click effect
 							-1, // arbritraty animation (to be used for scroll)
-							22, // entry animation
+							DefaultValues.TransformIndex_500msLeft150, // entry animation
 							new TextBox(
 								// No Text, No Renderable
 								1, // scale
 								null, // function
-								"Green Background",  // name
+								"Main Box",  // name
 								new RoundedArea(
-									1160, 560, 1200, 800,  // x, y, xSize, ySize, round%
+									1260, 560, 1000, 800,  // x, y, xSize, ySize, round%
 									5 // roundPercentage
 									),
 								Color_MENU, // box color (index of colors)
@@ -6819,6 +6819,33 @@ public class DefaultValues {
 						new Element(
 								new Selector(
 									new int[]{-1,-1}, // Selector Index
+									new int[][]{{-1,-1},{-1,-1},{-1,-1},{-1,-1}} // E, S, W, N to select next
+									),
+								-1, // Mask Index
+								false, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								DefaultValues.TransformIndex_500msRight150, // entry animation
+								new TextBox(
+									// No Text, No Renderable
+									1, // scale
+									null, // function
+									"Stats Box",  // name
+									new RoundedArea(
+										430, 560, 580, 800,  // x, y, xSize, ySize, round%
+										10 // roundPercentage
+										),
+									Color_MENU, // box color (index of colors)
+									255, // opacity (0-255)
+									25, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)
+								),
+	/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
 									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
 									),
 								-1, // mask index
@@ -6826,7 +6853,41 @@ public class DefaultValues {
 								-1, // hover effect
 								-1, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								22, // entry animation
+								TransformIndex_500msRight150, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									null, // function
+									"",  // name
+									new Text(
+										"Level Stats", // text
+										"center", "center", // align
+										0, -50, // text offset (x, y)
+										60, // text size
+										6, // text color (index of colors)
+										"Archivo Narrow", // font
+										false // bold
+										),
+									new RoundedArea(
+										430, 270, 500, 0, 0  // x, y, xSize, ySize, round%
+										),
+									Color_TRANSPARENT, // box color (index of colors)
+									255, // opacity (0-255)
+									0, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								TransformIndex_500msLeft150, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -6842,7 +6903,7 @@ public class DefaultValues {
 										false // bold
 										),
 									new RoundedArea(
-										1160, 270, 850, 0, 0  // x, y, xSize, ySize, round%
+										1260, 270, 650, 0, 0  // x, y, xSize, ySize, round%
 										),
 									Color_TRANSPARENT, // box color (index of colors)
 									255, // opacity (0-255)
@@ -6860,7 +6921,7 @@ public class DefaultValues {
 									-1, // hover effect
 									DefaultValues.TransformIndex_ClickScaleDown, // click effect
 									23, // arbritraty animation (to be used for scroll)
-									DefaultValues.TransformIndex_500msScale0, // entry animation
+									TransformIndex_500msLeft150, // entry animation
 									new OptionsList(
 											// Text and Renderable
 											1f, // scale
@@ -6871,14 +6932,14 @@ public class DefaultValues {
 											new Text(
 												"%Name", // text
 												"left", "center", // align
-												-530, -5, // text offset (x, y)
+												-430, -5, // text offset (x, y)
 												40, // text size
 												6, // text color (index of colors)
 												"Archivo Narrow", // font
 												false // bold
 												),
 											new RoundedArea(
-												1160, 398, 1100, 70, 0  // x, y, xSize, ySize, round%
+												1260, 398, 900, 70, 0  // x, y, xSize, ySize, round%
 												),
 											Color_BUTTONS, // box color (index of colors)
 											255, // opacity (0-255)
@@ -6897,7 +6958,7 @@ public class DefaultValues {
 									-1, // hover effect
 									DefaultValues.TransformIndex_ClickScaleDown, // click effect
 									23, // arbritraty animation (to be used for scroll)
-									DefaultValues.TransformIndex_500msScale0, // entry animation
+									TransformIndex_500msLeft150, // entry animation
 									new OptionsList(
 											// Text and Renderable
 											1f, // scale
@@ -6908,14 +6969,14 @@ public class DefaultValues {
 											new Text(
 												"%Name", // text
 												"right", "center", // align
-												-20, -5, // text offset (x, y)
+												-120, -5, // text offset (x, y)
 												40, // text size
 												6, // text color (index of colors)
 												"Archivo Narrow", // font
 												false // bold
 												),
 											new RoundedArea(
-												1710, 398, 0, 0, 0  // x, y, xSize, ySize, round%
+												1810, 398, 0, 0, 0  // x, y, xSize, ySize, round%
 												),
 											Color_BUTTONS, // box color (index of colors)
 											255, // opacity (0-255)
@@ -6934,7 +6995,7 @@ public class DefaultValues {
 								-1, // hover effect
 								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								DefaultValues.TransformIndex_500msScale0, // entry animation
+								TransformIndex_500msLeft150, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -6948,7 +7009,7 @@ public class DefaultValues {
 											255 // opacity (0-255)
 											),  // renderable
 									new RoundedArea(
-										1160, 315, 120, 50, 0  // x, y, xSize, ySize, round%
+										1260, 315, 120, 50, 0  // x, y, xSize, ySize, round%
 										),
 									Color_BUTTONS, // box color (index of colors)
 									255, // opacity (0-255)
@@ -6966,7 +7027,7 @@ public class DefaultValues {
 								-1, // hover effect
 								DefaultValues.TransformIndex_ClickScaleDown, // click effect
 								-1, // arbritraty animation (to be used for scroll)
-								DefaultValues.TransformIndex_500msScale0, // entry animation
+								TransformIndex_500msLeft150, // entry animation
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
@@ -6980,7 +7041,7 @@ public class DefaultValues {
 											255 // opacity (0-255)
 											),  // renderable
 									new RoundedArea(
-										1160, 910, 120, 50, 0  // x, y, xSize, ySize, round%
+										1260, 910, 120, 50, 0  // x, y, xSize, ySize, round%
 										),
 									Color_BUTTONS, // box color (index of colors)
 									255, // opacity (0-255)
