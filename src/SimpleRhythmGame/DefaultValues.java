@@ -6925,10 +6925,10 @@ public class DefaultValues {
 									new OptionsList(
 											// Text and Renderable
 											1f, // scale
-											"setSkin", // function
-											"%SkinChoices", // list objects
+											"playLevel", // function
+											"%Levels", // list objects
 											6, // max amount of options
-											"SkinChoices",  // name
+											"Levels",  // name
 											new Text(
 												"%Name", // text
 												"left", "center", // align
@@ -6962,12 +6962,12 @@ public class DefaultValues {
 									new OptionsList(
 											// Text and Renderable
 											1f, // scale
-											"setSkin", // function
-											"%SkinChoices", // list objects
+											"playLevel", // function
+											"%Levels", // list objects
 											6, // max amount of options
-											"SkinChoices",  // name
+											"Levels",  // name
 											new Text(
-												"%Name", // text
+												"%Author", // text
 												"right", "center", // align
 												-120, -5, // text offset (x, y)
 												40, // text size
@@ -6999,8 +6999,8 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"scroll String SkinChoices boolean false", // function
-									"ThemeChoicesScrollUp",  // name
+									"scroll String Levels boolean false", // function
+									"LevelsScrollUp",  // name
 									new Renderable(
 											// Renderable Without Function
 											"UpPNG", // name
@@ -7031,8 +7031,8 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"scroll String SkinChoices boolean true", // function
-									"ThemeChoicesScrollDown",  // name
+									"scroll String Levels boolean true", // function
+									"LevelsScrollDown",  // name
 									new Renderable(
 											// Renderable Without Function
 											"DownPNG", // name

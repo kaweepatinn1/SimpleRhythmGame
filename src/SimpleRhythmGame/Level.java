@@ -2,10 +2,12 @@ package SimpleRhythmGame;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.UUID;
 
 public class Level {
 	private String name;
 	private String author;
+	private UUID UUID;
 	
 	private double songOffset; // ms offset for the entire song
 	private long metronomeOffset; // ms offset for the metronome
@@ -16,12 +18,13 @@ public class Level {
 	private int[] timeSignature;
 	private Note notes[];
 	
-	public Level(String name, String author, double songOffset, 
+	public Level(String name, String author, UUID UUID, double songOffset, 
 			long metronomeOffset, int bpm, float pps, 
 			int totalTimeSeconds, int[] timeSignature, Note[] notes) {
 		super();
 		this.name = name;
 		this.author = author;
+		this.UUID = UUID;
 		this.songOffset = songOffset;
 		this.metronomeOffset = metronomeOffset;
 		this.bpm = bpm;
@@ -29,6 +32,30 @@ public class Level {
 		this.totalTimeSeconds = totalTimeSeconds;
 		this.timeSignature = timeSignature;
 		this.notes = notes;
+	}
+	
+	public Level(String name, String author, double songOffset, 
+			long metronomeOffset, int bpm, float pps, 
+			int totalTimeSeconds, int[] timeSignature, Note[] notes) {
+		super();
+		this.name = name;
+		this.author = author;
+		UUID = java.util.UUID.randomUUID();
+		this.songOffset = songOffset;
+		this.metronomeOffset = metronomeOffset;
+		this.bpm = bpm;
+		this.pps = pps;
+		this.totalTimeSeconds = totalTimeSeconds;
+		this.timeSignature = timeSignature;
+		this.notes = notes;
+	}
+	
+	public UUID getUUID() {
+		return UUID;
+	}
+	
+	public void generateNewUUID() {
+		UUID = java.util.UUID.randomUUID();
 	}
 	
 	public Note[] getSortedNotes() {

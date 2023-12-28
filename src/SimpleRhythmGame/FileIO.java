@@ -123,12 +123,7 @@ public class FileIO {
 	}
 	
 	public static void writeClipboard(String string) {
-		Toolkit.getDefaultToolkit()
-        .getSystemClipboard()
-        .setContents(
-                new StringSelection(string),
-                null
-        );
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(string),null);
 	}
 	
 	public static String readClipboard() {
@@ -167,26 +162,80 @@ public class FileIO {
 		int files = 0;
 		
 		for (int i = 0; i < listOfFiles.length; i++) {
-		  if (listOfFiles[i].isFile()) {
-			  if (listOfFiles[i].getName().substring(listOfFiles[i].getName().length() - 4).toLowerCase().equals(".png")) {
-				  try {
-					  BufferedImage image = ImageIO.read(listOfFiles[i]);
-					  if (image.getWidth() == 150 && image.getHeight() == 100) {
-						  // must be 150x100 to cache
-						  fileNames[files] = listOfFiles[i].getName();
-						  files++;
-						  // System.out.println(fileNames[files - 1]);
-					  }
-				  } catch (IOException e) {
-					  e.printStackTrace();
-				  }
-			  }
-		  } else if (listOfFiles[i].isDirectory()) {
-		  }
+			if (listOfFiles[i].isFile()) {
+			    if (listOfFiles[i].getName().substring(listOfFiles[i].getName().length() - 4).toLowerCase().equals(".png")) {
+				    try {
+					    BufferedImage image = ImageIO.read(listOfFiles[i]);
+					    if (image.getWidth() == 150 && image.getHeight() == 100) {
+					    	// must be 150x100 to cache
+						    fileNames[files] = listOfFiles[i].getName();
+						    files++;
+						    // System.out.println(fileNames[files - 1]);
+					    }
+				    } catch (IOException e) {
+					    e.printStackTrace();
+			  	  }
+			    }
+		    } else if (listOfFiles[i].isDirectory()) {
+		    	// Do nothing, not useful. Only record images.
+		    }
 		}
 		
 		String[] finalNames = new String[files];
 		System.arraycopy(fileNames, 0, finalNames, 0, files);
 		return finalNames;
+	}
+	
+	public static Level[] getLevelsList() {
+		File directory = new File("src/levels"); // this is the top directory
+		File[] listOfLevels = directory.listFiles(); // list of actual files in the directory
+		Level[] levels = new Level[listOfLevels.length]; // list of file names in the directory
+		int files = 0; // counts and indexes valid files
+		
+		for (int i = 0; i < listOfLevels.length; i++) {
+			File currentLevel = listOfLevels[i];
+		    if (currentLevel.isDirectory()) { // must be a dir to be a level
+			    	String levelName = currentLevel.getName();
+				    File[] listOfLevelFiles = listOfLevels[i].listFiles();
+		    	if (listOfLevelFiles.length == 2) { // levels should only have a track and JSON data
+				    boolean foundWav = false; // whether we have found the track for the level
+				    Level levelData = null; // stores level's JSON data, if found
+				    for (File file : listOfLevelFiles) {
+					    String fileName = file.getName();
+					    System.out.println(fileName);
+					    String[] fileNameSplit = fileName.split("\\.");
+					    if (levelName.equals(fileNameSplit[0])){
+					    	if (fileNameSplit[1].toLowerCase().equals("wav")) {
+					    		foundWav = true;
+					    	} else if (fileNameSplit[1].toLowerCase().equals("json")) {
+					    		Gson gson = new Gson();
+					    		try {
+									levelData = gson.fromJson(new FileReader(file), Level.class);
+								} catch (JsonSyntaxException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (JsonIOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (FileNotFoundException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+					    	}
+					    }
+				    }
+				    if (foundWav && levelData != null) {
+				    	
+				    	levels[files] = levelData;
+				    	files++;
+				    }
+		    	}
+		  } else if (listOfLevels[i].isFile()) {
+		  }
+		}
+		
+		Level[] finalLevels = new Level[files];
+		System.arraycopy(levels, 0, finalLevels, 0, files);
+		return finalLevels;
 	}
 }

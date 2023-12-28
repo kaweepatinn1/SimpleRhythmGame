@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 
 public class Config {
 	private final static int colorsLength = 9;
+	private static transient Level[] levelsList;
 	
 	private boolean fullscreen;
 	private int sizeToForce;
@@ -77,6 +78,7 @@ public class Config {
 		this.DEBUG_masksOpacity = DEBUG_masksOpacity;
 		this.FORCED_noFail = FORCED_noFail;
 		this.FORCED_millisecondLeniency = FORCED_millisecondLeniency;
+		levelsList = FileIO.getLevelsList();
 	}
 	
 	public static int getColorsLenth() {
@@ -452,7 +454,9 @@ public class Config {
 			objectsToReturn = themes;
 		} else if (objectsName.equals("%SkinChoices")) {
 			objectsToReturn = FileIO.getSkinNames();
-		}
+		} else if (objectsName.equals("%Levels")){
+			objectsToReturn = FileIO.getLevelsList();
+		}	
 		
 		else if (true) {
 			System.out.println("No code for getting " + objectsName);
@@ -481,15 +485,32 @@ public class Config {
 			String[] names = (String[]) objectsList;
 			if (varName.equals("%Name")) {
 				objectToReturn = names[index];
+			} else {
+				System.out.println("No code for getting data field \'" + varName + "\' from parent \'" + varParentName + "\'");
+			}
+			
+		} else if (varParentName.equals("%Levels")) {
+			Level[] levelsList = (Level[]) objectsList;
+			if (varName.equals("%Name")) {
+				objectToReturn = levelsList[index].getName();
+			} else if (varName.equals("%Author")) {
+				objectToReturn = levelsList[index].getAuthor();
+			} else if (varName.equals("%BPM")) {
+				objectToReturn = levelsList[index].getBPM();
+			} else if (varName.equals("%TimeSeconds")) {
+				objectToReturn = levelsList[index].getTotalTimeSeconds();
+			} else if (varName.equals("%NotesPerSecond")) {
+				objectToReturn = levelsList[index].getNotesPerSecond();
+			} else if (varName.equals("%PixelsPerSecond")) {
+				objectToReturn = levelsList[index].getPPS();
+			} else if (varName.equals("%TotalNotes")) {
+				objectToReturn = levelsList[index].getTotalNotes();
 			} 
 			
 			else {
 				System.out.println("No code for getting data field \'" + varName + "\' from parent \'" + varParentName + "\'");
 			}
-			
-		} 
-		
-		else {
+		} else {
 			System.out.println("No code for getting variable from parent " + varParentName);
 		}
 		return objectToReturn;
@@ -591,18 +612,28 @@ public class Config {
 			return "Success";
 			
 		} else if (splitVariable[0].equals("%CurrentThemeColor")) {
-			if (((String) newValues).length() != 7){
+			if (((String) newValues).length() != 7 && ((String) newValues).length() != 6){
 				return "HexInvalid";
 			}
-			if (!(((String) newValues).charAt(0) == '#')){
+			if (!(((String) newValues).charAt(0) == '#') && ((String) newValues).length() == 7){
 				return "HexInvalid";
 			}
-			for (int i = 1 ; i < ((String) newValues).length() ; i++) {
-				if (!isHex(((String) newValues).charAt(i))) {
+			if ((((String) newValues).charAt(0) == '#') && ((String) newValues).length() == 6){
+				return "HexInvalid";
+			}
+			String hexCode;
+			if (((String) newValues).length() == 6) {
+				hexCode = "#" + (String) newValues;
+			} else {
+				hexCode = (String) newValues;
+			}
+			for (int i = 1 ; i < (hexCode).length() ; i++) {
+				if (!isHex((hexCode).charAt(i))) {
+					System.out.println("3");
 					return "HexInvalid";
 				}
 			}
-			getCurrentTheme().getColorOfIndex(Integer.parseInt(splitVariable[1])).setColor((String) newValues);
+			getCurrentTheme().getColorOfIndex(Integer.parseInt(splitVariable[1])).setColor(hexCode);
 			ShowImage.refreshMenu();
 			FileIO.currentConfigOut();
 			return "Success";
@@ -740,5 +771,9 @@ public class Config {
 
 	public void setFORCED_millisecondLeniency(int FORCED_millisecondLeniency) {
 		this.FORCED_millisecondLeniency = FORCED_millisecondLeniency;
+	}
+
+	public static Level[] getLevelsList() {
+		return levelsList;
 	}
 }

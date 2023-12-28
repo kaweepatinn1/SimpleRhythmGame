@@ -161,7 +161,8 @@ public class Element {
 		this.entryAnimationTransformIndex = entryAnimationTransformIndex;
 	}
 	
-	public Element(Element currentElement, int index, int objectsCount, StoredTransform[] transforms, StoredTransform[] unscaledTransforms) { // ONLY FOR AN OPTIONS LIST ELEMENT
+	public Element(Element currentElement, int index, int objectsCount, StoredTransform[] transforms, StoredTransform[] unscaledTransforms) { 
+		// ONLY FOR AN OPTIONS LIST ELEMENT
 		OptionsList currentOptionsList = currentElement.getOptionsList();
 		this.transforms = currentElement.getTransform();
 		this.selector = new Selector(

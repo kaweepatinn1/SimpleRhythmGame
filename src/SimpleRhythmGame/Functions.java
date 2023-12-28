@@ -65,7 +65,7 @@ public class Functions {
 				} else if (methodName.equals("editKeybind")) {
 					editKeybind((String) parameters[0], (int) parameters[1], (int) parameters[2]);
 				} else if (methodName.equals("playLevel")) {
-					playLevel((String) parameters[0]);
+					playLevel((int) parameters[0]);
 				}
 				
 				
@@ -83,9 +83,9 @@ public class Functions {
 		return ranFunction;
 	}
 	
-	private static void playLevel(String levelName) {
+	private static void playLevel(int levelIndex) {
+		Level level = Config.getLevelsList()[levelIndex];
 		//Level level = FileIO.getLevel(levelName);
-		Level level = null;
 		ShowImage.startGame(level);
 	}
 
