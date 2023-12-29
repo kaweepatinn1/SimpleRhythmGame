@@ -337,7 +337,7 @@ public class ShowImage extends JPanel implements KeyListener {
             	} else if (keyPressed.equals("KickDrum")) {
             		Object[] noteInfo = game.getClosestNote(Note.Note_KICKDRUM);
             		if (noteInfo != null) {
-            			Note note = (Note) noteInfo[0];
+            			// Note note = (Note) noteInfo[0];
             			Sound.playSound(Sound.SFX_kickDrum1[0]);
             			game.hit(noteInfo);
             		} else {
