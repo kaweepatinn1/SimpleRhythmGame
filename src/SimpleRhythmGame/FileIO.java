@@ -26,7 +26,7 @@ public class FileIO {
 		String path = "./options.json";
 		try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
 	        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-	        String jsonString = gson.toJson(ShowImage.getConfig());
+	        String jsonString = gson.toJson(Main.getConfig());
 	        out.write(jsonString);
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -101,7 +101,7 @@ public class FileIO {
 	public static String getCurrentTheme() {
 		String toReturn = null;
 		
-		Config config = ShowImage.getConfig();
+		Config config = Main.getConfig();
 		
 		Theme theme = config.getCurrentTheme();
 		Gson gson = new Gson();

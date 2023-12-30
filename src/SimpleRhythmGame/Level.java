@@ -7,6 +7,7 @@ import java.util.UUID;
 public class Level {
 	private String name;
 	private String author;
+	private int version;
 	private UUID UUID;
 	
 	private double songOffset; // ms offset for the entire song
@@ -18,12 +19,14 @@ public class Level {
 	private int[] timeSignature;
 	private Note notes[];
 	
-	public Level(String name, String author, UUID UUID, double songOffset, 
+	public Level(String name, String author, int version,
+			UUID UUID, double songOffset, 
 			long metronomeOffset, int bpm, float pps, 
 			int totalTimeSeconds, int[] timeSignature, Note[] notes) {
 		super();
 		this.name = name;
 		this.author = author;
+		this.version = version;
 		this.UUID = UUID;
 		this.songOffset = songOffset;
 		this.metronomeOffset = metronomeOffset;
@@ -40,6 +43,7 @@ public class Level {
 		super();
 		this.name = name;
 		this.author = author;
+		version = 1;
 		UUID = java.util.UUID.randomUUID();
 		this.songOffset = songOffset;
 		this.metronomeOffset = metronomeOffset;
@@ -56,6 +60,18 @@ public class Level {
 	
 	public void generateNewUUID() {
 		UUID = java.util.UUID.randomUUID();
+	}
+	
+	public int getVersion() {
+		return version;
+	}
+	
+	public void setVersion(int version) {
+		this.version = version;
+	}
+	
+	public void incrementVersion() {
+		version++;
 	}
 	
 	public Note[] getSortedNotes() {

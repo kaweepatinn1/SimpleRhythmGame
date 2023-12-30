@@ -60,7 +60,7 @@ public class Config {
 		this.themes = themes;
 		this.currentThemeChoice = currentThemeChoice;
 		this.currentSkinChoice = currentSkinChoice;
-		ShowImage.bufferSkin(currentSkinChoice);
+		Main.bufferSkin(currentSkinChoice);
 		this.fonts = fonts;
 		this.menus = menus;
 		this.nanoSecondPrecision = nanoSecondPrecision;
@@ -91,7 +91,7 @@ public class Config {
 
 	public void setFullscreen(boolean fullscreen) {
 		this.fullscreen = fullscreen;
-		ShowImage.setNewFrameSize(fullscreen, sizeToForce);
+		Main.setNewFrameSize(fullscreen, sizeToForce);
 		Functions.setMenu("Settings_Screen_Menu");
 		FileIO.currentConfigOut();
 	}
@@ -102,7 +102,7 @@ public class Config {
 
 	public void setSizeToForce(int sizeToForce) {
 		this.sizeToForce = sizeToForce;
-		ShowImage.setNewFrameSize(fullscreen, sizeToForce);
+		Main.setNewFrameSize(fullscreen, sizeToForce);
 		Functions.setMenu("Settings_Screen_Menu");
 		FileIO.currentConfigOut();
 	}
@@ -165,7 +165,7 @@ public class Config {
 			toSetThemes[toSetThemes.length - 1] = theme;
 			themes = toSetThemes;
 			setCurrentThemeChoice(theme.getThemeName());
-			ShowImage.refreshMenu();
+			Main.refreshMenu();
 			FileIO.currentConfigOut();
 			return true;
 		}
@@ -205,7 +205,7 @@ public class Config {
 				);
 		themes = toSetThemes;
 		setCurrentThemeChoice("NewTheme" + iteration);
-		ShowImage.refreshMenu();
+		Main.refreshMenu();
 		FileIO.currentConfigOut();
 		return true;
 	}
@@ -233,7 +233,7 @@ public class Config {
 				System.arraycopy(themes, index + 1, toSetThemes, index, themes.length - (index + 1));
 				currentThemeChoice = index < (themes.length - 1) ? themes[index + 1].getThemeName() : themes[index - 1].getThemeName();
 				themes = toSetThemes;
-				ShowImage.refreshMenu();
+				Main.refreshMenu();
 				FileIO.currentConfigOut();
 				return true;
 			} else {
@@ -325,7 +325,7 @@ public class Config {
 	public void setFramerate(int framerate) {
 		this.framerate = framerate;
 		Framerate.set(framerate);
-		ShowImage.refreshMenu();
+		Main.refreshMenu();
 		FileIO.currentConfigOut();
 	}
 	
@@ -336,7 +336,7 @@ public class Config {
 	public void setLimitFramerate(boolean limitFramerate) {
 		this.limitFramerate = limitFramerate;
 		Framerate.setShouldLimitFramerate(limitFramerate);
-		ShowImage.refreshMenu();
+		Main.refreshMenu();
 		FileIO.currentConfigOut();
 	}
 	
@@ -398,13 +398,13 @@ public class Config {
 	
 	public void setCurrentSkinChoice(int indexForSkin) {
 		this.currentSkinChoice = getSkinName(indexForSkin);
-		ShowImage.bufferCurrentSkin();
+		Main.bufferCurrentSkin();
 		updateDisplays();
 		FileIO.currentConfigOut();
 	}
 	
 	public void updateDisplays() {
-		Menu currentMenu = ShowImage.getCurrentScaledMenu();
+		Menu currentMenu = Main.getCurrentScaledMenu();
 		for (Element element : currentMenu.getElements()) {
 			if (element.isTextfield()) {
 				element.getTextfield().loadCurrentDisplay();
@@ -583,11 +583,11 @@ public class Config {
 			
 		} else if (splitVariable[0].equals("%ScorePercentage")) {
 			DecimalFormat formatter = new DecimalFormat("#,###.00");
-			String percentage = formatter.format(ShowImage.getGame().getAccuracy()).equals("100.0") ? "100" : Double.toString(ShowImage.getGame().getAccuracy());
-			varToReturn = Integer.toString(ShowImage.getGame().getScore()) 
+			String percentage = formatter.format(Main.getGame().getAccuracy()).equals("100.0") ? "100" : Double.toString(Main.getGame().getAccuracy());
+			varToReturn = Integer.toString(Main.getGame().getScore()) 
 					+ " // " + percentage + "%";
 		} else if (splitVariable[0].equals("%Combo")) {
-			varToReturn = Integer.toString(ShowImage.getGame().getCombo());
+			varToReturn = Integer.toString(Main.getGame().getCombo());
 		} else if (splitVariable[0].equals("%ScreenWidth")) {
 			varToReturn = Integer.toString(getSizeToForce());
 		} else if (splitVariable[0].equals("%Fullscreen")) {
@@ -607,7 +607,7 @@ public class Config {
 			}
 			getCurrentTheme().setThemeName((String) newValues);
 			currentThemeChoice = (String) newValues;
-			ShowImage.refreshMenu();
+			Main.refreshMenu();
 			FileIO.currentConfigOut();
 			return "Success";
 			
@@ -634,7 +634,7 @@ public class Config {
 				}
 			}
 			getCurrentTheme().getColorOfIndex(Integer.parseInt(splitVariable[1])).setColor(hexCode);
-			ShowImage.refreshMenu();
+			Main.refreshMenu();
 			FileIO.currentConfigOut();
 			return "Success";
 		} else if (splitVariable[0].equals("%MasterVolume")) {
@@ -696,7 +696,7 @@ public class Config {
 
 	public void setCurrentSkinChoice(String currentSkinChoice) {
 		this.currentSkinChoice = currentSkinChoice;
-		ShowImage.bufferCurrentSkin();
+		Main.bufferCurrentSkin();
 		FileIO.currentConfigOut();
 	}
 
@@ -706,7 +706,7 @@ public class Config {
 
 	public void setDisplayFramerate(boolean displayFramerate) {
 		this.displayFramerate = displayFramerate;
-		ShowImage.refreshMenu();
+		Main.refreshMenu();
 		FileIO.currentConfigOut();
 	}
 
@@ -716,7 +716,7 @@ public class Config {
 
 	public void setMasterVolume(int masterVolume) {
 		this.masterVolume = masterVolume;
-		ShowImage.refreshMenu();
+		Main.refreshMenu();
 		FileIO.currentConfigOut();
 		Sound.updateVolume();
 	}
@@ -727,7 +727,7 @@ public class Config {
 
 	public void setMusicVolume(int musicVolume) {
 		this.musicVolume = musicVolume;
-		ShowImage.refreshMenu();
+		Main.refreshMenu();
 		FileIO.currentConfigOut();
 		Sound.updateVolume();
 	}
@@ -738,7 +738,7 @@ public class Config {
 
 	public void setSFXVolume(int sFXVolume) {
 		SFXVolume = sFXVolume;
-		ShowImage.refreshMenu();
+		Main.refreshMenu();
 		FileIO.currentConfigOut();
 		Sound.updateVolume();
 	}
@@ -761,7 +761,7 @@ public class Config {
 	
 	public void setFORCED_noFail(boolean FORCED_noFail) {
 		this.FORCED_noFail = FORCED_noFail;
-		ShowImage.refreshMenu();
+		Main.refreshMenu();
 		FileIO.currentConfigOut();
 	}
 

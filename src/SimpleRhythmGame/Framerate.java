@@ -26,15 +26,15 @@ public class Framerate extends Thread {
 	
 	public Framerate(){
 		checkCurrentTime();
-		setFramesToStore(ShowImage.getConfig().getFramesToStore());
-		framerate = ShowImage.getConfig().getFramerate();
+		setFramesToStore(Main.getConfig().getFramesToStore());
+		framerate = Main.getConfig().getFramerate();
 		// May not be precise. 
 		// Real framerate value is actually: (1000 / Math.ceil((1000 / framerate)))
 		// Consider adding a ms per frame option instead.
-		limitFramerate = ShowImage.getConfig().getLimitFramerate();
+		limitFramerate = Main.getConfig().getLimitFramerate();
 		// limitFramerate will limit the framerate to one frame per ms (1000fps)
 		
-		setNanoPrecision(ShowImage.getConfig().getNanoSecondPrecision());
+		setNanoPrecision(Main.getConfig().getNanoSecondPrecision());
 	}
 	
 	public static void set(int newFramerate) {
@@ -50,7 +50,7 @@ public class Framerate extends Thread {
 	}
 	
 	public static double getCurrentTime() {
-		double returnTime = ShowImage.getConfig().getNanoSecondPrecision() ? currentTime / 1000000 : currentTime;
+		double returnTime = Main.getConfig().getNanoSecondPrecision() ? currentTime / 1000000 : currentTime;
 		return returnTime;
 	}
 	
@@ -101,7 +101,7 @@ public class Framerate extends Thread {
 					 
 					lastFrameTimeMillis = currentTime;
 					
-					ShowImage.updateFrame();
+					Main.updateFrame();
 				} else {
 					// Does not render frame if the wait has not been long enough
 				} 
@@ -131,7 +131,7 @@ public class Framerate extends Thread {
 					 
 					lastFrameTimeNanos = currentTime;
 					
-					ShowImage.updateFrame();
+					Main.updateFrame();
 				} else {
 					// Does not render frame if the wait has not been long enough
 					try {

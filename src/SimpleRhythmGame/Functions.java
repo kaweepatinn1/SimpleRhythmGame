@@ -31,7 +31,7 @@ public class Functions {
 							+ "in method runFunction, or incorrect naming for an object.");
 				}
 			}
-			if (!ShowImage.getTransitioning()) {
+			if (!Main.getTransitioning()) {
 				if (methodName.equals("setMenuIndex")) {
 					setMenuIndex((int) parameters[0]);
 				} else if (methodName.equals("setMenu")) {
@@ -86,24 +86,24 @@ public class Functions {
 	private static void playLevel(int levelIndex) {
 		Level level = Config.getLevelsList()[levelIndex];
 		//Level level = FileIO.getLevel(levelName);
-		ShowImage.startGame(level);
+		Main.startGame(level);
 	}
 
 	private static void addPopup(int popup) {
-		ShowImage.addPopup(popup);
+		Main.addPopup(popup);
 	}
 	
 	private static void removePopup(int popup) {
-		ShowImage.removePopup(popup);
+		Main.removePopup(popup);
 	}
 	
 	private static void removeThisPopup() {
-		ShowImage.removePopup(ShowImage.getCurrentPopupIndex());
+		Main.removePopup(Main.getCurrentPopupIndex());
 	}
 	
 	private static void escapeMenu() {
-		if (ShowImage.getCurrentPopupIndex() == -1) {
-			String menuToEnter = ShowImage.getCurrentScaledMenu().getPreviousMenuName();
+		if (Main.getCurrentPopupIndex() == -1) {
+			String menuToEnter = Main.getCurrentScaledMenu().getPreviousMenuName();
         	if (menuToEnter != null){
         		String functionToRun = "setMenu String " + menuToEnter.replace(" ", "_");
     			Functions.runFunction(functionToRun);
@@ -116,7 +116,7 @@ public class Functions {
 	}
 	
 	private static void setMenuIndex(int menu) {
-		ShowImage.setMenuFromAnIndex(menu);
+		Main.setMenuFromAnIndex(menu);
 		// System.out.println("set menu to " + menu);
 	}
 	
@@ -126,7 +126,7 @@ public class Functions {
 		String checkMenu = menuName.replace("_", " ");
 		// convert menu name in function from "_" to " ", 
 		// as space bar is the delimiter in the function definition
-		for (Menu menu : ShowImage.getConfig().getMenus()) {
+		for (Menu menu : Main.getConfig().getMenus()) {
 			if (menu.getMenuName().equals(checkMenu)) {
 				setMenuIndex(menuNumber);
 				foundMenu = true;
@@ -148,40 +148,40 @@ public class Functions {
 	public static void importThemeFromClipboard() {
 		Theme newTheme = FileIO.JSONtoTheme(FileIO.readClipboard());
 		if (newTheme != null) {
-			ShowImage.getConfig().importTheme(newTheme);
+			Main.getConfig().importTheme(newTheme);
 		} else {
 			addPopup(4);
 		}
 	}
 	
 	public static void enterTextField(String textField) {
-		ShowImage.setSelectedElement(textField);
+		Main.setSelectedElement(textField);
 	}
 	
 	public static void setTheme(int index) {
-		ShowImage.getConfig().setCurrentThemeChoice(index);
+		Main.getConfig().setCurrentThemeChoice(index);
 		removeThisPopup();
 	}
 	
 	public static void setSkin(int index) {
-		ShowImage.getConfig().setCurrentSkinChoice(index);
+		Main.getConfig().setCurrentSkinChoice(index);
 		removeThisPopup();
 	}
 	
 	public static void scrollOptionsList(String listName, boolean down) {
-		ShowImage.scrollOptionsList(listName, down);
+		Main.scrollOptionsList(listName, down);
 	}
 	
 	public static void addTheme() {
-		ShowImage.getConfig().addTheme();
+		Main.getConfig().addTheme();
 	}
 	
 	public static void deleteTheme() {
-		ShowImage.getConfig().removeTheme(ShowImage.getConfig().getCurrentThemeChoice());
+		Main.getConfig().removeTheme(Main.getConfig().getCurrentThemeChoice());
 	}
 	
 	public static void editKeybind(String keybind, int index, int popupToOpen) {
-		ShowImage.setSelectedElement("EditControl" + keybind + index);
+		Main.setSelectedElement("EditControl" + keybind + index);
 		addPopup(popupToOpen);
 		
 	}

@@ -7773,7 +7773,7 @@ public class DefaultValues {
 	};
 	
 	public static Config getDefaultConfigs() {
-		ShowImage.bufferSkin(defaultSelectedSkin);
+		Main.bufferSkin(defaultSelectedSkin);
 		Config defaultConfig = new Config(
     			getDefaultFullscreen(),
     			getDefaultSizeToForce(),

@@ -83,7 +83,7 @@ public class OptionsList {
     }
     
     public Object[] getObjects() {
-    	return ShowImage.getConfig().getObjectList(listObjectsName);
+    	return Main.getConfig().getObjectList(listObjectsName);
     }
     
 	public float getScale() {

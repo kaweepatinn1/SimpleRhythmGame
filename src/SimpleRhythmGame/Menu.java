@@ -46,7 +46,7 @@ public class Menu {
 	}
 	
 	public Color getBGColor() {
-		return ShowImage.getConfig().getCurrentThemeColors()[bgColor];
+		return Main.getConfig().getCurrentThemeColors()[bgColor];
 	}
 	
 	public void setBGColor(int bgColor) {
@@ -200,8 +200,8 @@ public class Menu {
 	
 	public Menu getScaledMenu(int width, int height) {
 		
-		double xScale = ShowImage.intToDouble(width) / 1920;
-    	double yScale = ShowImage.intToDouble(height) / 1080;
+		double xScale = Main.intToDouble(width) / 1920;
+    	double yScale = Main.intToDouble(height) / 1080;
     	
     	RoundedArea[] masks = getMasks();
     	RoundedArea[] areasToReturn;

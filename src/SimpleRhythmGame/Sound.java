@@ -57,7 +57,7 @@ public class Sound {
 		for (int i = 0 ; i < sfxNames.length ; i++) {
 			String sfxName = sfxNames[i];
 			AudioPlayer newPlayer = new AudioPlayer("/sfx/" + sfxName + ".wav");
-			newPlayer.setVolume(ShowImage.getConfig().getFinalSFXVolume());
+			newPlayer.setVolume(Main.getConfig().getFinalSFXVolume());
 			sfx[i] = newPlayer;
 		}
 	}
@@ -68,7 +68,7 @@ public class Sound {
 	
 	public static void updateVolume() {
 		for (AudioPlayer audio : sfx) {
-			audio.setVolume(ShowImage.getConfig().getFinalSFXVolume());
+			audio.setVolume(Main.getConfig().getFinalSFXVolume());
 		}
 	}
 	

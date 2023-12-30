@@ -63,7 +63,7 @@ public class Game extends Thread {
 		if (!level.getName().equals("Tutorial")){
 			player = new AudioPlayer();
 	        player.loadAudio("/levels/" + level.getName() + "/" + level.getName() + ".wav");
-	        player.setVolume(ShowImage.getConfig().getFinalMusicVolume());
+	        player.setVolume(Main.getConfig().getFinalMusicVolume());
 	        tutorial = false;
 		} else {
 			tutorial = true;
@@ -71,7 +71,7 @@ public class Game extends Thread {
         
         noteImages = new BufferedImage[5];
         for (int i = 0 ; i < 5 ; i++) {
-        	noteImages[i] = Renderable.resize(ShowImage.getNoteImage(i), (int) (ShowImage.getScale() * 100), (int) (ShowImage.getScale() * 100));
+        	noteImages[i] = Renderable.resize(Main.getNoteImage(i), (int) (Main.getScale() * 100), (int) (Main.getScale() * 100));
         }
 	}
 	
@@ -192,7 +192,7 @@ public class Game extends Thread {
 	public void run() {
 		System.out.println(Thread.currentThread().getPriority());
 		try {
-			Thread.sleep((int) ShowImage.getConfig().getTransitionTime() * 2);
+			Thread.sleep((int) Main.getConfig().getTransitionTime() * 2);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -200,7 +200,7 @@ public class Game extends Thread {
 		init();
 		refreshCurrentNotes();
 		while(unpaused) {
-			if (!ShowImage.getState().equals("Paused")) {
+			if (!Main.getState().equals("Paused")) {
 				refreshCurrentNotes();
 			}
 			for (int i = 0 ; i < 400 ; i++) {
@@ -214,7 +214,7 @@ public class Game extends Thread {
 				int k = 0;
 				while (stopMissing) {
 					Note note = currentNotes.get(k);
-					if (getTimeSinceGameStart() > note.getCalculatedTimeFromStart() + ShowImage.getConfig().getFORCED_millisecondLeniency() + 200 / currentLevel.getPPS()) {
+					if (getTimeSinceGameStart() > note.getCalculatedTimeFromStart() + Main.getConfig().getFORCED_millisecondLeniency() + 200 / currentLevel.getPPS()) {
 						miss(note);
 						k++;
 					} else {
@@ -638,8 +638,8 @@ public class Game extends Thread {
 			if (note.getType() == type) {
 				// System.out.println("Time since start: " + getTimeSinceGameStart());
 				// System.out.println("Time to hit: " + note.getCalculatedTimeFromStart());
-				if ( getTimeSinceGameStart() > note.getCalculatedTimeFromStart() - ShowImage.getConfig().getFORCED_millisecondLeniency() &&
-						getTimeSinceGameStart() < note.getCalculatedTimeFromStart() + (ShowImage.getConfig().getFORCED_millisecondLeniency() * 1)) {
+				if ( getTimeSinceGameStart() > note.getCalculatedTimeFromStart() - Main.getConfig().getFORCED_millisecondLeniency() &&
+						getTimeSinceGameStart() < note.getCalculatedTimeFromStart() + (Main.getConfig().getFORCED_millisecondLeniency() * 1)) {
 					// within one leniency forwards and backwards (positive is late, neg is early)
 					return new Object[] {note, getTimeSinceGameStart() - note.getCalculatedTimeFromStart()};
 				}
@@ -659,8 +659,8 @@ public class Game extends Thread {
 		for (Note note : currentNotes) {
 			// System.out.println("Time since start: " + getTimeSinceGameStart());
 			// System.out.println("Time to hit: " + note.getCalculatedTimeFromStart());
-			if ( getTimeSinceGameStart() > note.getCalculatedTimeFromStart() - ShowImage.getConfig().getFORCED_millisecondLeniency() &&
-					getTimeSinceGameStart() < note.getCalculatedTimeFromStart() + (ShowImage.getConfig().getFORCED_millisecondLeniency() * 1)) {
+			if ( getTimeSinceGameStart() > note.getCalculatedTimeFromStart() - Main.getConfig().getFORCED_millisecondLeniency() &&
+					getTimeSinceGameStart() < note.getCalculatedTimeFromStart() + (Main.getConfig().getFORCED_millisecondLeniency() * 1)) {
 				// within one leniency forwards and backwards (positive is late, neg is early)
 				return new Object[] {note, getTimeSinceGameStart() - note.getCalculatedTimeFromStart()};
 			}

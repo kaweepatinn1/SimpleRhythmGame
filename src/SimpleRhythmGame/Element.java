@@ -182,7 +182,7 @@ public class Element {
 				currentElement.getOptionsList().getFunction() + " int " + index,
 				currentElement.getOptionsList().getName() + '#' + index,
 				new Text(
-						(String) ShowImage.getConfig().getVariable(
+						(String) Main.getConfig().getVariable(
 								currentElement.getOptionsList().getListObjectsName(), 
 								currentElement.getOptionsList().getTextObject().getText(),
 								index
@@ -379,7 +379,7 @@ public class Element {
 			} else if (isOptionsList()) {
 				roundedArea = getOptionsList().getRectShape();
 			}
-			StoredTransform transform = ShowImage.getTransformsToRender()[getArbitraryTransformIndex()];
+			StoredTransform transform = Main.getTransformsToRender()[getArbitraryTransformIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(roundedArea),
 					new SpecialTransform(transform, roundedArea),
@@ -411,7 +411,7 @@ public class Element {
 //						(int) transforms[i].getNewTransform().getTransformY() :
 //							0);
 //			}
-			StoredTransform rawScrollEffect = ShowImage.getTransformsToRender()[getArbitraryTransformIndex()];
+			StoredTransform rawScrollEffect = Main.getTransformsToRender()[getArbitraryTransformIndex()];
 			StoredTransform scrollEffect = rawScrollEffect.scaleTransform(-factor);
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(getTransform()[2].getCurrentPosition(), roundedArea),
@@ -442,7 +442,7 @@ public class Element {
 //						(int) transforms[i].getNewTransform().getTransformY() :
 //							0);
 //			}
-			StoredTransform hoverEffect = ShowImage.getTransformsToRender()[getHoverEffectIndex()];
+			StoredTransform hoverEffect = Main.getTransformsToRender()[getHoverEffectIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(getTransform()[0].getCurrentPosition(), roundedArea),
 					new SpecialTransform(hoverEffect, roundedArea),
@@ -472,7 +472,7 @@ public class Element {
 //						(int) transforms[i].getNewTransform().getTransformY() :
 //							0);
 //			}
-				StoredTransform hoverEffect = ShowImage.getTransformsToRender()[getHoverEffectIndex()];
+				StoredTransform hoverEffect = Main.getTransformsToRender()[getHoverEffectIndex()];
 				TweenTransform tweenTransform = new TweenTransform(
 						new SpecialTransform(getTransform()[0].getCurrentPosition(), roundedArea),
 						new SpecialTransform(roundedArea),
@@ -495,7 +495,7 @@ public class Element {
 //						(int) transforms[i].getNewTransform().getTransformY() :
 //							0);
 //			}
-			StoredTransform clickEffect = ShowImage.getTransformsToRender()[getClickEffectIndex()];
+			StoredTransform clickEffect = Main.getTransformsToRender()[getClickEffectIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(getTransform()[1].getCurrentPosition(), area),
 					new SpecialTransform(clickEffect, area),
@@ -519,7 +519,7 @@ public class Element {
 //						(int) transforms[i].getNewTransform().getTransformY() :
 //							0);
 //			}
-			StoredTransform clickEffect = ShowImage.getTransformsToRender()[getClickEffectIndex()];
+			StoredTransform clickEffect = Main.getTransformsToRender()[getClickEffectIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(getTransform()[1].getCurrentPosition(), area),
 					new SpecialTransform(area),
@@ -542,7 +542,7 @@ public class Element {
 //						(int) transforms[i].getNewTransform().getTransformY() :
 //							0);
 //			}
-			StoredTransform entryEffect = ShowImage.getTransformsToRender()[getEntryAnimationIndex()];
+			StoredTransform entryEffect = Main.getTransformsToRender()[getEntryAnimationIndex()];
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(getTransform()[3].getCurrentPosition(), area),
 					new SpecialTransform(entryEffect, area),
@@ -566,7 +566,7 @@ public class Element {
 //							0);
 //			}
 			// gets the area depending on the type of element present.
-			StoredTransform entryEffect = ShowImage.getTransformsToRender()[getEntryAnimationIndex()];
+			StoredTransform entryEffect = Main.getTransformsToRender()[getEntryAnimationIndex()];
 			// System.out.println((Math.min((getTransform()[3].getCurrentTime() + 0.5),1)));
 			TweenTransform tweenTransform = new TweenTransform(
 					new SpecialTransform(reset ? new SpecialTransform(entryEffect) : getTransform()[3].getCurrentPosition(), area),

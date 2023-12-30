@@ -4,15 +4,15 @@ public class Metronome extends Thread {
 	public void run() {
 		Thread.currentThread().setPriority(7);
 		System.out.println(Thread.currentThread().getPriority());
-		Level level = ShowImage.getGame().getCurrentLevel();
+		Level level = Main.getGame().getCurrentLevel();
 		double levelStartTime = Framerate.getCurrentTime() + 2500 + level.getMetronomeOffset();
 		double timePerClick = 60000d / level.getBPM();
 		
 		int lastNotePlayed = (int) Math.floor((Framerate.getCurrentTime() - levelStartTime) / timePerClick);
-		System.out.println(ShowImage.getState());
+		System.out.println(Main.getState());
 		int timeSignatureDiv = level.getTimeSignature()[0];
-		while (!ShowImage.getState().equals("Stopped")) {
-			if (ShowImage.getState().equals("Playing")) {
+		while (!Main.getState().equals("Stopped")) {
+			if (Main.getState().equals("Playing")) {
 				int currentNote = (int) Math.floor((Framerate.getCurrentTime() - levelStartTime) / timePerClick);
 				
 				if (currentNote > lastNotePlayed) {

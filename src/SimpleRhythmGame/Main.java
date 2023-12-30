@@ -12,12 +12,12 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.util.List;
 
-public class ShowImage extends JPanel implements KeyListener {
+public class Main extends JPanel implements KeyListener {
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static ShowImage panel;
+	private static Main panel;
     private static int currentMenuIndex;
     private static Menu rawCurrentMenu;
     private static Menu scaledMenu;
@@ -576,7 +576,7 @@ public class ShowImage extends JPanel implements KeyListener {
      rawCurrentMenu --> elementsToRender --> .repaint()
     */
     
-    public ShowImage() {
+    public Main() {
         setLayout(new BorderLayout()); // Set the main panel's layout to BorderLayout
 
         // Add mouse listener to the panel
@@ -1756,7 +1756,7 @@ public class ShowImage extends JPanel implements KeyListener {
 	}
 
 	public static void setTransitioning(boolean transitioning) {
-		ShowImage.transitioning = transitioning;
+		Main.transitioning = transitioning;
 	}
 	
 	public static void refreshMenu() {
@@ -1921,7 +1921,7 @@ public class ShowImage extends JPanel implements KeyListener {
         	Functions.setMenu("Init User");
         }
         
-        panel = new ShowImage(); 
+        panel = new Main(); 
         // runs showimage class (top of this class) to show text and renderables into a panel
         
         if (config.getCursorEnabled()) {

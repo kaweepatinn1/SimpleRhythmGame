@@ -76,7 +76,7 @@ public class Renderable {
         this.ySize = ySize;
         this.opacity = opacity;
         if (imagePath.charAt(0) == '#') {
-    		BufferedImage originalImage = ShowImage.getNoteImage(Integer.parseInt(imagePath.substring(1)) - 1);
+    		BufferedImage originalImage = Main.getNoteImage(Integer.parseInt(imagePath.substring(1)) - 1);
         	BufferedImage scaledImage = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
                     xSize, ySize, Scalr.OP_ANTIALIAS);
         	this.image = scaledImage;
@@ -94,7 +94,7 @@ public class Renderable {
         this.ySize = ySize;
         this.opacity = opacity;
         if (imagePath.charAt(0) == '#') {
-    		BufferedImage originalImage = ShowImage.getNoteImage(Integer.parseInt(imagePath.substring(1)) - 1);
+    		BufferedImage originalImage = Main.getNoteImage(Integer.parseInt(imagePath.substring(1)) - 1);
         	BufferedImage scaledImage = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
                     xSize, ySize, Scalr.OP_ANTIALIAS);
         	this.image = scaledImage;
@@ -147,7 +147,7 @@ public class Renderable {
     
     public void resetImage() {
     	if (imagePath.charAt(0) == '#') {
-    		BufferedImage originalImage = ShowImage.getNoteImage(Integer.parseInt(imagePath.substring(1)) - 1);
+    		BufferedImage originalImage = Main.getNoteImage(Integer.parseInt(imagePath.substring(1)) - 1);
         	BufferedImage scaledImage = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
                     xSize, ySize, Scalr.OP_ANTIALIAS);
         	this.image = scaledImage;
@@ -198,8 +198,8 @@ public class Renderable {
     
     public File getFile() {
     	if (imagePath.charAt(0) == '%') {
-    		if (ShowImage.getConfig() != null) {
-    			return new File((String) ShowImage.getConfig().getVariable(imagePath));
+    		if (Main.getConfig() != null) {
+    			return new File((String) Main.getConfig().getVariable(imagePath));
     		} else {
     			return new File("src/textures/skins/" + DefaultValues.getDefaultSelectedSkin());
     		}

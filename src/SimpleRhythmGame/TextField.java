@@ -77,33 +77,33 @@ public class TextField {
     }
     
     public String getUnloadedCurrentDisplay() {
-    	return (String) ShowImage.getConfig().getVariable(text.getText());
+    	return (String) Main.getConfig().getVariable(text.getText());
     }
     
     public void loadCurrentDisplay() {
-    	currentDisplay = (String) ShowImage.getConfig().getVariable(text.getText());
+    	currentDisplay = (String) Main.getConfig().getVariable(text.getText());
     	//currentDisplay = text.getText();
     }
     
     public void confirmEntry() {
     	if (currentDisplay.equals("") && inputType != TextField.Input_BOOLEAN) {
-    		ShowImage.cancelElement(ShowImage.getSelectedElement());
-    		ShowImage.addPopup(errorPopupIndexes[1]);
+    		Main.cancelElement(Main.getSelectedElement());
+    		Main.addPopup(errorPopupIndexes[1]);
     	} else {
     		if (!getUnloadedCurrentDisplay().equals(currentDisplay) || inputType == TextField.Input_BOOLEAN) { 
     			// if the old name is not the same as the new one
-    			String status = ShowImage.getConfig().setVariable(text.getText(), currentDisplay);
+    			String status = Main.getConfig().setVariable(text.getText(), currentDisplay);
         		if (status.equals("Success")) {
         			// Success!! Do nothing extra :)
         		} else if (status.equals("Duplicate")){
-        			ShowImage.cancelElement(ShowImage.getSelectedElement());
-        			ShowImage.addPopup(errorPopupIndexes[0]);
+        			Main.cancelElement(Main.getSelectedElement());
+        			Main.addPopup(errorPopupIndexes[0]);
         		} else if (status.equals("VariableNotFound")) {
         			System.out.println("Variable " + text.getText() + " not found!");
-        			ShowImage.cancelElement(ShowImage.getSelectedElement());
+        			Main.cancelElement(Main.getSelectedElement());
         		} else if (status.equals("HexInvalid")) {
-        			ShowImage.cancelElement(ShowImage.getSelectedElement());
-        			ShowImage.addPopup(errorPopupIndexes[2]);
+        			Main.cancelElement(Main.getSelectedElement());
+        			Main.addPopup(errorPopupIndexes[2]);
         		}
     		} else {
     			// there was no name change

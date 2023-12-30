@@ -7,8 +7,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class ClassToJSON extends FileIO {
-	public static void out() {
-		String path = "./out.json";
+	public static void levelOut() {
+		String path = "./leveloutDEBUG.json";
 		Level toOut = new Level(
 				"Tutorial", // name
 				"nano", // author
@@ -663,7 +663,7 @@ public class ClassToJSON extends FileIO {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		out();
+		levelOut();
 	}
 
 }
