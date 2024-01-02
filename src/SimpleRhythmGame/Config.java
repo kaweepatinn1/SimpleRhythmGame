@@ -592,6 +592,26 @@ public class Config {
 			varToReturn = Integer.toString(getSizeToForce());
 		} else if (splitVariable[0].equals("%Fullscreen")) {
 			varToReturn = Boolean.toString(getFullscreen());
+		} else if (splitVariable[0].equals("%CurrentLevel")) {
+			varToReturn = Main.getGame().getCurrentLevelName();
+		} else if (splitVariable[0].equals("%BoolNewHighscore")){
+			if (splitVariable[1].equals("Show")) {
+				if (Main.getGame().gotNewHighscore()) {
+					varToReturn = "New Highscore!";
+				} else {
+					varToReturn = "";
+				}
+			} else if (splitVariable[1].equals("Hide")) {
+				if (Main.getGame().gotNewHighscore()) {
+					varToReturn = "";
+				} else {
+					varToReturn = "Score";
+				}
+			}
+		}
+		
+		else {
+			// System.out.println("Could not find variable with name " + splitVariable[0]);
 		}
 		return varToReturn;
 	}

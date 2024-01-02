@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 public class Game extends Thread {
 	private Level currentLevel;
+	private LevelStats oldStats;
 	private AudioPlayer player;
 	
 	private Menu rawGameMenu;
@@ -37,6 +38,12 @@ public class Game extends Thread {
 	private boolean noFail;
 	private boolean unpaused;
 	
+	private int finalScore;
+	private int finalMaxCombo;
+	private int finalNotesHit;
+	private int finalNotesMissed;
+	private double finalAccuracy;
+	
 	private boolean tutorial;
 	
 	private static transient BufferedImage noteImages[];
@@ -45,6 +52,7 @@ public class Game extends Thread {
 	
 	public Game(Level level, boolean noFail) {
 		currentLevel = level;
+		oldStats = Main.getStats(level);
 		rawNotes = currentLevel.getSortedNotes();
 		currentNotes = new ArrayList<>();
 		futureNotes = new ArrayList<>(Arrays.asList(rawNotes));
@@ -203,26 +211,48 @@ public class Game extends Thread {
 			if (!Main.getState().equals("Paused")) {
 				refreshCurrentNotes();
 			}
-			for (int i = 0 ; i < 400 ; i++) {
+			for (int i = 0 ; i < 4000 ; i++) {
 				try {
-					Thread.sleep(10); // 4 second totalrefresh, so one full second leeway to refresh.
+					Thread.sleep(1); // 4 second total refresh time, so one full second leeway to refresh onto screen.
+					// game on 1ms refresh rate (1000fps).
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				boolean stopMissing = false;
-				int k = 0;
-				while (stopMissing) {
-					Note note = currentNotes.get(k);
-					if (getTimeSinceGameStart() > note.getCalculatedTimeFromStart() + Main.getConfig().getFORCED_millisecondLeniency() + 200 / currentLevel.getPPS()) {
-						miss(note);
-						k++;
-					} else {
-						stopMissing = true;
-				}
-				}
+				// checks once per game cycle (at 1000fps)
+				checkForSongEnd();
+				checkForMiss();
 			}
 		}
+	}
+	
+	public void checkForSongEnd() {
+		// System.out.println(Framerate.getCurrentTime() - millisStarted);
+		// Uncomment for time since game start
+		if (Framerate.getCurrentTime() - millisStarted > 
+		currentLevel.getTotalTimeSeconds() * 1000) {
+			// System.out.println("SONG ENDED");
+			endSong();
+		}
+	}
+	
+	public void checkForMiss() {
+		boolean missFound = false;
+		int k = 0;
+		while (missFound) {
+			Note note = currentNotes.get(k);
+			if (getTimeSinceGameStart() > note.getCalculatedTimeFromStart() + Main.getConfig().getFORCED_millisecondLeniency() + 200 / currentLevel.getPPS()) {
+				miss(note);
+				k++;
+			} else {
+				missFound = true;
+			}
+		}
+	}
+	
+	public void endSong() {
+		//TODO;
+		Main.addPopup(1);
 	}
 	
 	public ArrayList<Note> getCurrentNotes() {
@@ -241,261 +271,13 @@ public class Game extends Thread {
 
 	public Menu generateGameMenu() {
 		//Element[] gameElements;
-		Menu menuToReturn = new Menu(
-				"Gameplay", // Menu name
-				currentLevel.getName(), // Menu Display Name
-				"%Pause", // Previous Menu
-				DefaultValues.Color_BG, // BGColor
-				new int[][]{{-1,-1}}, // Secondary Selections
-				new RoundedArea[]{ // Masks
-					new RoundedArea(0, 0, 1920, 1080, 0), // 0. Full Screen
-					new RoundedArea(88, 163, 1746, 796, 0) // 1. Notes
-					// Insert here
-				},
-				DefaultValues.StoredTransforms_DEFAULT(),
-				new Element[] {
-						new Element(
-								new Selector(
-									new int[]{-1,-1}, // Selector Index
-									new int[][]{{-1,-1},{-	1,-1},{-1,-1},{-1,-1}} // E, S, W, N to select next
-									),
-								-1, // Mask Index
-								false, // hover overlap
-								-1, // hover effect
-								-1, // click effect
-								-1, // arbritraty animation (to be used for scroll)
-								DefaultValues.TransformIndex_500msScale0, // entry animation
-								new TextBox(
-									// No Text, No Renderable
-									1, // scale
-									null, // function
-									"Green Background",  // name
-									new RoundedArea(
-										960, 560, 1750, 800,  // x, y, xSize, ySize, round%
-										5 // roundPercentage
-										),
-									DefaultValues.Color_MENU, // box color (index of colors)
-									255, // opacity (0-255)
-									25, // shadowOffset
-									5, 6 // strokeWidth, strokeColor
-									)
-								),
-						new Element(
-								new Selector(
-									new int[]{-1,-1}, // Selector Index
-									new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
-									),
-								-1, // mask index
-								false, // hover overlap
-								-1, // hover effect
-								-1, // click effect
-								-1, // arbritraty animation (to be used for scroll)
-								DefaultValues.TransformIndex_500msScale0, // entry animation
-								new TextBox(
-									// Text and Renderable
-									1f, // scale
-									"null", // function
-									"SpikedEnd",  // name
-									new Renderable(
-											// Renderable Without Function
-											"SpikedEndPNG", // name
-											"src/textures/spikeend.png", // file source
-											0, 0, 58, 700, // x, y, xSize, ySize (relative)
-											255 // opacity (0-255)
-											),  // renderable
-									new RoundedArea(
-										88, 612, 0, 685, 0  // x, y, xSize, ySize, round%
-										),
-									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
-									255, // opacity (0-255)
-									0, // shadowOffset
-									0, DefaultValues.Color_TRANSPARENT // strokeWidth, strokeColor
-									)),
-						new Element(
-								new Selector(
-									new int[]{-1,-1}, // Selector Index
-									new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
-									),
-								-1, // mask index
-								false, // hover overlap
-								-1, // hover effect
-								-1, // click effect
-								-1, // arbritraty animation (to be used for scroll)
-								DefaultValues.TransformIndex_500msScale0, // entry animation
-								new TextBox(
-									// Text and Renderable
-									1f, // scale
-									"GameRenderLast", // function
-									"Hit Line",  // name
-									new RoundedArea(
-										400, 612, 0, 685, 0  // x, y, xSize, ySize, round%
-										),
-									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
-									255, // opacity (0-255)
-									0, // shadowOffset
-									5, 6 // strokeWidth, strokeColor
-									)),
-						new Element(
-								new Selector(
-									new int[]{-1,-1}, // Selector Index
-									new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
-									),
-								-1, // mask index
-								false, // hover overlap
-								-1, // hover effect
-								-1, // click effect
-								-1, // arbritraty animation (to be used for scroll)
-								DefaultValues.TransformIndex_500msScale0, // entry animation
-								new TextBox(
-									// Text and Renderable
-									1f, // scale
-									"null", // function
-									"Stats Divider",  // name
-									new RoundedArea(
-										960, 270, 1750, 0, 0  // x, y, xSize, ySize, round%
-										),
-									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
-									255, // opacity (0-255)
-									0, // shadowOffset
-									5, 6 // strokeWidth, strokeColor
-									)),
-						new Element(
-								new Selector(
-										new int[]{-1,-1}, // Selector Index
-										new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
-										),
-									-1, // mask index
-									false, // hover overlap
-									-1, // hover effect
-									-1, // click effect
-									-1, // arbritraty animation (to be used for scroll)
-									DefaultValues.TransformIndex_500msScale0, // entry animation
-								new TextBox(
-									//Text
-									1f, // scale
-									"noFunction", // function
-									"ScoreTitle", // name
-									new Text(
-											"Score: ", // text
-											"left", "center", // align
-											0, -9, // text offset (x, y)
-											50, // text size
-											6, // text color (index of colors)
-											"Archivo Narrow", // font
-											false // bold
-											),
-									new RoundedArea(
-										123, 217, 0, 0, 0  // x, y, xSize, ySize, round%
-										),
-									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
-									255, // opacity (0-255)
-									8, // shadowOffset
-									5, 6 // strokeWidth, strokeColor
-									)),
-						new Element(
-								new Selector(
-										new int[]{-1,-1}, // Selector Index
-										new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
-										),
-									-1, // mask index
-									false, // hover overlap
-									-1, // hover effect
-									-1, // click effect
-									-1, // arbritraty animation (to be used for scroll)
-									DefaultValues.TransformIndex_500msScale0, // entry animation
-								new TextBox(
-									//Text
-									1f, // scale
-									"noFunction", // function
-									"Score", // name
-									new Text(
-											"%ScorePercentage", // text
-											"left", "center", // align
-											0, -9, // text offset (x, y)
-											50, // text size
-											6, // text color (index of colors)
-											"Archivo Narrow", // font
-											false // bold
-											),
-									new RoundedArea(
-										250, 219, 0, 0, 0  // x, y, xSize, ySize, round%
-										),
-									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
-									255, // opacity (0-255)
-									8, // shadowOffset
-									5, 6 // strokeWidth, strokeColor
-									)),
-						new Element(
-								new Selector(
-										new int[]{-1,-1}, // Selector Index
-										new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
-										),
-									-1, // mask index
-									false, // hover overlap
-									-1, // hover effect
-									-1, // click effect
-									-1, // arbritraty animation (to be used for scroll)
-									DefaultValues.TransformIndex_500msScale0, // entry animation
-								new TextBox(
-									//Text
-									1f, // scale
-									"noFunction", // function
-									"ComboTitle", // name
-									new Text(
-											"Combo", // text
-											"right", "center", // align
-											0, -9, // text offset (x, y)
-											50, // text size
-											6, // text color (index of colors)
-											"Archivo Narrow", // font
-											false // bold
-											),
-									new RoundedArea(
-										1805, 217, 0, 0, 0  // x, y, xSize, ySize, round%
-										),
-									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
-									255, // opacity (0-255)
-									8, // shadowOffset
-									5, 6 // strokeWidth, strokeColor
-									)),
-						new Element(
-								new Selector(
-										new int[]{-1,-1}, // Selector Index
-										new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
-										),
-									-1, // mask index
-									false, // hover overlap
-									-1, // hover effect
-									-1, // click effect
-									-1, // arbritraty animation (to be used for scroll)
-									DefaultValues.TransformIndex_500msScale0, // entry animation
-								new TextBox(
-									//Text
-									1f, // scale
-									"noFunction", // function
-									"Combo", // name
-									new Text(
-											"%Combo", // text
-											"right", "center", // align
-											0, -9, // text offset (x, y)
-											50, // text size
-											6, // text color (index of colors)
-											"Archivo Narrow", // font
-											false // bold
-											),
-									new RoundedArea(
-										1658, 217, 0, 0, 0  // x, y, xSize, ySize, round%
-										),
-									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
-									255, // opacity (0-255)
-									8, // shadowOffset
-									5, 6 // strokeWidth, strokeColor
-									)),
-/////////////////////////////////////////////////////////////////////////////////////
-				}, // Elements
-				new Popup[] {DefaultValues.Popup_GAMEPAUSE()} // Popups
-				);
+		Menu menuToReturn = DefaultValues.defaultGameMenu();
 		return menuToReturn;
+	}
+	
+	public boolean gotNewHighscore() {
+		//TODO;
+		return true;
 	}
 
 	public void hit(Object[] noteInfo) {
@@ -581,7 +363,11 @@ public class Game extends Thread {
 	}
 	
 	private void die() {
-		
+		//TODO;
+	}
+	
+	public String getCurrentLevelName() {
+		return currentLevel.getName();
 	}
 
 	public Level getCurrentLevel() {

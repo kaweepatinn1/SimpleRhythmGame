@@ -18,6 +18,8 @@ public class Main extends JPanel implements KeyListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static Main panel;
+	private static PlayerData playerData;
+	private static Statistics sessionStats;
     private static int currentMenuIndex;
     private static Menu rawCurrentMenu;
     private static Menu scaledMenu;
@@ -29,9 +31,6 @@ public class Main extends JPanel implements KeyListener {
     // used to disable the mouse input after using the keyboard until hovering an element, or a click is made
     
     private static String selectedElement;
-    public static double getScale() {
-		return scale;
-	}
 
 	private static int[] popupIndexes;
     
@@ -317,7 +316,7 @@ public class Main extends JPanel implements KeyListener {
             	} else if (keyPressed.equals("CrashCymbal")) {
             		Object[] noteInfo = game.getClosestNote(Note.Note_CRASHCYMBAL);
             		if (noteInfo != null) {
-            			Note note = (Note) noteInfo[0];
+            			//Note note = (Note) noteInfo[0];
             			Sound.playSound(Sound.SFX_crashCymbal1[0]);
             			game.hit(noteInfo);
             		} else {
@@ -746,12 +745,15 @@ public class Main extends JPanel implements KeyListener {
     	
     	for (TextBox textbox : titleTextbox) {
     		if (!textbox.getName().equals("FPS") || config.getDisplayFramerate() == true) {
+    			String text = textbox.getText().substring(0, 1).equals("%") ? 
+	        			(String) config.getVariable(textbox.getText()) :
+	        			textbox.getText();
 	    		Font font = new Font(textbox.getFont(), textbox.getBold() ? Font.BOLD:Font.PLAIN , textbox.getTextSize());
 	        	g2d.setFont(font);
 	        	
 	        	FontMetrics fontMetrics = g2d.getFontMetrics();
 	        	
-	            int[] extraAligns = getTextAligns(textbox, fontMetrics, textbox.getText());
+	            int[] extraAligns = getTextAligns(textbox, fontMetrics, text);
 	            
 	            int extraAlignX = extraAligns[0];
 	            int extraAlignY = extraAligns[1];
@@ -759,7 +761,8 @@ public class Main extends JPanel implements KeyListener {
 	            g2d.setColor(config.getCurrentThemeColors()[textbox.getTextColor()]);
 	            int finalX = textbox.getOffsetX() + extraAlignX;
 	            int finalY = textbox.getOffsetY() + extraAlignY;
-	            g2d.drawString(textbox.getText(), finalX, finalY);
+	            
+	            g2d.drawString(text, finalX, finalY);
     		}
     	}
     	
@@ -1286,6 +1289,14 @@ public class Main extends JPanel implements KeyListener {
     	}
     }
     
+    public static double getScale() {
+		return scale;
+	}
+    
+    public static LevelStats getStats(Level level) {
+		return null;
+	}
+    
     public static double intToDouble(int input) {
 		double toReturn = input;
 		return toReturn;
@@ -1526,6 +1537,10 @@ public class Main extends JPanel implements KeyListener {
     	        transitionBlackOut = false;
     		} else if (Framerate.getCurrentTime() > transitionTime + (45f * config.getTransitionTime() / 100f) && transitionBlackOut == false && menuSwitched == false) {
     			transitionBlackOut = true;
+    		} else { // catch errors
+    			menuSwitched = false;
+    			transitionBlackOut = false;
+    			System.out.println(Framerate.getCurrentTime());
     		}
     	}
     	if (popupUpdate) {
@@ -1646,8 +1661,8 @@ public class Main extends JPanel implements KeyListener {
 	        
 	        transitioning = true;
 	    	transitionTime = Framerate.getCurrentTime();
-//	    	System.out.println(Framerate.getCurrentTime());
-//	    	System.out.println(transitionTime);
+	    	System.out.println(Framerate.getCurrentTime());
+	    	System.out.println(transitionTime);
 	    	transitionTo = menu;
 	    	
 	    	animateEntryMenu();
@@ -1888,8 +1903,6 @@ public class Main extends JPanel implements KeyListener {
 	
 	public static void main(String args[]) throws Exception {
     	
-    	Framerate.checkCurrentTime();
-    	
     	SysOutController.setSysOutLocationAddressor(); // FOR DEBUGGING (can be disabled)
     	
     	frame = new JFrame("Simple Rhythm Game"); // initialises the frame to allow changes to be applied
@@ -1921,8 +1934,10 @@ public class Main extends JPanel implements KeyListener {
         	Functions.setMenu("Init User");
         }
         
+        Framerate thread = new Framerate();
+        thread.start();
+        
         panel = new Main(); 
-        // runs showimage class (top of this class) to show text and renderables into a panel
         
         if (config.getCursorEnabled()) {
     		panel.setCursor(Cursor.getDefaultCursor());
@@ -1963,8 +1978,6 @@ public class Main extends JPanel implements KeyListener {
         // Set the frame size to the screen dimensions
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sets closing operation
         frame.setVisible(true); // allows client to see frame
-        Framerate thread = new Framerate();
-        thread.start();
     }
 	
 	public static void startGame(Level level) {

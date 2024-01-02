@@ -25,6 +25,8 @@ public class Framerate extends Thread {
 	// UPDATE: archived nanoseconds as it takes too long to call.
 	
 	public Framerate(){
+		setNanoPrecision(Main.getConfig().getNanoSecondPrecision());
+		// System.out.println(Main.getConfig().getNanoSecondPrecision());
 		checkCurrentTime();
 		setFramesToStore(Main.getConfig().getFramesToStore());
 		framerate = Main.getConfig().getFramerate();
@@ -33,8 +35,6 @@ public class Framerate extends Thread {
 		// Consider adding a ms per frame option instead.
 		limitFramerate = Main.getConfig().getLimitFramerate();
 		// limitFramerate will limit the framerate to one frame per ms (1000fps)
-		
-		setNanoPrecision(Main.getConfig().getNanoSecondPrecision());
 	}
 	
 	public static void set(int newFramerate) {
@@ -50,7 +50,8 @@ public class Framerate extends Thread {
 	}
 	
 	public static double getCurrentTime() {
-		double returnTime = Main.getConfig().getNanoSecondPrecision() ? currentTime / 1000000 : currentTime;
+		double returnTime = nanoSecondPrecision ? currentTime / 1000000 : currentTime;
+		//System.out.println(Main.getConfig().getNanoSecondPrecision());
 		return returnTime;
 	}
 	
@@ -173,6 +174,7 @@ public class Framerate extends Thread {
 	
 
 	public static void setNanoPrecision(boolean extraPrecision) {
+		System.out.println("set to" + extraPrecision);
 		nanoSecondPrecision = extraPrecision;
 		if (nanoSecondPrecision) {
 			lastFrameTimeNanos = System.nanoTime();
