@@ -1537,10 +1537,6 @@ public class Main extends JPanel implements KeyListener {
     	        transitionBlackOut = false;
     		} else if (Framerate.getCurrentTime() > transitionTime + (45f * config.getTransitionTime() / 100f) && transitionBlackOut == false && menuSwitched == false) {
     			transitionBlackOut = true;
-    		} else { // catch errors
-    			menuSwitched = false;
-    			transitionBlackOut = false;
-    			System.out.println(Framerate.getCurrentTime());
     		}
     	}
     	if (popupUpdate) {
