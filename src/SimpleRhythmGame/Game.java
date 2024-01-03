@@ -30,6 +30,7 @@ public class Game extends Thread {
 	
 	private int score;
 	private int combo;
+	private int maxCombo;
 	private int notesHit;
 	private int notesMissed;
 	private double accuracy;
@@ -44,7 +45,7 @@ public class Game extends Thread {
 	private int finalNotesMissed;
 	private double finalAccuracy;
 	
-	private boolean tutorial;
+	private boolean isTutorial;
 	
 	private static transient BufferedImage noteImages[];
 	
@@ -72,9 +73,9 @@ public class Game extends Thread {
 			player = new AudioPlayer();
 	        player.loadAudio("/levels/" + level.getName() + "/" + level.getName() + ".wav");
 	        player.setVolume(Main.getConfig().getFinalMusicVolume());
-	        tutorial = false;
+	        isTutorial = false;
 		} else {
-			tutorial = true;
+			isTutorial = true;
 		}
         
         noteImages = new BufferedImage[5];
@@ -103,7 +104,7 @@ public class Game extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if (!tutorial) {
+		if (!isTutorial) {
 			player.play();
 		}
 		unpaused = true;
@@ -250,9 +251,26 @@ public class Game extends Thread {
 		}
 	}
 	
+	private void summarizeFinalScores() {
+		finalScore = score;
+		finalMaxCombo = maxCombo;
+		finalNotesHit = notesHit;
+		finalNotesMissed = notesMissed;
+		finalAccuracy = notesHit / (notesHit + notesMissed);
+	}
+	
 	public void endSong() {
-		//TODO;
+		summarizeFinalScores();
 		Main.addPopup(1);
+	}
+	
+	private void die() {
+		//TODO;
+	}
+	
+	public boolean checkIfGotNewHighscore() {
+		//TODO;
+		return true;
 	}
 	
 	public ArrayList<Note> getCurrentNotes() {
@@ -273,11 +291,6 @@ public class Game extends Thread {
 		//Element[] gameElements;
 		Menu menuToReturn = DefaultValues.defaultGameMenu();
 		return menuToReturn;
-	}
-	
-	public boolean gotNewHighscore() {
-		//TODO;
-		return true;
 	}
 
 	public void hit(Object[] noteInfo) {
@@ -349,6 +362,8 @@ public class Game extends Thread {
 
 	public void incrementCombo(boolean hit) {
 		combo = hit ? combo + 1 : 0;
+		maxCombo = Math.max(maxCombo, combo);
+		// anti if statement coding 😎
 	}
 
 	public int getHealth() {
@@ -360,10 +375,6 @@ public class Game extends Thread {
 		if (health < 0) {
 			die();
 		}
-	}
-	
-	private void die() {
-		//TODO;
 	}
 	
 	public String getCurrentLevelName() {
@@ -456,6 +467,26 @@ public class Game extends Thread {
 	
 	public double getTimeSinceGameStart() {
 		return Framerate.getCurrentTime() - getMillisStarted();
+	}
+
+	public int getFinalScore() {
+		return finalScore;
+	}
+
+	public int getFinalMaxCombo() {
+		return finalMaxCombo;
+	}
+
+	public int getFinalNotesHit() {
+		return finalNotesHit;
+	}
+
+	public int getFinalNotesMissed() {
+		return finalNotesMissed;
+	}
+
+	public double getFinalAccuracy() {
+		return finalAccuracy;
 	}
 	
 }

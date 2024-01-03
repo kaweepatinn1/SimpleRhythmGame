@@ -596,13 +596,13 @@ public class Config {
 			varToReturn = Main.getGame().getCurrentLevelName();
 		} else if (splitVariable[0].equals("%BoolNewHighscore")){
 			if (splitVariable[1].equals("Show")) {
-				if (Main.getGame().gotNewHighscore()) {
+				if (Main.getGame().checkIfGotNewHighscore()) {
 					varToReturn = "New Highscore!";
 				} else {
 					varToReturn = "";
 				}
 			} else if (splitVariable[1].equals("Hide")) {
-				if (Main.getGame().gotNewHighscore()) {
+				if (Main.getGame().checkIfGotNewHighscore()) {
 					varToReturn = "";
 				} else {
 					varToReturn = "Score";

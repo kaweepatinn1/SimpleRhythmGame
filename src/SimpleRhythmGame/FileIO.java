@@ -98,6 +98,34 @@ public class FileIO {
 		return config;
 	}
 	
+	public static void playerDataOut(PlayerData playerData) {
+		String path = "./playerdata.json";
+		try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
+	        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	        String jsonString = gson.toJson(playerData);
+	        out.write(jsonString);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	public static void currentPlayerDataOut() {
+		String path = "./playerdata.json";
+		try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
+	        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	        String jsonString = gson.toJson(Main.getPlayerData());
+	        out.write(jsonString);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	public static PlayerData playerDataIn() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
+		Gson gson = new Gson();
+		PlayerData playerData = gson.fromJson(new FileReader("./playerdata.json"), PlayerData.class);
+		return playerData;
+	}
+	
 	public static String getCurrentTheme() {
 		String toReturn = null;
 		

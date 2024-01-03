@@ -1905,15 +1905,8 @@ public class Main extends JPanel implements KeyListener {
         
         // READ INITIALIZATION STATUS
         
-        // for username
-        boolean userHasUsername = true;
-        // String userUsername = xx;
-        // UUID userUUID = xx;
-        
-        // TODO: ADD BELOW TO A COMMENT ONCE DEV IS FINISHED:
-        // System.out.println(currentMenuIndex);
-        
-        boolean useConfig = false; // use during development. TODO: set to true on completion
+        boolean useConfig = false; // false during development. TODO: set to true on completion
+        boolean usePlayerData = false; // false during development. set to true to start saving and using config
         
         File configFile = new File("./options.json");
         if (configFile.exists() && !configFile.isDirectory() && useConfig) { 
@@ -1923,8 +1916,19 @@ public class Main extends JPanel implements KeyListener {
         	FileIO.currentConfigOut();
         }
         
+        boolean playerDataExists;
+        
+        File playerDataFile = new File("./playerdata.json");
+        if (playerDataFile.exists() && !playerDataFile.isDirectory() && usePlayerData) {
+        	playerData = FileIO.playerDataIn();
+        	playerDataExists = true;
+        } else {
+        	playerDataExists = false;
+        }
+        
+        
         setNewFrameSize(config.getFullscreen(), config.getSizeToForce()); // uses the above raw lists and variables to set the frame size.
-        if (userHasUsername) {
+        if (playerDataExists) {
         	Functions.setMenu("Main Menu");
         } else {
         	Functions.setMenu("Init User");
@@ -2001,5 +2005,17 @@ public class Main extends JPanel implements KeyListener {
 
 	public static Game getGame() {
 		return game;
+	}
+	
+	public static PlayerData getPlayerData() {
+		return playerData;
+	}
+	
+	public static Statistics getSessionStats() {
+		return sessionStats;
+	}
+	
+	public static void resetSessionStats() {
+		sessionStats = new Statistics();
 	}
 }
