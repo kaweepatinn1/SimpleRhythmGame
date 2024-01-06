@@ -66,6 +66,8 @@ public class Functions {
 					editKeybind((String) parameters[0], (int) parameters[1], (int) parameters[2]);
 				} else if (methodName.equals("playLevel")) {
 					playLevel((int) parameters[0]);
+				} else if (methodName.equals("confirmUsername")) {
+					confirmUsername();
 				}
 				
 				
@@ -184,5 +186,13 @@ public class Functions {
 		Main.setSelectedElement("EditControl" + keybind + index);
 		addPopup(popupToOpen);
 		
+	}
+	
+	public static void confirmUsername() {
+		if (!RandomAccess.usernameToSet.equals("")) {
+			Main.createUser(RandomAccess.usernameToSet);
+		} else {
+			addPopup(0); // empty error
+		}
 	}
 }
