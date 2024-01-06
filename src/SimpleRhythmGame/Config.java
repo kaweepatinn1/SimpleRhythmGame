@@ -608,6 +608,8 @@ public class Config {
 					varToReturn = "Score";
 				}
 			}
+		} else if (splitVariable[0].equals("%NewUsername")) {
+			return RandomAccess.usernameToSet;
 		}
 		
 		else {
@@ -696,6 +698,13 @@ public class Config {
 		} else if (splitVariable[0].equals("%Fullscreen")) {
 			setFullscreen(!getFullscreen());
 			return "Success";
+		} else if (splitVariable[0].equals("%NewUsername")) {
+			if (((String) newValues).length() < 3) {
+				return "LengthInvalid";
+			} else {
+				RandomAccess.usernameToSet = (String) newValues;
+				return "Success";
+			}
 		}
 		
 		else {

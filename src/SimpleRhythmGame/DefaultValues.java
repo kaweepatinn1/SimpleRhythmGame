@@ -8339,6 +8339,375 @@ public class DefaultValues {
 /////////////////////////////////////////////////////////////////////////////////////
 					}
 			),
+			new Menu( // 6. Init User
+					"Init User Menu", // Menu Name
+					"Welcome!", // Menu Display Name
+					"Init User Menu", // Parent Menu
+					0, // BG Color
+					new int[][]{{-1,-1}}, // Secondary Selections
+					new RoundedArea[]{ // Masks
+							new RoundedArea(0, 0, 1920, 1080, 0), // 0. Full Screen
+							new RoundedArea(400, 250, 1120, 625, 0), // 1. Skin Choices
+							// Insert here
+						},
+						new StoredTransform[] {
+								StoredTransform.Transform_ClickScaleDown,
+								StoredTransform.Transform_1sLeft100,
+								StoredTransform.Transform_1sRight100,
+								StoredTransform.Transform_1sUp100,
+								StoredTransform.Transform_1sDown100,
+								StoredTransform.Transform_500msLeft100,
+								StoredTransform.Transform_500msRight100,
+								StoredTransform.Transform_500msUp100,
+								StoredTransform.Transform_500msDown100,
+								StoredTransform.Transform_1sLeft150,
+								StoredTransform.Transform_1sRight150,
+								StoredTransform.Transform_1sUp150,
+								StoredTransform.Transform_1sDown150,
+								StoredTransform.Transform_500msLeft150,
+								StoredTransform.Transform_500msRight150,
+								StoredTransform.Transform_500msUp150,
+								StoredTransform.Transform_500msDown150,
+								StoredTransform.Transform_500msScaleUp,
+								StoredTransform.Transform_500msScaleUpRotateLeft20,
+								StoredTransform.Transform_500msScale0,
+								StoredTransform.Transform_ClickScaleDownRotate20, // 20
+								new StoredTransform( // 3 --> 21. hover expand (no rotate)
+										-200, 0, // x, y transform
+										1, 1, // scale transform (x, y)
+										0, // rotate transform
+										0, // offset (ms)
+										750, // animation time (ms)
+										6 // (ease type)
+									),
+								new StoredTransform( // 10 --> 22. -200 x (f box to center)
+										-200, 0, // x, y transform
+										1, 1, // scale transform (x, y)
+										0, // rotate transform
+										0, // offset (ms)
+										500, // animation time (ms)
+										6 // (ease type)
+										),
+						},
+					new Element[] { // Elements List
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+							new Selector(
+								new int[]{-1,-1}, // Selector Index
+								new int[][]{{-1,-1},{-1,-1},{-1,-1},{-1,-1}} // E, S, W, N to select next
+								),
+							-1, // Mask Index
+							false, // hover overlap
+							-1, // hover effect
+							-1, // click effect
+							-1, // arbritraty animation (to be used for scroll)
+							DefaultValues.TransformIndex_500msScale0, // entry animation
+							new TextBox(
+								// No Text, No Renderable
+								1, // scale
+								null, // function
+								"Green Background",  // name
+								new RoundedArea(
+									960, 560, 600, 380,  // x, y, xSize, ySize, round%
+									5 // roundPercentage
+									),
+								Color_MENU, // box color (index of colors)
+								255, // opacity (0-255)
+								25, // shadowOffset
+								5, 6 // strokeWidth, strokeColor
+								)
+							),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								DefaultValues.TransformIndex_500msScale0, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									null, // function
+									"Username Select",  // name
+									new Text(
+										"Pick a Username", // text
+										"center", "center", // align
+										0, -50, // text offset (x, y)
+										60, // text size
+										6, // text color (index of colors)
+										"Archivo Narrow", // font
+										false // bold
+										),
+									new RoundedArea(
+										960, 470, 500, 0, 0  // x, y, xSize, ySize, round%
+										),
+									Color_TRANSPARENT, // box color (index of colors)
+									255, // opacity (0-255)
+									0, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{1,0},{1,1},{0,2},{1,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								true, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								DefaultValues.TransformIndex_500msScale0, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									"noFunction", // function
+									"UsernameTip",  // name
+									new Text(
+											"3 - 12 alphanumeric characters.", // text
+											"center", "center", // align
+											0, 0, // text offset (x, y)
+											35, // text size
+											DefaultValues.Color_STROKE, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+									new RoundedArea(
+										960, 510, 0, 0, 0  // x, y, xSize, ySize, round%
+										),
+									Color_BUTTONS, // box color (index of colors)
+									255, // opacity (0-255)
+									5, // shadowOffset
+									3, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{0,0}, // Selector Index
+									new int[][]{{0,0},{0,1},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								true, // hover overlap
+								-1, // hover effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								DefaultValues.TransformIndex_500msScale0, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									"enterTextField String NewUsername", // function
+									"EditNewUsernameButton",  // name
+									new Renderable(
+											// Renderable Without Function
+											"EditPNG", // name
+											"src/textures/edit.png", // file source
+											9, 8, 50, 50, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+									new RoundedArea(
+										800, 593, 65, 65, 0  // x, y, xSize, ySize, round%
+										),
+									Color_BUTTONS, // box color (index of colors)
+									255, // opacity (0-255)
+									5, // shadowOffset
+									3, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								DefaultValues.TransformIndex_500msScale0, // entry animation
+								new TextField(
+										// Textfield
+										1f, // scale
+										12, // Max Size
+										new int[] { // Error Popup Indexes
+												-1, // Field is duplicate!
+												0, // Field is empty! 
+												-1, // Hex invalid
+												1, // Field is less than 3 characters
+											},
+										TextField.Input_ALPHANUMERIC, // input type
+										"NewUsername", // Name
+										new Text(
+											"%NewUsername", // text
+											"right", "center", // align
+											146, -6, // text offset (x, y)
+											35, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+									new RoundedArea(
+										993, 593, 321, 65, 0  // x, y, xSize, ySize, round%
+										),
+									Color_DISPLAY, // box color (index of colors)
+									255, // opacity (0-255)
+									5, // shadowOffset
+									3, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{0,1}, // Selector Index
+									new int[][]{{0,1},{0,1},{0,1},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								DefaultValues.TransformIndex_500msScale0, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									"confirmUsername", // function
+									"popup",  // name
+									new Text(
+										"Confirm", // text
+										"center", "center", // align
+										0, -5, // text offset (x, y)
+										35, // text size
+										6, // text color (index of colors)
+										"Archivo Narrow", // font
+										false // bold
+										),
+									new RoundedArea(
+										960, 685, 300, 60, 0  // x, y, xSize, ySize, round%
+										),
+									Color_BUTTONS, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+					},
+					new Popup[] { // Popups List
+							DefaultValues.Popup_INPUTEMPTY(),
+							new Popup( // Empty Input Error
+									"EmptyInputTheme", // Popup Name
+									"Input Error!", // Popup Title
+									new Element[] {
+										new Element(
+												new Selector(
+													new int[]{-1,-1}, // Selector Index
+													new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+													),
+												-1, // mask index
+												false, // hover overlap
+												-1, // hover effect
+												DefaultValues.TransformIndex_ClickScaleDown, // click effect
+												-1, // arbritraty animation (to be used for scroll)
+												DefaultValues.TransformIndex_500msScale0, // entry animation
+												new TextBox(
+													// Text and Renderable
+													1f, // scale
+													"noFunction", // function
+													"ErrorMessage",  // name
+													new Text(
+														"Input Error!", // text
+														"center", "center", // align
+														0, -100, // text offset (x, y)
+														80, // text size
+														5, // text color (index of colors)
+														"Archivo Narrow", // font
+														true // bold
+														),
+													new RoundedArea(
+														960, 500, 600, 300, 0  // x, y, xSize, ySize, round%
+														),
+													Color_MENU, // box color (index of colors)
+													255, // opacity (0-255)
+													15, // shadowOffset
+													5, 6 // strokeWidth, strokeColor
+													)),
+				/////////////////////////////////////////////////////////////////////////////////////
+										new Element(
+												new Selector(
+													new int[]{-1,-1}, // Selector Index
+													new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+													),
+												-1, // mask index
+												false, // hover overlap
+												-1, // hover effect
+												DefaultValues.TransformIndex_ClickScaleDown, // click effect
+												-1, // arbritraty animation (to be used for scroll)
+												DefaultValues.TransformIndex_500msScale0, // entry animation
+												new TextBox(
+													// Text and Renderable
+													1f, // scale
+													"noFunction", // function
+													"ErrorMessage",  // name
+													new Text(
+														"Username must be longer!", // text
+														"center", "center", // align
+														0, -9, // text offset (x, y)
+														40, // text size
+														6, // text color (index of colors)
+														"Archivo Narrow", // font
+														false // bold
+														),
+													new RoundedArea(
+														960, 495, 0, 0, 0  // x, y, xSize, ySize, round%
+														),
+													Color_TRANSPARENT, // box color (index of colors)
+													255, // opacity (0-255)
+													0, // shadowOffset
+													5, 6 // strokeWidth, strokeColor
+													)),
+				/////////////////////////////////////////////////////////////////////////////////////
+										new Element(
+												new Selector(
+													new int[]{0,0}, // Selector Index
+													new int[][]{{1,0},{0,2},{0,0},{0,0}} // E, S, W, N to select next
+													),
+												-1, // mask index
+												false, // hover overlap
+												-1, // hover effect
+												DefaultValues.TransformIndex_ClickScaleDown, // click effect
+												-1, // arbritraty animation (to be used for scroll)
+												DefaultValues.TransformIndex_500msScale0, // entry animation
+												new TextBox(
+													// Text and Renderable
+													1f, // scale
+													"removeThisPopup", // function
+													"popup",  // name
+													new Text(
+														"Confirm", // text
+														"center", "center", // align
+														0, -5, // text offset (x, y)
+														40, // text size
+														6, // text color (index of colors)
+														"Archivo Narrow", // font
+														false // bold
+														),
+													new RoundedArea(
+														960, 580, 300, 80, 0  // x, y, xSize, ySize, round%
+														),
+													Color_BUTTONS, // box color (index of colors)
+													255, // opacity (0-255)
+													8, // shadowOffset
+													5, 6 // strokeWidth, strokeColor
+													)),
+									}
+							),
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+					}
+			),
 	};
 	
 	public static Config getDefaultConfigs() {

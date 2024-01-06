@@ -174,7 +174,7 @@ public class Framerate extends Thread {
 	
 
 	public static void setNanoPrecision(boolean extraPrecision) {
-		System.out.println("set to" + extraPrecision);
+		// System.out.println("set to" + extraPrecision);
 		nanoSecondPrecision = extraPrecision;
 		if (nanoSecondPrecision) {
 			lastFrameTimeNanos = System.nanoTime();

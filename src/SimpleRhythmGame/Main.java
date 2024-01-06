@@ -1899,10 +1899,11 @@ public class Main extends JPanel implements KeyListener {
 	
 	public static void main(String args[]) throws Exception {
     	
-    	SysOutController.setSysOutLocationAddressor(); // FOR DEBUGGING (can be disabled)
+    	SysOutController.setSysOutLocationAddressor(); // FOR DEBUGGING (TODO: can be disabled)
     	
     	frame = new JFrame("Simple Rhythm Game"); // initialises the frame to allow changes to be applied
-        
+        new RandomAccess();
+    	
         // READ INITIALIZATION STATUS
         
         boolean useConfig = false; // false during development. TODO: set to true on completion
@@ -1931,7 +1932,7 @@ public class Main extends JPanel implements KeyListener {
         if (playerDataExists) {
         	Functions.setMenu("Main Menu");
         } else {
-        	Functions.setMenu("Init User");
+        	Functions.setMenu("Init User Menu");
         }
         
         Framerate thread = new Framerate();
@@ -2017,5 +2018,10 @@ public class Main extends JPanel implements KeyListener {
 	
 	public static void resetSessionStats() {
 		sessionStats = new Statistics();
+	}
+	
+	public static void createUser(String username) {
+		playerData = new PlayerData(username);
+		Functions.setMenu("Main Menu");
 	}
 }

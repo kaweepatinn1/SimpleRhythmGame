@@ -104,6 +104,9 @@ public class TextField {
         		} else if (status.equals("HexInvalid")) {
         			Main.cancelElement(Main.getSelectedElement());
         			Main.addPopup(errorPopupIndexes[2]);
+        		} else if (status.equals("LengthInvalid")) {
+        			Main.cancelElement(Main.getSelectedElement());
+        			Main.addPopup(errorPopupIndexes[3]);
         		}
     		} else {
     			// there was no name change
