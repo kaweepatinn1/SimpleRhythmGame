@@ -1,5 +1,6 @@
 package SimpleRhythmGame;
 
+import java.util.Arrays;
 import java.util.UUID;
 
 public class PlayerData {
@@ -30,6 +31,22 @@ public class PlayerData {
 	
 	public LevelStats[] getLevelStats() {
 		return levelStats;
+	}
+	
+	public LevelStats getLevelStats(Level toFindLevel) {
+		for (LevelStats levelStats : getLevelStats()) {
+			if (levelStats.getLevelUUID().equals(toFindLevel.getUUID())) {
+				return levelStats;
+			}
+		}
+		return null;
+	}
+	
+	public LevelStats createLevelStats(Level level) {
+		LevelStats newLevelStat = new LevelStats(level);
+		LevelStats[] newLevelStats = Arrays.copyOf(levelStats, levelStats.length + 1);
+		newLevelStats[levelStats.length] = newLevelStat;
+		return newLevelStat;
 	}
 	
 	public void setStats(Statistics stats) {

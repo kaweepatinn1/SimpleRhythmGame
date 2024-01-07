@@ -195,9 +195,12 @@ public class Main extends JPanel implements KeyListener {
         		keyboardInputLast = false;
         		String nameOfHoveredElement = hoveredElement.getName();
         		selected = scaledMenu.resetSelectors(getElementFromName(nameOfHoveredElement).getSelectorIndex(), selected, getCurrentPopupIndex());
-                if (lastHovered == nameOfHoveredElement) {
+                updateLevelStats(hoveredElement);
+        		//System.out.println(hoveredElement);
+        		if (lastHovered == nameOfHoveredElement) {
                 	// Do nothing, nothing has changed.
                 } else {
+                	updateLevelStats(hoveredElement);
                 	if (nameOfHoveredElement != null){
                 		getElementFromName(nameOfHoveredElement).animateHover();
                 	}
@@ -223,6 +226,7 @@ public class Main extends JPanel implements KeyListener {
 	                		Element toDeanimate = getElementFromName(lastHovered);
 	                		if (toDeanimate != null) {
 	                			toDeanimate.deanimateHover(false);
+	                			updateLevelStats(null);
 	                		}
 	                	}
 	        			// System.out.println("no longer hovering: " + lastHovered);
@@ -306,7 +310,7 @@ public class Main extends JPanel implements KeyListener {
         			Object[] noteInfo = game.getClosestNote(Note.Note_SNAREDRUM);
         			//System.out.println(note);
             		if (noteInfo != null) {
-            			Note note = (Note) noteInfo[0];
+            			// Note note = (Note) noteInfo[0];
             			Sound.playSound(Sound.SFX_snareDrum1[0]);
             			game.hit(noteInfo);
             		} else {
@@ -501,6 +505,8 @@ public class Main extends JPanel implements KeyListener {
 	                        			} else {
 	                        				elementToDeanimate.deanimateHover(false);
 	                        				element.animateHover();
+	                        				updateLevelStats(element);
+	                        				// System.out.println(element.getName());
 	                        				lastHovered = element.getName();
 	                        			}
 	                        			break;
@@ -1932,7 +1938,8 @@ public class Main extends JPanel implements KeyListener {
         if (playerDataExists) {
         	Functions.setMenu("Main Menu");
         } else {
-        	Functions.setMenu("Init User Menu");
+        	createUser("eh");
+        	Functions.setMenu("Play Menu"); // TODO: switch to Init User Menu
         }
         
         Framerate thread = new Framerate();
@@ -2023,5 +2030,20 @@ public class Main extends JPanel implements KeyListener {
 	public static void createUser(String username) {
 		playerData = new PlayerData(username);
 		Functions.setMenu("Main Menu");
+	}
+	
+	public static void updateLevelStats(Element levelElement) {
+		if (levelElement != null) {
+			String elementName = levelElement.getName();
+			if (elementName.substring(1,8).equals("!Levels")) {
+				// System.out.println(elementName.substring(8)); // level number
+				Level level = Config.getLevelsList()[Integer.parseInt(elementName.substring(9))];
+				RandomAccess.setLevelStats(level);
+			} else {
+				RandomAccess.resetLevelStats();
+			}
+		} else {
+			RandomAccess.resetLevelStats();
+		}
 	}
 }

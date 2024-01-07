@@ -212,10 +212,12 @@ public class Game extends Thread {
 			if (!Main.getState().equals("Paused")) {
 				refreshCurrentNotes();
 			}
-			for (int i = 0 ; i < 4000 ; i++) {
+			for (int i = 0 ; i < 500 ; i++) {
 				try {
-					Thread.sleep(1); // 4 second total refresh time, so one full second leeway to refresh onto screen.
-					// game on 1ms refresh rate (1000fps).
+					Thread.sleep(2); 
+					// 1 second total refresh time, so four full second leeway 
+					// to run 500 iterations before refresh onto screen.
+					// game on 2ms refresh rate (500fps).
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

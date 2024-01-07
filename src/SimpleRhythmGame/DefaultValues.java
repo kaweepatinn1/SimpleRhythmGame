@@ -7388,6 +7388,178 @@ public class DefaultValues {
 						new Element(
 								new Selector(
 									new int[]{-1,-1}, // Selector Index
+									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								-1, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								TransformIndex_500msLeft150, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									null, // function
+									"Level Select",  // name
+									new Text(
+										"Level Select", // text
+										"center", "center", // align
+										0, -50, // text offset (x, y)
+										60, // text size
+										6, // text color (index of colors)
+										"Archivo Narrow", // font
+										false // bold
+										),
+									new RoundedArea(
+										1260, 270, 650, 0, 0  // x, y, xSize, ySize, round%
+										),
+									Color_TRANSPARENT, // box color (index of colors)
+									255, // opacity (0-255)
+									0, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+										new int[]{1,1}, // Selector Index
+										new int[][]{{2,0},{1,1},{0,1},{1,1}} // E, S, W, N to select next
+										),
+									1, // mask index
+									false, // hover overlap
+									-1, // hover effect
+									DefaultValues.TransformIndex_ClickScaleDown, // click effect
+									23, // arbritraty animation (to be used for scroll)
+									TransformIndex_500msLeft150, // entry animation
+									new OptionsList(
+											// Text and Renderable
+											1f, // scale
+											"playLevel", // function
+											"%!Levels", // list objects
+											6, // max amount of options
+											"\\!Levels",  // name
+											new Text(
+												"%Name", // text
+												"left", "center", // align
+												-430, -5, // text offset (x, y)
+												40, // text size
+												6, // text color (index of colors)
+												"Archivo Narrow", // font
+												false // bold
+												),
+											new RoundedArea(
+												1260, 398, 900, 70, 0  // x, y, xSize, ySize, round%
+												),
+											Color_BUTTONS, // box color (index of colors)
+											255, // opacity (0-255)
+											8, // shadowOffset
+											5, 6 // strokeWidth, strokeColor
+											)
+									),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+										new int[]{1,1}, // Selector Index
+										new int[][]{{2,0},{1,2},{0,1},{0,0}} // E, S, W, N to select next
+										),
+									1, // mask index
+									false, // hover overlap
+									-1, // hover effect
+									DefaultValues.TransformIndex_ClickScaleDown, // click effect
+									23, // arbritraty animation (to be used for scroll)
+									TransformIndex_500msLeft150, // entry animation
+									new OptionsList(
+											// Text and Renderable
+											1f, // scale
+											"playLevel", // function
+											"%!Levels", // list objects
+											6, // max amount of options
+											"\\!Levels",  // name
+											new Text(
+												"%Author", // text
+												"right", "center", // align
+												-120, -5, // text offset (x, y)
+												40, // text size
+												6, // text color (index of colors)
+												"Archivo Narrow", // font
+												false // bold
+												),
+											new RoundedArea(
+												1810, 398, 0, 0, 0  // x, y, xSize, ySize, round%
+												),
+											Color_BUTTONS, // box color (index of colors)
+											255, // opacity (0-255)
+											8, // shadowOffset
+											5, 6 // strokeWidth, strokeColor
+											)
+									),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{0,1}, // Selector Index
+									new int[][]{{1,1},{1,1},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								TransformIndex_500msLeft150, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									"scroll String Levels boolean false", // function
+									"LevelsScrollUp",  // name
+									new Renderable(
+											// Renderable Without Function
+											"UpPNG", // name
+											"src/textures/up.png", // file source
+											15, 7, 90, 36, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+									new RoundedArea(
+										1260, 315, 120, 50, 0  // x, y, xSize, ySize, round%
+										),
+									Color_BUTTONS, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{2,0}, // Selector Index
+									new int[][]{{2,0},{2,0},{1,1},{1,1}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								DefaultValues.TransformIndex_ClickScaleDown, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								TransformIndex_500msLeft150, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1f, // scale
+									"scroll String Levels boolean true", // function
+									"LevelsScrollDown",  // name
+									new Renderable(
+											// Renderable Without Function
+											"DownPNG", // name
+											"src/textures/down.png", // file source
+											15, 7, 90, 36, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+									new RoundedArea(
+										1260, 910, 120, 50, 0  // x, y, xSize, ySize, round%
+										),
+									Color_BUTTONS, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
 									new int[][]{{-1,-1},{-1,-1},{-1,-1},{-1,-1}} // E, S, W, N to select next
 									),
 								-1, // Mask Index
@@ -7463,7 +7635,7 @@ public class DefaultValues {
 									null, // function
 									"LevelTitle",  // name
 									new Text(
-										"%CLevelTitle", // text
+										"%CLevel Title", // text
 										"right", "center", // align
 										0, 0, // text offset (x, y)
 										40, // text size
@@ -7531,7 +7703,7 @@ public class DefaultValues {
 									null, // function
 									"LevelAuthor",  // name
 									new Text(
-										"%CLevelAuthor", // text
+										"%CLevel Author", // text
 										"right", "center", // align
 										0, 0, // text offset (x, y)
 										40, // text size
@@ -7599,7 +7771,7 @@ public class DefaultValues {
 									null, // function
 									"LevelLength",  // name
 									new Text(
-										"%CLevelLength", // text
+										"%CLevel Length", // text
 										"right", "center", // align
 										0, 0, // text offset (x, y)
 										40, // text size
@@ -7667,7 +7839,7 @@ public class DefaultValues {
 									null, // function
 									"LevelNotes",  // name
 									new Text(
-										"%CLevelNotes", // text
+										"%CLevel Notes", // text
 										"right", "center", // align
 										0, 0, // text offset (x, y)
 										40, // text size
@@ -7735,7 +7907,7 @@ public class DefaultValues {
 									null, // function
 									"LevelNPS",  // name
 									new Text(
-										"%CLevelNPS", // text
+										"%CLevel NPS", // text
 										"right", "center", // align
 										0, 0, // text offset (x, y)
 										40, // text size
@@ -7803,7 +7975,7 @@ public class DefaultValues {
 									null, // function
 									"LevelBPM",  // name
 									new Text(
-										"%CLevelBPM", // text
+										"%CLevel BPM", // text
 										"right", "center", // align
 										0, 0, // text offset (x, y)
 										40, // text size
@@ -7871,7 +8043,7 @@ public class DefaultValues {
 									null, // function
 									"LevelAttempts",  // name
 									new Text(
-										"%CLevelAttempts", // text
+										"%CLevel Attempts", // text
 										"right", "center", // align
 										0, 0, // text offset (x, y)
 										40, // text size
@@ -7939,7 +8111,7 @@ public class DefaultValues {
 									null, // function
 									"LevelMaxCombo",  // name
 									new Text(
-										"%CLevelMaxCombo", // text
+										"%CLevel MaxCombo", // text
 										"right", "center", // align
 										0, 0, // text offset (x, y)
 										40, // text size
@@ -8007,7 +8179,7 @@ public class DefaultValues {
 									null, // function
 									"LevelHighscore",  // name
 									new Text(
-										"%CLevelHighscore", // text
+										"%CLevel Highscore", // text
 										"right", "center", // align
 										0, 0, // text offset (x, y)
 										40, // text size
@@ -8075,7 +8247,7 @@ public class DefaultValues {
 									null, // function
 									"LevelAccuracy",  // name
 									new Text(
-										"%CLevelAccuracy", // text
+										"%CLevel Accuracy", // text
 										"right", "center", // align
 										0, 0, // text offset (x, y)
 										40, // text size
@@ -8109,7 +8281,7 @@ public class DefaultValues {
 									null, // function
 									"LevelFlawless",  // name
 									new Text(
-										"%CLevelFlawless", // text
+										"%CLevel Flawless", // text
 										"center", "center", // align
 										0, 0, // text offset (x, y)
 										50, // text size
@@ -8157,178 +8329,6 @@ public class DefaultValues {
 									Color_TRANSPARENT, // box color (index of colors)
 									255, // opacity (0-255)
 									0, // shadowOffset
-									5, 6 // strokeWidth, strokeColor
-									)),
-/////////////////////////////////////////////////////////////////////////////////////
-						new Element(
-								new Selector(
-									new int[]{-1,-1}, // Selector Index
-									new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
-									),
-								-1, // mask index
-								false, // hover overlap
-								-1, // hover effect
-								-1, // click effect
-								-1, // arbritraty animation (to be used for scroll)
-								TransformIndex_500msLeft150, // entry animation
-								new TextBox(
-									// Text and Renderable
-									1f, // scale
-									null, // function
-									"Level Select",  // name
-									new Text(
-										"Level Select", // text
-										"center", "center", // align
-										0, -50, // text offset (x, y)
-										60, // text size
-										6, // text color (index of colors)
-										"Archivo Narrow", // font
-										false // bold
-										),
-									new RoundedArea(
-										1260, 270, 650, 0, 0  // x, y, xSize, ySize, round%
-										),
-									Color_TRANSPARENT, // box color (index of colors)
-									255, // opacity (0-255)
-									0, // shadowOffset
-									5, 6 // strokeWidth, strokeColor
-									)),
-/////////////////////////////////////////////////////////////////////////////////////
-						new Element(
-								new Selector(
-										new int[]{2,0}, // Selector Index
-										new int[][]{{3,0},{2,0},{1,0},{2,0}} // E, S, W, N to select next
-										),
-									1, // mask index
-									false, // hover overlap
-									-1, // hover effect
-									DefaultValues.TransformIndex_ClickScaleDown, // click effect
-									23, // arbritraty animation (to be used for scroll)
-									TransformIndex_500msLeft150, // entry animation
-									new OptionsList(
-											// Text and Renderable
-											1f, // scale
-											"playLevel", // function
-											"%Levels", // list objects
-											6, // max amount of options
-											"Levels",  // name
-											new Text(
-												"%Name", // text
-												"left", "center", // align
-												-430, -5, // text offset (x, y)
-												40, // text size
-												6, // text color (index of colors)
-												"Archivo Narrow", // font
-												false // bold
-												),
-											new RoundedArea(
-												1260, 398, 900, 70, 0  // x, y, xSize, ySize, round%
-												),
-											Color_BUTTONS, // box color (index of colors)
-											255, // opacity (0-255)
-											8, // shadowOffset
-											5, 6 // strokeWidth, strokeColor
-											)
-									),
-/////////////////////////////////////////////////////////////////////////////////////
-						new Element(
-								new Selector(
-										new int[]{2,0}, // Selector Index
-										new int[][]{{3,0},{2,0},{1,0},{2,0}} // E, S, W, N to select next
-										),
-									1, // mask index
-									false, // hover overlap
-									-1, // hover effect
-									DefaultValues.TransformIndex_ClickScaleDown, // click effect
-									23, // arbritraty animation (to be used for scroll)
-									TransformIndex_500msLeft150, // entry animation
-									new OptionsList(
-											// Text and Renderable
-											1f, // scale
-											"playLevel", // function
-											"%Levels", // list objects
-											6, // max amount of options
-											"Levels",  // name
-											new Text(
-												"%Author", // text
-												"right", "center", // align
-												-120, -5, // text offset (x, y)
-												40, // text size
-												6, // text color (index of colors)
-												"Archivo Narrow", // font
-												false // bold
-												),
-											new RoundedArea(
-												1810, 398, 0, 0, 0  // x, y, xSize, ySize, round%
-												),
-											Color_BUTTONS, // box color (index of colors)
-											255, // opacity (0-255)
-											8, // shadowOffset
-											5, 6 // strokeWidth, strokeColor
-											)
-									),
-/////////////////////////////////////////////////////////////////////////////////////
-						new Element(
-								new Selector(
-									new int[]{1,0}, // Selector Index
-									new int[][]{{2,0},{2,0},{0,0},{0,0}} // E, S, W, N to select next
-									),
-								-1, // mask index
-								false, // hover overlap
-								-1, // hover effect
-								DefaultValues.TransformIndex_ClickScaleDown, // click effect
-								-1, // arbritraty animation (to be used for scroll)
-								TransformIndex_500msLeft150, // entry animation
-								new TextBox(
-									// Text and Renderable
-									1f, // scale
-									"scroll String Levels boolean false", // function
-									"LevelsScrollUp",  // name
-									new Renderable(
-											// Renderable Without Function
-											"UpPNG", // name
-											"src/textures/up.png", // file source
-											15, 7, 90, 36, // x, y, xSize, ySize (relative)
-											255 // opacity (0-255)
-											),  // renderable
-									new RoundedArea(
-										1260, 315, 120, 50, 0  // x, y, xSize, ySize, round%
-										),
-									Color_BUTTONS, // box color (index of colors)
-									255, // opacity (0-255)
-									8, // shadowOffset
-									5, 6 // strokeWidth, strokeColor
-									)),
-/////////////////////////////////////////////////////////////////////////////////////
-						new Element(
-								new Selector(
-									new int[]{3,0}, // Selector Index
-									new int[][]{{3,0},{3,0},{2,0},{2,0}} // E, S, W, N to select next
-									),
-								-1, // mask index
-								false, // hover overlap
-								-1, // hover effect
-								DefaultValues.TransformIndex_ClickScaleDown, // click effect
-								-1, // arbritraty animation (to be used for scroll)
-								TransformIndex_500msLeft150, // entry animation
-								new TextBox(
-									// Text and Renderable
-									1f, // scale
-									"scroll String Levels boolean true", // function
-									"LevelsScrollDown",  // name
-									new Renderable(
-											// Renderable Without Function
-											"DownPNG", // name
-											"src/textures/down.png", // file source
-											15, 7, 90, 36, // x, y, xSize, ySize (relative)
-											255 // opacity (0-255)
-											),  // renderable
-									new RoundedArea(
-										1260, 910, 120, 50, 0  // x, y, xSize, ySize, round%
-										),
-									Color_BUTTONS, // box color (index of colors)
-									255, // opacity (0-255)
-									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
 									)),
 /////////////////////////////////////////////////////////////////////////////////////

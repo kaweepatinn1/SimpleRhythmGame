@@ -195,4 +195,16 @@ public class Functions {
 			addPopup(0); // empty error
 		}
 	}
+	
+	public static String intToTime(int seconds) {
+		String time = null;
+		int minutes = seconds / 60;
+		int secondsMod = seconds % 60;
+		String secondsString = Integer.toString(secondsMod);
+		if (secondsString.length() == 1) {
+			secondsString = "0" + secondsString;
+		}
+		time = minutes + ":" + secondsString;
+		return time;
+	}
 }

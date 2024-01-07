@@ -6,7 +6,7 @@
   "metronomeOffset": 200,
   "bpm": 75,
   "pps": 1.0,
-  "totalTimeSeconds": 0,
+  "totalTimeSeconds": 30,
   "timeSignature": [
     4,
     4

@@ -454,7 +454,7 @@ public class Config {
 			objectsToReturn = themes;
 		} else if (objectsName.equals("%SkinChoices")) {
 			objectsToReturn = FileIO.getSkinNames();
-		} else if (objectsName.equals("%Levels")){
+		} else if (objectsName.equals("%!Levels")){
 			objectsToReturn = FileIO.getLevelsList();
 		}	
 		
@@ -489,7 +489,7 @@ public class Config {
 				System.out.println("No code for getting data field \'" + varName + "\' from parent \'" + varParentName + "\'");
 			}
 			
-		} else if (varParentName.equals("%Levels")) {
+		} else if (varParentName.equals("%!Levels")) {
 			Level[] levelsList = (Level[]) objectsList;
 			if (varName.equals("%Name")) {
 				objectToReturn = levelsList[index].getName();
@@ -609,7 +609,37 @@ public class Config {
 				}
 			}
 		} else if (splitVariable[0].equals("%NewUsername")) {
-			return RandomAccess.usernameToSet;
+			varToReturn = RandomAccess.usernameToSet;
+		} else if (splitVariable[0].equals("%CLevel")) {
+			if (splitVariable[1].equals("Title")) {
+				varToReturn = RandomAccess.levelTitle;
+			} else if (splitVariable[1].equals("Author")) {
+				varToReturn = RandomAccess.levelAuthor;
+			} else if (splitVariable[1].equals("Length")) {
+				varToReturn = Functions.intToTime(RandomAccess.levelLength);
+			} else if (splitVariable[1].equals("Notes")) {
+				varToReturn = Integer.toString(RandomAccess.levelNotes);
+			} else if (splitVariable[1].equals("NPS")) {
+				varToReturn = Float.toString(RandomAccess.levelNPS);
+			} else if (splitVariable[1].equals("BPM")) {
+				varToReturn = Integer.toString(RandomAccess.levelBPM);
+			} else if (splitVariable[1].equals("Attempts")) {
+				varToReturn = Integer.toString(RandomAccess.levelLevelAttempts);
+			} else if (splitVariable[1].equals("MaxCombo")) {
+				varToReturn = Integer.toString(RandomAccess.levelMaxCombo);
+			} else if (splitVariable[1].equals("Highscore")) {
+				varToReturn = Integer.toString(RandomAccess.levelHighscore);
+			} else if (splitVariable[1].equals("Accuracy")) {
+				varToReturn = Float.toString(RandomAccess.levelAccuracy);
+			} else if (splitVariable[1].equals("Flawless")) {
+				varToReturn = Boolean.toString(RandomAccess.levelFlawless);
+			} else if (splitVariable[1].equals("Complete")) {
+				varToReturn = Boolean.toString(RandomAccess.levelComplete);
+			} 
+			
+			else {
+				System.out.println("Could not find variable with name " + splitVariable[0] + "and subvariable" + splitVariable[1]);
+			}
 		}
 		
 		else {
