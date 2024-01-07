@@ -620,7 +620,17 @@ public class Config {
 			} else if (splitVariable[1].equals("Notes")) {
 				varToReturn = Integer.toString(RandomAccess.levelNotes);
 			} else if (splitVariable[1].equals("NPS")) {
-				varToReturn = Float.toString(RandomAccess.levelNPS);
+				float NPS = RandomAccess.levelNPS;
+				if (NPS == -1) {
+					varToReturn = "Invalid Time";
+				} else {
+					String rounded = Float.toString(Math.round(RandomAccess.levelNPS * 100) / 100f);
+					String[] split = rounded.split("\\.");
+					if (split[1].length() == 1) {
+						rounded = rounded + "0";
+					}
+					varToReturn = rounded;
+				}
 			} else if (splitVariable[1].equals("BPM")) {
 				varToReturn = Integer.toString(RandomAccess.levelBPM);
 			} else if (splitVariable[1].equals("Attempts")) {
@@ -636,6 +646,19 @@ public class Config {
 			} else if (splitVariable[1].equals("Complete")) {
 				varToReturn = Boolean.toString(RandomAccess.levelComplete);
 			} 
+			
+			else {
+				System.out.println("Could not find variable with name " + splitVariable[0] + "and subvariable" + splitVariable[1]);
+			}
+		} else if (splitVariable[0].equals("%LevelComplete")) {
+			if (splitVariable[1].equals("Score")) {
+				varToReturn = Integer.toString(RandomAccess.levelComplete_Score);
+			} else if (splitVariable[1].equals("MaxCombo")) {
+				varToReturn = Integer.toString(RandomAccess.levelComplete_Combo);
+			} else if (splitVariable[1].equals("Accuracy")) {
+				float accuracy = RandomAccess.levelComplete_Accuracy;
+				varToReturn = accuracy == 0f ? "0" : Float.toString(Math.round(accuracy * 100) / 100f) + "%";
+			}
 			
 			else {
 				System.out.println("Could not find variable with name " + splitVariable[0] + "and subvariable" + splitVariable[1]);

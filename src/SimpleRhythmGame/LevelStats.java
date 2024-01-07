@@ -146,7 +146,7 @@ public class LevelStats {
 		this.longestCombo = longestCombo;
 	}
 
-	public boolean isCompleted() {
+	public boolean getCompleted() {
 		return completed;
 	}
 
@@ -154,7 +154,7 @@ public class LevelStats {
 		this.completed = completed;
 	}
 
-	public boolean isFlawless() {
+	public boolean getFlawless() {
 		return flawless;
 	}
 
@@ -185,5 +185,16 @@ public class LevelStats {
 		} else {
 			accuracy = notesHit / (notesHit + notesMissed);
 		}
+	}
+	
+	public void updateStats(Scores scores) {
+		completed = (scores.getCompleted() || completed);
+		flawless = (scores.getFlawlessed() || flawless);
+		highscore = Math.max(scores.getScore(), highscore);
+		longestCombo = Math.max(scores.getMaxCombo(), longestCombo);
+		attempts++;
+		notesHit = notesHit + scores.getNotesHit();
+		notesMissed = notesMissed + scores.getNotesMissed();
+		updateAccuracy();
 	}
 }

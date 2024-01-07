@@ -9,9 +9,10 @@ public class Metronome extends Thread {
 		double timePerClick = 60000d / level.getBPM();
 		
 		int lastNotePlayed = (int) Math.floor((Framerate.getCurrentTime() - levelStartTime) / timePerClick);
-		System.out.println(Main.getState());
+		// System.out.println(Main.getState());
 		int timeSignatureDiv = level.getTimeSignature()[0];
 		while (!Main.getState().equals("Stopped")) {
+			// System.out.println(Main.getState());
 			if (Main.getState().equals("Playing")) {
 				int currentNote = (int) Math.floor((Framerate.getCurrentTime() - levelStartTime) / timePerClick);
 				

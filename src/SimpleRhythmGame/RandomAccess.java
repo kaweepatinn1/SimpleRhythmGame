@@ -17,6 +17,10 @@ public class RandomAccess {
 	public static boolean levelComplete;
 	public static boolean levelFlawless;
 	
+	public static int levelComplete_Combo;
+	public static int levelComplete_Score;
+	public static float levelComplete_Accuracy;
+	
 	public RandomAccess(){
 		usernameToSet = "";
 		levelTitle = "Select a level";
@@ -46,8 +50,8 @@ public class RandomAccess {
 		levelNotes = level.getTotalNotes();
 		levelNPS = level.getNotesPerSecond();
 		levelBPM = level.getBPM();
-		levelFlawless = levelStats.isFlawless();
-		levelComplete = levelStats.isCompleted();
+		levelFlawless = levelStats.getFlawless();
+		levelComplete = levelStats.getCompleted();
 		levelLevelAttempts = levelStats.getAttempts();
 		levelMaxCombo = levelStats.getLongestCombo();
 		levelHighscore = levelStats.getHighscore();
@@ -67,5 +71,11 @@ public class RandomAccess {
 		levelAccuracy = 0;
 		levelComplete = false;
 		levelFlawless = false;
+	}
+	
+	public static void levelComplete(Scores score) {
+		levelComplete_Combo = score.getMaxCombo();
+		levelComplete_Score = score.getScore();
+		levelComplete_Accuracy = score.getAccuracy();
 	}
 }

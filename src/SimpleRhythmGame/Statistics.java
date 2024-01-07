@@ -69,5 +69,48 @@ public class Statistics {
 		return totalScore;
 	}
 	
+	// global stats only updates completed if it is a new copmletion
+	public void updateStats(Scores scores, Level level) {
+		updateCompleted();
+		updateFlawless();
+		timePlayedSeconds = timePlayedSeconds + level.getTotalTimeSeconds();
+		notesHit = notesHit + scores.getNotesHit();
+		notesMissed = notesMissed + scores.getNotesMissed();
+		totalAttempts++;
+		totalScore = totalScore + scores.getScore();
+	}
+	
+	public void updateCompleted() {
+		int count = 0;
+		for (LevelStats levelStat : Main.getPlayerData().getLevelStats()) {
+			if (levelStat.getCompleted()) {
+				count++;
+			}
+		}
+		songsCompleted = count;
+	}
+	
+	public void updateFlawless() {
+		int count = 0;
+		for (LevelStats levelStat : Main.getPlayerData().getLevelStats()) {
+			if (levelStat.getFlawless()) {
+				count++;
+			}
+		}
+		songsFlawlessed = count;
+	}
+	
+	
+	// session stats summarises total songs completed, ignoring duplicates
+	public void updateSessionStats(Scores scores, Level level) {
+		songsCompleted = scores.getCompleted() ? songsCompleted + 1 : songsCompleted;
+		songsFlawlessed = scores.getFlawlessed() ? songsFlawlessed + 1 : songsFlawlessed;
+		timePlayedSeconds = timePlayedSeconds + level.getTotalTimeSeconds();
+		notesHit = notesHit + scores.getNotesHit();
+		notesMissed = notesMissed + scores.getNotesMissed();
+		totalAttempts++;
+		totalScore = totalScore + scores.getScore();
+	}
+	
 	
 }

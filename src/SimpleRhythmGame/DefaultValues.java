@@ -276,6 +276,7 @@ public class DefaultValues {
 									0, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
 									)),
+/////////////////////////////////////////////////////////////////////////////////////
 						new Element(
 								new Selector(
 									new int[]{-1,-1}, // Selector Index
@@ -300,6 +301,7 @@ public class DefaultValues {
 									0, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
 									)),
+/////////////////////////////////////////////////////////////////////////////////////
 						new Element(
 								new Selector(
 										new int[]{-1,-1}, // Selector Index
@@ -333,6 +335,7 @@ public class DefaultValues {
 									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
 									)),
+/////////////////////////////////////////////////////////////////////////////////////
 						new Element(
 								new Selector(
 										new int[]{-1,-1}, // Selector Index
@@ -367,6 +370,7 @@ public class DefaultValues {
 									5, 6 // strokeWidth, strokeColor
 									)),
 						new Element(
+/////////////////////////////////////////////////////////////////////////////////////
 								new Selector(
 										new int[]{-1,-1}, // Selector Index
 										new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
@@ -399,6 +403,7 @@ public class DefaultValues {
 									8, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
 									)),
+/////////////////////////////////////////////////////////////////////////////////////
 						new Element(
 								new Selector(
 										new int[]{-1,-1}, // Selector Index
@@ -524,7 +529,7 @@ public class DefaultValues {
 												"noFunction", // function
 												"Accuracy",  // name
 												new Text(
-													"93.7%", // text
+													"%LevelComplete Accuracy", // text
 													"center", "center", // align
 													0, -9, // text offset (x, y)
 													75, // text size
@@ -592,7 +597,7 @@ public class DefaultValues {
 												"noFunction", // function
 												"MaxCombo",  // name
 												new Text(
-													"382", // text
+													"%LevelComplete MaxCombo", // text
 													"center", "center", // align
 													0, -9, // text offset (x, y)
 													75, // text size
@@ -694,7 +699,7 @@ public class DefaultValues {
 												"noFunction", // function
 												"Score",  // name
 												new Text(
-													"382,284", // text
+													"%LevelComplete Score", // text
 													"center", "center", // align
 													0, -9, // text offset (x, y)
 													85, // text size
@@ -725,8 +730,8 @@ public class DefaultValues {
 											new TextBox(
 												// Text and Renderable
 												1f, // scale
-												"removeThisPopup", // function
-												"popup",  // name
+												"setMenu String Play_Menu", // function
+												"Home",  // name
 												new Text(
 													"Confirm", // text
 													"center", "center", // align
@@ -737,7 +742,7 @@ public class DefaultValues {
 													false // bold
 													),
 												new RoundedArea(
-													960, 1080, 300, 80, 0  // x, y, xSize, ySize, round%
+													960, 580, 300, 80, 0  // x, y, xSize, ySize, round%
 													),
 												Color_BUTTONS, // box color (index of colors)
 												255, // opacity (0-255)
@@ -7507,7 +7512,7 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"scroll String Levels boolean false", // function
+									"scroll String \\!Levels boolean false", // function
 									"LevelsScrollUp",  // name
 									new Renderable(
 											// Renderable Without Function
@@ -7539,7 +7544,7 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"scroll String Levels boolean true", // function
+									"scroll String \\!Levels boolean true", // function
 									"LevelsScrollDown",  // name
 									new Renderable(
 											// Renderable Without Function

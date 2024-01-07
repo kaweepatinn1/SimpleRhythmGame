@@ -68,6 +68,8 @@ public class Main extends JPanel implements KeyListener {
     
     private static Game game;
     private static String state = "NotPlaying";
+    
+    private static Metronome metronome;
 
     private static MouseListener mouseListener = new MouseAdapter() {
         @Override
@@ -1520,7 +1522,10 @@ public class Main extends JPanel implements KeyListener {
     				currentMenu[i].deanimateClick(true);
     			}
     			lastHovered = null;
-    			popupIndexes = new int[] {};
+    			popupIndexes = new int[0];
+    			if (popupIndexes.length > 0) {
+    				System.out.println(popupIndexes[0]);
+    			}
     			currentMenuIndex = transitionTo;
     			if (currentMenuIndex == -1) {
     				rawCurrentMenu = game.generateGameMenu();
@@ -1572,6 +1577,7 @@ public class Main extends JPanel implements KeyListener {
     				int[] toSelect = ogSelecteds[ogSelecteds.length - 1];
     				
     				popupIndexes = newPopupIndexes;
+    				System.out.println("hi");
     				ogSelecteds = newOgSelecteds;
     				
     				lastHovered = null;
@@ -1744,7 +1750,6 @@ public class Main extends JPanel implements KeyListener {
 	}
 	
 	public static void removePopup(int index) {
-		popupUpdate = true;
 		popupTime = Framerate.getCurrentTime();
 		
 		boolean existing = false;
@@ -1915,6 +1920,8 @@ public class Main extends JPanel implements KeyListener {
         boolean useConfig = false; // false during development. TODO: set to true on completion
         boolean usePlayerData = false; // false during development. set to true to start saving and using config
         
+        ////////////////////// Read Config
+        
         File configFile = new File("./options.json");
         if (configFile.exists() && !configFile.isDirectory() && useConfig) { 
             config = FileIO.currentConfigIn();
@@ -1922,6 +1929,10 @@ public class Main extends JPanel implements KeyListener {
         	config = DefaultValues.getDefaultConfigs();
         	FileIO.currentConfigOut();
         }
+        
+        //////////////////////
+        
+        ////////////////////// Session Stats
         
         boolean playerDataExists;
         
@@ -1932,13 +1943,15 @@ public class Main extends JPanel implements KeyListener {
         } else {
         	playerDataExists = false;
         }
+        resetSessionStats();
         
+        ///////////////////////
         
         setNewFrameSize(config.getFullscreen(), config.getSizeToForce()); // uses the above raw lists and variables to set the frame size.
         if (playerDataExists) {
         	Functions.setMenu("Main Menu");
         } else {
-        	createUser("eh");
+        	createUser("eh"); // TODO: remove.
         	Functions.setMenu("Play Menu"); // TODO: switch to Init User Menu
         }
         
@@ -1995,7 +2008,7 @@ public class Main extends JPanel implements KeyListener {
 		setMenuFromAnIndex(-1);
 		game.start();
 		if (game.getCurrentLevel().getMetronomeOffset() > -1) {
-			Thread metronome = new Thread(new Metronome());
+			metronome = new Metronome();
 			metronome.start();
 		}
 	}
@@ -2035,15 +2048,25 @@ public class Main extends JPanel implements KeyListener {
 	public static void updateLevelStats(Element levelElement) {
 		if (levelElement != null) {
 			String elementName = levelElement.getName();
-			if (elementName.substring(1,8).equals("!Levels")) {
-				// System.out.println(elementName.substring(8)); // level number
-				Level level = Config.getLevelsList()[Integer.parseInt(elementName.substring(9))];
-				RandomAccess.setLevelStats(level);
-			} else {
-				RandomAccess.resetLevelStats();
+			if (elementName.length() > 8) {
+				if (elementName.substring(1,8).equals("!Levels")) {
+					// System.out.println(elementName.substring(8)); // level number
+					Level level = Config.getLevelsList()[Integer.parseInt(elementName.substring(9))];
+					RandomAccess.setLevelStats(level);
+				} else {
+					RandomAccess.resetLevelStats();
+				}
 			}
 		} else {
 			RandomAccess.resetLevelStats();
 		}
+	}
+	
+	public static Thread getMetronome() {
+		return metronome;
+	}
+	
+	public static void setMetronome(Metronome metronomeNew) {
+		metronome = metronomeNew;
 	}
 }

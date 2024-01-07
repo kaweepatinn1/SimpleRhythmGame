@@ -6,7 +6,6 @@ import java.util.Arrays;
 
 public class Game extends Thread {
 	private Level currentLevel;
-	private LevelStats oldStats;
 	private AudioPlayer player;
 	
 	private Menu rawGameMenu;
@@ -39,12 +38,6 @@ public class Game extends Thread {
 	private boolean noFail;
 	private boolean unpaused;
 	
-	private int finalScore;
-	private int finalMaxCombo;
-	private int finalNotesHit;
-	private int finalNotesMissed;
-	private double finalAccuracy;
-	
 	private boolean isTutorial;
 	
 	private static transient BufferedImage noteImages[];
@@ -53,7 +46,6 @@ public class Game extends Thread {
 	
 	public Game(Level level, boolean noFail) {
 		currentLevel = level;
-		oldStats = Main.getStats(level);
 		rawNotes = currentLevel.getSortedNotes();
 		currentNotes = new ArrayList<>();
 		futureNotes = new ArrayList<>(Arrays.asList(rawNotes));
@@ -199,7 +191,7 @@ public class Game extends Thread {
 	}
 	
 	public void run() {
-		System.out.println(Thread.currentThread().getPriority());
+		// System.out.println(Thread.currentThread().getPriority());
 		try {
 			Thread.sleep((int) Main.getConfig().getTransitionTime() * 2);
 		} catch (InterruptedException e) {
@@ -209,7 +201,7 @@ public class Game extends Thread {
 		init();
 		refreshCurrentNotes();
 		while(unpaused) {
-			if (!Main.getState().equals("Paused")) {
+			if (Main.getState().equals("Playing")) {
 				refreshCurrentNotes();
 			}
 			for (int i = 0 ; i < 500 ; i++) {
@@ -225,6 +217,12 @@ public class Game extends Thread {
 				// checks once per game cycle (at 1000fps)
 				checkForSongEnd();
 				checkForMiss();
+				
+				if (Main.getState().equals("Stopped")) {
+					currentThread().interrupt();
+					unpaused = false;
+					break;
+				}
 			}
 		}
 	}
@@ -235,7 +233,9 @@ public class Game extends Thread {
 		if (Framerate.getCurrentTime() - millisStarted > 
 		currentLevel.getTotalTimeSeconds() * 1000) {
 			// System.out.println("SONG ENDED");
-			endSong();
+			if (Main.getState().equals("Playing")) {
+				endSong();
+			}
 		}
 	}
 	
@@ -253,17 +253,26 @@ public class Game extends Thread {
 		}
 	}
 	
-	private void summarizeFinalScores() {
-		finalScore = score;
-		finalMaxCombo = maxCombo;
-		finalNotesHit = notesHit;
-		finalNotesMissed = notesMissed;
-		finalAccuracy = notesHit / (notesHit + notesMissed);
+	private Scores summarizeFinalScores(boolean completed) {
+		int finalScore = score;
+		int finalMaxCombo = maxCombo;
+		int finalNotesHit = notesHit;
+		int finalNotesMissed = notesMissed;
+		boolean finalCompleted = completed;
+		boolean finalFlawlessed = (finalNotesMissed == 0);
+		return new Scores(finalCompleted, finalFlawlessed, finalScore, finalMaxCombo, finalNotesHit, finalNotesMissed);
 	}
 	
 	public void endSong() {
-		summarizeFinalScores();
+		Scores score = summarizeFinalScores(true);
+		RandomAccess.levelComplete(score);
 		Main.addPopup(1);
+		Main.getPlayerData().updateStatsFromScores(currentLevel, score);
+		if (player != null) {
+			player.stop();
+		}
+		Main.setState("Stopped");
+		System.out.println('a');
 	}
 	
 	private void die() {
@@ -470,25 +479,4 @@ public class Game extends Thread {
 	public double getTimeSinceGameStart() {
 		return Framerate.getCurrentTime() - getMillisStarted();
 	}
-
-	public int getFinalScore() {
-		return finalScore;
-	}
-
-	public int getFinalMaxCombo() {
-		return finalMaxCombo;
-	}
-
-	public int getFinalNotesHit() {
-		return finalNotesHit;
-	}
-
-	public int getFinalNotesMissed() {
-		return finalNotesMissed;
-	}
-
-	public double getFinalAccuracy() {
-		return finalAccuracy;
-	}
-	
 }

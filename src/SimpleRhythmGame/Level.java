@@ -86,7 +86,11 @@ public class Level {
 	}
 	
 	public float getNotesPerSecond() {
-		return Math.round((float) notes.length) * 100f / ((float) totalTimeSeconds) / 100f;
+		if (totalTimeSeconds != 0) {
+			return Math.round((float) notes.length) * 100f / ((float) totalTimeSeconds) / 100f;
+		} else {
+			return -1;
+		}
 	}
 
 	public String getName() {

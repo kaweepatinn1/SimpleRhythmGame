@@ -56,4 +56,23 @@ public class PlayerData {
 	public void setLevelStats (LevelStats[] levelStats) {
 		this.levelStats = levelStats;
 	}
+	
+	public void updateStatsFromScores(Level level, Scores scores) {
+		boolean found = false;
+		for (LevelStats levelStat : levelStats) {
+			if (level.getUUID().equals(levelStat.getLevelUUID())) {
+				levelStat.updateStats(scores);
+				found = true;
+				break;
+			}
+		}
+		
+		if (!found) {
+			LevelStats newStat = createLevelStats(level);
+			newStat.updateStats(scores);
+		}
+		
+		stats.updateStats(scores, level);
+		Main.getSessionStats().updateSessionStats(scores, level);
+	}
 }
