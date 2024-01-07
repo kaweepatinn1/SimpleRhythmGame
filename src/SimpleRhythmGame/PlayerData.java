@@ -46,6 +46,7 @@ public class PlayerData {
 		LevelStats newLevelStat = new LevelStats(level);
 		LevelStats[] newLevelStats = Arrays.copyOf(levelStats, levelStats.length + 1);
 		newLevelStats[levelStats.length] = newLevelStat;
+		levelStats = newLevelStats;
 		return newLevelStat;
 	}
 	

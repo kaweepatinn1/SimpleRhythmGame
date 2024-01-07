@@ -640,7 +640,7 @@ public class Config {
 			} else if (splitVariable[1].equals("Highscore")) {
 				varToReturn = Integer.toString(RandomAccess.levelHighscore);
 			} else if (splitVariable[1].equals("Accuracy")) {
-				varToReturn = Float.toString(RandomAccess.levelAccuracy);
+				varToReturn = Float.toString(RandomAccess.levelAccuracy) + "%";
 			} else if (splitVariable[1].equals("Flawless")) {
 				varToReturn = Boolean.toString(RandomAccess.levelFlawless);
 			} else if (splitVariable[1].equals("Complete")) {
@@ -657,7 +657,7 @@ public class Config {
 				varToReturn = Integer.toString(RandomAccess.levelComplete_Combo);
 			} else if (splitVariable[1].equals("Accuracy")) {
 				float accuracy = RandomAccess.levelComplete_Accuracy;
-				varToReturn = accuracy == 0f ? "0" : Float.toString(Math.round(accuracy * 100) / 100f) + "%";
+				varToReturn = accuracy == 0f ? "0%" : Float.toString(Math.round(accuracy * 100) / 100f) + "%";
 			}
 			
 			else {

@@ -272,7 +272,6 @@ public class Game extends Thread {
 			player.stop();
 		}
 		Main.setState("Stopped");
-		System.out.println('a');
 	}
 	
 	private void die() {
