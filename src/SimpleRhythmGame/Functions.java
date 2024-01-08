@@ -66,6 +66,8 @@ public class Functions {
 					editKeybind((String) parameters[0], (int) parameters[1], (int) parameters[2]);
 				} else if (methodName.equals("playLevel")) {
 					playLevel((int) parameters[0]);
+				} else if (methodName.equals("playLevelAgain")) {
+					playLevelAgain();
 				} else if (methodName.equals("confirmUsername")) {
 					confirmUsername();
 				}
@@ -88,6 +90,11 @@ public class Functions {
 	private static void playLevel(int levelIndex) {
 		Level level = Config.getLevelsList()[levelIndex];
 		//Level level = FileIO.getLevel(levelName);
+		Main.startGame(level);
+	}
+	
+	private static void playLevelAgain() {
+		Level level = Main.getGame().getCurrentLevel();
 		Main.startGame(level);
 	}
 

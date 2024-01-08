@@ -280,7 +280,11 @@ public class Game extends Thread {
 	
 	public boolean checkIfGotNewHighscore() {
 		//TODO;
-		return true;
+		if (score > Main.getPlayerData().getLevelStats(currentLevel).getHighscore()) {
+			return true;
+		} else{
+			return false;
+		}
 	}
 	
 	public ArrayList<Note> getCurrentNotes() {

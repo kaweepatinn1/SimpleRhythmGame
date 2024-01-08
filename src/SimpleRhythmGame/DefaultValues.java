@@ -715,11 +715,11 @@ public class DefaultValues {
 												0, // shadowOffset
 												5, DefaultValues.Color_STROKE // strokeWidth, strokeColor
 												)),
-			/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 									new Element(
 											new Selector(
 												new int[]{0,0}, // Selector Index
-												new int[][]{{1,0},{0,2},{0,0},{0,0}} // E, S, W, N to select next
+												new int[][]{{1,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
 												),
 											-1, // mask index
 											false, // hover overlap
@@ -731,24 +731,25 @@ public class DefaultValues {
 												// Text and Renderable
 												1f, // scale
 												"setMenu String Play_Menu", // function
-												"Home",  // name
+												"Continue",  // name
 												new Text(
-													"Confirm", // text
+													"Continue", // text
 													"center", "center", // align
-													0, -5, // text offset (x, y)
-													40, // text size
+													0, -10, // text offset (x, y)
+													60, // text size
 													6, // text color (index of colors)
 													"Archivo Narrow", // font
-													false // bold
+													true // bold
 													),
 												new RoundedArea(
-													960, 580, 300, 80, 0  // x, y, xSize, ySize, round%
+													960, 650, 360, 100, 0  // x, y, xSize, ySize, round%
 													),
 												Color_BUTTONS, // box color (index of colors)
 												255, // opacity (0-255)
 												8, // shadowOffset
 												5, 6 // strokeWidth, strokeColor
 												)),
+/////////////////////////////////////////////////////////////////////////////////////
 								}
 						),
 				} // Popups

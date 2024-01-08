@@ -16,7 +16,7 @@ public class Scores {
 		this.maxCombo = maxCombo;
 		this.notesHit = notesHit;
 		this.notesMissed = notesMissed;
-		this.accuracy = notesHit == 0 ? 0 : notesHit / (notesHit + notesMissed);
+		this.accuracy = notesHit == 0 ? 0 : (notesHit / (notesHit + notesMissed)) * 100;
 	}
 
 	public int getScore() {
