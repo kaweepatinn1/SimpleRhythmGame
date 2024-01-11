@@ -582,7 +582,7 @@ public class Config {
 			}
 			
 		} else if (splitVariable[0].equals("%ScorePercentage")) {
-			DecimalFormat formatter = new DecimalFormat("#,###.00");
+			DecimalFormat formatter = new DecimalFormat("#,##0.0");
 			String percentage = formatter.format(Main.getGame().getAccuracy()).equals("100.0") ? "100" : Double.toString(Main.getGame().getAccuracy());
 			varToReturn = Integer.toString(Main.getGame().getScore()) 
 					+ " // " + percentage + "%";
@@ -639,8 +639,8 @@ public class Config {
 				varToReturn = Integer.toString(RandomAccess.levelMaxCombo);
 			} else if (splitVariable[1].equals("Highscore")) {
 				varToReturn = Integer.toString(RandomAccess.levelHighscore);
-			} else if (splitVariable[1].equals("Accuracy")) {
-				varToReturn = Float.toString(RandomAccess.levelAccuracy) + "%";
+			} else if (splitVariable[1].equals("BestAccuracy")) {
+				varToReturn = Float.toString(RandomAccess.levelBestAccuracy) + "%";
 			} else if (splitVariable[1].equals("Flawless")) {
 				varToReturn = Boolean.toString(RandomAccess.levelFlawless);
 			} else if (splitVariable[1].equals("Complete")) {
@@ -663,7 +663,159 @@ public class Config {
 			else {
 				System.out.println("Could not find variable with name " + splitVariable[0] + "and subvariable" + splitVariable[1]);
 			}
-		}
+		} else if (splitVariable[0].equals("%PlayerStats")) {
+			if (splitVariable[1].equals("TimePlayed")) {
+				if (RandomAccess.viewSessionStats) {
+					int timeSeconds = Main.getSessionStats().getTimePlayedSeconds();
+					if (timeSeconds > 3600) {
+						DecimalFormat formatter = new DecimalFormat("#,##0.00");
+						varToReturn = formatter.format(timeSeconds / 3600f) + "h";
+					} else {
+						DecimalFormat formatter = new DecimalFormat("#,##0.0");
+						varToReturn = formatter.format(timeSeconds / 60f) + "m";
+					}
+				} else {
+					int timeSeconds = Main.getPlayerData().getStats().getTimePlayedSeconds();
+					if (timeSeconds > 3600) {
+						DecimalFormat formatter = new DecimalFormat("#,##0.00");
+						varToReturn = formatter.format(timeSeconds / 3600f) + "h";
+					} else {
+						DecimalFormat formatter = new DecimalFormat("#,##0.0");
+						varToReturn = formatter.format(timeSeconds / 60f) + "m";
+					}
+				}
+			} else if (splitVariable[1].equals("NotesHit")) {
+				if (RandomAccess.viewSessionStats) {
+					varToReturn = Integer.toString(Main.getSessionStats().getNotesHit());
+				} else {
+					varToReturn = Integer.toString(Main.getPlayerData().getStats().getNotesHit());
+				}
+			} else if (splitVariable[1].equals("NotesMissed")) {
+				if (RandomAccess.viewSessionStats) {
+					varToReturn = Integer.toString(Main.getSessionStats().getNotesMissed());
+				} else {
+					varToReturn = Integer.toString(Main.getPlayerData().getStats().getNotesMissed());
+				}
+			} else if (splitVariable[1].equals("Accuracy")) {
+				DecimalFormat formatter = new DecimalFormat("#,##0.0");
+				if (RandomAccess.viewSessionStats) {
+					varToReturn = formatter.format(Main.getSessionStats().getAccuracy()) + "%";
+				} else {
+					varToReturn = formatter.format(Main.getPlayerData().getStats().getAccuracy()) + "%";
+				}
+			} else if (splitVariable[1].equals("LongestCombo")) {
+				if (RandomAccess.viewSessionStats) {
+					varToReturn = Integer.toString(Main.getSessionStats().getLongestCombo());
+				} else {
+					varToReturn = Integer.toString(Main.getPlayerData().getStats().getLongestCombo());
+				}
+			} else if (splitVariable[1].equals("SongsAttempts")) {
+				if (RandomAccess.viewSessionStats) {
+					varToReturn = Integer.toString(Main.getSessionStats().getTotalAttempts());
+				} else {
+					varToReturn = Integer.toString(Main.getPlayerData().getStats().getTotalAttempts());
+				}
+			} else if (splitVariable[1].equals("FlawlessedSongs")) {
+				if (RandomAccess.viewSessionStats) {
+					varToReturn = Integer.toString(Main.getSessionStats().getSongsFlawlessed());
+				} else {
+					varToReturn = Integer.toString(Main.getPlayerData().getStats().getSongsFlawlessed());
+				}
+			} else if (splitVariable[1].equals("TotalScore")) {
+				if (RandomAccess.viewSessionStats) {
+					varToReturn = Integer.toString(Main.getSessionStats().getTotalScore());
+				} else {
+					varToReturn = Integer.toString(Main.getPlayerData().getStats().getTotalScore());
+				}
+			} 
+			
+			else {
+				System.out.println("Could not find variable with name " + splitVariable[0] + "and subvariable" + splitVariable[1]);
+			}
+			
+		} else if (splitVariable[0].equals("%StatsPage")) {
+			if (splitVariable[1].equals("TimePlayed")) {
+				if (RandomAccess.viewSessionStats) {
+					varToReturn = "Session Time:";
+				} else {
+					varToReturn = "Play Time:";
+				}
+			} else if (splitVariable[1].equals("NotesHit")) {
+				if (RandomAccess.viewSessionStats) {
+					varToReturn = "Notes Hit:";
+				} else {
+					varToReturn = "Notes Hit:";
+				}
+			} else if (splitVariable[1].equals("NotesMissed")) {
+				if (RandomAccess.viewSessionStats) {
+					varToReturn = "Notes Missed:";
+				} else {
+					varToReturn = "Notes Missed:";
+				}
+			} else if (splitVariable[1].equals("Accuracy")) {
+				if (RandomAccess.viewSessionStats) {
+					varToReturn = "Session Accuracy:";
+				} else {
+					varToReturn = "Average Accuracy:";
+				}
+			} else if (splitVariable[1].equals("LongestCombo")) {
+				if (RandomAccess.viewSessionStats) {
+					varToReturn = "Longest Combo:";
+				} else {
+					varToReturn = "Longest Combo:";
+				}
+			} else if (splitVariable[1].equals("SongsAttempts")) {
+				if (RandomAccess.viewSessionStats) {
+					varToReturn = "Session Attempts:";
+				} else {
+					varToReturn = "Total Attempts:";
+				}
+			} else if (splitVariable[1].equals("FlawlessedSongs")) {
+				if (RandomAccess.viewSessionStats) {
+					varToReturn = "Flawless Runs:";
+				} else {
+					varToReturn = "Flawlessed Songs:";
+				}
+			} else if (splitVariable[1].equals("TotalScore")) {
+				if (RandomAccess.viewSessionStats) {
+					varToReturn = "Session Score:";
+				} else {
+					varToReturn = "Total Score:";
+				}
+			} else if (splitVariable[1].equals("SwitchType")) {
+				if (RandomAccess.viewSessionStats) {
+					varToReturn = "View Overall";
+				} else {
+					varToReturn = "View Session";
+				}
+			} else if (splitVariable[1].equals("StatsType")) {
+				if (RandomAccess.viewSessionStats) {
+					varToReturn = "Session Stats";
+				} else {
+					varToReturn = "Overall Stats";
+				}
+			} else if (splitVariable[1].equals("Reset")) {
+				if (RandomAccess.viewSessionStats) {
+					varToReturn = "Reset Session";
+				} else {
+					varToReturn = "Reset Stats";
+				}
+			} else if (splitVariable[1].equals("ConfirmDelete")) {
+				if (RandomAccess.viewSessionStats) {
+					varToReturn = "Reset Session Stats";
+				} else {
+					varToReturn = "Reset Overall Stats";
+				}
+			} 
+			
+			else {
+				System.out.println("Could not find variable with name " + splitVariable[0] + "and subvariable" + splitVariable[1]);
+			}
+		} else if (splitVariable[0].equals("%UserUUID")) {
+			varToReturn = "UUID: " + Main.getPlayerData().getUUID().toString();
+		} else if (splitVariable[0].equals("%Username")) {
+			varToReturn = "Username: " + Main.getPlayerData().getUsername();
+		} 
 		
 		else {
 			// System.out.println("Could not find variable with name " + splitVariable[0]);

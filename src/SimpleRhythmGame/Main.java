@@ -1577,7 +1577,6 @@ public class Main extends JPanel implements KeyListener {
     				int[] toSelect = ogSelecteds[ogSelecteds.length - 1];
     				
     				popupIndexes = newPopupIndexes;
-    				System.out.println("hi");
     				ogSelecteds = newOgSelecteds;
     				
     				lastHovered = null;
@@ -1952,7 +1951,7 @@ public class Main extends JPanel implements KeyListener {
         	Functions.setMenu("Main Menu");
         } else {
         	createUser("eh"); // TODO: remove.
-        	Functions.setMenu("Play Menu"); // TODO: switch to Init User Menu
+        	Functions.setMenu("Statistics Menu"); // TODO: switch to Init User Menu
         }
         
         Framerate thread = new Framerate();

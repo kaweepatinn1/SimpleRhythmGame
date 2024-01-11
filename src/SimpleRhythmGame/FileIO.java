@@ -110,6 +110,7 @@ public class FileIO {
 	}
 	
 	public static void currentPlayerDataOut() {
+		System.out.println("hiee");
 		String path = "./playerdata.json";
 		try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
 	        Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -230,7 +231,7 @@ public class FileIO {
 				    Level levelData = null; // stores level's JSON data, if found
 				    for (File file : listOfLevelFiles) {
 					    String fileName = file.getName();
-					    System.out.println(fileName);
+					    // System.out.println(fileName);
 					    String[] fileNameSplit = fileName.split("\\.");
 					    if (levelName.equals(fileNameSplit[0])){
 					    	if (fileNameSplit[1].toLowerCase().equals("wav")) {

@@ -19,6 +19,7 @@
   </dependencies>
   <build>
     <sourceDirectory>src/</sourceDirectory>
+    <outputDirectory>${project.build.directory}/src</outputDirectory>
     <resources>
       <resource>
         <directory>src</directory>
@@ -32,21 +33,24 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
         <configuration>
-          <release>21</release>
+          <release>18</release>
         </configuration>
       </plugin>
-<!--      <plugin>-->
-<!--        <groupId>org.apache.maven.plugins</groupId>-->
-<!--        <artifactId>maven-jar-plugin</artifactId>-->
-<!--        <version>3.2.2</version>-->
-<!--        <configuration>-->
-<!--          <archive>-->
-<!--            <manifest>-->
-<!--              <mainClass>SimpleRhythmGame.Main</mainClass>-->
-<!--            </manifest>-->
-<!--          </archive>-->
-<!--        </configuration>-->
-<!--      </plugin>-->
+	<plugin>
+      <!-- Build an executable JAR -->
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-jar-plugin</artifactId>
+      <version>3.1.0</version>
+      <configuration>
+        <archive>
+          <manifest>
+            <addClasspath>true</addClasspath>
+            <classpathPrefix>lib/</classpathPrefix>
+            <mainClass>org.SimpleRhythmGame.Main</mainClass>
+          </manifest>
+        </archive>
+      </configuration>
+    </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>

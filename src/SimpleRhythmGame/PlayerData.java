@@ -75,5 +75,6 @@ public class PlayerData {
 		
 		stats.updateStats(scores, level);
 		Main.getSessionStats().updateSessionStats(scores, level);
+		FileIO.currentPlayerDataOut();
 	}
 }

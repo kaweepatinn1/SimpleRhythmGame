@@ -1,0 +1,30 @@
+{
+  "username": "eh",
+  "uuid": "d7cc7692-bf3a-4b69-ae83-1c4ca9b73620",
+  "stats": {
+    "timePlayedSeconds": 0,
+    "notesHit": 1,
+    "notesMissed": 0,
+    "totalAttempts": 1,
+    "songsCompleted": 1,
+    "songsFlawlessed": 1,
+    "totalScore": 181,
+    "longestCombo": 0
+  },
+  "levelStats": [
+    {
+      "levelName": "Tutorial",
+      "levelAuthor": "nano",
+      "levelUUID": "bf858823-58fe-4273-86b9-143f61ada1f6",
+      "levelVersion": 0,
+      "highscore": 181,
+      "longestCombo": 1,
+      "completed": true,
+      "flawless": true,
+      "attempts": 1,
+      "notesHit": 1,
+      "notesMissed": 0,
+      "bestAccuracy": 100.0
+    }
+  ]
+}

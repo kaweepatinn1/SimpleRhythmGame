@@ -13,7 +13,7 @@ public class RandomAccess {
 	public static int levelLevelAttempts;
 	public static int levelMaxCombo;
 	public static int levelHighscore;
-	public static float levelAccuracy;
+	public static float levelBestAccuracy;
 	public static boolean levelComplete;
 	public static boolean levelFlawless;
 	
@@ -21,8 +21,11 @@ public class RandomAccess {
 	public static int levelComplete_Score;
 	public static float levelComplete_Accuracy;
 	
+	public static boolean viewSessionStats;
+	
 	public RandomAccess(){
 		usernameToSet = "";
+		
 		levelTitle = "Select a level";
 		levelAuthor = "Select a level";
 		levelLength = 0;
@@ -32,9 +35,11 @@ public class RandomAccess {
 		levelLevelAttempts = 0;
 		levelMaxCombo = 0;
 		levelHighscore = 0;
-		levelAccuracy = 0;
+		levelBestAccuracy = 0;
 		levelComplete = false;
 		levelFlawless = false;
+		
+		viewSessionStats = false;
 	}
 	
 	public static void setLevelStats(Level level) {
@@ -55,7 +60,7 @@ public class RandomAccess {
 		levelLevelAttempts = levelStats.getAttempts();
 		levelMaxCombo = levelStats.getLongestCombo();
 		levelHighscore = levelStats.getHighscore();
-		levelAccuracy = levelStats.getAccuracy();
+		levelBestAccuracy = levelStats.getAccuracy();
 	}
 	
 	public static void resetLevelStats() {
@@ -68,7 +73,7 @@ public class RandomAccess {
 		levelLevelAttempts = 0;
 		levelMaxCombo = 0;
 		levelHighscore = 0;
-		levelAccuracy = 0;
+		levelBestAccuracy = 0;
 		levelComplete = false;
 		levelFlawless = false;
 	}
@@ -77,5 +82,13 @@ public class RandomAccess {
 		levelComplete_Combo = score.getMaxCombo();
 		levelComplete_Score = score.getScore();
 		levelComplete_Accuracy = score.getAccuracy();
+	}
+	
+	public static void switchStats() {
+		viewSessionStats = !viewSessionStats;
+	}
+	
+	public static void setSessionStats(boolean setting) {
+		viewSessionStats = setting;
 	}
 }

@@ -15,7 +15,7 @@ public class LevelStats {
 	private int attempts;
 	private int notesHit;
 	private int notesMissed;
-	private float accuracy;
+	private float bestAccuracy;
 	
 	public LevelStats(String levelName, String levelAuthor, UUID levelUUID, int levelVersion) {
 		this.levelName = levelName;
@@ -29,13 +29,13 @@ public class LevelStats {
 		attempts = 0;
 		notesHit = 0;
 		notesMissed = 0;
-		accuracy = 0;
+		bestAccuracy = 0;
 	}
 	
 	public LevelStats(String levelName, String levelAuthor, 
 			UUID levelUUID, int levelVersion, int highscore,
 			int longestCombo, boolean completed, boolean flawless,
-			int attempts, int notesHit, int notesMissed) {
+			int attempts, int notesHit, int notesMissed, float bestAccuracy) {
 		this.levelName = levelName;
 		this.levelAuthor = levelAuthor;
 		this.levelUUID = levelUUID;
@@ -47,7 +47,7 @@ public class LevelStats {
 		this.attempts = attempts;
 		this.notesHit = notesHit;
 		this.notesMissed = notesMissed;
-		accuracy = notesHit / (notesHit + notesMissed);
+		bestAccuracy = bestAccuracy;
 	}
 	
 	public LevelStats(Level level) {
@@ -62,7 +62,7 @@ public class LevelStats {
 		attempts = 0;
 		notesHit = 0;
 		notesMissed = 0;
-		accuracy = 0;
+		bestAccuracy = 0;
 	}
 	
 	public LevelStats() {
@@ -77,7 +77,7 @@ public class LevelStats {
 		attempts = 0;
 		notesHit = 0;
 		notesMissed = 0;
-		accuracy = 0;
+		bestAccuracy = 0;
 	}
 	
 	public static Level locateLevel(LevelStats toFindLevel) {
@@ -175,16 +175,7 @@ public class LevelStats {
 	}
 
 	public float getAccuracy() {
-		updateAccuracy();
-		return accuracy;
-	}
-	
-	private void updateAccuracy() {
-		if (notesHit == 0) {
-			accuracy = 0;
-		} else {
-			accuracy = notesHit / (notesHit + notesMissed);
-		}
+		return bestAccuracy;
 	}
 	
 	public void updateStats(Scores scores) {
@@ -195,6 +186,9 @@ public class LevelStats {
 		attempts++;
 		notesHit = notesHit + scores.getNotesHit();
 		notesMissed = notesMissed + scores.getNotesMissed();
-		updateAccuracy();
+		System.out.println(scores.getNotesHit());
+		Float accuracy = scores.getNotesHit() == 0 ? 0 : 100 * (float) scores.getNotesHit() / (float) (scores.getNotesHit() + scores.getNotesMissed());
+		System.out.println(accuracy);
+		bestAccuracy = Math.max(accuracy, bestAccuracy);
 	}
 }

@@ -70,7 +70,11 @@ public class Functions {
 					playLevelAgain();
 				} else if (methodName.equals("confirmUsername")) {
 					confirmUsername();
-				}
+				} else if (methodName.equals("switchStatsView")) {
+					switchStatsType();
+				} else if (methodName.equals("confirmRemoveStats")) {
+					confirmRemoveStats();
+				} 
 				
 				
 				else {
@@ -133,6 +137,9 @@ public class Functions {
 		int menuNumber = 0;
 		boolean foundMenu = false;
 		String checkMenu = menuName.replace("_", " ");
+		if (checkMenu.equals("Statistics Menu")) {
+			RandomAccess.setSessionStats(false);
+		}
 		// convert menu name in function from "_" to " ", 
 		// as space bar is the delimiter in the function definition
 		for (Menu menu : Main.getConfig().getMenus()) {
@@ -213,5 +220,18 @@ public class Functions {
 		}
 		time = minutes + ":" + secondsString;
 		return time;
+	}
+	
+	public static void switchStatsType() {
+		RandomAccess.switchStats();
+	}
+	
+	public static void confirmRemoveStats() {
+		if (RandomAccess.viewSessionStats) {
+			Main.getSessionStats().resetStats();
+		} else {
+			Main.getPlayerData().getStats().resetStats();
+		}
+		removeThisPopup();
 	}
 }

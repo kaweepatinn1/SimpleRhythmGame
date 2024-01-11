@@ -8,6 +8,7 @@ public class Statistics {
 	private int songsCompleted;
 	private int songsFlawlessed;
 	private int totalScore;
+	private int longestCombo;
 	
 	public Statistics(){
 		timePlayedSeconds = 0;
@@ -17,6 +18,18 @@ public class Statistics {
 		songsCompleted = 0;
 		songsFlawlessed = 0;
 		totalScore = 0;
+		longestCombo = 0;
+	}
+	
+	public void resetStats() {
+		timePlayedSeconds = 0;
+		notesHit = 0;
+		notesMissed = 0;
+		totalAttempts = 0;
+		songsCompleted = 0;
+		songsFlawlessed = 0;
+		totalScore = 0;
+		longestCombo = 0;
 	}
 	
 	public void incrementTimePlayed(int time) {
@@ -46,6 +59,9 @@ public class Statistics {
 	public void incrementTotalScore(int score) {
 		totalScore = totalScore + score;
 	}
+	public void updateLongestCombo(int combo) {
+		longestCombo = Math.max(longestCombo, combo);
+	}
 	
 	public int getTimePlayedSeconds() {
 		return timePlayedSeconds;
@@ -67,6 +83,15 @@ public class Statistics {
 	}
 	public int getTotalScore() {
 		return totalScore;
+	}
+	
+	public int getLongestCombo() {
+		return longestCombo;
+	}
+	
+	public float getAccuracy() {
+		Float accuracy = getNotesHit() == 0 ? 0 : 100 * (float) getNotesHit() / (float) (getNotesHit() + getNotesMissed());
+		return accuracy;
 	}
 	
 	// global stats only updates completed if it is a new copmletion
@@ -110,6 +135,7 @@ public class Statistics {
 		notesMissed = notesMissed + scores.getNotesMissed();
 		totalAttempts++;
 		totalScore = totalScore + scores.getScore();
+		updateLongestCombo(scores.getMaxCombo());
 	}
 	
 	
