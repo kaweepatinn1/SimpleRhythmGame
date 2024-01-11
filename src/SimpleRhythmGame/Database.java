@@ -8,63 +8,69 @@ import java.sql.Statement;
 import java.util.UUID;
 
 public class Database {
-	public static void main(String[] args) {
-		SysOutController.setSysOutLocationAddressor(); // FOR DEBUGGING (TODO: can be disabled)
-		
+	public static void insertScore(Level level, PlayerData playerData, Scores scores) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/leaderboard", "root", "root2212");
 			Statement stmt = con.createStatement();
-			// query
-			// ResultSet rs = stmt.executeQuery("select * from table1");
-			// while (rs.next())
-			// System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " +
-			// rs.getInt(3));
-			// con.close();
-
-			// insert
-			getOldHighscore();
-			int n = newkey("leaderboard");
-			System.out.println(n);
-			String levelName = "LevelName";
-			String levelUUID = "levelUUID";
-			String username = "Username";
-			String userUUID = "userUUID";
-			int score = 144;
-			float accuracy = 50.2f;
-			int maxCombo = 40;
-			String sqlInsert = "insert into leaderboard (levelName, levelUUID, username, userUUID,"
+			String levelName = level.getName();
+			String levelUUID = level.getUUID().toString();
+			String username = playerData.getUsername();
+			String userUUID = playerData.getUUID().toString();
+			int score = scores.getScore();
+			float accuracy = scores.getAccuracy();
+			int maxCombo = scores.getMaxCombo();
+			String sql = "insert into leaderboard (levelName, levelUUID, username, userUUID,"
 					+ "score, accuracy, maxCombo) values ( \"" + levelName + "\", \"" + levelUUID + "\","
 					+ "\"" + username + "\", \"" + userUUID + "\", " + score + ", " + accuracy + ", "
 					+ maxCombo + ");";
-			System.out.println("The SQL statement is: " + sqlInsert + "\n"); // Echo for debugging
-			int countInserted = stmt.executeUpdate(sqlInsert);
-			System.out.println(countInserted + " records inserted.\n");
-
+			stmt.executeUpdate(sql);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-
 	}
-	//Level level, UUID uuid
-	public static int getOldHighscore() {
+	
+	public static int getOldHighscore(Level level, UUID uuid) {
+		String levelUUID = level.getUUID().toString();
+		String userUUID = uuid.toString();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			String userUUID = "userUUID";
-			String levelUUID = "levelUUID";
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/leaderboard", "root", "root2212");
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT userUUID, levelUUID FROM `leaderboard`.`leaderboard`"
+			ResultSet rs = stmt.executeQuery("SELECT userUUID, levelUUID, score FROM `leaderboard`.`leaderboard`"
 					+ "WHERE userUUID = \'" + userUUID + "\' AND levelUUID = \'" + levelUUID + "\';");
-			
-			rs.next();
-			System.out.println(rs.getString(1));
-			System.out.println(rs.getString(2));
+			int score = -1;
+			if (rs != null) {
+				rs.next();
+				score = rs.getInt(5);
+			} else {
+				return -1;
+			}
 			con.close();
+			return score;
 		} catch (SQLException | ClassNotFoundException e) {
 			System.out.println(e);
+			return -1;
 		}
-		return 1;
+	}
+	
+	public static void updateOldHighscore(Level level, PlayerData playerData, Scores scores) {
+		if (getOldHighscore(level, playerData.getUUID()) > -1) {
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				String userUUID = playerData.getUUID().toString();
+				String levelUUID = level.getUUID().toString();
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/leaderboard", "root", "root2212");
+				Statement stmt = con.createStatement();
+				stmt.executeUpdate("UPDATE leaderboard SET score = " + scores.getScore() + " WHERE userUUID = \'" + 
+						userUUID + "\' AND levelUUID = \'" + levelUUID + "\' AND score < " + scores.getScore() + ";");
+				con.close();
+			} catch (SQLException | ClassNotFoundException e) {
+				System.out.println(e);
+			}
+		} else {
+			insertScore(level, playerData, scores);
+		}
 	}
 	
 	public static int getResultSetLength(ResultSet rs) {
