@@ -11,6 +11,7 @@ public class Config {
 	private transient Level[] levelsList;
 	
 	private String databasePasskey;
+	private String databaseDNS;
 	
 	private boolean fullscreen;
 	private int sizeToForce;
@@ -49,7 +50,7 @@ public class Config {
 	}
 	
 	public Config(
-			String databasePasskey,
+			String databasePasskey, String databaseDNS,
 			boolean fullscreen, int sizeToForce, Controls[] controls, Theme[] themes, 
 			String currentThemeChoice, String currentSkinChoice,
 			String[] fonts, Menu[] menus, boolean nanoSecondPrecision, int framesToStore,
@@ -59,6 +60,7 @@ public class Config {
 			boolean DEBUG_drawMasks, int DEBUG_masksColorsOffset, int DEBUG_masksOpacity,
 			boolean FORCED_noFail, int FORCED_millisecondLeniency) {
 		this.databasePasskey = databasePasskey;
+		this.databaseDNS = databaseDNS;
 		this.fullscreen = fullscreen;
 		this.sizeToForce = sizeToForce;
 		this.controls = controls;
@@ -660,7 +662,11 @@ public class Config {
 			} else if (splitVariable[1].equals("BestAccuracy")) {
 				varToReturn = Float.toString(RandomAccess.levelBestAccuracy) + "%";
 			} else if (splitVariable[1].equals("Flawless")) {
-				varToReturn = Boolean.toString(RandomAccess.levelFlawless);
+				if (RandomAccess.levelFlawless) {
+					varToReturn = "Level Flawlessed!";
+				} else {
+					varToReturn = "";
+				}
 			} else if (splitVariable[1].equals("Complete")) {
 				varToReturn = Boolean.toString(RandomAccess.levelComplete);
 			} 
@@ -1051,5 +1057,9 @@ public class Config {
 
 	public Level[] getLevelsList() {
 		return levelsList;
+	}
+	
+	public String getDatabaseDNS() {
+		return databaseDNS;
 	}
 }

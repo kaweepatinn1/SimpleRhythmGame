@@ -4,6 +4,7 @@ package SimpleRhythmGame;
 
 public class DefaultValues {
 	private static final String defaultDatabasePasskey = "root2212"; // TODO change to null
+	private static final String defaultDatabaseDNS = "localhost"; // TODO change to null
 	
 	private static final boolean defaultFullscreen = true; // if not fullscreen will force below value
 	private static final int defaultSizeToForce = 1920; // forces this screen size (width) if above is true
@@ -10706,6 +10707,113 @@ public class DefaultValues {
 									}
 							),
 /////////////////////////////////////////////////////////////////////////////////////
+							new Popup( // Empty Input Error
+									"DatabaseError", // Popup Name
+									"Database Error!", // Popup Title
+									new Element[] {
+										new Element(
+												new Selector(
+													new int[]{-1,-1}, // Selector Index
+													new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+													),
+												-1, // mask index
+												false, // hover overlap
+												-1, // hover effect
+												DefaultValues.TransformIndex_ClickScaleDown, // click effect
+												-1, // arbritraty animation (to be used for scroll)
+												DefaultValues.TransformIndex_500msScale0, // entry animation
+												new TextBox(
+													// Text and Renderable
+													1f, // scale
+													"noFunction", // function
+													"ErrorMessage",  // name
+													new Text(
+														"Database Error!", // text
+														"center", "center", // align
+														0, -100, // text offset (x, y)
+														80, // text size
+														5, // text color (index of colors)
+														"Archivo Narrow", // font
+														true // bold
+														),
+													new RoundedArea(
+														960, 500, 600, 300, 0  // x, y, xSize, ySize, round%
+														),
+													Color_MENU, // box color (index of colors)
+													255, // opacity (0-255)
+													15, // shadowOffset
+													5, 6 // strokeWidth, strokeColor
+													)),
+				/////////////////////////////////////////////////////////////////////////////////////
+										new Element(
+												new Selector(
+													new int[]{-1,-1}, // Selector Index
+													new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+													),
+												-1, // mask index
+												false, // hover overlap
+												-1, // hover effect
+												DefaultValues.TransformIndex_ClickScaleDown, // click effect
+												-1, // arbritraty animation (to be used for scroll)
+												DefaultValues.TransformIndex_500msScale0, // entry animation
+												new TextBox(
+													// Text and Renderable
+													1f, // scale
+													"noFunction", // function
+													"ErrorMessage",  // name
+													new Text(
+														"Could not connect to database!", // text
+														"center", "center", // align
+														0, -9, // text offset (x, y)
+														40, // text size
+														6, // text color (index of colors)
+														"Archivo Narrow", // font
+														false // bold
+														),
+													new RoundedArea(
+														960, 495, 0, 0, 0  // x, y, xSize, ySize, round%
+														),
+													Color_TRANSPARENT, // box color (index of colors)
+													255, // opacity (0-255)
+													0, // shadowOffset
+													5, 6 // strokeWidth, strokeColor
+													)),
+				/////////////////////////////////////////////////////////////////////////////////////
+										new Element(
+												new Selector(
+													new int[]{0,0}, // Selector Index
+													new int[][]{{1,0},{0,2},{0,0},{0,0}} // E, S, W, N to select next
+													),
+												-1, // mask index
+												false, // hover overlap
+												-1, // hover effect
+												DefaultValues.TransformIndex_ClickScaleDown, // click effect
+												-1, // arbritraty animation (to be used for scroll)
+												DefaultValues.TransformIndex_500msScale0, // entry animation
+												new TextBox(
+													// Text and Renderable
+													1f, // scale
+													"removeThisPopup", // function
+													"popup",  // name
+													new Text(
+														"Confirm", // text
+														"center", "center", // align
+														0, -5, // text offset (x, y)
+														40, // text size
+														6, // text color (index of colors)
+														"Archivo Narrow", // font
+														false // bold
+														),
+													new RoundedArea(
+														960, 580, 300, 80, 0  // x, y, xSize, ySize, round%
+														),
+													Color_BUTTONS, // box color (index of colors)
+													255, // opacity (0-255)
+													8, // shadowOffset
+													5, 6 // strokeWidth, strokeColor
+													)),
+									}
+							),
 /////////////////////////////////////////////////////////////////////////////////////
 					}
 			),
@@ -10717,6 +10825,7 @@ public class DefaultValues {
 		Main.bufferSkin(defaultSelectedSkin);
 		Config defaultConfig = new Config(
 				getDefaultDatabasePasskey(),
+				getDefaultDatabaseDNS(),
     			getDefaultFullscreen(),
     			getDefaultSizeToForce(),
     			getDefaultControls(),
@@ -10746,6 +10855,10 @@ public class DefaultValues {
 	
 	public static String getDefaultDatabasePasskey() {
 		return defaultDatabasePasskey;
+	}
+	
+	public static String getDefaultDatabaseDNS() {
+		return defaultDatabaseDNS;
 	}
 	
 	public static Controls[] getDefaultControls() {

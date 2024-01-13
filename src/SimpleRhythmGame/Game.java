@@ -312,11 +312,11 @@ public class Game extends Thread {
 		futureNotes.remove((Note) noteInfo[0]);
 		currentNotes.remove((Note) noteInfo[0]);
 		hitNotes.add((Note) noteInfo[0]);
-		System.out.println(noteInfo[1]);
+		// System.out.println(noteInfo[1]);
 		incrementNotesHit();
 		// x2 for 5, x3 for 10, x4 for 15 and x5 for 20	
 		boolean perfect = Math.abs((double) noteInfo[1]) < 100;
-		System.out.println(perfect);
+		// System.out.println(perfect);
 		int timingScore = 200 - (int) Math.abs((double) noteInfo[1]);
 		// 200 points minus each ms delay
 		int comboMulti = Math.min(((combo / 5) + 1) , 5);
@@ -325,11 +325,11 @@ public class Game extends Thread {
 		if (!noFail) {
 			incrementHealth(1);
 		}
-		//System.out.println(note);
+		// System.out.println(note);
 	}
 	
 	public void miss() {
-		System.out.println("Miss!");
+		// System.out.println("Miss!");
 		incrementNotesMissed();
 		incrementCombo(false);
 		if (!noFail) {
@@ -338,7 +338,7 @@ public class Game extends Thread {
 	}
 	
 	public void miss(Note note) {
-		System.out.println("Miss!");
+		// System.out.println("Miss!");
 		incrementNotesMissed();
 		incrementCombo(false);
 		if (!noFail) {

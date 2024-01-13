@@ -12,7 +12,7 @@ public class Database {
 	public static int insertScore(Level level, PlayerData playerData, Scores scores) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/leaderboard", "root", Main.getConfig().getDatabasePasskey());
+			Connection con = DriverManager.getConnection("jdbc:mysql://" + Main.getConfig().getDatabaseDNS() + ":3306/leaderboard", "root", Main.getConfig().getDatabasePasskey());
 			Statement stmt = con.createStatement();
 			String levelName = level.getName();
 			String levelUUID = level.getUUID().toString();
@@ -44,7 +44,7 @@ public class Database {
 		String userUUID = uuid.toString();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/leaderboard", "root", Main.getConfig().getDatabasePasskey());
+			Connection con = DriverManager.getConnection("jdbc:mysql://" + Main.getConfig().getDatabaseDNS() + ":3306/leaderboard", "root", Main.getConfig().getDatabasePasskey());
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT userUUID, levelUUID, score FROM `leaderboard`.`leaderboard`"
 					+ "WHERE userUUID = \'" + userUUID + "\' AND levelUUID = \'" + levelUUID + "\';");
@@ -99,7 +99,7 @@ public class Database {
 	public static DatabaseData readDatabase(Level level) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/leaderboard", "root", Main.getConfig().getDatabasePasskey());
+			Connection con = DriverManager.getConnection("jdbc:mysql://" + Main.getConfig().getDatabaseDNS() + ":3306/leaderboard", "root", Main.getConfig().getDatabasePasskey());
 			Statement stmt = con.createStatement();
 			ResultSet countRS = stmt.executeQuery("SELECT COUNT(*) FROM `leaderboard`.`leaderboard`"
 					+ "WHERE levelUUID = \'" + level.getUUID().toString() + "\' LIMIT 10;");

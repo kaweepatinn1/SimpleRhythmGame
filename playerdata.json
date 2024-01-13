@@ -2,14 +2,29 @@
   "username": "DefaultNano",
   "uuid": "8e9c3c66-e63d-4178-a3c3-ce5d894990d0",
   "stats": {
-    "timePlayedSeconds": 0,
-    "notesHit": 0,
+    "timePlayedSeconds": 58,
+    "notesHit": 140,
     "notesMissed": 0,
-    "totalAttempts": 0,
-    "songsCompleted": 0,
-    "songsFlawlessed": 0,
-    "totalScore": 0,
+    "totalAttempts": 2,
+    "songsCompleted": 1,
+    "songsFlawlessed": 1,
+    "totalScore": 106882,
     "longestCombo": 0
   },
-  "levelStats": []
+  "levelStats": [
+    {
+      "levelName": "Tutorial",
+      "levelAuthor": "nano",
+      "levelUUID": "bf858823-58fe-4273-86b9-143f61ada1f6",
+      "levelVersion": 0,
+      "highscore": 54692,
+      "longestCombo": 70,
+      "completed": true,
+      "flawless": true,
+      "attempts": 2,
+      "notesHit": 140,
+      "notesMissed": 0,
+      "bestAccuracy": 100.0
+    }
+  ]
 }

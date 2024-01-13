@@ -253,8 +253,12 @@ public class Functions {
 			RandomAccess.leaderboardLevelSelected = level;
 			Main.updateMenu();
 			removeThisPopup();
-			if (RandomAccess.leaderboardData.getDenied()) {
-				addPopup(1);
+			if (RandomAccess.leaderboardData == null){
+				addPopup(2);
+			} else {
+				if (RandomAccess.leaderboardData.getDenied()) {
+					addPopup(1);
+				}
 			}
 		}
 	}

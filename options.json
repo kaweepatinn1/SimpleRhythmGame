@@ -1,5 +1,6 @@
 {
   "databasePasskey": "root2212",
+  "databaseDNS": "localhost",
   "fullscreen": false,
   "sizeToForce": 1920,
   "nanoSecondPrecision": true,
