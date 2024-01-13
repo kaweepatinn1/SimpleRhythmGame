@@ -266,6 +266,7 @@ public class Game extends Thread {
 	public void endSong() {
 		Scores score = summarizeFinalScores(true);
 		RandomAccess.levelComplete(score);
+		Database.updateOldHighscore(currentLevel, Main.getPlayerData(), score);
 		Main.addPopup(1);
 		Main.getPlayerData().updateStatsFromScores(currentLevel, score);
 		if (player != null) {
@@ -279,7 +280,6 @@ public class Game extends Thread {
 	}
 	
 	public boolean checkIfGotNewHighscore() {
-		//TODO;
 		if (score > Main.getPlayerData().getLevelStats(currentLevel).getHighscore()) {
 			return true;
 		} else{

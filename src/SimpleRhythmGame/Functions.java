@@ -74,6 +74,8 @@ public class Functions {
 					switchStatsType();
 				} else if (methodName.equals("confirmRemoveStats")) {
 					confirmRemoveStats();
+				} else if (methodName.equals("setLeaderboardLevel")) {
+					setLeaderboardLevel((int) parameters[0]);
 				} 
 				
 				
@@ -139,6 +141,8 @@ public class Functions {
 		String checkMenu = menuName.replace("_", " ");
 		if (checkMenu.equals("Statistics Menu")) {
 			RandomAccess.setSessionStats(false);
+		} else if (checkMenu.equals("Leaderboards Menu")) {
+			setLeaderboardLevel(-1);;
 		}
 		// convert menu name in function from "_" to " ", 
 		// as space bar is the delimiter in the function definition
@@ -230,8 +234,26 @@ public class Functions {
 		if (RandomAccess.viewSessionStats) {
 			Main.getSessionStats().resetStats();
 		} else {
+			Main.getSessionStats().resetStats();
 			Main.getPlayerData().getStats().resetStats();
+			FileIO.currentPlayerDataOut();
 		}
 		removeThisPopup();
+	}
+	
+	public static void setLeaderboardLevel(int levelIndex) {
+		if (levelIndex == -1) {
+			RandomAccess.leaderboardData = null;
+			RandomAccess.leaderboardLevelSelected = null;
+		} else {
+			Level level = Config.getLevelsList()[levelIndex];
+			RandomAccess.setLeaderboardData(Database.readDatabase(level));
+			RandomAccess.leaderboardLevelSelected = level;
+			Main.updateMenu();
+			removeThisPopup();
+			if (RandomAccess.leaderboardData.getDenied()) {
+				addPopup(1);
+			}
+		}
 	}
 }

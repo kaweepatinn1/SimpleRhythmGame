@@ -5,13 +5,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class Database {
-	public static void insertScore(Level level, PlayerData playerData, Scores scores) {
+	public static int insertScore(Level level, PlayerData playerData, Scores scores) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/leaderboard", "root", "root2212");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/leaderboard", "root", Main.getConfig().getDatabasePasskey());
 			Statement stmt = con.createStatement();
 			String levelName = level.getName();
 			String levelUUID = level.getUUID().toString();
@@ -25,8 +26,16 @@ public class Database {
 					+ "\"" + username + "\", \"" + userUUID + "\", " + score + ", " + accuracy + ", "
 					+ maxCombo + ");";
 			stmt.executeUpdate(sql);
+			return 1;
 		} catch (Exception e) {
 			System.out.println(e);
+			if (e.getMessage().length() > 12) {
+				if (e.getMessage().substring(0,13).equals("Access denied")) {
+					// System.out.println("Access was denied");
+					return -2; // Access error
+				}
+			}
+			return -1; // Generic error
 		}
 	}
 	
@@ -35,14 +44,13 @@ public class Database {
 		String userUUID = uuid.toString();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/leaderboard", "root", "root2212");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/leaderboard", "root", Main.getConfig().getDatabasePasskey());
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT userUUID, levelUUID, score FROM `leaderboard`.`leaderboard`"
 					+ "WHERE userUUID = \'" + userUUID + "\' AND levelUUID = \'" + levelUUID + "\';");
 			int score = -1;
-			if (rs != null) {
-				rs.next();
-				score = rs.getInt(5);
+			if (rs.next()) {
+				score = rs.getInt("score");
 			} else {
 				return -1;
 			}
@@ -50,63 +58,73 @@ public class Database {
 			return score;
 		} catch (SQLException | ClassNotFoundException e) {
 			System.out.println(e);
+			if (e.getMessage().length() > 12) {
+				if (e.getMessage().substring(0,13).equals("Access denied")) {
+					// System.out.println("Access was denied");
+					return -2;
+				}
+			}
 			return -1;
 		}
 	}
 	
-	public static void updateOldHighscore(Level level, PlayerData playerData, Scores scores) {
-		if (getOldHighscore(level, playerData.getUUID()) > -1) {
+	public static int updateOldHighscore(Level level, PlayerData playerData, Scores scores) {
+		if (getOldHighscore(level, playerData.getUUID()) != -1) {
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				String userUUID = playerData.getUUID().toString();
 				String levelUUID = level.getUUID().toString();
-				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/leaderboard", "root", "root2212");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/leaderboard", "root", Main.getConfig().getDatabasePasskey());
 				Statement stmt = con.createStatement();
-				stmt.executeUpdate("UPDATE leaderboard SET score = " + scores.getScore() + " WHERE userUUID = \'" + 
+				stmt.executeUpdate("UPDATE leaderboard SET score = " + scores.getScore() + ", accuracy = " + 
+				scores.getAccuracy() + ", maxCombo = " + scores.getMaxCombo() + " WHERE userUUID = \'" + 
 						userUUID + "\' AND levelUUID = \'" + levelUUID + "\' AND score < " + scores.getScore() + ";");
 				con.close();
+				return 1;
 			} catch (SQLException | ClassNotFoundException e) {
 				System.out.println(e);
+				if (e.getMessage().length() > 12) {
+					if (e.getMessage().substring(0,13).equals("Access denied")) {
+						// System.out.println("Access was denied");
+						return -1; // Access error
+					}
+				}
+				return -2; // Generic error
 			}
 		} else {
-			insertScore(level, playerData, scores);
+			return insertScore(level, playerData, scores);
 		}
 	}
 	
-	public static int getResultSetLength(ResultSet rs) {
-		if (rs != null) {
-			try {
-				int row = rs.getRow();
-				rs.last();
-				int length = rs.getRow();
-				rs.first();
-				for (int i = 1 ; i < row ; i++) {
-					rs.next();
-				}
-				return length;
-			} catch (SQLException e) {
-				System.out.println(e);
-				return -1;
-			}
-		} else {
-			return 0;
-		}
-	}
-
-	static int newkey(String table) {
-		int returnkey = 0;
+	public static DatabaseData readDatabase(Level level) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/leaderboard", "root", "root2212");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/leaderboard", "root", Main.getConfig().getDatabasePasskey());
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM " + table);
-			rs.next();
-			returnkey = rs.getInt(1) + 1;
+			ResultSet countRS = stmt.executeQuery("SELECT COUNT(*) FROM `leaderboard`.`leaderboard`"
+					+ "WHERE levelUUID = \'" + level.getUUID().toString() + "\' LIMIT 10;");
+			countRS.next();
+			int length = countRS.getInt(1);
+			ResultSet rs = stmt.executeQuery("SELECT username, score, accuracy, maxCombo FROM `leaderboard`.`leaderboard`"
+					+ "WHERE levelUUID = \'" + level.getUUID().toString() + "\' ORDER BY "
+							+ "score DESC LIMIT 10;");
+			DatabaseData data = new DatabaseData(length);
+			for (int i = 0 ; i < length ; i++) {
+				rs.next();
+				data.setIndex(i, rs.getString("username"), rs.getInt("score"),
+						rs.getFloat("accuracy"), rs.getInt("maxCombo"));
+			}
 			con.close();
+			return data;
 		} catch (SQLException | ClassNotFoundException e) {
 			System.out.println(e);
+			if (e.getMessage().length() > 12) {
+				if (e.getMessage().substring(0,13).equals("Access denied")) {
+					// System.out.println("Access was denied");
+					return new DatabaseData(false);
+				}
+			}
+			return null;
 		}
-		return returnkey;
 	}
-
 }

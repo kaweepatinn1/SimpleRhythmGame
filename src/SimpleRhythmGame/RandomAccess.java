@@ -1,5 +1,7 @@
 package SimpleRhythmGame;
 
+import java.util.UUID;
+
 public class RandomAccess {
 	// Store public use variables here to declutter main class
 	public static String usernameToSet;
@@ -23,6 +25,8 @@ public class RandomAccess {
 	
 	public static boolean viewSessionStats;
 	
+	public static Level leaderboardLevelSelected;
+	public static DatabaseData leaderboardData;
 	public RandomAccess(){
 		usernameToSet = "";
 		
@@ -40,6 +44,9 @@ public class RandomAccess {
 		levelFlawless = false;
 		
 		viewSessionStats = false;
+		
+		leaderboardLevelSelected = null;
+		leaderboardData = null;
 	}
 	
 	public static void setLevelStats(Level level) {
@@ -90,5 +97,9 @@ public class RandomAccess {
 	
 	public static void setSessionStats(boolean setting) {
 		viewSessionStats = setting;
+	}
+	
+	public static void setLeaderboardData(DatabaseData data) {
+		leaderboardData = data;
 	}
 }

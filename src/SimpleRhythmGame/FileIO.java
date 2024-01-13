@@ -110,7 +110,6 @@ public class FileIO {
 	}
 	
 	public static void currentPlayerDataOut() {
-		System.out.println("hiee");
 		String path = "./playerdata.json";
 		try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
 	        Gson gson = new GsonBuilder().setPrettyPrinting().create();

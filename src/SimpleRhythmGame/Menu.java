@@ -2,6 +2,8 @@ package SimpleRhythmGame;
 
 import java.awt.Color;
 
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
+
 // each menu instance is a list of elements item that makes up that menu.
 // essentially, each menu is a list of elements.
 
@@ -33,6 +35,18 @@ public class Menu {
 		this.transforms = transforms;
 	}
 	
+	Menu (Menu menu){
+		menuName = menu.getMenuName();
+		menuDisplayName = menu.getMenuDisplayName();
+		previousMenuName = menu.getPreviousMenuName();
+		bgColor = menu.getBGColorInt();
+		elements = menu.getElements();
+		popups = menu.getPopups();
+		secondarySelections = menu.getSecondarySelections();
+		masks = menu.getMasks();
+		transforms = menu.getTransforms();
+	}
+	
 	public String getMenuName() {
 		return menuName;
 	}
@@ -43,6 +57,10 @@ public class Menu {
 	
 	public String getPreviousMenuName() {
 		return previousMenuName;
+	}
+	
+	public int getBGColorInt() {
+		return bgColor;
 	}
 	
 	public Color getBGColor() {
@@ -323,5 +341,23 @@ public class Menu {
         		);
         
         return finalMenu;
+	}
+
+	public static Menu newMenuWithElements(Menu oldMenu, Element[] extraElements) {
+		if (extraElements != null) {
+			Menu menuToReturn = new Menu(oldMenu);
+			menuToReturn.addElements(extraElements);
+			return menuToReturn;
+		} else {
+			return oldMenu;
+		}
+	}
+	
+	public void addElements(Element[] extraElements) {
+		Element[] oldElements = getElements();
+		Element[] newElementsList = new Element[oldElements.length + extraElements.length];
+		System.arraycopy(oldElements, 0, newElementsList, 0, oldElements.length);
+		System.arraycopy(extraElements, 0, newElementsList, oldElements.length, extraElements.length);
+		setElements(newElementsList);
 	}
 }

@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.awt.geom.*;
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -607,10 +608,12 @@ public class Main extends JPanel implements KeyListener {
         float opacityMulti = 0;
         
         List<Element> finalElements = new ArrayList<>();
-        
-        for (int iter = -1 ; iter < popupIndexes.length; iter++) {
+        int extra = 0;
+        for (int iter = -1 ; iter < popupIndexes.length + extra; iter++) {
         	Element[] toRender = null;
-        	if (iter == -1) {
+        	if (iter > popupIndexes.length - 1) {
+        		
+        	} else if (iter == -1) {
         		toRender = scaledMenu.getElements();
         		opacityMulti = 1;
         	} else {
@@ -661,6 +664,7 @@ public class Main extends JPanel implements KeyListener {
         	}
         	
         }
+        
         
         if (!state.equals("NotPlaying")) {
         	Graphics2D g2d = (Graphics2D) g.create();
@@ -1916,8 +1920,8 @@ public class Main extends JPanel implements KeyListener {
     	
         // READ INITIALIZATION STATUS
         
-        boolean useConfig = false; // false during development. TODO: set to true on completion
-        boolean usePlayerData = false; // false during development. set to true to start saving and using config
+        boolean useConfig = true; // false during development. TODO: set to true on completion
+        boolean usePlayerData = true; // false during development. set to true to start saving and using config
         
         ////////////////////// Read Config
         
@@ -1950,8 +1954,7 @@ public class Main extends JPanel implements KeyListener {
         if (playerDataExists) {
         	Functions.setMenu("Main Menu");
         } else {
-        	createUser("eh"); // TODO: remove.
-        	Functions.setMenu("Statistics Menu"); // TODO: switch to Init User Menu
+        	Functions.setMenu("Init User Menu");
         }
         
         Framerate thread = new Framerate();
@@ -2041,6 +2044,7 @@ public class Main extends JPanel implements KeyListener {
 	
 	public static void createUser(String username) {
 		playerData = new PlayerData(username);
+		FileIO.currentPlayerDataOut();
 		Functions.setMenu("Main Menu");
 	}
 	
@@ -2067,5 +2071,214 @@ public class Main extends JPanel implements KeyListener {
 	
 	public static void setMetronome(Metronome metronomeNew) {
 		metronome = metronomeNew;
+	}
+	
+	public static Graphics2D newGraphics(Graphics g) {
+		RenderingHints rh = new RenderingHints(
+                RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON                    
+                );
+		Graphics2D g2d = (Graphics2D) g.create();
+    	g2d.setRenderingHints(rh);
+    	return g2d;
+	}
+	
+	public static Element[] getLeaderboardRender() {
+    	if (RandomAccess.leaderboardData == null) {
+    		return null;
+    	} else {
+    		DatabaseData data = RandomAccess.leaderboardData;
+    		Element[] toReturn = new Element[5 * data.getLength()];
+    		for (int i = 0 ; i < Math.min(data.getLength(), 10) ; i++) {
+    			Element position = new Element(
+							new Selector(
+								new int[]{-1,-1}, // Selector Index
+								new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+								),
+							-1, // mask index
+							false, // hover overlap
+							-1, // hover effect
+							-1, // click effect
+							-1, // arbritraty animation (to be used for scroll)
+							22, // entry animation
+							new TextBox(
+								// Text and Renderable
+								1f, // scale
+								null, // function
+								"Position" + (i + 1),  // name
+								new Text(
+									(i + 1) + ".", // text
+									"center", "center", // align
+									0, 0, // text offset (x, y)
+									25, // text size
+									6, // text color (index of colors)
+									"Archivo Narrow", // font
+									false // bold
+									),
+								new RoundedArea(
+									818, 607 + (32 * i), 0, 0, 0  // x, y, xSize, ySize, round%
+									),
+								DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+								255, // opacity (0-255)
+								0, // shadowOffset
+								5, 6 // strokeWidth, strokeColor
+								));
+    			Element username = new Element(
+							new Selector(
+								new int[]{-1,-1}, // Selector Index
+								new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+								),
+							-1, // mask index
+							false, // hover overlap
+							-1, // hover effect
+							-1, // click effect
+							-1, // arbritraty animation (to be used for scroll)
+							22, // entry animation
+							new TextBox(
+								// Text and Renderable
+								1f, // scale
+								null, // function
+								"Username" + (i + 1),  // name
+								new Text(
+									data.getUsername(i), // text
+									"center", "center", // align
+									0, 0, // text offset (x, y)
+									25, // text size
+									6, // text color (index of colors)
+									"Archivo Narrow", // font
+									false // bold
+									),
+								new RoundedArea(
+									1018, 607 + (32 * i), 0, 0, 0  // x, y, xSize, ySize, round%
+									),
+								DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+								255, // opacity (0-255)
+								0, // shadowOffset
+								5, 6 // strokeWidth, strokeColor
+								));
+    			DecimalFormat formatter = new DecimalFormat("#,##0.0");
+    			Element accuracy = new Element(
+							new Selector(
+								new int[]{-1,-1}, // Selector Index
+								new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+								),
+							-1, // mask index
+							false, // hover overlap
+							-1, // hover effect
+							-1, // click effect
+							-1, // arbritraty animation (to be used for scroll)
+							22, // entry animation
+							new TextBox(
+								// Text and Renderable
+								1f, // scale
+								null, // function
+								"Accuracy" + (i + 1),  // name
+								new Text(
+									formatter.format(data.getAccuracy(i)) + "%", // text
+									"center", "center", // align
+									0, 0, // text offset (x, y)
+									25, // text size
+									6, // text color (index of colors)
+									"Archivo Narrow", // font
+									false // bold
+									),
+								new RoundedArea(
+									1230, 607 + (32 * i), 0, 0, 0  // x, y, xSize, ySize, round%
+									),
+								DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+								255, // opacity (0-255)
+								0, // shadowOffset
+								5, 6 // strokeWidth, strokeColor
+								));
+    			Element maxCombo = new Element(
+							new Selector(
+								new int[]{-1,-1}, // Selector Index
+								new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+								),
+							-1, // mask index
+							false, // hover overlap
+							-1, // hover effect
+							-1, // click effect
+							-1, // arbritraty animation (to be used for scroll)
+							22, // entry animation
+							new TextBox(
+								// Text and Renderable
+								1f, // scale
+								null, // function
+								"Username" + (i + 1),  // name
+								new Text(
+									Integer.toString(data.getMaxCombo(i)), // text
+									"center", "center", // align
+									0, 0, // text offset (x, y)
+									25, // text size
+									6, // text color (index of colors)
+									"Archivo Narrow", // font
+									false // bold
+									),
+								new RoundedArea(
+									1350, 607 + (32 * i), 0, 0, 0  // x, y, xSize, ySize, round%
+									),
+								DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+								255, // opacity (0-255)
+								0, // shadowOffset
+								5, 6 // strokeWidth, strokeColor
+								));
+    			Element score = new Element(
+							new Selector(
+								new int[]{-1,-1}, // Selector Index
+								new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+								),
+							-1, // mask index
+							false, // hover overlap
+							-1, // hover effect
+							-1, // click effect
+							-1, // arbritraty animation (to be used for scroll)
+							22, // entry animation
+							new TextBox(
+								// Text and Renderable
+								1f, // scale
+								null, // function
+								"Username" + (i + 1),  // name
+								new Text(
+									Integer.toString(data.getScore(i)), // text
+									"center", "center", // align
+									0, 0, // text offset (x, y)
+									25, // text size
+									6, // text color (index of colors)
+									"Archivo Narrow", // font
+									false // bold
+									),
+								new RoundedArea(
+									1486, 607 + (32 * i), 0, 0, 0  // x, y, xSize, ySize, round%
+									),
+								DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+								255, // opacity (0-255)
+								0, // shadowOffset
+								5, 6 // strokeWidth, strokeColor
+								));
+//    			position = position.scale(scale, scale);
+//    			username = username.scale(scale, scale);
+//    			accuracy = accuracy.scale(scale, scale);
+//    			maxCombo = maxCombo.scale(scale, scale);
+//    			score = score.scale(scale, scale);
+    			toReturn[i * 5] = position;
+    			toReturn[(i * 5) + 1] = username;
+    			toReturn[(i * 5) + 2] = accuracy;
+    			toReturn[(i * 5) + 3] = maxCombo;
+    			toReturn[(i * 5) + 4] = score;
+//        		renderElement(position, newGraphics(g), 1f);
+//        		renderElement(username, newGraphics(g), 1f);
+//        		renderElement(accuracy, newGraphics(g), 1f);
+//        		renderElement(maxCombo, newGraphics(g), 1f);
+//        		renderElement(score, newGraphics(g), 1f);
+    		}
+    		return toReturn;
+    	}
+	}
+	
+	public static void updateMenu() {
+		rawCurrentMenu = config.getMenuFromIndex(currentMenuIndex);
+    	scaledMenu = rawCurrentMenu.getScaledMenu(calculatedScreenWidth, calculatedScreenHeight);
+    	updateFrame();
 	}
 }

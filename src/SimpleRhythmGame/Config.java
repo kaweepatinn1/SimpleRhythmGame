@@ -10,6 +10,8 @@ public class Config {
 	private final static int colorsLength = 9;
 	private static transient Level[] levelsList;
 	
+	private String databasePasskey;
+	
 	private boolean fullscreen;
 	private int sizeToForce;
 	
@@ -46,7 +48,9 @@ public class Config {
 		// Do Nothing
 	}
 	
-	public Config(boolean fullscreen, int sizeToForce, Controls[] controls, Theme[] themes, 
+	public Config(
+			String databasePasskey,
+			boolean fullscreen, int sizeToForce, Controls[] controls, Theme[] themes, 
 			String currentThemeChoice, String currentSkinChoice,
 			String[] fonts, Menu[] menus, boolean nanoSecondPrecision, int framesToStore,
 			int framerate, boolean shouldLimitFramerate, boolean displayFramerate,
@@ -54,6 +58,7 @@ public class Config {
 			int masterVolume, int musicVolume, int SFXVolume,
 			boolean DEBUG_drawMasks, int DEBUG_masksColorsOffset, int DEBUG_masksOpacity,
 			boolean FORCED_noFail, int FORCED_millisecondLeniency) {
+		this.databasePasskey = databasePasskey;
 		this.fullscreen = fullscreen;
 		this.sizeToForce = sizeToForce;
 		this.controls = controls;
@@ -79,6 +84,10 @@ public class Config {
 		this.FORCED_noFail = FORCED_noFail;
 		this.FORCED_millisecondLeniency = FORCED_millisecondLeniency;
 		levelsList = FileIO.getLevelsList();
+	}
+	
+	public String getDatabasePasskey() {
+		return databasePasskey;
 	}
 	
 	public static int getColorsLenth() {
@@ -302,12 +311,15 @@ public class Config {
 	}
 	
 	public Menu getMenuFromIndex(int i) {
-		return menus[i];
+		Menu menu = menus[i];
+		if (menu.getMenuName().equals("Leaderboards Menu")) {
+			menu = Menu.newMenuWithElements(menu, Main.getLeaderboardRender());
+		}
+		return menu;
 	}
 
 	public void setMenus(Menu[] menus) {
 		this.menus = menus;
-		FileIO.currentConfigOut();
 	}
 	
 	public boolean getNanoSecondPrecision() {
@@ -505,7 +517,9 @@ public class Config {
 				objectToReturn = levelsList[index].getPPS();
 			} else if (varName.equals("%TotalNotes")) {
 				objectToReturn = levelsList[index].getTotalNotes();
-			} 
+			} else if (varName.equals("%NameAuthor")) {
+				objectToReturn = levelsList[index].getName() + " | " + levelsList[index].getAuthor();
+			}
 			
 			else {
 				System.out.println("No code for getting data field \'" + varName + "\' from parent \'" + varParentName + "\'");
@@ -798,7 +812,7 @@ public class Config {
 				if (RandomAccess.viewSessionStats) {
 					varToReturn = "Reset Session";
 				} else {
-					varToReturn = "Reset Stats";
+					varToReturn = "Reset All Stats";
 				}
 			} else if (splitVariable[1].equals("ConfirmDelete")) {
 				if (RandomAccess.viewSessionStats) {
@@ -815,7 +829,33 @@ public class Config {
 			varToReturn = "UUID: " + Main.getPlayerData().getUUID().toString();
 		} else if (splitVariable[0].equals("%Username")) {
 			varToReturn = "Username: " + Main.getPlayerData().getUsername();
-		} 
+		} else if (splitVariable[0].equals("%LeaderboardPage")) {
+			if (splitVariable[1].equals("CurrentSelectedLevel")) {
+				if (RandomAccess.leaderboardLevelSelected == null) {
+					return "Select a level!";
+				} else {
+					return RandomAccess.leaderboardLevelSelected.getName();
+				}
+			} else if (splitVariable[1].equals("LevelInfo")) {
+				if (RandomAccess.leaderboardLevelSelected == null) {
+					return "No Level Selected";
+				} else {
+					return RandomAccess.leaderboardLevelSelected.getName() + " | " 
+							+ RandomAccess.leaderboardLevelSelected.getAuthor();
+				}
+			} else if (splitVariable[1].equals("LevelData")) {
+				if (RandomAccess.leaderboardLevelSelected == null) {
+					return "No Level Selected";
+				} else {
+					return "Notes: " + RandomAccess.leaderboardLevelSelected.getTotalNotes() + 
+							" | Length: " + Functions.intToTime(RandomAccess.leaderboardLevelSelected.getTotalTimeSeconds());
+				}
+			} 
+			
+			else {
+				System.out.println("Could not find variable with name " + splitVariable[0] + "and subvariable" + splitVariable[1]);
+			}
+		}
 		
 		else {
 			// System.out.println("Could not find variable with name " + splitVariable[0]);
@@ -995,8 +1035,6 @@ public class Config {
 	
 	public void setFORCED_noFail(boolean FORCED_noFail) {
 		this.FORCED_noFail = FORCED_noFail;
-		Main.refreshMenu();
-		FileIO.currentConfigOut();
 	}
 
 	public int getFORCED_millisecondLeniency() {
