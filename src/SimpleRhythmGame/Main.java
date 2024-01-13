@@ -652,6 +652,7 @@ public class Main extends JPanel implements KeyListener {
     	        }
     	        
     	        renderElement(currentElement, g2d, opacityMulti);
+    	        // System.out.println(Main.config.getLevelsList()[0].getName());
     	        
             }
         	
