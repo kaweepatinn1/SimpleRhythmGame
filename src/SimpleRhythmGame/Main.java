@@ -1932,6 +1932,7 @@ public class Main extends JPanel implements KeyListener {
         	config = DefaultValues.getDefaultConfigs();
         	FileIO.currentConfigOut();
         }
+        config.refreshLevelsList();
         
         //////////////////////
         
@@ -2054,7 +2055,7 @@ public class Main extends JPanel implements KeyListener {
 			if (elementName.length() > 8) {
 				if (elementName.substring(1,8).equals("!Levels")) {
 					// System.out.println(elementName.substring(8)); // level number
-					Level level = Config.getLevelsList()[Integer.parseInt(elementName.substring(9))];
+					Level level = Main.getConfig().getLevelsList()[Integer.parseInt(elementName.substring(9))];
 					RandomAccess.setLevelStats(level);
 				} else {
 					RandomAccess.resetLevelStats();

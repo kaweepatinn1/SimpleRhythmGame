@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 
 public class Config {
 	private final static int colorsLength = 9;
-	private static transient Level[] levelsList;
+	private transient Level[] levelsList;
 	
 	private String databasePasskey;
 	
@@ -83,6 +83,10 @@ public class Config {
 		this.DEBUG_masksOpacity = DEBUG_masksOpacity;
 		this.FORCED_noFail = FORCED_noFail;
 		this.FORCED_millisecondLeniency = FORCED_millisecondLeniency;
+		this.levelsList = FileIO.getLevelsList();
+	}
+	
+	public void refreshLevelsList() {
 		levelsList = FileIO.getLevelsList();
 	}
 	
@@ -1045,7 +1049,7 @@ public class Config {
 		this.FORCED_millisecondLeniency = FORCED_millisecondLeniency;
 	}
 
-	public static Level[] getLevelsList() {
+	public Level[] getLevelsList() {
 		return levelsList;
 	}
 }

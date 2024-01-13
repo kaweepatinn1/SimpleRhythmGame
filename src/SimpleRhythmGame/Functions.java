@@ -94,7 +94,7 @@ public class Functions {
 	}
 	
 	private static void playLevel(int levelIndex) {
-		Level level = Config.getLevelsList()[levelIndex];
+		Level level = Main.getConfig().getLevelsList()[levelIndex];
 		//Level level = FileIO.getLevel(levelName);
 		Main.startGame(level);
 	}
@@ -143,6 +143,8 @@ public class Functions {
 			RandomAccess.setSessionStats(false);
 		} else if (checkMenu.equals("Leaderboards Menu")) {
 			setLeaderboardLevel(-1);;
+		} else if (checkMenu.equals("Play Menu")) {
+			Main.getConfig().refreshLevelsList();
 		}
 		// convert menu name in function from "_" to " ", 
 		// as space bar is the delimiter in the function definition
@@ -246,7 +248,7 @@ public class Functions {
 			RandomAccess.leaderboardData = null;
 			RandomAccess.leaderboardLevelSelected = null;
 		} else {
-			Level level = Config.getLevelsList()[levelIndex];
+			Level level = Main.getConfig().getLevelsList()[levelIndex];
 			RandomAccess.setLeaderboardData(Database.readDatabase(level));
 			RandomAccess.leaderboardLevelSelected = level;
 			Main.updateMenu();

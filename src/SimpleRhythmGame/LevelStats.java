@@ -81,7 +81,7 @@ public class LevelStats {
 	}
 	
 	public static Level locateLevel(LevelStats toFindLevel) {
-		for (Level level : Config.getLevelsList()) {
+		for (Level level : Main.getConfig().getLevelsList()) {
 			if (level.getUUID().equals(toFindLevel.getLevelUUID())) {
 				return level;
 			}

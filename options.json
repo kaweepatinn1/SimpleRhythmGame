@@ -1,6 +1,6 @@
 {
   "databasePasskey": "root2212",
-  "fullscreen": true,
+  "fullscreen": false,
   "sizeToForce": 1920,
   "nanoSecondPrecision": true,
   "framesToStore": 20,
