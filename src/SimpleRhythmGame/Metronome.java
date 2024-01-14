@@ -5,7 +5,7 @@ public class Metronome extends Thread {
 		Thread.currentThread().setPriority(7);
 		System.out.println(Thread.currentThread().getPriority());
 		Level level = Main.getGame().getCurrentLevel();
-		double levelStartTime = Framerate.getCurrentTime() + 2500 + level.getMetronomeOffset();
+		double levelStartTime = Framerate.getCurrentTime() + 2500 + level.getMetronomeOffset() - (1000 * Game.getDebugStartTime());
 		double timePerClick = 60000d / level.getBPM();
 		
 		int lastNotePlayed = (int) Math.floor((Framerate.getCurrentTime() - levelStartTime) / timePerClick);

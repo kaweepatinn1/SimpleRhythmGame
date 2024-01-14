@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Game extends Thread {
+	private static int debugStartTime = 10; // for DEBUG ONLY
+	
+	public static int getDebugStartTime() {
+		return debugStartTime;
+	}
+	
 	private Level currentLevel;
 	private AudioPlayer player;
 	
@@ -88,7 +94,7 @@ public class Game extends Thread {
 
 	public void init() {
 		calculateNotesTimeFromStart();
-		millisStarted = Framerate.getCurrentTime() + 2500;
+		millisStarted = Framerate.getCurrentTime() + 2500 - (debugStartTime * 1000);
 		refreshCurrentNotes();
 		try {
 			Thread.sleep(2500);
@@ -98,6 +104,7 @@ public class Game extends Thread {
 		}
 		if (!isTutorial) {
 			player.play();
+			player.setFramePosition(debugStartTime * 44100);
 		}
 		unpaused = true;
 	}

@@ -2,7 +2,7 @@
   "name": "A New Day",
   "author": "Kai_Tobashi",
   "version": 1,
-  "UUID": "c05eb1af-834b-4c20-9a41-6bb7fcc751bb",
+  "UUID": "ecf6e757-07ee-4d2a-8734-3463a0974eec",
   "songOffset": -20.0,
   "metronomeOffset": 620,
   "bpm": 180,
@@ -753,6 +753,1446 @@
       "subBeat": [
         0,
         2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 12,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 12,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 12,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 12,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 3,
+      "subtype": 2,
+      "bar": 12,
+      "beat": 2,
+      "subBeat": [
+        2,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 3,
+      "subtype": 2,
+      "bar": 12,
+      "beat": 2,
+      "subBeat": [
+        3,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 3,
+      "subtype": 2,
+      "bar": 12,
+      "beat": 3,
+      "subBeat": [
+        0,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 3,
+      "subtype": 1,
+      "bar": 12,
+      "beat": 3,
+      "subBeat": [
+        1,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 3,
+      "subtype": 1,
+      "bar": 12,
+      "beat": 3,
+      "subBeat": [
+        2,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 3,
+      "subtype": 1,
+      "bar": 12,
+      "beat": 3,
+      "subBeat": [
+        3,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 12,
+      "beat": 4,
+      "subBeat": [
+        0,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 13,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 13,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 13,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 13,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 13,
+      "beat": 3,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 13,
+      "beat": 3,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 13,
+      "beat": 3,
+      "subBeat": [
+        1,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 13,
+      "beat": 4,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 13,
+      "beat": 4,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 14,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 14,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 14,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 14,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 14,
+      "beat": 3,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 14,
+      "beat": 3,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 14,
+      "beat": 3,
+      "subBeat": [
+        1,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 14,
+      "beat": 4,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 14,
+      "beat": 4,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 15,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 15,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 15,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 15,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 15,
+      "beat": 3,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 15,
+      "beat": 3,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 15,
+      "beat": 3,
+      "subBeat": [
+        1,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 15,
+      "beat": 4,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 15,
+      "beat": 4,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 16,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 16,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 16,
+      "beat": 2,
+      "subBeat": [
+        0,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 16,
+      "beat": 2,
+      "subBeat": [
+        1,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 3,
+      "subtype": 1,
+      "bar": 16,
+      "beat": 2,
+      "subBeat": [
+        2,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 3,
+      "subtype": 1,
+      "bar": 16,
+      "beat": 2,
+      "subBeat": [
+        3,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 16,
+      "beat": 3,
+      "subBeat": [
+        0,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 16,
+      "beat": 3,
+      "subBeat": [
+        1,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 3,
+      "subtype": 1,
+      "bar": 16,
+      "beat": 3,
+      "subBeat": [
+        2,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 3,
+      "subtype": 1,
+      "bar": 16,
+      "beat": 3,
+      "subBeat": [
+        3,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 16,
+      "beat": 4,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 17,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 17,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 17,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 17,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 17,
+      "beat": 3,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 17,
+      "beat": 3,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 17,
+      "beat": 3,
+      "subBeat": [
+        1,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 17,
+      "beat": 4,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 17,
+      "beat": 4,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 18,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 18,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 18,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 18,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 18,
+      "beat": 3,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 18,
+      "beat": 3,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 18,
+      "beat": 3,
+      "subBeat": [
+        1,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 18,
+      "beat": 4,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 18,
+      "beat": 4,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 19,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 19,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 19,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 19,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 19,
+      "beat": 3,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 19,
+      "beat": 3,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 19,
+      "beat": 3,
+      "subBeat": [
+        1,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 19,
+      "beat": 4,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 19,
+      "beat": 4,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 20,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 20,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 20,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 20,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 20,
+      "beat": 3,
+      "subBeat": [
+        0,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 20,
+      "beat": 3,
+      "subBeat": [
+        1,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 20,
+      "beat": 3,
+      "subBeat": [
+        2,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 20,
+      "beat": 3,
+      "subBeat": [
+        3,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 20,
+      "beat": 4,
+      "subBeat": [
+        0,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 21,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 21,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 21,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 21,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 21,
+      "beat": 3,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 21,
+      "beat": 3,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 21,
+      "beat": 3,
+      "subBeat": [
+        1,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 21,
+      "beat": 4,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 21,
+      "beat": 4,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 22,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 22,
+      "beat": 1,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 22,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 22,
+      "beat": 2,
+      "subBeat": [
+        0,
+        2
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 22,
+      "beat": 3,
+      "subBeat": [
+        0,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 22,
+      "beat": 3,
+      "subBeat": [
+        1,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 22,
+      "beat": 3,
+      "subBeat": [
+        2,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 22,
+      "beat": 3,
+      "subBeat": [
+        3,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 22,
+      "beat": 4,
+      "subBeat": [
+        0,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 22,
+      "beat": 4,
+      "subBeat": [
+        1,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 22,
+      "beat": 4,
+      "subBeat": [
+        2,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 22,
+      "beat": 4,
+      "subBeat": [
+        3,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 2,
+      "subtype": 0,
+      "bar": 23,
+      "beat": 1,
+      "subBeat": [
+        0,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 23,
+      "beat": 1,
+      "subBeat": [
+        0,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 23,
+      "beat": 1,
+      "subBeat": [
+        2,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 23,
+      "beat": 1,
+      "subBeat": [
+        3,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 23,
+      "beat": 2,
+      "subBeat": [
+        0,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 23,
+      "beat": 2,
+      "subBeat": [
+        1,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 2,
+      "subtype": 0,
+      "bar": 23,
+      "beat": 2,
+      "subBeat": [
+        2,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 23,
+      "beat": 2,
+      "subBeat": [
+        2,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 23,
+      "beat": 3,
+      "subBeat": [
+        0,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 23,
+      "beat": 3,
+      "subBeat": [
+        1,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 23,
+      "beat": 3,
+      "subBeat": [
+        2,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 1,
+      "subtype": 0,
+      "bar": 23,
+      "beat": 3,
+      "subBeat": [
+        3,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 2,
+      "subtype": 0,
+      "bar": 23,
+      "beat": 4,
+      "subBeat": [
+        0,
+        4
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 0,
+      "subtype": 1,
+      "bar": 23,
+      "beat": 4,
+      "subBeat": [
+        0,
+        4
       ],
       "speed": 1.0,
       "noteOffset": 0.0

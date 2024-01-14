@@ -25,6 +25,10 @@ public class Note {
 	public transient static final int HiHat_OPEN = 1;
 	public transient static final int HiHat_CLOSED = 0;
 	
+	public transient static final int Tom_LOW = 0;
+	public transient static final int Tom_MEDIUM = 1;
+	public transient static final int Tom_HIGH = 2;
+	
 	public Note(int type, int subtype, int bar, int beat, 
 			int[] subBeat, float speed, double noteOffset) {
 		this.type = type;

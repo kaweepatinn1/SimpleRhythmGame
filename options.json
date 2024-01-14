@@ -2,7 +2,7 @@
   "databasePasskey": "root2212",
   "databaseDNS": "localhost",
   "fullscreen": false,
-  "sizeToForce": 1920,
+  "sizeToForce": 1280,
   "nanoSecondPrecision": true,
   "framesToStore": 20,
   "framerate": 60,
