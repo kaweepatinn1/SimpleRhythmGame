@@ -57,23 +57,23 @@ public class DefaultValues {
 					),
 			new Controls(
 					"HiHat", // drum 1
-					new int[]{90, -1, -1}
+					new int[]{90, 65, -1}
 					),
 			new Controls(
 					"SnareDrum", // drum 2
-					new int[]{88, -1, -1}
+					new int[]{88, 83, -1}
 					),
 			new Controls(
 					"CrashCymbal", // drum 3
-					new int[]{67, -1, -1}
+					new int[]{67, 72, -1}
 					),
 			new Controls(
 					"Tom", // drum 4
-					new int[]{78, -1, -1}
+					new int[]{78, 74, -1}
 					),
 			new Controls(
 					"KickDrum", // drum 5
-					new int[]{77, -1, -1}
+					new int[]{77, 75, -1}
 					),
 			
 	};

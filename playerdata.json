@@ -2,13 +2,13 @@
   "username": "DefaultNano",
   "uuid": "8e9c3c66-e63d-4178-a3c3-ce5d894990d0",
   "stats": {
-    "timePlayedSeconds": 58,
-    "notesHit": 140,
+    "timePlayedSeconds": 87,
+    "notesHit": 145,
     "notesMissed": 0,
-    "totalAttempts": 2,
+    "totalAttempts": 3,
     "songsCompleted": 1,
     "songsFlawlessed": 1,
-    "totalScore": 106882,
+    "totalScore": 107761,
     "longestCombo": 0
   },
   "levelStats": [
@@ -21,8 +21,8 @@
       "longestCombo": 70,
       "completed": true,
       "flawless": true,
-      "attempts": 2,
-      "notesHit": 140,
+      "attempts": 3,
+      "notesHit": 145,
       "notesMissed": 0,
       "bestAccuracy": 100.0
     }

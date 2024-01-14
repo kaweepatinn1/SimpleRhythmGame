@@ -2,8 +2,6 @@ package SimpleRhythmGame;
 
 import java.awt.Color;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
-
 // each menu instance is a list of elements item that makes up that menu.
 // essentially, each menu is a list of elements.
 

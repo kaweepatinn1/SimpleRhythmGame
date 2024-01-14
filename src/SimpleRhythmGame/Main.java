@@ -5,12 +5,17 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.awt.geom.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
+
 import java.util.List;
 
 public class Main extends JPanel implements KeyListener {
@@ -1912,7 +1917,7 @@ public class Main extends JPanel implements KeyListener {
 		state = newState;
 	}
 	
-	public static void main(String args[]) throws Exception {
+	public static void main(String args[]) {
     	
     	SysOutController.setSysOutLocationAddressor(); // FOR DEBUGGING (TODO: can be disabled)
     	
@@ -1928,7 +1933,18 @@ public class Main extends JPanel implements KeyListener {
         
         File configFile = new File("./options.json");
         if (configFile.exists() && !configFile.isDirectory() && useConfig) { 
-            config = FileIO.currentConfigIn();
+            try {
+				config = FileIO.currentConfigIn();
+			} catch (JsonSyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JsonIOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         } else {
         	config = DefaultValues.getDefaultConfigs();
         	FileIO.currentConfigOut();
@@ -1937,13 +1953,26 @@ public class Main extends JPanel implements KeyListener {
         
         //////////////////////
         
+        ClassToJSON.indieLevelOut(); // update level during dev
+        
         ////////////////////// Session Stats
         
         boolean playerDataExists;
         
         File playerDataFile = new File("./playerdata.json");
         if (playerDataFile.exists() && !playerDataFile.isDirectory() && usePlayerData) {
-        	playerData = FileIO.playerDataIn();
+        	try {
+				playerData = FileIO.playerDataIn();
+			} catch (JsonSyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JsonIOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         	playerDataExists = true;
         } else {
         	playerDataExists = false;
@@ -1988,7 +2017,15 @@ public class Main extends JPanel implements KeyListener {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         String[] fontList = DefaultValues.getDefaultFonts();
         for (String font : fontList) {
-        	ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(font)));
+        	try {
+				ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(font)));
+			} catch (FontFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
         
         Sound.initSFX(); 

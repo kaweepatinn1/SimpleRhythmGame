@@ -1,0 +1,113 @@
+{
+  "name": "A New Day",
+  "author": "Kai_Tobashi",
+  "version": 1,
+  "UUID": "465a0e08-9866-43f4-9016-41c9054265b2",
+  "songOffset": -100.0,
+  "metronomeOffset": 620,
+  "bpm": 180,
+  "pps": 1.0,
+  "totalTimeSeconds": 121,
+  "timeSignature": [
+    4,
+    4
+  ],
+  "notes": [
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 1,
+      "beat": 1,
+      "subBeat": [
+        0,
+        0
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 1,
+      "beat": 2,
+      "subBeat": [
+        0,
+        0
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 1,
+      "beat": 3,
+      "subBeat": [
+        0,
+        0
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 1,
+      "beat": 4,
+      "subBeat": [
+        0,
+        0
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 2,
+      "beat": 1,
+      "subBeat": [
+        0,
+        0
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 2,
+      "beat": 2,
+      "subBeat": [
+        0,
+        0
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 2,
+      "beat": 3,
+      "subBeat": [
+        0,
+        0
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    },
+    {
+      "type": 4,
+      "subtype": 0,
+      "bar": 2,
+      "beat": 4,
+      "subBeat": [
+        0,
+        0
+      ],
+      "speed": 1.0,
+      "noteOffset": 0.0
+    }
+  ]
+}

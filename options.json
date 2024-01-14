@@ -79,7 +79,7 @@
       "hotkeyFunction": "HiHat",
       "keyCodes": [
         90,
-        -1,
+        65,
         -1
       ]
     },
@@ -87,7 +87,7 @@
       "hotkeyFunction": "SnareDrum",
       "keyCodes": [
         88,
-        -1,
+        83,
         -1
       ]
     },
@@ -95,7 +95,7 @@
       "hotkeyFunction": "CrashCymbal",
       "keyCodes": [
         67,
-        -1,
+        72,
         -1
       ]
     },
@@ -103,7 +103,7 @@
       "hotkeyFunction": "Tom",
       "keyCodes": [
         78,
-        -1,
+        74,
         -1
       ]
     },
@@ -111,7 +111,7 @@
       "hotkeyFunction": "KickDrum",
       "keyCodes": [
         77,
-        -1,
+        75,
         -1
       ]
     }

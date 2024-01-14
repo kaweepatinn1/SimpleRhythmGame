@@ -312,7 +312,7 @@ public class Game extends Thread {
 		futureNotes.remove((Note) noteInfo[0]);
 		currentNotes.remove((Note) noteInfo[0]);
 		hitNotes.add((Note) noteInfo[0]);
-		// System.out.println(noteInfo[1]);
+		System.out.println(noteInfo[1]);
 		incrementNotesHit();
 		// x2 for 5, x3 for 10, x4 for 15 and x5 for 20	
 		boolean perfect = Math.abs((double) noteInfo[1]) < 100;

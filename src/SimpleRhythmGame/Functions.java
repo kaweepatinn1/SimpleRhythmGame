@@ -205,7 +205,6 @@ public class Functions {
 	public static void editKeybind(String keybind, int index, int popupToOpen) {
 		Main.setSelectedElement("EditControl" + keybind + index);
 		addPopup(popupToOpen);
-		
 	}
 	
 	public static void confirmUsername() {
