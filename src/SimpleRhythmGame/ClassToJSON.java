@@ -670,7 +670,7 @@ public class ClassToJSON extends FileIO {
 				620, // ms metronome offset
 				180, // bpm
 				1f, // pps
-				126, // total time
+				117, // total time
 				new int[] {4,4}, // time signature
 				new Note[] {
 						new Note(

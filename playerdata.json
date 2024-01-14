@@ -2,13 +2,13 @@
   "username": "DefaultNano",
   "uuid": "8e9c3c66-e63d-4178-a3c3-ce5d894990d0",
   "stats": {
-    "timePlayedSeconds": 87,
-    "notesHit": 145,
+    "timePlayedSeconds": 116,
+    "notesHit": 215,
     "notesMissed": 0,
-    "totalAttempts": 3,
+    "totalAttempts": 4,
     "songsCompleted": 1,
     "songsFlawlessed": 1,
-    "totalScore": 107761,
+    "totalScore": 160580,
     "longestCombo": 0
   },
   "levelStats": [
@@ -21,10 +21,24 @@
       "longestCombo": 70,
       "completed": true,
       "flawless": true,
-      "attempts": 3,
-      "notesHit": 145,
+      "attempts": 4,
+      "notesHit": 215,
       "notesMissed": 0,
       "bestAccuracy": 100.0
+    },
+    {
+      "levelName": "A New Day",
+      "levelAuthor": "Kai_Tobashi",
+      "levelUUID": "028bfbe8-44a5-4a16-a4e4-fe5a4be17501",
+      "levelVersion": 1,
+      "highscore": 0,
+      "longestCombo": 0,
+      "completed": false,
+      "flawless": false,
+      "attempts": 0,
+      "notesHit": 0,
+      "notesMissed": 0,
+      "bestAccuracy": 0.0
     }
   ]
 }

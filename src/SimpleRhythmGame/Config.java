@@ -681,7 +681,8 @@ public class Config {
 				varToReturn = Integer.toString(RandomAccess.levelComplete_Combo);
 			} else if (splitVariable[1].equals("Accuracy")) {
 				float accuracy = RandomAccess.levelComplete_Accuracy;
-				varToReturn = accuracy == 0f ? "0%" : Float.toString(Math.round(accuracy * 100) / 100f) + "%";
+				DecimalFormat formatter = new DecimalFormat("#,##0.0");
+				varToReturn = accuracy == 1f ? "100%" : (accuracy == 0f ? "0%" : formatter.format(accuracy) + "%");
 			}
 			
 			else {

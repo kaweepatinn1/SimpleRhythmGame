@@ -2,12 +2,12 @@
   "name": "A New Day",
   "author": "Kai_Tobashi",
   "version": 1,
-  "UUID": "ee48d63f-bffb-4c8c-a7be-56203e60b389",
+  "UUID": "028bfbe8-44a5-4a16-a4e4-fe5a4be17501",
   "songOffset": -20.0,
   "metronomeOffset": 620,
   "bpm": 180,
   "pps": 1.0,
-  "totalTimeSeconds": 126,
+  "totalTimeSeconds": 117,
   "timeSignature": [
     4,
     4
