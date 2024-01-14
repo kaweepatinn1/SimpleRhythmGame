@@ -311,7 +311,7 @@ public class Main extends JPanel implements KeyListener {
             			game.hit(noteInfo);
             		} else {
             			Sound.playRandomSoundOfType(Sound.SFX_hiHat1[0]);
-            			game.miss();
+            			game.miss(keyPressed);
             		}
             		Sound.playSound(Sound.SFX_hiHat1[0]);
             	} else if (keyPressed.equals("SnareDrum")) {
@@ -323,7 +323,7 @@ public class Main extends JPanel implements KeyListener {
             			game.hit(noteInfo);
             		} else {
             			Sound.playSound(Sound.SFX_snareDrum1[0]);
-            			game.miss();
+            			game.miss(keyPressed);
             		}
             	} else if (keyPressed.equals("CrashCymbal")) {
             		Object[] noteInfo = game.getClosestNote(Note.Note_CRASHCYMBAL);
@@ -333,7 +333,7 @@ public class Main extends JPanel implements KeyListener {
             			game.hit(noteInfo);
             		} else {
             			Sound.playSound(Sound.SFX_crashCymbal1[0]);
-            			game.miss();
+            			game.miss(keyPressed);
             		}
             	} else if (keyPressed.equals("Tom")) {
             		Object[] noteInfo = game.getClosestNote(Note.Note_TOM);
@@ -343,7 +343,7 @@ public class Main extends JPanel implements KeyListener {
             			game.hit(noteInfo);
             		} else {
             			Sound.playRandomSoundOfType(Sound.SFX_tom1[0]);
-            			game.miss();
+            			game.miss(keyPressed);
             		}
             	} else if (keyPressed.equals("KickDrum")) {
             		Object[] noteInfo = game.getClosestNote(Note.Note_KICKDRUM);
@@ -353,7 +353,7 @@ public class Main extends JPanel implements KeyListener {
             			game.hit(noteInfo);
             		} else {
             			Sound.playSound(Sound.SFX_kickDrum1[0]);
-            			game.miss();
+            			game.miss(keyPressed);
             		}
             	}
             }

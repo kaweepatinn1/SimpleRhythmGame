@@ -332,7 +332,16 @@ public class Game extends Thread {
 	}
 	
 	public void miss() {
-		 System.out.println("Miss!");
+		// System.out.println("Miss!");
+		incrementNotesMissed();
+		incrementCombo(false);
+		if (!noFail) {
+			incrementHealth(-10);
+		}
+	}
+	
+	public void miss(String key) {
+		System.out.println("Missed with keypress " + key);
 		incrementNotesMissed();
 		incrementCombo(false);
 		if (!noFail) {
@@ -342,7 +351,7 @@ public class Game extends Thread {
 	
 	public void miss(Note note) {
 		currentNotes.remove(note);
-		System.out.println("Miss!");
+		// System.out.println("Miss!");
 		incrementNotesMissed();
 		incrementCombo(false);
 		if (!noFail) {
