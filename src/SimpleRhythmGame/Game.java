@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Game extends Thread {
-	private static int debugStartTime = 10; // for DEBUG ONLY
+	private static int debugStartTime = 0; // for DEBUG ONLY
 	
 	public static int getDebugStartTime() {
 		return debugStartTime;

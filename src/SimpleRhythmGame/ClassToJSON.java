@@ -16,7 +16,7 @@ public class ClassToJSON extends FileIO {
 				200, // ms metronome offset (200 here)
 				75, // bpm
 				1f, // pps
-				10, // total time
+				29, // total time
 				new int[] {4,4}, // time signature
 				new Note[] {
 						new Note(
@@ -667,10 +667,10 @@ public class ClassToJSON extends FileIO {
 				"A New Day", // name
 				"Kai_Tobashi", // author
 				-20d, // ms offset
-				620, // ms metronome offset (200 here)
+				620, // ms metronome offset
 				180, // bpm
 				1f, // pps
-				121, // total time
+				126, // total time
 				new int[] {4,4}, // time signature
 				new Note[] {
 						new Note(
@@ -1269,7 +1269,7 @@ public class ClassToJSON extends FileIO {
 								),
 						new Note(
 								Note.Note_TOM, // note type
-								Note.Tom_HIGH, // note subtype
+								Note.Tom_MEDIUM, // note subtype
 								12, // bar
 								2, // beat
 								new int[] {2,4}, // subbeat
@@ -1278,7 +1278,7 @@ public class ClassToJSON extends FileIO {
 								),
 						new Note(
 								Note.Note_TOM, // note type
-								Note.Tom_HIGH, // note subtype
+								Note.Tom_MEDIUM, // note subtype
 								12, // bar
 								2, // beat
 								new int[] {3,4}, // subbeat
@@ -1287,7 +1287,7 @@ public class ClassToJSON extends FileIO {
 								),
 						new Note(
 								Note.Note_TOM, // note type
-								Note.Tom_HIGH, // note subtype
+								Note.Tom_MEDIUM, // note subtype
 								12, // bar
 								3, // beat
 								new int[] {0,4}, // subbeat
@@ -1296,7 +1296,7 @@ public class ClassToJSON extends FileIO {
 								),
 						new Note(
 								Note.Note_TOM, // note type
-								Note.Tom_MEDIUM, // note subtype
+								Note.Tom_LOW, // note subtype
 								12, // bar
 								3, // beat
 								new int[] {1,4}, // subbeat
@@ -1305,7 +1305,7 @@ public class ClassToJSON extends FileIO {
 								),
 						new Note(
 								Note.Note_TOM, // note type
-								Note.Tom_MEDIUM, // note subtype
+								Note.Tom_LOW, // note subtype
 								12, // bar
 								3, // beat
 								new int[] {2,4}, // subbeat
@@ -1314,7 +1314,7 @@ public class ClassToJSON extends FileIO {
 								),
 						new Note(
 								Note.Note_TOM, // note type
-								Note.Tom_MEDIUM, // note subtype
+								Note.Tom_LOW, // note subtype
 								12, // bar
 								3, // beat
 								new int[] {3,4}, // subbeat
@@ -1611,7 +1611,7 @@ public class ClassToJSON extends FileIO {
 								),
 						new Note(
 								Note.Note_TOM, // note type
-								Note.Tom_MEDIUM, // note subtype
+								Note.Tom_LOW, // note subtype
 								16, // bar
 								2, // beat
 								new int[] {2,4}, // subbeat
@@ -1620,7 +1620,7 @@ public class ClassToJSON extends FileIO {
 								),
 						new Note(
 								Note.Note_TOM, // note type
-								Note.Tom_MEDIUM, // note subtype
+								Note.Tom_LOW, // note subtype
 								16, // bar
 								2, // beat
 								new int[] {3,4}, // subbeat
@@ -1647,7 +1647,7 @@ public class ClassToJSON extends FileIO {
 								),
 						new Note(
 								Note.Note_TOM, // note type
-								Note.Tom_MEDIUM, // note subtype
+								Note.Tom_LOW, // note subtype
 								16, // bar
 								3, // beat
 								new int[] {2,4}, // subbeat
@@ -1656,7 +1656,7 @@ public class ClassToJSON extends FileIO {
 								),
 						new Note(
 								Note.Note_TOM, // note type
-								Note.Tom_MEDIUM, // note subtype
+								Note.Tom_LOW, // note subtype
 								16, // bar
 								3, // beat
 								new int[] {3,4}, // subbeat
@@ -2306,6 +2306,5532 @@ public class ClassToJSON extends FileIO {
 								Note.Note_HIHAT, // note type
 								Note.HiHat_OPEN, // note subtype
 								23, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								25, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								25, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								25, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								25, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								25, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								25, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								25, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								25, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								25, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								26, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								26, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								26, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								26, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								26, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								26, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								26, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								26, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								26, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								27, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								27, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								27, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								27, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								27, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								27, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								27, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								27, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								27, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								28, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								28, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								28, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								28, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								28, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								28, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								28, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								28, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								28, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								29, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								29, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								29, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								29, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								29, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								29, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								29, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								29, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								29, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								30, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								30, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								30, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								30, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								30, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								30, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								30, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								30, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								30, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								31, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								31, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								31, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								31, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								31, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								31, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								31, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								31, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								31, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								32, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								32, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								32, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								32, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								32, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_MEDIUM, // note subtype
+								32, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_MEDIUM, // note subtype
+								32, // bar
+								3, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_LOW, // note subtype
+								32, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_LOW, // note subtype
+								32, // bar
+								4, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_CRASHCYMBAL, // note type
+								0, // note subtype
+								32, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								33, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								33, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								33, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								33, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								33, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								33, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								33, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								33, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								33, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								34, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								34, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								34, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								34, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								34, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								34, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								34, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								34, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								34, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								35, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								35, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								35, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								35, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								35, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								35, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								35, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								35, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								35, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								36, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								36, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								36, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								36, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								36, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								36, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								36, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								36, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								36, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								37, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								37, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								37, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								37, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								37, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								37, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								37, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								37, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								37, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								38, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								38, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								38, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								38, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								38, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								38, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								38, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								38, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								38, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								39, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								39, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								39, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								39, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								39, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								39, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								39, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								39, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								39, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								40, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								40, // bar
+								1, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								40, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								40, // bar
+								2, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								40, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								40, // bar
+								2, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								40, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								40, // bar
+								3, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								40, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								40, // bar
+								3, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_CRASHCYMBAL, // note type
+								0, // note subtype
+								40, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								41, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								41, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								41, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								41, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								41, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								41, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								41, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								41, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								41, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								42, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								42, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								42, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								42, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								42, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								42, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								42, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								42, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								42, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								43, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								43, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								43, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								43, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								43, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								43, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								43, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								43, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								43, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								44, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								44, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								44, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								44, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								44, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								44, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								44, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								44, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								44, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								45, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								45, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								45, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								45, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								45, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								45, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								45, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								45, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								45, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								46, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								46, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								46, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								46, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								46, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								46, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								46, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								46, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								46, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								47, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								47, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								47, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								47, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								47, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								47, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								47, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								47, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								47, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								48, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_CLOSED, // note subtype
+								48, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_MEDIUM, // note subtype
+								48, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								48, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_MEDIUM, // note subtype
+								48, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								48, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_MEDIUM, // note subtype
+								48, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								48, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_MEDIUM, // note subtype
+								48, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								48, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_MEDIUM, // note subtype
+								48, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								48, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_MEDIUM, // note subtype
+								48, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								48, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								49, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								49, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								49, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								49, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								49, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								49, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								50, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								50, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								50, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								50, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								50, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								50, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								51, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								51, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								51, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								51, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								51, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								51, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								52, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_HIGH, // note subtype
+								52, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_HIGH, // note subtype
+								52, // bar
+								1, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_MEDIUM, // note subtype
+								52, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_MEDIUM, // note subtype
+								52, // bar
+								1, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_LOW, // note subtype
+								52, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_LOW, // note subtype
+								52, // bar
+								2, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_LOW, // note subtype
+								52, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_LOW, // note subtype
+								52, // bar
+								2, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								52, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								52, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								52, // bar
+								3, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								52, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								52, // bar
+								3, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								52, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_CRASHCYMBAL, // note type
+								0, // note subtype
+								52, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								53, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								53, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								53, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								53, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								53, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								53, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								54, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								54, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								54, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								54, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								54, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								54, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								55, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								55, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								55, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								55, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								55, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								55, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								55, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								55, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								55, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								55, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								56, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								56, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								56, // bar
+								1, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								56, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								56, // bar
+								1, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								56, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								56, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								56, // bar
+								2, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								56, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								56, // bar
+								2, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								56, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								56, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								56, // bar
+								3, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								56, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								56, // bar
+								3, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_CRASHCYMBAL, // note type
+								0, // note subtype
+								56, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								57, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								57, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								57, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								57, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								57, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								57, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								57, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								57, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								57, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								58, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								58, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								58, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								58, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								58, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								58, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								58, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								58, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								58, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								59, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								59, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								59, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								59, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								59, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								59, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								59, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								59, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								59, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								60, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								60, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								60, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								60, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_MEDIUM, // note subtype
+								60, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_MEDIUM, // note subtype
+								60, // bar
+								2, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_MEDIUM, // note subtype
+								60, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_LOW, // note subtype
+								60, // bar
+								3, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_LOW, // note subtype
+								60, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_LOW, // note subtype
+								60, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_CRASHCYMBAL, // note type
+								0, // note subtype
+								60, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								61, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								61, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								61, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								61, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								61, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								61, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								61, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								61, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								61, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								62, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								62, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								62, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								62, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								62, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								62, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								62, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								62, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								62, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								63, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								63, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								63, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								63, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								63, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								63, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								63, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								63, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								63, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								64, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								64, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								64, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								64, // bar
+								2, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_LOW, // note subtype
+								64, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_LOW, // note subtype
+								64, // bar
+								2, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								64, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								64, // bar
+								3, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_LOW, // note subtype
+								64, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_LOW, // note subtype
+								64, // bar
+								3, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_CRASHCYMBAL, // note type
+								0, // note subtype
+								64, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								65, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								65, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								65, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								65, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								65, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								65, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								65, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								65, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								65, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								65, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								65, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								65, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								66, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								66, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								66, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								66, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								66, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								66, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								66, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								66, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								66, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								66, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								66, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								66, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								67, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								67, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								67, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								67, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								67, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								67, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								67, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								67, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								67, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								67, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								67, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								67, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								68, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								68, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								68, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								68, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								68, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								68, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								68, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								68, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_HIGH, // note subtype
+								68, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								68, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_HIGH, // note subtype
+								68, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								68, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								68, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_HIGH, // note subtype
+								68, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								69, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								69, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								69, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								69, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								69, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								69, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								69, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								69, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								69, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								69, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								69, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								69, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								70, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								70, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								70, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								70, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								70, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								70, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								70, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								70, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								70, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								70, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								70, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								70, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_CRASHCYMBAL, // note type
+								0, // note subtype
+								71, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								71, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								71, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								71, // bar
+								1, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								71, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								71, // bar
+								2, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_CRASHCYMBAL, // note type
+								0, // note subtype
+								71, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								71, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								71, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								71, // bar
+								3, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								71, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								71, // bar
+								3, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_CRASHCYMBAL, // note type
+								0, // note subtype
+								71, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								71, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_HIGH, // note subtype
+								72, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_HIGH, // note subtype
+								72, // bar
+								2, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_HIGH, // note subtype
+								72, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_HIGH, // note subtype
+								72, // bar
+								2, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_MEDIUM, // note subtype
+								72, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_MEDIUM, // note subtype
+								72, // bar
+								3, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_MEDIUM, // note subtype
+								72, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_MEDIUM, // note subtype
+								72, // bar
+								3, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_CRASHCYMBAL, // note type
+								0, // note subtype
+								72, // bar
+								4, // beat
+								new int[] {4,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								73, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								73, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								73, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								73, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								73, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								73, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								73, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								73, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								73, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								74, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								74, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								74, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								74, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								74, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								74, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								74, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								74, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								74, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								75, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								75, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								75, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								75, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								75, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								75, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								75, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								75, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								75, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								76, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								76, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								76, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								76, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								76, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								76, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								76, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								76, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								76, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								77, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								77, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								77, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								77, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								77, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								77, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								77, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								77, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								77, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								78, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								78, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								78, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								78, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								78, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								78, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								78, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								78, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								78, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								79, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								79, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								79, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								79, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								79, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								79, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								79, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								79, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								79, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								80, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								80, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								80, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								80, // bar
+								2, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_LOW, // note subtype
+								80, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_LOW, // note subtype
+								80, // bar
+								2, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								80, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								80, // bar
+								3, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_LOW, // note subtype
+								80, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_TOM, // note type
+								Note.Tom_LOW, // note subtype
+								80, // bar
+								3, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_CRASHCYMBAL, // note type
+								0, // note subtype
+								80, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								81, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								81, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								81, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								81, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								81, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								81, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								81, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								81, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								81, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								82, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								82, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								82, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								82, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								82, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								82, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								82, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								82, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								82, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								83, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								83, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								83, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								83, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								83, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								83, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								83, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								83, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								83, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								84, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								84, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								84, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								84, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								84, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								84, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								84, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								84, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								84, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								85, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								85, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								85, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								85, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								85, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								85, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								85, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								85, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								85, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_KICKDRUM, // note type
+								0, // note subtype
+								86, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								86, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								86, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								86, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								86, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								86, // bar
+								3, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								86, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								86, // bar
+								3, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								86, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								86, // bar
+								4, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								86, // bar
+								4, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								86, // bar
+								4, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_CRASHCYMBAL, // note type
+								0, // note subtype
+								87, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								87, // bar
+								1, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								87, // bar
+								1, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								87, // bar
+								1, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								87, // bar
+								2, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								87, // bar
+								2, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_CRASHCYMBAL, // note type
+								0, // note subtype
+								87, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								87, // bar
+								2, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								87, // bar
+								3, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								87, // bar
+								3, // beat
+								new int[] {1,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								87, // bar
+								3, // beat
+								new int[] {2,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
+								87, // bar
+								3, // beat
+								new int[] {3,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_CRASHCYMBAL, // note type
+								0, // note subtype
+								87, // bar
+								4, // beat
+								new int[] {0,4}, // subbeat
+								1f, // speed
+								0 // ms offset
+								),
+						new Note(
+								Note.Note_HIHAT, // note type
+								Note.HiHat_OPEN, // note subtype
+								87, // bar
 								4, // beat
 								new int[] {0,4}, // subbeat
 								1f, // speed
