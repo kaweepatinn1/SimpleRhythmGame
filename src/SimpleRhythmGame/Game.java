@@ -247,15 +247,11 @@ public class Game extends Thread {
 	}
 	
 	public void checkForMiss() {
-		boolean missFound = false;
-		int k = 0;
-		while (missFound) {
-			Note note = currentNotes.get(k);
+		for (int i = 0 ; i < currentNotes.size() ; i ++) {
+			Note note = currentNotes.get(i);
 			if (getTimeSinceGameStart() > note.getCalculatedTimeFromStart() + Main.getConfig().getFORCED_millisecondLeniency() + 200 / currentLevel.getPPS()) {
 				miss(note);
-				k++;
-			} else {
-				missFound = true;
+				break;
 			}
 		}
 	}
@@ -336,7 +332,7 @@ public class Game extends Thread {
 	}
 	
 	public void miss() {
-		// System.out.println("Miss!");
+		 System.out.println("Miss!");
 		incrementNotesMissed();
 		incrementCombo(false);
 		if (!noFail) {
@@ -345,7 +341,8 @@ public class Game extends Thread {
 	}
 	
 	public void miss(Note note) {
-		// System.out.println("Miss!");
+		currentNotes.remove(note);
+		System.out.println("Miss!");
 		incrementNotesMissed();
 		incrementCombo(false);
 		if (!noFail) {
