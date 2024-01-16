@@ -50,6 +50,9 @@ public class Game extends Thread {
 	
 	public static final int hitLocation = 380;
 	
+	public boolean removingNote = false;
+	public ArrayList<Note> noteRemovalQueue;
+	
 	public Game(Level level, boolean noFail) {
 		currentLevel = level;
 		rawNotes = currentLevel.getSortedNotes();
@@ -66,6 +69,7 @@ public class Game extends Thread {
 		updateAccuracy();
 		health = 100;
 		this.noFail = noFail;
+		noteRemovalQueue = new ArrayList<>();
 		
 		if (!level.getName().equals("Tutorial")){
 			player = new AudioPlayer();
@@ -247,12 +251,10 @@ public class Game extends Thread {
 	}
 	
 	public void checkForMiss() {
-		for (int i = 0 ; i < currentNotes.size() ; i ++) {
-			Note note = currentNotes.get(i);
-			if (getTimeSinceGameStart() > note.getCalculatedTimeFromStart() + Main.getConfig().getFORCED_millisecondLeniency() + 200 / currentLevel.getPPS()) {
-				miss(note);
-				break;
-			}
+		Note note = currentNotes.get(0);
+		if (getTimeSinceGameStart() > note.getCalculatedTimeFromStart() + Main.getConfig().getFORCED_millisecondLeniency() + 200 / currentLevel.getPPS()) {
+			System.out.println("miss" + note.getCalculatedTimeFromStart() + "type" + note.getType());
+			miss(note);
 		}
 	}
 	
@@ -263,6 +265,13 @@ public class Game extends Thread {
 		int finalNotesMissed = notesMissed;
 		boolean finalCompleted = completed;
 		boolean finalFlawlessed = (finalNotesMissed == 0);
+		System.out.println(score);
+		System.out.println(Main.getPlayerData().getLevelStats(currentLevel).getHighscore());
+		if (score > Main.getPlayerData().getLevelStats(currentLevel).getHighscore()) {
+			RandomAccess.newHighscore = true;
+		} else {
+			RandomAccess.newHighscore = false;
+		}
 		return new Scores(finalCompleted, finalFlawlessed, finalScore, finalMaxCombo, finalNotesHit, finalNotesMissed);
 	}
 	
@@ -280,14 +289,6 @@ public class Game extends Thread {
 	
 	private void die() {
 		//TODO;
-	}
-	
-	public boolean checkIfGotNewHighscore() {
-		if (score > Main.getPlayerData().getLevelStats(currentLevel).getHighscore()) {
-			return true;
-		} else{
-			return false;
-		}
 	}
 	
 	public ArrayList<Note> getCurrentNotes() {
@@ -341,7 +342,7 @@ public class Game extends Thread {
 	}
 	
 	public void miss(String key) {
-		System.out.println("Missed with keypress " + key);
+		// System.out.println("Missed with keypress " + key);
 		incrementNotesMissed();
 		incrementCombo(false);
 		if (!noFail) {
@@ -350,7 +351,9 @@ public class Game extends Thread {
 	}
 	
 	public void miss(Note note) {
+		hitNotes.add(note);
 		currentNotes.remove(note);
+		System.out.println("note" + currentNotes.get(0).getCalculatedTimeFromStart());
 		// System.out.println("Miss!");
 		incrementNotesMissed();
 		incrementCombo(false);

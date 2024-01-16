@@ -1953,7 +1953,10 @@ public class Main extends JPanel implements KeyListener {
         
         //////////////////////
         
-        ClassToJSON.indieLevelOut(); // update level during dev
+        // update level during dev
+//        ClassToJSON.tutorialOut();
+//        ClassToJSON.indieLevelOut();
+        ClassToJSON.jPopOut();
         
         ////////////////////// Session Stats
         

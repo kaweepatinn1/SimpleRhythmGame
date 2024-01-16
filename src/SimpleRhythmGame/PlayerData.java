@@ -34,6 +34,7 @@ public class PlayerData {
 	}
 	
 	public LevelStats getLevelStats(Level toFindLevel) {
+//		System.out.println(toFindLevel.getUUID());
 		for (LevelStats levelStats : getLevelStats()) {
 			if (levelStats.getLevelUUID().equals(toFindLevel.getUUID())) {
 				return levelStats;

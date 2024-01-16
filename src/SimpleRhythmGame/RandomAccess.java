@@ -27,6 +27,9 @@ public class RandomAccess {
 	
 	public static Level leaderboardLevelSelected;
 	public static DatabaseData leaderboardData;
+	
+	public static boolean newHighscore;
+	
 	public RandomAccess(){
 		usernameToSet = "";
 		
@@ -47,6 +50,8 @@ public class RandomAccess {
 		
 		leaderboardLevelSelected = null;
 		leaderboardData = null;
+		
+		newHighscore = false;
 	}
 	
 	public static void setLevelStats(Level level) {

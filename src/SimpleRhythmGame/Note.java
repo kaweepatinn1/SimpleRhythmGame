@@ -1,5 +1,7 @@
 package SimpleRhythmGame;
 
+import java.util.UUID;
+
 public class Note {
 	private int type;
 	private int subtype; // for when one note has multiple options (tom)

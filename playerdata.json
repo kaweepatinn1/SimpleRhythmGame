@@ -2,13 +2,13 @@
   "username": "DefaultNano",
   "uuid": "8e9c3c66-e63d-4178-a3c3-ce5d894990d0",
   "stats": {
-    "timePlayedSeconds": 116,
-    "notesHit": 215,
-    "notesMissed": 0,
-    "totalAttempts": 4,
-    "songsCompleted": 1,
+    "timePlayedSeconds": 730,
+    "notesHit": 935,
+    "notesMissed": 4350,
+    "totalAttempts": 10,
+    "songsCompleted": 5,
     "songsFlawlessed": 1,
-    "totalScore": 160580,
+    "totalScore": 362702,
     "longestCombo": 0
   },
   "levelStats": [
@@ -21,8 +21,8 @@
       "longestCombo": 70,
       "completed": true,
       "flawless": true,
-      "attempts": 4,
-      "notesHit": 215,
+      "attempts": 5,
+      "notesHit": 285,
       "notesMissed": 0,
       "bestAccuracy": 100.0
     },
@@ -39,6 +39,62 @@
       "notesHit": 0,
       "notesMissed": 0,
       "bestAccuracy": 0.0
+    },
+    {
+      "levelName": "A New Day",
+      "levelAuthor": "Kai_Tobashi",
+      "levelUUID": "53affdf8-a1c2-48f2-8514-adf7dc8c0690",
+      "levelVersion": 1,
+      "highscore": 147795,
+      "longestCombo": 39,
+      "completed": true,
+      "flawless": false,
+      "attempts": 1,
+      "notesHit": 642,
+      "notesMissed": 4128,
+      "bestAccuracy": 13.45912
+    },
+    {
+      "levelName": "A New Day",
+      "levelAuthor": "Kai_Tobashi",
+      "levelUUID": "f1bd9c1c-0775-4483-9680-f5050326ac57",
+      "levelVersion": 1,
+      "highscore": 0,
+      "longestCombo": 0,
+      "completed": true,
+      "flawless": false,
+      "attempts": 1,
+      "notesHit": 0,
+      "notesMissed": 51,
+      "bestAccuracy": 0.0
+    },
+    {
+      "levelName": "A New Day",
+      "levelAuthor": "Kai_Tobashi",
+      "levelUUID": "0a5d7d7b-946c-49de-906c-d6d0d9c8860e",
+      "levelVersion": 1,
+      "highscore": 354,
+      "longestCombo": 2,
+      "completed": true,
+      "flawless": false,
+      "attempts": 1,
+      "notesHit": 2,
+      "notesMissed": 51,
+      "bestAccuracy": 3.7735848
+    },
+    {
+      "levelName": "A New Day",
+      "levelAuthor": "Kai_Tobashi",
+      "levelUUID": "9a19e029-bcac-449f-ba41-4fe76615cd88",
+      "levelVersion": 1,
+      "highscore": 819,
+      "longestCombo": 4,
+      "completed": true,
+      "flawless": false,
+      "attempts": 2,
+      "notesHit": 6,
+      "notesMissed": 120,
+      "bestAccuracy": 8.0
     }
   ]
 }

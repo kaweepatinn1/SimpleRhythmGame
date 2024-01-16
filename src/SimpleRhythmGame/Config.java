@@ -606,6 +606,10 @@ public class Config {
 			String percentage = formatter.format(Main.getGame().getAccuracy()).equals("100.0") ? "100" : Double.toString(Main.getGame().getAccuracy());
 			varToReturn = Integer.toString(Main.getGame().getScore()) 
 					+ " // " + percentage + "%";
+		} else if (splitVariable[0].equals("%NotesHit")) {
+			varToReturn = Integer.toString(Main.getGame().getNotesHit());
+		} else if (splitVariable[0].equals("%NotesMissed")) {
+			varToReturn = Integer.toString(Main.getGame().getNotesMissed());
 		} else if (splitVariable[0].equals("%Combo")) {
 			varToReturn = Integer.toString(Main.getGame().getCombo());
 		} else if (splitVariable[0].equals("%ScreenWidth")) {
@@ -616,13 +620,13 @@ public class Config {
 			varToReturn = Main.getGame().getCurrentLevelName();
 		} else if (splitVariable[0].equals("%BoolNewHighscore")){
 			if (splitVariable[1].equals("Show")) {
-				if (Main.getGame().checkIfGotNewHighscore()) {
+				if (RandomAccess.newHighscore) {
 					varToReturn = "New Highscore!";
 				} else {
 					varToReturn = "";
 				}
 			} else if (splitVariable[1].equals("Hide")) {
-				if (Main.getGame().checkIfGotNewHighscore()) {
+				if (RandomAccess.newHighscore) {
 					varToReturn = "";
 				} else {
 					varToReturn = "Score";
@@ -660,7 +664,8 @@ public class Config {
 			} else if (splitVariable[1].equals("Highscore")) {
 				varToReturn = Integer.toString(RandomAccess.levelHighscore);
 			} else if (splitVariable[1].equals("BestAccuracy")) {
-				varToReturn = Float.toString(RandomAccess.levelBestAccuracy) + "%";
+				DecimalFormat formatter = new DecimalFormat("#,##0.0");
+				varToReturn = formatter.format(RandomAccess.levelBestAccuracy) + "%";
 			} else if (splitVariable[1].equals("Flawless")) {
 				if (RandomAccess.levelFlawless) {
 					varToReturn = "Level Flawlessed!";
