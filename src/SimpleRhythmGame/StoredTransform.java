@@ -6,17 +6,19 @@ public class StoredTransform {
 	private double scaleX;
 	private double scaleY;
 	private double rotate;
+	private double opacity;
 	private long delayMillis;
 	private long timeToTransformMillis;
 	private int easeType;
 	
 	public StoredTransform(double transformX, double transformY, double scaleX, double scaleY, double rotate,
-			long delayMillis, long timeToTransformMillis, int easeType) {
+			double opacity, long delayMillis, long timeToTransformMillis, int easeType) {
 		this.transformX = transformX;
 		this.transformY = transformY;
 		this.scaleX = scaleX;
 		this.scaleY = scaleY;
 		this.rotate = rotate;
+		this.opacity = opacity;
 		this.delayMillis = delayMillis;
 		this.timeToTransformMillis = timeToTransformMillis;
 		this.easeType = easeType;
@@ -28,6 +30,7 @@ public class StoredTransform {
 		this.scaleX = clone.scaleX;
 		this.scaleY = clone.scaleY;
 		this.rotate = clone.rotate;
+		this.opacity = clone.opacity;
 		this.delayMillis = clone.delayMillis;
 		this.timeToTransformMillis = clone.timeToTransformMillis;
 		this.easeType = clone.easeType;
@@ -39,6 +42,7 @@ public class StoredTransform {
 		this.scaleX = clone.scaleX;
 		this.scaleY = clone.scaleY;
 		this.rotate = clone.rotate;
+		this.opacity = clone.opacity;
 		this.delayMillis = clone.delayMillis;
 		this.timeToTransformMillis = clone.timeToTransformMillis;
 		this.easeType = clone.easeType;
@@ -51,8 +55,8 @@ public class StoredTransform {
 		double newScaleY = Math.pow(scaleY, scale);
 		double newRotate = rotate * scale;
 		
-		return new StoredTransform(newTransformX, newTransformY, newScaleX, newScaleY, newRotate,
-				delayMillis, timeToTransformMillis, easeType);
+		return new StoredTransform(newTransformX, newTransformY, newScaleX, newScaleY, newRotate, 
+				opacity, delayMillis, timeToTransformMillis, easeType);
 	}
 	
 	public double getTransformX() {
@@ -103,12 +107,19 @@ public class StoredTransform {
 	public void setEaseType(int easeType) {
 		this.easeType = easeType;
 	}
+	public double getOpacity() {
+		return opacity;
+	}
+	public void setOpacity(int opacity) {
+		this.opacity = opacity;
+	}
 	
 	public static final StoredTransform Transform_ClickScaleDown = 
 			new StoredTransform(
 					0, 0, // x, y transform
 					0.95, 0.95, // scale transform (x, y)
 					0, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					100, // animation time (ms)
 					6 // (ease type)
@@ -119,6 +130,7 @@ public class StoredTransform {
 					-100, 0, // x, y transform
 					1, 1, // scale transform (x, y)
 					0, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					1000, // animation time (ms)
 					6 // (ease type)
@@ -129,6 +141,7 @@ public class StoredTransform {
 					100, 0, // x, y transform
 					1, 1, // scale transform (x, y)
 					0, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					1000, // animation time (ms)
 					6 // (ease type)
@@ -139,6 +152,7 @@ public class StoredTransform {
 					0, -100, // x, y transform
 					1, 1, // scale transform (x, y)
 					0, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					1000, // animation time (ms)
 					6 // (ease type)
@@ -149,6 +163,7 @@ public class StoredTransform {
 					0, 100, // x, y transform
 					1, 1, // scale transform (x, y)
 					0, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					1000, // animation time (ms)
 					6 // (ease type)
@@ -159,6 +174,7 @@ public class StoredTransform {
 					-100, 0, // x, y transform
 					1, 1, // scale transform (x, y)
 					0, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					500, // animation time (ms)
 					6 // (ease type)
@@ -169,6 +185,7 @@ public class StoredTransform {
 					100, 0, // x, y transform
 					1, 1, // scale transform (x, y)
 					0, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					500, // animation time (ms)
 					6 // (ease type)
@@ -179,6 +196,7 @@ public class StoredTransform {
 					0, -100, // x, y transform
 					1, 1, // scale transform (x, y)
 					0, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					500, // animation time (ms)
 					6 // (ease type)
@@ -189,6 +207,7 @@ public class StoredTransform {
 					0, 100, // x, y transform
 					1, 1, // scale transform (x, y)
 					0, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					500, // animation time (ms)
 					6 // (ease type)
@@ -199,6 +218,7 @@ public class StoredTransform {
 					-150, 0, // x, y transform
 					1, 1, // scale transform (x, y)
 					0, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					1000, // animation time (ms)
 					6 // (ease type)
@@ -209,6 +229,7 @@ public class StoredTransform {
 					150, 0, // x, y transform
 					1, 1, // scale transform (x, y)
 					0, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					1000, // animation time (ms)
 					6 // (ease type)
@@ -219,6 +240,7 @@ public class StoredTransform {
 					0, -150, // x, y transform
 					1, 1, // scale transform (x, y)
 					0, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					1000, // animation time (ms)
 					6 // (ease type)
@@ -229,6 +251,7 @@ public class StoredTransform {
 					0, 150, // x, y transform
 					1, 1, // scale transform (x, y)
 					0, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					1000, // animation time (ms)
 					6 // (ease type)
@@ -239,6 +262,7 @@ public class StoredTransform {
 					-150, 0, // x, y transform
 					1, 1, // scale transform (x, y)
 					0, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					500, // animation time (ms)
 					6 // (ease type)
@@ -249,6 +273,7 @@ public class StoredTransform {
 					150, 0, // x, y transform
 					1, 1, // scale transform (x, y)
 					0, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					500, // animation time (ms)
 					6 // (ease type)
@@ -259,6 +284,7 @@ public class StoredTransform {
 					0, -150, // x, y transform
 					1, 1, // scale transform (x, y)
 					0, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					500, // animation time (ms)
 					6 // (ease type)
@@ -269,6 +295,7 @@ public class StoredTransform {
 					0, 150, // x, y transform
 					1, 1, // scale transform (x, y)
 					0, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					500, // animation time (ms)
 					6 // (ease type)
@@ -279,6 +306,7 @@ public class StoredTransform {
 					0, 0, // x, y transform
 					1.05, 1.05, // scale transform (x, y)
 					20, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					500, // animation time (ms)
 					6 // (ease type)
@@ -289,6 +317,7 @@ public class StoredTransform {
 					0, 0, // x, y transform
 					1.05, 1.05, // scale transform (x, y)
 					-20, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					500, // animation time (ms)
 					6 // (ease type)
@@ -299,6 +328,7 @@ public class StoredTransform {
 					0, 0, // x, y transform
 					0, 0, // scale transform (x, y)
 					0, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					500, // animation time (ms)
 					6 // (ease type)
@@ -309,6 +339,7 @@ public class StoredTransform {
 					0, 0, // x, y transform
 					0.95, 0.95, // scale transform (x, y)
 					20, // rotate transform
+					1, // opacity multi
 					0, // offset (ms)
 					100, // animation time (ms)
 					6 // (ease type)

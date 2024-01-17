@@ -11,6 +11,7 @@ public class SpecialTransform {
 	private double scaleX;
 	private double scaleY;
 	private double rotate;
+	private double opacity;
 	
 	public SpecialTransform(StoredTransform storedTransform) {
 		transformX = storedTransform.getTransformX();
@@ -18,6 +19,7 @@ public class SpecialTransform {
 		scaleX = storedTransform.getScaleX();
 		scaleY = storedTransform.getScaleY();
 		rotate = storedTransform.getRotate();
+		opacity = storedTransform.getOpacity();
 		updateTransform();
 	}
 	
@@ -29,6 +31,7 @@ public class SpecialTransform {
 		scaleX = storedTransform.getScaleX();
 		scaleY = storedTransform.getScaleY();
 		rotate = storedTransform.getRotate();
+		opacity = storedTransform.getOpacity();
 		updateTransform();
 	}
 	
@@ -40,6 +43,7 @@ public class SpecialTransform {
 		scaleX = storedTransform.getScaleX();
 		scaleY = storedTransform.getScaleY();
 		rotate = storedTransform.getRotate();
+		opacity = storedTransform.getOpacity();
 		updateTransform();
 	}
 	
@@ -51,6 +55,7 @@ public class SpecialTransform {
 		scaleX = specialTransform.getScaleX();
 		scaleY = specialTransform.getScaleY();
 		rotate = specialTransform.getRotate();
+		opacity = specialTransform.getOpacity();
 		updateTransform();
 	}
 	
@@ -62,13 +67,14 @@ public class SpecialTransform {
 		scaleX = specialTransform.getScaleX();
 		scaleY = specialTransform.getScaleY();
 		rotate = specialTransform.getRotate();
+		opacity = specialTransform.getOpacity();
 		updateTransform();
 	}
 	
 	public SpecialTransform(
 			double transformX, double transformY, 
 			double scaleX, double scaleY, 
-			double rotate,
+			double rotate, double opacity,
 			double x, double y, double xSize, double ySize
 			) {
 		anchorX = x + xSize / 2;
@@ -78,19 +84,21 @@ public class SpecialTransform {
 		this.scaleX = scaleX;
 		this.scaleY = scaleY;
 		this.rotate = rotate;
+		this.opacity = opacity;
 		updateTransform();
 	}
 	
 	public SpecialTransform(
 			double transformX, double transformY, 
 			double scaleX, double scaleY, 
-			double rotate,
+			double rotate, double opacity,
 			double anchorX, double anchorY
 			) {
 		this.anchorX = anchorX;
 		this.anchorY = anchorY;
 		this.transformX = transformX;
 		this.transformY = transformY;
+		this.opacity = opacity;
 		this.scaleX = scaleX;
 		this.scaleY = scaleY;
 		this.rotate = rotate;
@@ -118,6 +126,7 @@ public class SpecialTransform {
 		scaleX = 1;
 		scaleY = 1;
 		rotate = 0;
+		opacity = 1;
 		updateTransform();
 	}
 	
@@ -136,6 +145,7 @@ public class SpecialTransform {
 		scaleX = 1;
 		scaleY = 1;
 		rotate = 0;
+		opacity = 1;
 		updateTransform();
 	}
 	
@@ -154,6 +164,7 @@ public class SpecialTransform {
 		scaleX = 1;
 		scaleY = 1;
 		rotate = 0;
+		opacity = 1;
 		updateTransform();
 	}
 	
@@ -167,7 +178,7 @@ public class SpecialTransform {
 	*/
 	public SpecialTransform(double transformX, double transformY, 
 			double scaleX, double scaleY, 
-			double rotate, RoundedArea inputArea) {
+			double rotate, double opacity,  RoundedArea inputArea) {
 		anchorX = inputArea.getX() + inputArea.getXSize() / 2;
 		anchorY = inputArea.getY() + inputArea.getYSize() / 2;
 		this.transformX = transformX;
@@ -175,6 +186,7 @@ public class SpecialTransform {
 		this.scaleX = scaleX;
 		this.scaleY = scaleY;
 		this.rotate = rotate;
+		this.opacity = opacity;
 		updateTransform();
 	}
 	
@@ -186,6 +198,7 @@ public class SpecialTransform {
 		scaleX = 1;
 		scaleY = 1;
 		rotate = 0;
+		opacity = 1;
 		updateTransform();
 	}
 	
@@ -197,6 +210,7 @@ public class SpecialTransform {
 		scaleX = 1;
 		scaleY = 1;
 		rotate = 0;
+		opacity = 1;
 		updateTransform();
 	}
 	
@@ -278,5 +292,13 @@ public class SpecialTransform {
 
 	public void setAnchorY(double anchorY) {
 		this.anchorY = anchorY;
+	}
+	
+	public double getOpacity() {
+		return opacity;
+	}
+	
+	public void setOpacity(double opacity) {
+		this.opacity = opacity;
 	}
 }

@@ -670,7 +670,7 @@ public class ClassToJSON extends FileIO {
 				"Kai_Tobashi", // author
 				1, // version
 				UUID.fromString("53affdf8-a1c2-48f2-8514-adf7dc8c0690"), // UUID
-				-20d, // ms offset
+				-15d, // ms offset
 				620, // ms metronome offset
 				180, // bpm
 				1f, // pps

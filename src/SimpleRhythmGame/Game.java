@@ -13,6 +13,7 @@ public class Game extends Thread {
 	
 	private Level currentLevel;
 	private AudioPlayer player;
+	private ArrayList<Element> gameGraphics;
 	
 	private Menu rawGameMenu;
 	
@@ -41,6 +42,7 @@ public class Game extends Thread {
 	private double accuracy;
 	// stored so doesn't have to be calculated every frame, and only every hit
 	private int health;
+	private boolean died;
 	private boolean noFail;
 	private boolean unpaused;
 	
@@ -48,13 +50,19 @@ public class Game extends Thread {
 	
 	private static transient BufferedImage noteImages[];
 	
-	public static final int hitLocation = 380;
+	public static final int hitLocation = 360;
 	
 	public boolean removingNote = false;
 	public ArrayList<Note> noteRemovalQueue;
 	
+	private static final int hit = 0;
+	private static final int hitPerfect = 1;
+	private static final int miss = 2;
+	private static final int die = 3;
+	
 	public Game(Level level, boolean noFail) {
 		currentLevel = level;
+		gameGraphics = new ArrayList<>();
 		rawNotes = currentLevel.getSortedNotes();
 		currentNotes = new ArrayList<>();
 		futureNotes = new ArrayList<>(Arrays.asList(rawNotes));
@@ -67,7 +75,8 @@ public class Game extends Thread {
 		notesHit = 0;
 		notesMissed = 0;
 		updateAccuracy();
-		health = 100;
+		health = 75;
+		died = false;
 		this.noFail = noFail;
 		noteRemovalQueue = new ArrayList<>();
 		
@@ -228,6 +237,7 @@ public class Game extends Thread {
 				// checks once per game cycle (at 1000fps)
 				checkForSongEnd();
 				checkForMiss();
+				checkRedundantGameElements();
 				
 				if (Main.getState().equals("Stopped")) {
 					currentThread().interrupt();
@@ -251,10 +261,14 @@ public class Game extends Thread {
 	}
 	
 	public void checkForMiss() {
-		Note note = currentNotes.get(0);
-		if (getTimeSinceGameStart() > note.getCalculatedTimeFromStart() + Main.getConfig().getFORCED_millisecondLeniency() + 200 / currentLevel.getPPS()) {
-			System.out.println("miss" + note.getCalculatedTimeFromStart() + "type" + note.getType());
-			miss(note);
+		int notesLength = currentNotes.size();
+		for (int i = 0 ; i < notesLength ; i++) {
+			Note note = currentNotes.get(0);
+			if (getTimeSinceGameStart() > note.getCalculatedTimeFromStart() + Main.getConfig().getFORCED_millisecondLeniency() + 200 / currentLevel.getPPS()) {
+//				System.out.println("miss" + note.getCalculatedTimeFromStart() + "type" + note.getType());
+				miss(note);
+				break;
+			}
 		}
 	}
 	
@@ -276,7 +290,7 @@ public class Game extends Thread {
 	}
 	
 	public void endSong() {
-		Scores score = summarizeFinalScores(true);
+		Scores score = summarizeFinalScores(!died);
 		RandomAccess.levelComplete(score);
 		Database.updateOldHighscore(currentLevel, Main.getPlayerData(), score);
 		Main.addPopup(1);
@@ -288,7 +302,10 @@ public class Game extends Thread {
 	}
 	
 	private void die() {
-		//TODO;
+		score = score / 2;
+		addGameGraphic(Game.die);
+		health = -99999999;
+		died = true;
 	}
 	
 	public ArrayList<Note> getCurrentNotes() {
@@ -316,20 +333,26 @@ public class Game extends Thread {
 		futureNotes.remove((Note) noteInfo[0]);
 		currentNotes.remove((Note) noteInfo[0]);
 		hitNotes.add((Note) noteInfo[0]);
-		System.out.println(noteInfo[1]);
+		System.out.println("Late by: " + noteInfo[1]);
 		incrementNotesHit();
 		// x2 for 5, x3 for 10, x4 for 15 and x5 for 20	
-		boolean perfect = Math.abs((double) noteInfo[1]) < 100;
+		boolean perfect = Math.abs((double) noteInfo[1]) < 25;
 		// System.out.println(perfect);
 		int timingScore = 200 - (int) Math.abs((double) noteInfo[1]);
 		// 200 points minus each ms delay
 		int comboMulti = Math.min(((combo / 5) + 1) , 5);
-		incrementScore(timingScore * comboMulti);
+		incrementScore(timingScore + (100 * (perfect ? 1 : 0)) * comboMulti);
 		incrementCombo(true);
 		if (!noFail) {
 			incrementHealth(1);
 		}
 		// System.out.println(note);
+		if (perfect) {
+			addGameGraphic(Game.hitPerfect);
+		} else {
+			addGameGraphic(Game.hit);
+		}
+		
 	}
 	
 	public void miss() {
@@ -337,8 +360,9 @@ public class Game extends Thread {
 		incrementNotesMissed();
 		incrementCombo(false);
 		if (!noFail) {
-			incrementHealth(-10);
+			incrementHealth(-5);
 		}
+		addGameGraphic(Game.miss);
 	}
 	
 	public void miss(String key) {
@@ -346,20 +370,22 @@ public class Game extends Thread {
 		incrementNotesMissed();
 		incrementCombo(false);
 		if (!noFail) {
-			incrementHealth(-10);
+			incrementHealth(-2); // pressed key when not supposed to, lose 2
 		}
+		addGameGraphic(Game.miss);
 	}
 	
 	public void miss(Note note) {
 		hitNotes.add(note);
 		currentNotes.remove(note);
-		System.out.println("note" + currentNotes.get(0).getCalculatedTimeFromStart());
+//		System.out.println("note" + currentNotes.get(0).getCalculatedTimeFromStart());
 		// System.out.println("Miss!");
 		incrementNotesMissed();
 		incrementCombo(false);
 		if (!noFail) {
-			incrementHealth(-10);
+			incrementHealth(-5); // missed a note, lose 5
 		}
+		addGameGraphic(Game.miss);
 	}
 
 	public double getMillisPassed() {
@@ -383,7 +409,11 @@ public class Game extends Thread {
 	}
 
 	public void incrementScore(int score) {
-		this.score = this.score + score;
+		if (died) {
+			this.score = this.score + (score / 2);
+		} else {
+			this.score = this.score + score;
+		}
 	}
 
 	public int getCombo() {
@@ -401,9 +431,11 @@ public class Game extends Thread {
 	}
 
 	public void incrementHealth(int addHealth) {
-		this.health = Math.min(this.health + addHealth, 100);
-		if (health < 0) {
-			die();
+		if (!died) {
+			this.health = Math.min(this.health + addHealth, 100);
+			if (health < 0) {
+				die();
+			}
 		}
 	}
 	
@@ -449,7 +481,7 @@ public class Game extends Thread {
 		accuracy = (notesMissed == 0) ? 100 : Math.round(((double) notesHit / (double) (notesHit + notesMissed)) * 1000d) / 10d;
 	}
 
-	public boolean isNoFail() {
+	public boolean getNoFail() {
 		return noFail;
 	}
 	
@@ -497,5 +529,191 @@ public class Game extends Thread {
 	
 	public double getTimeSinceGameStart() {
 		return Framerate.getCurrentTime() - getMillisStarted();
+	}
+	
+	public Element[] getGameGraphics() {
+		if (gameGraphics.size() > 0) {
+			return gameGraphics.toArray(new Element[gameGraphics.size()]);
+		} else {
+			return new Element[] {};
+		}
+	}
+	
+	private void checkRedundantGameElements() {
+		boolean stopRemoving = false;
+		while (!stopRemoving) {
+			if (gameGraphics.size() == 0) {
+				break;
+			}
+			if (gameGraphics.get(0).getTransform()[2].getCurrentTime() >= 1) {
+				gameGraphics.remove(0);
+//				System.out.println("removed");
+			} else {
+				stopRemoving = true;
+			}
+		}
+	}
+	
+	private void addGameGraphic(int type) {
+		if (type == Game.hit) {
+			Element element = new Element(
+					new Selector(
+							new int[]{-1,-1}, // Selector Index
+							new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+							),
+						-1, // mask index
+						false, // hover overlap
+						-1, // hover effect
+						-1, // click effect
+						21 + (int) Math.round(Math.random() * 3), // arbritraty animation (to be used for scroll)
+						DefaultValues.TransformIndex_500msScale0, // entry animation
+					new TextBox(
+						//Text
+						1f, // scale
+						"noFunction", // function
+						"Score", // name
+						new Text(
+								"Nice!", // text
+								"center", "center", // align
+								0, 0, // text offset (x, y)
+								70, // text size
+								6, // text color (index of colors)
+								"Archivo Narrow", // font
+								false // bold
+								),
+						new RoundedArea(
+							(int) Math.round(Math.random() * 800) + 500,
+							(int) Math.round(Math.random() * 400) + 400
+							, 0, 0, 0  // x, y, xSize, ySize, round%
+							),
+						DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+						255, // opacity (0-255)
+						8, // shadowOffset
+						5, 6 // strokeWidth, strokeColor
+						));
+			System.out.println(Main.getScale());
+			element = element.getScaledInstance(Main.getScale(), Main.getScale());
+			element.animateScroll(1);
+			gameGraphics.add(element);
+		} else if (type == Game.hitPerfect) {
+			Element element = new Element(
+					new Selector(
+							new int[]{-1,-1}, // Selector Index
+							new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+							),
+						-1, // mask index
+						false, // hover overlap
+						-1, // hover effect
+						-1, // click effect
+						21 + (int) Math.round(Math.random() * 3), // arbritraty animation (to be used for scroll)
+						DefaultValues.TransformIndex_500msScale0, // entry animation
+					new TextBox(
+						//Text
+						1f, // scale
+						"noFunction", // function
+						"Score", // name
+						new Text(
+								"PERFECT!", // text
+								"center", "center", // align
+								0, 0, // text offset (x, y)
+								70, // text size
+								6, // text color (index of colors)
+								"Archivo Narrow", // font
+								true // bold
+								),
+						new RoundedArea(
+							(int) Math.round(Math.random() * 800) + 500,
+							(int) Math.round(Math.random() * 400) + 400
+							, 0, 0, 0  // x, y, xSize, ySize, round%
+							),
+						DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+						255, // opacity (0-255)
+						8, // shadowOffset
+						5, 6 // strokeWidth, strokeColor
+						));
+			System.out.println(Main.getScale());
+			element = element.getScaledInstance(Main.getScale(), Main.getScale());
+			element.animateScroll(1);
+			gameGraphics.add(element);
+		} else if (type == Game.miss) {
+			Element element = new Element(
+					new Selector(
+							new int[]{-1,-1}, // Selector Index
+							new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+							),
+						-1, // mask index
+						false, // hover overlap
+						-1, // hover effect
+						-1, // click effect
+						21 + (int) Math.round(Math.random() * 3), // arbritraty animation (to be used for scroll)
+						DefaultValues.TransformIndex_500msScale0, // entry animation
+					new TextBox(
+						//Text
+						1f, // scale
+						"noFunction", // function
+						"Score", // name
+						new Text(
+								"Miss", // text
+								"center", "center", // align
+								0, 0, // text offset (x, y)
+								50, // text size
+								6, // text color (index of colors)
+								"Archivo Narrow", // font
+								true // bold
+								),
+						new RoundedArea(
+							(int) Math.round(Math.random() * 800) + 500,
+							(int) Math.round(Math.random() * 400) + 400
+							, 0, 0, 0  // x, y, xSize, ySize, round%
+							),
+						DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+						255, // opacity (0-255)
+						8, // shadowOffset
+						5, 6 // strokeWidth, strokeColor
+						));
+			System.out.println(Main.getScale());
+			element = element.getScaledInstance(Main.getScale(), Main.getScale());
+			element.animateScroll(1);
+			gameGraphics.add(element);
+		}else if (type == Game.die) {
+			Element element = new Element(
+					new Selector(
+							new int[]{-1,-1}, // Selector Index
+							new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+							),
+						-1, // mask index
+						false, // hover overlap
+						-1, // hover effect
+						-1, // click effect
+						25, // arbritraty animation (to be used for scroll)
+						DefaultValues.TransformIndex_500msScale0, // entry animation
+					new TextBox(
+						//Text
+						1f, // scale
+						"noFunction", // function
+						"Score", // name
+						new Text(
+								"You Died!", // text
+								"center", "center", // align
+								0, 0, // text offset (x, y)
+								100, // text size
+								6, // text color (index of colors)
+								"Archivo Narrow", // font
+								true // bold
+								),
+						new RoundedArea(
+							960, 540,
+							0, 0, 0  // x, y, xSize, ySize, round%
+							),
+						DefaultValues.Color_ACCENT, // box color (index of colors)
+						255, // opacity (0-255)
+						8, // shadowOffset
+						5, 6 // strokeWidth, strokeColor
+						));
+			System.out.println(Main.getScale());
+			element = element.getScaledInstance(Main.getScale(), Main.getScale());
+			element.animateScroll(1);
+			gameGraphics.add(element);
+		}
 	}
 }

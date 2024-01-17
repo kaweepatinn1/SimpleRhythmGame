@@ -209,7 +209,75 @@ public class DefaultValues {
 					new RoundedArea(88, 163, 1746, 796, 0) // 1. Notes
 					// Insert here
 				},
-				DefaultValues.StoredTransforms_DEFAULT(),
+				new StoredTransform[] {
+						StoredTransform.Transform_ClickScaleDown,
+						StoredTransform.Transform_1sLeft100,
+						StoredTransform.Transform_1sRight100,
+						StoredTransform.Transform_1sUp100,
+						StoredTransform.Transform_1sDown100,
+						StoredTransform.Transform_500msLeft100,
+						StoredTransform.Transform_500msRight100,
+						StoredTransform.Transform_500msUp100,
+						StoredTransform.Transform_500msDown100,
+						StoredTransform.Transform_1sLeft150,
+						StoredTransform.Transform_1sRight150,
+						StoredTransform.Transform_1sUp150,
+						StoredTransform.Transform_1sDown150,
+						StoredTransform.Transform_500msLeft150,
+						StoredTransform.Transform_500msRight150,
+						StoredTransform.Transform_500msUp150,
+						StoredTransform.Transform_500msDown150,
+						StoredTransform.Transform_500msScaleUp,
+						StoredTransform.Transform_500msScaleUpRotateLeft20,
+						StoredTransform.Transform_500msScale0,
+						StoredTransform.Transform_ClickScaleDownRotate20,
+						new StoredTransform( // 21. game text
+								100, 50, // x, y transform
+								1, 1, // scale transform (x, y)
+								-30, // rotate transform
+								0, // opacity multi
+								0, // offset (ms)
+								750, // animation time (ms)
+								Easing.easeOutQuad // (ease type)
+							),
+						new StoredTransform( // 22. game text
+								100, 50, // x, y transform
+								1, 1, // scale transform (x, y)
+								30, // rotate transform
+								0, // opacity multi
+								0, // offset (ms)
+								750, // animation time (ms)
+								Easing.easeOutQuad // (ease type)
+							),
+						new StoredTransform( // 23. game text
+								100, 50, // x, y transform
+								1, 1, // scale transform (x, y)
+								-15, // rotate transform
+								0, // opacity multi
+								0, // offset (ms)
+								750, // animation time (ms)
+								Easing.easeOutQuad // (ease type)
+							),
+						new StoredTransform( // 24. game text
+								100, 50, // x, y transform
+								1, 1, // scale transform (x, y)
+								15, // rotate transform
+								0, // opacity multi
+								0, // offset (ms)
+								750, // animation time (ms)
+								Easing.easeOutQuad // (ease type)
+							),
+						new StoredTransform( // 25. death animation
+								0, 0, // x, y transform
+								5, 5, // scale transform (x, y)
+								360, // rotate transform
+								0, // opacity multi
+								2000, // offset (ms)
+								2500, // animation time (ms)
+								Easing.easeInQuad // (ease type)
+							),
+
+				},
 				new Element[] {
 						new Element(
 								new Selector(
@@ -369,7 +437,7 @@ public class DefaultValues {
 									"noFunction", // function
 									"Score", // name
 									new Text(
-											"%NotesMissed", // text
+											"%ScorePercentage", // text
 											"left", "center", // align
 											0, -9, // text offset (x, y)
 											50, // text size
@@ -378,7 +446,7 @@ public class DefaultValues {
 											false // bold
 											),
 									new RoundedArea(
-										500, 219, 0, 0, 0  // x, y, xSize, ySize, round%
+										250, 219, 0, 0, 0  // x, y, xSize, ySize, round%
 										),
 									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
 									255, // opacity (0-255)
@@ -401,10 +469,10 @@ public class DefaultValues {
 									//Text
 									1f, // scale
 									"noFunction", // function
-									"Score", // name
+									"Health", // name
 									new Text(
-											"%ScorePercentage", // text
-											"left", "center", // align
+											"%Health", // text
+											"center", "center", // align
 											0, -9, // text offset (x, y)
 											50, // text size
 											6, // text color (index of colors)
@@ -412,7 +480,7 @@ public class DefaultValues {
 											false // bold
 											),
 									new RoundedArea(
-										250, 219, 0, 0, 0  // x, y, xSize, ySize, round%
+										960, 219, 0, 0, 0  // x, y, xSize, ySize, round%
 										),
 									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
 									255, // opacity (0-255)
@@ -1000,6 +1068,7 @@ public class DefaultValues {
 							-20, 0, // x, y transform
 							0.95, 0.95, // scale transform (x, y)
 							0, // rotate transform
+							1, // opacity multi
 							0, // offset (ms)
 							100, // animation time (ms)
 							6 // (ease type)
@@ -1008,6 +1077,7 @@ public class DefaultValues {
 							75, 0, // x, y transform
 							1, 1, // scale transform (x, y)
 							0, // rotate transform
+							1, // opacity multi
 							0, // offset (ms)
 							500, // animation time (ms)
 							6 // (ease type)
@@ -1224,6 +1294,7 @@ public class DefaultValues {
 									-200, 0, // x, y transform
 									1, 1, // scale transform (x, y)
 									0, // rotate transform
+									1, // opacity multi
 									0, // offset (ms)
 									750, // animation time (ms)
 									6 // (ease type)
@@ -1232,6 +1303,7 @@ public class DefaultValues {
 									-200, 0, // x, y transform
 									1, 1, // scale transform (x, y)
 									0, // rotate transform
+									1, // opacity multi
 									0, // offset (ms)
 									500, // animation time (ms)
 									6 // (ease type)
@@ -1240,6 +1312,7 @@ public class DefaultValues {
 									0, 120, // x, y transform
 									1, 1, // scale transform (x, y)
 									0, // rotate transform
+									1, // opacity multi
 									0, // offset (ms)
 									400, // animation time (ms)
 									6 // (ease type)
@@ -2008,6 +2081,7 @@ public class DefaultValues {
 										-200, 0, // x, y transform
 										1, 1, // scale transform (x, y)
 										0, // rotate transform
+										1, // opacity multi
 										0, // offset (ms)
 										750, // animation time (ms)
 										6 // (ease type)
@@ -2016,6 +2090,7 @@ public class DefaultValues {
 										-200, 0, // x, y transform
 										1, 1, // scale transform (x, y)
 										0, // rotate transform
+										1, // opacity multi
 										0, // offset (ms)
 										500, // animation time (ms)
 										6 // (ease type)
@@ -2024,6 +2099,7 @@ public class DefaultValues {
 										0, 120, // x, y transform
 										1, 1, // scale transform (x, y)
 										0, // rotate transform
+										1, // opacity multi
 										0, // offset (ms)
 										400, // animation time (ms)
 										6 // (ease type)
@@ -3701,6 +3777,7 @@ public class DefaultValues {
 										-200, 0, // x, y transform
 										1, 1, // scale transform (x, y)
 										0, // rotate transform
+										1, // opacity multi
 										0, // offset (ms)
 										750, // animation time (ms)
 										6 // (ease type)
@@ -3709,6 +3786,7 @@ public class DefaultValues {
 										-200, 0, // x, y transform
 										1, 1, // scale transform (x, y)
 										0, // rotate transform
+										1, // opacity multi
 										0, // offset (ms)
 										500, // animation time (ms)
 										6 // (ease type)
@@ -4693,6 +4771,7 @@ public class DefaultValues {
 										-200, 0, // x, y transform
 										1, 1, // scale transform (x, y)
 										0, // rotate transform
+										1, // opacity multi
 										0, // offset (ms)
 										750, // animation time (ms)
 										6 // (ease type)
@@ -4701,6 +4780,7 @@ public class DefaultValues {
 										-200, 0, // x, y transform
 										1, 1, // scale transform (x, y)
 										0, // rotate transform
+										1, // opacity multi
 										0, // offset (ms)
 										500, // animation time (ms)
 										6 // (ease type)
@@ -6666,6 +6746,7 @@ public class DefaultValues {
 										-200, 0, // x, y transform
 										1, 1, // scale transform (x, y)
 										0, // rotate transform
+										1, // opacity multi
 										0, // offset (ms)
 										750, // animation time (ms)
 										6 // (ease type)
@@ -6674,6 +6755,7 @@ public class DefaultValues {
 										-200, 0, // x, y transform
 										1, 1, // scale transform (x, y)
 										0, // rotate transform
+										1, // opacity multi
 										0, // offset (ms)
 										500, // animation time (ms)
 										6 // (ease type)
@@ -7389,6 +7471,7 @@ public class DefaultValues {
 										-200, 0, // x, y transform
 										1, 1, // scale transform (x, y)
 										0, // rotate transform
+										1, // opacity multi
 										0, // offset (ms)
 										750, // animation time (ms)
 										6 // (ease type)
@@ -7397,6 +7480,7 @@ public class DefaultValues {
 										-200, 0, // x, y transform
 										1, 1, // scale transform (x, y)
 										0, // rotate transform
+										1, // opacity multi
 										0, // offset (ms)
 										500, // animation time (ms)
 										6 // (ease type)
@@ -7405,6 +7489,7 @@ public class DefaultValues {
 										0, 85, // x, y transform
 										1, 1, // scale transform (x, y)
 										0, // rotate transform
+										1, // opacity multi
 										0, // offset (ms)
 										400, // animation time (ms)
 										6 // (ease type)
@@ -8432,13 +8517,15 @@ public class DefaultValues {
 										-200, 0, // x, y transform
 										1, 1, // scale transform (x, y)
 										0, // rotate transform
+										1, // opacity multi
 										0, // offset (ms)
 										750, // animation time (ms)
 										6 // (ease type)
 									),
 								new StoredTransform( // 10 --> 22. -200 x (f box to center)
 										-200, 0, // x, y transform
-										1, 1, // scale transform (x, y)
+										1, 1, // scale transform
+										1, // opacity multi (x, y)
 										0, // rotate transform
 										0, // offset (ms)
 										500, // animation time (ms)
@@ -8801,6 +8888,7 @@ public class DefaultValues {
 									-200, 0, // x, y transform
 									1, 1, // scale transform (x, y)
 									0, // rotate transform
+									1, // opacity multi
 									0, // offset (ms)
 									750, // animation time (ms)
 									6 // (ease type)
@@ -8809,6 +8897,7 @@ public class DefaultValues {
 									-200, 0, // x, y transform
 									1, 1, // scale transform (x, y)
 									0, // rotate transform
+									1, // opacity multi
 									0, // offset (ms)
 									500, // animation time (ms)
 									6 // (ease type)
@@ -8817,6 +8906,7 @@ public class DefaultValues {
 									0, 120, // x, y transform
 									1, 1, // scale transform (x, y)
 									0, // rotate transform
+									1, // opacity multi
 									0, // offset (ms)
 									400, // animation time (ms)
 									6 // (ease type)
@@ -9909,6 +9999,7 @@ public class DefaultValues {
 									-200, 0, // x, y transform
 									1, 1, // scale transform (x, y)
 									0, // rotate transform
+									1, // opacity multi
 									0, // offset (ms)
 									750, // animation time (ms)
 									6 // (ease type)
@@ -9917,6 +10008,7 @@ public class DefaultValues {
 									-200, 0, // x, y transform
 									1, 1, // scale transform (x, y)
 									0, // rotate transform
+									1, // opacity multi
 									0, // offset (ms)
 									500, // animation time (ms)
 									6 // (ease type)
@@ -9925,6 +10017,7 @@ public class DefaultValues {
 									0, 120, // x, y transform
 									1, 1, // scale transform (x, y)
 									0, // rotate transform
+									1, // opacity multi
 									0, // offset (ms)
 									400, // animation time (ms)
 									6 // (ease type)

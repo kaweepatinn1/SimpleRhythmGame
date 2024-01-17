@@ -2,6 +2,13 @@ package SimpleRhythmGame;
 
 public class Easing {
 	
+	public static final int easeInSine = 1;
+	public static final int easeOutSine = 2;
+	public static final int easeInOutSine = 3;
+	public static final int easeInQuad = 4;
+	public static final int easeOutQuad = 5;
+	public static final int easeInOutQuad = 6;
+	
 	public static double ease(int type, double x) {
 		boolean valid = false;
 		double easeValue = -1;

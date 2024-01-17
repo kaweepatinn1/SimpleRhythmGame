@@ -669,7 +669,7 @@ public class Element {
 		this.hoverOverlap = hoverOverlap;
 	}
 	
-	public Element scale(double xScale, double yScale) {
+	public Element getScaledInstance(double xScale, double yScale) {
 		Element currentElement = this;
 		Element toReturn = null;
 		

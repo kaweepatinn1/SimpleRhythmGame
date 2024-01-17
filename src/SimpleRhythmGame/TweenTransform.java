@@ -89,7 +89,7 @@ public class TweenTransform {
 	
 	public double getCurrentTime() {
 		double currentTime = Framerate.getCurrentTime();
-		double timePassed = Math.max((currentTime - initTimeMillis)
+		double timePassed = Math.max((currentTime - startTimeMillis)
 				, 0) 
 				/ 
 				(double) (endTimeMillis - startTimeMillis);
@@ -134,6 +134,7 @@ public class TweenTransform {
 				double ogRotate = ogTransform.getRotate();
 				double ogAnchorX = ogTransform.getAnchorX();
 				double ogAnchorY = ogTransform.getAnchorY();
+				double ogOpacity = ogTransform.getOpacity();
 				
 				double newX = newTransform.getTransformX();
 				double newY = newTransform.getTransformY();
@@ -142,6 +143,7 @@ public class TweenTransform {
 				double newRotate = newTransform.getRotate();
 				double newAnchorX = newTransform.getAnchorX();
 				double newAnchorY = newTransform.getAnchorY();
+				double newOpacity = newTransform.getOpacity();
 				
 				toReturn = new SpecialTransform(
 						ogX * (1 - easeCompletion) + newX * easeCompletion,
@@ -149,6 +151,7 @@ public class TweenTransform {
 						ogXScale * (1 - easeCompletion) + newXScale * easeCompletion,
 						ogYScale * (1 - easeCompletion) + newYScale * easeCompletion,
 						ogRotate * (1 - easeCompletion) + newRotate * easeCompletion,
+						ogOpacity * (1 - easeCompletion) + newOpacity * easeCompletion,
 						ogAnchorX * (1 - easeCompletion) + newAnchorX * easeCompletion,
 						ogAnchorY * (1 - easeCompletion) + newAnchorY * easeCompletion
 						);

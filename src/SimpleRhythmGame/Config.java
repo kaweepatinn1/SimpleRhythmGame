@@ -612,6 +612,17 @@ public class Config {
 			varToReturn = Integer.toString(Main.getGame().getNotesMissed());
 		} else if (splitVariable[0].equals("%Combo")) {
 			varToReturn = Integer.toString(Main.getGame().getCombo());
+		} else if (splitVariable[0].equals("%Health")) {
+			if (Main.getGame().getNoFail()) {
+				varToReturn = "";
+			} else {
+				int HP = Main.getGame().getHealth();
+				if (HP > 0) {
+					varToReturn = "Health: " + HP;
+				} else {
+					varToReturn = "Dead (50% Less Score)";
+				}
+			}
 		} else if (splitVariable[0].equals("%ScreenWidth")) {
 			varToReturn = Integer.toString(getSizeToForce());
 		} else if (splitVariable[0].equals("%Fullscreen")) {

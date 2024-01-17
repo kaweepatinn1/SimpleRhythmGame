@@ -614,10 +614,14 @@ public class Main extends JPanel implements KeyListener {
         
         List<Element> finalElements = new ArrayList<>();
         int extra = 0;
+        if (Main.getCurrentScaledMenu().getMenuName().equals("Gameplay")) {
+        	extra = (Main.getGame().getGameGraphics().length > 0 ? 1 : 0);
+        }
         for (int iter = -1 ; iter < popupIndexes.length + extra; iter++) {
         	Element[] toRender = null;
         	if (iter > popupIndexes.length - 1) {
-        		
+        		toRender = Main.getGame().getGameGraphics();
+				opacityMulti = 1;
         	} else if (iter == -1) {
         		toRender = scaledMenu.getElements();
         		opacityMulti = 1;
@@ -958,27 +962,31 @@ public class Main extends JPanel implements KeyListener {
             // ^ Textbox section
             // v Text / Image section
             AffineTransform oldForm = g2d.getTransform();
-        	
+        	double extraOpacityMulti = 1;
             if (textbox.getRenderableObject() != null) { // render image if contained
             	for (int k = currentElement.getTransform().length - 1 ; k > -1 ; k--) {
             		if (currentElement.getTransform()[k].getNewTransform() != null) {
             			g2d.transform(currentElement.getTransform()[k].getCurrentPosition().getFinalTransform());
+            			extraOpacityMulti = extraOpacityMulti * currentElement.getTransform()[k].getCurrentPosition().getOpacity();
     	        	}
             	}
             	Renderable renderable = textbox.getRenderableObject();
             	BufferedImage image = renderable.getImage();
-            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacityMulti * ((float) renderable.getOpacity())/255));
+            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (Math.min((float) extraOpacityMulti, 1f)) * opacityMulti * ((float) renderable.getOpacity())/255));
             	g2d.drawImage(image, textbox.getX() + renderable.getX(), textbox.getY() + renderable.getY(), null);
-            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacityMulti));
+            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (Math.min((float) extraOpacityMulti, 1f)) * opacityMulti));
             	// Reset the composite after using it
             	g2d.setTransform(oldForm);
             } 
             
             if (textbox.getText() != null){ // render text if contained
             	// g2d.translate(-textbox.getOffsetX(), -textbox.getOffsetY());
+            	extraOpacityMulti = 1;
                 for (int k = currentElement.getTransform().length - 1 ; k > -1 ; k--) {
             		if (currentElement.getTransform()[k].getNewTransform() != null) {
             			g2d.transform(currentElement.getTransform()[k].getCurrentPosition().getFinalTransform());
+            			extraOpacityMulti = extraOpacityMulti * currentElement.getTransform()[k].getCurrentPosition().getOpacity();
+//            			System.out.println(currentElement.getTransform()[k].getCurrentPosition().getOpacity());
     	        	}
             	}
                 // g2d.translate(textbox.getOffsetX(), textbox.getOffsetY());
@@ -1006,6 +1014,7 @@ public class Main extends JPanel implements KeyListener {
 		            int finalX = roundRectAttributes.getX() + (textbox.getXSize() / 2) + textbox.getOffsetX() + extraAlignX;
 		            int finalY = roundRectAttributes.getY() + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY;
 		            finalY = finalY + (fontMetrics.getAscent() * i);
+		            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (Math.min((float) extraOpacityMulti, 1f)) * opacityMulti));
 		            g2d.drawString(lineText, finalX, finalY);
 	            }
 	            
@@ -1019,6 +1028,7 @@ public class Main extends JPanel implements KeyListener {
             g2d.draw(finalRect);
 
         } else if (currentElement.isTextfield()) {
+        	double extraOpacityMulti = 1;
         	TextField textfield = currentElement.getTextfield();
         	
         	int maskIndex = currentElement.getMaskIndex();
@@ -1047,6 +1057,7 @@ public class Main extends JPanel implements KeyListener {
         	for (int k = currentElement.getTransform().length - 1 ; k > -1 ; k--) {
         		if (currentElement.getTransform()[k].getNewTransform() != null) {
 	        		finalRect = currentElement.getTransform()[k].getCurrentPosition().getFinalTransform().createTransformedShape(finalRect);
+        			extraOpacityMulti = extraOpacityMulti * currentElement.getTransform()[k].getCurrentPosition().getOpacity();
 	        	}
         	}
         
@@ -1059,11 +1070,11 @@ public class Main extends JPanel implements KeyListener {
         		Shape shadowRect = shadow.createTransformedShape(finalRect);
             	g2d.setColor(new Color(0, 0, 0, 100));
             	
-            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f * opacityMulti));
+            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f * opacityMulti * (Math.min((float) extraOpacityMulti, 1f))));
             	g2d.fill(shadowRect);
             }
         	
-        	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacityMulti));
+        	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacityMulti * (Math.min((float) extraOpacityMulti, 1f))));
             
             float thickness = textfield.getStrokeWidth();
             g2d.setStroke(new BasicStroke(thickness, BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER));
@@ -1955,7 +1966,7 @@ public class Main extends JPanel implements KeyListener {
         
         // update level during dev
 //        ClassToJSON.tutorialOut();
-//        ClassToJSON.indieLevelOut();
+        ClassToJSON.indieLevelOut();
         ClassToJSON.jPopOut();
         
         ////////////////////// Session Stats
