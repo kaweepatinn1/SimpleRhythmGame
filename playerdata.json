@@ -2,13 +2,13 @@
   "username": "DefaultNano",
   "uuid": "8e9c3c66-e63d-4178-a3c3-ce5d894990d0",
   "stats": {
-    "timePlayedSeconds": 1432,
-    "notesHit": 1466,
-    "notesMissed": 5582,
-    "totalAttempts": 16,
+    "timePlayedSeconds": 2005,
+    "notesHit": 2330,
+    "notesMissed": 5950,
+    "totalAttempts": 21,
     "songsCompleted": 5,
     "songsFlawlessed": 1,
-    "totalScore": 448802,
+    "totalScore": 590315,
     "longestCombo": 0
   },
   "levelStats": [
@@ -21,7 +21,7 @@
       "longestCombo": 70,
       "completed": true,
       "flawless": true,
-      "attempts": 5,
+      "attempts": 6,
       "notesHit": 285,
       "notesMissed": 0,
       "bestAccuracy": 100.0
@@ -49,10 +49,10 @@
       "longestCombo": 72,
       "completed": true,
       "flawless": false,
-      "attempts": 7,
-      "notesHit": 1173,
-      "notesMissed": 5360,
-      "bestAccuracy": 59.86317
+      "attempts": 9,
+      "notesHit": 1840,
+      "notesMissed": 5621,
+      "bestAccuracy": 71.875
     },
     {
       "levelName": "A New Day",
@@ -101,14 +101,14 @@
       "levelAuthor": "Kai_Tobashi",
       "levelUUID": "ca25c1d6-321c-420a-bcd1-3a1642c48957",
       "levelVersion": 1,
-      "highscore": 0,
-      "longestCombo": 0,
+      "highscore": 34730,
+      "longestCombo": 53,
       "completed": false,
       "flawless": false,
-      "attempts": 0,
-      "notesHit": 0,
-      "notesMissed": 0,
-      "bestAccuracy": 0.0
+      "attempts": 2,
+      "notesHit": 197,
+      "notesMissed": 107,
+      "bestAccuracy": 64.802635
     }
   ]
 }

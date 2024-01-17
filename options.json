@@ -1,8 +1,9 @@
 {
-  "databasePasskey": "root2212",
-  "databaseDNS": "localhost",
-  "fullscreen": false,
-  "sizeToForce": 1280,
+  "version": 2,
+  "databasePasskey": "null",
+  "databaseDNS": "null",
+  "fullscreen": true,
+  "sizeToForce": 1920,
   "nanoSecondPrecision": true,
   "framesToStore": 20,
   "framerate": 60,
@@ -116,11 +117,11 @@
       ]
     }
   ],
-  "currentThemeChoice": "DefaultTheme",
+  "currentThemeChoice": "DeepOcean",
   "currentSkinChoice": "DefaultSkin.png",
   "themes": [
     {
-      "themeName": "DefaultTheme",
+      "themeName": "CalmGreen",
       "colorsList": [
         {
           "red": 102,
@@ -179,7 +180,125 @@
       ]
     },
     {
-      "themeName": "ColorTrip",
+      "themeName": "DeepOcean",
+      "colorsList": [
+        {
+          "red": 1,
+          "green": 1,
+          "blue": 4,
+          "alpha": 255
+        },
+        {
+          "red": 2,
+          "green": 0,
+          "blue": 36,
+          "alpha": 255
+        },
+        {
+          "red": 58,
+          "green": 49,
+          "blue": 216,
+          "alpha": 255
+        },
+        {
+          "red": 102,
+          "green": 102,
+          "blue": 255,
+          "alpha": 255
+        },
+        {
+          "red": 217,
+          "green": 217,
+          "blue": 217,
+          "alpha": 255
+        },
+        {
+          "red": 2,
+          "green": 0,
+          "blue": 36,
+          "alpha": 255
+        },
+        {
+          "red": 235,
+          "green": 233,
+          "blue": 252,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 0
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        }
+      ]
+    },
+    {
+      "themeName": "RockyRed",
+      "colorsList": [
+        {
+          "red": 27,
+          "green": 10,
+          "blue": 23,
+          "alpha": 255
+        },
+        {
+          "red": 104,
+          "green": 41,
+          "blue": 87,
+          "alpha": 255
+        },
+        {
+          "red": 185,
+          "green": 32,
+          "blue": 86,
+          "alpha": 255
+        },
+        {
+          "red": 232,
+          "green": 86,
+          "blue": 39,
+          "alpha": 255
+        },
+        {
+          "red": 52,
+          "green": 20,
+          "blue": 44,
+          "alpha": 255
+        },
+        {
+          "red": 240,
+          "green": 181,
+          "blue": 77,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 255
+        },
+        {
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "alpha": 0
+        },
+        {
+          "red": 223,
+          "green": 38,
+          "blue": 103,
+          "alpha": 255
+        }
+      ]
+    },
+    {
+      "themeName": "Lunatic",
       "colorsList": [
         {
           "red": 0,

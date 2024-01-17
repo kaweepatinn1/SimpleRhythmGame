@@ -7,6 +7,8 @@ import java.text.DecimalFormat;
 import java.awt.event.KeyEvent;
 
 public class Config {
+	private int version;
+	
 	private final static int colorsLength = 9;
 	private transient Level[] levelsList;
 	
@@ -50,6 +52,7 @@ public class Config {
 	}
 	
 	public Config(
+			int version,
 			String databasePasskey, String databaseDNS,
 			boolean fullscreen, int sizeToForce, Controls[] controls, Theme[] themes, 
 			String currentThemeChoice, String currentSkinChoice,
@@ -59,6 +62,7 @@ public class Config {
 			int masterVolume, int musicVolume, int SFXVolume,
 			boolean DEBUG_drawMasks, int DEBUG_masksColorsOffset, int DEBUG_masksOpacity,
 			boolean FORCED_noFail, int FORCED_millisecondLeniency) {
+		this.version = version;
 		this.databasePasskey = databasePasskey;
 		this.databaseDNS = databaseDNS;
 		this.fullscreen = fullscreen;
@@ -1078,5 +1082,9 @@ public class Config {
 	
 	public String getDatabaseDNS() {
 		return databaseDNS;
+	}
+	
+	public int getVersion() {
+		return version;
 	}
 }

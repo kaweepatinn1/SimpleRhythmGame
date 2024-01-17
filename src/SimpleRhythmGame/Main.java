@@ -1948,15 +1948,20 @@ public class Main extends JPanel implements KeyListener {
         File configFile = new File("./options.json");
         if (configFile.exists() && !configFile.isDirectory() && useConfig) { 
             try {
-				config = FileIO.currentConfigIn();
+				Config testConfig = FileIO.currentConfigIn();
+				if (testConfig.getVersion() == DefaultValues.getVersion()) {
+					config = testConfig;
+				} else {
+					config = DefaultValues.getDefaultConfigs();
+				}
 			} catch (JsonSyntaxException e) {
-				// TODO Auto-generated catch block
+				config = DefaultValues.getDefaultConfigs();
 				e.printStackTrace();
 			} catch (JsonIOException e) {
-				// TODO Auto-generated catch block
+				config = DefaultValues.getDefaultConfigs();
 				e.printStackTrace();
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
+				config = DefaultValues.getDefaultConfigs();
 				e.printStackTrace();
 			}
         } else {

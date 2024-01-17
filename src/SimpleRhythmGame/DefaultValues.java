@@ -3,8 +3,10 @@ package SimpleRhythmGame;
 // A READ ONLY CLASS
 
 public class DefaultValues {
-	private static final String defaultDatabasePasskey = "null"; // TODO change to null
-	private static final String defaultDatabaseDNS = "null"; // TODO change to null
+	private static final int version = 2; 
+	
+	private static final String defaultDatabasePasskey = "null";
+	private static final String defaultDatabaseDNS = "null";
 	
 	private static final boolean defaultFullscreen = true; // if not fullscreen will force below value
 	private static final int defaultSizeToForce = 1920; // forces this screen size (width) if above is true
@@ -80,7 +82,21 @@ public class DefaultValues {
 	
 	private static final Theme[] defaultThemes = new Theme[] {
 			new Theme(
-					"DefaultTheme",
+					"RockyRed",
+					new IntColor[] {
+							new IntColor (27,10,23,255), // 0. BG Color
+							new IntColor (104,41,87,255), // 1. Menu Color
+				    		new IntColor (185,32,86,255), // 2. Buttons Color
+				    		new IntColor (232,86,39,255), // 3. Primary Selection Color
+				    		new IntColor (52,20,44,255), // 4. Secondary Selection Color
+				    		new IntColor (240,181,77,255), // 5. Accent Color
+				    		new IntColor (0,0,0,255), // 6. Stroke Color
+				    		new IntColor (0,0,0,0), // 7. Transparent Color
+				    		new IntColor (223,38,103,255), // 8. Display Color
+					}
+					),
+			new Theme(
+					"CalmGreen",
 					new IntColor[] {
 							new IntColor (102,102,102,255), // 0. BG Color
 							new IntColor (217,234,211,255), // 1. Menu Color
@@ -94,7 +110,21 @@ public class DefaultValues {
 					}
 					),
 			new Theme(
-					"ColorTrip",
+					"DeepSpace",
+					new IntColor[] {
+							new IntColor (1,1,4,255), // 0. BG Color
+							new IntColor (2,0,36,255), // 1. Menu Color
+				    		new IntColor (58,49,216,255), // 2. Buttons Color
+				    		new IntColor (102,102,255,255), // 3. Primary Selection Color
+				    		new IntColor (217,217,217,255), // 4. Secondary Selection Color
+				    		new IntColor (2,0,36,255), // 5. Accent Color
+				    		new IntColor (235,233,252,255), // 6. Stroke Color
+				    		new IntColor (0,0,0,0), // 7. Transparent Color
+				    		new IntColor (0,0,0,255), // 8. Display Color
+					}
+					),
+			new Theme(
+					"Lunatic",
 					new IntColor[] {
 							new IntColor (0,255,0,255), // 0. BG Color
 							new IntColor (23,55,198,255), // 1. Menu Color
@@ -107,9 +137,10 @@ public class DefaultValues {
 				    		new IntColor (255,255,255,255), // 8. Display Color
 					}
 					),
+			
 	};
 	
-	private static final String defaultSelectedTheme = "DefaultTheme";
+	private static final String defaultSelectedTheme = "RockyRed";
 	private static final String defaultSelectedSkin = "DefaultSkin.png";
 	
 	private static final String[] defaultFonts = new String[] {
@@ -10951,6 +10982,7 @@ public class DefaultValues {
 	public static Config getDefaultConfigs() {
 		Main.bufferSkin(defaultSelectedSkin);
 		Config defaultConfig = new Config(
+				getVersion(),
 				getDefaultDatabasePasskey(),
 				getDefaultDatabaseDNS(),
     			getDefaultFullscreen(),
@@ -10978,6 +11010,10 @@ public class DefaultValues {
     			getDefaultFORCED_millisecondLeniency()
     			);
 		return defaultConfig;
+	}
+	
+	public static int getVersion() {
+		return version;
 	}
 	
 	public static String getDefaultDatabasePasskey() {
