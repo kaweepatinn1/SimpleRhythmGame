@@ -3,8 +3,8 @@ package SimpleRhythmGame;
 // A READ ONLY CLASS
 
 public class DefaultValues {
-	private static final String defaultDatabasePasskey = "root2212"; // TODO change to null
-	private static final String defaultDatabaseDNS = "localhost"; // TODO change to null
+	private static final String defaultDatabasePasskey = "null"; // TODO change to null
+	private static final String defaultDatabaseDNS = "null"; // TODO change to null
 	
 	private static final boolean defaultFullscreen = true; // if not fullscreen will force below value
 	private static final int defaultSizeToForce = 1920; // forces this screen size (width) if above is true

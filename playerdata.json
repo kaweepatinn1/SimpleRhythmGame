@@ -2,13 +2,13 @@
   "username": "DefaultNano",
   "uuid": "8e9c3c66-e63d-4178-a3c3-ce5d894990d0",
   "stats": {
-    "timePlayedSeconds": 730,
-    "notesHit": 935,
-    "notesMissed": 4350,
-    "totalAttempts": 10,
+    "timePlayedSeconds": 1432,
+    "notesHit": 1466,
+    "notesMissed": 5582,
+    "totalAttempts": 16,
     "songsCompleted": 5,
     "songsFlawlessed": 1,
-    "totalScore": 362702,
+    "totalScore": 448802,
     "longestCombo": 0
   },
   "levelStats": [
@@ -46,13 +46,13 @@
       "levelUUID": "53affdf8-a1c2-48f2-8514-adf7dc8c0690",
       "levelVersion": 1,
       "highscore": 147795,
-      "longestCombo": 39,
+      "longestCombo": 72,
       "completed": true,
       "flawless": false,
-      "attempts": 1,
-      "notesHit": 642,
-      "notesMissed": 4128,
-      "bestAccuracy": 13.45912
+      "attempts": 7,
+      "notesHit": 1173,
+      "notesMissed": 5360,
+      "bestAccuracy": 59.86317
     },
     {
       "levelName": "A New Day",
@@ -95,6 +95,20 @@
       "notesHit": 6,
       "notesMissed": 120,
       "bestAccuracy": 8.0
+    },
+    {
+      "levelName": "Evening Tea",
+      "levelAuthor": "Kai_Tobashi",
+      "levelUUID": "ca25c1d6-321c-420a-bcd1-3a1642c48957",
+      "levelVersion": 1,
+      "highscore": 0,
+      "longestCombo": 0,
+      "completed": false,
+      "flawless": false,
+      "attempts": 0,
+      "notesHit": 0,
+      "notesMissed": 0,
+      "bestAccuracy": 0.0
     }
   ]
 }

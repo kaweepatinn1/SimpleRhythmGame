@@ -355,6 +355,9 @@ public class Main extends JPanel implements KeyListener {
             			Sound.playSound(Sound.SFX_kickDrum1[0]);
             			game.miss(keyPressed);
             		}
+            	} else if (keyPressed.equals("Escape")) {
+            		game.interruptSong();
+            		Functions.setMenu("Play Menu");
             	}
             }
             
@@ -1014,7 +1017,7 @@ public class Main extends JPanel implements KeyListener {
 		            int finalX = roundRectAttributes.getX() + (textbox.getXSize() / 2) + textbox.getOffsetX() + extraAlignX;
 		            int finalY = roundRectAttributes.getY() + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY;
 		            finalY = finalY + (fontMetrics.getAscent() * i);
-		            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (Math.min((float) extraOpacityMulti, 1f)) * opacityMulti));
+		            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, Math.min((Math.min((float) extraOpacityMulti, 1f)) * opacityMulti,1)));
 		            g2d.drawString(lineText, finalX, finalY);
 	            }
 	            
@@ -1966,8 +1969,8 @@ public class Main extends JPanel implements KeyListener {
         
         // update level during dev
 //        ClassToJSON.tutorialOut();
-        ClassToJSON.indieLevelOut();
-        ClassToJSON.jPopOut();
+//        ClassToJSON.indieLevelOut();
+//        ClassToJSON.jPopOut();
         
         ////////////////////// Session Stats
         

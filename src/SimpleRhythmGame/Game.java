@@ -55,6 +55,8 @@ public class Game extends Thread {
 	public boolean removingNote = false;
 	public ArrayList<Note> noteRemovalQueue;
 	
+	public boolean songEnded = false;
+	
 	private static final int hit = 0;
 	private static final int hitPerfect = 1;
 	private static final int miss = 2;
@@ -239,7 +241,7 @@ public class Game extends Thread {
 				checkForMiss();
 				checkRedundantGameElements();
 				
-				if (Main.getState().equals("Stopped")) {
+				if (Main.getState().equals("Stopped") && songEnded) {
 					currentThread().interrupt();
 					unpaused = false;
 					break;
@@ -278,7 +280,7 @@ public class Game extends Thread {
 		int finalNotesHit = notesHit;
 		int finalNotesMissed = notesMissed;
 		boolean finalCompleted = completed;
-		boolean finalFlawlessed = (finalNotesMissed == 0);
+		boolean finalFlawlessed = (finalNotesMissed == 0) && completed;
 		System.out.println(score);
 		System.out.println(Main.getPlayerData().getLevelStats(currentLevel).getHighscore());
 		if (score > Main.getPlayerData().getLevelStats(currentLevel).getHighscore()) {
@@ -287,6 +289,17 @@ public class Game extends Thread {
 			RandomAccess.newHighscore = false;
 		}
 		return new Scores(finalCompleted, finalFlawlessed, finalScore, finalMaxCombo, finalNotesHit, finalNotesMissed);
+	}
+	
+	public void interruptSong() {
+		System.out.println("hios");
+		Scores score = summarizeFinalScores(false);
+		Main.getPlayerData().updateStatsFromScores(currentLevel, score);
+		if (player != null) {
+			player.stop();
+		}
+		Main.setState("Stopped");
+		songEnded = true;
 	}
 	
 	public void endSong() {
@@ -299,6 +312,7 @@ public class Game extends Thread {
 			player.stop();
 		}
 		Main.setState("Stopped");
+		songEnded = true;
 	}
 	
 	private void die() {
@@ -631,7 +645,6 @@ public class Game extends Thread {
 						8, // shadowOffset
 						5, 6 // strokeWidth, strokeColor
 						));
-			System.out.println(Main.getScale());
 			element = element.getScaledInstance(Main.getScale(), Main.getScale());
 			element.animateScroll(1);
 			gameGraphics.add(element);
@@ -675,7 +688,7 @@ public class Game extends Thread {
 			element = element.getScaledInstance(Main.getScale(), Main.getScale());
 			element.animateScroll(1);
 			gameGraphics.add(element);
-		}else if (type == Game.die) {
+		} else if (type == Game.die) {
 			Element element = new Element(
 					new Selector(
 							new int[]{-1,-1}, // Selector Index
@@ -696,8 +709,8 @@ public class Game extends Thread {
 								"You Died!", // text
 								"center", "center", // align
 								0, 0, // text offset (x, y)
-								100, // text size
-								6, // text color (index of colors)
+								150, // text size
+								DefaultValues.Color_ACCENT, // text color (index of colors)
 								"Archivo Narrow", // font
 								true // bold
 								),
@@ -705,7 +718,7 @@ public class Game extends Thread {
 							960, 540,
 							0, 0, 0  // x, y, xSize, ySize, round%
 							),
-						DefaultValues.Color_ACCENT, // box color (index of colors)
+						DefaultValues.Color_STROKE, // box color (index of colors)
 						255, // opacity (0-255)
 						8, // shadowOffset
 						5, 6 // strokeWidth, strokeColor
