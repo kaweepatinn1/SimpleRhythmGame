@@ -2070,10 +2070,10 @@ public class Main extends JPanel implements KeyListener {
 		// TODO update the raw menu and scale it
 		setMenuFromAnIndex(-1);
 		game.start();
-		if (game.getCurrentLevel().getMetronomeOffset() > -1) {
-			metronome = new Metronome();
-			metronome.start();
-		}
+//		if (game.getCurrentLevel().getMetronomeOffset() > -1) {
+//			metronome = new Metronome();
+//			metronome.start();
+//		}
 	}
 	
 	public static void pauseGame() {
