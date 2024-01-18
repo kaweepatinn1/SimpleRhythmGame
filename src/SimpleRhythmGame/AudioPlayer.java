@@ -43,7 +43,7 @@ public class AudioPlayer {
         try {
         	filePath = "src/" + filePath;
         	URL audioSrc = new File(filePath).toURI().toURL();;
-        	System.out.println(audioSrc.getPath());
+        	// System.out.println(audioSrc.getPath());
         	AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioSrc);
             clip.open(audioStream);
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
