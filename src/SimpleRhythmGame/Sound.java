@@ -16,13 +16,13 @@ public class Sound {
 			"Metronome2",
 	};
 	private static AudioPlayer[] sfx;
-	public static final int[] SFX_hiHat1 = {0,0,0};
-	public static final int[] SFX_hiHat2 = {1,0,1};
-	public static final int[] SFX_snareDrum1 = {2,1,0};
-	public static final int[] SFX_crashCymbal1 = {3,2,0};
-	public static final int[] SFX_tom1 = {4,3,0};
-	public static final int[] SFX_tom2 = {5,3,1};
-	public static final int[] SFX_tom3 = {6,3,2};
+	public static final int[] SFX_hiHat1 = {0,1,0};
+	public static final int[] SFX_hiHat2 = {1,1,1};
+	public static final int[] SFX_snareDrum1 = {2,3,0};
+	public static final int[] SFX_crashCymbal1 = {3,0,0};
+	public static final int[] SFX_tom1 = {4,2,0};
+	public static final int[] SFX_tom2 = {5,2,1};
+	public static final int[] SFX_tom3 = {6,2,2};
 	public static final int[] SFX_kickDrum1 = {7,4,0};
 	public static final int[] SFX_metronome1 = {8,5,0};
 	public static final int[] SFX_metronome2 = {9,5,1};

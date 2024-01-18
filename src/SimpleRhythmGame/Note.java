@@ -1,7 +1,5 @@
 package SimpleRhythmGame;
 
-import java.util.UUID;
-
 public class Note {
 	private int type;
 	private int subtype; // for when one note has multiple options (tom)
@@ -18,10 +16,10 @@ public class Note {
 	
 	public transient static final int[] typeLocations = {330,450,570,690,810};
 	
-	public transient static final int Note_HIHAT = 0;
-	public transient static final int Note_SNAREDRUM = 1;
-	public transient static final int Note_CRASHCYMBAL = 2;
-	public transient static final int Note_TOM = 3;
+	public transient static final int Note_CRASHCYMBAL = 0;
+	public transient static final int Note_HIHAT = 1;
+	public transient static final int Note_TOM = 2;
+	public transient static final int Note_SNAREDRUM = 3;
 	public transient static final int Note_KICKDRUM = 4;
 	
 	public transient static final int HiHat_OPEN = 1;

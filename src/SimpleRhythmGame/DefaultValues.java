@@ -58,19 +58,19 @@ public class DefaultValues {
 					new int[]{39, -1, -1}
 					),
 			new Controls(
-					"HiHat", // drum 1
+					"CrashCymbal", // drum 1
 					new int[]{90, 65, -1}
 					),
 			new Controls(
-					"SnareDrum", // drum 2
+					"HiHat", // drum 2
 					new int[]{88, 83, -1}
 					),
 			new Controls(
-					"CrashCymbal", // drum 3
+					"Tom", // drum 3
 					new int[]{67, 72, -1}
 					),
 			new Controls(
-					"Tom", // drum 4
+					"SnareDrum", // drum 4
 					new int[]{78, 74, -1}
 					),
 			new Controls(
@@ -153,6 +153,15 @@ public class DefaultValues {
 			"src/fonts/ArchivoNarrow-SemiBold.ttf",
 			"src/fonts/ArchivoNarrow-SemiBoldItalic.ttf"
 	};
+	
+	// Textures Static Final References
+	public static final transient int Texture_NOTE = 0;
+	public static final transient int Texture_DRUM = 1;
+	public static final transient int Note_CRASHCYMBAL = 0;
+	public static final transient int Note_HIHAT = 1;
+	public static final transient int Note_TOM = 2;
+	public static final transient int Note_SNAREDRUM = 3;
+	public static final transient int Note_KICKDRUM = 4;
 	
 	// Colors Static Final References
 	public static final transient int Color_BG = 0;
@@ -300,12 +309,21 @@ public class DefaultValues {
 							),
 						new StoredTransform( // 25. death animation
 								0, 0, // x, y transform
-								5, 5, // scale transform (x, y)
-								360, // rotate transform
+								1, 1, // scale transform (x, y)
+								0, // rotate transform
 								0, // opacity multi
-								2000, // offset (ms)
-								2500, // animation time (ms)
+								0, // offset (ms)
+								500, // animation time (ms)
 								Easing.easeInQuad // (ease type)
+							),
+						new StoredTransform( // 26. HIT note
+								0, 0, // x, y transform
+								0.7, 0.7, // scale transform (x, y)
+								0, // rotate transform
+								1, // opacity multi
+								0, // offset (ms)
+								100, // animation time (ms)
+								6 // (ease type)
 							),
 
 				},
@@ -367,6 +385,7 @@ public class DefaultValues {
 									0, // shadowOffset
 									0, DefaultValues.Color_TRANSPARENT // strokeWidth, strokeColor
 									)),
+/////////////////////////////////////////////////////////////////////////////////////
 						new Element(
 								new Selector(
 									new int[]{-1,-1}, // Selector Index
@@ -390,6 +409,176 @@ public class DefaultValues {
 									255, // opacity (0-255)
 									0, // shadowOffset
 									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{3,3},{1,4},{1,3},{1,2}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								26, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								22, // entry animation
+								new TextBox(
+									//Text
+									1f, // scale
+									"GameRenderLast", // function
+									"Crash Cymbal", // name
+									new Renderable(
+											// Renderable Without Function
+											"GameRenderLast",
+											"", // text
+											DefaultValues.Texture_DRUM, // type of texture
+											DefaultValues.Note_CRASHCYMBAL, // note
+											-75, -75, 150, 150, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+									new RoundedArea(
+										400, 375, 0, 0, 0  // x, y, xSize, ySize, round%
+										),
+									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{3,3},{1,4},{1,3},{1,2}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								26, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								22, // entry animation
+								new TextBox(
+									//Text
+									1f, // scale
+									"GameRenderLast", // function
+									"Hi Hat", // name
+									new Renderable(
+											// Renderable Without Function
+											"GameRenderLast",
+											"", // text
+											DefaultValues.Texture_DRUM, // type of texture
+											DefaultValues.Note_HIHAT, // note
+											-75, -75, 150, 150, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+									new RoundedArea(
+										400, 510, 0, 0, 0  // x, y, xSize, ySize, round%
+										),
+									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, DefaultValues.Color_TRANSPARENT // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{3,3},{1,4},{1,3},{1,2}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								26, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								22, // entry animation
+								new TextBox(
+									//Text
+									1f, // scale
+									"GameRenderLast", // function
+									"Tom", // name
+									new Renderable(
+											// Renderable Without Function
+											"GameRenderLast",
+											"", // text
+											DefaultValues.Texture_DRUM, // type of texture
+											DefaultValues.Note_TOM, // note
+											-75, -75, 150, 150, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+									new RoundedArea(
+										400, 625, 0, 0, 0  // x, y, xSize, ySize, round%
+										),
+									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, DefaultValues.Color_TRANSPARENT // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{3,3},{1,4},{1,3},{1,2}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								26, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								22, // entry animation
+								new TextBox(
+									//Text
+									1f, // scale
+									"GameRenderLast", // function
+									"Snare Drum", // name
+									new Renderable(
+											// Renderable Without Function
+											"GameRenderLast",
+											"", // text
+											DefaultValues.Texture_DRUM, // type of texture
+											DefaultValues.Note_SNAREDRUM, // note
+											-75, -75, 150, 150, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+									new RoundedArea(
+										400, 745, 0, 0, 0  // x, y, xSize, ySize, round%
+										),
+									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, DefaultValues.Color_TRANSPARENT // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{3,3},{1,4},{1,3},{1,2}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								-1, // hover effect
+								26, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								22, // entry animation
+								new TextBox(
+									//Text
+									1f, // scale
+									"GameRenderLast", // function
+									"Kick Drum", // name
+									new Renderable(
+											// Renderable Without Function
+											"GameRenderLast",
+											"", // text
+											DefaultValues.Texture_DRUM, // type of texture
+											DefaultValues.Note_KICKDRUM, // note
+											-75, -75, 150, 150, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+									new RoundedArea(
+										400, 865, 0, 0, 0  // x, y, xSize, ySize, round%
+										),
+									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, DefaultValues.Color_TRANSPARENT // strokeWidth, strokeColor
 									)),
 /////////////////////////////////////////////////////////////////////////////////////
 						new Element(
@@ -1642,7 +1831,7 @@ public class DefaultValues {
 										false // bold
 										),
 									new RoundedArea(
-										1035, 472, 0, 0, 0  // x, y, xSize, ySize, round%
+										990, 472, 0, 0, 0  // x, y, xSize, ySize, round%
 										),
 									Color_TRANSPARENT, // box color (index of colors)
 									255, // opacity (0-255)
@@ -1667,7 +1856,7 @@ public class DefaultValues {
 									null, // function
 									"Description",  // name
 									new Text(
-										"Custom skins must be 150px by 100px%br%and in the png format to be registered%br%by the system", // text
+										"Custom skins must be 225px by 250px%br%and in the png format to be registered%br%by the system", // text
 										"left", "center", // align
 										28, -12, // text offset (x, y)
 										35, // text size
@@ -1676,7 +1865,7 @@ public class DefaultValues {
 										false // bold
 										),
 									new RoundedArea(
-										1035, 472, 5, 180, 50  // x, y, xSize, ySize, round%
+										990, 472, 5, 180, 50  // x, y, xSize, ySize, round%
 										),
 									Color_STROKE, // box color (index of colors)
 									255, // opacity (0-255)
@@ -1704,7 +1893,7 @@ public class DefaultValues {
 											"Current Skin", // text
 											"center", "center", // align
 											0, -9, // text offset (x, y)
-											50, // text size
+											40, // text size
 											6, // text color (index of colors)
 											"Archivo Narrow", // font
 											false // bold
@@ -1713,11 +1902,11 @@ public class DefaultValues {
 											// Renderable Without Function
 											"CurrentSkin", // name
 											"%CurrentSkinPath", // image "path"
-											0, 0, 270, 180, // x, y, xSize, ySize (relative)
+											0, 0, 225, 250, // x, y, xSize, ySize (relative)
 											255 // opacity (0-255)
 											),  // renderable
 									new RoundedArea(
-										872, 472, 270, 180, 0  // x, y, xSize, ySize, round%
+										850, 495, 225, 250, 0  // x, y, xSize, ySize, round%
 										),
 									Color_DISPLAY, // box color (index of colors)
 									255, // opacity (0-255)
@@ -1742,7 +1931,7 @@ public class DefaultValues {
 									"noFunction", // function
 									"Texture1", // name
 									new Text(
-											"Texture 1", // text
+											"Crash Cymbal", // text
 											"center", "center", // align
 											0, 125, // text offset (x, y)
 											50, // text size
@@ -1752,8 +1941,9 @@ public class DefaultValues {
 											),
 									new Renderable(
 											// Renderable Without Function
-											"Texture1", // name
-											1, // note
+											"Crash Cymbal", // text
+											DefaultValues.Texture_NOTE, // type of texture
+											DefaultValues.Note_CRASHCYMBAL, // note
 											0, 0, 180, 180, // x, y, xSize, ySize (relative)
 											255 // opacity (0-255)
 											),  // renderable
@@ -1783,7 +1973,7 @@ public class DefaultValues {
 									"noFunction", // function
 									"Texture2", // name
 									new Text(
-											"Texture 2", // text
+											"Hi Hat", // text
 											"center", "center", // align
 											0, 125, // text offset (x, y)
 											50, // text size
@@ -1793,8 +1983,9 @@ public class DefaultValues {
 											),
 									new Renderable(
 											// Renderable Without Function
-											"Texture2", // name
-											2, // note
+											"Hi Hat", // text
+											DefaultValues.Texture_NOTE, // type of texture
+											DefaultValues.Note_HIHAT, // note
 											0, 0, 180, 180, // x, y, xSize, ySize (relative)
 											255 // opacity (0-255)
 											),  // renderable
@@ -1824,7 +2015,7 @@ public class DefaultValues {
 									"noFunction", // function
 									"Texture3", // name
 									new Text(
-											"Texture 3", // text
+											"Tom", // text
 											"center", "center", // align
 											0, 125, // text offset (x, y)
 											50, // text size
@@ -1834,8 +2025,9 @@ public class DefaultValues {
 											),
 									new Renderable(
 											// Renderable Without Function
-											"Texture3", // name
-											3, // note
+											"Tom", // name
+											DefaultValues.Texture_NOTE, // type of texture
+											DefaultValues.Note_TOM, // note
 											0, 0, 180, 180, // x, y, xSize, ySize (relative)
 											255 // opacity (0-255)
 											),  // renderable
@@ -1865,7 +2057,7 @@ public class DefaultValues {
 									"noFunction", // function
 									"Texture4", // name
 									new Text(
-											"Texture 4", // text
+											"Snare Drum", // text
 											"center", "center", // align
 											0, 125, // text offset (x, y)
 											50, // text size
@@ -1875,8 +2067,9 @@ public class DefaultValues {
 											),
 									new Renderable(
 											// Renderable Without Function
-											"Texture4", // name
-											4, // note
+											"Snare Drum", // name
+											DefaultValues.Texture_NOTE, // type of texture
+											DefaultValues.Note_SNAREDRUM, // note
 											0, 0, 180, 180, // x, y, xSize, ySize (relative)
 											255 // opacity (0-255)
 											),  // renderable
@@ -1906,7 +2099,7 @@ public class DefaultValues {
 									"noFunction", // function
 									"Texture5", // name
 									new Text(
-											"Texture 5", // text
+											"Kick Drum", // text
 											"center", "center", // align
 											0, 125, // text offset (x, y)
 											50, // text size
@@ -1916,8 +2109,9 @@ public class DefaultValues {
 											),
 									new Renderable(
 											// Renderable Without Function
-											"Texture5", // name
-											5, // note
+											"Kick Drum", // name
+											DefaultValues.Texture_NOTE, // type of texture
+											DefaultValues.Note_KICKDRUM, // note
 											0, 0, 180, 180, // x, y, xSize, ySize (relative)
 											255 // opacity (0-255)
 											),  // renderable
@@ -5815,9 +6009,9 @@ public class DefaultValues {
 									// Text and Renderable
 									1f, // scale
 									null, // function
-									"HiHatsSubtext",  // name
+									"CrashCymbalsSubtext",  // name
 									new Text(
-										"Hi Hat", // text
+										"Crash Cymbal", // text
 										"Down", "center", // align
 										0, -2, // text offset (x, y)
 										38, // text size
@@ -5848,10 +6042,10 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"editKeybind String HiHat int 0 int 1", // function
-									"EditControlHiHat0",  // name
+									"editKeybind String CrashCymbal int 0 int 1", // function
+									"EditControlCrashCymbal0",  // name
 									new Text(
-											"%Keybind HiHat 0", // text
+											"%Keybind CrashCymbal 0", // text
 											"center", "center", // align
 											0, -6, // text offset (x, y)
 											35, // text size
@@ -5882,10 +6076,10 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"editKeybind String HiHat int 1 int 1", // function
-									"EditControlHiHat1",  // name
+									"editKeybind String CrashCymbal int 1 int 1", // function
+									"EditControlCrashCymbal1",  // name
 									new Text(
-											"%Keybind HiHat 1", // text
+											"%Keybind CrashCymbal 1", // text
 											"center", "center", // align
 											0, -6, // text offset (x, y)
 											35, // text size
@@ -5916,10 +6110,10 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"editKeybind String HiHat int 2 int 1", // function
-									"EditControlHiHat2",  // name
+									"editKeybind String CrashCymbal int 2 int 1", // function
+									"EditControlCrashCymbal2",  // name
 									new Text(
-											"%Keybind HiHat 2", // text
+											"%Keybind CrashCymbal 2", // text
 											"center", "center", // align
 											0, -6, // text offset (x, y)
 											35, // text size
@@ -5951,9 +6145,9 @@ public class DefaultValues {
 									// Text and Renderable
 									1f, // scale
 									null, // function
-									"SnareDrumsSubtext",  // name
+									"HiHatsSubtext",  // name
 									new Text(
-										"Snare Drum", // text
+										"Hi Hat", // text
 										"Down", "center", // align
 										0, -2, // text offset (x, y)
 										38, // text size
@@ -5984,10 +6178,10 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"editKeybind String SnareDrum int 0 int 1", // function
-									"EditControlSnareDrum0",  // name
+									"editKeybind String HiHat int 0 int 1", // function
+									"EditControlHiHat0",  // name
 									new Text(
-											"%Keybind SnareDrum 0", // text
+											"%Keybind HiHat 0", // text
 											"center", "center", // align
 											0, -6, // text offset (x, y)
 											35, // text size
@@ -6018,10 +6212,10 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"editKeybind String SnareDrum int 1 int 1", // function
-									"EditControlSnareDrum1",  // name
+									"editKeybind String HiHat int 1 int 1", // function
+									"EditControlHiHat1",  // name
 									new Text(
-											"%Keybind SnareDrum 1", // text
+											"%Keybind HiHat 1", // text
 											"center", "center", // align
 											0, -6, // text offset (x, y)
 											35, // text size
@@ -6052,10 +6246,10 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"editKeybind String SnareDrum int 2 int 1", // function
-									"EditControlSnareDrum2",  // name
+									"editKeybind String HiHat int 2 int 1", // function
+									"EditControlHiHat2",  // name
 									new Text(
-											"%Keybind SnareDrum 2", // text
+											"%Keybind HiHat 2", // text
 											"center", "center", // align
 											0, -6, // text offset (x, y)
 											35, // text size
@@ -6087,9 +6281,9 @@ public class DefaultValues {
 									// Text and Renderable
 									1f, // scale
 									null, // function
-									"CrashCymbalsSubtext",  // name
+									"TomsSubtext",  // name
 									new Text(
-										"Crash Cymbal", // text
+										"Tom", // text
 										"Down", "center", // align
 										0, -2, // text offset (x, y)
 										38, // text size
@@ -6120,10 +6314,10 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"editKeybind String CrashCymbal int 0 int 1", // function
-									"EditControlCrashCymbal0",  // name
+									"editKeybind String Tom int 0 int 1", // function
+									"EditControlTom0",  // name
 									new Text(
-											"%Keybind CrashCymbal 0", // text
+											"%Keybind Tom 0", // text
 											"center", "center", // align
 											0, -6, // text offset (x, y)
 											35, // text size
@@ -6154,10 +6348,10 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"editKeybind String CrashCymbal int 1 int 1", // function
-									"EditControlCrashCymbal1",  // name
+									"editKeybind String Tom int 1 int 1", // function
+									"EditControlTom1",  // name
 									new Text(
-											"%Keybind CrashCymbal 1", // text
+											"%Keybind Tom 1", // text
 											"center", "center", // align
 											0, -6, // text offset (x, y)
 											35, // text size
@@ -6188,10 +6382,10 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"editKeybind String CrashCymbal int 2 int 1", // function
-									"EditControlCrashCymbal2",  // name
+									"editKeybind String Tom int 2 int 1", // function
+									"EditControlTom2",  // name
 									new Text(
-											"%Keybind CrashCymbal 2", // text
+											"%Keybind Tom 2", // text
 											"center", "center", // align
 											0, -6, // text offset (x, y)
 											35, // text size
@@ -6223,9 +6417,9 @@ public class DefaultValues {
 									// Text and Renderable
 									1f, // scale
 									null, // function
-									"TomSubtext",  // name
+									"SnareDrumSubtext",  // name
 									new Text(
-										"Tom", // text
+										"Snare Drum", // text
 										"Down", "center", // align
 										0, -2, // text offset (x, y)
 										38, // text size
@@ -6256,10 +6450,10 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"editKeybind String Tom int 0 int 1", // function
-									"EditControlTom0",  // name
+									"editKeybind String SnareDrum int 0 int 1", // function
+									"EditControlSnareDrum0",  // name
 									new Text(
-											"%Keybind Tom 0", // text
+											"%Keybind SnareDrum 0", // text
 											"center", "center", // align
 											0, -6, // text offset (x, y)
 											35, // text size
@@ -6290,10 +6484,10 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"editKeybind String Tom int 1 int 1", // function
-									"EditControlTom1",  // name
+									"editKeybind String SnareDrum int 1 int 1", // function
+									"EditControlSnareDrum1",  // name
 									new Text(
-											"%Keybind Tom 1", // text
+											"%Keybind SnareDrum 1", // text
 											"center", "center", // align
 											0, -6, // text offset (x, y)
 											35, // text size
@@ -6324,10 +6518,10 @@ public class DefaultValues {
 								new TextBox(
 									// Text and Renderable
 									1f, // scale
-									"editKeybind String Tom int 2 int 1", // function
-									"EditControlTom2",  // name
+									"editKeybind String SnareDrum int 2 int 1", // function
+									"EditControlSnareDrum2",  // name
 									new Text(
-											"%Keybind Tom 2", // text
+											"%Keybind SnareDrum 2", // text
 											"center", "center", // align
 											0, -6, // text offset (x, y)
 											35, // text size

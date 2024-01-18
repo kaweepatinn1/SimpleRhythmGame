@@ -65,36 +65,54 @@ public class Renderable {
         }
     }
     
-    public Renderable(String function, String name, int note, int x, int y,
+    public Renderable(String function, String name, int type, int texture, int x, int y,
     		int xSize, int ySize, int opacity) { // note type renderable
         this.function = function;
     	this.name = name;
-    	this.imagePath = "#" + note;
+    	if (type == DefaultValues.Texture_NOTE) {
+    		this.imagePath = "#note " + texture;
+    	} else if (type == DefaultValues.Texture_DRUM) {
+    		this.imagePath = "#drum " + texture;
+    	}
         this.x = x;
         this.y = y;
         this.xSize = xSize;
         this.ySize = ySize;
         this.opacity = opacity;
-        if (imagePath.charAt(0) == '#') {
-    		BufferedImage originalImage = Main.getNoteImage(Integer.parseInt(imagePath.substring(1)) - 1);
+        if (imagePath.substring(0, 5).equals("#note")) {
+    		BufferedImage originalImage = Main.getNoteImage(Integer.parseInt(imagePath.substring(6)));
+        	BufferedImage scaledImage = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
+                    xSize, ySize, Scalr.OP_ANTIALIAS);
+        	this.image = scaledImage;
+    	} else if (imagePath.substring(0, 5).equals("#drum")) {
+    		BufferedImage originalImage = Main.getDrumImage(Integer.parseInt(imagePath.substring(6)));
         	BufferedImage scaledImage = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
                     xSize, ySize, Scalr.OP_ANTIALIAS);
         	this.image = scaledImage;
     	}
     }
     
-    public Renderable(String name, int note, int x, int y,
+    public Renderable(String name, int type, int texture, int x, int y,
     		int xSize, int ySize, int opacity) { // note type renderable
         this.function = null;
     	this.name = name;
-    	this.imagePath = "#" + note;
+    	if (type == DefaultValues.Texture_NOTE) {
+    		this.imagePath = "#note " + texture;
+    	} else if (type == DefaultValues.Texture_DRUM) {
+    		this.imagePath = "#drum " + texture;
+    	}
         this.x = x;
         this.y = y;
         this.xSize = xSize;
         this.ySize = ySize;
         this.opacity = opacity;
-        if (imagePath.charAt(0) == '#') {
-    		BufferedImage originalImage = Main.getNoteImage(Integer.parseInt(imagePath.substring(1)) - 1);
+        if (imagePath.substring(0, 5).equals("#note")) {
+    		BufferedImage originalImage = Main.getNoteImage(Integer.parseInt(imagePath.substring(6)));
+        	BufferedImage scaledImage = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
+                    xSize, ySize, Scalr.OP_ANTIALIAS);
+        	this.image = scaledImage;
+    	} else if (imagePath.substring(0, 5).equals("#drum")) {
+    		BufferedImage originalImage = Main.getDrumImage(Integer.parseInt(imagePath.substring(6)));
         	BufferedImage scaledImage = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
                     xSize, ySize, Scalr.OP_ANTIALIAS);
         	this.image = scaledImage;

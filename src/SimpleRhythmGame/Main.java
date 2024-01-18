@@ -305,6 +305,7 @@ public class Main extends JPanel implements KeyListener {
             if (state.equals("Playing")) {
             	if (keyPressed.equals("HiHat")) {
             		Object[] noteInfo = game.getClosestNote(Note.Note_HIHAT);
+            		getElementFromName("Hi Hat").animateClick(true);
             		if (noteInfo != null) {
             			Note note = (Note) noteInfo[0];
             			Sound.playSound(note.getSoundIndex());
@@ -316,6 +317,7 @@ public class Main extends JPanel implements KeyListener {
             		Sound.playSound(Sound.SFX_hiHat1[0]);
             	} else if (keyPressed.equals("SnareDrum")) {
         			Object[] noteInfo = game.getClosestNote(Note.Note_SNAREDRUM);
+        			getElementFromName("Snare Drum").animateClick(true);
         			//System.out.println(note);
             		if (noteInfo != null) {
             			// Note note = (Note) noteInfo[0];
@@ -327,6 +329,7 @@ public class Main extends JPanel implements KeyListener {
             		}
             	} else if (keyPressed.equals("CrashCymbal")) {
             		Object[] noteInfo = game.getClosestNote(Note.Note_CRASHCYMBAL);
+            		getElementFromName("Crash Cymbal").animateClick(true);
             		if (noteInfo != null) {
             			//Note note = (Note) noteInfo[0];
             			Sound.playSound(Sound.SFX_crashCymbal1[0]);
@@ -337,6 +340,7 @@ public class Main extends JPanel implements KeyListener {
             		}
             	} else if (keyPressed.equals("Tom")) {
             		Object[] noteInfo = game.getClosestNote(Note.Note_TOM);
+            		getElementFromName("Tom").animateClick(true);
             		if (noteInfo != null) {
             			Note note = (Note) noteInfo[0];
             			Sound.playSound(note.getSoundIndex());
@@ -347,6 +351,7 @@ public class Main extends JPanel implements KeyListener {
             		}
             	} else if (keyPressed.equals("KickDrum")) {
             		Object[] noteInfo = game.getClosestNote(Note.Note_KICKDRUM);
+            		getElementFromName("Kick Drum").animateClick(true);
             		if (noteInfo != null) {
             			// Note note = (Note) noteInfo[0];
             			Sound.playSound(Sound.SFX_kickDrum1[0]);
@@ -937,10 +942,11 @@ public class Main extends JPanel implements KeyListener {
         			);
         	
         	Shape finalRect = roundRect;
-        	
+        	double extraOpacityMulti = 1;
         	for (int k = currentElement.getTransform().length - 1 ; k > -1 ; k--) {
         		if (currentElement.getTransform()[k].getNewTransform() != null) {
 	        		finalRect = currentElement.getTransform()[k].getCurrentPosition().getFinalTransform().createTransformedShape(finalRect);
+	        		extraOpacityMulti = extraOpacityMulti * currentElement.getTransform()[k].getCurrentPosition().getOpacity();
 	        	}
         	}
         
@@ -953,11 +959,11 @@ public class Main extends JPanel implements KeyListener {
         		Shape shadowRect = shadow.createTransformedShape(finalRect);
             	g2d.setColor(new Color(0, 0, 0, 100));
             	
-            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f * opacityMulti));
+            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, Math.min(textbox.getOpacity() / 255f,1) * 0.5f * opacityMulti));
             	g2d.fill(shadowRect);
             }
         	
-        	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacityMulti));
+        	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) Math.min(Math.min(textbox.getOpacity() / 255f,1) * Math.min(extraOpacityMulti,1f),1f)));
             
             g2d.setColor(config.getCurrentThemeColors()[textbox.getColor()]); // set box color
             g2d.fill(finalRect);
@@ -965,7 +971,7 @@ public class Main extends JPanel implements KeyListener {
             // ^ Textbox section
             // v Text / Image section
             AffineTransform oldForm = g2d.getTransform();
-        	double extraOpacityMulti = 1;
+        	extraOpacityMulti = 1;
             if (textbox.getRenderableObject() != null) { // render image if contained
             	for (int k = currentElement.getTransform().length - 1 ; k > -1 ; k--) {
             		if (currentElement.getTransform()[k].getNewTransform() != null) {
@@ -975,9 +981,9 @@ public class Main extends JPanel implements KeyListener {
             	}
             	Renderable renderable = textbox.getRenderableObject();
             	BufferedImage image = renderable.getImage();
-            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (Math.min((float) extraOpacityMulti, 1f)) * opacityMulti * ((float) renderable.getOpacity())/255));
+            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, Math.min(Math.min((float) extraOpacityMulti, 1f) * opacityMulti * ((float) renderable.getOpacity())/255,1)));
             	g2d.drawImage(image, textbox.getX() + renderable.getX(), textbox.getY() + renderable.getY(), null);
-            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (Math.min((float) extraOpacityMulti, 1f)) * opacityMulti));
+            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, Math.min((Math.min((float) extraOpacityMulti, 1f)) * opacityMulti,1)));
             	// Reset the composite after using it
             	g2d.setTransform(oldForm);
             } 
@@ -1017,7 +1023,7 @@ public class Main extends JPanel implements KeyListener {
 		            int finalX = roundRectAttributes.getX() + (textbox.getXSize() / 2) + textbox.getOffsetX() + extraAlignX;
 		            int finalY = roundRectAttributes.getY() + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY;
 		            finalY = finalY + (fontMetrics.getAscent() * i);
-		            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, Math.min((Math.min((float) extraOpacityMulti, 1f)) * opacityMulti,1)));
+		            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, Math.min((Math.min((float) extraOpacityMulti, 1f)) * opacityMulti,1f)));
 		            g2d.drawString(lineText, finalX, finalY);
 	            }
 	            
@@ -1852,6 +1858,28 @@ public class Main extends JPanel implements KeyListener {
 					toReturn = ImageIO.read(new File("src/textures/skins/" + DefaultValues.getDefaultSelectedSkin())).getSubimage(x, y, 50, 50);
 				} else {
 					toReturn = ImageIO.read(new File("src/textures/skins/" + config.getCurrentSkinChoice())).getSubimage(x, y, 50, 50);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return toReturn;
+	}
+	
+	public static BufferedImage getDrumImage(int index) {
+		BufferedImage toReturn = null;
+		int x = (index / 2) * 75; // quotient
+		int y = ((index % 2) * 75) + 100; // remainder
+		if (currentSkin != null) {
+			toReturn = currentSkin.getSubimage(x, y, 75, 75);
+		} 
+		else {
+			try {
+				if (config == null) {
+					toReturn = ImageIO.read(new File("src/textures/skins/" + DefaultValues.getDefaultSelectedSkin())).getSubimage(x, y, 75, 75);
+				} else {
+					toReturn = ImageIO.read(new File("src/textures/skins/" + config.getCurrentSkinChoice())).getSubimage(x, y, 75, 75);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

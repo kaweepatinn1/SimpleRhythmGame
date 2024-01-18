@@ -194,7 +194,7 @@ public class FileIO {
 			    if (listOfFiles[i].getName().substring(listOfFiles[i].getName().length() - 4).toLowerCase().equals(".png")) {
 				    try {
 					    BufferedImage image = ImageIO.read(listOfFiles[i]);
-					    if (image.getWidth() == 150 && image.getHeight() == 100) {
+					    if (image.getWidth() == 225 && image.getHeight() == 250) {
 					    	// must be 150x100 to cache
 						    fileNames[files] = listOfFiles[i].getName();
 						    files++;

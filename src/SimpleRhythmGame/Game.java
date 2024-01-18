@@ -585,7 +585,7 @@ public class Game extends Thread {
 						//Text
 						1f, // scale
 						"noFunction", // function
-						"Score", // name
+						"Nice", // name
 						new Text(
 								"Nice!", // text
 								"center", "center", // align
@@ -625,7 +625,7 @@ public class Game extends Thread {
 						//Text
 						1f, // scale
 						"noFunction", // function
-						"Score", // name
+						"Perfect", // name
 						new Text(
 								"PERFECT!", // text
 								"center", "center", // align
@@ -664,7 +664,7 @@ public class Game extends Thread {
 						//Text
 						1f, // scale
 						"noFunction", // function
-						"Score", // name
+						"Miss", // name
 						new Text(
 								"Miss", // text
 								"center", "center", // align
@@ -704,22 +704,13 @@ public class Game extends Thread {
 						//Text
 						1f, // scale
 						"noFunction", // function
-						"Score", // name
-						new Text(
-								"You Died!", // text
-								"center", "center", // align
-								0, 0, // text offset (x, y)
-								150, // text size
-								DefaultValues.Color_ACCENT, // text color (index of colors)
-								"Archivo Narrow", // font
-								true // bold
-								),
+						"Red", // name
 						new RoundedArea(
 							960, 540,
-							0, 0, 0  // x, y, xSize, ySize, round%
+							1920, 1080, 0  // x, y, xSize, ySize, round%
 							),
-						DefaultValues.Color_STROKE, // box color (index of colors)
-						255, // opacity (0-255)
+						DefaultValues.Color_ACCENT, // box color (index of colors)
+						100, // opacity (0-255)
 						8, // shadowOffset
 						5, 6 // strokeWidth, strokeColor
 						));

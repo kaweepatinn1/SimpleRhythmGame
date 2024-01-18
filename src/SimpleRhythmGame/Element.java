@@ -712,9 +712,14 @@ public class Element {
             		String renderableName = renderableObject.getName();
             		String renderableFunction = renderableObject.getFunction();
                 	String imagePath = renderableObject.getImagePath();
-                	int note = -1;
-                	if (imagePath.charAt(0) == '#') {
-                		note = Integer.parseInt(imagePath.substring(1));
+                	int type = -1;
+                	int texture = -1;
+                	if (imagePath.substring(0, 5).equals("#note")) {
+                		type = DefaultValues.Texture_NOTE;
+                		texture = Integer.parseInt(imagePath.substring(6));
+                	} else if (imagePath.substring(0, 5).equals("#drum")) {
+                		type = DefaultValues.Texture_DRUM;
+                		texture = Integer.parseInt(imagePath.substring(6));
                 	}
                 	int renderableXSize = (int) Math.round(renderableObject.getXSize() * xScale);
                 	int renderableYSize = (int) Math.round(renderableObject.getYSize() * yScale);
@@ -722,11 +727,11 @@ public class Element {
                 	int renderableY = (int) Math.round(renderableObject.getY() * yScale);
                 	int renderableOpacity = renderableObject.getOpacity();
                 	Renderable newRenderableObject = null;
-                	if (note == -1) {
+                	if (type == -1) {
                 		newRenderableObject =  new Renderable(renderableFunction, renderableName, imagePath, 
                     			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
                 	} else {
-                		newRenderableObject =  new Renderable(renderableFunction, renderableName, note, 
+                		newRenderableObject =  new Renderable(renderableFunction, renderableName, type, texture, 
                     			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
                 	}
 	            	
@@ -775,21 +780,26 @@ public class Element {
 	        		String renderableName = renderableObject.getName();
 	        		String renderableFunction = renderableObject.getFunction();
 	            	String imagePath = renderableObject.getImagePath();
-	            	int note = -1;
-	            	if (imagePath.charAt(0) == '#') {
-	            		note = Integer.parseInt(imagePath.substring(1));
-	            	}
+	            	int type = -1;
+                	int texture = -1;
+                	if (imagePath.substring(0, 5).equals("#note")) {
+                		type = DefaultValues.Texture_NOTE;
+                		texture = Integer.parseInt(imagePath.substring(6));
+                	} else if (imagePath.substring(0, 5).equals("#drum")) {
+                		type = DefaultValues.Texture_DRUM;
+                		texture = Integer.parseInt(imagePath.substring(6));
+                	}
 	            	int renderableXSize = (int) Math.round(renderableObject.getXSize() * xScale);
 	            	int renderableYSize = (int) Math.round(renderableObject.getYSize() * yScale);
 	            	int renderableX = (int) Math.round(renderableObject.getX() * xScale);
 	            	int renderableY = (int) Math.round(renderableObject.getY() * yScale);
 	            	int renderableOpacity = renderableObject.getOpacity();
 	            	Renderable newRenderableObject = null;
-	            	if (note == -1) {
+	            	if (type == -1) {
 	            		newRenderableObject =  new Renderable(renderableFunction, renderableName, imagePath, 
 	                			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
 	            	} else {
-	            		newRenderableObject =  new Renderable(renderableFunction, renderableName, note, 
+	            		newRenderableObject =  new Renderable(renderableFunction, renderableName, type, texture, 
 	                			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
 	            	}
 	            	
@@ -830,9 +840,14 @@ public class Element {
     		String renderableName = renderableObject.getName();
     		String renderableFunction = renderableObject.getFunction();
         	String imagePath = renderableObject.getImagePath();
-        	int note = -1;
-        	if (imagePath.charAt(0) == '#') {
-        		note = Integer.parseInt(imagePath.substring(1));
+        	int type = -1;
+        	int texture = -1;
+        	if (imagePath.substring(0, 5).equals("#note")) {
+        		type = DefaultValues.Texture_NOTE;
+        		texture = Integer.parseInt(imagePath.substring(6));
+        	} else if (imagePath.substring(0, 5).equals("#drum")) {
+        		type = DefaultValues.Texture_DRUM;
+        		texture = Integer.parseInt(imagePath.substring(6));
         	}
         	int renderableXSize = (int) Math.round(renderableObject.getXSize() * xScale);
         	int renderableYSize = (int) Math.round(renderableObject.getYSize() * yScale);
@@ -840,11 +855,11 @@ public class Element {
         	int renderableY = (int) Math.round(renderableObject.getY() * yScale);
         	int renderableOpacity = renderableObject.getOpacity();
         	Renderable newRenderableObject = null;
-        	if (note == -1) {
+        	if (type == -1) {
         		newRenderableObject =  new Renderable(renderableFunction, renderableName, imagePath, 
             			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
         	} else {
-        		newRenderableObject =  new Renderable(renderableFunction, renderableName, note, 
+        		newRenderableObject =  new Renderable(renderableFunction, renderableName, type, texture, 
             			renderableX, renderableY, renderableXSize, renderableYSize, renderableOpacity);
         	}
         	toReturn =  
