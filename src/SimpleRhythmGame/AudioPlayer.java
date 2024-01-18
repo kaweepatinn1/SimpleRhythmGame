@@ -3,6 +3,8 @@ package SimpleRhythmGame;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
+import java.io.File;
 
 import javax.sound.sampled.*;
 
@@ -39,11 +41,10 @@ public class AudioPlayer {
 
     public void loadAudio(String filePath) {
         try {
-        	System.out.println(AudioPlayer.class.getResource("/sfx").getPath());
-        	InputStream audioSrc = getClass().getResourceAsStream(filePath);
-        	//add buffer for mark/reset support
-        	InputStream bufferedIn = new BufferedInputStream(audioSrc);
-        	AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedIn);
+        	filePath = "src/" + filePath;
+        	URL audioSrc = new File(filePath).toURI().toURL();;
+        	System.out.println(audioSrc.getPath());
+        	AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioSrc);
             clip.open(audioStream);
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
             e.printStackTrace();

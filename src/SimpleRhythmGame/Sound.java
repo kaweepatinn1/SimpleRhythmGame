@@ -56,7 +56,7 @@ public class Sound {
 		sfx = new AudioPlayer[sfxNames.length];
 		for (int i = 0 ; i < sfxNames.length ; i++) {
 			String sfxName = sfxNames[i];
-			AudioPlayer newPlayer = new AudioPlayer("/sfx/" + sfxName + ".wav");
+			AudioPlayer newPlayer = new AudioPlayer("sfx/" + sfxName + ".wav");
 			newPlayer.setVolume(Main.getConfig().getFinalSFXVolume());
 			sfx[i] = newPlayer;
 		}
