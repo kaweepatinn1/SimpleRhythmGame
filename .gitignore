@@ -1,4 +1,4 @@
-/bin/
-/target/
-/options.json/
-/playerdata.json/
+.bin/
+.target/
+.options.json/
+.playerdata.json/
