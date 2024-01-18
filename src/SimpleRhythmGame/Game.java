@@ -281,8 +281,8 @@ public class Game extends Thread {
 		int finalNotesMissed = notesMissed;
 		boolean finalCompleted = completed;
 		boolean finalFlawlessed = (finalNotesMissed == 0) && completed;
-		System.out.println(score);
-		System.out.println(Main.getPlayerData().getLevelStats(currentLevel).getHighscore());
+//		System.out.println(score);
+//		System.out.println(Main.getPlayerData().getLevelStats(currentLevel).getHighscore());
 		if (score > Main.getPlayerData().getLevelStats(currentLevel).getHighscore()) {
 			RandomAccess.newHighscore = true;
 		} else {
@@ -292,7 +292,7 @@ public class Game extends Thread {
 	}
 	
 	public void interruptSong() {
-		System.out.println("hios");
+//		System.out.println("hios");
 		Scores score = summarizeFinalScores(false);
 		Main.getPlayerData().updateStatsFromScores(currentLevel, score);
 		if (player != null) {
@@ -347,7 +347,7 @@ public class Game extends Thread {
 		futureNotes.remove((Note) noteInfo[0]);
 		currentNotes.remove((Note) noteInfo[0]);
 		hitNotes.add((Note) noteInfo[0]);
-		System.out.println("Late by: " + noteInfo[1]);
+//		System.out.println("Late by: " + noteInfo[1]);
 		incrementNotesHit();
 		// x2 for 5, x3 for 10, x4 for 15 and x5 for 20	
 		boolean perfect = Math.abs((double) noteInfo[1]) < 25;
@@ -605,7 +605,7 @@ public class Game extends Thread {
 						8, // shadowOffset
 						5, 6 // strokeWidth, strokeColor
 						));
-			System.out.println(Main.getScale());
+//			System.out.println(Main.getScale());
 			element = element.getScaledInstance(Main.getScale(), Main.getScale());
 			element.animateScroll(1);
 			gameGraphics.add(element);
@@ -684,7 +684,7 @@ public class Game extends Thread {
 						8, // shadowOffset
 						5, 6 // strokeWidth, strokeColor
 						));
-			System.out.println(Main.getScale());
+//			System.out.println(Main.getScale());
 			element = element.getScaledInstance(Main.getScale(), Main.getScale());
 			element.animateScroll(1);
 			gameGraphics.add(element);
@@ -723,7 +723,7 @@ public class Game extends Thread {
 						8, // shadowOffset
 						5, 6 // strokeWidth, strokeColor
 						));
-			System.out.println(Main.getScale());
+//			System.out.println(Main.getScale());
 			element = element.getScaledInstance(Main.getScale(), Main.getScale());
 			element.animateScroll(1);
 			gameGraphics.add(element);
