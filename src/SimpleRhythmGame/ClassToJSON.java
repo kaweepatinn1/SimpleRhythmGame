@@ -1326,8 +1326,8 @@ public class ClassToJSON extends FileIO {
 								0 // ms offset
 								),
 						new Note(
-								Note.Note_HIHAT, // note type
-								Note.HiHat_OPEN, // note subtype
+								Note.Note_CRASHCYMBAL, // note type
+								0, // note subtype
 								12, // bar
 								4, // beat
 								new int[] {0,4}, // subbeat
@@ -1668,8 +1668,8 @@ public class ClassToJSON extends FileIO {
 								0 // ms offset
 								),
 						new Note(
-								Note.Note_HIHAT, // note type
-								Note.HiHat_OPEN, // note subtype
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
 								16, // bar
 								4, // beat
 								new int[] {0,2}, // subbeat
@@ -1992,8 +1992,8 @@ public class ClassToJSON extends FileIO {
 								0 // ms offset
 								),
 						new Note(
-								Note.Note_HIHAT, // note type
-								Note.HiHat_OPEN, // note subtype
+								Note.Note_SNAREDRUM, // note type
+								0, // note subtype
 								20, // bar
 								4, // beat
 								new int[] {0,4}, // subbeat

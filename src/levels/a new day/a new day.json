@@ -878,8 +878,8 @@
       "noteOffset": 0.0
     },
     {
-      "type": 1,
-      "subtype": 1,
+      "type": 0,
+      "subtype": 0,
       "bar": 12,
       "beat": 4,
       "subBeat": [
@@ -1334,8 +1334,8 @@
       "noteOffset": 0.0
     },
     {
-      "type": 1,
-      "subtype": 1,
+      "type": 3,
+      "subtype": 0,
       "bar": 16,
       "beat": 4,
       "subBeat": [
@@ -1766,8 +1766,8 @@
       "noteOffset": 0.0
     },
     {
-      "type": 1,
-      "subtype": 1,
+      "type": 3,
+      "subtype": 0,
       "bar": 20,
       "beat": 4,
       "subBeat": [
