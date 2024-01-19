@@ -3,7 +3,7 @@ package SimpleRhythmGame;
 // A READ ONLY CLASS
 
 public class DefaultValues {
-	private static final int version = 2; 
+	private static final int version = 3; 
 	
 	private static final String defaultDatabasePasskey = "null";
 	private static final String defaultDatabaseDNS = "null";
@@ -121,6 +121,20 @@ public class DefaultValues {
 				    		new IntColor (235,233,252,255), // 6. Stroke Color
 				    		new IntColor (0,0,0,0), // 7. Transparent Color
 				    		new IntColor (0,0,0,255), // 8. Display Color
+					}
+					),
+			new Theme(
+					"GreenLeaf",
+					new IntColor[] {
+							new IntColor (50,91,81,255), // 0. BG Color
+							new IntColor (65,200,165,255), // 1. Menu Color
+				    		new IntColor (145,175,223,255), // 2. Buttons Color
+				    		new IntColor (171,172,224,255), // 3. Primary Selection Color
+				    		new IntColor (52,20,44,255), // 4. Secondary Selection Color
+				    		new IntColor (100,103,210,255), // 5. Accent Color
+				    		new IntColor (0,0,0,255), // 6. Stroke Color
+				    		new IntColor (0,0,0,0), // 7. Transparent Color
+				    		new IntColor (147,149,210,255), // 8. Display Color
 					}
 					),
 			new Theme(

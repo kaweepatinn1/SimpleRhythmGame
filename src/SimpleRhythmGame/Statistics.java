@@ -101,6 +101,7 @@ public class Statistics {
 		timePlayedSeconds = timePlayedSeconds + level.getTotalTimeSeconds();
 		notesHit = notesHit + scores.getNotesHit();
 		notesMissed = notesMissed + scores.getNotesMissed();
+		longestCombo = Math.max(longestCombo, scores.getMaxCombo());
 		totalAttempts++;
 		totalScore = totalScore + scores.getScore();
 	}
