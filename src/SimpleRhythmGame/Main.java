@@ -1698,8 +1698,8 @@ public class Main extends JPanel implements KeyListener {
 	        
 	        transitioning = true;
 	    	transitionTime = Framerate.getCurrentTime();
-	    	System.out.println(Framerate.getCurrentTime());
-	    	System.out.println(transitionTime);
+//	    	System.out.println(Framerate.getCurrentTime());
+//	    	System.out.println(transitionTime);
 	    	transitionTo = menu;
 	    	
 	    	animateEntryMenu();
