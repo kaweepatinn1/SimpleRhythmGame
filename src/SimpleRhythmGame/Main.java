@@ -532,7 +532,7 @@ public class Main extends JPanel implements KeyListener {
 	                	}
 	                } 
 	                
-	                else if (keyPressed == "Escape") {
+	                else if (keyPressed.equals("Escape")) {
 	                	if (popupIndexes.length != 0) {
 	                		removePopup(popupIndexes[popupIndexes.length - 1]);
 	                	} else {
