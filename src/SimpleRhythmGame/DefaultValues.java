@@ -342,6 +342,39 @@ public class DefaultValues {
 
 				},
 				new Element[] {
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+									new int[]{-1,-1}, // Selector Index
+									new int[][]{{0,0},{0,1},{0,0},{0,0}} // E, S, W, N to select next
+									),
+								-1, // mask index
+								false, // hover overlap
+								DefaultValues.TransformIndex_1sLeft100, // hover effect
+								21, // click effect
+								-1, // arbritraty animation (to be used for scroll)
+								DefaultValues.TransformIndex_1sLeft100, // entry animation
+								new TextBox(
+									// Text and Renderable
+									1.5f, // scale
+									"null", // function
+									"BG",  // name
+									new Renderable(
+										// Renderable Without Function
+										"BGPNG", // name
+										"src/textures/bg.png", // file source
+										0, 0, 1920, 1080, // x, y, xSize, ySize (relative)
+										255 // opacity (0-255)
+										),  // renderable
+									new RoundedArea(
+										0, 0, 0, 0, 100  // x, y, xSize, ySize, round%
+										),
+									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+									255, // opacity (0-255)
+									12, // shadowOffset
+									DefaultValues.Color_TRANSPARENT, DefaultValues.Color_TRANSPARENT // strokeWidth, strokeColor
+									)),
+	/////////////////////////////////////////////////////////////////////////////////////
 						new Element(
 								new Selector(
 									new int[]{-1,-1}, // Selector Index
@@ -368,6 +401,7 @@ public class DefaultValues {
 									5, 6 // strokeWidth, strokeColor
 									)
 								),
+/////////////////////////////////////////////////////////////////////////////////////
 						new Element(
 								new Selector(
 									new int[]{-1,-1}, // Selector Index
@@ -1319,7 +1353,39 @@ public class DefaultValues {
 					},
 					new Element[] { // Elements List
 /////////////////////////////////////////////////////////////////////////////////////
-						new Element(
+							new Element(
+									new Selector(
+										new int[]{-1,-1}, // Selector Index
+										new int[][]{{0,0},{0,1},{0,0},{0,0}} // E, S, W, N to select next
+										),
+									-1, // mask index
+									false, // hover overlap
+									DefaultValues.TransformIndex_1sLeft100, // hover effect
+									21, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									DefaultValues.TransformIndex_1sLeft100, // entry animation
+									new TextBox(
+										// Text and Renderable
+										1.5f, // scale
+										"null", // function
+										"BG",  // name
+										new Renderable(
+											// Renderable Without Function
+											"BGPNG", // name
+											"src/textures/bg.png", // file source
+											0, 0, 1920, 1080, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+										new RoundedArea(
+											0, 0, 0, 0, 100  // x, y, xSize, ySize, round%
+											),
+										DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+										255, // opacity (0-255)
+										12, // shadowOffset
+										DefaultValues.Color_TRANSPARENT, DefaultValues.Color_TRANSPARENT // strokeWidth, strokeColor
+										)),
+		/////////////////////////////////////////////////////////////////////////////////////
+							new Element(
 							new Selector(
 								new int[]{0,0}, // Selector Index
 								new int[][]{{0,0},{0,1},{0,0},{0,0}} // E, S, W, N to select next
@@ -1554,6 +1620,38 @@ public class DefaultValues {
 						},
 					new Element[] { // Elements List
 /////////////////////////////////////////////////////////////////////////////////////
+							new Element(
+									new Selector(
+										new int[]{-1,-1}, // Selector Index
+										new int[][]{{0,0},{0,1},{0,0},{0,0}} // E, S, W, N to select next
+										),
+									-1, // mask index
+									false, // hover overlap
+									DefaultValues.TransformIndex_1sLeft100, // hover effect
+									21, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									DefaultValues.TransformIndex_1sLeft100, // entry animation
+									new TextBox(
+										// Text and Renderable
+										1.5f, // scale
+										"null", // function
+										"BG",  // name
+										new Renderable(
+											// Renderable Without Function
+											"BGPNG", // name
+											"src/textures/bg.png", // file source
+											0, 0, 1920, 1080, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+										new RoundedArea(
+											0, 0, 0, 0, 100  // x, y, xSize, ySize, round%
+											),
+										DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+										255, // opacity (0-255)
+										12, // shadowOffset
+										DefaultValues.Color_TRANSPARENT, DefaultValues.Color_TRANSPARENT // strokeWidth, strokeColor
+										)),
+		/////////////////////////////////////////////////////////////////////////////////////
 							new Element(
 									new Selector(
 										new int[]{0,1}, // Selector Index
@@ -2346,6 +2444,38 @@ public class DefaultValues {
 						},
 					new Element[] { // Elements List
 /////////////////////////////////////////////////////////////////////////////////////
+							new Element(
+									new Selector(
+										new int[]{-1,-1}, // Selector Index
+										new int[][]{{0,0},{0,1},{0,0},{0,0}} // E, S, W, N to select next
+										),
+									-1, // mask index
+									false, // hover overlap
+									DefaultValues.TransformIndex_1sLeft100, // hover effect
+									21, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									DefaultValues.TransformIndex_1sLeft100, // entry animation
+									new TextBox(
+										// Text and Renderable
+										1.5f, // scale
+										"null", // function
+										"BG",  // name
+										new Renderable(
+											// Renderable Without Function
+											"BGPNG", // name
+											"src/textures/bg.png", // file source
+											0, 0, 1920, 1080, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+										new RoundedArea(
+											0, 0, 0, 0, 100  // x, y, xSize, ySize, round%
+											),
+										DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+										255, // opacity (0-255)
+										12, // shadowOffset
+										DefaultValues.Color_TRANSPARENT, DefaultValues.Color_TRANSPARENT // strokeWidth, strokeColor
+										)),
+		/////////////////////////////////////////////////////////////////////////////////////
 							new Element(
 									new Selector(
 										new int[]{0,1}, // Selector Index
@@ -4033,6 +4163,38 @@ public class DefaultValues {
 						},
 					new Element[] { // Elements List
 /////////////////////////////////////////////////////////////////////////////////////
+							new Element(
+									new Selector(
+										new int[]{-1,-1}, // Selector Index
+										new int[][]{{0,0},{0,1},{0,0},{0,0}} // E, S, W, N to select next
+										),
+									-1, // mask index
+									false, // hover overlap
+									DefaultValues.TransformIndex_1sLeft100, // hover effect
+									21, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									DefaultValues.TransformIndex_1sLeft100, // entry animation
+									new TextBox(
+										// Text and Renderable
+										1.5f, // scale
+										"null", // function
+										"BG",  // name
+										new Renderable(
+											// Renderable Without Function
+											"BGPNG", // name
+											"src/textures/bg.png", // file source
+											0, 0, 1920, 1080, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+										new RoundedArea(
+											0, 0, 0, 0, 100  // x, y, xSize, ySize, round%
+											),
+										DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+										255, // opacity (0-255)
+										12, // shadowOffset
+										DefaultValues.Color_TRANSPARENT, DefaultValues.Color_TRANSPARENT // strokeWidth, strokeColor
+										)),
+		/////////////////////////////////////////////////////////////////////////////////////
 							new Element(
 									new Selector(
 										new int[]{0,1}, // Selector Index
@@ -7004,6 +7166,38 @@ public class DefaultValues {
 /////////////////////////////////////////////////////////////////////////////////////
 							new Element(
 									new Selector(
+										new int[]{-1,-1}, // Selector Index
+										new int[][]{{0,0},{0,1},{0,0},{0,0}} // E, S, W, N to select next
+										),
+									-1, // mask index
+									false, // hover overlap
+									DefaultValues.TransformIndex_1sLeft100, // hover effect
+									21, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									DefaultValues.TransformIndex_1sLeft100, // entry animation
+									new TextBox(
+										// Text and Renderable
+										1.5f, // scale
+										"null", // function
+										"BG",  // name
+										new Renderable(
+											// Renderable Without Function
+											"BGPNG", // name
+											"src/textures/bg.png", // file source
+											0, 0, 1920, 1080, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+										new RoundedArea(
+											0, 0, 0, 0, 100  // x, y, xSize, ySize, round%
+											),
+										DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+										255, // opacity (0-255)
+										12, // shadowOffset
+										DefaultValues.Color_TRANSPARENT, DefaultValues.Color_TRANSPARENT // strokeWidth, strokeColor
+										)),
+		/////////////////////////////////////////////////////////////////////////////////////
+							new Element(
+									new Selector(
 										new int[]{0,1}, // Selector Index
 										new int[][]{{1,0},{0,2},{0,0},{0,0}} // E, S, W, N to select next
 										),
@@ -7736,6 +7930,38 @@ public class DefaultValues {
 						},
 					new Element[] { // Elements List
 /////////////////////////////////////////////////////////////////////////////////////
+							new Element(
+									new Selector(
+										new int[]{-1,-1}, // Selector Index
+										new int[][]{{0,0},{0,1},{0,0},{0,0}} // E, S, W, N to select next
+										),
+									-1, // mask index
+									false, // hover overlap
+									DefaultValues.TransformIndex_1sLeft100, // hover effect
+									21, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									DefaultValues.TransformIndex_1sLeft100, // entry animation
+									new TextBox(
+										// Text and Renderable
+										1.5f, // scale
+										"null", // function
+										"BG",  // name
+										new Renderable(
+											// Renderable Without Function
+											"BGPNG", // name
+											"src/textures/bg.png", // file source
+											0, 0, 1920, 1080, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+										new RoundedArea(
+											0, 0, 0, 0, 100  // x, y, xSize, ySize, round%
+											),
+										DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+										255, // opacity (0-255)
+										12, // shadowOffset
+										DefaultValues.Color_TRANSPARENT, DefaultValues.Color_TRANSPARENT // strokeWidth, strokeColor
+										)),
+		/////////////////////////////////////////////////////////////////////////////////////
 							DefaultValues.Element_BACKBUTTON(),
 /////////////////////////////////////////////////////////////////////////////////////
 						new Element(
@@ -8773,6 +8999,38 @@ public class DefaultValues {
 						},
 					new Element[] { // Elements List
 /////////////////////////////////////////////////////////////////////////////////////
+							new Element(
+									new Selector(
+										new int[]{-1,-1}, // Selector Index
+										new int[][]{{0,0},{0,1},{0,0},{0,0}} // E, S, W, N to select next
+										),
+									-1, // mask index
+									false, // hover overlap
+									DefaultValues.TransformIndex_1sLeft100, // hover effect
+									21, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									DefaultValues.TransformIndex_1sLeft100, // entry animation
+									new TextBox(
+										// Text and Renderable
+										1.5f, // scale
+										"null", // function
+										"BG",  // name
+										new Renderable(
+											// Renderable Without Function
+											"BGPNG", // name
+											"src/textures/bg.png", // file source
+											0, 0, 1920, 1080, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+										new RoundedArea(
+											0, 0, 0, 0, 100  // x, y, xSize, ySize, round%
+											),
+										DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+										255, // opacity (0-255)
+										12, // shadowOffset
+										DefaultValues.Color_TRANSPARENT, DefaultValues.Color_TRANSPARENT // strokeWidth, strokeColor
+										)),
+		/////////////////////////////////////////////////////////////////////////////////////
 						new Element(
 							new Selector(
 								new int[]{-1,-1}, // Selector Index
@@ -9153,6 +9411,38 @@ public class DefaultValues {
 						},
 					new Element[] { // Elements List
 /////////////////////////////////////////////////////////////////////////////////////
+							new Element(
+									new Selector(
+										new int[]{-1,-1}, // Selector Index
+										new int[][]{{0,0},{0,1},{0,0},{0,0}} // E, S, W, N to select next
+										),
+									-1, // mask index
+									false, // hover overlap
+									DefaultValues.TransformIndex_1sLeft100, // hover effect
+									21, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									DefaultValues.TransformIndex_1sLeft100, // entry animation
+									new TextBox(
+										// Text and Renderable
+										1.5f, // scale
+										"null", // function
+										"BG",  // name
+										new Renderable(
+											// Renderable Without Function
+											"BGPNG", // name
+											"src/textures/bg.png", // file source
+											0, 0, 1920, 1080, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+										new RoundedArea(
+											0, 0, 0, 0, 100  // x, y, xSize, ySize, round%
+											),
+										DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+										255, // opacity (0-255)
+										12, // shadowOffset
+										DefaultValues.Color_TRANSPARENT, DefaultValues.Color_TRANSPARENT // strokeWidth, strokeColor
+										)),
+		/////////////////////////////////////////////////////////////////////////////////////
 							new Element(
 									new Selector(
 										new int[]{0,1}, // Selector Index
@@ -10264,6 +10554,38 @@ public class DefaultValues {
 						},
 					new Element[] { // Elements List
 /////////////////////////////////////////////////////////////////////////////////////
+							new Element(
+									new Selector(
+										new int[]{-1,-1}, // Selector Index
+										new int[][]{{0,0},{0,1},{0,0},{0,0}} // E, S, W, N to select next
+										),
+									-1, // mask index
+									false, // hover overlap
+									DefaultValues.TransformIndex_1sLeft100, // hover effect
+									21, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									DefaultValues.TransformIndex_1sLeft100, // entry animation
+									new TextBox(
+										// Text and Renderable
+										1.5f, // scale
+										"null", // function
+										"BG",  // name
+										new Renderable(
+											// Renderable Without Function
+											"BGPNG", // name
+											"src/textures/bg.png", // file source
+											0, 0, 1920, 1080, // x, y, xSize, ySize (relative)
+											255 // opacity (0-255)
+											),  // renderable
+										new RoundedArea(
+											0, 0, 0, 0, 100  // x, y, xSize, ySize, round%
+											),
+										DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+										255, // opacity (0-255)
+										12, // shadowOffset
+										DefaultValues.Color_TRANSPARENT, DefaultValues.Color_TRANSPARENT // strokeWidth, strokeColor
+										)),
+		/////////////////////////////////////////////////////////////////////////////////////
 							new Element(
 									new Selector(
 										new int[]{0,1}, // Selector Index

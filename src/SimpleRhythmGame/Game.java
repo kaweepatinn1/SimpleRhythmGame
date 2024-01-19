@@ -111,6 +111,7 @@ public class Game extends Thread {
 		calculateNotesTimeFromStart();
 //		millisStarted = Framerate.getCurrentTime() + 2500 - (debugStartTime * 1000);
 		millisStarted = Framerate.getCurrentTime() + 2500;
+		player.playAtNoVolume();
 		refreshCurrentNotes();
 		try {
 			Thread.sleep(2500);

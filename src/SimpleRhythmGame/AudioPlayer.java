@@ -56,8 +56,14 @@ public class AudioPlayer {
     public boolean getToClose() {
     	return toClose;
     }
+    
+    public void playAtNoVolume() {
+    	this.setVolume(0);
+    	clip.start();
+    }
 
     public void play() {
+    	this.setVolume(Main.getConfig().getFinalMusicVolume());
     	clip.setFramePosition(0);
         clip.start();
     }
@@ -70,6 +76,10 @@ public class AudioPlayer {
     public void resume() {
         clip.setMicrosecondPosition(currentFrame);
         clip.start();
+    }
+    
+    public long getMicrosecondTime() {
+    	return clip.getMicrosecondPosition();
     }
 
     public void jump(long position) {
