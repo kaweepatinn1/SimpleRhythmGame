@@ -164,12 +164,17 @@ public class Renderable {
     }
     
     public void resetImage() {
-    	if (imagePath.charAt(0) == '#') {
-    		BufferedImage originalImage = Main.getNoteImage(Integer.parseInt(imagePath.substring(1)) - 1);
-        	BufferedImage scaledImage = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
-                    xSize, ySize, Scalr.OP_ANTIALIAS);
-        	this.image = scaledImage;
-    	} else {
+    	if (imagePath.substring(0, 5).equals("#note")) {
+     		BufferedImage originalImage = Main.getNoteImage(Integer.parseInt(imagePath.substring(6)));
+         	BufferedImage scaledImage = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
+                     xSize, ySize, Scalr.OP_ANTIALIAS);
+         	this.image = scaledImage;
+     	} else if (imagePath.substring(0, 5).equals("#drum")) {
+     		BufferedImage originalImage = Main.getDrumImage(Integer.parseInt(imagePath.substring(6)));
+         	BufferedImage scaledImage = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,
+                     xSize, ySize, Scalr.OP_ANTIALIAS);
+         	this.image = scaledImage;
+     	}else {
     		try {
             	BufferedImage originalImage = ImageIO.read(getFile());
             	this.image = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.FIT_EXACT,

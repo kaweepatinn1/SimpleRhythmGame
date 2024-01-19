@@ -154,7 +154,7 @@ public class DefaultValues {
 			
 	};
 	
-	private static final String defaultSelectedTheme = "RockyRed";
+	private static final String defaultSelectedTheme = "GreenLeaf";
 	private static final String defaultSelectedSkin = "DefaultSkin.png";
 	
 	private static final String[] defaultFonts = new String[] {

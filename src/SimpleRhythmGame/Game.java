@@ -109,7 +109,8 @@ public class Game extends Thread {
 
 	public void init() {
 		calculateNotesTimeFromStart();
-		millisStarted = Framerate.getCurrentTime() + 2500 - (debugStartTime * 1000);
+//		millisStarted = Framerate.getCurrentTime() + 2500 - (debugStartTime * 1000);
+		millisStarted = Framerate.getCurrentTime() + 2500;
 		refreshCurrentNotes();
 		try {
 			Thread.sleep(2500);
@@ -119,7 +120,7 @@ public class Game extends Thread {
 		}
 		if (!isTutorial) {
 			player.play();
-			player.setFramePosition(debugStartTime * 44100);
+			//player.setFramePosition(debugStartTime * 44100);
 		}
 		unpaused = true;
 	}
