@@ -231,6 +231,8 @@ public class Game extends Thread {
 			for (int i = 0 ; i < 500 ; i++) {
 				try {
 					Thread.sleep(2); 
+//					System.out.println((Framerate.getCurrentTime() - millisStarted) - 
+//		currentLevel.getTotalTimeSeconds() * 1000);
 					// 1 second total refresh time, so four full second leeway 
 					// to run 500 iterations before refresh onto screen.
 					// game on 2ms refresh rate (500fps).

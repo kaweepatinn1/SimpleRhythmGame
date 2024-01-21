@@ -2004,6 +2004,7 @@ public class Main extends JPanel implements KeyListener {
 //        ClassToJSON.tutorialOut();
 //        ClassToJSON.indieLevelOut();
 //        ClassToJSON.jPopOut();
+        ClassToJSON.getRunningHome();	
         
         ////////////////////// Session Stats
         
