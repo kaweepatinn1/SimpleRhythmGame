@@ -771,6 +771,40 @@ public class DefaultValues {
 									//Text
 									1f, // scale
 									"noFunction", // function
+									"Combo", // name
+									new Text(
+											"%Multi", // text
+											"right", "center", // align
+											0, -9, // text offset (x, y)
+											50, // text size
+											6, // text color (index of colors)
+											"Archivo Narrow", // font
+											false // bold
+											),
+									new RoundedArea(
+										1558, 217, 0, 0, 0  // x, y, xSize, ySize, round%
+										),
+									DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+									255, // opacity (0-255)
+									8, // shadowOffset
+									5, 6 // strokeWidth, strokeColor
+									)),
+/////////////////////////////////////////////////////////////////////////////////////
+						new Element(
+								new Selector(
+										new int[]{-1,-1}, // Selector Index
+										new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+										),
+									-1, // mask index
+									false, // hover overlap
+									-1, // hover effect
+									-1, // click effect
+									-1, // arbritraty animation (to be used for scroll)
+									DefaultValues.TransformIndex_500msScale0, // entry animation
+								new TextBox(
+									//Text
+									1f, // scale
+									"noFunction", // function
 									"ComboTitle", // name
 									new Text(
 											"Combo", // text
