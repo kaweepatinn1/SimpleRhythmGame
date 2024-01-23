@@ -12,7 +12,7 @@ public class ClassToJSON extends FileIO {
 		String path = "./src/levels/beginning/beginning.json";
 		Level toOut = new Level(
 				"Beginning", // name
-				"Kai_Tobashi", // author
+				"Kai_Dobashi", // author
 				1, // version
 				UUID.fromString("bf858823-58fe-4273-86b9-143f61ada1f6"), // UUID
 				0d, // ms offset
@@ -667,7 +667,7 @@ public class ClassToJSON extends FileIO {
 		String path = "./src/levels/a new day/a new day.json";
 		Level toOut = new Level(
 				"A New Day", // name
-				"Kai_Tobashi", // author
+				"Kai_Dobashi", // author
 				1, // version
 				UUID.fromString("53affdf8-a1c2-48f2-8514-adf7dc8c0690"), // UUID
 				-25d, // ms offset
@@ -7856,7 +7856,7 @@ public class ClassToJSON extends FileIO {
 		String path = "./src/levels/evening tea/evening tea.json";
 		Level toOut = new Level(
 				"Evening Tea", // name
-				"Kai_Tobashi", // author
+				"Kai_Dobashi", // author
 				1, // version
 				UUID.fromString("ca25c1d6-321c-420a-bcd1-3a1642c48957"), // UUID
 				0d, // ms offset
@@ -16197,7 +16197,7 @@ public class ClassToJSON extends FileIO {
 		String path = "./src/levels/running home/running home.json";
 		Level toOut = new Level(
 				"Running Home", // name
-				"Kai_Tobashi", // author
+				"Kai_Dobashi", // author
 				1, // version
 				UUID.fromString("139c2fdb-f313-4410-be08-1c6f85d81c25"), // UUID
 				0d, // ms offset
