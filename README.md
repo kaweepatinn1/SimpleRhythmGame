@@ -1,3 +1,3 @@
 # SimpleRhythmGame
 
-A simple rhythm game built on java. Still under construction, and will not work as intended.
+A simple rhythm game built on java. Must use Java 18 or higher.

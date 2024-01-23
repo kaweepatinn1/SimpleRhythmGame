@@ -542,15 +542,15 @@ public class Main extends JPanel implements KeyListener {
 	                }
             	
             	
-            	String keyText = KeyEvent.getKeyText(rawKeyCode);
-                System.out.println("Bound Key Pressed: " + keyPressed);
-                System.out.println("Raw Key Pressed: " + keyText);
+//            	String keyText = KeyEvent.getKeyText(rawKeyCode);
+//                System.out.println("Bound Key Pressed: " + keyPressed);
+//                System.out.println("Raw Key Pressed: " + keyText);
                 
                 
             } else {
-            	String keyText = KeyEvent.getKeyText(rawKeyCode);
-            	System.out.println(rawKeyCode);
-            	System.out.println("Unbound Key Pressed: " + keyText);
+//            	String keyText = KeyEvent.getKeyText(rawKeyCode);
+//            	System.out.println(rawKeyCode);
+//            	System.out.println("Unbound Key Pressed: " + keyText);
             }
     	}
     }
@@ -673,8 +673,71 @@ public class Main extends JPanel implements KeyListener {
     	        
             }
         	
+        	if (!state.equals("NotPlaying") && iter == -1) { // healthbar render
+        		Element healthBar = new Element(
+        				new Selector(
+        						new int[]{-1,-1}, // Selector Index
+        						new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+        						),
+        					-1, // mask index
+        					false, // hover overlap
+        					-1, // hover effect
+        					-1, // click effect
+        					-1, // arbritraty animation (to be used for scroll)
+        					DefaultValues.TransformIndex_500msScale0, // entry animation
+        				new TextBox(
+        					//Text
+        					1f, // scale
+        					"noFunction", // function
+        					"Health", // name
+        					new RoundedArea(
+        						660 + (3 * Math.max(Main.getGame().getHealth(),0)), 219, 6 * Math.max(Main.getGame().getHealth(),0), 75, 0  // x, y, xSize, ySize, round%
+        						),
+        					DefaultValues.Color_ACCENT, // box color (index of colors)
+        					255, // opacity (0-255)
+        					0, // shadowOffset
+        					5, 6 // strokeWidth, strokeColor
+        					));
+            	healthBar = healthBar.getScaledInstance(Main.getScale(), Main.getScale());
+            	renderElement(healthBar, newGraphics(g), 1f);
+            	Element healthBox = new Element(
+        				new Selector(
+        						new int[]{-1,-1}, // Selector Index
+        						new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+        						),
+        					-1, // mask index
+        					false, // hover overlap
+        					-1, // hover effect
+        					-1, // click effect
+        					-1, // arbritraty animation (to be used for scroll)
+        					DefaultValues.TransformIndex_500msScale0, // entry animation
+        				new TextBox(
+        					//Text
+        					1f, // scale
+        					"noFunction", // function
+        					"Health", // name
+        					new Text(
+        							"%Health", // text
+        							"center", "center", // align
+        							0, -9, // text offset (x, y)
+        							50, // text size
+        							6, // text color (index of colors)
+        							"Archivo Narrow", // font
+        							false // bold
+        							),
+        					new RoundedArea(
+        						960, 219, 600, 75, 0  // x, y, xSize, ySize, round%
+        						),
+        					DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+        					255, // opacity (0-255)
+        					0, // shadowOffset
+        					5, 6 // strokeWidth, strokeColor
+        					));
+            	healthBox = healthBox.getScaledInstance(Main.getScale(), Main.getScale());
+            	renderElement(healthBox, newGraphics(g), 1f);
+        	}
+        	
         	if (renderLast != null) {
-        		
         		Graphics2D g2d = (Graphics2D) g.create();
     	        g2d.setRenderingHints(rh);
     	        
@@ -687,7 +750,6 @@ public class Main extends JPanel implements KeyListener {
         if (!state.equals("NotPlaying")) {
         	Graphics2D g2d = (Graphics2D) g.create();
         	g2d.setRenderingHints(rh);
-        	
         	renderGameLoop(game, g2d);
         }
         
@@ -2004,6 +2066,7 @@ public class Main extends JPanel implements KeyListener {
 //        ClassToJSON.tutorialOut();
 //        ClassToJSON.indieLevelOut();
 //        ClassToJSON.jPopOut();
+//        ClassToJSON.getRunningHome();
         
         ////////////////////// Session Stats
         

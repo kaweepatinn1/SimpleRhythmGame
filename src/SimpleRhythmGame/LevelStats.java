@@ -186,9 +186,9 @@ public class LevelStats {
 		attempts++;
 		notesHit = notesHit + scores.getNotesHit();
 		notesMissed = notesMissed + scores.getNotesMissed();
-		System.out.println(scores.getNotesHit());
+//		System.out.println(scores.getNotesHit());
 		Float accuracy = scores.getNotesHit() == 0 ? 0 : 100 * (float) scores.getNotesHit() / (float) (scores.getNotesHit() + scores.getNotesMissed());
-		System.out.println(accuracy);
+//		System.out.println(accuracy);
 		bestAccuracy = Math.max(accuracy, bestAccuracy);
 	}
 }

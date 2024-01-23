@@ -231,6 +231,8 @@ public class Game extends Thread {
 			for (int i = 0 ; i < 500 ; i++) {
 				try {
 					Thread.sleep(2); 
+//					System.out.println((Framerate.getCurrentTime() - millisStarted) - 
+//		currentLevel.getTotalTimeSeconds() * 1000);
 					// 1 second total refresh time, so four full second leeway 
 					// to run 500 iterations before refresh onto screen.
 					// game on 2ms refresh rate (500fps).
@@ -267,13 +269,11 @@ public class Game extends Thread {
 	public void checkForMiss() {
 		int notesLength = currentNotes.size();
 		for (int i = 0 ; i < notesLength ; i++) {
-			Note note = currentNotes.get(0);
-			if (note != null) {
-				if (getTimeSinceGameStart() > note.getCalculatedTimeFromStart() + Main.getConfig().getFORCED_millisecondLeniency() + 200 / currentLevel.getPPS()) {
-//					System.out.println("miss" + note.getCalculatedTimeFromStart() + "type" + note.getType());
-					miss(note);
-					break;
-				}
+			Note note = currentNotes.get(i);
+			if (getTimeSinceGameStart() > note.getCalculatedTimeFromStart() + Main.getConfig().getFORCED_millisecondLeniency() + 200 / currentLevel.getPPS()) {
+//				System.out.println("miss" + note.getCalculatedTimeFromStart() + "type" + note.getType());
+				miss(note);
+				break;
 			}
 		}
 	}
@@ -573,7 +573,13 @@ public class Game extends Thread {
 	}
 	
 	private void addGameGraphic(int type) {
-		if (type == Game.hit) {
+		boolean renderHit = false;
+		boolean renderPerfect = false;
+		boolean renderMiss = true;
+		boolean renderDeath = true;
+		boolean renderCombo = true;
+		
+		if (type == Game.hit && renderHit) {
 			Element element = new Element(
 					new Selector(
 							new int[]{-1,-1}, // Selector Index
@@ -613,7 +619,7 @@ public class Game extends Thread {
 			element = element.getScaledInstance(Main.getScale(), Main.getScale());
 			element.animateScroll(1);
 			gameGraphics.add(element);
-		} else if (type == Game.hitPerfect) {
+		} else if (type == Game.hitPerfect && renderPerfect) {
 			Element element = new Element(
 					new Selector(
 							new int[]{-1,-1}, // Selector Index
@@ -652,7 +658,7 @@ public class Game extends Thread {
 			element = element.getScaledInstance(Main.getScale(), Main.getScale());
 			element.animateScroll(1);
 			gameGraphics.add(element);
-		} else if (type == Game.miss) {
+		} else if (type == Game.miss && renderMiss) {
 			Element element = new Element(
 					new Selector(
 							new int[]{-1,-1}, // Selector Index
@@ -692,7 +698,7 @@ public class Game extends Thread {
 			element = element.getScaledInstance(Main.getScale(), Main.getScale());
 			element.animateScroll(1);
 			gameGraphics.add(element);
-		} else if (type == Game.die) {
+		} else if (type == Game.die && renderDeath) {
 			Element element = new Element(
 					new Selector(
 							new int[]{-1,-1}, // Selector Index
@@ -723,5 +729,87 @@ public class Game extends Thread {
 			element.animateScroll(1);
 			gameGraphics.add(element);
 		}
+		
+		if ((type == Game.hitPerfect || type == Game.hit) && renderCombo) {
+			int random = (int) Math.round(Math.random() * 3);
+			int randX = (int) Math.round(Math.random() * 200);
+			int randY = (int) Math.round(Math.random() * 100);
+			Element element = new Element(
+					new Selector(
+							new int[]{-1,-1}, // Selector Index
+							new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+							),
+						-1, // mask index
+						false, // hover overlap
+						-1, // hover effect
+						-1, // click effect
+						21 + random, // arbritraty animation (to be used for scroll)
+						DefaultValues.TransformIndex_500msScale0, // entry animation
+					new TextBox(
+						//Text
+						1f, // scale
+						"noFunction", // function
+						"Perfect", // name
+						new Text(
+								Integer.toString(combo), // text
+								"center", "center", // align
+								0, 0, // text offset (x, y)
+								80, // text size
+								6, // text color (index of colors)
+								"Archivo Narrow", // font
+								true // bold
+								),
+						new RoundedArea(
+								randX + 600,
+								randY + 500
+							, 0, 0, 0  // x, y, xSize, ySize, round%
+							),
+						DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+						255, // opacity (0-255)
+						8, // shadowOffset
+						5, 6 // strokeWidth, strokeColor
+						));
+			element = element.getScaledInstance(Main.getScale(), Main.getScale());
+			element.animateScroll(1);
+			gameGraphics.add(element);
+			Element element2 = new Element(
+					new Selector(
+							new int[]{-1,-1}, // Selector Index
+							new int[][]{{0,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+							),
+						-1, // mask index
+						false, // hover overlap
+						-1, // hover effect
+						-1, // click effect
+						21 + random, // arbritraty animation (to be used for scroll)
+						DefaultValues.TransformIndex_500msScale0, // entry animation
+					new TextBox(
+						//Text
+						1f, // scale
+						"noFunction", // function
+						"Perfect", // name
+						new Text(
+								"combo", // text
+								"center", "center", // align
+								0, 0, // text offset (x, y)
+								30, // text size
+								6, // text color (index of colors)
+								"Archivo Narrow", // font
+								true // bold
+								),
+						new RoundedArea(
+								randX + 600,
+								randY + 550
+							, 0, 0, 0  // x, y, xSize, ySize, round%
+							),
+						DefaultValues.Color_TRANSPARENT, // box color (index of colors)
+						255, // opacity (0-255)
+						8, // shadowOffset
+						5, 6 // strokeWidth, strokeColor
+						));
+			element2 = element2.getScaledInstance(Main.getScale(), Main.getScale());
+			element2.animateScroll(1);
+			gameGraphics.add(element2);
+		} 
 	}
 }

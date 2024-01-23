@@ -616,6 +616,8 @@ public class Config {
 			varToReturn = Integer.toString(Main.getGame().getNotesMissed());
 		} else if (splitVariable[0].equals("%Combo")) {
 			varToReturn = Integer.toString(Main.getGame().getCombo());
+		} else if (splitVariable[0].equals("%Multi")) {
+			varToReturn = "(" + (1 + Math.min((Main.getGame().getCombo() / 5), 4)) + "x)";
 		} else if (splitVariable[0].equals("%Health")) {
 			if (Main.getGame().getNoFail()) {
 				varToReturn = "";
@@ -680,7 +682,7 @@ public class Config {
 				varToReturn = Integer.toString(RandomAccess.levelHighscore);
 			} else if (splitVariable[1].equals("BestAccuracy")) {
 				DecimalFormat formatter = new DecimalFormat("#,##0.0");
-				varToReturn = formatter.format(RandomAccess.levelBestAccuracy) + "%";
+				varToReturn = RandomAccess.levelBestAccuracy == 1f ? 0 : formatter.format(RandomAccess.levelBestAccuracy) + "%";
 			} else if (splitVariable[1].equals("Flawless")) {
 				if (RandomAccess.levelFlawless) {
 					varToReturn = "Level Flawlessed!";
