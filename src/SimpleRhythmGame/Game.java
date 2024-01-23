@@ -270,10 +270,12 @@ public class Game extends Thread {
 		int notesLength = currentNotes.size();
 		for (int i = 0 ; i < notesLength ; i++) {
 			Note note = currentNotes.get(i);
-			if (getTimeSinceGameStart() > note.getCalculatedTimeFromStart() + Main.getConfig().getFORCED_millisecondLeniency() + 200 / currentLevel.getPPS()) {
-//				System.out.println("miss" + note.getCalculatedTimeFromStart() + "type" + note.getType());
-				miss(note);
-				break;
+			if (note != null) {
+				if (getTimeSinceGameStart() > note.getCalculatedTimeFromStart() + Main.getConfig().getFORCED_millisecondLeniency() + 200 / currentLevel.getPPS()) {
+//					System.out.println("miss" + note.getCalculatedTimeFromStart() + "type" + note.getType());
+					miss(note);
+					break;
+				}
 			}
 		}
 	}
