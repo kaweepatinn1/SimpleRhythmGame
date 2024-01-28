@@ -78,6 +78,9 @@ public class Menu {
 	}
 	
 	public Popup getPopup(int index) {
+		if (index == -1) {
+			return new Popup(null, null, null);
+		}
 		return popups[index];
 	}
 	

@@ -1646,7 +1646,7 @@ public class Main extends JPanel implements KeyListener {
     			transitionBlackOut = true;
     		}
     	}
-    	if (popupUpdate && getCurrentPopupIndex() != 1) {
+    	if (popupUpdate) {
     		if (Framerate.getCurrentTime() > popupTime + config.getTransitionTime() / 2f) {
     			Element[] tempElementsList = scaledMenu.getPopup(getCurrentPopupIndex()).getElements();
     			for (int i = 0; i < tempElementsList.length ; i++) {
