@@ -70,7 +70,7 @@ public class Game extends Thread {
 		futureNotes = new ArrayList<>(Arrays.asList(rawNotes));
 		hitNotes = new ArrayList<>();
 		currentNotesLimits = new int[] {0,0};
-		rawGameMenu = generateGameMenu(); // uses currentNotes to initially generate the game menu
+		rawGameMenu = generateGameMenu();
 		millisPassed = 0;
 		score = 0;
 		combo = 0;
@@ -116,7 +116,6 @@ public class Game extends Thread {
 		try {
 			Thread.sleep(2500);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (!isTutorial) {
@@ -134,6 +133,9 @@ public class Game extends Thread {
 			System.arraycopy(rawNotes,currentNotesLimits[0],toUpdate,0,currentNotesLimits[1] - currentNotesLimits[0]);
 			ArrayList<Note> toUpdateList = new ArrayList<>(Arrays.asList(toUpdate));
 			for (Note note : hitNotes) {
+				if (toUpdateList.get(0).equals(note)) {
+					currentNotesLimits[0]++;
+				}
 				toUpdateList.remove(note);
 			}
 			currentNotes = toUpdateList;
@@ -147,52 +149,39 @@ public class Game extends Thread {
 			Note[] toUpdate = new Note[rawNotes.length - currentNotesLimits[1]];
 			System.arraycopy(rawNotes,currentNotesLimits[1],toUpdate,0,rawNotes.length - currentNotesLimits[1]);
 			ArrayList<Note> toUpdateList = new ArrayList<>(Arrays.asList(toUpdate));
-			for (Note note : hitNotes) {
-				toUpdateList.remove(note);
-			}
 			futureNotes = toUpdateList;
 		}
+	}
+	
+	public boolean removeLeakedNotes() {
+		for (Note note : hitNotes) {
+			if (rawNotes[currentNotesLimits[0]].equals(note)) {
+				if (rawNotes.length > currentNotesLimits[0] + 1) {
+					currentNotesLimits[0]++;
+				}
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void refreshCurrentNotes() {
 		double currentTime = unpaused ? Framerate.getCurrentTime() - millisStarted : millisPassed;
-		boolean updateCurrent = false;
 		boolean updateFuture = false;
-		for (Note note : getCurrentNotes()) {
-			
-			int noteLocationX = hitLocation + 
-					(int) (currentLevel.getPPS() * note.getSpeed() * 
-							(note.getCalculatedTimeFromStart() - currentTime));
-			
-			if (noteLocationX < -180 - (5000 * currentLevel.getPPS() * note.getSpeed())) {
-				// three second leeway, so that this function only has to be run every three seconds.
-				currentNotesLimits[0]++;
-				updateCurrent = true;
-			} else {
-				break; // this is why it's important for the queue to be sorted.
-				// breaks as soon as we know this element should be displayed.
-			}
-		}
+		
+		while(removeLeakedNotes()) {}
 		
 		for (Note note : getFutureNotes()) {
-//			System.out.println(currentTime);
-//			System.out.println(note.getCalculatedTimeFromStart(currentLevel));
 			int noteLocationX = hitLocation + 
 					(int) (currentLevel.getPPS() * note.getSpeed() * 
 							(note.getCalculatedTimeFromStart() - currentTime));
 			
 			if (noteLocationX < 2100 + (5000 * currentLevel.getPPS() * note.getSpeed())) {
-				// three second leeway, so that this function only has to be run every three seconds.
 				currentNotesLimits[1]++;
 				updateFuture = true;
 			} else {
-				break; // this is why it's important for the queue to be sorted.
-				// breaks as soon as we know this element should not be displayed.
+				break;
 			}
-		}
-		
-		if (updateCurrent) {
-			updateCurrentNotes();
 		}
 		if (updateFuture) {
 			updateFutureNotes();
@@ -215,11 +204,9 @@ public class Game extends Thread {
 	}
 	
 	public void run() {
-		// System.out.println(Thread.currentThread().getPriority());
 		try {
 			Thread.sleep((int) Main.getConfig().getTransitionTime() * 2);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		init();
@@ -231,19 +218,18 @@ public class Game extends Thread {
 			for (int i = 0 ; i < 500 ; i++) {
 				try {
 					Thread.sleep(2); 
-//					System.out.println((Framerate.getCurrentTime() - millisStarted) - 
-//		currentLevel.getTotalTimeSeconds() * 1000);
 					// 1 second total refresh time, so four full second leeway 
 					// to run 500 iterations before refresh onto screen.
-					// game on 2ms refresh rate (500fps).
+					// game functions run on 2ms refresh rate (500fps).
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				// checks once per game cycle (at 1000fps)
-				checkForSongEnd();
-				checkForMiss();
-				checkRedundantGameElements();
+				if (!Main.getState().equals("Stopped") && !songEnded) {
+					checkForSongEnd();
+					checkForMiss();
+					checkRedundantGameElements();
+				}
 				
 				if (Main.getState().equals("Stopped") && songEnded) {
 					currentThread().interrupt();
@@ -268,8 +254,12 @@ public class Game extends Thread {
 	
 	public void checkForMiss() {
 		int notesLength = currentNotes.size();
+		Note note;
 		for (int i = 0 ; i < notesLength ; i++) {
-			Note note = currentNotes.get(i);
+			if (!(currentNotes.size() > i)) {
+				break;
+			}
+			note = currentNotes.get(i);
 			if (note != null) {
 				if (getTimeSinceGameStart() > note.getCalculatedTimeFromStart() + Main.getConfig().getFORCED_millisecondLeniency() + 200 / currentLevel.getPPS()) {
 //					System.out.println("miss" + note.getCalculatedTimeFromStart() + "type" + note.getType());
@@ -294,12 +284,19 @@ public class Game extends Thread {
 		} else {
 			RandomAccess.newHighscore = false;
 		}
-		return new Scores(finalCompleted, finalFlawlessed, finalScore, finalMaxCombo, finalNotesHit, finalNotesMissed);
+		float accuracy = completed ?
+				notesHit == 0 ? 0 : ((float) notesHit / (float) (notesHit + notesMissed)) * 100f
+				: (notesHit == 0 ? 0 : ((float) notesHit / (float) currentLevel.getTotalNotes()) * 100f);
+		return new Scores(finalCompleted, finalFlawlessed, finalScore, finalMaxCombo, finalNotesHit, finalNotesMissed, accuracy);
 	}
 	
-	public void interruptSong() {
-//		System.out.println("hios");
+	public void interruptSong(boolean died) {
 		Scores score = summarizeFinalScores(false);
+		if (died) {
+			RandomAccess.levelComplete(score);
+			Main.addPopup(2);
+		}
+		Database.updateOldHighscore(currentLevel, Main.getPlayerData(), score);
 		Main.getPlayerData().updateStatsFromScores(currentLevel, score);
 		if (player != null) {
 			player.stop();
@@ -326,6 +323,9 @@ public class Game extends Thread {
 		addGameGraphic(Game.die);
 		health = -99999999;
 		died = true;
+		if (!noFail) {
+			interruptSong(true);
+		}
 	}
 	
 	public ArrayList<Note> getCurrentNotes() {
@@ -363,9 +363,7 @@ public class Game extends Thread {
 		int comboMulti = Math.min(((combo / 5) + 1) , 5);
 		incrementScore(timingScore + (100 * (perfect ? 1 : 0)) * comboMulti);
 		incrementCombo(true);
-		if (!noFail) {
-			incrementHealth(1);
-		}
+		incrementHealth(1);
 		// System.out.println(note);
 		if (perfect) {
 			addGameGraphic(Game.hitPerfect);
@@ -379,9 +377,7 @@ public class Game extends Thread {
 		// System.out.println("Miss!");
 		incrementNotesMissed();
 		incrementCombo(false);
-		if (!noFail) {
-			incrementHealth(-5);
-		}
+		incrementHealth(-5);
 		addGameGraphic(Game.miss);
 	}
 	
@@ -389,9 +385,7 @@ public class Game extends Thread {
 		// System.out.println("Missed with keypress " + key);
 		incrementNotesMissed();
 		incrementCombo(false);
-		if (!noFail) {
-			incrementHealth(-2); // pressed key when not supposed to, lose 2
-		}
+		incrementHealth(-2); // pressed key when not supposed to, lose 2
 		addGameGraphic(Game.miss);
 	}
 	
@@ -402,9 +396,7 @@ public class Game extends Thread {
 		// System.out.println("Miss!");
 		incrementNotesMissed();
 		incrementCombo(false);
-		if (!noFail) {
-			incrementHealth(-5); // missed a note, lose 5
-		}
+		incrementHealth(-5); // missed a note, lose 5
 		addGameGraphic(Game.miss);
 	}
 
@@ -501,9 +493,9 @@ public class Game extends Thread {
 		accuracy = (notesMissed == 0) ? 100 : Math.round(((double) notesHit / (double) (notesHit + notesMissed)) * 1000d) / 10d;
 	}
 
-	public boolean getNoFail() {
-		return noFail;
-	}
+//	public boolean getNoFail() {
+//		return noFail;
+//	}
 	
 	/**
 	* Returns the closest note of given type to the current time in index 1 of an object array,

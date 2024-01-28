@@ -9,14 +9,14 @@ public class Scores {
 	private int notesMissed;
 	private float accuracy;
 	
-	public Scores(boolean completed, boolean flawlessed, int score, int maxCombo, int notesHit, int notesMissed) {
+	public Scores(boolean completed, boolean flawlessed, int score, int maxCombo, int notesHit, int notesMissed, float accuracy) {
 		this.completed = completed;
 		this.flawlessed = flawlessed;
 		this.score = score;
 		this.maxCombo = maxCombo;
 		this.notesHit = notesHit;
 		this.notesMissed = notesMissed;
-		this.accuracy = notesHit == 0 ? 0 : ((float) notesHit / (float) (notesHit + notesMissed)) * 100f;
+		this.accuracy = accuracy;
 	}
 
 	public int getScore() {

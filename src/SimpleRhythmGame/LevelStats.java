@@ -47,7 +47,7 @@ public class LevelStats {
 		this.attempts = attempts;
 		this.notesHit = notesHit;
 		this.notesMissed = notesMissed;
-		bestAccuracy = bestAccuracy;
+		this.bestAccuracy = bestAccuracy;
 	}
 	
 	public LevelStats(Level level) {
@@ -179,6 +179,11 @@ public class LevelStats {
 	}
 	
 	public void updateStats(Scores scores) {
+		if (scores.getCompleted() && !completed) {
+			bestAccuracy = scores.getAccuracy();
+		} else {
+			bestAccuracy = Math.max(scores.getAccuracy(), bestAccuracy);
+		}
 		completed = (scores.getCompleted() || completed);
 		flawless = (scores.getFlawlessed() || flawless);
 		highscore = Math.max(scores.getScore(), highscore);
@@ -187,8 +192,6 @@ public class LevelStats {
 		notesHit = notesHit + scores.getNotesHit();
 		notesMissed = notesMissed + scores.getNotesMissed();
 //		System.out.println(scores.getNotesHit());
-		Float accuracy = scores.getNotesHit() == 0 ? 0 : 100 * (float) scores.getNotesHit() / (float) (scores.getNotesHit() + scores.getNotesMissed());
 //		System.out.println(accuracy);
-		bestAccuracy = Math.max(accuracy, bestAccuracy);
 	}
 }

@@ -255,7 +255,7 @@ public class DefaultValues {
 		return new Menu( // 1. Game Menu
 				"Gameplay", // Menu name
 				"%CurrentLevel", // Menu Display Name
-				"%Pause", // Previous Menu
+				"Play_Menu", // Previous Menu
 				DefaultValues.Color_BG, // BGColor
 				new int[][]{{-1,-1}}, // Secondary Selections
 				new RoundedArea[]{ // Masks
@@ -860,7 +860,7 @@ public class DefaultValues {
 /////////////////////////////////////////////////////////////////////////////////////
 				}, // Elements
 				new Popup[] {DefaultValues.Popup_GAMEPAUSE(),
-						new Popup( // Empty Input Error
+						new Popup( // Level Complete
 								"LevelComplete", // Popup Name
 								"%CurrentLevel", // Popup Title
 								new Element[] {
@@ -916,6 +916,318 @@ public class DefaultValues {
 												"AccuracyText",  // name
 												new Text(
 													"Accuracy", // text
+													"center", "center", // align
+													0, -9, // text offset (x, y)
+													45, // text size
+													6, // text color (index of colors)
+													"Archivo Narrow", // font
+													true // bold
+													),
+												new RoundedArea(
+													670, 455, 0, 0, 0  // x, y, xSize, ySize, round%
+													),
+												Color_TRANSPARENT, // box color (index of colors)
+												255, // opacity (0-255)
+												0, // shadowOffset
+												5, DefaultValues.Color_STROKE // strokeWidth, strokeColor
+												)),
+			/////////////////////////////////////////////////////////////////////////////////////
+									new Element(
+											new Selector(
+												new int[]{-1,-1}, // Selector Index
+												new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+												),
+											-1, // mask index
+											false, // hover overlap
+											-1, // hover effect
+											DefaultValues.TransformIndex_ClickScaleDown, // click effect
+											-1, // arbritraty animation (to be used for scroll)
+											DefaultValues.TransformIndex_500msScale0, // entry animation
+											new TextBox(
+												// Text and Renderable
+												1f, // scale
+												"noFunction", // function
+												"Accuracy",  // name
+												new Text(
+													"%LevelComplete Accuracy", // text
+													"center", "center", // align
+													0, -9, // text offset (x, y)
+													75, // text size
+													6, // text color (index of colors)
+													"Archivo Narrow", // font
+													true // bold
+													),
+												new RoundedArea(
+													670, 515, 0, 0, 0  // x, y, xSize, ySize, round%
+													),
+												Color_TRANSPARENT, // box color (index of colors)
+												255, // opacity (0-255)
+												0, // shadowOffset
+												5, DefaultValues.Color_STROKE // strokeWidth, strokeColor
+												)),
+			/////////////////////////////////////////////////////////////////////////////////////
+									new Element(
+											new Selector(
+												new int[]{-1,-1}, // Selector Index
+												new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+												),
+											-1, // mask index
+											false, // hover overlap
+											-1, // hover effect
+											DefaultValues.TransformIndex_ClickScaleDown, // click effect
+											-1, // arbritraty animation (to be used for scroll)
+											DefaultValues.TransformIndex_500msScale0, // entry animation
+											new TextBox(
+												// Text and Renderable
+												1f, // scale
+												"noFunction", // function
+												"MaxComboText",  // name
+												new Text(
+													"Max Combo", // text
+													"center", "center", // align
+													0, -9, // text offset (x, y)
+													45, // text size
+													6, // text color (index of colors)
+													"Archivo Narrow", // font
+													true // bold
+													),
+												new RoundedArea(
+													1250, 455, 0, 0, 0  // x, y, xSize, ySize, round%
+													),
+												Color_TRANSPARENT, // box color (index of colors)
+												255, // opacity (0-255)
+												0, // shadowOffset
+												5, DefaultValues.Color_STROKE // strokeWidth, strokeColor
+												)),
+			/////////////////////////////////////////////////////////////////////////////////////
+									new Element(
+											new Selector(
+												new int[]{-1,-1}, // Selector Index
+												new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+												),
+											-1, // mask index
+											false, // hover overlap
+											-1, // hover effect
+											DefaultValues.TransformIndex_ClickScaleDown, // click effect
+											-1, // arbritraty animation (to be used for scroll)
+											DefaultValues.TransformIndex_500msScale0, // entry animation
+											new TextBox(
+												// Text and Renderable
+												1f, // scale
+												"noFunction", // function
+												"MaxCombo",  // name
+												new Text(
+													"%LevelComplete MaxCombo", // text
+													"center", "center", // align
+													0, -9, // text offset (x, y)
+													75, // text size
+													6, // text color (index of colors)
+													"Archivo Narrow", // font
+													true // bold
+													),
+												new RoundedArea(
+													1250, 515, 0, 0, 0  // x, y, xSize, ySize, round%
+													),
+												Color_TRANSPARENT, // box color (index of colors)
+												255, // opacity (0-255)
+												0, // shadowOffset
+												5, DefaultValues.Color_STROKE // strokeWidth, strokeColor
+												)),
+			/////////////////////////////////////////////////////////////////////////////////////
+									new Element(
+											new Selector(
+												new int[]{-1,-1}, // Selector Index
+												new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+												),
+											-1, // mask index
+											false, // hover overlap
+											-1, // hover effect
+											DefaultValues.TransformIndex_ClickScaleDown, // click effect
+											-1, // arbritraty animation (to be used for scroll)
+											DefaultValues.TransformIndex_500msScale0, // entry animation
+											new TextBox(
+												// Text and Renderable
+												1f, // scale
+												"noFunction", // function
+												"NewBestScoreText",  // name
+												new Text(
+													"%BoolNewHighscore Show", // text
+													"center", "center", // align
+													0, -9, // text offset (x, y)
+													45, // text size
+													DefaultValues.Color_ACCENT, // text color (index of colors)
+													"Archivo Narrow", // font
+													true // bold
+													),
+												new RoundedArea(
+													960, 444, 0, 0, 0  // x, y, xSize, ySize, round%
+													),
+												Color_TRANSPARENT, // box color (index of colors)
+												255, // opacity (0-255)
+												0, // shadowOffset
+												5, DefaultValues.Color_STROKE // strokeWidth, strokeColor
+												)),
+			/////////////////////////////////////////////////////////////////////////////////////
+									new Element(
+											new Selector(
+												new int[]{-1,-1}, // Selector Index
+												new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+												),
+											-1, // mask index
+											false, // hover overlap
+											-1, // hover effect
+											DefaultValues.TransformIndex_ClickScaleDown, // click effect
+											-1, // arbritraty animation (to be used for scroll)
+											DefaultValues.TransformIndex_500msScale0, // entry animation
+											new TextBox(
+												// Text and Renderable
+												1f, // scale
+												"noFunction", // function
+												"ScoreText",  // name
+												new Text(
+													"%BoolNewHighscore Hide", // text
+													"center", "center", // align
+													0, -9, // text offset (x, y)
+													50, // text size
+													DefaultValues.Color_STROKE, // text color (index of colors)
+													"Archivo Narrow", // font
+													true // bold
+													),
+												new RoundedArea(
+													960, 444, 0, 0, 0  // x, y, xSize, ySize, round%
+													),
+												Color_TRANSPARENT, // box color (index of colors)
+												255, // opacity (0-255)
+												0, // shadowOffset
+												5, DefaultValues.Color_STROKE // strokeWidth, strokeColor
+												)),
+			/////////////////////////////////////////////////////////////////////////////////////
+									new Element(
+											new Selector(
+												new int[]{-1,-1}, // Selector Index
+												new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+												),
+											-1, // mask index
+											false, // hover overlap
+											-1, // hover effect
+											DefaultValues.TransformIndex_ClickScaleDown, // click effect
+											-1, // arbritraty animation (to be used for scroll)
+											DefaultValues.TransformIndex_500msScale0, // entry animation
+											new TextBox(
+												// Text and Renderable
+												1f, // scale
+												"noFunction", // function
+												"Score",  // name
+												new Text(
+													"%LevelComplete Score", // text
+													"center", "center", // align
+													0, -9, // text offset (x, y)
+													85, // text size
+													6, // text color (index of colors)
+													"Archivo Narrow", // font
+													true // bold
+													),
+												new RoundedArea(
+													960, 512, 0, 0, 0  // x, y, xSize, ySize, round%
+													),
+												Color_TRANSPARENT, // box color (index of colors)
+												255, // opacity (0-255)
+												0, // shadowOffset
+												5, DefaultValues.Color_STROKE // strokeWidth, strokeColor
+												)),
+/////////////////////////////////////////////////////////////////////////////////////
+									new Element(
+											new Selector(
+												new int[]{0,0}, // Selector Index
+												new int[][]{{1,0},{0,0},{0,0},{0,0}} // E, S, W, N to select next
+												),
+											-1, // mask index
+											false, // hover overlap
+											-1, // hover effect
+											DefaultValues.TransformIndex_ClickScaleDown, // click effect
+											-1, // arbritraty animation (to be used for scroll)
+											DefaultValues.TransformIndex_500msScale0, // entry animation
+											new TextBox(
+												// Text and Renderable
+												1f, // scale
+												"setMenu String Play_Menu", // function
+												"Continue",  // name
+												new Text(
+													"Continue", // text
+													"center", "center", // align
+													0, -10, // text offset (x, y)
+													60, // text size
+													6, // text color (index of colors)
+													"Archivo Narrow", // font
+													true // bold
+													),
+												new RoundedArea(
+													960, 650, 360, 100, 0  // x, y, xSize, ySize, round%
+													),
+												Color_BUTTONS, // box color (index of colors)
+												255, // opacity (0-255)
+												8, // shadowOffset
+												5, 6 // strokeWidth, strokeColor
+												)),
+/////////////////////////////////////////////////////////////////////////////////////
+								}
+						),
+						new Popup( // Level Complete
+								"LevelComplete", // Popup Name
+								"%CurrentLevel", // Popup Title
+								new Element[] {
+									new Element(
+											new Selector(
+												new int[]{-1,-1}, // Selector Index
+												new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+												),
+											-1, // mask index
+											false, // hover overlap
+											-1, // hover effect
+											DefaultValues.TransformIndex_ClickScaleDown, // click effect
+											-1, // arbritraty animation (to be used for scroll)
+											DefaultValues.TransformIndex_500msScale0, // entry animation
+											new TextBox(
+												// Text and Renderable
+												1f, // scale
+												"noFunction", // function
+												"DeathText",  // name
+												new Text(
+													"You Died!", // text
+													"center", "center", // align
+													0, -180, // text offset (x, y)
+													100, // text size
+													DefaultValues.Color_STROKE, // text color (index of colors)
+													"Archivo Narrow", // font
+													true // bold
+													),
+												new RoundedArea(
+													960, 480, 900, 550, 0  // x, y, xSize, ySize, round%
+													),
+												Color_MENU, // box color (index of colors)
+												255, // opacity (0-255)
+												15, // shadowOffset
+												5, DefaultValues.Color_STROKE // strokeWidth, strokeColor
+												)),
+			/////////////////////////////////////////////////////////////////////////////////////
+									new Element(
+											new Selector(
+												new int[]{-1,-1}, // Selector Index
+												new int[][]{{2,0},{1,0},{0,0},{1,0}} // E, S, W, N to select next
+												),
+											-1, // mask index
+											false, // hover overlap
+											-1, // hover effect
+											DefaultValues.TransformIndex_ClickScaleDown, // click effect
+											-1, // arbritraty animation (to be used for scroll)
+											DefaultValues.TransformIndex_500msScale0, // entry animation
+											new TextBox(
+												// Text and Renderable
+												1f, // scale
+												"noFunction", // function
+												"ProgressText",  // name
+												new Text(
+													"Progress", // text
 													"center", "center", // align
 													0, -9, // text offset (x, y)
 													45, // text size
@@ -8853,7 +9165,7 @@ public class DefaultValues {
 									null, // function
 									"LevelBestAccuracySubtext",  // name
 									new Text(
-										"Best Accuracy", // text
+										"%CLevel AccOrProg", // text
 										"left", "center", // align
 										0, 0, // text offset (x, y)
 										40, // text size

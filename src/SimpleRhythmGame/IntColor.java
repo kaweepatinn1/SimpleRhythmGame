@@ -59,7 +59,6 @@ public class IntColor {
 	}
 	
 	public void setColor(String hex) {
-		// System.out.println(hex);
 		red = Integer.parseInt(hex.substring(1, 3),16);
 		green = Integer.parseInt(hex.substring(3, 5),16);
 		blue = Integer.parseInt(hex.substring(5, 7),16);

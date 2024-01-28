@@ -1,11 +1,10 @@
 package SimpleRhythmGame;
 
-import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class Database {
@@ -13,7 +12,8 @@ public class Database {
 		if (!Main.getConfig().getDatabaseDNS().equals("null") && !Main.getConfig().getDatabasePasskey().equals("null")) {
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection con = DriverManager.getConnection("jdbc:mysql://" + Main.getConfig().getDatabaseDNS() + ":3306/leaderboard", "root", Main.getConfig().getDatabasePasskey());
+				Connection con = DriverManager.getConnection("jdbc:mysql://" + Main.getConfig().getDatabaseDNS() + ":3306/leaderboard", 
+						"root", Main.getConfig().getDatabasePasskey());
 				Statement stmt = con.createStatement();
 				String levelName = level.getName();
 				String levelUUID = level.getUUID().toString();
@@ -49,7 +49,8 @@ public class Database {
 			String userUUID = uuid.toString();
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection con = DriverManager.getConnection("jdbc:mysql://" + Main.getConfig().getDatabaseDNS() + ":3306/leaderboard", "root", Main.getConfig().getDatabasePasskey());
+				Connection con = DriverManager.getConnection("jdbc:mysql://" + Main.getConfig().getDatabaseDNS() + ":3306/leaderboard", 
+						"root", Main.getConfig().getDatabasePasskey());
 				Statement stmt = con.createStatement();
 				ResultSet rs = stmt.executeQuery("SELECT userUUID, levelUUID, score FROM `leaderboard`.`leaderboard`"
 						+ "WHERE userUUID = \'" + userUUID + "\' AND levelUUID = \'" + levelUUID + "\';");
@@ -78,12 +79,13 @@ public class Database {
 	
 	public static int updateOldHighscore(Level level, PlayerData playerData, Scores scores) {
 		if (!Main.getConfig().getDatabaseDNS().equals("null") && !Main.getConfig().getDatabasePasskey().equals("null")) {
-			if (getOldHighscore(level, playerData.getUUID()) != -1) {
+			if (getOldHighscore(level, playerData.getUUID()) > 0) {
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					String userUUID = playerData.getUUID().toString();
 					String levelUUID = level.getUUID().toString();
-					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/leaderboard", "root", Main.getConfig().getDatabasePasskey());
+					Connection con = DriverManager.getConnection("jdbc:mysql://" + Main.getConfig().getDatabaseDNS() + ":3306/leaderboard",
+							"root", Main.getConfig().getDatabasePasskey());
 					Statement stmt = con.createStatement();
 					stmt.executeUpdate("UPDATE leaderboard SET score = " + scores.getScore() + ", accuracy = " + 
 					scores.getAccuracy() + ", maxCombo = " + scores.getMaxCombo() + " WHERE userUUID = \'" + 
@@ -112,7 +114,8 @@ public class Database {
 		if (!Main.getConfig().getDatabaseDNS().equals("null") && !Main.getConfig().getDatabasePasskey().equals("null")) {
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection con = DriverManager.getConnection("jdbc:mysql://" + Main.getConfig().getDatabaseDNS() + ":3306/leaderboard", "root", Main.getConfig().getDatabasePasskey());
+				Connection con = DriverManager.getConnection("jdbc:mysql://" + Main.getConfig().getDatabaseDNS() + ":3306/leaderboard",
+						"root", Main.getConfig().getDatabasePasskey());
 				Statement stmt = con.createStatement();
 				ResultSet countRS = stmt.executeQuery("SELECT COUNT(*) FROM `leaderboard`.`leaderboard`"
 						+ "WHERE levelUUID = \'" + level.getUUID().toString() + "\' LIMIT 10;");

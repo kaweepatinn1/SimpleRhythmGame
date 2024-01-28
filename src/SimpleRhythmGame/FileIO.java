@@ -1,7 +1,6 @@
 package SimpleRhythmGame;
 
 import java.awt.HeadlessException;
-
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
@@ -47,48 +46,26 @@ public class FileIO {
 	public static Config currentConfigIn() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
 		Gson gson = new Gson();
 		Config config = gson.fromJson(new FileReader("./options.json"), Config.class);
-		// since colors are a transient property they are 
-		// written to config after reading from json.
-		
+		//_____________________
 		// VALIDATE CONFIG
-		
-		boolean colorsValid = true;
 		
 		if (config.getThemes() != null){
 			if (config.getThemes() instanceof Theme[]) {
 				Theme[] themesList = config.getThemes();
-					for (Theme theme : themesList) {
-						if (theme.getColorsList().length == Config.getColorsLenth()) {
-						for (IntColor color : theme.getColorsList())
-							if (color.getRed() < 0 || color.getRed() > 255) {
-								colorsValid = false;
-								break;
-							} else if (color.getGreen() < 0 || color.getGreen() > 255) {
-								colorsValid = false;
-								break;
-							} else if (color.getBlue() < 0 || color.getBlue() > 255) {
-								colorsValid = false;
-								break;
-							} else if (color.getAlpha() < 0 || color.getAlpha() > 255) {
-								colorsValid = false;
-								break;
-							}
-						} else {
-							colorsValid = false;
-					
+				for (Theme theme : themesList) {
+					if (theme.getColorsList().length == Config.getColorsLenth()) {
+						for (IntColor color : theme.getColorsList()) {
+							color.setRed(Math.max(0, Math.min(color.getRed(), 255)));
+							color.setGreen(Math.max(0, Math.min(color.getGreen(), 255)));
+							color.setBlue(Math.max(0, Math.min(color.getBlue(), 255)));
+							color.setAlpha(Math.max(0, Math.min(color.getAlpha(), 255)));
+							// looped data validation to ensure colors are within valid range
 						}
+					}
 				}
-			} else {
-				colorsValid = false;
 			}
-		} else {
-			colorsValid = false;
 		}
-
-		if (!colorsValid) {
-			config.setThemes(DefaultValues.getDefaultThemes());
-			System.out.println("RESET INVALID COLORS");
-		}
+		
 		config.setMenus(DefaultValues.getAllDefaultMenus());
 		
 		config.setFORCED_noFail(DefaultValues.getDefaultFORCED_noFail());

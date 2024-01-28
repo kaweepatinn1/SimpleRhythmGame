@@ -3,8 +3,8 @@ package SimpleRhythmGame;
 import java.awt.Color;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.text.DecimalFormat;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 
 public class Config {
 	private int version;
@@ -619,15 +619,11 @@ public class Config {
 		} else if (splitVariable[0].equals("%Multi")) {
 			varToReturn = "(" + (1 + Math.min((Main.getGame().getCombo() / 5), 4)) + "x)";
 		} else if (splitVariable[0].equals("%Health")) {
-			if (Main.getGame().getNoFail()) {
-				varToReturn = "";
+			int HP = Main.getGame().getHealth();
+			if (HP > 0) {
+				varToReturn = "Health: " + HP;
 			} else {
-				int HP = Main.getGame().getHealth();
-				if (HP > 0) {
-					varToReturn = "Health: " + HP;
-				} else {
-					varToReturn = "Dead (50% Less Score)";
-				}
+				varToReturn = "Dead (50% Less Score)";
 			}
 		} else if (splitVariable[0].equals("%ScreenWidth")) {
 			varToReturn = Integer.toString(getSizeToForce());
@@ -691,7 +687,9 @@ public class Config {
 				}
 			} else if (splitVariable[1].equals("Complete")) {
 				varToReturn = Boolean.toString(RandomAccess.levelComplete);
-			} 
+			} else if (splitVariable[1].equals("AccOrProg")) {
+				varToReturn = RandomAccess.levelComplete ? "Best Accuracy" : "Best Progress";
+			}
 			
 			else {
 				System.out.println("Could not find variable with name " + splitVariable[0] + "and subvariable" + splitVariable[1]);
@@ -708,7 +706,7 @@ public class Config {
 			}
 			
 			else {
-				System.out.println("Could not find variable with name " + splitVariable[0] + "and subvariable" + splitVariable[1]);
+				System.out.println("Could not find variable with name " + splitVariable[0] + " and subvariable " + splitVariable[1]);
 			}
 		} else if (splitVariable[0].equals("%PlayerStats")) {
 			if (splitVariable[1].equals("TimePlayed")) {

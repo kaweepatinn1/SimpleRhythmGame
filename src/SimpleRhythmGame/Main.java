@@ -1,22 +1,46 @@
 package SimpleRhythmGame;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.AlphaComposite;
+import java.awt.BasicStroke;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import java.awt.Shape;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Area;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
-import java.awt.geom.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
-
-import java.util.List;
 
 public class Main extends JPanel implements KeyListener {
     /**
@@ -83,7 +107,6 @@ public class Main extends JPanel implements KeyListener {
     		int mouseX = e.getX();
         	int mouseY = e.getY();
         	keyboardInputLast = false;
-        	// System.out.println("clicked");
             Element clickedElement = checkLocation(mouseX, mouseY);
             if (clickedElement != null) {
             	
@@ -118,7 +141,6 @@ public class Main extends JPanel implements KeyListener {
                     			"\nwhich is a \nRenderable: " + clickedElement.isRenderable() + "\nTextbox: " + clickedElement.isTextbox());
                     } 
         		}
-            	// System.out.println(releasedElement.getName());
                 mouseDragStart = null;
         	} else {
         		Element element = getElementFromName(selectedElement);
@@ -361,7 +383,7 @@ public class Main extends JPanel implements KeyListener {
             			game.miss(keyPressed);
             		}
             	} else if (keyPressed.equals("Escape")) {
-            		game.interruptSong();
+            		game.interruptSong(false);
             		Functions.setMenu("Play Menu");
             	}
             }
@@ -478,15 +500,11 @@ public class Main extends JPanel implements KeyListener {
 	                		}
 	                	}
 	                	
-	                	if (!found) { // set the selected to 0 instead if not currently selecting a valid item (like if currently on -1,-1)
+	                	if (!found) {
 	                		selected = scaledMenu.resetSelectors(true, getCurrentPopupIndex());
 	                		for (int i = 0 ; i < selectionsList.length; i++) {
 	                    		if (selectionsList[i].getSelectorIndex()[0] == selected[0] && selectionsList[i].getSelectorIndex()[1] == selected[1] &&
 	                    				selectionsList[i].getSelectorIndex()[0] + selectionsList[i].getSelectorIndex()[1] > -1) {
-//	                    			Element initialElement = tempElementsList[i];
-//	                    			if (initialElement.getName().charAt(initialElement.getName().length() - 2) == '#') {
-//	                    				initialElement.getName();
-//	                    			} Can one day be added to improve navigation in optionslist when scrolled
 	                    			element = tempElementsList[i];
 	                    			element.animateHover();
 	                    			lastHovered = element.getName();
@@ -837,7 +855,7 @@ public class Main extends JPanel implements KeyListener {
     	
     	for (TextBox textbox : titleTextbox) {
     		if (!textbox.getName().equals("FPS") || config.getDisplayFramerate() == true) {
-    			String text = textbox.getText().substring(0, 1).equals("%") ? 
+    			String text = textbox.getText().charAt(0) == ('%') ? 
 	        			(String) config.getVariable(textbox.getText()) :
 	        			textbox.getText();
 	    		Font font = new Font(textbox.getFont(), textbox.getBold() ? Font.BOLD:Font.PLAIN , textbox.getTextSize());
@@ -967,11 +985,7 @@ public class Main extends JPanel implements KeyListener {
     		double noteLocationX = Game.hitLocation + 
 					(currentLevel.getPPS() * note.getSpeed() * 
 							(note.getCalculatedTimeFromStart() - currentTime));
-    		
     		int scaledNoteLocation = (int) (noteLocationX * scale);
-//    		System.out.println(note.getBeat());
-//    		System.out.println(scaledNoteLocation);
-//    		System.out.println(note.getType());
     		g2d.drawImage(Game.getNoteImage(note.getType()), scaledNoteLocation, (int) (Note.typeLocations[note.getType()] * scale), null);
     	}
     	
@@ -1127,7 +1141,8 @@ public class Main extends JPanel implements KeyListener {
         	
         	for (int k = currentElement.getTransform().length - 1 ; k > -1 ; k--) {
         		if (currentElement.getTransform()[k].getNewTransform() != null) {
-	        		finalRect = currentElement.getTransform()[k].getCurrentPosition().getFinalTransform().createTransformedShape(finalRect);
+	        		finalRect = 
+	        				currentElement.getTransform()[k].getCurrentPosition().getFinalTransform().createTransformedShape(finalRect);
         			extraOpacityMulti = extraOpacityMulti * currentElement.getTransform()[k].getCurrentPosition().getOpacity();
 	        	}
         	}
@@ -1141,11 +1156,13 @@ public class Main extends JPanel implements KeyListener {
         		Shape shadowRect = shadow.createTransformedShape(finalRect);
             	g2d.setColor(new Color(0, 0, 0, 100));
             	
-            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f * opacityMulti * (Math.min((float) extraOpacityMulti, 1f))));
+            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f * opacityMulti * 
+            			(Math.min((float) extraOpacityMulti, 1f))));
             	g2d.fill(shadowRect);
             }
         	
-        	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacityMulti * (Math.min((float) extraOpacityMulti, 1f))));
+        	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacityMulti * 
+        			(Math.min((float) extraOpacityMulti, 1f))));
             
             float thickness = textfield.getStrokeWidth();
             g2d.setStroke(new BasicStroke(thickness, BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER));
@@ -1163,13 +1180,11 @@ public class Main extends JPanel implements KeyListener {
         	Text textObject = textfield.getTextObject();
         	RoundedArea area = textfield.getRectShape();
         	
-        	// g2d.translate(-textObject.getOffsetX(), -textObject.getOffsetY());
             for (int k = currentElement.getTransform().length - 1 ; k > -1 ; k--) {
         		if (currentElement.getTransform()[k].getNewTransform() != null) {
         			g2d.transform(currentElement.getTransform()[k].getCurrentPosition().getFinalTransform());
 	        	}
         	}
-            // g2d.translate(textObject.getOffsetX(), textObject.getOffsetY());
             	
         	g2d.setColor(config.getCurrentThemeColors()[textObject.getTextColor()]); // set text color
             
@@ -1191,7 +1206,8 @@ public class Main extends JPanel implements KeyListener {
             g2d.setColor(config.getCurrentThemeColors()[5]);
             if (currentElement.getSelector().isSelected()) {
             	double pointerTime = currentElement.getTextfield().getPointerTime();
-            	g2d.drawString((Framerate.getCurrentTime() - pointerTime)  % 1000 < 500 ? "|" : "", finalX + extraAligns[2] - (int)(textObject.getTextSize() * 0.1),
+            	g2d.drawString((Framerate.getCurrentTime() - pointerTime)  % 1000 < 500 ? "|" : "", 
+            			finalX + extraAligns[2] - (int)(textObject.getTextSize() * 0.1),
             		finalY - (int)(textObject.getTextSize() * 0.1));
             }
     	
@@ -1556,26 +1572,14 @@ public class Main extends JPanel implements KeyListener {
         float screenDPI = java.awt.Toolkit.getDefaultToolkit().getScreenResolution();
         float defaultScreenDPI = 96;
         float scaleFactor = defaultScreenDPI / screenDPI;
-        // System.out.println(scaleFactor);
-        
-        // System.out.println("default" + screenDefaultWidth);
-        // System.out.println("default" + screenDefaultHeight);
         
         float screenScaledWidth = screenDefaultWidth * scaleFactor;
         float screenScaledHeight = screenDefaultHeight * scaleFactor;
-        // System.out.println("scaled" + screenScaledWidth);
-        // System.out.println("scaled" + screenScaledHeight);
         
         int screenWidth = (int) Math.min(screenScaledWidth, (int) (screenScaledHeight * 16f / 9f));
         int screenHeight = (int) (screenWidth / 16f * 9f);
         
         int[] toReturn = {screenWidth, screenHeight};
-        // System.out.println(java.awt.Toolkit.getDefaultToolkit().getScreenResolution());
-        // System.out.println("final" + screenWidth);
-        // System.out.println("final" + screenHeight);
-//        System.out.println(sizeToForce);
-//        System.out.println(screenWidth);
-//      frame.setBounds(screenDefaultWidth, screenDefaultHeight, screenWidth, screenHeight)
         frame.setSize(screenWidth, screenHeight);
         
         calculatedScreenWidth = screenWidth;
@@ -1642,7 +1646,7 @@ public class Main extends JPanel implements KeyListener {
     			transitionBlackOut = true;
     		}
     	}
-    	if (popupUpdate) {
+    	if (popupUpdate && getCurrentPopupIndex() != 1) {
     		if (Framerate.getCurrentTime() > popupTime + config.getTransitionTime() / 2f) {
     			Element[] tempElementsList = scaledMenu.getPopup(getCurrentPopupIndex()).getElements();
     			for (int i = 0; i < tempElementsList.length ; i++) {
@@ -1683,8 +1687,6 @@ public class Main extends JPanel implements KeyListener {
     		        }
     		        
     		        for (int selection = 0 ; selection < selectionsList.length; selection++) {
-//    		        	System.out.println(toSelect[0] + "|" + toSelect[1]);
-//    		        	System.out.println(selectionsList[selection].getSelectorIndex()[0] + "|" + selectionsList[selection].getSelectorIndex()[1]);
     	        		if (selectionsList[selection].getSelectorIndex()[0] == toSelect[0] && selectionsList[selection].getSelectorIndex()[1] == toSelect[1] &&
     	        				selectionsList[selection].getSelectorIndex()[0] + selectionsList[selection].getSelectorIndex()[1] > -1) {
     	        			Element elementToDeanimate = scaledMenu.getElements()[selection];
@@ -1862,6 +1864,10 @@ public class Main extends JPanel implements KeyListener {
 		} else {
 			// System.out.println("Popup is already not shown!");
 		}
+		if (scaledMenu.getMenuName().equals("Gameplay")){
+			String functionToRun = "setMenu String " + Main.getCurrentScaledMenu().getPreviousMenuName();
+    		Functions.runFunction(functionToRun);
+		} 
 	}
 
 	public static boolean getTransitioning() {
@@ -2030,8 +2036,8 @@ public class Main extends JPanel implements KeyListener {
     	
         // READ INITIALIZATION STATUS
         
-        boolean useConfig = true; // false during development. TODO: set to true on completion
-        boolean usePlayerData = true; // false during development. set to true to start saving and using config
+        boolean useConfig = true; // false during development.
+        boolean usePlayerData = true; // false during development.
         
         ////////////////////// Read Config
         
@@ -2077,13 +2083,13 @@ public class Main extends JPanel implements KeyListener {
         	try {
 				playerData = FileIO.playerDataIn();
 			} catch (JsonSyntaxException e) {
-				// TODO Auto-generated catch block
+				playerDataExists = false;
 				e.printStackTrace();
 			} catch (JsonIOException e) {
-				// TODO Auto-generated catch block
+				playerDataExists = false;
 				e.printStackTrace();
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
+				playerDataExists = false;
 				e.printStackTrace();
 			}
         	playerDataExists = true;
@@ -2094,7 +2100,7 @@ public class Main extends JPanel implements KeyListener {
         
         ///////////////////////
         
-        setNewFrameSize(config.getFullscreen(), config.getSizeToForce()); // uses the above raw lists and variables to set the frame size.
+        setNewFrameSize(config.getFullscreen(), config.getSizeToForce());
         if (playerDataExists) {
         	Functions.setMenu("Main Menu");
         } else {
@@ -2120,12 +2126,6 @@ public class Main extends JPanel implements KeyListener {
         frame.getContentPane().add(panel); // adds the panel to frame content
         
         frame.setResizable(false);
-        // BELOW IS DEPRECIATED: FRAME WILL ALWAYS BE UNRESIZABLE. can be resized in possibly settings
-        /*if (forceSize) {
-        	frame.setResizable(false);
-        } else {
-        	frame.setResizable(true);
-        }*/
         
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         String[] fontList = DefaultValues.getDefaultFonts();
@@ -2142,14 +2142,6 @@ public class Main extends JPanel implements KeyListener {
         }
         
         Sound.initSFX(); 
-        // loads the predeclared sounds into the sounds class and buffers them
-        
-        /* 
-        String []fontFamilies = ge.getAvailableFontFamilyNames();
-        for (String var : fontFamilies) {
-        	System.out.println(var);
-        }
-        */
         // Set the frame size to the screen dimensions
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sets closing operation
         frame.setVisible(true); // allows client to see frame
