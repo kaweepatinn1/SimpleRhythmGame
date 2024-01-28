@@ -2107,10 +2107,10 @@ public class Main extends JPanel implements KeyListener {
         	Functions.setMenu("Init User Menu");
         }
         
+        panel = new Main(); 
+        
         Framerate thread = new Framerate();
         thread.start();
-        
-        panel = new Main(); 
         
         if (config.getCursorEnabled()) {
     		panel.setCursor(Cursor.getDefaultCursor());

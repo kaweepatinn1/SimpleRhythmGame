@@ -2165,8 +2165,8 @@ public class DefaultValues {
 /////////////////////////////////////////////////////////////////////////////////////
 						new Element(
 								new Selector(
-									new int[]{2,0}, // Selector Index
-									new int[][]{{2,0},{1,1},{1,0},{0,0}} // E, S, W, N to select next
+									new int[]{1,0}, // Selector Index
+									new int[][]{{1,0},{1,0},{0,1},{0,0}} // E, S, W, N to select next
 									),
 								-1, // mask index
 								true, // hover overlap
