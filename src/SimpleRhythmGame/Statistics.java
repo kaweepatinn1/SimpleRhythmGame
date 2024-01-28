@@ -95,10 +95,10 @@ public class Statistics {
 	}
 	
 	// global stats only updates completed if it is a new copmletion
-	public void updateStats(Scores scores, Level level) {
+	public void updateStats(Scores scores, Level level, int seconds) {
 		updateCompleted();
 		updateFlawless();
-		timePlayedSeconds = timePlayedSeconds + level.getTotalTimeSeconds();
+		timePlayedSeconds = timePlayedSeconds + seconds;
 		notesHit = notesHit + scores.getNotesHit();
 		notesMissed = notesMissed + scores.getNotesMissed();
 		updateLongestCombo(scores.getMaxCombo());
@@ -128,10 +128,10 @@ public class Statistics {
 	
 	
 	// session stats summarises total songs completed, ignoring duplicates
-	public void updateSessionStats(Scores scores, Level level) {
+	public void updateSessionStats(Scores scores, Level level, int seconds) {
 		songsCompleted = scores.getCompleted() ? songsCompleted + 1 : songsCompleted;
 		songsFlawlessed = scores.getFlawlessed() ? songsFlawlessed + 1 : songsFlawlessed;
-		timePlayedSeconds = timePlayedSeconds + level.getTotalTimeSeconds();
+		timePlayedSeconds = timePlayedSeconds + seconds;
 		notesHit = notesHit + scores.getNotesHit();
 		notesMissed = notesMissed + scores.getNotesMissed();
 		totalAttempts++;

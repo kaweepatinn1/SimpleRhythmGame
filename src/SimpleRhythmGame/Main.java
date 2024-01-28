@@ -658,8 +658,8 @@ public class Main extends JPanel implements KeyListener {
     	        Rectangle rect = new Rectangle(0,0,calculatedScreenWidth,calculatedScreenHeight);
     	        g2d.setColor(new Color(0,0,0,255));
     	        opacityMulti = (iter == popupIndexes.length - 1) ? 
-    	        		( fadeOutPopup == -1 ? (float) Math.max(Math.min(((Framerate.getCurrentTime() - popupTime) / (config.getTransitionTime() * (45f/ 100f))),1f),0f)
-    	        				: (float) Math.max(Math.min(1 -((Framerate.getCurrentTime() - popupTime) / (config.getTransitionTime() * (45f / 100f))),1f),0f))
+    	        		( fadeOutPopup == -1 ? (float) Math.max(Math.min(((Framerate.getCurrentTime() - popupTime) / (config.getTransitionTime() * (30f/ 100f))),1f),0f)
+    	        				: (float) Math.max(Math.min(1 -((Framerate.getCurrentTime() - popupTime) / (config.getTransitionTime() * (30f / 100f))),1f),0f))
     	        		: 1f;
     	        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f * opacityMulti));
     	        g2d.fill(rect);
@@ -904,12 +904,12 @@ public class Main extends JPanel implements KeyListener {
         }
     	
     	if (transitioning) {
-    		double transitionProgress = Math.max(Math.min((Framerate.getCurrentTime() - transitionTime) / config.getTransitionTime(),255),0);
+    		double transitionProgress = (Framerate.getCurrentTime() - transitionTime) / config.getTransitionTime();
     		double transitionCompleteProgress = 1 - transitionProgress;
     		g2d.setColor(new Color(0,0,0,
     				Framerate.getCurrentTime() - transitionTime < (config.getTransitionTime() / 2) ?
-					Math.max(Math.min((int)(transitionProgress * 255f * (100f / 45f)),255),0): 
-						Math.max(Math.min((int)(transitionCompleteProgress * 255f * (100f / 45f)),255),0)
+					Math.max(Math.min((int)(transitionProgress * 255f * (100f / 30f)),255),0): 
+						Math.max(Math.min((int)(transitionCompleteProgress * 255f * (100f / 30f)),255),0)
     					));
     		g2d.fill(new Rectangle(0,0,calculatedScreenWidth,calculatedScreenHeight));
     	}
@@ -1038,8 +1038,8 @@ public class Main extends JPanel implements KeyListener {
             	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, Math.min(textbox.getOpacity() / 255f,1) * 0.5f * opacityMulti));
             	g2d.fill(shadowRect);
             }
-        	
-        	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) Math.min(Math.min(textbox.getOpacity() / 255f,1) * Math.min(extraOpacityMulti,1f),1f)));
+        	float alpha = (float) Math.min(Math.min(textbox.getOpacity() / 255f,1) * Math.min(extraOpacityMulti,1.0f),1.0f);
+        	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha < 1.0f ? alpha : 1.0f));
             
             g2d.setColor(config.getCurrentThemeColors()[textbox.getColor()]); // set box color
             g2d.fill(finalRect);
@@ -1057,9 +1057,11 @@ public class Main extends JPanel implements KeyListener {
             	}
             	Renderable renderable = textbox.getRenderableObject();
             	BufferedImage image = renderable.getImage();
-            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, Math.min(Math.min((float) extraOpacityMulti, 1f) * opacityMulti * ((float) renderable.getOpacity())/255,1)));
+            	alpha = Math.min(Math.min((float) extraOpacityMulti, 1f) * opacityMulti * ((float) renderable.getOpacity())/255,1.0f);
+            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha < 1.0f ? alpha : 1.0f));
             	g2d.drawImage(image, textbox.getX() + renderable.getX(), textbox.getY() + renderable.getY(), null);
-            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, Math.min((Math.min((float) extraOpacityMulti, 1f)) * opacityMulti,1)));
+            	alpha = Math.min((Math.min((float) extraOpacityMulti, 1f)) * opacityMulti,1);
+            	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha < 1.0f ? alpha : 1.0f));
             	// Reset the composite after using it
             	g2d.setTransform(oldForm);
             } 
@@ -1099,7 +1101,8 @@ public class Main extends JPanel implements KeyListener {
 		            int finalX = roundRectAttributes.getX() + (textbox.getXSize() / 2) + textbox.getOffsetX() + extraAlignX;
 		            int finalY = roundRectAttributes.getY() + (textbox.getYSize() / 2) + textbox.getOffsetY() + extraAlignY;
 		            finalY = finalY + (fontMetrics.getAscent() * i);
-		            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, Math.min((Math.min((float) extraOpacityMulti, 1f)) * opacityMulti,1f)));
+		            alpha = Math.min((Math.min((float) extraOpacityMulti, 1f)) * opacityMulti,1.0f);
+		            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha < 1.0f ? alpha : 1.0f));
 		            g2d.drawString(lineText, finalX, finalY);
 	            }
 	            
@@ -1611,7 +1614,7 @@ public class Main extends JPanel implements KeyListener {
     		if (Framerate.getCurrentTime() > transitionTime + config.getTransitionTime() && transitionBlackOut == false && menuSwitched == true) {
     			transitioning = false;
     			menuSwitched = false;
-    		} else if (Framerate.getCurrentTime() > transitionTime + config.getTransitionTime() / 2f && transitionBlackOut == true) {
+    		} else if (Framerate.getCurrentTime() > transitionTime + (30f * config.getTransitionTime() / 100f) && transitionBlackOut == true) {
     			Element[] currentMenu = scaledMenu.getElements();
     			for (int i = 0; i < currentMenu.length ; i++) {
     				currentMenu[i].deanimateHover(true);
@@ -1642,16 +1645,18 @@ public class Main extends JPanel implements KeyListener {
     	        animateEntryMenu();
     	        menuSwitched = true;
     	        transitionBlackOut = false;
-    		} else if (Framerate.getCurrentTime() > transitionTime + (45f * config.getTransitionTime() / 100f) && transitionBlackOut == false && menuSwitched == false) {
+    		} else if (Framerate.getCurrentTime() > transitionTime + (30f * config.getTransitionTime() / 100f) && transitionBlackOut == false && menuSwitched == false) {
     			transitionBlackOut = true;
     		}
     	}
     	if (popupUpdate) {
     		if (Framerate.getCurrentTime() > popupTime + config.getTransitionTime() / 2f) {
     			Element[] tempElementsList = scaledMenu.getPopup(getCurrentPopupIndex()).getElements();
-    			for (int i = 0; i < tempElementsList.length ; i++) {
-    				tempElementsList[i].deanimateHover(true);
-    				tempElementsList[i].deanimateClick(true);
+    			if (tempElementsList != null) {
+    				for (int i = 0; i < tempElementsList.length ; i++) {
+        				tempElementsList[i].deanimateHover(true);
+        				tempElementsList[i].deanimateClick(true);
+        			}
     			}
     			
     			if (fadeOutPopup != -1) {

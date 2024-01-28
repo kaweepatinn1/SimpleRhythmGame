@@ -59,7 +59,7 @@ public class PlayerData {
 		this.levelStats = levelStats;
 	}
 	
-	public void updateStatsFromScores(Level level, Scores scores) {
+	public void updateStatsFromScores(Level level, Scores scores, int seconds) {
 		boolean found = false;
 		for (LevelStats levelStat : levelStats) {
 			if (level.getUUID().equals(levelStat.getLevelUUID())) {
@@ -74,8 +74,8 @@ public class PlayerData {
 			newStat.updateStats(scores);
 		}
 		
-		stats.updateStats(scores, level);
-		Main.getSessionStats().updateSessionStats(scores, level);
+		stats.updateStats(scores, level, seconds);
+		Main.getSessionStats().updateSessionStats(scores, level, seconds);
 		FileIO.currentPlayerDataOut();
 	}
 }

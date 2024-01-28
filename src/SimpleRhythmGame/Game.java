@@ -296,8 +296,7 @@ public class Game extends Thread {
 			RandomAccess.levelComplete(score);
 			Main.addPopup(2);
 		}
-		Database.updateOldHighscore(currentLevel, Main.getPlayerData(), score);
-		Main.getPlayerData().updateStatsFromScores(currentLevel, score);
+		Main.getPlayerData().updateStatsFromScores(currentLevel, score, (int) Math.max((unpaused ? Framerate.getCurrentTime() - millisStarted : millisPassed),0)/1000);
 		if (player != null) {
 			player.stop();
 		}
@@ -310,7 +309,7 @@ public class Game extends Thread {
 		RandomAccess.levelComplete(score);
 		Database.updateOldHighscore(currentLevel, Main.getPlayerData(), score);
 		Main.addPopup(1);
-		Main.getPlayerData().updateStatsFromScores(currentLevel, score);
+		Main.getPlayerData().updateStatsFromScores(currentLevel, score, currentLevel.getTotalTimeSeconds());
 		if (player != null) {
 			player.stop();
 		}

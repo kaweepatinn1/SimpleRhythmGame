@@ -17,7 +17,7 @@ public class DefaultValues {
 	private static final boolean defaultShouldLimitFramerate = true;
 	private static final boolean defaultDisplayFramerate = false;
 	
-	private static final double defaultTransitionTime = 500d;
+	private static final double defaultTransitionTime = 1000d;
 	
 	private static final boolean defaultCursorEnabled = true;
 	
