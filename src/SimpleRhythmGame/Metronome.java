@@ -1,6 +1,7 @@
 package SimpleRhythmGame;
 
 public class Metronome extends Thread {
+	// A class used to debug timings
 	public void run() {
 		Thread.currentThread().setPriority(7);
 		System.out.println(Thread.currentThread().getPriority());
